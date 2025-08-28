@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../domain/entities/prayer_tracking.dart';
 
 /// Widget displaying the current prayer status with beautiful Islamic design

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/islamic_theme.dart';
 
 /// Beautiful card displaying one of the 99 Names of Allah
@@ -140,7 +141,7 @@ class NamesOfAllahCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: () => _copyName(context),
                   icon: const Icon(Icons.copy, size: 16),
-                  label: const Text('Copy'),
+                  label: Text(AppLocalizations.of(context)!.commonCopy),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.white,
                     side: const BorderSide(color: Colors.white),
@@ -156,7 +157,7 @@ class NamesOfAllahCard extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () => _learnMore(context),
                   icon: const Icon(Icons.info, size: 16),
-                  label: const Text('Learn More'),
+                  label: Text(AppLocalizations.of(context)!.learnMore),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: IslamicTheme.islamicGreen,
@@ -217,7 +218,7 @@ One of the 99 Beautiful Names of Allah
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Name of Allah copied to clipboard'),
+        content: Text(AppLocalizations.of(context)!.nameOfAllahCopied),
         backgroundColor: IslamicTheme.islamicGreen,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -231,7 +232,7 @@ One of the 99 Beautiful Names of Allah
     // TODO: Implement detailed explanation
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Detailed explanations coming soon!'),
+        content: Text(AppLocalizations.of(context)!.detailedExplanationsSoon),
         backgroundColor: IslamicTheme.islamicGreen,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

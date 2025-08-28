@@ -20,7 +20,7 @@ import 'app_localizations_ur.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/app_localizations.dart';
+/// import 'generated/app_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -354,6 +354,12 @@ abstract class AppLocalizations {
   /// **'Time Remaining'**
   String get timeRemaining;
 
+  /// Label for prayer times source
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times from Al-Adhan'**
+  String get timingsFromAlAdhan;
+
   /// Title for Quran section
   ///
   /// In en, this message translates to:
@@ -396,7 +402,7 @@ abstract class AppLocalizations {
   /// **'Page'**
   String get quranPage;
 
-  /// Juz navigation tab
+  /// Juz/Para navigation tab
   ///
   /// In en, this message translates to:
   /// **'Juz'**
@@ -942,6 +948,168 @@ abstract class AppLocalizations {
   /// **'Confirm'**
   String get buttonConfirm;
 
+  /// Delete button text
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get buttonDelete;
+
+  /// Edit button text
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get buttonEdit;
+
+  /// Copy button text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get buttonCopy;
+
+  /// Share button text
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get buttonShare;
+
+  /// View button text
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get buttonView;
+
+  /// Start button text
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get buttonStart;
+
+  /// Stop button text
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get buttonStop;
+
+  /// Action to bookmark a verse
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark verse'**
+  String get verseBookmark;
+
+  /// Action to remove bookmark from verse
+  ///
+  /// In en, this message translates to:
+  /// **'Remove bookmark'**
+  String get verseRemoveBookmark;
+
+  /// Action to copy verse text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy verse'**
+  String get verseCopy;
+
+  /// Action to share verse
+  ///
+  /// In en, this message translates to:
+  /// **'Share verse'**
+  String get verseShare;
+
+  /// Action to view verse commentary
+  ///
+  /// In en, this message translates to:
+  /// **'View tafsir'**
+  String get verseViewTafsir;
+
+  /// Loading message for verse translation
+  ///
+  /// In en, this message translates to:
+  /// **'Loading translation...'**
+  String get verseLoadingTranslation;
+
+  /// Unknown status or value
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get statusUnknown;
+
+  /// Reading Plans screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Plans'**
+  String get readingPlansTitle;
+
+  /// My Plans tab title
+  ///
+  /// In en, this message translates to:
+  /// **'My Plans'**
+  String get readingPlansMyPlans;
+
+  /// Today tab title
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get readingPlansToday;
+
+  /// Stats tab title
+  ///
+  /// In en, this message translates to:
+  /// **'Stats'**
+  String get readingPlansStats;
+
+  /// New Plan button text
+  ///
+  /// In en, this message translates to:
+  /// **'New Plan'**
+  String get readingPlansNewPlan;
+
+  /// Active plan status
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE'**
+  String get readingPlansActive;
+
+  /// Progress label
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get readingPlansProgress;
+
+  /// Days label
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get readingPlansDays;
+
+  /// Verses per day label
+  ///
+  /// In en, this message translates to:
+  /// **'Verses/Day'**
+  String get readingPlansVersesPerDay;
+
+  /// Today's reading title
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Reading'**
+  String get readingPlansTodaysReading;
+
+  /// Start reading button text
+  ///
+  /// In en, this message translates to:
+  /// **'Start Reading'**
+  String get readingPlansStartReading;
+
+  /// Start plan menu action
+  ///
+  /// In en, this message translates to:
+  /// **'Start Plan'**
+  String get readingPlansStartPlan;
+
+  /// Stop plan menu action
+  ///
+  /// In en, this message translates to:
+  /// **'Stop Plan'**
+  String get readingPlansStopPlan;
+
   /// Clear button text
   ///
   /// In en, this message translates to:
@@ -1140,6 +1308,30 @@ abstract class AppLocalizations {
   /// **'Use special Athan recitations during Ramadan'**
   String get prayerSpecialRamadanAthanSubtitle;
 
+  /// Suhur reminder setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Suhur Reminder'**
+  String get prayerSuhurReminder;
+
+  /// Iftar reminder setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar Reminder'**
+  String get prayerIftarReminder;
+
+  /// Suhur reminder text with minutes placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me {minutes} minutes before Fajr for Suhur'**
+  String prayerSuhurReminderText(int minutes);
+
+  /// Iftar reminder text with minutes placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me {minutes} minutes before Maghrib for Iftar'**
+  String prayerIftarReminderText(int minutes);
+
   /// Include duas setting title
   ///
   /// In en, this message translates to:
@@ -1163,6 +1355,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep track of your fasting status'**
   String get prayerTrackFastingSubtitle;
+
+  /// Ramadan Mubarak greeting
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Mubarak!'**
+  String get ramadanMubarak;
+
+  /// Ramadan status title
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Status'**
+  String get ramadanStatus;
+
+  /// Days remaining in Ramadan
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days remaining in this blessed month'**
+  String ramadanDaysRemaining(int days);
+
+  /// Ramadan blessed month description
+  ///
+  /// In en, this message translates to:
+  /// **'The blessed month of fasting'**
+  String get ramadanBlessedMonth;
+
+  /// Information about when Ramadan settings are active
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan settings will be active during the holy month'**
+  String get ramadanSettingsInfo;
+
+  /// Error message when settings cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load settings'**
+  String get errorUnableToLoadSettings;
 
   /// Retry button text
   ///
@@ -2466,6 +2694,204 @@ abstract class AppLocalizations {
   /// **'Update Location'**
   String get qiblaUpdateLocation;
 
+  /// Edit bookmark action
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get bookmarkEdit;
+
+  /// Share bookmark action
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get bookmarkShare;
+
+  /// Delete bookmark action
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get bookmarkDelete;
+
+  /// Font settings section header
+  ///
+  /// In en, this message translates to:
+  /// **'Font Settings'**
+  String get quranFontSettings;
+
+  /// Translation settings section header
+  ///
+  /// In en, this message translates to:
+  /// **'Translation Settings'**
+  String get quranTranslationSettings;
+
+  /// Content settings section header
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get quranContent;
+
+  /// Arabic text toggle label
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get quranArabic;
+
+  /// Translation text toggle label
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get quranTranslation;
+
+  /// Tafsir commentary toggle label
+  ///
+  /// In en, this message translates to:
+  /// **'Tafsir'**
+  String get quranTafsir;
+
+  /// Arabic font size setting
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic Font Size'**
+  String get quranArabicFontSize;
+
+  /// Translation font size setting
+  ///
+  /// In en, this message translates to:
+  /// **'Translation Font Size'**
+  String get quranTranslationFontSize;
+
+  /// Surah/Chapter navigation tab
+  ///
+  /// In en, this message translates to:
+  /// **'Sura'**
+  String get quranSura;
+
+  /// Generic coming soon message
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoon;
+
+  /// Error message for page loading failure
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading page'**
+  String get errorLoadingPage;
+
+  /// Download failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed'**
+  String get downloadFailed;
+
+  /// Success message when bookmark is removed
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark removed'**
+  String get bookmarkRemoved;
+
+  /// Error message when bookmark removal fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error removing bookmark'**
+  String get errorRemovingBookmark;
+
+  /// Sort options placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Sort options - Coming soon'**
+  String get sortOptionsComingSoon;
+
+  /// Category management placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Manage categories - Coming soon'**
+  String get manageCategoriesComingSoon;
+
+  /// Export bookmarks placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Export bookmarks - Coming soon'**
+  String get exportBookmarksComingSoon;
+
+  /// Edit bookmark placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Edit bookmark - Coming soon'**
+  String get editBookmarkComingSoon;
+
+  /// Add bookmark dialog placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Add bookmark dialog - Coming soon'**
+  String get addBookmarkDialogComingSoon;
+
+  /// Create category dialog placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Create category dialog - Coming soon'**
+  String get createCategoryDialogComingSoon;
+
+  /// Edit category placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Edit category - Coming soon'**
+  String get editCategoryComingSoon;
+
+  /// Delete category placeholder message
+  ///
+  /// In en, this message translates to:
+  /// **'Delete category - Coming soon'**
+  String get deleteCategoryComingSoon;
+
+  /// Cache clearing failure message
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to clear cache'**
+  String get clearCacheFailed;
+
+  /// Description for Hizb quarter sections
+  ///
+  /// In en, this message translates to:
+  /// **'Quarter section'**
+  String get quarterSection;
+
+  /// Verses count label
+  ///
+  /// In en, this message translates to:
+  /// **'Verses'**
+  String get verses;
+
+  /// Selected items count suffix
+  ///
+  /// In en, this message translates to:
+  /// **'selected'**
+  String get selected;
+
+  /// Auto scroll feature button
+  ///
+  /// In en, this message translates to:
+  /// **'Auto Scroll'**
+  String get autoScroll;
+
+  /// Quick settings tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Quick settings'**
+  String get quickSettings;
+
+  /// Enter reading mode tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Enter reading mode'**
+  String get enterReadingMode;
+
+  /// Exit reading mode tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Exit reading mode'**
+  String get exitReadingMode;
+
   /// First notification description in onboarding
   ///
   /// In en, this message translates to:
@@ -2483,6 +2909,546 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select which prayers you\'d like to be reminded about'**
   String get onboardingNotificationSelectPrayers;
+
+  /// Bookmarks screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get bookmarks;
+
+  /// All bookmarks tab
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get bookmarkAll;
+
+  /// Categories tab in bookmarks
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get bookmarkCategories;
+
+  /// Recent bookmarks tab
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get bookmarkRecent;
+
+  /// Sort bookmarks menu option
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get bookmarkSort;
+
+  /// Manage categories menu option
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Categories'**
+  String get bookmarkManageCategories;
+
+  /// Export bookmarks menu option
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get bookmarkExport;
+
+  /// Empty state title for no bookmarks
+  ///
+  /// In en, this message translates to:
+  /// **'No bookmarks yet'**
+  String get bookmarkNoBookmarksYet;
+
+  /// Empty state subtitle for no bookmarks
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark verses while reading to save them here'**
+  String get bookmarkNoBookmarksSubtitle;
+
+  /// Empty state title for no categories
+  ///
+  /// In en, this message translates to:
+  /// **'No categories yet'**
+  String get bookmarkNoCategoriesYet;
+
+  /// Empty state subtitle for no categories
+  ///
+  /// In en, this message translates to:
+  /// **'Create categories to organize your bookmarks'**
+  String get bookmarkNoCategoriesSubtitle;
+
+  /// Create category button text
+  ///
+  /// In en, this message translates to:
+  /// **'Create Category'**
+  String get bookmarkCreateCategory;
+
+  /// Empty state title for no recent bookmarks
+  ///
+  /// In en, this message translates to:
+  /// **'No recent bookmarks'**
+  String get bookmarkNoRecentBookmarks;
+
+  /// Empty state subtitle for no recent bookmarks
+  ///
+  /// In en, this message translates to:
+  /// **'Your recently added bookmarks will appear here'**
+  String get bookmarkNoRecentSubtitle;
+
+  /// Edit menu option
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Share menu option
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// Copy button text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get commonCopy;
+
+  /// Message when dua is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Dua copied to clipboard'**
+  String get duaCopiedToClipboard;
+
+  /// Sharing feature coming soon message
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing feature coming soon!'**
+  String get sharingSoon;
+
+  /// Message when dua is saved to favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Dua saved to favorites!'**
+  String get duaSavedToFavorites;
+
+  /// Accessibility settings screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility Settings'**
+  String get accessibilitySettings;
+
+  /// Message when verse is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Verse copied to clipboard'**
+  String get verseCopiedToClipboard;
+
+  /// Message when verse is saved to favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Verse saved to favorites!'**
+  String get verseSavedToFavorites;
+
+  /// Learn more button text
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get learnMore;
+
+  /// Message when Allah's name is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Name of Allah copied to clipboard'**
+  String get nameOfAllahCopied;
+
+  /// Message for detailed explanations coming soon
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed explanations coming soon!'**
+  String get detailedExplanationsSoon;
+
+  /// Message when hadith is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith copied to clipboard'**
+  String get hadithCopiedToClipboard;
+
+  /// Message when hadith is saved to favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith saved to favorites!'**
+  String get hadithSavedToFavorites;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Confirm button for confirmations
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get commonConfirm;
+
+  /// Clear button for clearing data
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get commonClear;
+
+  /// View button for viewing content
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get commonView;
+
+  /// Go button for navigation
+  ///
+  /// In en, this message translates to:
+  /// **'Go'**
+  String get commonGo;
+
+  /// Download button for downloading content
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get commonDownload;
+
+  /// Send email button
+  ///
+  /// In en, this message translates to:
+  /// **'Send Email'**
+  String get commonSendEmail;
+
+  /// Help button or title
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get commonHelp;
+
+  /// Delete button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDelete;
+
+  /// Edit button
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get commonEdit;
+
+  /// Title for app exit confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Exit DeenMate'**
+  String get navigationExitDialogTitle;
+
+  /// Message for app exit confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit the app?'**
+  String get navigationExitDialogMessage;
+
+  /// Title for prayer calculation methods screen
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Calculation Methods'**
+  String get prayerCalculationMethodsTitle;
+
+  /// Button to apply selected calculation method
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Method'**
+  String get prayerCalculationMethodsApplyMethod;
+
+  /// Button to create custom calculation method
+  ///
+  /// In en, this message translates to:
+  /// **'Create Custom Method'**
+  String get prayerCalculationMethodsCreateCustom;
+
+  /// Title for more features settings screen
+  ///
+  /// In en, this message translates to:
+  /// **'More Features'**
+  String get settingsMoreFeatures;
+
+  /// Athan vibration setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration'**
+  String get athanSettingsVibration;
+
+  /// Athan vibration setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Vibrate device during Athan'**
+  String get athanSettingsVibrationSubtitle;
+
+  /// Quick actions setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get athanSettingsQuickActions;
+
+  /// Quick actions setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show \"Mark as Prayed\" and \"Snooze\" buttons'**
+  String get athanSettingsQuickActionsSubtitle;
+
+  /// Auto-complete setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-complete'**
+  String get athanSettingsAutoComplete;
+
+  /// Auto-complete setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically mark prayer as completed'**
+  String get athanSettingsAutoCompleteSubtitle;
+
+  /// Add mute time range button text
+  ///
+  /// In en, this message translates to:
+  /// **'Add Mute Time Range'**
+  String get athanSettingsAddMuteTimeRange;
+
+  /// Smart notifications setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Notifications'**
+  String get athanSettingsSmartNotifications;
+
+  /// Smart notifications setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust notifications based on your activity'**
+  String get athanSettingsSmartNotificationsSubtitle;
+
+  /// Override DND setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Override Do Not Disturb'**
+  String get athanSettingsOverrideDnd;
+
+  /// Override DND setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show prayer notifications even in DND mode'**
+  String get athanSettingsOverrideDndSubtitle;
+
+  /// Full screen notifications setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Full Screen Notifications'**
+  String get athanSettingsFullScreenNotifications;
+
+  /// Full screen notifications setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show prayer time as full screen alert'**
+  String get athanSettingsFullScreenNotificationsSubtitle;
+
+  /// Grant permission button text
+  ///
+  /// In en, this message translates to:
+  /// **'Grant'**
+  String get permissionsGrant;
+
+  /// Title for Athan and Notifications settings screen
+  ///
+  /// In en, this message translates to:
+  /// **'Athan & Notifications'**
+  String get athanNotificationsTitle;
+
+  /// Tab title for Athan audio settings
+  ///
+  /// In en, this message translates to:
+  /// **'Athan'**
+  String get athanTabTitle;
+
+  /// Tab title for Prayer notification settings
+  ///
+  /// In en, this message translates to:
+  /// **'Prayers'**
+  String get prayersTabTitle;
+
+  /// Tab title for Advanced settings
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advancedTabTitle;
+
+  /// Tab title for Ramadan specific settings
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get ramadanTabTitle;
+
+  /// Section title for Athan Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Athan Settings'**
+  String get athanSettingsTitle;
+
+  /// Section subtitle for Athan Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Customize the call to prayer audio and volume'**
+  String get athanSettingsSubtitle;
+
+  /// Section title for Prayer Notifications
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Notifications'**
+  String get prayerNotificationsTitle;
+
+  /// Section subtitle for Prayer Notifications
+  ///
+  /// In en, this message translates to:
+  /// **'Customize notifications for each prayer'**
+  String get prayerNotificationsSubtitle;
+
+  /// Recommendation text for precise timing
+  ///
+  /// In en, this message translates to:
+  /// **'Precise timing recommended for Athan'**
+  String get preciseTimingRecommended;
+
+  /// Section title for Advanced Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Settings'**
+  String get advancedSettingsTitle;
+
+  /// Section subtitle for Advanced Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Fine-tune notification behavior'**
+  String get advancedSettingsSubtitle;
+
+  /// Section title for Ramadan Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Settings'**
+  String get ramadanSettingsTitle;
+
+  /// Section subtitle for Ramadan Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Special notifications for the holy month'**
+  String get ramadanSettingsSubtitle;
+
+  /// Status text when notifications are enabled
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are enabled'**
+  String get notificationsEnabled;
+
+  /// Status text when notifications are disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are disabled'**
+  String get notificationsDisabled;
+
+  /// Section title for Audio Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Settings'**
+  String get audioSettingsTitle;
+
+  /// Label for duration settings
+  ///
+  /// In en, this message translates to:
+  /// **'Duration: '**
+  String get durationLabel;
+
+  /// Section title for Reminder Time
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder Time'**
+  String get reminderTimeTitle;
+
+  /// Section subtitle for Reminder Time
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me this many minutes before prayer time:'**
+  String get reminderTimeSubtitle;
+
+  /// Instruction for prayer notification selection
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which prayers to receive notifications for:'**
+  String get choosePrayerNotifications;
+
+  /// Section title for Notification Actions
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Actions'**
+  String get notificationActionsTitle;
+
+  /// Section title for Mute Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Mute Settings'**
+  String get muteSettingsTitle;
+
+  /// Section subtitle for Mute Settings
+  ///
+  /// In en, this message translates to:
+  /// **'Configure when notifications should be silenced:'**
+  String get muteSettingsSubtitle;
+
+  /// Label for muted days selection
+  ///
+  /// In en, this message translates to:
+  /// **'Muted Days:'**
+  String get mutedDaysLabel;
+
+  /// Monday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// Tuesday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// Wednesday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// Thursday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// Friday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// Saturday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// Sunday weekday name
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
 }
 
 class _AppLocalizationsDelegate

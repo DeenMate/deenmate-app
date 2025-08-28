@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../providers/audio_providers.dart';
 
 /// Widget for previewing Athan audio

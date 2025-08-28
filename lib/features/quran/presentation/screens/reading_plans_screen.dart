@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/services/reading_plans_service.dart';
 import '../state/providers.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 class ReadingPlansScreen extends ConsumerStatefulWidget {
   const ReadingPlansScreen({super.key});
@@ -38,7 +39,7 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
         backgroundColor: ThemeHelper.getBackgroundColor(context),
         elevation: 0,
         title: Text(
-          'Reading Plans',
+          AppLocalizations.of(context)!.readingPlansTitle,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -54,10 +55,10 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
           indicatorColor: ThemeHelper.getPrimaryColor(context),
           labelColor: ThemeHelper.getPrimaryColor(context),
           unselectedLabelColor: ThemeHelper.getTextSecondaryColor(context),
-          tabs: const [
-            Tab(icon: Icon(Icons.list_alt), text: 'My Plans'),
-            Tab(icon: Icon(Icons.today), text: 'Today'),
-            Tab(icon: Icon(Icons.analytics), text: 'Stats'),
+          tabs: [
+            Tab(icon: Icon(Icons.list_alt), text: AppLocalizations.of(context)!.readingPlansMyPlans),
+            Tab(icon: Icon(Icons.today), text: AppLocalizations.of(context)!.readingPlansToday),
+            Tab(icon: Icon(Icons.analytics), text: AppLocalizations.of(context)!.readingPlansStats),
           ],
         ),
       ),
@@ -73,7 +74,7 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
         ? FloatingActionButton.extended(
             onPressed: _showCreatePlanDialog,
             icon: const Icon(Icons.add),
-            label: const Text('New Plan'),
+            label: Text(AppLocalizations.of(context)!.readingPlansNewPlan),
           )
         : null,
     );
@@ -194,7 +195,7 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Progress',
+                        AppLocalizations.of(context)!.readingPlansProgress,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.white.withOpacity(0.9),
@@ -226,9 +227,9 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
             
             Row(
               children: [
-                _buildPlanStat('${plan.totalDays}', 'Days'),
+                _buildPlanStat('${plan.totalDays}', AppLocalizations.of(context)!.readingPlansDays),
                 const SizedBox(width: 24),
-                _buildPlanStat('${plan.versesPerDay}', 'Verses/Day'),
+                _buildPlanStat('${plan.versesPerDay}', AppLocalizations.of(context)!.readingPlansVersesPerDay),
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () => _viewPlanDetails(plan),
@@ -237,7 +238,7 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
                     foregroundColor: ThemeHelper.getPrimaryColor(context),
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   ),
-                  child: const Text('View'),
+                  child: Text(AppLocalizations.of(context)!.buttonView),
                 ),
               ],
             ),
@@ -332,11 +333,11 @@ class _ReadingPlansScreenState extends ConsumerState<ReadingPlansScreen>
           onSelected: (value) => _onPlanAction(value, plan),
           itemBuilder: (context) => [
             if (!plan.isActive)
-              const PopupMenuItem(value: 'start', child: Text('Start Plan')),
+              PopupMenuItem(value: 'start', child: Text(AppLocalizations.of(context)!.readingPlansStartPlan)),
             if (plan.isActive)
-              const PopupMenuItem(value: 'stop', child: Text('Stop Plan')),
-            const PopupMenuItem(value: 'edit', child: Text('Edit')),
-            const PopupMenuItem(value: 'delete', child: Text('Delete')),
+              PopupMenuItem(value: 'stop', child: Text(AppLocalizations.of(context)!.readingPlansStopPlan)),
+            PopupMenuItem(value: 'edit', child: Text(AppLocalizations.of(context)!.buttonEdit)),
+            PopupMenuItem(value: 'delete', child: Text(AppLocalizations.of(context)!.buttonDelete)),
           ],
         ),
         onTap: () => _viewPlanDetails(plan),

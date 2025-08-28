@@ -6,7 +6,7 @@ import '../state/providers.dart';
 import '../../utils/text_utils.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/localization/strings.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 class VerseCardWidget extends ConsumerWidget {
   const VerseCardWidget({
@@ -211,8 +211,8 @@ class VerseCardWidget extends ConsumerWidget {
           orElse: () => TranslationResourceDto(
             id: translation.resourceId,
             name: 'Translation ${translation.resourceId}',
-            authorName: 'Unknown',
-            languageName: 'Unknown',
+            authorName: AppLocalizations.of(context)!.statusUnknown,
+            languageName: AppLocalizations.of(context)!.statusUnknown,
             slug: 'unknown',
           ),
         );
@@ -298,7 +298,7 @@ class VerseCardWidget extends ConsumerWidget {
           ),
           const SizedBox(width: 12),
           Text(
-            'Loading translation...',
+            AppLocalizations.of(context)!.verseLoadingTranslation,
             style: TextStyle(
               fontSize: 14,
               color: ThemeHelper.getTextSecondaryColor(context),
@@ -311,6 +311,7 @@ class VerseCardWidget extends ConsumerWidget {
   }
 
   Widget _buildVerseActions(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.only(top: 12, bottom: 8),
       child: Row(
@@ -320,7 +321,7 @@ class VerseCardWidget extends ConsumerWidget {
             Icons.bookmark_outline,
             isBookmarked ? Icons.bookmark : Icons.bookmark_outline,
             onBookmark,
-            isBookmarked ? 'Remove bookmark' : 'Bookmark verse',
+            isBookmarked ? l10n.verseRemoveBookmark : l10n.verseBookmark,
             isActive: isBookmarked,
           ),
           _buildActionButton(
@@ -328,21 +329,21 @@ class VerseCardWidget extends ConsumerWidget {
             Icons.copy_outlined,
             Icons.copy_outlined,
             onCopy,
-            'Copy verse',
+            l10n.verseCopy,
           ),
           _buildActionButton(
             context,
             Icons.share_outlined,
             Icons.share_outlined,
             onShare,
-            'Share verse',
+            l10n.verseShare,
           ),
           _buildActionButton(
             context,
             Icons.menu_book_outlined,
             Icons.menu_book_outlined,
             onTafsir,
-            'View tafsir',
+            l10n.verseViewTafsir,
           ),
           _buildThreeDotMenu(context),
         ],

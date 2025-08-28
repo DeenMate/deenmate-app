@@ -171,6 +171,10 @@
   "@timeRemaining": {
     "description": "Label for time remaining"
   },
+  "timingsFromAlAdhan": "আল-আযান থেকে নামাজের সময়",
+  "@timingsFromAlAdhan": {
+    "description": "Label for prayer times source"
+  },
 
   "quranTitle": "কুরআন",
   "@quranTitle": {
@@ -553,6 +557,114 @@
   "@buttonConfirm": {
     "description": "Confirm button text"
   },
+  "buttonDelete": "মুছুন",
+  "@buttonDelete": {
+    "description": "Delete button text"
+  },
+  "buttonEdit": "সম্পাদনা করুন",
+  "@buttonEdit": {
+    "description": "Edit button text"
+  },
+  "buttonCopy": "কপি করুন",
+  "@buttonCopy": {
+    "description": "Copy button text"
+  },
+  "buttonShare": "শেয়ার করুন",
+  "@buttonShare": {
+    "description": "Share button text"
+  },
+  "buttonView": "দেখুন",
+  "@buttonView": {
+    "description": "View button text"
+  },
+  "buttonStart": "শুরু করুন",
+  "@buttonStart": {
+    "description": "Start button text"
+  },
+  "buttonStop": "বন্ধ করুন",
+  "@buttonStop": {
+    "description": "Stop button text"
+  },
+  "verseBookmark": "আয়াত বুকমার্ক করুন",
+  "@verseBookmark": {
+    "description": "Action to bookmark a verse"
+  },
+  "verseRemoveBookmark": "বুকমার্ক সরান",
+  "@verseRemoveBookmark": {
+    "description": "Action to remove bookmark from verse"
+  },
+  "verseCopy": "আয়াত কপি করুন",
+  "@verseCopy": {
+    "description": "Action to copy verse text"
+  },
+  "verseShare": "আয়াত শেয়ার করুন",
+  "@verseShare": {
+    "description": "Action to share verse"
+  },
+  "verseViewTafsir": "তাফসীর দেখুন",
+  "@verseViewTafsir": {
+    "description": "Action to view verse commentary"
+  },
+  "verseLoadingTranslation": "অনুবাদ লোড করা হচ্ছে...",
+  "@verseLoadingTranslation": {
+    "description": "Loading message for verse translation"
+  },
+  "statusUnknown": "অজানা",
+  "@statusUnknown": {
+    "description": "Unknown status or value"
+  },
+  "readingPlansTitle": "পড়ার পরিকল্পনা",
+  "@readingPlansTitle": {
+    "description": "Reading Plans screen title"
+  },
+  "readingPlansMyPlans": "আমার পরিকল্পনা",
+  "@readingPlansMyPlans": {
+    "description": "My Plans tab title"
+  },
+  "readingPlansToday": "আজ",
+  "@readingPlansToday": {
+    "description": "Today tab title"
+  },
+  "readingPlansStats": "পরিসংখ্যান",
+  "@readingPlansStats": {
+    "description": "Stats tab title"
+  },
+  "readingPlansNewPlan": "নতুন পরিকল্পনা",
+  "@readingPlansNewPlan": {
+    "description": "New Plan button text"
+  },
+  "readingPlansActive": "সক্রিয়",
+  "@readingPlansActive": {
+    "description": "Active plan status"
+  },
+  "readingPlansProgress": "অগ্রগতি",
+  "@readingPlansProgress": {
+    "description": "Progress label"
+  },
+  "readingPlansDays": "দিন",
+  "@readingPlansDays": {
+    "description": "Days label"
+  },
+  "readingPlansVersesPerDay": "দৈনিক আয়াত",
+  "@readingPlansVersesPerDay": {
+    "description": "Verses per day label"
+  },
+  "readingPlansTodaysReading": "আজকের পাঠ",
+  "@readingPlansTodaysReading": {
+    "description": "Today's reading title"
+  },
+  "readingPlansStartReading": "পড়া শুরু করুন",
+  "@readingPlansStartReading": {
+    "description": "Start reading button text"
+  },
+  "readingPlansStartPlan": "পরিকল্পনা শুরু করুন",
+  "@readingPlansStartPlan": {
+    "description": "Start plan menu action"
+  },
+  "readingPlansStopPlan": "পরিকল্পনা বন্ধ করুন",
+  "@readingPlansStopPlan": {
+    "description": "Stop plan menu action"
+  },
   "buttonClear": "পরিষ্কার করুন",
   "@buttonClear": {
     "description": "Clear button text"
@@ -691,6 +803,32 @@
   "@prayerSpecialRamadanAthanSubtitle": {
     "description": "Special Ramadan Athan setting subtitle"
   },
+  "prayerSuhurReminder": "সেহরি অনুস্মারক",
+  "@prayerSuhurReminder": {
+    "description": "Suhur reminder setting title"
+  },
+  "prayerIftarReminder": "ইফতার অনুস্মারক",
+  "@prayerIftarReminder": {
+    "description": "Iftar reminder setting title"
+  },
+  "prayerSuhurReminderText": "সেহরির জন্য ফজরের {minutes} মিনিট আগে আমাকে মনে করিয়ে দিন",
+  "@prayerSuhurReminderText": {
+    "description": "Suhur reminder text with minutes placeholder",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "prayerIftarReminderText": "ইফতারের জন্য মাগরিবের {minutes} মিনিট আগে আমাকে মনে করিয়ে দিন",
+  "@prayerIftarReminderText": {
+    "description": "Iftar reminder text with minutes placeholder",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "prayerIncludeDuas": "দোয়া অন্তর্ভুক্ত করুন",
   "@prayerIncludeDuas": {
     "description": "Include duas setting title"
@@ -706,6 +844,35 @@
   "prayerTrackFastingSubtitle": "আপনার রোজার অবস্থা ট্র্যাক রাখুন",
   "@prayerTrackFastingSubtitle": {
     "description": "Track fasting setting subtitle"
+  },
+  "ramadanMubarak": "রমজান মুবারক!",
+  "@ramadanMubarak": {
+    "description": "Ramadan Mubarak greeting"
+  },
+  "ramadanStatus": "রমজানের অবস্থা",
+  "@ramadanStatus": {
+    "description": "Ramadan status title"
+  },
+  "ramadanDaysRemaining": "এই পবিত্র মাসে আরও {days} দিন বাকি",
+  "@ramadanDaysRemaining": {
+    "description": "Days remaining in Ramadan",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "ramadanBlessedMonth": "রোজার পবিত্র মাস",
+  "@ramadanBlessedMonth": {
+    "description": "Ramadan blessed month description"
+  },
+  "ramadanSettingsInfo": "পবিত্র মাসে রমজান সেটিংস সক্রিয় থাকবে",
+  "@ramadanSettingsInfo": {
+    "description": "Information about when Ramadan settings are active"
+  },
+  "errorUnableToLoadSettings": "সেটিংস লোড করতে অক্ষম",
+  "@errorUnableToLoadSettings": {
+    "description": "Error message when settings cannot be loaded"
   },
   "buttonRetry": "আবার চেষ্টা করুন",
   "@buttonRetry": {
@@ -1881,5 +2048,428 @@
   "onboardingNotificationSelectPrayers": "আপনি কোন নামাজের অনুস্মারক চান তা নির্বাচন করুন",
   "@onboardingNotificationSelectPrayers": {
     "description": "Instruction for prayer selection in onboarding"
-  }
+  },
+  
+  "bookmarkEdit": "সম্পাদনা",
+  "@bookmarkEdit": {
+    "description": "Edit bookmark action"
+  },
+  "bookmarkShare": "শেয়ার",
+  "@bookmarkShare": {
+    "description": "Share bookmark action"
+  },
+  "bookmarkDelete": "মুছুন",
+  "@bookmarkDelete": {
+    "description": "Delete bookmark action"
+  },
+  
+  "quranFontSettings": "ফন্ট সেটিংস",
+  "@quranFontSettings": {
+    "description": "Font settings section header"
+  },
+  "quranTranslationSettings": "অনুবাদ সেটিংস",
+  "@quranTranslationSettings": {
+    "description": "Translation settings section header"
+  },
+  "quranContent": "কন্টেন্ট",
+  "@quranContent": {
+    "description": "Content settings section header"
+  },
+  "quranArabic": "আরবি",
+  "@quranArabic": {
+    "description": "Arabic text toggle label"
+  },
+  "quranTranslation": "অনুবাদ",
+  "@quranTranslation": {
+    "description": "Translation text toggle label"
+  },
+  "quranTafsir": "তাফসির",
+  "@quranTafsir": {
+    "description": "Tafsir commentary toggle label"
+  },
+  "quranArabicFontSize": "আরবি ফন্ট সাইজ",
+  "@quranArabicFontSize": {
+    "description": "Arabic font size setting"
+  },
+  "quranTranslationFontSize": "অনুবাদ ফন্ট সাইজ",
+  "@quranTranslationFontSize": {
+    "description": "Translation font size setting"
+  },
+  
+  "quranSura": "সূরা",
+  "@quranSura": {
+    "description": "Surah/Chapter navigation tab"
+  },
+  "quranPage": "পৃষ্ঠা",
+  "@quranPage": {
+    "description": "Page navigation tab"
+  },
+  "quranJuz": "পারা",
+  "@quranJuz": {
+    "description": "Juz/Para navigation tab"
+  },
+  "quranHizb": "হিজব",
+  "@quranHizb": {
+    "description": "Hizb navigation tab"
+  },
+  "quranRuku": "রুকু",
+  "@quranRuku": {
+    "description": "Ruku navigation tab"
+  },
+  
+  "comingSoon": "শীঘ্রই আসছে",
+  "@comingSoon": {
+    "description": "Generic coming soon message"
+  },
+  "errorLoadingPage": "পৃষ্ঠা লোড করতে ত্রুটি",
+  "@errorLoadingPage": {
+    "description": "Error message for page loading failure"
+  },
+  "downloadFailed": "ডাউনলোড ব্যর্থ",
+  "@downloadFailed": {
+    "description": "Download failure message"
+  },
+  "bookmarkRemoved": "বুকমার্ক সরানো হয়েছে",
+  "@bookmarkRemoved": {
+    "description": "Success message when bookmark is removed"
+  },
+  "errorRemovingBookmark": "বুকমার্ক সরাতে ত্রুটি",
+  "@errorRemovingBookmark": {
+    "description": "Error message when bookmark removal fails"
+  },
+  "sortOptionsComingSoon": "সাজানোর বিকল্প - শীঘ্রই আসছে",
+  "@sortOptionsComingSoon": {
+    "description": "Sort options placeholder message"
+  },
+  "manageCategoriesComingSoon": "ক্যাটাগরি পরিচালনা - শীঘ্রই আসছে",
+  "@manageCategoriesComingSoon": {
+    "description": "Category management placeholder message"
+  },
+  "exportBookmarksComingSoon": "বুকমার্ক এক্সপোর্ট - শীঘ্রই আসছে",
+  "@exportBookmarksComingSoon": {
+    "description": "Export bookmarks placeholder message"
+  },
+  "editBookmarkComingSoon": "বুকমার্ক সম্পাদনা - শীঘ্রই আসছে",
+  "@editBookmarkComingSoon": {
+    "description": "Edit bookmark placeholder message"
+  },
+  "addBookmarkDialogComingSoon": "বুকমার্ক যোগ করার ডায়ালগ - শীঘ্রই আসছে",
+  "@addBookmarkDialogComingSoon": {
+    "description": "Add bookmark dialog placeholder message"
+  },
+  "createCategoryDialogComingSoon": "ক্যাটাগরি তৈরির ডায়ালগ - শীঘ্রই আসছে",
+  "@createCategoryDialogComingSoon": {
+    "description": "Create category dialog placeholder message"
+  },
+  "editCategoryComingSoon": "ক্যাটাগরি সম্পাদনা - শীঘ্রই আসছে",
+  "@editCategoryComingSoon": {
+    "description": "Edit category placeholder message"
+  },
+  "deleteCategoryComingSoon": "ক্যাটাগরি মুছুন - শীঘ্রই আসছে",
+  "@deleteCategoryComingSoon": {
+    "description": "Delete category placeholder message"
+  },
+  "clearCacheFailed": "ক্যাশ পরিষ্কার করতে ব্যর্থ",
+  "@clearCacheFailed": {
+    "description": "Cache clearing failure message"
+  },
+  "quarterSection": "চতুর্থাংশ",
+  "@quarterSection": {
+    "description": "Description for Hizb quarter sections"
+  },
+  "verses": "আয়াত",
+  "@verses": {
+    "description": "Verses count label"
+  },
+  "selected": "নির্বাচিত",
+  "@selected": {
+    "description": "Selected items count suffix"
+  },
+  "autoScroll": "অটো স্ক্রল",
+  "@autoScroll": {
+    "description": "Auto scroll feature button"
+  },
+  "quickSettings": "দ্রুত সেটিংস",
+  "@quickSettings": {
+    "description": "Quick settings tooltip"
+  },
+  "enterReadingMode": "পড়ার মোড চালু করুন",
+  "@enterReadingMode": {
+    "description": "Enter reading mode tooltip"
+  },
+  "exitReadingMode": "পড়ার মোড বন্ধ করুন",
+  "@exitReadingMode": {
+    "description": "Exit reading mode tooltip"
+  },
+
+  "bookmarks": "বুকমার্ক",
+  "@bookmarks": {
+    "description": "Bookmarks screen title"
+  },
+  "bookmarkAll": "সব",
+  "@bookmarkAll": {
+    "description": "All bookmarks tab"
+  },
+  "bookmarkCategories": "ক্যাটাগরি",
+  "@bookmarkCategories": {
+    "description": "Categories tab in bookmarks"
+  },
+  "bookmarkRecent": "সাম্প্রতিক",
+  "@bookmarkRecent": {
+    "description": "Recent bookmarks tab"
+  },
+  "bookmarkSort": "সাজান",
+  "@bookmarkSort": {
+    "description": "Sort bookmarks menu option"
+  },
+  "bookmarkManageCategories": "ক্যাটাগরি পরিচালনা",
+  "@bookmarkManageCategories": {
+    "description": "Manage categories menu option"
+  },
+  "bookmarkExport": "রপ্তানি",
+  "@bookmarkExport": {
+    "description": "Export bookmarks menu option"
+  },
+  "bookmarkNoBookmarksYet": "এখনও কোনো বুকমার্ক নেই",
+  "@bookmarkNoBookmarksYet": {
+    "description": "Empty state title for no bookmarks"
+  },
+  "bookmarkNoBookmarksSubtitle": "পড়ার সময় আয়াত বুকমার্ক করুন এখানে সংরক্ষণের জন্য",
+  "@bookmarkNoBookmarksSubtitle": {
+    "description": "Empty state subtitle for no bookmarks"
+  },
+  "bookmarkNoCategoriesYet": "এখনও কোনো ক্যাটাগরি নেই",
+  "@bookmarkNoCategoriesYet": {
+    "description": "Empty state title for no categories"
+  },
+  "bookmarkNoCategoriesSubtitle": "আপনার বুকমার্ক সংগঠিত করতে ক্যাটাগরি তৈরি করুন",
+  "@bookmarkNoCategoriesSubtitle": {
+    "description": "Empty state subtitle for no categories"
+  },
+  "bookmarkCreateCategory": "ক্যাটাগরি তৈরি করুন",
+  "@bookmarkCreateCategory": {
+    "description": "Create category button text"
+  },
+  "bookmarkNoRecentBookmarks": "কোনো সাম্প্রতিক বুকমার্ক নেই",
+  "@bookmarkNoRecentBookmarks": {
+    "description": "Empty state title for no recent bookmarks"
+  },
+  "bookmarkNoRecentSubtitle": "আপনার সাম্প্রতিক যোগ করা বুকমার্ক এখানে দেখা যাবে",
+  "@bookmarkNoRecentSubtitle": {
+    "description": "Empty state subtitle for no recent bookmarks"
+  },
+  "edit": "সম্পাদনা",
+  "@edit": {
+    "description": "Edit menu option"
+  },
+  "share": "শেয়ার",
+  "@share": {
+    "description": "Share menu option"
+  },
+  "commonCopy": "কপি",
+  "@commonCopy": {
+    "description": "Copy button text"
+  },
+  "duaCopiedToClipboard": "দোয়া ক্লিপবোর্ডে কপি হয়েছে",
+  "@duaCopiedToClipboard": {
+    "description": "Message when dua is copied"
+  },
+  "sharingSoon": "শেয়ার করার ফিচার শীঘ্রই আসছে!",
+  "@sharingSoon": {
+    "description": "Sharing feature coming soon message"
+  },
+  "duaSavedToFavorites": "দোয়া পছন্দের তালিকায় সংরক্ষিত হয়েছে!",
+  "@duaSavedToFavorites": {
+    "description": "Message when dua is saved to favorites"
+  },
+  "accessibilitySettings": "অ্যাক্সেসিবিলিটি সেটিংস",
+  "@accessibilitySettings": {
+    "description": "Accessibility settings screen title"
+  },
+  "verseCopiedToClipboard": "আয়াত ক্লিপবোর্ডে কপি হয়েছে",
+  "@verseCopiedToClipboard": {
+    "description": "Message when verse is copied"
+  },
+  "verseSavedToFavorites": "আয়াত পছন্দের তালিকায় সংরক্ষিত হয়েছে!",
+  "@verseSavedToFavorites": {
+    "description": "Message when verse is saved to favorites"
+  },
+  "learnMore": "আরো জানুন",
+  "@learnMore": {
+    "description": "Learn more button text"
+  },
+  "nameOfAllahCopied": "আল্লাহর নাম ক্লিপবোর্ডে কপি হয়েছে",
+  "@nameOfAllahCopied": {
+    "description": "Message when Allah's name is copied"
+  },
+  "detailedExplanationsSoon": "বিস্তারিত ব্যাখ্যা শীঘ্রই আসছে!",
+  "@detailedExplanationsSoon": {
+    "description": "Message for detailed explanations coming soon"
+  },
+  "hadithCopiedToClipboard": "হাদিস ক্লিপবোর্ডে কপি হয়েছে",
+  "@hadithCopiedToClipboard": {
+    "description": "Message when hadith is copied"
+  },
+  "hadithSavedToFavorites": "হাদিস পছন্দের তালিকায় সংরক্ষিত হয়েছে!",
+  "@hadithSavedToFavorites": {
+    "description": "Message when hadith is saved to favorites"
+  },
+  "retry": "পুনরায় চেষ্টা",
+  "@retry": {
+    "description": "Retry button text"
+  },
+
+  "commonConfirm": "নিশ্চিত",
+  "@commonConfirm": {
+    "description": "Confirm button for confirmations"
+  },
+  "commonClear": "পরিষ্কার",
+  "@commonClear": {
+    "description": "Clear button for clearing data"
+  },
+  "commonView": "দেখুন",
+  "@commonView": {
+    "description": "View button for viewing content"
+  },
+  "commonGo": "যান",
+  "@commonGo": {
+    "description": "Go button for navigation"
+  },
+  "commonDownload": "ডাউনলোড",
+  "@commonDownload": {
+    "description": "Download button for downloading content"
+  },
+  "commonSendEmail": "ইমেইল পাঠান",
+  "@commonSendEmail": {
+    "description": "Send email button"
+  },
+  "commonHelp": "সাহায্য",
+  "@commonHelp": {
+    "description": "Help button or title"
+  },
+  "commonDelete": "মুছুন",
+  "@commonDelete": {
+    "description": "Delete button"
+  },
+  "commonEdit": "সম্পাদনা",
+  "@commonEdit": {
+    "description": "Edit button"
+  },
+
+  "navigationExitDialogTitle": "দীনমেট থেকে বের হন",
+  "@navigationExitDialogTitle": {
+    "description": "Title for app exit confirmation dialog"
+  },
+  "navigationExitDialogMessage": "আপনি কি নিশ্চিত যে অ্যাপ থেকে বের হতে চান?",
+  "@navigationExitDialogMessage": {
+    "description": "Message for app exit confirmation dialog"
+  },
+
+  "prayerCalculationMethodsTitle": "নামাজের হিসাব পদ্ধতি",
+  "@prayerCalculationMethodsTitle": {
+    "description": "Title for prayer calculation methods screen"
+  },
+  "prayerCalculationMethodsApplyMethod": "পদ্ধতি প্রয়োগ করুন",
+  "@prayerCalculationMethodsApplyMethod": {
+    "description": "Button to apply selected calculation method"
+  },
+  "prayerCalculationMethodsCreateCustom": "কাস্টম পদ্ধতি তৈরি করুন",
+  "@prayerCalculationMethodsCreateCustom": {
+    "description": "Button to create custom calculation method"
+  },
+
+  "settingsMoreFeatures": "আরও বৈশিষ্ট্য",
+  "@settingsMoreFeatures": {
+    "description": "Title for more features settings screen"
+  },
+
+  "athanSettingsVibration": "কম্পন",
+  "@athanSettingsVibration": {
+    "description": "Athan vibration setting title"
+  },
+  "athanSettingsVibrationSubtitle": "আজানের সময় ডিভাইস কম্পন করুন",
+  "@athanSettingsVibrationSubtitle": {
+    "description": "Athan vibration setting subtitle"
+  },
+  "athanSettingsQuickActions": "দ্রুত কার্যক্রম",
+  "@athanSettingsQuickActions": {
+    "description": "Quick actions setting title"
+  },
+  "athanSettingsQuickActionsSubtitle": "\"নামাজ পড়া হয়েছে\" এবং \"স্নুজ\" বোতাম দেখান",
+  "@athanSettingsQuickActionsSubtitle": {
+    "description": "Quick actions setting subtitle"
+  },
+  "athanSettingsAutoComplete": "স্বয়ংক্রিয় সম্পূর্ণ",
+  "@athanSettingsAutoComplete": {
+    "description": "Auto-complete setting title"
+  },
+  "athanSettingsAutoCompleteSubtitle": "স্বয়ংক্রিয়ভাবে নামাজ সম্পূর্ণ হিসেবে চিহ্নিত করুন",
+  "@athanSettingsAutoCompleteSubtitle": {
+    "description": "Auto-complete setting subtitle"
+  },
+  "athanSettingsAddMuteTimeRange": "নীরব সময়সীমা যোগ করুন",
+  "@athanSettingsAddMuteTimeRange": {
+    "description": "Add mute time range button text"
+  },
+  "athanSettingsSmartNotifications": "স্মার্ট বিজ্ঞপ্তি",
+  "@athanSettingsSmartNotifications": {
+    "description": "Smart notifications setting title"
+  },
+  "athanSettingsSmartNotificationsSubtitle": "আপনার কার্যকলাপের ভিত্তিতে বিজ্ঞপ্তি সামঞ্জস্য করুন",
+  "@athanSettingsSmartNotificationsSubtitle": {
+    "description": "Smart notifications setting subtitle"
+  },
+  "athanSettingsOverrideDnd": "ডু নট ডিসটার্ব ওভাররাইড করুন",
+  "@athanSettingsOverrideDnd": {
+    "description": "Override DND setting title"
+  },
+  "athanSettingsOverrideDndSubtitle": "ডিএনডি মোডেও নামাজের বিজ্ঞপ্তি দেখান",
+  "@athanSettingsOverrideDndSubtitle": {
+    "description": "Override DND setting subtitle"
+  },
+  "athanSettingsFullScreenNotifications": "ফুল স্ক্রিন বিজ্ঞপ্তি",
+  "@athanSettingsFullScreenNotifications": {
+    "description": "Full screen notifications setting title"
+  },
+  "athanSettingsFullScreenNotificationsSubtitle": "নামাজের সময় ফুল স্ক্রিন সতর্কতা হিসেবে দেখান",
+  "@athanSettingsFullScreenNotificationsSubtitle": {
+    "description": "Full screen notifications setting subtitle"
+  },
+
+  "permissionsGrant": "অনুমতি দিন",
+  "@permissionsGrant": {
+    "description": "Grant permission button text"
+  },
+  "athanNotificationsTitle": "আযান ও বিজ্ঞপ্তি",
+  "athanTabTitle": "আযান",
+  "prayersTabTitle": "নামাজ",
+  "advancedTabTitle": "উন্নত",
+  "ramadanTabTitle": "রমজান",
+  "athanSettingsTitle": "আযান সেটিংস",
+  "athanSettingsSubtitle": "নামাজের আহ্বানের অডিও এবং ভলিউম কাস্টমাইজ করুন",
+  "prayerNotificationsTitle": "নামাজের বিজ্ঞপ্তি",
+  "prayerNotificationsSubtitle": "প্রতিটি নামাজের জন্য বিজ্ঞপ্তি কাস্টমাইজ করুন",
+  "preciseTimingRecommended": "আযানের জন্য সুনির্দিষ্ট সময় সুপারিশকৃত",
+  "advancedSettingsTitle": "উন্নত সেটিংস",
+  "advancedSettingsSubtitle": "বিজ্ঞপ্তির আচরণ সূক্ষ্ম সামঞ্জস্য করুন",
+  "ramadanSettingsTitle": "রমজান সেটিংস",
+  "ramadanSettingsSubtitle": "পবিত্র মাসের জন্য বিশেষ বিজ্ঞপ্তি",
+  "notificationsEnabled": "বিজ্ঞপ্তি সক্রিয় আছে",
+  "notificationsDisabled": "বিজ্ঞপ্তি নিষ্ক্রিয় আছে",
+  "audioSettingsTitle": "অডিও সেটিংস",
+  "durationLabel": "সময়কাল: ",
+  "reminderTimeTitle": "রিমাইন্ডার সময়",
+  "reminderTimeSubtitle": "নামাজের সময়ের এই কয়েক মিনিট আগে আমাকে জানান:",
+  "choosePrayerNotifications": "কোন নামাজের জন্য বিজ্ঞপ্তি পেতে চান তা বেছে নিন:",
+  "notificationActionsTitle": "বিজ্ঞপ্তি কার্যক্রম",
+  "muteSettingsTitle": "নিঃশব্দ সেটিংস",
+  "muteSettingsSubtitle": "কখন বিজ্ঞপ্তি নিঃশব্দ করা হবে তা কনফিগার করুন:",
+  "mutedDaysLabel": "নিঃশব্দ দিন:",
+  "monday": "সোমবার",
+  "tuesday": "মঙ্গলবার", 
+  "wednesday": "বুধবার",
+  "thursday": "বৃহস্পতিবার",
+  "friday": "শুক্রবার",
+  "saturday": "শনিবার",
+  "sunday": "রবিবার"
 }

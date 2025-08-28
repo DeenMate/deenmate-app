@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/islamic_theme.dart';
 
 /// Beautiful card displaying daily Hadith
@@ -239,7 +240,7 @@ class DailyHadithCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: () => _copyHadith(context),
                   icon: const Icon(Icons.copy, size: 16),
-                  label: const Text('Copy'),
+                  label: Text(AppLocalizations.of(context)!.commonCopy),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: IslamicTheme.hadithOrange,
                     side: BorderSide(color: IslamicTheme.hadithOrange.withOpacity(0.5)),
@@ -254,7 +255,7 @@ class DailyHadithCard extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () => _saveHadith(context),
                   icon: const Icon(Icons.bookmark, size: 16),
-                  label: const Text('Save'),
+                  label: Text(AppLocalizations.of(context)!.commonSave),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: IslamicTheme.hadithOrange,
                     foregroundColor: Colors.white,
@@ -287,7 +288,7 @@ Theme: ${hadith['theme'] ?? ''}
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Hadith copied to clipboard'),
+        content: Text(AppLocalizations.of(context)!.hadithCopiedToClipboard),
         backgroundColor: IslamicTheme.hadithOrange,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -301,7 +302,7 @@ Theme: ${hadith['theme'] ?? ''}
     // TODO: Implement sharing functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Sharing feature coming soon!'),
+        content: Text(AppLocalizations.of(context)!.sharingSoon),
         backgroundColor: IslamicTheme.hadithOrange,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -315,7 +316,7 @@ Theme: ${hadith['theme'] ?? ''}
     // TODO: Implement save to favorites functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Hadith saved to favorites!'),
+        content: Text(AppLocalizations.of(context)!.hadithSavedToFavorites),
         backgroundColor: IslamicTheme.hadithOrange,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/islamic_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// More Features Screen following app-screens design
 class MoreFeaturesScreen extends StatefulWidget {

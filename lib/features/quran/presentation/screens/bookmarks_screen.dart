@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../state/providers.dart';
 import '../../../../core/theme/theme_helper.dart';
 
@@ -84,10 +85,10 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
       actions: _buildAppBarActions(),
       bottom: TabBar(
         controller: _tabController,
-        tabs: const [
-          Tab(text: 'All', icon: Icon(Icons.bookmark)),
-          Tab(text: 'Categories', icon: Icon(Icons.folder)),
-          Tab(text: 'Recent', icon: Icon(Icons.access_time)),
+        tabs: [
+          Tab(text: AppLocalizations.of(context)!.bookmarkAll, icon: const Icon(Icons.bookmark)),
+          Tab(text: AppLocalizations.of(context)!.bookmarkCategories, icon: const Icon(Icons.folder)),
+          Tab(text: AppLocalizations.of(context)!.bookmarkRecent, icon: const Icon(Icons.access_time)),
         ],
         labelColor: ThemeHelper.getPrimaryColor(context),
         unselectedLabelColor: ThemeHelper.getTextSecondaryColor(context),
@@ -131,33 +132,33 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
         ),
         onSelected: _handleMenuAction,
         itemBuilder: (context) => [
-          const PopupMenuItem(
+          PopupMenuItem(
             value: 'sort',
             child: Row(
               children: [
-                Icon(Icons.sort),
-                SizedBox(width: 12),
-                Text('Sort'),
+                const Icon(Icons.sort),
+                const SizedBox(width: 12),
+                Text(AppLocalizations.of(context)!.bookmarkSort),
               ],
             ),
           ),
-          const PopupMenuItem(
+          PopupMenuItem(
             value: 'categories',
             child: Row(
               children: [
-                Icon(Icons.category),
-                SizedBox(width: 12),
-                Text('Manage Categories'),
+                const Icon(Icons.category),
+                const SizedBox(width: 12),
+                Text(AppLocalizations.of(context)!.bookmarkManageCategories),
               ],
             ),
           ),
-          const PopupMenuItem(
+          PopupMenuItem(
             value: 'export',
             child: Row(
               children: [
-                Icon(Icons.download),
-                SizedBox(width: 12),
-                Text('Export'),
+                const Icon(Icons.download),
+                const SizedBox(width: 12),
+                Text(AppLocalizations.of(context)!.bookmarkExport),
               ],
             ),
           ),
@@ -236,8 +237,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
         if (bookmarks.isEmpty) {
           return _buildEmptyState(
             icon: Icons.bookmark_outline,
-            title: 'No bookmarks yet',
-            subtitle: 'Bookmark verses while reading to save them here',
+            title: AppLocalizations.of(context)!.bookmarkNoBookmarksYet,
+            subtitle: AppLocalizations.of(context)!.bookmarkNoBookmarksSubtitle,
           );
         }
 
@@ -267,9 +268,9 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
         if (categories.isEmpty) {
           return _buildEmptyState(
             icon: Icons.folder,
-            title: 'No categories yet',
-            subtitle: 'Create categories to organize your bookmarks',
-            actionText: 'Create Category',
+            title: AppLocalizations.of(context)!.bookmarkNoCategoriesYet,
+            subtitle: AppLocalizations.of(context)!.bookmarkNoCategoriesSubtitle,
+            actionText: AppLocalizations.of(context)!.bookmarkCreateCategory,
             onAction: _showCreateCategoryDialog,
           );
         }
@@ -303,8 +304,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
         if (bookmarks.isEmpty) {
           return _buildEmptyState(
             icon: Icons.access_time,
-            title: 'No recent bookmarks',
-            subtitle: 'Your recently added bookmarks will appear here',
+            title: AppLocalizations.of(context)!.bookmarkNoRecentBookmarks,
+            subtitle: AppLocalizations.of(context)!.bookmarkNoRecentSubtitle,
           );
         }
 
@@ -399,8 +400,8 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen>
                       ),
                       onSelected: (action) => _handleBookmarkAction(action, verseKey),
                       itemBuilder: (context) => [
-                        const PopupMenuItem(value: 'edit', child: Text('Edit')),
-                        const PopupMenuItem(value: 'share', child: Text('Share')),
+                        PopupMenuItem(value: 'edit', child: Text(AppLocalizations.of(context)!.edit)),
+                        PopupMenuItem(value: 'share', child: Text(AppLocalizations.of(context)!.share)),
                         const PopupMenuItem(value: 'delete', child: Text('Delete')),
                       ],
                     ),

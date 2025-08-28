@@ -12,7 +12,7 @@ import '../../../../core/theme/islamic_theme.dart';
 import '../../../../core/theme/theme_selector_widget.dart';
 import '../../../../core/localization/language_models.dart';
 import '../../../../core/localization/language_provider.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/state/prayer_settings_state.dart';
 import '../../../prayer_times/presentation/providers/prayer_times_providers.dart';
 import '../../../prayer_times/presentation/providers/notification_providers.dart';

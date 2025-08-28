@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/accessibility/accessibility_service.dart';
 import '../../../../core/theme/theme_helper.dart';
 
@@ -34,14 +35,14 @@ class _AccessibilitySettingsScreenState extends ConsumerState<AccessibilitySetti
         elevation: 0,
         title: accessibilityService.enhanceWidget(
           child: Text(
-            'Accessibility Settings',
+            AppLocalizations.of(context)!.accessibilitySettings,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: ThemeHelper.getTextPrimaryColor(context),
             ),
           ),
-          semanticLabel: 'Accessibility Settings',
+          semanticLabel: AppLocalizations.of(context)!.accessibilitySettings,
           isHeader: true,
         ),
         leading: accessibilityService.enhanceWidget(

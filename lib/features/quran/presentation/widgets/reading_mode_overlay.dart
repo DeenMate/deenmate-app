@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../state/providers.dart';
 import '../../../../core/theme/theme_helper.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 class ReadingModeOverlay extends ConsumerStatefulWidget {
   const ReadingModeOverlay({

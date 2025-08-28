@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/islamic_theme.dart';
 
 /// Beautiful card displaying daily dua
@@ -186,7 +187,7 @@ class DailyDuaCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: () => _copyDua(context),
                   icon: const Icon(Icons.copy, size: 16),
-                  label: const Text('Copy'),
+                  label: Text(AppLocalizations.of(context)!.commonCopy),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: IslamicTheme.duaBrown,
                     side: BorderSide(color: IslamicTheme.duaBrown.withOpacity(0.5)),
@@ -201,7 +202,7 @@ class DailyDuaCard extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () => _saveDua(context),
                   icon: const Icon(Icons.bookmark, size: 16),
-                  label: const Text('Save'),
+                  label: Text(AppLocalizations.of(context)!.commonSave),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: IslamicTheme.duaBrown,
                     foregroundColor: Colors.white,
@@ -235,7 +236,7 @@ Benefit: ${dua['benefit'] ?? ''}
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Dua copied to clipboard'),
+        content: Text(AppLocalizations.of(context)!.duaCopiedToClipboard),
         backgroundColor: IslamicTheme.duaBrown,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -249,7 +250,7 @@ Benefit: ${dua['benefit'] ?? ''}
     // TODO: Implement sharing functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Sharing feature coming soon!'),
+        content: Text(AppLocalizations.of(context)!.sharingSoon),
         backgroundColor: IslamicTheme.duaBrown,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -263,7 +264,7 @@ Benefit: ${dua['benefit'] ?? ''}
     // TODO: Implement save to favorites functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Dua saved to favorites!'),
+        content: Text(AppLocalizations.of(context)!.duaSavedToFavorites),
         backgroundColor: IslamicTheme.duaBrown,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

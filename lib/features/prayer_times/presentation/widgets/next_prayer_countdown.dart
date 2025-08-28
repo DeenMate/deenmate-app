@@ -2,7 +2,7 @@
 import 'package:deen_mate/features/prayer_times/domain/entities/prayer_tracking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 import '../providers/prayer_times_providers.dart';
 

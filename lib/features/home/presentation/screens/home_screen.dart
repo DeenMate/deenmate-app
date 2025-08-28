@@ -11,7 +11,7 @@ import 'package:deen_mate/features/prayer_times/domain/entities/prayer_tracking.
 import 'package:deen_mate/features/prayer_times/data/services/calculation_method_service.dart';
 import 'package:deen_mate/features/prayer_times/domain/entities/calculation_method.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 /// Home Screen (replaces old home) — shows live prayer times, countdown, etc.
 class HomeScreen extends ConsumerStatefulWidget {
@@ -970,11 +970,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           overflow: TextOverflow.ellipsis,
                         );
                       },
-                      loading: () => Text('timings from AlAdhan',
+                      loading: () => Text(AppLocalizations.of(context)!.timingsFromAlAdhan,
                           style: theme.textTheme.bodyMedium?.copyWith(
                               fontSize: 14,
                               color: theme.colorScheme.onSurfaceVariant)),
-                      error: (_, __) => Text('timings from AlAdhan',
+                      error: (_, __) => Text(AppLocalizations.of(context)!.timingsFromAlAdhan,
                           style: theme.textTheme.bodyMedium?.copyWith(
                               fontSize: 14,
                               color: theme.colorScheme.onSurfaceVariant)),

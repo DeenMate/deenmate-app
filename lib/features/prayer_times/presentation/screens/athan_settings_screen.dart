@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../../../../core/navigation/shell_wrapper.dart' show EnhancedAppRouter;
+import '../../../../l10n/generated/app_localizations.dart';
 
 import '../../../../core/utils/islamic_utils.dart' as islamic_utils;
 import '../../domain/entities/athan_settings.dart';
@@ -55,7 +56,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Athan & Notifications'),
+          title: Text(AppLocalizations.of(context)!.athanNotificationsTitle),
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Colors.white,
           elevation: 0,
@@ -68,11 +69,11 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white70,
             indicatorColor: Colors.white,
-            tabs: const [
-              Tab(icon: Icon(Icons.volume_up), text: 'Athan'),
-              Tab(icon: Icon(Icons.notifications), text: 'Prayers'),
-              Tab(icon: Icon(Icons.settings), text: 'Advanced'),
-              Tab(icon: Icon(Icons.nightlight), text: 'Ramadan'),
+            tabs: [
+              Tab(icon: const Icon(Icons.volume_up), text: AppLocalizations.of(context)!.athanTabTitle),
+              Tab(icon: const Icon(Icons.notifications), text: AppLocalizations.of(context)!.prayersTabTitle),
+              Tab(icon: const Icon(Icons.settings), text: AppLocalizations.of(context)!.advancedTabTitle),
+              Tab(icon: const Icon(Icons.nightlight), text: AppLocalizations.of(context)!.ramadanTabTitle),
             ],
           ),
         ),
@@ -101,8 +102,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSectionHeader(
-            'Athan Settings',
-            'Customize the call to prayer audio and volume',
+            AppLocalizations.of(context)!.athanSettingsTitle,
+            AppLocalizations.of(context)!.athanSettingsSubtitle,
             Icons.volume_up,
           ),
           const SizedBox(height: 16),
@@ -152,8 +153,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSectionHeader(
-            'Prayer Notifications',
-            'Customize notifications for each prayer',
+            AppLocalizations.of(context)!.prayerNotificationsTitle,
+            AppLocalizations.of(context)!.prayerNotificationsSubtitle,
             Icons.notifications,
           ),
           const SizedBox(height: 16),
@@ -175,9 +176,9 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                   const Icon(Icons.schedule,
                       size: 18, color: Color(0xFF2C3E50)),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Precise timing recommended for Athan',
+                      AppLocalizations.of(context)!.preciseTimingRecommended,
                       style: TextStyle(fontSize: 13),
                     ),
                   ),
@@ -187,7 +188,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                           .read(notificationPermissionsProvider.notifier)
                           .requestExactAlarmPermission();
                     },
-                    child: const Text('Grant'),
+                    child: Text(AppLocalizations.of(context)!.permissionsGrant),
                   ),
                 ],
               ),
@@ -218,8 +219,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSectionHeader(
-            'Advanced Settings',
-            'Fine-tune notification behavior',
+            AppLocalizations.of(context)!.advancedSettingsTitle,
+            AppLocalizations.of(context)!.advancedSettingsSubtitle,
             Icons.settings,
           ),
           const SizedBox(height: 16),
@@ -254,8 +255,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildSectionHeader(
-            'Ramadan Settings',
-            'Special notifications for the holy month',
+            AppLocalizations.of(context)!.ramadanSettingsTitle,
+            AppLocalizations.of(context)!.ramadanSettingsSubtitle,
             Icons.nightlight,
           ),
           const SizedBox(height: 16),
@@ -318,7 +319,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Prayer Notifications',
+                  AppLocalizations.of(context)!.prayerNotificationsTitle,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -328,8 +329,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 const SizedBox(height: 4),
                 Text(
                   settings.isEnabled
-                      ? 'Notifications are enabled'
-                      : 'Notifications are disabled',
+                      ? AppLocalizations.of(context)!.notificationsEnabled
+                      : AppLocalizations.of(context)!.notificationsDisabled,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[600],
@@ -396,8 +397,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Audio Settings',
+        Text(
+          AppLocalizations.of(context)!.audioSettingsTitle,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -414,7 +415,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
               size: 20,
             ),
             const SizedBox(width: 12),
-            const Text('Duration: '),
+            Text(AppLocalizations.of(context)!.durationLabel),
             Text(
               '${settings.durationSeconds}s',
               style: const TextStyle(fontWeight: FontWeight.w600),
@@ -439,8 +440,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
         // Vibration Toggle
         SwitchListTile(
-          title: const Text('Vibration'),
-          subtitle: const Text('Vibrate device during Athan'),
+          title: Text(AppLocalizations.of(context)!.athanSettingsVibration),
+          subtitle: Text(AppLocalizations.of(context)!.athanSettingsVibrationSubtitle),
           value: settings.vibrateEnabled,
           onChanged: (value) {
             ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -477,8 +478,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 size: 20,
               ),
               const SizedBox(width: 8),
-              const Text(
-                'Reminder Time',
+              Text(
+                AppLocalizations.of(context)!.reminderTimeTitle,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -487,8 +488,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             ],
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Notify me this many minutes before prayer time:',
+          Text(
+            AppLocalizations.of(context)!.reminderTimeSubtitle,
             style: TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 16),
@@ -530,27 +531,28 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildPrayerToggles(AthanSettings settings) {
+    final l10n = AppLocalizations.of(context)!;
     final prayers = [
-      ('Fajr', 'فجر', Icons.wb_twilight),
-      ('Dhuhr', 'ظهر', Icons.wb_sunny_outlined),
-      ('Asr', 'عصر', Icons.wb_cloudy),
-      ('Maghrib', 'مغرب', Icons.wb_twilight),
-      ('Isha', 'عشاء', Icons.nightlight),
+      (l10n.prayerFajr, 'فجر', Icons.wb_twilight),
+      (l10n.prayerDhuhr, 'ظهر', Icons.wb_sunny_outlined),
+      (l10n.prayerAsr, 'عصر', Icons.wb_cloudy),
+      (l10n.prayerMaghrib, 'مغرب', Icons.wb_twilight),
+      (l10n.prayerIsha, 'عشاء', Icons.nightlight),
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Prayer Notifications',
+        Text(
+          AppLocalizations.of(context)!.prayerNotificationsTitle,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Choose which prayers to receive notifications for:',
+        Text(
+          AppLocalizations.of(context)!.choosePrayerNotifications,
           style: TextStyle(fontSize: 14),
         ),
         const SizedBox(height: 16),
@@ -588,8 +590,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Notification Actions',
+          Text(
+            AppLocalizations.of(context)!.notificationActionsTitle,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -597,8 +599,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           ),
           const SizedBox(height: 12),
           SwitchListTile(
-            title: const Text('Quick Actions'),
-            subtitle: const Text('Show "Mark as Prayed" and "Snooze" buttons'),
+            title: Text(AppLocalizations.of(context)!.athanSettingsQuickActions),
+            subtitle: Text(AppLocalizations.of(context)!.athanSettingsQuickActionsSubtitle),
             value: true, // This would be a setting in AthanSettings
             onChanged: (value) {
               // Update quick actions setting
@@ -606,8 +608,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             contentPadding: EdgeInsets.zero,
           ),
           SwitchListTile(
-            title: const Text('Auto-complete'),
-            subtitle: const Text('Automatically mark prayer as completed'),
+            title: Text(AppLocalizations.of(context)!.athanSettingsAutoComplete),
+            subtitle: Text(AppLocalizations.of(context)!.athanSettingsAutoCompleteSubtitle),
             value: settings.autoMarkCompleted,
             onChanged: (value) {
               ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -634,34 +636,34 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Mute Settings',
+          Text(
+            AppLocalizations.of(context)!.muteSettingsTitle,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Configure when notifications should be silenced:',
+          Text(
+            AppLocalizations.of(context)!.muteSettingsSubtitle,
             style: TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 16),
 
           // Muted days
-          const Text('Muted Days:',
+          Text('${AppLocalizations.of(context)!.mutedDaysLabel}',
               style: TextStyle(fontWeight: FontWeight.w500)),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             children: [
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday',
-              'Saturday',
-              'Sunday',
+              AppLocalizations.of(context)!.monday,
+              AppLocalizations.of(context)!.tuesday,
+              AppLocalizations.of(context)!.wednesday,
+              AppLocalizations.of(context)!.thursday,
+              AppLocalizations.of(context)!.friday,
+              AppLocalizations.of(context)!.saturday,
+              AppLocalizations.of(context)!.sunday,
             ].map((day) {
               final isMuted =
                   settings.mutedDays?.contains(day.toLowerCase()) ?? false;
@@ -681,7 +683,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           OutlinedButton.icon(
             onPressed: () => _showTimeRangeDialog(settings),
             icon: const Icon(Icons.access_time),
-            label: const Text('Add Mute Time Range'),
+            label: Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
           ),
         ],
       ),
@@ -690,8 +692,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
   Widget _buildSmartNotifications(AthanSettings settings) {
     return SwitchListTile(
-      title: const Text('Smart Notifications'),
-      subtitle: const Text('Adjust notifications based on your activity'),
+      title: Text(AppLocalizations.of(context)!.athanSettingsSmartNotifications),
+      subtitle: Text(AppLocalizations.of(context)!.athanSettingsSmartNotificationsSubtitle),
       value: settings.smartNotifications,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -707,8 +709,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
   Widget _buildDndSettings(AthanSettings settings) {
     return SwitchListTile(
-      title: const Text('Override Do Not Disturb'),
-      subtitle: const Text('Show prayer notifications even in DND mode'),
+      title: Text(AppLocalizations.of(context)!.athanSettingsOverrideDnd),
+      subtitle: Text(AppLocalizations.of(context)!.athanSettingsOverrideDndSubtitle),
       value: settings.overrideDnd,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -724,8 +726,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
   Widget _buildFullScreenSettings(AthanSettings settings) {
     return SwitchListTile(
-      title: const Text('Full Screen Notifications'),
-      subtitle: const Text('Show prayer time as full screen alert'),
+      title: Text(AppLocalizations.of(context)!.athanSettingsFullScreenNotifications),
+      subtitle: Text(AppLocalizations.of(context)!.athanSettingsFullScreenNotificationsSubtitle),
       value: settings.fullScreenNotification,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -740,6 +742,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildRamadanStatus() {
+    final l10n = AppLocalizations.of(context)!;
     final isRamadan = islamic_utils.IslamicUtils.isRamadan();
     final daysRemaining = islamic_utils.IslamicUtils.getRamadanDaysRemaining();
 
@@ -781,7 +784,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isRamadan ? 'Ramadan Mubarak!' : 'Ramadan Status',
+                  isRamadan ? l10n.ramadanMubarak : l10n.ramadanStatus,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -792,9 +795,9 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 Text(
                   isRamadan
                       ? daysRemaining != null
-                          ? '$daysRemaining days remaining in this blessed month'
-                          : 'The blessed month of fasting'
-                      : 'Ramadan settings will be active during the holy month',
+                          ? l10n.ramadanDaysRemaining(daysRemaining)
+                          : l10n.ramadanBlessedMonth
+                      : l10n.ramadanSettingsInfo,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[600],
@@ -809,11 +812,12 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildRamadanToggle(AthanSettings settings) {
+    final l10n = AppLocalizations.of(context)!;
     final isEnabled = settings.ramadanSettings?.enabled ?? false;
 
     return SwitchListTile(
-      title: const Text('Ramadan Notifications'),
-      subtitle: const Text('Enable special notifications for Suhur and Iftar'),
+      title: Text(l10n.prayerRamadanNotifications),
+      subtitle: Text(l10n.prayerRamadanNotificationsSubtitle),
       value: isEnabled,
       onChanged: (value) {
         final newRamadanSettings =
@@ -831,6 +835,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildSuhurSettings(AthanSettings settings) {
+    final l10n = AppLocalizations.of(context)!;
     final ramadanSettings = settings.ramadanSettings!;
 
     return Container(
@@ -847,15 +852,15 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             children: [
               Icon(Icons.free_breakfast, color: Colors.purple[600], size: 20),
               const SizedBox(width: 8),
-              const Text(
-                'Suhur Reminder',
+              Text(
+                l10n.prayerSuhurReminder,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
             ],
           ),
           const SizedBox(height: 12),
           Text(
-            'Remind me ${ramadanSettings.suhurReminderMinutes} minutes before Fajr for Suhur',
+            l10n.prayerSuhurReminderText(ramadanSettings.suhurReminderMinutes),
             style: const TextStyle(fontSize: 14),
           ),
           Slider(
@@ -879,6 +884,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildIftarSettings(AthanSettings settings) {
+    final l10n = AppLocalizations.of(context)!;
     final ramadanSettings = settings.ramadanSettings!;
 
     return Container(
@@ -895,15 +901,15 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             children: [
               Icon(Icons.dinner_dining, color: Colors.orange[600], size: 20),
               const SizedBox(width: 8),
-              const Text(
-                'Iftar Reminder',
+              Text(
+                l10n.prayerIftarReminder,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
             ],
           ),
           const SizedBox(height: 12),
           Text(
-            'Remind me ${ramadanSettings.iftarReminderMinutes} minutes before Maghrib for Iftar',
+            l10n.prayerIftarReminderText(ramadanSettings.iftarReminderMinutes),
             style: const TextStyle(fontSize: 14),
           ),
           Slider(
@@ -927,13 +933,14 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   }
 
   Widget _buildRamadanSpecialFeatures(AthanSettings settings) {
+    final l10n = AppLocalizations.of(context)!;
     final ramadanSettings = settings.ramadanSettings!;
 
     return Column(
       children: [
         SwitchListTile(
-          title: const Text('Special Ramadan Athan'),
-          subtitle: const Text('Use special Athan recitations during Ramadan'),
+          title: Text(l10n.prayerSpecialRamadanAthan),
+          subtitle: Text(l10n.prayerSpecialRamadanAthanSubtitle),
           value: ramadanSettings.specialRamadanAthan,
           onChanged: (value) {
             final newSettings =
@@ -945,8 +952,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           secondary: Icon(Icons.music_note, color: Colors.purple[600]),
         ),
         SwitchListTile(
-          title: const Text('Include Duas'),
-          subtitle: const Text('Show Ramadan-specific duas in notifications'),
+          title: Text(l10n.prayerIncludeDuas),
+          subtitle: Text(l10n.prayerIncludeDuasSubtitle),
           value: ramadanSettings.includeDuas,
           onChanged: (value) {
             final newSettings = ramadanSettings.copyWith(includeDuas: value);
@@ -957,8 +964,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           secondary: Icon(Icons.favorite, color: Colors.purple[600]),
         ),
         SwitchListTile(
-          title: const Text('Track Fasting'),
-          subtitle: const Text('Keep track of your fasting status'),
+          title: Text(l10n.prayerTrackFasting),
+          subtitle: Text(l10n.prayerTrackFastingSubtitle),
           value: ramadanSettings.trackFasting,
           onChanged: (value) {
             final newSettings = ramadanSettings.copyWith(trackFasting: value);
@@ -985,8 +992,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
               color: Colors.red[300],
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Unable to load settings',
+            Text(
+              AppLocalizations.of(context)!.errorUnableToLoadSettings,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -1018,12 +1025,12 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add Mute Time Range'),
+        title: Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
         content: const Text('Feature coming soon...'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(AppLocalizations.of(context)!.commonClose),
           ),
         ],
       ),

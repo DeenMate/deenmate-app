@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/islamic_theme.dart';
 
 /// Beautiful card displaying daily Quran verse
@@ -191,7 +192,7 @@ class DailyVerseCard extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: () => _copyVerse(context),
                   icon: const Icon(Icons.copy, size: 16),
-                  label: const Text('Copy'),
+                  label: Text(AppLocalizations.of(context)!.commonCopy),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: IslamicTheme.quranPurple,
                     side: BorderSide(color: IslamicTheme.quranPurple.withOpacity(0.5)),
@@ -206,7 +207,7 @@ class DailyVerseCard extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () => _saveVerse(context),
                   icon: const Icon(Icons.bookmark, size: 16),
-                  label: const Text('Save'),
+                  label: Text(AppLocalizations.of(context)!.commonSave),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: IslamicTheme.quranPurple,
                     foregroundColor: Colors.white,
@@ -237,7 +238,7 @@ ${verse['reference']}
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Verse copied to clipboard'),
+        content: Text(AppLocalizations.of(context)!.verseCopiedToClipboard),
         backgroundColor: IslamicTheme.quranPurple,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -251,7 +252,7 @@ ${verse['reference']}
     // TODO: Implement sharing functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Sharing feature coming soon!'),
+        content: Text(AppLocalizations.of(context)!.sharingSoon),
         backgroundColor: IslamicTheme.quranPurple,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -265,7 +266,7 @@ ${verse['reference']}
     // TODO: Implement save to favorites functionality
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Verse saved to favorites!'),
+        content: Text(AppLocalizations.of(context)!.verseSavedToFavorites),
         backgroundColor: IslamicTheme.quranPurple,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

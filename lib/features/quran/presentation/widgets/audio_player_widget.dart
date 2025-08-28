@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../state/providers.dart';
 import '../../domain/services/audio_service.dart' as audio_service;
 import '../../../../core/theme/theme_helper.dart';

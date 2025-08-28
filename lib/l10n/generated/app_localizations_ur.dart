@@ -4,24 +4,25 @@ import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for Arabic (`ar`).
-class AppLocalizationsAr extends AppLocalizations {
-  AppLocalizationsAr([String locale = 'ar']) : super(locale);
+/// The translations for Urdu (`ur`).
+class AppLocalizationsUr extends AppLocalizations {
+  AppLocalizationsUr([String locale = 'ur']) : super(locale);
 
   @override
   String get appTitle => 'DeenMate';
 
   @override
-  String get onboardingWelcomeTitle => 'مرحباً بك في DeenMate';
+  String get onboardingWelcomeTitle => 'DeenMate میں خوش آمدید';
 
   @override
-  String get onboardingWelcomeSubtitle => 'رفيقك الإسلامي الشامل';
+  String get onboardingWelcomeSubtitle => 'آپ کا مکمل اسلامی ساتھی';
 
   @override
-  String get onboardingLanguageTitle => 'اختر لغتك';
+  String get onboardingLanguageTitle => 'اپنی زبان منتخب کریں';
 
   @override
-  String get onboardingLanguageSubtitle => 'اختر لغتك المفضلة للتطبيق';
+  String get onboardingLanguageSubtitle =>
+      'ایپ کے لیے اپنی ترجیحی زبان منتخب کریں';
 
   @override
   String get onboardingUsernameTitle => 'What should we call you?';
@@ -101,58 +102,61 @@ class AppLocalizationsAr extends AppLocalizations {
       'Welcome to DeenMate. Let\'s begin your journey.';
 
   @override
-  String get navigationHome => 'الرئيسية';
+  String get navigationHome => 'ہوم';
 
   @override
-  String get navigationQuran => 'القرآن';
+  String get navigationQuran => 'قرآن';
 
   @override
-  String get navigationHadith => 'الحديث';
+  String get navigationHadith => 'حدیث';
 
   @override
-  String get navigationMore => 'المزيد';
+  String get navigationMore => 'مزید';
 
   @override
-  String get prayerTimesTitle => 'أوقات الصلاة';
+  String get prayerTimesTitle => 'نماز کے اوقات';
 
   @override
-  String get prayerFajr => 'الفجر';
+  String get prayerFajr => 'فجر';
 
   @override
   String get prayerSunrise => 'Sunrise';
 
   @override
-  String get prayerDhuhr => 'الظهر';
+  String get prayerDhuhr => 'ظہر';
 
   @override
-  String get prayerAsr => 'العصر';
+  String get prayerAsr => 'عصر';
 
   @override
-  String get prayerMaghrib => 'المغرب';
+  String get prayerMaghrib => 'مغرب';
 
   @override
-  String get prayerIsha => 'العشاء';
+  String get prayerIsha => 'عشاء';
 
   @override
-  String get nextPrayer => 'الصلاة القادمة';
+  String get nextPrayer => 'اگلی نماز';
 
   @override
-  String get currentPrayer => 'الصلاة الحالية';
+  String get currentPrayer => 'موجودہ نماز';
 
   @override
-  String get timeRemaining => 'الوقت المتبقي';
+  String get timeRemaining => 'باقی وقت';
 
   @override
-  String get quranTitle => 'القرآن';
+  String get timingsFromAlAdhan => 'Prayer Times from Al-Adhan';
 
   @override
-  String get quranLastRead => 'آخر قراءة';
+  String get quranTitle => 'قرآن';
 
   @override
-  String get quranContinue => 'استمر';
+  String get quranLastRead => 'آخری پڑھا گیا';
 
   @override
-  String get quranSearch => 'بحث';
+  String get quranContinue => 'جاری رکھیں';
+
+  @override
+  String get quranSearch => 'تلاش';
 
   @override
   String get quranNavigation => 'Navigation';
@@ -207,7 +211,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get settingsTitle => 'الإعدادات';
+  String get settingsTitle => 'ترتیبات';
 
   @override
   String get settingsNotifications => 'Notifications';
@@ -216,10 +220,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsPrayerReminders => 'Prayer Reminders';
 
   @override
-  String get settingsTheme => 'المظهر';
+  String get settingsTheme => 'تھیم';
 
   @override
-  String get settingsLanguage => 'اللغة';
+  String get settingsLanguage => 'زبان';
 
   @override
   String get settingsCalculationMethod => 'Calculation Method';
@@ -314,37 +318,37 @@ class AppLocalizationsAr extends AppLocalizations {
       'Prayer Calculation Method';
 
   @override
-  String get commonLoading => 'جاري التحميل...';
+  String get commonLoading => 'لوڈ ہو رہا ہے...';
 
   @override
   String get commonPleaseWait => 'Please wait...';
 
   @override
-  String get commonError => 'خطأ';
+  String get commonError => 'غلطی';
 
   @override
   String get commonRetry => 'Retry';
 
   @override
-  String get commonCancel => 'إلغاء';
+  String get commonCancel => 'منسوخ کریں';
 
   @override
-  String get commonSave => 'حفظ';
+  String get commonSave => 'محفوظ کریں';
 
   @override
   String get commonClose => 'Close';
 
   @override
-  String get commonBack => 'رجوع';
+  String get commonBack => 'پیچھے';
 
   @override
-  String get commonNext => 'التالي';
+  String get commonNext => 'اگلا';
 
   @override
   String get commonSkip => 'Skip';
 
   @override
-  String get commonContinue => 'استمر';
+  String get commonContinue => 'جاری رکھیں';
 
   @override
   String get commonDone => 'Done';
@@ -457,6 +461,87 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonConfirm => 'Confirm';
 
   @override
+  String get buttonDelete => 'Delete';
+
+  @override
+  String get buttonEdit => 'Edit';
+
+  @override
+  String get buttonCopy => 'Copy';
+
+  @override
+  String get buttonShare => 'Share';
+
+  @override
+  String get buttonView => 'View';
+
+  @override
+  String get buttonStart => 'Start';
+
+  @override
+  String get buttonStop => 'Stop';
+
+  @override
+  String get verseBookmark => 'Bookmark verse';
+
+  @override
+  String get verseRemoveBookmark => 'Remove bookmark';
+
+  @override
+  String get verseCopy => 'Copy verse';
+
+  @override
+  String get verseShare => 'Share verse';
+
+  @override
+  String get verseViewTafsir => 'View tafsir';
+
+  @override
+  String get verseLoadingTranslation => 'Loading translation...';
+
+  @override
+  String get statusUnknown => 'Unknown';
+
+  @override
+  String get readingPlansTitle => 'Reading Plans';
+
+  @override
+  String get readingPlansMyPlans => 'My Plans';
+
+  @override
+  String get readingPlansToday => 'Today';
+
+  @override
+  String get readingPlansStats => 'Stats';
+
+  @override
+  String get readingPlansNewPlan => 'New Plan';
+
+  @override
+  String get readingPlansActive => 'ACTIVE';
+
+  @override
+  String get readingPlansProgress => 'Progress';
+
+  @override
+  String get readingPlansDays => 'Days';
+
+  @override
+  String get readingPlansVersesPerDay => 'Verses/Day';
+
+  @override
+  String get readingPlansTodaysReading => 'Today\'s Reading';
+
+  @override
+  String get readingPlansStartReading => 'Start Reading';
+
+  @override
+  String get readingPlansStartPlan => 'Start Plan';
+
+  @override
+  String get readingPlansStopPlan => 'Stop Plan';
+
+  @override
   String get buttonClear => 'Clear';
 
   @override
@@ -564,6 +649,22 @@ class AppLocalizationsAr extends AppLocalizations {
       'Use special Athan recitations during Ramadan';
 
   @override
+  String get prayerSuhurReminder => 'Suhur Reminder';
+
+  @override
+  String get prayerIftarReminder => 'Iftar Reminder';
+
+  @override
+  String prayerSuhurReminderText(int minutes) {
+    return 'Remind me $minutes minutes before Fajr for Suhur';
+  }
+
+  @override
+  String prayerIftarReminderText(int minutes) {
+    return 'Remind me $minutes minutes before Maghrib for Iftar';
+  }
+
+  @override
   String get prayerIncludeDuas => 'Include Duas';
 
   @override
@@ -575,6 +676,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get prayerTrackFastingSubtitle => 'Keep track of your fasting status';
+
+  @override
+  String get ramadanMubarak => 'Ramadan Mubarak!';
+
+  @override
+  String get ramadanStatus => 'Ramadan Status';
+
+  @override
+  String ramadanDaysRemaining(int days) {
+    return '$days days remaining in this blessed month';
+  }
+
+  @override
+  String get ramadanBlessedMonth => 'The blessed month of fasting';
+
+  @override
+  String get ramadanSettingsInfo =>
+      'Ramadan settings will be active during the holy month';
+
+  @override
+  String get errorUnableToLoadSettings => 'Unable to load settings';
 
   @override
   String get buttonRetry => 'Retry';
@@ -1298,6 +1420,106 @@ class AppLocalizationsAr extends AppLocalizations {
   String get qiblaUpdateLocation => 'Update Location';
 
   @override
+  String get bookmarkEdit => 'Edit';
+
+  @override
+  String get bookmarkShare => 'Share';
+
+  @override
+  String get bookmarkDelete => 'Delete';
+
+  @override
+  String get quranFontSettings => 'Font Settings';
+
+  @override
+  String get quranTranslationSettings => 'Translation Settings';
+
+  @override
+  String get quranContent => 'Content';
+
+  @override
+  String get quranArabic => 'Arabic';
+
+  @override
+  String get quranTranslation => 'Translation';
+
+  @override
+  String get quranTafsir => 'Tafsir';
+
+  @override
+  String get quranArabicFontSize => 'Arabic Font Size';
+
+  @override
+  String get quranTranslationFontSize => 'Translation Font Size';
+
+  @override
+  String get quranSura => 'Sura';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get errorLoadingPage => 'Error loading page';
+
+  @override
+  String get downloadFailed => 'Download failed';
+
+  @override
+  String get bookmarkRemoved => 'Bookmark removed';
+
+  @override
+  String get errorRemovingBookmark => 'Error removing bookmark';
+
+  @override
+  String get sortOptionsComingSoon => 'Sort options - Coming soon';
+
+  @override
+  String get manageCategoriesComingSoon => 'Manage categories - Coming soon';
+
+  @override
+  String get exportBookmarksComingSoon => 'Export bookmarks - Coming soon';
+
+  @override
+  String get editBookmarkComingSoon => 'Edit bookmark - Coming soon';
+
+  @override
+  String get addBookmarkDialogComingSoon => 'Add bookmark dialog - Coming soon';
+
+  @override
+  String get createCategoryDialogComingSoon =>
+      'Create category dialog - Coming soon';
+
+  @override
+  String get editCategoryComingSoon => 'Edit category - Coming soon';
+
+  @override
+  String get deleteCategoryComingSoon => 'Delete category - Coming soon';
+
+  @override
+  String get clearCacheFailed => 'Failed to clear cache';
+
+  @override
+  String get quarterSection => 'Quarter section';
+
+  @override
+  String get verses => 'Verses';
+
+  @override
+  String get selected => 'selected';
+
+  @override
+  String get autoScroll => 'Auto Scroll';
+
+  @override
+  String get quickSettings => 'Quick settings';
+
+  @override
+  String get enterReadingMode => 'Enter reading mode';
+
+  @override
+  String get exitReadingMode => 'Exit reading mode';
+
+  @override
   String get onboardingNotificationDescription1 =>
       'Stay connected with your daily prayers';
 
@@ -1308,4 +1530,290 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get onboardingNotificationSelectPrayers =>
       'Select which prayers you\'d like to be reminded about';
+
+  @override
+  String get bookmarks => 'Bookmarks';
+
+  @override
+  String get bookmarkAll => 'All';
+
+  @override
+  String get bookmarkCategories => 'Categories';
+
+  @override
+  String get bookmarkRecent => 'Recent';
+
+  @override
+  String get bookmarkSort => 'Sort';
+
+  @override
+  String get bookmarkManageCategories => 'Manage Categories';
+
+  @override
+  String get bookmarkExport => 'Export';
+
+  @override
+  String get bookmarkNoBookmarksYet => 'No bookmarks yet';
+
+  @override
+  String get bookmarkNoBookmarksSubtitle =>
+      'Bookmark verses while reading to save them here';
+
+  @override
+  String get bookmarkNoCategoriesYet => 'No categories yet';
+
+  @override
+  String get bookmarkNoCategoriesSubtitle =>
+      'Create categories to organize your bookmarks';
+
+  @override
+  String get bookmarkCreateCategory => 'Create Category';
+
+  @override
+  String get bookmarkNoRecentBookmarks => 'No recent bookmarks';
+
+  @override
+  String get bookmarkNoRecentSubtitle =>
+      'Your recently added bookmarks will appear here';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get share => 'Share';
+
+  @override
+  String get commonCopy => 'Copy';
+
+  @override
+  String get duaCopiedToClipboard => 'Dua copied to clipboard';
+
+  @override
+  String get sharingSoon => 'Sharing feature coming soon!';
+
+  @override
+  String get duaSavedToFavorites => 'Dua saved to favorites!';
+
+  @override
+  String get accessibilitySettings => 'Accessibility Settings';
+
+  @override
+  String get verseCopiedToClipboard => 'Verse copied to clipboard';
+
+  @override
+  String get verseSavedToFavorites => 'Verse saved to favorites!';
+
+  @override
+  String get learnMore => 'Learn More';
+
+  @override
+  String get nameOfAllahCopied => 'Name of Allah copied to clipboard';
+
+  @override
+  String get detailedExplanationsSoon => 'Detailed explanations coming soon!';
+
+  @override
+  String get hadithCopiedToClipboard => 'Hadith copied to clipboard';
+
+  @override
+  String get hadithSavedToFavorites => 'Hadith saved to favorites!';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get commonConfirm => 'Confirm';
+
+  @override
+  String get commonClear => 'Clear';
+
+  @override
+  String get commonView => 'View';
+
+  @override
+  String get commonGo => 'Go';
+
+  @override
+  String get commonDownload => 'Download';
+
+  @override
+  String get commonSendEmail => 'Send Email';
+
+  @override
+  String get commonHelp => 'Help';
+
+  @override
+  String get commonDelete => 'Delete';
+
+  @override
+  String get commonEdit => 'Edit';
+
+  @override
+  String get navigationExitDialogTitle => 'Exit DeenMate';
+
+  @override
+  String get navigationExitDialogMessage =>
+      'Are you sure you want to exit the app?';
+
+  @override
+  String get prayerCalculationMethodsTitle => 'Prayer Calculation Methods';
+
+  @override
+  String get prayerCalculationMethodsApplyMethod => 'Apply Method';
+
+  @override
+  String get prayerCalculationMethodsCreateCustom => 'Create Custom Method';
+
+  @override
+  String get settingsMoreFeatures => 'More Features';
+
+  @override
+  String get athanSettingsVibration => 'Vibration';
+
+  @override
+  String get athanSettingsVibrationSubtitle => 'Vibrate device during Athan';
+
+  @override
+  String get athanSettingsQuickActions => 'Quick Actions';
+
+  @override
+  String get athanSettingsQuickActionsSubtitle =>
+      'Show \"Mark as Prayed\" and \"Snooze\" buttons';
+
+  @override
+  String get athanSettingsAutoComplete => 'Auto-complete';
+
+  @override
+  String get athanSettingsAutoCompleteSubtitle =>
+      'Automatically mark prayer as completed';
+
+  @override
+  String get athanSettingsAddMuteTimeRange => 'Add Mute Time Range';
+
+  @override
+  String get athanSettingsSmartNotifications => 'Smart Notifications';
+
+  @override
+  String get athanSettingsSmartNotificationsSubtitle =>
+      'Adjust notifications based on your activity';
+
+  @override
+  String get athanSettingsOverrideDnd => 'Override Do Not Disturb';
+
+  @override
+  String get athanSettingsOverrideDndSubtitle =>
+      'Show prayer notifications even in DND mode';
+
+  @override
+  String get athanSettingsFullScreenNotifications =>
+      'Full Screen Notifications';
+
+  @override
+  String get athanSettingsFullScreenNotificationsSubtitle =>
+      'Show prayer time as full screen alert';
+
+  @override
+  String get permissionsGrant => 'Grant';
+
+  @override
+  String get athanNotificationsTitle => 'Athan & Notifications';
+
+  @override
+  String get athanTabTitle => 'Athan';
+
+  @override
+  String get prayersTabTitle => 'Prayers';
+
+  @override
+  String get advancedTabTitle => 'Advanced';
+
+  @override
+  String get ramadanTabTitle => 'Ramadan';
+
+  @override
+  String get athanSettingsTitle => 'Athan Settings';
+
+  @override
+  String get athanSettingsSubtitle =>
+      'Customize the call to prayer audio and volume';
+
+  @override
+  String get prayerNotificationsTitle => 'Prayer Notifications';
+
+  @override
+  String get prayerNotificationsSubtitle =>
+      'Customize notifications for each prayer';
+
+  @override
+  String get preciseTimingRecommended => 'Precise timing recommended for Athan';
+
+  @override
+  String get advancedSettingsTitle => 'Advanced Settings';
+
+  @override
+  String get advancedSettingsSubtitle => 'Fine-tune notification behavior';
+
+  @override
+  String get ramadanSettingsTitle => 'Ramadan Settings';
+
+  @override
+  String get ramadanSettingsSubtitle =>
+      'Special notifications for the holy month';
+
+  @override
+  String get notificationsEnabled => 'Notifications are enabled';
+
+  @override
+  String get notificationsDisabled => 'Notifications are disabled';
+
+  @override
+  String get audioSettingsTitle => 'Audio Settings';
+
+  @override
+  String get durationLabel => 'Duration: ';
+
+  @override
+  String get reminderTimeTitle => 'Reminder Time';
+
+  @override
+  String get reminderTimeSubtitle =>
+      'Notify me this many minutes before prayer time:';
+
+  @override
+  String get choosePrayerNotifications =>
+      'Choose which prayers to receive notifications for:';
+
+  @override
+  String get notificationActionsTitle => 'Notification Actions';
+
+  @override
+  String get muteSettingsTitle => 'Mute Settings';
+
+  @override
+  String get muteSettingsSubtitle =>
+      'Configure when notifications should be silenced:';
+
+  @override
+  String get mutedDaysLabel => 'Muted Days:';
+
+  @override
+  String get monday => 'Monday';
+
+  @override
+  String get tuesday => 'Tuesday';
+
+  @override
+  String get wednesday => 'Wednesday';
+
+  @override
+  String get thursday => 'Thursday';
+
+  @override
+  String get friday => 'Friday';
+
+  @override
+  String get saturday => 'Saturday';
+
+  @override
+  String get sunday => 'Sunday';
 }

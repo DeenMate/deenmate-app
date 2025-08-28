@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../core/state/prayer_settings_state.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../data/datasources/aladhan_api.dart';
 import '../../domain/entities/location.dart';
 import '../../domain/entities/prayer_calculation_settings.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/islamic_theme.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 /// Islamic bottom navigation bar matching the design
 class IslamicBottomNavigation extends StatelessWidget {

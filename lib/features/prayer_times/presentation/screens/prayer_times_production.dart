@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/utils/islamic_utils.dart';
 import '../providers/prayer_times_providers.dart';
 import '../../domain/entities/prayer_times.dart';

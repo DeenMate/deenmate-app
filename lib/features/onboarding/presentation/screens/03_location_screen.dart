@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../prayer_times/domain/entities/location.dart';
 import '../../../prayer_times/presentation/providers/prayer_times_providers.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 /// Location selection screen for DeenMate onboarding with modern Material 3 design
 class LocationScreen extends ConsumerStatefulWidget {

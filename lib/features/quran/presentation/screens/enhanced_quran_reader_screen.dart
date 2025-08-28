@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../data/dto/verse_dto.dart';
 import '../../data/dto/verses_page_dto.dart';
 import '../../data/dto/chapter_dto.dart';
@@ -336,8 +337,9 @@ class _EnhancedQuranReaderScreenState
               color: ThemeHelper.getTextPrimaryColor(context),
             ),
             onPressed: _toggleReadingMode,
-            tooltip:
-                _isReadingMode ? 'Exit reading mode' : 'Enter reading mode',
+            tooltip: _isReadingMode 
+                ? AppLocalizations.of(context)!.exitReadingMode 
+                : AppLocalizations.of(context)!.enterReadingMode,
           ),
 
           // Quick settings
@@ -345,7 +347,7 @@ class _EnhancedQuranReaderScreenState
             icon: Icon(Icons.tune,
                 color: ThemeHelper.getTextPrimaryColor(context)),
             onPressed: _showQuickSettings,
-            tooltip: 'Quick settings',
+            tooltip: AppLocalizations.of(context)!.quickSettings,
           ),
         ],
       ),
@@ -425,7 +427,7 @@ class _EnhancedQuranReaderScreenState
                           children: [
                             Expanded(
                               child: Text(
-                                'Quick Tools',
+                                AppLocalizations.of(context)!.quickSettings,
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -446,7 +448,7 @@ class _EnhancedQuranReaderScreenState
                                   ),
                                 );
                               },
-                              tooltip: 'Font settings',
+                              tooltip: AppLocalizations.of(context)!.quranFontSettings,
                             ),
                           ],
                         ),
@@ -459,11 +461,11 @@ class _EnhancedQuranReaderScreenState
                           spacing: 8,
                           runSpacing: 8,
                           children: [
-                            _buildChip(context, 'Sura', selected: true),
-                            _buildChip(context, 'Page'),
-                            _buildChip(context, 'Juz'),
-                            _buildChip(context, 'Hizb'),
-                            _buildChip(context, 'Ruku'),
+                            _buildChip(context, AppLocalizations.of(context)!.quranSura, selected: true),
+                            _buildChip(context, AppLocalizations.of(context)!.quranPage),
+                            _buildChip(context, AppLocalizations.of(context)!.quranJuz),
+                            _buildChip(context, AppLocalizations.of(context)!.quranHizb),
+                            _buildChip(context, AppLocalizations.of(context)!.quranRuku),
                           ],
                         ),
                       ),
@@ -474,14 +476,14 @@ class _EnhancedQuranReaderScreenState
                         child: Column(
                           children: [
                             SwitchListTile(
-                              title: const Text('Arabic'),
+                              title: Text(AppLocalizations.of(context)!.quranArabic),
                               value: prefs.showArabic,
                               onChanged: (v) => notifier.updateShowArabic(v),
                               dense: true,
                               contentPadding: EdgeInsets.zero,
                             ),
                             SwitchListTile(
-                              title: const Text('Translation'),
+                              title: Text(AppLocalizations.of(context)!.quranTranslation),
                               value: prefs.showTranslation,
                               onChanged: (v) =>
                                   notifier.updateShowTranslation(v),
@@ -489,14 +491,14 @@ class _EnhancedQuranReaderScreenState
                               contentPadding: EdgeInsets.zero,
                             ),
                             SwitchListTile(
-                              title: const Text('Tafsir'),
+                              title: Text(AppLocalizations.of(context)!.quranTafsir),
                               value: prefs.showTafsir,
                               onChanged: (v) => notifier.updateShowTafsir(v),
                               dense: true,
                               contentPadding: EdgeInsets.zero,
                             ),
                             SwitchListTile(
-                              title: const Text('Word by Word'),
+                              title: Text(AppLocalizations.of(context)!.verseCardWordAnalysis),
                               value: prefs.showWordAnalysis,
                               onChanged: (v) =>
                                   notifier.updateShowWordAnalysis(v),
@@ -514,7 +516,7 @@ class _EnhancedQuranReaderScreenState
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Font Settings',
+                            Text(AppLocalizations.of(context)!.quranFontSettings,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -524,7 +526,7 @@ class _EnhancedQuranReaderScreenState
                             const SizedBox(height: 8),
                             _buildLabeledSlider(
                               context,
-                              label: 'Arabic Font Size',
+                              label: AppLocalizations.of(context)!.quranArabicFontSize,
                               value: prefs.arabicFontSize,
                               min: 16,
                               max: 40,
@@ -533,7 +535,7 @@ class _EnhancedQuranReaderScreenState
                             ),
                             _buildLabeledSlider(
                               context,
-                              label: 'Translations/Tafsir Size',
+                              label: AppLocalizations.of(context)!.quranTranslationFontSize,
                               value: prefs.translationFontSize,
                               min: 12,
                               max: 24,
@@ -652,8 +654,8 @@ Quran ${verse.verseKey}
           _localBookmarkOn.remove(verse.verseKey);
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Bookmark removed'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.bookmarkRemoved),
             duration: Duration(seconds: 2),
           ),
         );
@@ -670,8 +672,8 @@ Quran ${verse.verseKey}
           _localBookmarkOff.remove(verse.verseKey);
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Verse bookmarked'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.readingModeBookmarkAdded),
             duration: Duration(seconds: 2),
           ),
         );
@@ -679,7 +681,7 @@ Quran ${verse.verseKey}
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error: $e'),
+          content: Text('${AppLocalizations.of(context)!.errorGeneric}: $e'),
           backgroundColor: Colors.red,
         ),
       );
@@ -739,7 +741,7 @@ Quran ${verse.verseKey}''';
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'Tafsir - ${verse.verseKey}',
+                      '${AppLocalizations.of(context)!.quranTafsir} - ${verse.verseKey}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -751,7 +753,7 @@ Quran ${verse.verseKey}''';
                       icon: Icon(Icons.translate,
                           color: ThemeHelper.getTextSecondaryColor(context)),
                       onPressed: () => _showWordAnalysis(verse),
-                      tooltip: 'Word analysis',
+                      tooltip: AppLocalizations.of(context)!.verseCardWordAnalysis,
                     ),
                   ],
                 ),
@@ -811,7 +813,7 @@ Quran ${verse.verseKey}''';
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'Word Analysis - ${verse.verseKey}',
+                      '${AppLocalizations.of(context)!.verseCardWordAnalysis} - ${verse.verseKey}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../data/services/calculation_method_service.dart';
 import '../../domain/entities/calculation_method.dart';
 import '../../domain/entities/location.dart';
@@ -54,7 +56,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prayer Calculation Methods'),
+        title: Text(AppLocalizations.of(context)!.prayerCalculationMethodsTitle),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         elevation: 0,
