@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/dto/chapter_dto.dart';
 import '../../data/dto/recitation_resource_dto.dart';
-import '../state/providers.dart' hide audioStorageStatsProvider;
+import '../state/providers.dart';
 import '../../domain/services/audio_service.dart' as audio_service;
 import '../../../../core/theme/theme_helper.dart';
 
@@ -11,7 +13,8 @@ class AudioDownloadsScreen extends ConsumerStatefulWidget {
   const AudioDownloadsScreen({super.key});
 
   @override
-  ConsumerState<AudioDownloadsScreen> createState() => _AudioDownloadsScreenState();
+  ConsumerState<AudioDownloadsScreen> createState() =>
+      _AudioDownloadsScreenState();
 }
 
 class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
@@ -19,12 +22,57 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
   bool _isDownloading = false;
   Map<int, double> _chapterProgress = {};
   String _currentDownloadStatus = '';
+  final Map<int, CancelToken> _cancelTokens = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedReciter();
+    // Listen to global download progress stream to reflect live updates
+    ref.listen(audioDownloadProgressProvider, (previous, next) {
+      next.whenData((progress) {
+        // verseKey formats like "2:255" or chapter completion key "chapter_2"
+        int? chapterId;
+        if (progress.verseKey.startsWith('chapter_')) {
+          chapterId =
+              int.tryParse(progress.verseKey.replaceFirst('chapter_', ''));
+        } else if (progress.verseKey.contains(':')) {
+          final parts = progress.verseKey.split(':');
+          chapterId = int.tryParse(parts.first);
+        }
+        if (chapterId != null && mounted) {
+          setState(() {
+            _chapterProgress[chapterId!] = progress.progress;
+            _currentDownloadStatus = progress.status ?? '';
+            _isDownloading = !progress.isComplete && progress.progress > 0.0;
+          });
+        }
+      });
+    });
+  }
+
+  Future<void> _loadSavedReciter() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final saved = prefs.getInt('quran_audio_selected_reciter_id');
+      if (saved != null && mounted) {
+        setState(() => _selectedReciterId = saved);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _saveSelectedReciter(int id) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('quran_audio_selected_reciter_id', id);
+    } catch (_) {}
+  }
 
   @override
   Widget build(BuildContext context) {
     final chaptersAsync = ref.watch(surahListProvider);
     final recitersAsync = ref.watch(recitationResourcesProvider);
-    final storageStats = ref.watch(audio_service.audioStorageStatsProvider);
+    final storageStats = ref.watch(audioStorageStatsProvider);
 
     return Scaffold(
       backgroundColor: ThemeHelper.getBackgroundColor(context),
@@ -32,7 +80,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
         backgroundColor: ThemeHelper.getBackgroundColor(context),
         elevation: 0,
         title: Text(
-          'Audio Downloads',
+          AppLocalizations.of(context)!.audioDownloadsTitle,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -40,7 +88,8 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: ThemeHelper.getTextPrimaryColor(context)),
+          icon: Icon(Icons.arrow_back,
+              color: ThemeHelper.getTextPrimaryColor(context)),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -66,7 +115,8 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
     );
   }
 
-  Widget _buildStorageOverview(AsyncValue<audio_service.AudioStorageStats> statsAsync) {
+  Widget _buildStorageOverview(
+      AsyncValue<audio_service.AudioStorageStats> statsAsync) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -104,7 +154,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Audio Storage',
+                      AppLocalizations.of(context)!.audioStorageTitle,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -121,14 +171,14 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
                         ),
                       ),
                       loading: () => Text(
-                        'Loading...',
+                        AppLocalizations.of(context)!.commonLoading,
                         style: TextStyle(
                           fontSize: 12,
                           color: ThemeHelper.getTextSecondaryColor(context),
                         ),
                       ),
                       error: (_, __) => Text(
-                        'Error loading stats',
+                        AppLocalizations.of(context)!.audioStorageErrorStats,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.red,
@@ -140,7 +190,6 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
               ),
             ],
           ),
-          
           if (_isDownloading) ...[
             const SizedBox(height: 16),
             Column(
@@ -156,7 +205,8 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
                   backgroundColor: ThemeHelper.getDividerColor(context),
-                  valueColor: AlwaysStoppedAnimation<Color>(ThemeHelper.getPrimaryColor(context)),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      ThemeHelper.getPrimaryColor(context)),
                 ),
               ],
             ),
@@ -166,12 +216,13 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
     );
   }
 
-  Widget _buildReciterSelection(AsyncValue<List<RecitationResourceDto>> recitersAsync) {
+  Widget _buildReciterSelection(
+      AsyncValue<List<RecitationResourceDto>> recitersAsync) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Select Reciter',
+          AppLocalizations.of(context)!.audioSelectReciterTitle,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -201,13 +252,16 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
                     child: Text(reciter.name),
                   );
                 }).toList(),
-                onChanged: _isDownloading ? null : (value) {
-                  if (value != null) {
-                    setState(() {
-                      _selectedReciterId = value;
-                    });
-                  }
-                },
+                onChanged: _isDownloading
+                    ? null
+                    : (value) {
+                        if (value != null) {
+                          setState(() {
+                            _selectedReciterId = value;
+                          });
+                          _saveSelectedReciter(value);
+                        }
+                      },
               ),
             ),
           ),
@@ -229,7 +283,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
               border: Border.all(color: Colors.red),
             ),
             child: Text(
-              'Error loading reciters',
+              AppLocalizations.of(context)!.audioRecitersLoadError,
               style: TextStyle(color: Colors.red),
             ),
           ),
@@ -243,7 +297,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Quick Actions',
+          AppLocalizations.of(context)!.audioQuickActionsTitle,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -255,18 +309,18 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           children: [
             Expanded(
               child: _buildActionButton(
-                'Download Popular',
+                AppLocalizations.of(context)!.audioDownloadPopularTitle,
                 Icons.star,
-                'Download most popular chapters',
+                AppLocalizations.of(context)!.audioDownloadPopularSubtitle,
                 _isDownloading ? null : _downloadPopularChapters,
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: _buildActionButton(
-                'Download All',
+                AppLocalizations.of(context)!.audioDownloadAllTitle,
                 Icons.download_for_offline,
-                'Download complete Quran',
+                AppLocalizations.of(context)!.audioDownloadAllSubtitle,
                 _isDownloading ? null : _downloadAllChapters,
               ),
             ),
@@ -297,9 +351,9 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           children: [
             Icon(
               icon,
-              color: onTap != null 
-                ? ThemeHelper.getPrimaryColor(context) 
-                : ThemeHelper.getTextSecondaryColor(context),
+              color: onTap != null
+                  ? ThemeHelper.getPrimaryColor(context)
+                  : ThemeHelper.getTextSecondaryColor(context),
               size: 24,
             ),
             const SizedBox(height: 8),
@@ -308,9 +362,9 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: onTap != null 
-                  ? ThemeHelper.getTextPrimaryColor(context) 
-                  : ThemeHelper.getTextSecondaryColor(context),
+                color: onTap != null
+                    ? ThemeHelper.getTextPrimaryColor(context)
+                    : ThemeHelper.getTextSecondaryColor(context),
               ),
             ),
             const SizedBox(height: 4),
@@ -332,7 +386,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Individual Chapters',
+          AppLocalizations.of(context)!.audioIndividualChaptersTitle,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -342,20 +396,23 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
         const SizedBox(height: 12),
         chaptersAsync.when(
           data: (chapters) => Column(
-            children: chapters.map((chapter) => 
-              FutureBuilder<bool>(
-                future: _isChapterDownloaded(chapter.id),
-                builder: (context, snapshot) {
-                  final isDownloaded = snapshot.data ?? false;
-                  return _buildChapterTile(chapter, persistentDownload: isDownloaded);
-                },
-              ),
-            ).toList(),
+            children: chapters
+                .map(
+                  (chapter) => FutureBuilder<bool>(
+                    future: _isChapterDownloaded(chapter.id),
+                    builder: (context, snapshot) {
+                      final isDownloaded = snapshot.data ?? false;
+                      return _buildChapterTile(chapter,
+                          persistentDownload: isDownloaded);
+                    },
+                  ),
+                )
+                .toList(),
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, _) => Center(
             child: Text(
-              'Error loading chapters: $error',
+              AppLocalizations.of(context)!.audioErrorLoadingChapters(error.toString()),
               style: TextStyle(color: Colors.red),
             ),
           ),
@@ -364,7 +421,8 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
     );
   }
 
-  Widget _buildChapterTile(ChapterDto chapter, {bool persistentDownload = false}) {
+  Widget _buildChapterTile(ChapterDto chapter,
+      {bool persistentDownload = false}) {
     final progress = _chapterProgress[chapter.id] ?? 0.0;
     final isDownloading = progress > 0 && progress < 1.0;
     final isDownloaded = progress >= 1.0 || persistentDownload;
@@ -382,31 +440,31 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: isDownloaded 
-              ? Colors.green.withOpacity(0.1)
-              : ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+            color: isDownloaded
+                ? Colors.green.withOpacity(0.1)
+                : ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
             child: isDownloading
-              ? SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    value: progress,
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      ThemeHelper.getPrimaryColor(context),
+                ? SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      value: progress,
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        ThemeHelper.getPrimaryColor(context),
+                      ),
                     ),
+                  )
+                : Icon(
+                    isDownloaded ? Icons.download_done : Icons.download,
+                    color: isDownloaded
+                        ? Colors.green
+                        : ThemeHelper.getPrimaryColor(context),
+                    size: 20,
                   ),
-                )
-              : Icon(
-                  isDownloaded ? Icons.download_done : Icons.download,
-                  color: isDownloaded 
-                    ? Colors.green 
-                    : ThemeHelper.getPrimaryColor(context),
-                  size: 20,
-                ),
           ),
         ),
         title: Text(
@@ -448,39 +506,51 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
             ],
           ],
         ),
-        trailing: isDownloaded
-          ? PopupMenuButton<String>(
-              icon: Icon(
-                Icons.more_vert,
-                color: ThemeHelper.getTextSecondaryColor(context),
-              ),
-              onSelected: (value) {
-                if (value == 'delete') {
-                  _deleteChapterAudio(chapter.id);
-                }
-              },
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: 'delete',
-                  child: Row(
-                    children: [
-                      Icon(Icons.delete_outline, size: 18, color: Colors.red),
-                      const SizedBox(width: 8),
-                      Text('Delete', style: TextStyle(color: Colors.red)),
-                    ],
-                  ),
+        trailing: isDownloading
+            ? IconButton(
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.red,
                 ),
-              ],
-            )
-          : IconButton(
-              icon: Icon(
-                Icons.download,
-                color: _isDownloading 
-                  ? ThemeHelper.getTextSecondaryColor(context)
-                  : ThemeHelper.getPrimaryColor(context),
-              ),
-              onPressed: _isDownloading ? null : () => _downloadChapter(chapter.id),
-            ),
+                tooltip: AppLocalizations.of(context)!.audioDownloadCancel,
+                onPressed: () => _cancelDownload(chapter.id),
+              )
+            : isDownloaded
+                ? PopupMenuButton<String>(
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: ThemeHelper.getTextSecondaryColor(context),
+                    ),
+                    onSelected: (value) {
+                      if (value == 'delete') {
+                        _deleteChapterAudio(chapter.id);
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 'delete',
+                        child: Row(
+                          children: [
+                            Icon(Icons.delete_outline,
+                                size: 18, color: Colors.red),
+                            const SizedBox(width: 8),
+                            Text(AppLocalizations.of(context)!.audioChapterDelete, style: TextStyle(color: Colors.red)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : IconButton(
+                    icon: Icon(
+                      Icons.download,
+                      color: _isDownloading
+                          ? ThemeHelper.getTextSecondaryColor(context)
+                          : ThemeHelper.getPrimaryColor(context),
+                    ),
+                    onPressed: _isDownloading
+                        ? null
+                        : () => _downloadChapter(chapter.id),
+                  ),
       ),
     );
   }
@@ -488,11 +558,21 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
   // Action handlers
 
   void _downloadPopularChapters() async {
-    final popularChapters = [1, 2, 18, 36, 55, 67, 112, 113, 114]; // Popular surahs
-    
+    final popularChapters = [
+      1,
+      2,
+      18,
+      36,
+      55,
+      67,
+      112,
+      113,
+      114
+    ]; // Popular surahs
+
     setState(() {
       _isDownloading = true;
-      _currentDownloadStatus = 'Downloading popular chapters...';
+      _currentDownloadStatus = AppLocalizations.of(context)!.audioDownloadingPopularChapters;
     });
 
     try {
@@ -500,22 +580,22 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
         final chapterId = popularChapters[i];
         await _downloadChapterInternal(chapterId, (progress, status) {
           setState(() {
-            _currentDownloadStatus = 'Downloading chapter $chapterId: $status';
+            _currentDownloadStatus = AppLocalizations.of(context)!.audioDownloadingChapter(chapterId.toString(), status);
             _chapterProgress[chapterId] = progress;
           });
         });
       }
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Popular chapters downloaded successfully!'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.audioPopularChaptersDownloadSuccess),
           backgroundColor: Colors.green,
         ),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Download failed: $e'),
+          content: Text(AppLocalizations.of(context)!.audioDownloadFailed(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -524,41 +604,46 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
         _isDownloading = false;
         _currentDownloadStatus = '';
       });
-      
+
       // Refresh storage stats
-      ref.invalidate(audio_service.audioStorageStatsProvider);
+      ref.invalidate(audioStorageStatsProvider);
     }
   }
 
   void _downloadAllChapters() async {
     final chapters = await ref.read(surahListProvider.future);
-    
+
     setState(() {
       _isDownloading = true;
-      _currentDownloadStatus = 'Downloading complete Quran...';
+      _currentDownloadStatus = AppLocalizations.of(context)!.audioDownloadingCompleteQuran;
     });
 
     try {
-      for (int i = 0; i < chapters.length; i++) {
-        final chapter = chapters[i];
-        await _downloadChapterInternal(chapter.id, (progress, status) {
-          setState(() {
-            _currentDownloadStatus = 'Downloading ${chapter.nameSimple}: $status';
-            _chapterProgress[chapter.id] = progress;
+      // Batch to avoid overwhelming IO/network
+      const batchSize = 3;
+      for (int start = 0; start < chapters.length; start += batchSize) {
+        final batch = chapters.sublist(
+            start, (start + batchSize).clamp(0, chapters.length));
+        await Future.wait(batch.map((chapter) async {
+          await _downloadChapterInternal(chapter.id, (progress, status) {
+            setState(() {
+              _currentDownloadStatus = AppLocalizations.of(context)!.audioDownloadingSurah(chapter.nameSimple, status);
+              _chapterProgress[chapter.id] = progress;
+            });
           });
-        });
+        }));
       }
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Complete Quran downloaded successfully!'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.audioCompleteQuranDownloadSuccess),
           backgroundColor: Colors.green,
         ),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Download failed: $e'),
+          content: Text(AppLocalizations.of(context)!.audioDownloadFailed(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -567,9 +652,9 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
         _isDownloading = false;
         _currentDownloadStatus = '';
       });
-      
+
       // Refresh storage stats
-      ref.invalidate(audio_service.audioStorageStatsProvider);
+      ref.invalidate(audioStorageStatsProvider);
     }
   }
 
@@ -584,21 +669,21 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           _chapterProgress[chapterId] = progress;
         });
       });
-      
+
       setState(() {
         _chapterProgress[chapterId] = 1.0; // Mark as complete
       });
-      
+
       // Refresh storage stats
-      ref.invalidate(audio_service.audioStorageStatsProvider);
+      ref.invalidate(audioStorageStatsProvider);
     } catch (e) {
       setState(() {
         _chapterProgress.remove(chapterId);
       });
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Download failed: $e'),
+          content: Text(AppLocalizations.of(context)!.audioDownloadFailed(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -611,58 +696,52 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
   ) async {
     try {
       final audioService = ref.read(quranAudioServiceProvider);
-      
-      // For now, create placeholder verse audio list
-      // In a real implementation, this would fetch actual verses from the API
-      final verses = <audio_service.VerseAudio>[];
-      for (int i = 1; i <= 10; i++) {
-        verses.add(audio_service.VerseAudio(
-          verseKey: '$chapterId:$i',
-          chapterId: chapterId,
-          verseNumber: i,
-          reciterId: _selectedReciterId,
-          localPath: null,
-          onlineUrl: 'https://example.com/audio/$chapterId/$i.mp3',
-        ));
-      }
-      
-      // Download chapter audio using existing method signature
+
+      // Get selected reciter
+      final reciterId = _selectedReciterId;
+
+      // Create cancel token per chapter
+      final token = CancelToken();
+      _cancelTokens[chapterId] = token;
+
+      // Start the actual download using the audio service
       await audioService.downloadChapterAudio(
         chapterId,
-        _selectedReciterId,
-        verses,
+        reciterId,
+        null, // Let service fetch verses automatically
         onProgress: (progress, currentVerse) {
-          onProgress(progress, 'Downloading $currentVerse');
+          onProgress(progress, AppLocalizations.of(context)!.audioDownloadingVerse(currentVerse));
         },
+        cancelToken: token,
       );
-      
-      // Mark chapter as downloaded in preferences
-      await _markChapterAsDownloaded(chapterId);
-      
+
+      // Completion handled by service; clear cancel token
+      _cancelTokens.remove(chapterId);
     } catch (e) {
       print('Download error: $e');
+      _cancelTokens.remove(chapterId);
       rethrow;
     }
   }
 
-  Future<void> _markChapterAsDownloaded(int chapterId) async {
+  Future<void> _clearServiceChapterStatus(int chapterId) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final downloaded = prefs.getStringList('downloaded_chapters') ?? [];
-      if (!downloaded.contains(chapterId.toString())) {
-        downloaded.add(chapterId.toString());
-        await prefs.setStringList('downloaded_chapters', downloaded);
-      }
-    } catch (e) {
-      print('Error marking chapter as downloaded: $e');
-    }
+      await prefs.remove('audio_complete_${chapterId}_$_selectedReciterId');
+      await prefs.remove('audio_progress_${chapterId}_$_selectedReciterId');
+    } catch (_) {}
   }
 
   Future<bool> _isChapterDownloaded(int chapterId) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final downloaded = prefs.getStringList('downloaded_chapters') ?? [];
-      return downloaded.contains(chapterId.toString());
+      final service = ref.read(quranAudioServiceProvider);
+      final complete =
+          await service.isChapterComplete(chapterId, _selectedReciterId);
+      if (complete) return true;
+      // Fallback to file presence
+      final sizeMb =
+          await service.getChapterAudioSize(chapterId, _selectedReciterId);
+      return sizeMb > 0.01;
     } catch (e) {
       print('Error checking download status: $e');
       return false;
@@ -672,30 +751,30 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
   void _deleteChapterAudio(int chapterId) async {
     try {
       final audioService = ref.read(quranAudioServiceProvider);
-      
+
       // Delete audio files through audio service
       await audioService.deleteChapterAudio(chapterId, _selectedReciterId);
-      
-      // Remove from persistent storage
-      await _markChapterAsNotDownloaded(chapterId);
-      
+
+      // Clear completion/progress flags maintained by service
+      await _clearServiceChapterStatus(chapterId);
+
       setState(() {
         _chapterProgress.remove(chapterId);
       });
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Chapter audio deleted'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.audioChapterDeleted),
           backgroundColor: Colors.green,
         ),
       );
-      
+
       // Refresh storage stats
-      ref.invalidate(audio_service.audioStorageStatsProvider);
+      ref.invalidate(audioStorageStatsProvider);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Delete failed: $e'),
+          content: Text(AppLocalizations.of(context)!.audioDeleteFailed(e.toString())),
           backgroundColor: Colors.red,
         ),
       );
@@ -703,13 +782,13 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
   }
 
   Future<void> _markChapterAsNotDownloaded(int chapterId) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final downloaded = prefs.getStringList('downloaded_chapters') ?? [];
-      downloaded.remove(chapterId.toString());
-      await prefs.setStringList('downloaded_chapters', downloaded);
-    } catch (e) {
-      print('Error marking chapter as not downloaded: $e');
+    // Deprecated: handled by _clearServiceChapterStatus
+  }
+
+  void _cancelDownload(int chapterId) {
+    final token = _cancelTokens[chapterId];
+    if (token != null && !token.isCancelled) {
+      token.cancel(AppLocalizations.of(context)!.audioUserCancelled);
     }
   }
 }

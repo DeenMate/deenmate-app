@@ -6,7 +6,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../core/theme/islamic_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class QiblaCompassScreen extends ConsumerStatefulWidget {
   const QiblaCompassScreen({super.key});
@@ -44,7 +44,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
       final compassAvailable = await FlutterCompass.events?.first;
       if (compassAvailable == null) {
         setState(() {
-          _calibrationMessage = 'Compass not available on this device';
+          _calibrationMessage = AppLocalizations.of(context)!.qiblaCompassNotAvailable;
         });
         return;
       }
@@ -136,7 +136,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Qibla Compass'),
+        title: Text(AppLocalizations.of(context)!.qiblaCompassTitle),
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,
         leading: IconButton(
@@ -200,15 +200,15 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
 
     if (_isCalibrating) {
       statusColor = Colors.orange;
-      statusText = 'Calibrating Compass';
+      statusText = AppLocalizations.of(context)!.qiblaCompassCalibrating;
       statusIcon = Icons.compass_calibration;
     } else if (_compassDirection == null) {
       statusColor = Colors.red;
-      statusText = 'Compass Unavailable';
+      statusText = AppLocalizations.of(context)!.qiblaCompassUnavailable;
       statusIcon = Icons.error;
     } else {
       statusColor = Colors.green;
-      statusText = 'Compass Active';
+      statusText = AppLocalizations.of(context)!.qiblaCompassActive;
       statusIcon = Icons.check_circle;
     }
 
@@ -286,6 +286,12 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
       painter: CompassMarkingsPainter(
         primaryColor: Theme.of(context).primaryColor,
         compassHeading: _compassDirection,
+        directionLabels: [
+          AppLocalizations.of(context)!.qiblaDirectionNorth,
+          AppLocalizations.of(context)!.qiblaDirectionEast,
+          AppLocalizations.of(context)!.qiblaDirectionSouth,
+          AppLocalizations.of(context)!.qiblaDirectionWest,
+        ],
       ),
     );
   }
@@ -325,7 +331,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
     return Column(
       children: [
         Text(
-          'Qibla Direction',
+          AppLocalizations.of(context)!.qiblaDirection,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -362,7 +368,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
       child: Column(
         children: [
           Text(
-            'Current Location',
+            AppLocalizations.of(context)!.qiblaCurrentLocation,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -400,7 +406,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
           ElevatedButton.icon(
             onPressed: _isCalibrating ? null : _recalibrateCompass,
             icon: const Icon(Icons.refresh),
-            label: const Text('Recalibrate'),
+            label: Text(AppLocalizations.of(context)!.qiblaRecalibrate),
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
@@ -409,7 +415,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
           ElevatedButton.icon(
             onPressed: _getCurrentLocation,
             icon: const Icon(Icons.location_on),
-            label: const Text('Update Location'),
+            label: Text(AppLocalizations.of(context)!.qiblaUpdateLocation),
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
@@ -441,10 +447,12 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
 class CompassMarkingsPainter extends CustomPainter {
   final Color primaryColor;
   final double? compassHeading;
+  final List<String> directionLabels;
   
   CompassMarkingsPainter({
     required this.primaryColor,
     this.compassHeading,
+    required this.directionLabels,
   });
   
   @override
@@ -466,7 +474,7 @@ class CompassMarkingsPainter extends CustomPainter {
       textAlign: TextAlign.center,
     );
     
-    final directions = ['N', 'E', 'S', 'W'];
+    final directions = directionLabels;
     final angles = [0, 90, 180, 270];
     
     for (int i = 0; i < directions.length; i++) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/islamic_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// More Features Screen following app-screens design
 class MoreFeaturesScreen extends StatefulWidget {
@@ -33,8 +34,8 @@ class _MoreFeaturesScreenState extends State<MoreFeaturesScreen> {
                   end: Alignment.bottomRight,
                 ),
               ),
-              child: const Text(
-                'More Features | আরও ফিচার',
+              child: Text(
+                AppLocalizations.of(context)!.settingsMoreFeatures,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,

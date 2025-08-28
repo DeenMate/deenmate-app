@@ -27,7 +27,8 @@ class NavigationTabsWidget extends ConsumerWidget {
             ),
           ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: ThemeHelper.getTextPrimaryColor(context)),
+            icon: Icon(Icons.arrow_back,
+                color: ThemeHelper.getTextPrimaryColor(context)),
             onPressed: () {
               if (context.canPop()) {
                 context.pop();
@@ -251,6 +252,14 @@ class _HizbTabView extends StatelessWidget {
                 ),
                 Text(
                   'Juz $juzNumber',
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  '${15 + (hizbNumber % 10)} verses',
                   style: const TextStyle(
                     fontSize: 10,
                     color: Colors.grey,

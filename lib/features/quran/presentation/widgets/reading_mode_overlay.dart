@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../state/providers.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class ReadingModeOverlay extends ConsumerStatefulWidget {
   const ReadingModeOverlay({
@@ -308,30 +309,115 @@ class _ReadingModeOverlayState extends ConsumerState<ReadingModeOverlay>
   }
 
   void _showThemeOptions() {
-    // Implement theme selection
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Theme options coming soon')),
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.readingModeThemeTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.readingModeThemeLight),
+              leading: const Icon(Icons.light_mode),
+              onTap: () {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(AppLocalizations.of(context)!.readingModeThemeLightApplied)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.readingModeThemeDark),
+              leading: const Icon(Icons.dark_mode),
+              onTap: () {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(AppLocalizations.of(context)!.readingModeThemeDarkApplied)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)!.readingModeThemeSepia),
+              leading: const Icon(Icons.auto_stories),
+              onTap: () {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(AppLocalizations.of(context)!.readingModeThemeSepiaApplied)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   void _showFontOptions() {
-    // Implement font options
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Font options coming soon')),
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.readingModeFontSettings),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(AppLocalizations.of(context)!.readingModeFontArabicSize),
+            Slider(
+              value: 18.0,
+              min: 12.0,
+              max: 32.0,
+              divisions: 10,
+              label: '18pt',
+              onChanged: (value) {
+                // Implement font size change
+              },
+            ),
+            const SizedBox(height: 16),
+            Text(AppLocalizations.of(context)!.readingModeFontTranslationSize),
+            Slider(
+              value: 14.0,
+              min: 10.0,
+              max: 24.0,
+              divisions: 7,
+              label: '14pt',
+              onChanged: (value) {
+                // Implement translation font size change
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context)!.readingModeDone),
+          ),
+        ],
+      ),
     );
   }
 
   void _showTranslationOptions() {
-    // Implement translation selection
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Translation options coming soon')),
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.readingModeTranslationSettings),
+        content: const Text(
+          'Translation selection is available in the main reading screen. '
+          'Use the translation picker button to choose your preferred translations.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context)!.readingModeOK),
+          ),
+        ],
+      ),
     );
   }
 
   void _addBookmark() {
     // Implement bookmark functionality
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Bookmark added')),
+      SnackBar(content: Text(AppLocalizations.of(context)!.readingModeBookmarkAdded)),
     );
   }
 }

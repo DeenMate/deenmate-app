@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../state/providers.dart';
 import '../../domain/services/audio_service.dart' as audio_service;
 import '../../../../core/theme/theme_helper.dart';
@@ -116,7 +117,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    _getCurrentReciterName(),
+                    _getCurrentReciterName(context),
                     style: TextStyle(
                       fontSize: 12,
                       color: ThemeHelper.getTextSecondaryColor(context),
@@ -185,7 +186,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
           Row(
             children: [
               Text(
-                'Now Playing',
+                AppLocalizations.of(context)!.audioPlayerNowPlaying,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -278,7 +279,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
           
           // Reciter name
           Text(
-            _getCurrentReciterName(),
+            _getCurrentReciterName(context),
             style: TextStyle(
               fontSize: 14,
               color: ThemeHelper.getTextSecondaryColor(context),
@@ -508,9 +509,9 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
     return 'Surah Al-Fatiha (1:1)';
   }
 
-  String _getCurrentReciterName() {
+  String _getCurrentReciterName(BuildContext context) {
     // TODO: Get from audio service
-    return 'Mishary Rashid Alafasy';
+    return AppLocalizations.of(context)!.audioPlayerDefaultReciter;
   }
 
   String _getCurrentVerseArabic() {

@@ -1,18 +1,25 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../data/api/verses_api.dart';
 
 /// Comprehensive audio service for Quran recitation
 /// Handles playback, downloads, and offline audio management
 class QuranAudioService {
-  QuranAudioService([Dio? dio]) : _dio = dio ?? Dio();
+  QuranAudioService(
+    this._dio,
+    this._versesApi, {
+    SharedPreferences? prefs,
+  }) : _prefs = prefs;
   
   final Dio _dio;
-  
+  final VersesApi _versesApi;
+  SharedPreferences? _prefs;
+
   /// Callback to prompt user for download when audio is not available offline
   /// Returns true if user wants to download, false to play online
   Future<bool> Function(dynamic verse)? onPromptDownload;
@@ -50,6 +57,9 @@ class QuranAudioService {
 
   /// Initialize the audio service
   Future<void> initialize() async {
+    // Initialize SharedPreferences if not already set
+    _prefs ??= await SharedPreferences.getInstance();
+    
     await _audioPlayer.setReleaseMode(ReleaseMode.stop);
     
     // Listen to player state changes
@@ -220,6 +230,8 @@ class QuranAudioService {
   /// Download verse audio for offline use
   Future<void> downloadVerseAudio(VerseAudio verse, {
     Function(double progress)? onProgress,
+    CancelToken? cancelToken,
+    int maxRetries = 3,
   }) async {
     if (verse.onlineUrl == null) {
       throw Exception('No online URL available for verse ${verse.verseKey}');
@@ -235,38 +247,85 @@ class QuranAudioService {
       if (kDebugMode) {
         print('Audio: Verse ${verse.verseKey} already downloaded');
       }
+      onProgress?.call(1.0);
       return;
     }
 
-    try {
-      // Create directory if it doesn't exist
-      await file.parent.create(recursive: true);
+    int retryCount = 0;
+    while (retryCount <= maxRetries) {
+      try {
+        // Check for cancellation
+        if (cancelToken?.isCancelled == true) {
+          throw DioException(
+            requestOptions: RequestOptions(path: verse.onlineUrl!),
+            type: DioExceptionType.cancel,
+            message: 'Download cancelled',
+          );
+        }
 
-      // Download with progress tracking
-      await _dio.download(
-        verse.onlineUrl!,
-        localPath,
-        onReceiveProgress: (received, total) {
-          if (total > 0) {
-            final progress = received / total;
-            onProgress?.call(progress);
-            _downloadController.add(AudioDownloadProgress(
-              verseKey: verse.verseKey,
-              progress: progress,
-              isComplete: progress >= 1.0,
-            ));
+        // Create directory if it doesn't exist
+        await file.parent.create(recursive: true);
+
+        if (kDebugMode) {
+          print('Audio: Downloading verse ${verse.verseKey} (attempt ${retryCount + 1}/${maxRetries + 1})');
+        }
+
+        // Download with progress tracking and cancellation support
+        await _dio.download(
+          verse.onlineUrl!,
+          localPath,
+          cancelToken: cancelToken,
+          onReceiveProgress: (received, total) {
+            if (total > 0) {
+              final progress = received / total;
+              onProgress?.call(progress);
+              _downloadController.add(AudioDownloadProgress(
+                verseKey: verse.verseKey,
+                progress: progress,
+                isComplete: progress >= 1.0,
+                status: progress >= 1.0 ? 'Downloaded' : 'Downloading...',
+              ));
+            }
+          },
+        );
+
+        if (kDebugMode) {
+          print('Audio: Successfully downloaded verse ${verse.verseKey}');
+        }
+        return; // Success, exit retry loop
+
+      } catch (e) {
+        retryCount++;
+        
+        // Don't retry if cancelled
+        if (e is DioException && e.type == DioExceptionType.cancel) {
+          if (kDebugMode) {
+            print('Audio: Download cancelled for verse ${verse.verseKey}');
           }
-        },
-      );
+          rethrow;
+        }
 
-      if (kDebugMode) {
-        print('Audio: Downloaded verse ${verse.verseKey} to $localPath');
+        // Clean up partial file on failure
+        if (file.existsSync()) {
+          try {
+            await file.delete();
+          } catch (_) {}
+        }
+
+        if (retryCount > maxRetries) {
+          if (kDebugMode) {
+            print('Audio: Failed to download verse ${verse.verseKey} after $maxRetries retries: $e');
+          }
+          rethrow;
+        }
+
+        if (kDebugMode) {
+          print('Audio: Retry $retryCount for verse ${verse.verseKey} after error: $e');
+        }
+
+        // Exponential backoff: wait 1s, 2s, 4s
+        await Future.delayed(Duration(seconds: 1 << (retryCount - 1)));
       }
-    } catch (e) {
-      if (kDebugMode) {
-        print('Audio: Error downloading verse ${verse.verseKey}: $e');
-      }
-      rethrow;
     }
   }
 
@@ -274,25 +333,116 @@ class QuranAudioService {
   Future<void> downloadChapterAudio(
     int chapterId,
     int reciterId,
-    List<VerseAudio> verses, {
+    List<VerseAudio>? verses, {
     Function(double progress, String currentVerse)? onProgress,
+    CancelToken? cancelToken,
   }) async {
-    for (int i = 0; i < verses.length; i++) {
-      final verse = verses[i];
-      final verseProgress = i / verses.length;
+    try {
+      if (kDebugMode) {
+        print('Audio: Starting download for chapter $chapterId');
+      }
+
+      // Check if already complete
+      if (await isChapterComplete(chapterId, reciterId)) {
+        onProgress?.call(1.0, 'Already downloaded');
+        return;
+      }
+
+      // Create verse list if not provided
+      final verseList = verses ?? await _createVerseAudioList(chapterId, reciterId);
       
-      onProgress?.call(verseProgress, verse.verseKey);
+      if (verseList.isEmpty) {
+        throw Exception('No verses found for chapter $chapterId');
+      }
+
+      if (kDebugMode) {
+        print('Audio: Downloading ${verseList.length} verses for chapter $chapterId');
+      }
+
+      // Reset progress at start
+      await _saveChapterProgress(chapterId, reciterId, 0.0);
+
+      for (int i = 0; i < verseList.length; i++) {
+        // Check for cancellation
+        if (cancelToken?.isCancelled == true) {
+          if (kDebugMode) {
+            print('Audio: Download cancelled for chapter $chapterId');
+          }
+          return;
+        }
+
+        final verse = verseList[i];
+        final verseProgress = i / verseList.length;
+        
+        onProgress?.call(verseProgress, verse.verseKey);
+        
+        // Update downloadStream with verse-level progress
+        _downloadController.add(AudioDownloadProgress(
+          verseKey: verse.verseKey,
+          progress: verseProgress,
+          isComplete: false,
+          status: 'Downloading verse ${i + 1}/${verseList.length}',
+        ));
+
+        try {
+          await downloadVerseAudio(
+            verse,
+            cancelToken: cancelToken,
+            onProgress: (progress) {
+              final totalProgress = (i + progress) / verseList.length;
+              onProgress?.call(totalProgress, verse.verseKey);
+              
+              // Save incremental progress
+              _saveChapterProgress(chapterId, reciterId, totalProgress);
+            },
+          );
+        } catch (e) {
+          if (kDebugMode) {
+            print('Audio: Error downloading verse ${verse.verseKey}: $e');
+          }
+          
+          // Emit error progress
+          _downloadController.add(AudioDownloadProgress(
+            verseKey: verse.verseKey,
+            progress: verseProgress,
+            isComplete: false,
+            status: 'Error: $e',
+          ));
+          
+          rethrow;
+        }
+      }
       
-      await downloadVerseAudio(
-        verse,
-        onProgress: (progress) {
-          final totalProgress = (i + progress) / verses.length;
-          onProgress?.call(totalProgress, verse.verseKey);
-        },
-      );
+      // Mark as complete
+      await _markChapterComplete(chapterId, reciterId);
+      onProgress?.call(1.0, 'Complete');
+      
+      // Emit completion
+      _downloadController.add(AudioDownloadProgress(
+        verseKey: 'chapter_$chapterId',
+        progress: 1.0,
+        isComplete: true,
+        status: 'Chapter $chapterId download complete',
+      ));
+
+      if (kDebugMode) {
+        print('Audio: Successfully downloaded chapter $chapterId');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Audio: Failed to download chapter $chapterId: $e');
+      }
+      
+      // Emit error
+      _downloadController.add(AudioDownloadProgress(
+        verseKey: 'chapter_$chapterId',
+        progress: 0.0,
+        isComplete: false,
+        status: 'Failed to download chapter: $e',
+      ));
+      
+      rethrow;
     }
-    
-    onProgress?.call(1.0, 'Complete');
   }
 
   /// Download all Quran audio for a specific reciter
@@ -310,21 +460,16 @@ class QuranAudioService {
       
       onProgress?.call(chapterProgress, 'Downloading Surah $chapterId...');
       
-      // For this implementation, we'll need to create verse audio objects
-      // This is a simplified version - in practice, you'd get the actual verses
-      final verses = await _createVerseAudioList(chapterId, reciterId);
-      
-      if (verses.isNotEmpty) {
-        await downloadChapterAudio(
-          chapterId,
-          reciterId,
-          verses,
-          onProgress: (progress, verse) {
-            final totalProgress = ((chapterId - 1) + progress) / totalChapters;
-            onProgress?.call(totalProgress, 'Surah $chapterId - $verse');
-          },
-        );
-      }
+      // Download chapter audio (verses will be fetched automatically)
+      await downloadChapterAudio(
+        chapterId,
+        reciterId,
+        null, // Let the method fetch verses automatically
+        onProgress: (progress, verse) {
+          final totalProgress = ((chapterId - 1) + progress) / totalChapters;
+          onProgress?.call(totalProgress, 'Surah $chapterId - $verse');
+        },
+      );
     }
     
     onProgress?.call(1.0, 'Full Quran download complete!');
@@ -332,9 +477,63 @@ class QuranAudioService {
 
   /// Helper method to create verse audio list for a chapter
   Future<List<VerseAudio>> _createVerseAudioList(int chapterId, int reciterId) async {
-    // This would integrate with your verse API to get actual verse data
-    // For now, return empty list - this needs to be implemented based on your API
-    return [];
+    try {
+      if (kDebugMode) {
+        print('Audio: Creating verse list for chapter $chapterId, reciter $reciterId');
+      }
+
+      // Fetch all verses for the chapter with audio data
+      final versesPage = await _versesApi.byChapter(
+        chapterId: chapterId,
+        translationIds: [], // We only need audio data
+        recitationId: reciterId,
+        page: 1,
+        perPage: 300, // Get all verses in one request (largest surah has 286 verses)
+      );
+
+      if (kDebugMode) {
+        print('Audio: Fetched ${versesPage.verses.length} verses for chapter $chapterId');
+      }
+
+      // Convert VerseDto to VerseAudio
+      final verseAudioList = versesPage.verses.map((verseDto) {
+        // Build the audio URL using the standard Quran.com pattern
+        String? audioUrl;
+        if (verseDto.audio?.url != null) {
+          final apiUrl = verseDto.audio!.url;
+          // Check if the URL is already complete or needs domain prefix
+          if (apiUrl.startsWith('http')) {
+            audioUrl = apiUrl;
+          } else {
+            // Use the pattern from providers.dart which works for audio streaming
+            audioUrl = 'https://audio.qurancdn.com/$apiUrl';
+          }
+        } else {
+          // Fallback: construct URL using standard pattern
+          // Format: https://audio.qurancdn.com/{{recitation_id}}/{{verse_key}}.mp3
+          audioUrl = 'https://audio.qurancdn.com/$reciterId/${verseDto.verseKey}.mp3';
+        }
+
+        return VerseAudio(
+          verseKey: verseDto.verseKey,
+          chapterId: chapterId,
+          verseNumber: verseDto.verseNumber,
+          reciterId: reciterId,
+          onlineUrl: audioUrl,
+        );
+      }).toList();
+
+      if (kDebugMode) {
+        print('Audio: Created ${verseAudioList.length} VerseAudio objects');
+      }
+
+      return verseAudioList;
+    } catch (e) {
+      if (kDebugMode) {
+        print('Audio: Error creating verse list for chapter $chapterId: $e');
+      }
+      rethrow;
+    }
   }
 
   /// Check if verse audio is downloaded
@@ -413,6 +612,129 @@ class QuranAudioService {
     );
   }
 
+  // Progress persistence methods
+
+  /// Save chapter download progress
+  Future<void> _saveChapterProgress(int chapterId, int reciterId, double progress) async {
+    if (_prefs == null) return;
+    
+    final key = 'audio_progress_${chapterId}_$reciterId';
+    await _prefs!.setDouble(key, progress);
+    
+    if (kDebugMode) {
+      print('Audio: Saved progress for chapter $chapterId: ${(progress * 100).toStringAsFixed(1)}%');
+    }
+  }
+
+  /// Get chapter download progress
+  Future<double> getChapterProgress(int chapterId, int reciterId) async {
+    if (_prefs == null) return 0.0;
+    
+    final key = 'audio_progress_${chapterId}_$reciterId';
+    return _prefs!.getDouble(key) ?? 0.0;
+  }
+
+  /// Mark chapter as complete
+  Future<void> _markChapterComplete(int chapterId, int reciterId) async {
+    if (_prefs == null) return;
+    
+    final key = 'audio_complete_${chapterId}_$reciterId';
+    await _prefs!.setBool(key, true);
+    await _saveChapterProgress(chapterId, reciterId, 1.0);
+    
+    if (kDebugMode) {
+      print('Audio: Marked chapter $chapterId as complete');
+    }
+  }
+
+  /// Check if chapter is fully downloaded
+  Future<bool> isChapterComplete(int chapterId, int reciterId) async {
+    if (_prefs == null) return false;
+    
+    final key = 'audio_complete_${chapterId}_$reciterId';
+    return _prefs!.getBool(key) ?? false;
+  }
+
+  /// Get list of all downloaded chapters for a reciter
+  Future<List<int>> getDownloadedChapters(int reciterId) async {
+    if (_prefs == null) return [];
+    
+    final keys = _prefs!.getKeys();
+    final chapters = <int>[];
+    
+    for (final key in keys) {
+      if (key.startsWith('audio_complete_') && key.endsWith('_$reciterId')) {
+        final parts = key.split('_');
+        if (parts.length >= 3) {
+          final chapterId = int.tryParse(parts[2]);
+          if (chapterId != null && _prefs!.getBool(key) == true) {
+            chapters.add(chapterId);
+          }
+        }
+      }
+    }
+    
+    chapters.sort();
+    return chapters;
+  }
+
+  /// Clear all progress data for a reciter
+  Future<void> clearReciterData(int reciterId) async {
+    if (_prefs == null) return;
+    
+    final keys = _prefs!.getKeys().toList();
+    final keysToRemove = keys.where((key) => 
+      key.contains('_$reciterId') && 
+      (key.startsWith('audio_progress_') || key.startsWith('audio_complete_'))
+    ).toList();
+    
+    for (final key in keysToRemove) {
+      await _prefs!.remove(key);
+    }
+    
+    if (kDebugMode) {
+      print('Audio: Cleared ${keysToRemove.length} data entries for reciter $reciterId');
+    }
+  }
+
+  /// Get estimated download size for a chapter (in MB)
+  Future<double> getEstimatedChapterSize(int chapterId, int reciterId) async {
+    try {
+      // Create verse audio list to get verse count
+      final verses = await _createVerseAudioList(chapterId, reciterId);
+      
+      // Estimate: average verse audio file is ~150KB
+      const averageVerseSizeKB = 150;
+      final estimatedSizeMB = (verses.length * averageVerseSizeKB) / 1024;
+      
+      if (kDebugMode) {
+        print('Audio: Estimated size for chapter $chapterId: ${estimatedSizeMB.toStringAsFixed(1)} MB (${verses.length} verses)');
+      }
+      
+      return estimatedSizeMB;
+    } catch (e) {
+      if (kDebugMode) {
+        print('Audio: Error estimating chapter size: $e');
+      }
+      return 0.0;
+    }
+  }
+
+  /// Dispose and clean up resources
+  Future<void> dispose() async {
+    await _audioPlayer.dispose();
+    _positionTimer?.cancel();
+    
+    await _stateController.close();
+    await _positionController.close();
+    await _durationController.close();
+    await _downloadController.close();
+    
+    if (kDebugMode) {
+      print('Audio: Service disposed');
+    }
+  }
+
   // Private methods
 
   AudioState _mapPlayerState(PlayerState state) {
@@ -463,17 +785,6 @@ class QuranAudioService {
   Future<String> _getAudioDirectory() async {
     final appDir = await getApplicationDocumentsDirectory();
     return '${appDir.path}/quran_audio';
-  }
-
-
-
-  void dispose() {
-    _audioPlayer.dispose();
-    _stateController.close();
-    _positionController.close();
-    _durationController.close();
-    _downloadController.close();
-    _positionTimer?.cancel();
   }
 }
 
@@ -536,35 +847,3 @@ class AudioStorageStats {
   final int fileCount;
   final int chaptersCount;
 }
-
-// Providers
-
-final quranAudioServiceProvider = Provider<QuranAudioService>((ref) {
-  // Create a basic implementation that works without throwing
-  return QuranAudioService();
-});
-
-final audioStateProvider = StreamProvider<AudioState>((ref) {
-  final service = ref.watch(quranAudioServiceProvider);
-  return service.stateStream;
-});
-
-final audioPositionProvider = StreamProvider<Duration>((ref) {
-  final service = ref.watch(quranAudioServiceProvider);
-  return service.positionStream;
-});
-
-final audioDurationProvider = StreamProvider<Duration>((ref) {
-  final service = ref.watch(quranAudioServiceProvider);
-  return service.durationStream;
-});
-
-final audioDownloadProgressProvider = StreamProvider<AudioDownloadProgress>((ref) {
-  final service = ref.watch(quranAudioServiceProvider);
-  return service.downloadStream;
-});
-
-final audioStorageStatsProvider = FutureProvider<AudioStorageStats>((ref) async {
-  final service = ref.watch(quranAudioServiceProvider);
-  return service.getStorageStats();
-});

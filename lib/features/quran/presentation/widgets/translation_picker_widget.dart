@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../state/providers.dart';
 import '../../data/dto/translation_resource_dto.dart';
 
@@ -19,7 +20,7 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
     final resourcesAsync = ref.watch(translationResourcesProvider);
 
     return AlertDialog(
-      title: const Text('Select Translations'),
+      title: Text(AppLocalizations.of(context)!.translationPickerTitle),
       content: SizedBox(
         width: double.maxFinite,
         height: 400,
@@ -27,18 +28,18 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
           data: (resources) => _buildTranslationList(context, ref, resources, prefs),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stack) => Center(
-            child: Text('Error loading translations: $error'),
+            child: Text(AppLocalizations.of(context)!.translationPickerErrorLoading(error.toString())),
           ),
         ),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(AppLocalizations.of(context)!.translationPickerCancel),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Apply'),
+          child: Text(AppLocalizations.of(context)!.translationPickerApply),
         ),
       ],
     );
@@ -62,18 +63,18 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
           padding: const EdgeInsets.only(bottom: 16),
           child: Row(
             children: [
-              const Text('Language: '),
+              Text(AppLocalizations.of(context)!.translationPickerLanguageLabel),
               DropdownButton<String>(
                 value: _selectedLanguage,
-                items: const [
-                  DropdownMenuItem(value: 'all', child: Text('All Languages')),
-                  DropdownMenuItem(value: 'en', child: Text('English')),
-                  DropdownMenuItem(value: 'ar', child: Text('Arabic')),
-                  DropdownMenuItem(value: 'ur', child: Text('Urdu')),
-                  DropdownMenuItem(value: 'bn', child: Text('Bengali')),
-                  DropdownMenuItem(value: 'id', child: Text('Indonesian')),
-                  DropdownMenuItem(value: 'tr', child: Text('Turkish')),
-                  DropdownMenuItem(value: 'fr', child: Text('French')),
+                items: [
+                  DropdownMenuItem(value: 'all', child: Text(AppLocalizations.of(context)!.translationPickerAllLanguages)),
+                  DropdownMenuItem(value: 'en', child: Text(AppLocalizations.of(context)!.translationPickerEnglish)),
+                  DropdownMenuItem(value: 'ar', child: Text(AppLocalizations.of(context)!.translationPickerArabic)),
+                  DropdownMenuItem(value: 'ur', child: Text(AppLocalizations.of(context)!.translationPickerUrdu)),
+                  DropdownMenuItem(value: 'bn', child: Text(AppLocalizations.of(context)!.translationPickerBengali)),
+                  DropdownMenuItem(value: 'id', child: Text(AppLocalizations.of(context)!.translationPickerIndonesian)),
+                  DropdownMenuItem(value: 'tr', child: Text(AppLocalizations.of(context)!.translationPickerTurkish)),
+                  DropdownMenuItem(value: 'fr', child: Text(AppLocalizations.of(context)!.translationPickerFrench)),
                 ],
                 onChanged: (value) {
                   setState(() {

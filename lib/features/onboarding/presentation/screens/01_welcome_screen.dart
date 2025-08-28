@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../l10n/app_localizations.dart';
+
 /// Welcome screen for the onboarding flow
 /// Displays Islamic greeting and app introduction with modern Material 3 design
 class WelcomeScreen extends ConsumerWidget {
@@ -62,11 +64,11 @@ class WelcomeScreen extends ConsumerWidget {
 
                   const SizedBox(height: 24),
 
-                  // English welcome message
+                  // Welcome message
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 48),
                     child: Text(
-                      'Welcome to DeenMate',
+                      AppLocalizations.of(context)!.onboardingWelcomeTitle,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: theme.colorScheme.onSurface,
@@ -80,7 +82,7 @@ class WelcomeScreen extends ConsumerWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 48),
                     child: Text(
-                      'Your spiritual companion for prayer times, Quran reading, and Islamic guidance',
+                      AppLocalizations.of(context)!.onboardingWelcomeSubtitle,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         height: 1.5,

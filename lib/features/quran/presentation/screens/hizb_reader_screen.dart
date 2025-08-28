@@ -17,6 +17,7 @@ class HizbReaderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final versesAsync = ref.watch(versesByHizbProvider(hizbNumber));
+    final translationResourcesAsync = ref.watch(translationResourcesProvider);
     final juzNumber = ((hizbNumber - 1) ~/ 2) + 1;
     final hizbInJuz = ((hizbNumber - 1) % 2) + 1;
 
@@ -37,13 +38,14 @@ class HizbReaderScreen extends ConsumerWidget {
           icon: Icon(Icons.arrow_back, color: ThemeHelper.getTextPrimaryColor(context)),
           onPressed: () {
             try {
-              if (context.canPop()) {
-                context.pop();
+              if (Navigator.canPop(context)) {
+                Navigator.pop(context);
               } else {
-                context.go('/quran/navigation');
+                context.go('/quran');
               }
             } catch (e) {
               // Fallback navigation
+              print('Navigation error: $e');
               context.go('/quran');
             }
           },
@@ -63,60 +65,78 @@ class HizbReaderScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: versesAsync.when(
-        data: (verses) {
-          if (verses.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.segment,
-                    size: 48,
-                    color: Colors.grey[400],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'No verses found for Hizb $hizbNumber',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
+      body: translationResourcesAsync.when(
+        data: (translationResources) => versesAsync.when(
+          data: (verses) {
+            if (verses.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.segment,
+                      size: 48,
+                      color: Colors.grey[400],
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'This feature is under development',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[500],
+                    const SizedBox(height: 16),
+                    Text(
+                      'No verses found for Hizb $hizbNumber',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[600],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: verses.length,
-            itemBuilder: (context, index) {
-              final verse = verses[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: VerseCardWidget(
-                  verse: verse,
-                  translationResources: [], // TODO: Add translations
-                  onBookmark: () {
-                    // Handle bookmark tap
-                  },
-                  onShare: () {
-                    // Handle share tap
-                  },
+                    const SizedBox(height: 16),
+                    Text(
+                      'This feature is under development',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
                 ),
               );
-            },
-          );
-        },
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: verses.length,
+              itemBuilder: (context, index) {
+                final verse = verses[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: VerseCardWidget(
+                    verse: verse,
+                    translationResources: translationResources, // Now loads properly
+                    onBookmark: () {
+                      // Handle bookmark tap
+                    },
+                    onShare: () {
+                      // Handle share tap
+                    },
+                  ),
+                );
+              },
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, _) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                const SizedBox(height: 16),
+                Text('Error loading Hizb $hizbNumber: $error'),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => ref.invalidate(versesByHizbProvider(hizbNumber)),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          ),
+        ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(
           child: Column(
@@ -124,10 +144,10 @@ class HizbReaderScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error loading Hizb $hizbNumber: $error'),
+              Text('Error loading translations: $error'),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () => ref.invalidate(versesByHizbProvider(hizbNumber)),
+                onPressed: () => ref.invalidate(translationResourcesProvider),
                 child: const Text('Retry'),
               ),
             ],

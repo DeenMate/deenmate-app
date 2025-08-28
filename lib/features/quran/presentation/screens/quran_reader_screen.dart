@@ -67,17 +67,6 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
     });
 
     // Note: Removed clearCacheAndReset call as it was resetting user preferences
-
-    // Listen for translation preference changes
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.listen(prefsProvider, (previous, next) {
-        print('DEBUG: Translation preferences changed from ${previous?.selectedTranslationIds} to ${next.selectedTranslationIds}');
-        if (previous?.selectedTranslationIds != next.selectedTranslationIds) {
-          print('DEBUG: Calling _onTranslationPreferencesChanged');
-          _onTranslationPreferencesChanged();
-        }
-      });
-    });
   }
 
   void _updateVersesFromCache() {
@@ -311,6 +300,15 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
 
   @override
   Widget build(BuildContext context) {
+    // Listen for translation preference changes in build method
+    ref.listen(prefsProvider, (previous, next) {
+      print('DEBUG: Translation preferences changed from ${previous?.selectedTranslationIds} to ${next.selectedTranslationIds}');
+      if (previous?.selectedTranslationIds != next.selectedTranslationIds) {
+        print('DEBUG: Calling _onTranslationPreferencesChanged');
+        _onTranslationPreferencesChanged();
+      }
+    });
+
     return PopScope(
       onPopInvoked: (didPop) {
         if (_controller.hasClients) {
@@ -626,6 +624,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
               fontFamily: 'Uthmani',
                   height: prefs.arabicLineHeight,
             ),
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.rtl,
               );
             },
           ),

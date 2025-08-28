@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/prayer_tracking.dart';
 
 /// Widget displaying the current prayer status with beautiful Islamic design
@@ -34,17 +35,17 @@ class CurrentPrayerWidget extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          _buildCurrentPrayerHeader(),
+          _buildCurrentPrayerHeader(context),
           const SizedBox(height: 16),
-          _buildCurrentPrayerInfo(),
+          _buildCurrentPrayerInfo(context),
           const SizedBox(height: 12),
-          _buildPrayerStatusRow(),
+          _buildPrayerStatusRow(context),
         ],
       ),
     );
   }
 
-  Widget _buildCurrentPrayerHeader() {
+  Widget _buildCurrentPrayerHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -52,7 +53,7 @@ class CurrentPrayerWidget extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Current Prayer | বর্তমান নামাজ',
+              AppLocalizations.of(context)!.currentPrayer,
               style: TextStyle(
                 color: Colors.white.withOpacity(0.9),
                 fontSize: 14,
@@ -95,7 +96,7 @@ class CurrentPrayerWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildCurrentPrayerInfo() {
+  Widget _buildCurrentPrayerInfo(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -121,7 +122,7 @@ class CurrentPrayerWidget extends ConsumerWidget {
           ),
           Expanded(
             child: _buildInfoColumn(
-              'Remaining | বাকি',
+              AppLocalizations.of(context)!.prayerTimeRemaining,
               _formatDuration(prayerDetail.timeUntilNextPrayer),
               Icons.timer,
             ),
@@ -162,7 +163,7 @@ class CurrentPrayerWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildPrayerStatusRow() {
+  Widget _buildPrayerStatusRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

@@ -2,6 +2,7 @@
 import 'package:deen_mate/features/prayer_times/domain/entities/prayer_tracking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 
 import '../providers/prayer_times_providers.dart';
 
@@ -113,7 +114,7 @@ class _NextPrayerCountdownState extends ConsumerState<NextPrayerCountdown>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Next Prayer',
+              AppLocalizations.of(context)!.nextPrayer,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -122,7 +123,7 @@ class _NextPrayerCountdownState extends ConsumerState<NextPrayerCountdown>
             ),
             const SizedBox(height: 4),
             Text(
-              _getNextPrayerName(),
+              _getNextPrayerName(context),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -296,7 +297,7 @@ class _NextPrayerCountdownState extends ConsumerState<NextPrayerCountdown>
               ),
             ),
             Text(
-              'Next Prayer',
+              AppLocalizations.of(context)!.nextPrayer,
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
@@ -323,7 +324,7 @@ class _NextPrayerCountdownState extends ConsumerState<NextPrayerCountdown>
     );
   }
 
-  String _getNextPrayerName() {
+  String _getNextPrayerName(BuildContext context) {
     switch (widget.prayerDetail.nextPrayer?.toLowerCase()) {
       case 'fajr':
         return 'Fajr';
@@ -340,7 +341,7 @@ class _NextPrayerCountdownState extends ConsumerState<NextPrayerCountdown>
       case 'midnight':
         return 'Midnight';
       default:
-        return 'Next Prayer';
+        return AppLocalizations.of(context)!.nextPrayer;
     }
   }
 

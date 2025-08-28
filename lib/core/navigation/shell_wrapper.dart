@@ -12,6 +12,7 @@ import '../../features/islamic_content/presentation/screens/islamic_content_scre
 import '../../features/quran/presentation/screens/quran_home_screen.dart';
 
 import '../../features/quran/presentation/screens/enhanced_quran_reader_screen.dart';
+import '../../features/quran/presentation/screens/quran_search_screen.dart';
 import '../../features/quran/presentation/screens/bookmarks_screen.dart';
 import '../../features/quran/presentation/screens/reading_plans_screen.dart';
 import '../../features/quran/presentation/screens/audio_downloads_screen.dart';
@@ -23,6 +24,7 @@ import '../../features/quran/presentation/screens/hizb_reader_screen.dart';
 import '../../features/quran/presentation/screens/ruku_reader_screen.dart';
 import '../../features/inheritance/presentation/screens/inheritance_calculator_screen.dart';
 import '../../features/inheritance/presentation/screens/shariah_clarification_screen.dart';
+import '../../core/widgets/content_translation_settings.dart';
 
 import '../widgets/themed_widgets.dart';
 import 'bottom_navigation_wrapper.dart';
@@ -150,36 +152,42 @@ class EnhancedAppRouter {
 
           // Advanced Quran Features (MISSING ROUTES!)
           GoRoute(
+            path: '/quran/search',
+            name: 'quran-search',
+            builder: (context, state) => const QuranSearchScreen(),
+          ),
+
+          GoRoute(
             path: '/quran/bookmarks',
             name: 'quran-bookmarks',
             builder: (context, state) => const BookmarksScreen(),
           ),
-          
+
           GoRoute(
             path: '/quran/reading-plans',
-            name: 'quran-reading-plans', 
+            name: 'quran-reading-plans',
             builder: (context, state) => const ReadingPlansScreen(),
           ),
-          
+
           GoRoute(
             path: '/quran/audio-downloads',
             name: 'quran-audio-downloads',
             builder: (context, state) => const AudioDownloadsScreen(),
           ),
-          
+
           GoRoute(
             path: '/quran/offline-management',
             name: 'quran-offline-management',
             builder: (context, state) => const OfflineManagementScreen(),
           ),
-          
+
           // Navigation features
           GoRoute(
             path: '/quran/navigation',
             name: 'quran-navigation',
             builder: (context, state) => const NavigationTabsWidget(),
           ),
-          
+
           GoRoute(
             path: '/quran/juz/:juzNumber',
             name: 'quran-juz',
@@ -187,7 +195,7 @@ class EnhancedAppRouter {
               juzNumber: int.parse(state.pathParameters['juzNumber']!),
             ),
           ),
-          
+
           GoRoute(
             path: '/quran/page/:pageNumber',
             name: 'quran-page',
@@ -195,7 +203,7 @@ class EnhancedAppRouter {
               pageNumber: int.parse(state.pathParameters['pageNumber']!),
             ),
           ),
-          
+
           GoRoute(
             path: '/quran/hizb/:hizbNumber',
             name: 'quran-hizb',
@@ -203,7 +211,7 @@ class EnhancedAppRouter {
               hizbNumber: int.parse(state.pathParameters['hizbNumber']!),
             ),
           ),
-          
+
           GoRoute(
             path: '/quran/ruku/:rukuNumber',
             name: 'quran-ruku',
@@ -213,32 +221,39 @@ class EnhancedAppRouter {
           ),
 
           // Secondary routes
-          GoRoute(
-            path: sawmTracker,
-            name: 'sawm-tracker',
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Sawm Tracker',
-              icon: Icons.calendar_month,
-              description: 'Track your fasting during Ramadan',
-            ),
-          ),
+          // Note: Sawm Tracker and Islamic Will features are not implemented yet
+          // These routes are commented out to prevent access to unfinished features
+          // GoRoute(
+          //   path: sawmTracker,
+          //   name: 'sawm-tracker',
+          //   builder: (context, state) => const ComingSoonScreen(
+          //     title: 'Sawm Tracker',
+          //     icon: Icons.calendar_month,
+          //     description: 'Track your fasting during Ramadan',
+          //   ),
+          // ),
 
-          GoRoute(
-            path: islamicWill,
-            name: 'islamic-will',
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Islamic Will',
-              icon: Icons.description,
-              description: 'Generate Islamic will according to Shariah',
-            ),
-          ),
+          // GoRoute(
+          //   path: islamicWill,
+          //   name: 'islamic-will',
+          //   builder: (context, state) => const ComingSoonScreen(
+          //     title: 'Islamic Will',
+          //     icon: Icons.description,
+          //     description: 'Generate Islamic will according to Shariah',
+          //   ),
+          // ),
 
           GoRoute(
             path: settings,
             name: 'settings',
             builder: (context, state) => const AppSettingsScreen(),
           ),
-          
+          GoRoute(
+            path: '/settings/content-translations',
+            name: 'content-translations',
+            builder: (context, state) => const ContentTranslationSettings(),
+          ),
+
           // Settings sub-routes
           GoRoute(
             path: '/settings/accessibility',
@@ -246,35 +261,37 @@ class EnhancedAppRouter {
             builder: (context, state) => const AccessibilitySettingsScreen(),
           ),
 
-          GoRoute(
-            path: profile,
-            name: 'profile',
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Profile',
-              icon: Icons.person,
-              description: 'Manage your profile information',
-            ),
-          ),
+          // Note: Profile, History, and Reports features are not implemented yet
+          // These routes are commented out to prevent access to unfinished features
+          // GoRoute(
+          //   path: profile,
+          //   name: 'profile',
+          //   builder: (context, state) => const ComingSoonScreen(
+          //     title: 'Profile',
+          //     icon: Icons.person,
+          //     description: 'Manage your profile information',
+          //   ),
+          // ),
 
-          GoRoute(
-            path: history,
-            name: 'history',
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'History',
-              icon: Icons.history,
-              description: 'View your calculation history',
-            ),
-          ),
+          // GoRoute(
+          //   path: history,
+          //   name: 'history',
+          //   builder: (context, state) => const ComingSoonScreen(
+          //     title: 'History',
+          //     icon: Icons.history,
+          //     description: 'View your calculation history',
+          //   ),
+          // ),
 
-          GoRoute(
-            path: reports,
-            name: 'reports',
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Reports',
-              icon: Icons.assessment,
-              description: 'Generate and view reports',
-            ),
-          ),
+          // GoRoute(
+          //   path: reports,
+          //   name: 'reports',
+          //   builder: (context, state) => const ComingSoonScreen(
+          //     title: 'Reports',
+          //     icon: Icons.assessment,
+          //     description: 'Generate and view reports',
+          //   ),
+          // ),
         ],
       ),
 
@@ -308,101 +325,8 @@ class EnhancedAppRouter {
 }
 
 // Real screens are now imported from the actual feature modules
-
-class PlaceholderScreen extends StatelessWidget {
-  const PlaceholderScreen({
-    required this.title,
-    required this.icon,
-    required this.description,
-    super.key,
-  });
-  final String title;
-  final IconData icon;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-
-    return Scaffold(
-      appBar: ThemedAppBar(
-        titleText: title,
-        backgroundColor: colorScheme.primary,
-        foregroundColor: colorScheme.onPrimary,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
-                  color: colorScheme.primary.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Icon(
-                  icon,
-                  size: 80,
-                  color: colorScheme.primary,
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                title,
-                style: textTheme.headlineMedium?.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                description,
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 32),
-              ThemedCard(
-                color: colorScheme.primaryContainer.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(12),
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.construction,
-                      color: colorScheme.primary,
-                      size: 32,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Coming Soon!',
-                      style: textTheme.titleMedium?.copyWith(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'This feature is under development.',
-                      style: textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurface.withOpacity(0.6),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+// Note: Placeholder/Coming Soon screens have been removed from production build
+// Only fully implemented features are exposed in the navigation
 
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key, this.error});

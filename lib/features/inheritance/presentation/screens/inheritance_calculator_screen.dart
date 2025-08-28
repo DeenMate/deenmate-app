@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import 'simple_inheritance_calculator.dart';
 
 /// Main inheritance calculator screen
@@ -19,9 +20,9 @@ class _InheritanceCalculatorScreenState
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text(
-          'Islamic Inheritance Calculator',
-          style: TextStyle(
+        title: Text(
+          AppLocalizations.of(context)!.inheritanceCalculatorTitle,
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -120,9 +121,9 @@ class _InheritanceCalculatorScreenState
               children: [
                 Icon(Icons.rocket_launch, color: Colors.green[700], size: 24),
                 const SizedBox(width: 12),
-                const Text(
-                  'Quick Start',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.inheritanceQuickStart,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
@@ -133,19 +134,19 @@ class _InheritanceCalculatorScreenState
             const SizedBox(height: 16),
             _buildQuickStartStep(
               1,
-              'Enter Estate Details',
+              AppLocalizations.of(context)!.inheritanceEnterEstate,
               'Add total assets, debts, and expenses',
               Icons.account_balance,
             ),
             _buildQuickStartStep(
               2,
-              'Select Heirs',
+              AppLocalizations.of(context)!.inheritanceSelectHeirs,
               'Choose family members from the list',
               Icons.family_restroom,
             ),
             _buildQuickStartStep(
               3,
-              'Calculate Inheritance',
+              AppLocalizations.of(context)!.inheritanceCalculate,
               'Get accurate Islamic distribution',
               Icons.calculate,
             ),
@@ -155,7 +156,7 @@ class _InheritanceCalculatorScreenState
               child: ElevatedButton.icon(
                 onPressed: () => _startCalculation(context),
                 icon: const Icon(Icons.play_arrow),
-                label: const Text('Start Calculation'),
+                label: Text(AppLocalizations.of(context)!.inheritanceStartCalculation),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green[700],
                   foregroundColor: Colors.white,
@@ -237,9 +238,9 @@ class _InheritanceCalculatorScreenState
               children: [
                 Icon(Icons.star, color: Colors.green[700], size: 24),
                 const SizedBox(width: 12),
-                const Text(
-                  'Key Features',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.inheritanceFeatures,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
@@ -249,33 +250,33 @@ class _InheritanceCalculatorScreenState
             ),
             const SizedBox(height: 16),
             _buildFeatureItem(
-              '100% Shariah Compliant',
-              'Based on Quran and authentic Hadith',
+              AppLocalizations.of(context)!.inheritanceShariahCompliant,
+              AppLocalizations.of(context)!.inheritanceBasedOnQuran,
               Icons.verified,
             ),
             _buildFeatureItem(
-              'Step-by-Step Calculation',
-              'Detailed breakdown of inheritance distribution',
+              AppLocalizations.of(context)!.inheritanceStepByStep,
+              AppLocalizations.of(context)!.inheritanceDetailedBreakdown,
               Icons.list_alt,
             ),
             _buildFeatureItem(
-              'Aul & Radd Support',
-              'Handles complex inheritance scenarios',
+              AppLocalizations.of(context)!.inheritanceAulRaddSupport,
+              AppLocalizations.of(context)!.inheritanceComplexScenarios,
               Icons.trending_up,
             ),
             _buildFeatureItem(
-              'Quranic References',
-              'Direct links to relevant verses',
+              AppLocalizations.of(context)!.inheritanceQuranicReferences,
+              AppLocalizations.of(context)!.inheritanceRelevantVerses,
               Icons.book,
             ),
             _buildFeatureItem(
-              'Bengali Language',
-              'Full support for Bengali users',
+              AppLocalizations.of(context)!.inheritanceBengaliLanguage,
+              AppLocalizations.of(context)!.inheritanceBengaliSupport,
               Icons.language,
             ),
             _buildFeatureItem(
-              'Offline Calculation',
-              'Works without internet connection',
+              AppLocalizations.of(context)!.inheritanceOfflineCalculation,
+              AppLocalizations.of(context)!.inheritanceWorksOffline,
               Icons.offline_bolt,
             ),
           ],

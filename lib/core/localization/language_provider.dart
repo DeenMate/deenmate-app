@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'language_models.dart';
 
 /// Provider for language preferences storage
-final languagePreferencesBoxProvider = StateProvider<Box<LanguagePreferences>?>((ref) => null);
+final languagePreferencesBoxProvider =
+    StateProvider<Box<LanguagePreferences>?>((ref) => null);
 
 /// Provider for current language preferences
-final languagePreferencesProvider = StateNotifierProvider<LanguagePreferencesNotifier, AsyncValue<LanguagePreferences>>((ref) {
+final languagePreferencesProvider = StateNotifierProvider<
+    LanguagePreferencesNotifier, AsyncValue<LanguagePreferences>>((ref) {
   final box = ref.watch(languagePreferencesBoxProvider);
-  if (box == null) {
-    return LanguagePreferencesNotifier(null);
-  }
   return LanguagePreferencesNotifier(box);
 });
 
@@ -42,65 +42,82 @@ final availableLanguagesProvider = Provider<List<LanguageData>>((ref) {
 });
 
 /// Provider for fully supported languages
-final fullySupportedLanguagesProvider = Provider<List<SupportedLanguage>>((ref) {
+final fullySupportedLanguagesProvider =
+    Provider<List<SupportedLanguage>>((ref) {
   return LanguageDetection.getFullySupportedLanguages();
 });
 
 /// Notifier for managing language preferences
-class LanguagePreferencesNotifier extends StateNotifier<AsyncValue<LanguagePreferences>> {
+class LanguagePreferencesNotifier
+    extends StateNotifier<AsyncValue<LanguagePreferences>> {
   final Box<LanguagePreferences>? _box;
   static const String _key = 'language_preferences';
+  static const String _spKey = 'selected_language';
 
   LanguagePreferencesNotifier(this._box) : super(const AsyncValue.loading()) {
-    if (_box != null) {
-      _loadPreferences();
-    } else {
-      state = AsyncValue.data(LanguagePreferences.defaultPreferences());
-    }
+    _loadPreferences();
   }
 
   /// Load language preferences from storage
   Future<void> _loadPreferences() async {
-    if (_box == null) return;
-    
     try {
-      state = const AsyncValue.loading();
-      
-      // Check if preferences exist
-      if (_box!.containsKey(_key)) {
-        final preferences = _box!.get(_key);
-        if (preferences != null) {
-          state = AsyncValue.data(preferences);
-          return;
+      // Prefer Hive box if available
+      if (_box != null) {
+        state = const AsyncValue.loading();
+        if (_box!.containsKey(_key)) {
+          final preferences = _box!.get(_key);
+          if (preferences != null) {
+            state = AsyncValue.data(preferences);
+            return;
+          }
         }
+        final defaultPreferences = LanguagePreferences.defaultPreferences();
+        await _box!.put(_key, defaultPreferences);
+        state = AsyncValue.data(defaultPreferences);
+        return;
       }
 
-      // Create default preferences
-      final defaultPreferences = LanguagePreferences.defaultPreferences();
-      await _box!.put(_key, defaultPreferences);
-      state = AsyncValue.data(defaultPreferences);
+      // Fallback to SharedPreferences
+      final sp = await SharedPreferences.getInstance();
+      final code = sp.getString(_spKey) ?? 'en';
+      state = AsyncValue.data(
+        LanguagePreferences.defaultPreferences().copyWith(
+          selectedLanguageCode: code,
+          lastUpdated: DateTime.now(),
+          isFirstTimeSetup: false,
+        ),
+      );
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
     }
   }
 
-  /// Update selected language
+  /// Update selected language (works without Hive too)
   Future<void> updateLanguage(SupportedLanguage language) async {
-    if (_box == null) return;
-    
     try {
-      final currentPreferences = state.value;
-      if (currentPreferences == null) return;
-
+      final currentPreferences =
+          state.value ?? LanguagePreferences.defaultPreferences();
       final updatedPreferences = currentPreferences.copyWith(
         selectedLanguageCode: language.code,
         lastUpdated: DateTime.now(),
         isFirstTimeSetup: false,
       );
 
-      await _box!.put(_key, updatedPreferences);
+      // Optimistically update state so UI reacts immediately
       state = AsyncValue.data(updatedPreferences);
+
+      // Persist to Hive if available
+      if (_box != null) {
+        await _box!.put(_key, updatedPreferences);
+        return;
+      }
+
+      // Persist to SharedPreferences as fallback
+      final sp = await SharedPreferences.getInstance();
+      await sp.setString(_spKey, language.code);
     } catch (error, stackTrace) {
+      // Keep UI responsive but report error
+      debugPrint('Failed to update language: $error');
       state = AsyncValue.error(error, stackTrace);
     }
   }
@@ -108,7 +125,7 @@ class LanguagePreferencesNotifier extends StateNotifier<AsyncValue<LanguagePrefe
   /// Update device language
   Future<void> updateDeviceLanguage(SupportedLanguage deviceLanguage) async {
     if (_box == null) return;
-    
+
     try {
       final currentPreferences = state.value;
       if (currentPreferences == null) return;
@@ -128,7 +145,7 @@ class LanguagePreferencesNotifier extends StateNotifier<AsyncValue<LanguagePrefe
   /// Reset to default preferences
   Future<void> resetToDefault() async {
     if (_box == null) return;
-    
+
     try {
       final defaultPreferences = LanguagePreferences.defaultPreferences();
       await _box!.put(_key, defaultPreferences);
@@ -141,9 +158,10 @@ class LanguagePreferencesNotifier extends StateNotifier<AsyncValue<LanguagePrefe
   /// Migrate old preferences format
   Future<void> migrateOldPreferences(Map<String, dynamic> oldData) async {
     if (_box == null) return;
-    
+
     try {
-      final migratedPreferences = LanguageMigration.migrateOldPreferences(oldData);
+      final migratedPreferences =
+          LanguageMigration.migrateOldPreferences(oldData);
       await _box!.put(_key, migratedPreferences);
       state = AsyncValue.data(migratedPreferences);
     } catch (error, stackTrace) {
@@ -154,28 +172,29 @@ class LanguagePreferencesNotifier extends StateNotifier<AsyncValue<LanguagePrefe
 
 /// Provider for language initialization
 final languageInitializationProvider = FutureProvider<void>((ref) async {
-  // Initialize Hive box for language preferences
-  if (!Hive.isBoxOpen('language_preferences')) {
-    await Hive.openBox<LanguagePreferences>('language_preferences');
+  try {
+    // Disable Hive-backed storage for language until adapter is in place
+    // Force SharedPreferences fallback by setting box to null
+    ref.read(languagePreferencesBoxProvider.notifier).state = null;
+  } catch (e) {
+    debugPrint('Language init fallback error: $e');
+    ref.read(languagePreferencesBoxProvider.notifier).state = null;
   }
-  
-  // Set the box in the provider
-  final box = Hive.box<LanguagePreferences>('language_preferences');
-  ref.read(languagePreferencesBoxProvider.notifier).state = box;
 });
 
 /// Provider for language detection and setup
-final languageDetectionProvider = FutureProvider<SupportedLanguage>((ref) async {
+final languageDetectionProvider =
+    FutureProvider<SupportedLanguage>((ref) async {
   // Wait for initialization
   await ref.read(languageInitializationProvider.future);
-  
+
   // Detect device language
   final deviceLanguage = LanguageDetection.detectDeviceLanguage();
-  
+
   // Update device language in preferences
   final notifier = ref.read(languagePreferencesProvider.notifier);
   await notifier.updateDeviceLanguage(deviceLanguage);
-  
+
   return deviceLanguage;
 });
 
@@ -198,11 +217,9 @@ class LanguageSwitcher {
       if (!LanguageDetection.isLanguageCodeSupported(language.code)) {
         throw Exception('Unsupported language: ${language.code}');
       }
-
       await _notifier.updateLanguage(language);
       return true;
     } catch (error) {
-      // Log error and return false
       debugPrint('Failed to switch language: $error');
       return false;
     }

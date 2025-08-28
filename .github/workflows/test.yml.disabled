@@ -1,0 +1,114 @@
+# Multi-Language System Tests - DISABLED
+# This workflow is commented out and will be enabled later
+#
+# name: Multi-Language System Tests
+#
+# on:
+#   push:
+#     branches: [ main, develop ]
+#   pull_request:
+#     branches: [ main, develop ]
+#
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     
+#     steps:
+#     - uses: actions/checkout@v3
+#     
+#     - name: Setup Flutter
+#       uses: subosito/flutter-action@v2
+#       with:
+#         flutter-version: '3.19.0'
+#         channel: 'stable'
+#     
+#     - name: Install dependencies
+#       run: flutter pub get
+#     
+#     - name: Analyze project source
+#       run: flutter analyze
+#     
+#     - name: Run unit tests
+#       run: flutter test test/core/
+#     
+#     - name: Run widget tests
+#       run: flutter test test/core/widgets/
+#     
+#     - name: Run integration tests
+#       run: flutter test test/integration/
+#     
+#     - name: Run all tests
+#       run: flutter test
+#     
+#     - name: Generate test coverage
+#       run: flutter test --coverage
+#     
+#     - name: Upload coverage to Codecov
+#       uses: codecov/codecov-action@v3
+#       with:
+#         file: coverage/lcov.info
+#         flags: unittests
+#         name: codecov-umbrella
+#         fail_ci_if_error: true
+#
+#   localization-check:
+#     runs-on: ubuntu-latest
+#     
+#     steps:
+#     - uses: actions/checkout@v3
+#     
+#     - name: Setup Flutter
+#       uses: subosito/flutter-action@v2
+#       with:
+#         flutter-version: '3.19.0'
+#         channel: 'stable'
+#     
+#     - name: Install dependencies
+#       run: flutter pub get
+#     
+#     - name: Generate localization files
+#       run: flutter gen-l10n
+#     
+#     - name: Check for untranslated messages
+#       run: |
+#         if [ -s assets/translations/untranslated.txt ]; then
+#           echo "Found untranslated messages:"
+#           cat assets/translations/untranslated.txt
+#           exit 1
+#         else
+#           echo "No untranslated messages found"
+#         fi
+#     
+#     - name: Verify ARB files
+#       run: |
+#         # Check if all required ARB files exist
+#         if [ ! -f assets/translations/intl_en.arb ]; then
+#           echo "Missing English ARB file"
+#           exit 1
+#         fi
+#         if [ ! -f assets/translations/intl_bn.arb ]; then
+#           echo "Missing Bengali ARB file"
+#           exit 1
+#         fi
+#         echo "All required ARB files found"
+#
+#   build-check:
+#     runs-on: ubuntu-latest
+#     
+#     steps:
+#     - uses: actions/checkout@v3
+#     
+#     - name: Setup Flutter
+#       uses: subosito/flutter-action@v2
+#       with:
+#         flutter-version: '3.19.0'
+#         channel: 'stable'
+#     
+#     - name: Install dependencies
+#       run: flutter pub get
+#     
+#     - name: Build Android APK
+#       run: flutter build apk --debug
+#     
+#     - name: Build iOS (simulator)
+#       run: flutter build ios --debug --no-codesign

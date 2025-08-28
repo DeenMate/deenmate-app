@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
 import 'package:deen_mate/features/prayer_times/presentation/providers/prayer_times_providers.dart';
-import 'package:deen_mate/features/prayer_times/data/services/calculation_method_service.dart';
-import 'package:deen_mate/features/prayer_times/domain/entities/calculation_method.dart';
 import 'package:deen_mate/features/prayer_times/presentation/providers/notification_providers.dart'
     show dailyNotificationSchedulerProvider;
-
 import 'package:deen_mate/features/prayer_times/domain/entities/athan_settings.dart';
 import 'package:deen_mate/features/prayer_times/domain/entities/prayer_times.dart'
     as prayer_entities;
 import 'package:deen_mate/features/prayer_times/domain/entities/prayer_tracking.dart';
-
+import 'package:deen_mate/features/prayer_times/data/services/calculation_method_service.dart';
+import 'package:deen_mate/features/prayer_times/domain/entities/calculation_method.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// Home Screen (replaces old home) — shows live prayer times, countdown, etc.
 class HomeScreen extends ConsumerStatefulWidget {
@@ -26,17 +24,33 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen>
     with TickerProviderStateMixin {
   // Theme-aware colors that adapt to light/dark mode
-  Color _primaryColor(BuildContext context) => Theme.of(context).colorScheme.primary;
-  Color _cardColor(BuildContext context) => Theme.of(context).colorScheme.surface;
-  Color _textPrimaryColor(BuildContext context) => Theme.of(context).colorScheme.onSurface;
-  Color _textSecondaryColor(BuildContext context) => Theme.of(context).colorScheme.onSurfaceVariant;
-  Color _dividerColor(BuildContext context) => Theme.of(context).colorScheme.outline;
-  Color _alertPillColor(BuildContext context) => Theme.of(context).colorScheme.secondaryContainer;
-  Color _headerPrimaryColor(BuildContext context) => Theme.of(context).colorScheme.onSurface;
-  Color _headerSecondaryColor(BuildContext context) => Theme.of(context).colorScheme.onSurfaceVariant;
-  Color _accentColor(BuildContext context) => Theme.of(context).colorScheme.primary;
+  Color _primaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.primary;
+  Color _cardColor(BuildContext context) =>
+      Theme.of(context).colorScheme.surface;
+  Color _textPrimaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurface;
+  Color _textSecondaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurfaceVariant;
+  Color _dividerColor(BuildContext context) =>
+      Theme.of(context).colorScheme.outline;
+  Color _alertPillColor(BuildContext context) =>
+      Theme.of(context).colorScheme.secondaryContainer;
+  Color _headerPrimaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurface;
+  Color _headerSecondaryColor(BuildContext context) =>
+      Theme.of(context).colorScheme.onSurfaceVariant;
+  Color _accentColor(BuildContext context) =>
+      Theme.of(context).colorScheme.primary;
   CalculationMethodService get _methodService =>
       CalculationMethodService.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    // Note: ref.listen cannot be used in initState
+    // Prayer settings changes are handled through provider invalidation
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,20 +180,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           final day = parts[0];
                           final monthNum = int.tryParse(parts[1]) ?? 1;
                           final year = parts[2];
-                          const months = [
-                            'Muharram',
-                            'Safar',
-                            'Rabi al-Awwal',
-                            'Rabi al-Thani',
-                            'Jumada al-Awwal',
-                            'Jumada al-Thani',
-                            'Rajab',
-                            "Sha'ban",
-                            'Ramadan',
-                            'Shawwal',
-                            'Dhu al-Qadah',
-                            'Dhu al-Hijjah',
-                          ];
+                          final months = _getLocalizedIslamicMonths();
                           final month = months[(monthNum - 1).clamp(0, 11)];
                           // Expected format: 20 Safar 1447
                           hijriText = '$day $month $year';
@@ -235,9 +236,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Text(
-                        'As-salāmu ‘alaykum,',
-                        style: TextStyle(
+                      const SizedBox(height: 4),
+                      Text(
+                        AppLocalizations.of(context)?.homeGreeting ?? 'As-salāmu \'alaykum,',
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Color(0xFF6B5E56),
                         ),
@@ -283,7 +285,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Icon(Icons.timer, size: 18, color: _headerSecondaryColor(context)),
+              Icon(Icons.timer,
+                  size: 18, color: _headerSecondaryColor(context)),
               const SizedBox(width: 10),
               Expanded(
                 child: countdownAsync.when(
@@ -294,20 +297,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       case AlertKind.forbiddenSunrise:
                         prefix = '';
                         value = alert.message ??
-                            'Salah is forbidden during sunrise';
+                            (AppLocalizations.of(context)?.homeForbiddenSunrise ?? 'Salah is forbidden during sunrise');
                         break;
                       case AlertKind.forbiddenZenith:
                         prefix = '';
                         value = alert.message ??
-                            'Salah is forbidden during solar noon (zenith)';
+                            (AppLocalizations.of(context)?.homeForbiddenZenith ?? 'Salah is forbidden during solar noon (zenith)');
                         break;
                       case AlertKind.forbiddenSunset:
                         prefix = '';
                         value =
-                            alert.message ?? 'Salah is forbidden during sunset';
+                            alert.message ?? (AppLocalizations.of(context)?.homeForbiddenSunset ?? 'Salah is forbidden during sunset');
                         break;
                       case AlertKind.upcoming:
-                        prefix = '${_capitalize(alert.prayerName ?? '—')} in ';
+                        final localizations = AppLocalizations.of(context);
+                        prefix = localizations?.homePrayerIn(_getLocalizedPrayerName(context, alert.prayerName ?? '—')) ?? 
+                                '${_capitalize(alert.prayerName ?? '—')} in ';
                         final dur = alert.remaining ?? Duration.zero;
                         final h = dur.inHours;
                         final m = dur.inMinutes.remainder(60);
@@ -315,8 +320,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         value = h > 0 ? '${h}h ${m}m ${s}s' : '${m}m ${s}s';
                         break;
                       case AlertKind.remaining:
-                        prefix =
-                            '${_capitalize(alert.prayerName ?? '—')} remaining ';
+                        final localizations = AppLocalizations.of(context);
+                        prefix = localizations?.homePrayerRemaining(_getLocalizedPrayerName(context, alert.prayerName ?? '—')) ?? 
+                                '${_capitalize(alert.prayerName ?? '—')} remaining ';
                         final dur = alert.remaining ?? Duration.zero;
                         final h = dur.inHours;
                         final m = dur.inMinutes.remainder(60);
@@ -325,15 +331,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         break;
                     }
                     return Row(
-                  children: [
+                      children: [
                         if (prefix.isNotEmpty)
                           Text(prefix,
-                        maxLines: 1,
-                        softWrap: false,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                                  fontSize: 14, color: _headerPrimaryColor(context))),
-                    Flexible(
+                              maxLines: 1,
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: _headerPrimaryColor(context))),
+                        Flexible(
                           child: Text(
                             value,
                             maxLines: 1,
@@ -346,14 +353,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           ),
                         ),
                       ],
-                          );
-                        },
-                        loading: () => Text('—',
-                      style:
-                          TextStyle(fontSize: 14, color: _headerPrimaryColor(context))),
-                        error: (_, __) => Text('—',
-                      style:
-                          TextStyle(fontSize: 14, color: _headerPrimaryColor(context))),
+                    );
+                  },
+                  loading: () => Text('—',
+                      style: TextStyle(
+                          fontSize: 14, color: _headerPrimaryColor(context))),
+                  error: (_, __) => Text('—',
+                      style: TextStyle(
+                          fontSize: 14, color: _headerPrimaryColor(context))),
                 ),
               ),
             ],
@@ -369,109 +376,109 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
       builder: (context, constraints) {
         // Dynamic height based on screen size
         final double cardHeight = constraints.maxWidth < 360 ? 100 : 120;
-    return Row(
-      children: [
-        Expanded(
-          child: SizedBox(
-            height: cardHeight,
-            child: currentAndNextPrayerAsync.when(
-              data: (d) {
-                final pt = d.prayerTimes as prayer_entities.PrayerTimes;
-                final currentName = d.currentPrayer;
+        return Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: cardHeight,
+                child: currentAndNextPrayerAsync.when(
+                  data: (d) {
+                    final pt = d.prayerTimes as prayer_entities.PrayerTimes;
+                    final currentName = d.currentPrayer;
 
-                // Handle "No Active Prayer" state
-                if (currentName == null) {
-                  return _buildPrayerCard(
-                    title: 'No Active Prayer',
+                    // Handle "No Active Prayer" state
+                    if (currentName == null) {
+                      return _buildPrayerCard(
+                        title: AppLocalizations.of(context)?.homeNoActivePrayer ?? 'No Active Prayer',
+                        prayerName: '—',
+                        time: '—',
+                        endTime: null,
+                        isCurrent: true,
+                        backgroundColor: _cardColor(context),
+                        silhouetteColor: const Color(0xFFCC6E3C),
+                      );
+                    }
+
+                    final currentTime = _formatTime(
+                        _getPrayerTimeByName(pt, currentName), use24h);
+                    final endTime = _formatTime(
+                        _getPrayerEndTimeForCard(pt, currentName), use24h);
+                    return _buildPrayerCard(
+                      title: AppLocalizations.of(context)?.homeCurrentPrayer ?? 'Current Prayer',
+                      prayerName: _getLocalizedPrayerName(context, currentName),
+                      time: currentTime ?? '—',
+                      endTime: endTime,
+                      isCurrent: true,
+                      backgroundColor: _cardColor(context),
+                      silhouetteColor: const Color(0xFFCC6E3C),
+                    );
+                  },
+                  loading: () => _buildPrayerCard(
+                    title: AppLocalizations.of(context)?.homeCurrentPrayer ?? 'Current Prayer',
                     prayerName: '—',
                     time: '—',
-                    endTime: null,
                     isCurrent: true,
                     backgroundColor: _cardColor(context),
                     silhouetteColor: const Color(0xFFCC6E3C),
-                  );
-                }
-
-                final currentTime =
-                    _formatTime(_getPrayerTimeByName(pt, currentName), use24h);
-                final endTime = _formatTime(
-                    _getPrayerEndTimeForCard(pt, currentName), use24h);
-                return _buildPrayerCard(
-                  title: 'Current Prayer',
-                  prayerName: currentName,
-                  time: currentTime ?? '—',
-                  endTime: endTime,
-                  isCurrent: true,
-                  backgroundColor: _cardColor(context),
-                  silhouetteColor: const Color(0xFFCC6E3C),
-                );
-              },
-              loading: () => _buildPrayerCard(
-                title: 'Current Prayer',
-                prayerName: '—',
-                time: '—',
-                isCurrent: true,
-                backgroundColor: _cardColor(context),
-                silhouetteColor: const Color(0xFFCC6E3C),
-              ),
-              error: (_, __) => _buildPrayerCard(
-                title: 'Current Prayer',
-                prayerName: '—',
-                time: '—',
-                isCurrent: true,
-                backgroundColor: _cardColor(context),
-                silhouetteColor: const Color(0xFFCC6E3C),
+                  ),
+                  error: (_, __) => _buildPrayerCard(
+                    title: AppLocalizations.of(context)?.homeCurrentPrayer ?? 'Current Prayer',
+                    prayerName: '—',
+                    time: '—',
+                    isCurrent: true,
+                    backgroundColor: _cardColor(context),
+                    silhouetteColor: const Color(0xFFCC6E3C),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: SizedBox(
-            height: cardHeight,
-            child: currentAndNextPrayerAsync.when(
-              data: (d) {
-                final pt = d.prayerTimes as prayer_entities.PrayerTimes;
-                final nextName = d.nextPrayer ?? '—';
-                final nextTime =
-                    _formatTime(_getPrayerTimeByName(pt, nextName), use24h);
-                final azan = nextTime;
-                final jamaat = _formatTime(
-                    _getPrayerTimeByName(pt, nextName)
-                        ?.add(const Duration(minutes: 15)),
-                    use24h);
-                return _buildPrayerCard(
-                  title: 'Next Prayer',
-                  prayerName: nextName,
-                  time: nextTime ?? '—',
-                  azanTime: azan,
-                  jamaatTime: jamaat,
-                  isCurrent: false,
-                  backgroundColor: _cardColor(context),
-                  silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
-                );
-              },
-              loading: () => _buildPrayerCard(
-                title: 'Next Prayer',
-                prayerName: '—',
-                time: '—',
-                isCurrent: false,
-                backgroundColor: _cardColor(context),
-                silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
-              ),
-              error: (_, __) => _buildPrayerCard(
-                title: 'Next Prayer',
-                prayerName: '—',
-                time: '—',
-                isCurrent: false,
-                backgroundColor: _cardColor(context),
-                silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
+            const SizedBox(width: 12),
+            Expanded(
+              child: SizedBox(
+                height: cardHeight,
+                child: currentAndNextPrayerAsync.when(
+                  data: (d) {
+                    final pt = d.prayerTimes as prayer_entities.PrayerTimes;
+                    final nextName = d.nextPrayer ?? '—';
+                    final nextTime =
+                        _formatTime(_getPrayerTimeByName(pt, nextName), use24h);
+                    final azan = nextTime;
+                    final jamaat = _formatTime(
+                        _getPrayerTimeByName(pt, nextName)
+                            ?.add(const Duration(minutes: 15)),
+                        use24h);
+                    return _buildPrayerCard(
+                      title: AppLocalizations.of(context)?.homeNextPrayer ?? 'Next Prayer',
+                      prayerName: _getLocalizedPrayerName(context, nextName),
+                      time: nextTime ?? '—',
+                      azanTime: azan,
+                      jamaatTime: jamaat,
+                      isCurrent: false,
+                      backgroundColor: _cardColor(context),
+                      silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
+                    );
+                  },
+                  loading: () => _buildPrayerCard(
+                    title: AppLocalizations.of(context)?.homeNextPrayer ?? 'Next Prayer',
+                    prayerName: '—',
+                    time: '—',
+                    isCurrent: false,
+                    backgroundColor: _cardColor(context),
+                    silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
+                  ),
+                  error: (_, __) => _buildPrayerCard(
+                    title: AppLocalizations.of(context)?.homeNextPrayer ?? 'Next Prayer',
+                    prayerName: '—',
+                    time: '—',
+                    isCurrent: false,
+                    backgroundColor: _cardColor(context),
+                    silhouetteColor: const Color.fromARGB(255, 118, 172, 122),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ],
-    );
+          ],
+        );
       },
     );
   }
@@ -538,7 +545,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             child: Container(
               padding: EdgeInsets.fromLTRB(
                   16 * scale, 14 * scale, 16 * scale, 12 * scale),
-            decoration: BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: isCurrent
                     ? theme.colorScheme.primaryContainer.withOpacity(0.3)
@@ -550,10 +557,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   width: 1,
                 ),
               ),
-                            child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   Row(
                     children: [
                       Icon(
@@ -564,55 +571,55 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
-                      title,
+                          title,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontSize: 12 * scale,
-                          fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w600,
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
-                    ),
-                    SizedBox(height: gapTop),
+                  ),
+                  SizedBox(height: gapTop),
                   Flexible(
                     child: Text(
                       prayerName,
                       style: theme.textTheme.titleLarge?.copyWith(
-                          fontSize: nameSize,
-                          fontWeight: FontWeight.w600,
+                        fontSize: nameSize,
+                        fontWeight: FontWeight.w600,
                         color: isCurrent
                             ? theme.colorScheme.primary
                             : theme.colorScheme.onSurface,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    ),
-                    SizedBox(height: gapSmall),
+                  ),
+                  SizedBox(height: gapSmall),
                   _buildTimeWithMeridiem(
                     time,
                     mainSize: 28 * scale,
                     meridiemSize: 13 * scale,
                     color: theme.colorScheme.onSurface,
                   ),
-                    if (endTime != null) ...[
-                      SizedBox(height: gapTiny),
-                      _buildSecondaryInfo('End time - $endTime',
+                  if (endTime != null) ...[
+                    SizedBox(height: gapTiny),
+                    _buildSecondaryInfo('End time - $endTime',
                         fontSize: subtitleSize, theme: theme),
-                    ],
-                    if (azanTime != null) ...[
-                    SizedBox(height: (gapTiny - 1).clamp(0, 6).toDouble()),
-                      _buildSecondaryInfo('Azan - $azanTime',
-                        fontSize: subtitleSize, theme: theme),
-                    ],
-                    if (jamaatTime != null) ...[
-                    SizedBox(height: (gapTiny - 1).clamp(0, 6).toDouble()),
-                      _buildSecondaryInfo("Jama'at - $jamaatTime",
-                        fontSize: subtitleSize, theme: theme),
-                    ],
                   ],
-                ),
+                  if (azanTime != null) ...[
+                    SizedBox(height: (gapTiny - 1).clamp(0, 6).toDouble()),
+                    _buildSecondaryInfo('Azan - $azanTime',
+                        fontSize: subtitleSize, theme: theme),
+                  ],
+                  if (jamaatTime != null) ...[
+                    SizedBox(height: (gapTiny - 1).clamp(0, 6).toDouble()),
+                    _buildSecondaryInfo("Jama'at - $jamaatTime",
+                        fontSize: subtitleSize, theme: theme),
+                  ],
+                ],
+              ),
             ),
           );
         },
@@ -700,9 +707,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   Widget _buildSecondaryInfo(String text,
       {double fontSize = 12, ThemeData? theme}) {
-    final Color labelColor =
-        (theme?.colorScheme.onSurfaceVariant ?? _textSecondaryColor(context)) as Color;
-    final Color valueColor = (theme?.colorScheme.onSurface ?? _textPrimaryColor(context)) as Color;
+    final Color labelColor = (theme?.colorScheme.onSurfaceVariant ??
+        _textSecondaryColor(context)) as Color;
+    final Color valueColor =
+        (theme?.colorScheme.onSurface ?? _textPrimaryColor(context)) as Color;
     final parts = text.split(' - ');
     if (parts.length == 2) {
       final label = parts[0];
@@ -720,8 +728,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
             ),
             TextSpan(
               text: value,
-        style: TextStyle(
-            fontSize: fontSize,
+              style: TextStyle(
+                fontSize: fontSize,
                 fontWeight: FontWeight.w700,
                 color: valueColor,
               ),
@@ -748,67 +756,69 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
+        decoration: BoxDecoration(
           color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: theme.colorScheme.outline.withOpacity(0.1),
             width: 1,
           ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Consumer(builder: (context, ref, _) {
-                  // Fajr notifications toggle
-                  final settings = ref.watch(athanSettingsNotifierProvider);
-                  final enabled = settings?.isPrayerEnabled('fajr') ?? true;
-                  return InkWell(
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Consumer(builder: (context, ref, _) {
+                    // Fajr notifications toggle
+                    final settings = ref.watch(athanSettingsNotifierProvider);
+                    final enabled = settings?.isPrayerEnabled('fajr') ?? true;
+                    return InkWell(
                       borderRadius: BorderRadius.circular(999),
                       onTap: () async {
-                      ref
-                          .read(athanSettingsNotifierProvider.notifier)
-                          .togglePrayer('fajr');
+                        ref
+                            .read(athanSettingsNotifierProvider.notifier)
+                            .togglePrayer('fajr');
                         // Reschedule notifications for today after toggle
                         try {
                           final scheduler =
                               ref.read(dailyNotificationSchedulerProvider);
                           await scheduler.scheduleToday();
                         } catch (_) {}
-                    },
-                    child: Container(
+                      },
+                      child: Container(
                         width: 44,
                         height: 44,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color:
-                              (enabled ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.outline)
-                                  .withOpacity(0.12),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: (enabled
+                                  ? Theme.of(context).colorScheme.error
+                                  : Theme.of(context).colorScheme.outline)
+                              .withOpacity(0.12),
                           shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                            enabled
+                                ? Icons.notifications_active
+                                : Icons.notifications_off,
+                            color: enabled
+                                ? Theme.of(context).colorScheme.error
+                                : Theme.of(context).colorScheme.outline,
+                            size: 22),
                       ),
-                      child: Icon(
-                          enabled
-                              ? Icons.notifications_active
-                              : Icons.notifications_off,
-                          color:
-                              enabled ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.outline,
-                          size: 22),
-                    ),
-                  );
-                }),
+                    );
+                  }),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Suhoor',
-                        style: TextStyle(
+                      children: [
+                        Text(AppLocalizations.of(context)!.ramadanSuhoor,
+                            style: const TextStyle(
                                 fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF2C3E50))),
-                    prayerTimesAsync.when(
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF2C3E50))),
+                        prayerTimesAsync.when(
                           data: (p) => _buildCompactTimeWithMeridiem(
                               _formatTime(p.fajr.time, use24h)!,
                               mainSize: 22,
@@ -819,28 +829,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                         ),
                       ],
                     ),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
+            Container(
               width: 1,
-            height: 52,
+              height: 52,
               color: const Color(0xFFFFC39B),
-          ),
-          Expanded(
-            child: Row(
-              children: [
+            ),
+            Expanded(
+              child: Row(
+                children: [
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Iftaar',
-                        style: TextStyle(
+                      children: [
+                        Text(AppLocalizations.of(context)!.ramadanIftaar,
+                            style: const TextStyle(
                                 fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF2C3E50))),
-                    prayerTimesAsync.when(
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF2C3E50))),
+                        prayerTimesAsync.when(
                           data: (p) => _buildCompactTimeWithMeridiem(
                               _formatTime(p.maghrib.time, use24h)!,
                               mainSize: 22,
@@ -848,54 +858,54 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                               color: const Color(0xFF2C3E50)),
                           loading: () => _buildCompactTimeWithMeridiem('—'),
                           error: (_, __) => _buildCompactTimeWithMeridiem('—'),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
                   ),
                   const SizedBox(width: 12),
-                Consumer(builder: (context, ref, _) {
-                  final settings = ref.watch(athanSettingsNotifierProvider);
+                  Consumer(builder: (context, ref, _) {
+                    final settings = ref.watch(athanSettingsNotifierProvider);
                     final enabled =
                         settings?.isPrayerEnabled('maghrib') ?? true;
-                  return InkWell(
+                    return InkWell(
                       borderRadius: BorderRadius.circular(999),
                       onTap: () async {
-                      ref
-                          .read(athanSettingsNotifierProvider.notifier)
-                          .togglePrayer('maghrib');
+                        ref
+                            .read(athanSettingsNotifierProvider.notifier)
+                            .togglePrayer('maghrib');
                         // Reschedule notifications for today after toggle
                         try {
                           final scheduler =
                               ref.read(dailyNotificationSchedulerProvider);
                           await scheduler.scheduleToday();
                         } catch (_) {}
-                    },
-                    child: Container(
+                      },
+                      child: Container(
                         width: 44,
                         height: 44,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: (enabled
-                                ? const Color(0xFFFF6B35)
-                                : const Color(0xFF7F8C8D))
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: (enabled
+                                  ? const Color(0xFFFF6B35)
+                                  : const Color(0xFF7F8C8D))
                               .withOpacity(0.12),
                           shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                            enabled
+                                ? Icons.notifications_active
+                                : Icons.notifications_off,
+                            color: enabled
+                                ? const Color(0xFFFF6B35)
+                                : const Color(0xFF7F8C8D),
+                            size: 22),
                       ),
-                      child: Icon(
-                          enabled
-                              ? Icons.notifications_active
-                              : Icons.notifications_off,
-                          color: enabled
-                              ? const Color(0xFFFF6B35)
-                              : const Color(0xFF7F8C8D),
-                          size: 22),
-                    ),
-                  );
-                }),
-              ],
+                    );
+                  }),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );
@@ -911,7 +921,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           const SizedBox(width: 8),
           Expanded(
             child: Consumer(builder: (context, ref, _) {
-                final settingsAsync = ref.watch(prayerSettingsProvider);
+              final settingsAsync = ref.watch(prayerSettingsProvider);
               final ptAsync = ref.watch(currentPrayerTimesProvider);
               // Compute compact last-updated label and tooltip
               String? lastUpdatedLabel;
@@ -922,7 +932,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                   final now = DateTime.now();
                   final diff = now.difference(dt);
                   if (diff.inMinutes < 1) {
-                    lastUpdatedLabel = 'now';
+                    lastUpdatedLabel = AppLocalizations.of(context)!.homeTimeStatusNow;
                   } else if (diff.inHours < 1) {
                     lastUpdatedLabel = '${diff.inMinutes}m';
                   } else if (diff.inHours < 24) {
@@ -957,7 +967,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           style: theme.textTheme.bodyMedium?.copyWith(
                               fontSize: 14,
                               color: theme.colorScheme.onSurfaceVariant),
-                    overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.ellipsis,
                         );
                       },
                       loading: () => Text('timings from AlAdhan',
@@ -1032,31 +1042,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     final double rowVerticalPadding = 6;
     final prayers = [
       {
-        'name': 'Fajr',
+        'name': AppLocalizations.of(context)!.prayerFajr,
         'start': prayerTimes.fajr.time,
         'end': _getPrayerEndTimeForCard(prayerTimes, 'Fajr'),
         'icon': Icons.nightlight_round
       },
       {
-        'name': 'Dhuhr',
+        'name': AppLocalizations.of(context)!.prayerDhuhr,
         'start': prayerTimes.dhuhr.time,
         'end': _getPrayerEndTimeForCard(prayerTimes, 'Dhuhr'),
         'icon': Icons.wb_sunny
       },
       {
-        'name': 'Asr',
+        'name': AppLocalizations.of(context)!.prayerAsr,
         'start': prayerTimes.asr.time,
         'end': _getPrayerEndTimeForCard(prayerTimes, 'Asr'),
         'icon': Icons.wb_sunny_outlined
       },
       {
-        'name': 'Maghrib',
+        'name': AppLocalizations.of(context)!.prayerMaghrib,
         'start': prayerTimes.maghrib.time,
         'end': _getPrayerEndTimeForCard(prayerTimes, 'Maghrib'),
         'icon': Icons.wb_sunny_outlined
       },
       {
-        'name': 'Isha',
+        'name': AppLocalizations.of(context)!.prayerIsha,
         'start': prayerTimes.isha.time,
         'end': _getPrayerEndTimeForCard(prayerTimes, 'Isha'),
         'icon': Icons.nightlight_round
@@ -1100,8 +1110,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                       prayer['name'] as String,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: isCurrentPrayer
+                        fontWeight: FontWeight.w600,
+                        color: isCurrentPrayer
                             ? theme.colorScheme.primary
                             : theme.colorScheme.onSurface,
                       ),
@@ -1112,7 +1122,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                     children: [
                       _buildSmallTimeWithMeridiem(
                         _formatTime(prayer['start'] as DateTime, use24h)!,
-                      color: isCurrentPrayer
+                        color: isCurrentPrayer
                             ? theme.colorScheme.primary
                             : theme.colorScheme.onSurface,
                       ),
@@ -1192,7 +1202,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   // Non-blocking placeholder list to avoid spinners during app open
   Widget _buildPrayerTimesSkeleton() {
-    final rows = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    final rows = [
+      AppLocalizations.of(context)!.prayerFajr,
+      AppLocalizations.of(context)!.prayerDhuhr,
+      AppLocalizations.of(context)!.prayerAsr,
+      AppLocalizations.of(context)!.prayerMaghrib,
+      AppLocalizations.of(context)!.prayerIsha
+    ];
     return Column(
       children: List.generate(rows.length * 2 - 1, (i) {
         if (i.isOdd) {
@@ -1477,6 +1493,64 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
         return pt.midnight.time;
     }
     return null;
+  }
+
+  String _getLocalizedPrayerName(BuildContext context, String prayerName) {
+    final localizations = AppLocalizations.of(context);
+    if (localizations != null) {
+      switch (prayerName.toLowerCase()) {
+        case 'fajr':
+          return localizations.prayerFajr;
+        case 'sunrise':
+          return localizations.prayerSunrise;
+        case 'dhuhr':
+          return localizations.prayerDhuhr;
+        case 'asr':
+          return localizations.prayerAsr;
+        case 'maghrib':
+          return localizations.prayerMaghrib;
+        case 'isha':
+          return localizations.prayerIsha;
+        default:
+          return _capitalize(prayerName);
+      }
+    }
+    return _capitalize(prayerName);
+  }
+
+  List<String> _getLocalizedIslamicMonths() {
+    final localizations = AppLocalizations.of(context);
+    if (localizations != null) {
+      return [
+        localizations.islamicMonthMuharram,
+        localizations.islamicMonthSafar,
+        localizations.islamicMonthRabiAlAwwal,
+        localizations.islamicMonthRabiAlThani,
+        localizations.islamicMonthJumadaAlAwwal,
+        localizations.islamicMonthJumadaAlThani,
+        localizations.islamicMonthRajab,
+        localizations.islamicMonthShaban,
+        localizations.islamicMonthRamadan,
+        localizations.islamicMonthShawwal,
+        localizations.islamicMonthDhuAlQadah,
+        localizations.islamicMonthDhuAlHijjah,
+      ];
+    }
+    // Fallback to English names
+    return [
+      'Muharram',
+      'Safar',
+      'Rabi al-Awwal',
+      'Rabi al-Thani',
+      'Jumada al-Awwal',
+      'Jumada al-Thani',
+      'Rajab',
+      "Sha'ban",
+      'Ramadan',
+      'Shawwal',
+      'Dhu al-Qadah',
+      'Dhu al-Hijjah',
+    ];
   }
 }
 

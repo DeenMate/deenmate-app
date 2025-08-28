@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/islamic_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// Islamic bottom navigation bar matching the design
 class IslamicBottomNavigation extends StatelessWidget {
@@ -29,18 +30,18 @@ class IslamicBottomNavigation extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(0, '🏠', 'Home', isActive: currentIndex == 0),
-            _buildNavItem(1, '🕌', 'Prayer', isActive: currentIndex == 1),
+            _buildNavItem(context, 0, '🏠', AppLocalizations.of(context)!.navigationHome, isActive: currentIndex == 0),
+            _buildNavItem(context, 1, '🕌', AppLocalizations.of(context)!.navigationPrayer, isActive: currentIndex == 1),
             // _buildNavItem(2, '🧮', 'Zakat', isActive: currentIndex == 2),
-            _buildNavItem(2, '🧭', 'Qibla', isActive: currentIndex == 2),
-            _buildNavItem(3, '⋯', 'More', isActive: currentIndex == 3),
+            _buildNavItem(context, 2, '🧭', AppLocalizations.of(context)!.navigationQibla, isActive: currentIndex == 2),
+            _buildNavItem(context, 3, '⋯', AppLocalizations.of(context)!.navigationMore, isActive: currentIndex == 3),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(int index, String icon, String label,
+  Widget _buildNavItem(BuildContext context, int index, String icon, String label,
       {required bool isActive}) {
     return GestureDetector(
       onTap: () => onTap(index),

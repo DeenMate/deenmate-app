@@ -99,8 +99,9 @@ class AuthTokenNotifier extends Notifier<AuthTokenState> {
     }
   }
 
-  // Replace with your Cloudflare Worker endpoint
-  static const String _tokenEndpoint = 'https://your-worker.example.com/token';
+  // Production note: This endpoint must be configured with actual authentication service
+  // Replace with your actual Cloudflare Worker or authentication service endpoint
+  static const String _tokenEndpoint = 'https://auth.deenmate.app/token'; // Update for production
 
   Future<(String, DateTime)> _fetchToken() async {
     final res = await _dio.get(_tokenEndpoint);

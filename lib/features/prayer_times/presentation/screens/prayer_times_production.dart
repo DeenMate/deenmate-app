@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/utils/islamic_utils.dart';
+import '../providers/prayer_times_providers.dart';
+import '../../domain/entities/prayer_times.dart';
 
 /// Production Prayer Times Screen matching app-screens/02_prayer_times_screen.svg
 /// Features: Live countdown, Islamic design, Bengali integration, prayer tracking
@@ -93,9 +96,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
         icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () => Navigator.pop(context),
       ),
-      title: const Text(
-        'Prayer Times | নামাজের সময়',
-        style: TextStyle(
+      title: Text(
+        AppLocalizations.of(context)!.prayerTimesTitle,
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w600,
@@ -137,9 +140,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Today | আজ',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.commonToday,
+                  style: const TextStyle(
                     color: Color(0xFF2E7D32),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -192,6 +195,168 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
   }
 
   Widget _buildCurrentPrayerCard() {
+    final prayerTimesAsync = ref.watch(currentPrayerTimesProvider);
+    
+    return prayerTimesAsync.when(
+      data: (prayerTimes) => _buildCurrentPrayerCardContent(prayerTimes),
+      loading: () => _buildLoadingPrayerCard(),
+      error: (error, stackTrace) => _buildEnhancedErrorCard(error),
+    );
+  }
+  
+  Widget _buildEnhancedErrorCard(Object error) {
+    String title = AppLocalizations.of(context)!.prayerTimesUnavailable;
+    String subtitle = AppLocalizations.of(context)!.prayerTimesUnableToLoad;
+    String actionText = AppLocalizations.of(context)!.prayerTimesRetry;
+    IconData icon = Icons.error_outline;
+    Color iconColor = const Color(0xFFFF5722);
+    VoidCallback? onActionPressed;
+
+    // Determine error type and provide specific guidance
+    if (error.toString().contains('location') || 
+        error.toString().contains('permission')) {
+      title = AppLocalizations.of(context)!.prayerTimesLocationRequired;
+      subtitle = AppLocalizations.of(context)!.prayerTimesEnableLocation;
+      actionText = AppLocalizations.of(context)!.prayerTimesEnableLocationAction;
+      icon = Icons.location_off;
+      iconColor = const Color(0xFFFF8F00);
+      onActionPressed = () {
+        // Navigate to location settings or show location picker
+        _showLocationHelp();
+      };
+    } else if (error.toString().contains('network') || 
+               error.toString().contains('timeout')) {
+      title = AppLocalizations.of(context)!.prayerTimesNetworkIssue;
+      subtitle = AppLocalizations.of(context)!.prayerTimesCheckConnection;
+      actionText = AppLocalizations.of(context)!.prayerTimesRetry;
+      icon = Icons.wifi_off;
+      iconColor = const Color(0xFF2196F3);
+      onActionPressed = () {
+        // Refresh the provider
+        ref.invalidate(currentPrayerTimesProvider);
+      };
+    } else {
+      title = AppLocalizations.of(context)!.prayerTimesServiceUnavailable;
+      subtitle = AppLocalizations.of(context)!.prayerTimesServiceTemporarilyUnavailable;
+      actionText = AppLocalizations.of(context)!.prayerTimesTryAgain;
+      icon = Icons.refresh;
+      onActionPressed = () {
+        ref.invalidate(currentPrayerTimesProvider);
+      };
+    }
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: iconColor.withValues(alpha: 0.3), width: 2),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.15),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: iconColor.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  icon,
+                  color: iconColor,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: iconColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(
+                        color: Color(0xFF666666),
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (onActionPressed != null) ...[
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: onActionPressed,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: iconColor,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(actionText),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  void _showLocationHelp() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.prayerTimesLocationAccess),
+        content: Text(AppLocalizations.of(context)!.prayerTimesLocationAccessMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(AppLocalizations.of(context)!.prayerTimesLater),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              // Navigate to settings or manual location picker
+            },
+            child: Text(AppLocalizations.of(context)!.prayerTimesSettings),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildCurrentPrayerCardContent(PrayerTimes? prayerTimes) {
+    if (prayerTimes == null) {
+      return _buildEnhancedErrorCard(AppLocalizations.of(context)!.prayerTimesDataUnavailable);
+    }
+    
+    final now = DateTime.now();
+    final currentPrayer = _getCurrentPrayer(prayerTimes, now);
+    
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(20),
@@ -223,39 +388,39 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
               color: const Color(0xFF2E7D32),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                '🌅',
-                style: TextStyle(fontSize: 20),
+                currentPrayer['icon'],
+                style: const TextStyle(fontSize: 20),
               ),
             ),
           ),
           const SizedBox(width: 16),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Fajr | ফজর',
-                  style: TextStyle(
+                  currentPrayer['name'],
+                  style: const TextStyle(
                     color: Color(0xFF2E7D32),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  '5:15 AM',
-                  style: TextStyle(
+                  currentPrayer['time'],
+                  style: const TextStyle(
                     color: Color(0xFF333333),
                     fontSize: 14,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  '✓ Completed | সম্পন্ন',
+                  currentPrayer['status'],
                   style: TextStyle(
-                    color: Color(0xFF4CAF50),
+                    color: currentPrayer['statusColor'],
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -265,9 +430,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
           ),
           Column(
             children: [
-              const Text(
-                'Next in',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.prayerTimesNextIn,
+                style: const TextStyle(
                   color: Color(0xFF2E7D32),
                   fontSize: 12,
                 ),
@@ -294,6 +459,166 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
         ],
       ),
     );
+  }
+  
+  Widget _buildLoadingPrayerCard() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: const Row(
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Loading Prayer Times...',
+                  style: TextStyle(
+                    color: Color(0xFF666666),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  AppLocalizations.of(context)!.prayerTimesPleaseWait,
+                  style: const TextStyle(
+                    color: Color(0xFF999999),
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Map<String, dynamic> _getCurrentPrayer(PrayerTimes prayerTimes, DateTime now) {
+    final l10n = AppLocalizations.of(context)!;
+    final prayers = [
+      {
+        'name': l10n.prayerFajr,
+        'time': prayerTimes.fajr.time,
+        'icon': '🌅',
+        'bengaliName': l10n.prayerFajr,
+      },
+      {
+        'name': l10n.prayerDhuhr,
+        'time': prayerTimes.dhuhr.time,
+        'icon': '☀️',
+        'bengaliName': l10n.prayerDhuhr,
+      },
+      {
+        'name': l10n.prayerAsr,
+        'time': prayerTimes.asr.time,
+        'icon': '🌤',
+        'bengaliName': l10n.prayerAsr,
+      },
+      {
+        'name': l10n.prayerMaghrib,
+        'time': prayerTimes.maghrib.time,
+        'icon': '🌆',
+        'bengaliName': l10n.prayerMaghrib,
+      },
+      {
+        'name': l10n.prayerIsha,
+        'time': prayerTimes.isha.time,
+        'icon': '🌙',
+        'bengaliName': l10n.prayerIsha,
+      },
+    ];
+    
+    // Find the current prayer window or next upcoming prayer
+    Map<String, dynamic> currentPrayer = prayers.first;
+    
+    // Look for active prayer window (between prayer time and next prayer time)
+    for (int i = 0; i < prayers.length; i++) {
+      final prayerTime = prayers[i]['time'] as DateTime;
+      final nextPrayerTime = i < prayers.length - 1 
+          ? prayers[i + 1]['time'] as DateTime
+          : null;
+      
+      if (now.isAfter(prayerTime)) {
+        if (nextPrayerTime == null || now.isBefore(nextPrayerTime)) {
+          // We're in this prayer's active window
+          currentPrayer = prayers[i];
+          break;
+        } else if (i == prayers.length - 1) {
+          // After all prayers, show tomorrow's Fajr as upcoming
+          currentPrayer = prayers[0];
+          break;
+        }
+      } else {
+        // This prayer is upcoming
+        currentPrayer = prayers[i];
+        break;
+      }
+    }
+
+    final prayerTime = currentPrayer['time'] as DateTime;
+    final timeString = _formatTime(prayerTime);
+    
+    // Determine prayer status with better logic
+    String status;
+    Color statusColor;
+    
+    // Check if this is tomorrow's Fajr (when current time is after Isha)
+    final isTomorrowFajr = currentPrayer['name'] == 'Fajr | ফজর' && 
+                           now.isAfter(prayerTimes.isha.time);
+    
+    if (isTomorrowFajr) {
+      status = '🌅 Tomorrow | আগামীকাল';
+      statusColor = const Color(0xFF1565C0);
+    } else if (now.isBefore(prayerTime)) {
+      // Prayer is upcoming
+      final timeUntil = prayerTime.difference(now);
+      if (timeUntil.inMinutes <= 30) {
+        status = '⏰ Soon | শীঘ্রই (${timeUntil.inMinutes}min)';
+        statusColor = const Color(0xFFFF8F00);
+      } else {
+        status = '⏳ Upcoming | আসন্ন';
+        statusColor = const Color(0xFF1565C0);
+      }
+    } else {
+      // Prayer time has passed - we're in the prayer window
+      final nextPrayerTime = _getNextPrayerTime(prayerTimes, now);
+      if (nextPrayerTime != null) {
+        final timeSincePrayer = now.difference(prayerTime);
+        if (timeSincePrayer.inMinutes <= 120) { // 2 hours active window
+          status = '🕌 Active Time | সময় চলমান';
+          statusColor = const Color(0xFF4CAF50);
+        } else {
+          status = '✓ Time Passed | সময় অতিক্রান্ত';
+          statusColor = const Color(0xFF666666);
+        }
+      } else {
+        status = '✓ Time Passed | সময় অতিক্রান্ত';
+        statusColor = const Color(0xFF666666);
+      }
+    }
+    
+    return {
+      'name': currentPrayer['name'],
+      'time': timeString,
+      'status': status,
+      'statusColor': statusColor,
+      'icon': currentPrayer['icon'],
+    };
   }
 
   Widget _buildUpcomingPrayersSection() {
@@ -512,51 +837,166 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
   }
 
   String _getTimeUntilNextPrayer() {
-    // Mock implementation - would calculate actual time
-    final now = DateTime.now();
-    final nextPrayer = DateTime(now.year, now.month, now.day, 13, 20); // Next Dhuhr
+    final prayerTimesAsync = ref.watch(currentPrayerTimesProvider);
     
-    if (nextPrayer.isBefore(now)) {
-      // If Dhuhr has passed, show next day's Fajr
-      final nextFajr = DateTime(now.year, now.month, now.day + 1, 5, 15);
-      final diff = nextFajr.difference(now);
-      return '${diff.inHours}h ${diff.inMinutes % 60}m';
+    return prayerTimesAsync.when(
+      data: (prayerTimes) {
+        if (prayerTimes == null) return 'Location needed';
+        
+        final now = DateTime.now();
+        final nextPrayer = _getNextPrayerTime(prayerTimes, now);
+        
+        if (nextPrayer == null) return 'Location needed';
+        
+        final difference = nextPrayer.difference(now);
+        final hours = difference.inHours;
+        final minutes = difference.inMinutes % 60;
+        
+        if (hours > 0) {
+          return '${hours}h ${minutes}m';
+        } else {
+          return '${minutes}m';
+        }
+      },
+      loading: () => AppLocalizations.of(context)!.commonLoading,
+      error: (_, __) => 'Location needed',
+    );
+  }
+
+  DateTime? _getNextPrayerTime(PrayerTimes prayerTimes, DateTime now) {
+    final prayers = [
+      prayerTimes.fajr.time,
+      prayerTimes.dhuhr.time,
+      prayerTimes.asr.time,
+      prayerTimes.maghrib.time,
+      prayerTimes.isha.time,
+    ];
+    
+    // Find the next prayer time after now
+    for (final prayer in prayers) {
+      if (prayer.isAfter(now)) {
+        return prayer;
+      }
     }
     
-    final diff = nextPrayer.difference(now);
-    return '${diff.inHours}h ${diff.inMinutes % 60}m';
+    // If all prayers have passed, calculate tomorrow's Fajr
+    // Use approximate calculation: add 24 hours to today's Fajr as baseline
+    final tomorrowFajr = DateTime(
+      prayerTimes.fajr.time.year,
+      prayerTimes.fajr.time.month,
+      prayerTimes.fajr.time.day + 1,
+      prayerTimes.fajr.time.hour,
+      prayerTimes.fajr.time.minute,
+    );
+    
+    return tomorrowFajr;
   }
 
   List<Map<String, dynamic>> _getUpcomingPrayers() {
-    return [
-      {
-        'name': 'Dhuhr | যুহর',
-        'time': '1:20 PM',
-        'remaining': 'in 6h 5m',
-        'icon': '☀️',
-        'color': const Color(0xFFFF8F00),
+    final prayerTimesAsync = ref.watch(currentPrayerTimesProvider);
+    
+    return prayerTimesAsync.when(
+      data: (prayerTimes) {
+        if (prayerTimes == null) {
+          return [
+            {
+              'name': 'Prayer Times Unavailable',
+              'time': 'Location needed',
+              'remaining': 'Enable location',
+              'icon': '📍',
+              'color': const Color(0xFF999999),
+            }
+          ];
+        }
+        
+        final now = DateTime.now();
+        final upcomingPrayers = <Map<String, dynamic>>[];
+        
+        final prayerData = [
+          {
+            'name': 'Fajr | ফজর',
+            'time': prayerTimes.fajr.time,
+            'icon': '🌅',
+            'color': const Color(0xFF2E7D32),
+          },
+          {
+            'name': 'Dhuhr | যুহর',
+            'time': prayerTimes.dhuhr.time,
+            'icon': '☀️',
+            'color': const Color(0xFFFF8F00),
+          },
+          {
+            'name': 'Asr | আসর',
+            'time': prayerTimes.asr.time,
+            'icon': '🌤',
+            'color': const Color(0xFF7B1FA2),
+          },
+          {
+            'name': 'Maghrib | মাগরিব',
+            'time': prayerTimes.maghrib.time,
+            'icon': '🌆',
+            'color': const Color(0xFFD84315),
+          },
+          {
+            'name': 'Isha | ইশা',
+            'time': prayerTimes.isha.time,
+            'icon': '🌙',
+            'color': const Color(0xFF5D4037),
+          },
+        ];
+        
+        for (final prayer in prayerData) {
+          final prayerTime = prayer['time'] as DateTime;
+          if (prayerTime.isAfter(now)) {
+            final difference = prayerTime.difference(now);
+            final hours = difference.inHours;
+            final minutes = difference.inMinutes % 60;
+            
+            String remaining;
+            if (hours > 0) {
+              remaining = 'in ${hours}h ${minutes}m';
+            } else {
+              remaining = 'in ${minutes}m';
+            }
+            
+            upcomingPrayers.add({
+              'name': prayer['name'],
+              'time': _formatTime(prayerTime),
+              'remaining': remaining,
+              'icon': prayer['icon'],
+              'color': prayer['color'],
+            });
+          }
+        }
+        
+        return upcomingPrayers;
       },
-      {
-        'name': 'Asr | আসর',
-        'time': '4:45 PM',
-        'remaining': 'in 9h 30m',
-        'icon': '🌤',
-        'color': const Color(0xFF7B1FA2),
-      },
-      {
-        'name': 'Maghrib | মাগরিব',
-        'time': '6:30 PM',
-        'remaining': 'in 11h 15m',
-        'icon': '🌆',
-        'color': const Color(0xFFD84315),
-      },
-      {
-        'name': 'Isha | ইশা',
-        'time': '8:00 PM',
-        'remaining': 'in 12h 45m',
-        'icon': '🌙',
-        'color': const Color(0xFF5D4037),
-      },
-    ];
+      loading: () => [
+        {
+          'name': AppLocalizations.of(context)!.prayerTimesLoading,
+          'time': AppLocalizations.of(context)!.commonPleaseWait,
+          'remaining': AppLocalizations.of(context)!.commonLoading,
+          'icon': '⏳',
+          'color': const Color(0xFF999999),
+        }
+      ],
+      error: (_, __) => [
+        {
+          'name': 'Prayer Times Error',
+          'time': 'Check location',
+          'remaining': 'Retry needed',
+          'icon': '⚠️',
+          'color': const Color(0xFFE53935),
+        }
+      ],
+    );
+  }
+  
+  String _formatTime(DateTime time) {
+    final hour = time.hour;
+    final minute = time.minute;
+    final period = hour >= 12 ? 'PM' : 'AM';
+    final displayHour = hour > 12 ? hour - 12 : hour == 0 ? 12 : hour;
+    return '$displayHour:${minute.toString().padLeft(2, '0')} $period';
   }
 }

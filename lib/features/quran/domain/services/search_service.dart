@@ -83,15 +83,25 @@ class QuranSearchService {
         double score = 0.0;
         List<String> matchedFields = [];
 
-        // Search in English name
-        if (chapter.nameSimple.toLowerCase().contains(queryLower)) {
-          score += chapter.nameSimple.toLowerCase() == queryLower ? 100 : 80;
+        // Search in English name (exact match)
+        if (chapter.nameSimple.toLowerCase() == queryLower) {
+          score += 100;
+          matchedFields.add('English name (exact)');
+        }
+        // Search in English name (contains)
+        else if (chapter.nameSimple.toLowerCase().contains(queryLower)) {
+          score += 80;
           matchedFields.add('English name');
         }
 
-        // Search in Arabic name
-        if (chapter.nameArabic.contains(queryArabic)) {
-          score += chapter.nameArabic == queryArabic ? 100 : 80;
+        // Search in Arabic name (exact match)
+        if (chapter.nameArabic == queryArabic) {
+          score += 100;
+          matchedFields.add('Arabic name (exact)');
+        }
+        // Search in Arabic name (contains)
+        else if (chapter.nameArabic.contains(queryArabic)) {
+          score += 80;
           matchedFields.add('Arabic name');
         }
 
@@ -101,9 +111,24 @@ class QuranSearchService {
           matchedFields.add('Chapter number');
         }
 
-        // Partial matches
+        // Enhanced partial matches
         if (chapter.nameSimple.toLowerCase().startsWith(queryLower)) {
           score += 60;
+          if (!matchedFields.contains('English name') && !matchedFields.contains('English name (exact)')) {
+            matchedFields.add('English name (starts with)');
+          }
+        }
+
+        // Word-based partial matching for better search results
+        final nameWords = chapter.nameSimple.toLowerCase().split(RegExp(r'[-\s]+'));
+        for (final word in nameWords) {
+          if (word.contains(queryLower) && word != chapter.nameSimple.toLowerCase()) {
+            score += 40;
+            if (!matchedFields.any((field) => field.contains('English name'))) {
+              matchedFields.add('English name (word match)');
+            }
+            break;
+          }
         }
 
         if (score > 0) {
@@ -533,37 +558,45 @@ enum SuggestionType {
   reference,
 }
 
-class SearchResult {
+/// Base class for all search results
+abstract class BaseSearchResult {
+  const BaseSearchResult({
+    required this.relevanceScore,
+  });
+
+  final double relevanceScore;
+}
+
+class SearchResult extends BaseSearchResult {
   const SearchResult({
     required this.verse,
     required this.matchedText,
-    required this.relevanceScore,
+    required super.relevanceScore,
     this.highlightRanges = const [],
   });
 
   final VerseDto verse;
   final String matchedText;
-  final double relevanceScore;
   final List<TextRange> highlightRanges;
 }
 
-class ChapterSearchResult {
+class ChapterSearchResult extends BaseSearchResult {
   const ChapterSearchResult({
     required this.chapter,
     required this.matchedFields,
-    required this.relevanceScore,
+    required super.relevanceScore,
   });
 
   final ChapterDto chapter;
   final List<String> matchedFields;
-  final double relevanceScore;
 }
 
-class VerseReferenceResult {
+class VerseReferenceResult extends BaseSearchResult {
   const VerseReferenceResult({
     required this.verse,
     required this.reference,
     required this.matchType,
+    super.relevanceScore = 1.0,
   });
 
   final VerseDto verse;

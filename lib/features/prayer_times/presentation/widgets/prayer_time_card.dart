@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/app_localizations.dart';
 // import '../screens/prayer_times_screen.dart';
 
 /// Beautiful Prayer Time Card with Islamic Design
@@ -200,7 +201,7 @@ class _PrayerTimeCardState extends State<PrayerTimeCard>
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              'Next | পরবর্তী: $timeUntilPrayer',
+              '${AppLocalizations.of(context)!.prayerTimeNext}: $timeUntilPrayer',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
@@ -242,7 +243,7 @@ class _PrayerTimeCardState extends State<PrayerTimeCard>
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'Adjusted',
+              AppLocalizations.of(context)!.prayerTimeAdjusted,
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w500,

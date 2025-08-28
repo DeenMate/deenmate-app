@@ -12,7 +12,7 @@ class MoreScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Scaffold(
       appBar: ThemedAppBar(
         titleText: 'More Features | আরও ফিচার',
@@ -27,15 +27,19 @@ class MoreScreen extends ConsumerWidget {
         children: [
           // Islamic header
           _buildIslamicHeader(context),
-          
-          // Features grid
+
+          // Features grid - make it scrollable to prevent overflow
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: GridView.count(
+              child: GridView.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio:
+                    0.85, // Adjust aspect ratio to prevent overflow
+                shrinkWrap: true, // Allow grid to shrink
+                physics: const BouncingScrollPhysics(), // Enable scrolling
                 children: [
                   // SETTINGS SECTION
                   _buildFeatureCard(
@@ -47,7 +51,7 @@ class MoreScreen extends ConsumerWidget {
                     FeatureColors.getColor('qibla', context),
                     '/settings',
                   ),
-                  
+
                   // QURAN ADVANCED FEATURES
                   _buildFeatureCard(
                     context,
@@ -76,7 +80,7 @@ class MoreScreen extends ConsumerWidget {
                     FeatureColors.getColor('dua', context),
                     '/quran/audio-downloads',
                   ),
-                  
+
                   // ISLAMIC TOOLS
                   _buildFeatureCard(
                     context,
@@ -96,7 +100,7 @@ class MoreScreen extends ConsumerWidget {
                     FeatureColors.getColor('dua', context),
                     '/shariah-clarification',
                   ),
-                  
+
                   // USER FEATURES
                   _buildFeatureCard(
                     context,
@@ -116,7 +120,7 @@ class MoreScreen extends ConsumerWidget {
                     FeatureColors.getColor('prayer', context),
                     '/history',
                   ),
-                  
+
                   // FUTURE FEATURES
                   _buildFeatureCard(
                     context,
@@ -149,7 +153,6 @@ class MoreScreen extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
         ],
       ),
     );
@@ -159,15 +162,15 @@ class MoreScreen extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     final gradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: isDark 
+      colors: isDark
           ? [colorScheme.surface, colorScheme.primary.withOpacity(0.6)]
           : [colorScheme.primary, colorScheme.primaryContainer],
     );
-    
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -216,7 +219,7 @@ class MoreScreen extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    
+
     return ThemedCard(
       onTap: () => context.go(route),
       gradient: LinearGradient(
@@ -227,49 +230,65 @@ class MoreScreen extends ConsumerWidget {
           colorScheme.surface,
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: color.withOpacity(isDark ? 0.3 : 0.2),
-              borderRadius: BorderRadius.circular(16),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: color.withOpacity(isDark ? 0.3 : 0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                icon,
+                size: 28,
+                color: color,
+              ),
             ),
-            child: Icon(
-              icon,
-              size: 32,
-              color: color,
+            const SizedBox(height: 8),
+            Flexible(
+              child: Text(
+                title,
+                style: textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            title,
-            style: textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: color,
+            const SizedBox(height: 2),
+            Flexible(
+              child: Text(
+                bengaliTitle,
+                style: textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'NotoSansBengali',
+                  color: colorScheme.onSurface.withOpacity(0.7),
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            bengaliTitle,
-            style: textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w500,
-              fontFamily: 'NotoSansBengali',
-              color: colorScheme.onSurface.withOpacity(0.7),
+            const SizedBox(height: 4),
+            Flexible(
+              child: Text(
+                description,
+                style: textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.6),
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 6),
-          Text(
-            description,
-            style: textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.6),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

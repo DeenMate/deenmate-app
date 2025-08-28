@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import '../constants/preference_keys.dart';
 
 class PrayerSettingsState {
   static PrayerSettingsState? _instance;
@@ -16,8 +17,8 @@ class PrayerSettingsState {
   Future<void> loadSettings() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final savedMethod = prefs.getString('calculation_method');
-      final savedMadhhab = prefs.getString('madhhab');
+      final savedMethod = prefs.getString(PreferenceKeys.calculationMethod);
+      final savedMadhhab = prefs.getString(PreferenceKeys.madhhab);
       if (savedMethod != null) {
         _calculationMethod = savedMethod;
         print('PrayerSettingsState: Loaded method: $_calculationMethod');
@@ -34,7 +35,7 @@ class PrayerSettingsState {
   Future<void> setCalculationMethod(String method) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('calculation_method', method);
+      await prefs.setString(PreferenceKeys.calculationMethod, method);
       _calculationMethod = method;
       print('PrayerSettingsState: Saved method: $_calculationMethod');
     } catch (e) {
@@ -45,7 +46,7 @@ class PrayerSettingsState {
   Future<void> setMadhhab(String madhhab) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('madhhab', madhhab);
+      await prefs.setString(PreferenceKeys.madhhab, madhhab);
       _madhhab = madhhab;
       print('PrayerSettingsState: Saved madhhab: $_madhhab');
     } catch (e) {
@@ -56,9 +57,9 @@ class PrayerSettingsState {
   Future<void> reset() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('calculation_method');
+      await prefs.remove(PreferenceKeys.calculationMethod);
       await prefs.remove('onboarding_completed');
-      await prefs.remove('madhhab');
+      await prefs.remove(PreferenceKeys.madhhab);
       _calculationMethod = 'MWL';
       _madhhab = 'shafi';
       print('PrayerSettingsState: Reset to default: $_calculationMethod');

@@ -1,4 +1,5 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.completion.lazyResolveTextEdit.enabled": false
+    "java.completion.lazyResolveTextEdit.enabled": false,
+    "chat.agent.maxRequests": 100
 }

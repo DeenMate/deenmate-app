@@ -369,8 +369,20 @@ class _OfflineManagementScreenState extends ConsumerState<OfflineManagementScree
           ),
         ),
         const SizedBox(height: 12),
-        // Translation list will be populated from available translations
-        _buildPlaceholderCard('Translation management coming soon...'),
+        // Translation download options
+        _buildActionCard(
+          icon: Icons.download,
+          title: 'Download Popular Translations',
+          subtitle: 'English, Arabic, Urdu translations',
+          onTap: _downloadPopularTranslations,
+        ),
+        const SizedBox(height: 12),
+        _buildActionCard(
+          icon: Icons.language,
+          title: 'Choose Specific Translation',
+          subtitle: 'Select from 100+ available translations',
+          onTap: _showTranslationPicker,
+        ),
       ],
     );
   }
@@ -635,5 +647,155 @@ class _OfflineManagementScreenState extends ConsumerState<OfflineManagementScree
         );
       }
     }
+  }
+
+  Future<void> _downloadPopularTranslations() async {
+    if (_isDownloading) return;
+
+    setState(() {
+      _isDownloading = true;
+      _downloadProgress = 0.0;
+      _downloadStatus = 'Downloading popular translations...';
+    });
+
+    try {
+      final service = ref.read(offlineContentServiceProvider);
+      
+      // Popular translation IDs (English, Arabic, Urdu)
+      final popularTranslations = [131, 20, 97]; // Saheeh International, Tafsir Al-Jalalayn, Urdu translation
+      
+      for (int i = 0; i < popularTranslations.length; i++) {
+        final translationId = popularTranslations[i];
+        final overallProgress = i / popularTranslations.length;
+        
+        await service.downloadTranslation(
+          translationId,
+          onProgress: (progress, status) {
+            if (mounted) {
+              setState(() {
+                _downloadProgress = overallProgress + (progress / popularTranslations.length);
+                _downloadStatus = status;
+              });
+            }
+          },
+        );
+      }
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Popular translations downloaded successfully!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        
+        // Refresh providers
+        ref.invalidate(offlineContentStatusProvider);
+        ref.invalidate(offlineStorageStatsProvider);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Download failed: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isDownloading = false;
+          _downloadProgress = 0.0;
+          _downloadStatus = '';
+        });
+      }
+    }
+  }
+
+  Future<void> _showTranslationPicker() async {
+    // TODO: Implement translation picker dialog
+    // For now, show a simple dialog
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Translation Selection'),
+        content: const Text(
+          'Advanced translation selection will be available soon. '
+          'For now, use "Download Popular Translations" to get the most common ones.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: ThemeHelper.getSurfaceColor(context),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: ThemeHelper.getDividerColor(context)),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(
+                icon,
+                color: ThemeHelper.getPrimaryColor(context),
+                size: 24,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: ThemeHelper.getTextPrimaryColor(context),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: ThemeHelper.getTextSecondaryColor(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: ThemeHelper.getTextSecondaryColor(context),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

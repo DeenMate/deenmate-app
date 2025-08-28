@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
 
@@ -80,11 +81,11 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
                   // Title
                   Text(
-                    'What should we call you?',
+                    AppLocalizations.of(context)!.onboardingUsernameTitle,
                     style: GoogleFonts.notoSans(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF2E2E2E),
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -93,10 +94,10 @@ class _UsernameScreenState extends State<UsernameScreen> {
 
                   // Subtitle
                   Text(
-                    'Enter your name to personalize your experience',
+                    AppLocalizations.of(context)!.onboardingUsernameSubtitle,
                     style: GoogleFonts.notoSans(
                       fontSize: 14,
-                      color: const Color(0xFF666666),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -119,7 +120,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                     child: TextField(
                       controller: _usernameController,
                       decoration: InputDecoration(
-                        hintText: 'Enter your name',
+                        hintText: AppLocalizations.of(context)!.onboardingUsernameHint,
                         hintStyle: GoogleFonts.notoSans(
                           color: Colors.grey[400],
                         ),
@@ -135,12 +136,12 @@ class _UsernameScreenState extends State<UsernameScreen> {
                         ),
                         prefixIcon: Icon(
                           Icons.person_outline,
-                          color: Colors.grey[400],
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                       style: GoogleFonts.notoSans(
                         fontSize: 16,
-                        color: const Color(0xFF2E2E2E),
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                       textCapitalization: TextCapitalization.words,
                     ),
@@ -154,7 +155,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                       'Name must be at least 2 characters long',
                       style: GoogleFonts.notoSans(
                         fontSize: 14,
-                        color: Colors.red[600],
+                        color: Theme.of(context).colorScheme.error,
                       ),
                     ),
 
@@ -170,7 +171,8 @@ class _UsernameScreenState extends State<UsernameScreen> {
                           'Tap to continue',
                           style: GoogleFonts.notoSans(
                             fontSize: 14,
-                            color: const Color(0xFF8B4513).withOpacity(0.7),
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],
@@ -207,8 +209,17 @@ class _UsernameScreenState extends State<UsernameScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: _isValid
-                ? const [Color(0xFF2E7D32), Color(0xFF4CAF50)]
-                : [Colors.grey[400]!, Colors.grey[500]!],
+                ? [
+                    Theme.of(context).colorScheme.primary,
+                    Theme.of(context).colorScheme.primary.withOpacity(0.85),
+                  ]
+                : [
+                    Theme.of(context).colorScheme.onSurfaceVariant,
+                    Theme.of(context)
+                        .colorScheme
+                        .onSurfaceVariant
+                        .withOpacity(0.8),
+                  ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -249,14 +260,14 @@ class _UsernameScreenState extends State<UsernameScreen> {
           end: Alignment.bottomCenter,
           colors: [
             Colors.transparent,
-            const Color(0xFF4CAF50).withOpacity(0.1),
+            Theme.of(context).colorScheme.primary.withOpacity(0.1),
           ],
         ),
       ),
       child: Center(
         child: IslamicDecorativeElements.buildGeometricPattern(
           size: 40,
-          color: const Color(0xFF4CAF50).withOpacity(0.3),
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
         ),
       ),
     );

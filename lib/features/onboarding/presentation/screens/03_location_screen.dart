@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../prayer_times/domain/entities/location.dart';
 import '../../../prayer_times/presentation/providers/prayer_times_providers.dart';
+import '../../../../l10n/app_localizations.dart';
 
 /// Location selection screen for DeenMate onboarding with modern Material 3 design
 class LocationScreen extends ConsumerStatefulWidget {
@@ -35,7 +36,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
           onPressed: widget.onPrevious,
         ),
         title: Text(
-          'Location Setup',
+          AppLocalizations.of(context)!.onboardingLocationTitle,
           style: theme.textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w600,
             color: theme.colorScheme.onSurface,
@@ -86,7 +87,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
 
                     // Title
                     Text(
-                      'Set Your Location',
+                      AppLocalizations.of(context)!.onboardingLocationTitle,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: theme.colorScheme.onSurface,
@@ -98,7 +99,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
 
                     // Description
                     Text(
-                      'Choose your location for accurate prayer time calculations',
+                      AppLocalizations.of(context)!.onboardingLocationSubtitle,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         height: 1.5,
@@ -113,9 +114,8 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                       child: ListView(
                         children: [
                           _buildLocationOption(
-                            title: 'Use GPS Location',
-                            subtitle:
-                                'Automatically detect your current location',
+                            title: AppLocalizations.of(context)!.onboardingLocationGpsTitle,
+                            subtitle: AppLocalizations.of(context)!.onboardingLocationGpsSubtitle,
                             icon: Icons.gps_fixed,
                             isSelected: _locationPermissionGranted,
                             onTap: _requestLocationPermission,
@@ -123,8 +123,8 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                           ),
                           const SizedBox(height: 16),
                           _buildLocationOption(
-                            title: 'Manual Selection',
-                            subtitle: 'Choose your city manually',
+                            title: AppLocalizations.of(context)!.onboardingLocationManualTitle,
+                            subtitle: AppLocalizations.of(context)!.onboardingLocationManualSubtitle,
                             icon: Icons.location_city,
                             isSelected: !_locationPermissionGranted,
                             onTap: _showManualLocationDialog,
@@ -332,7 +332,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
         timezone: 'Auto',
         elevation: position.altitude,
       );
-      
+
       final repository = ref.read(prayerTimesRepositoryProvider);
       await repository.savePreferredLocation(gpsLocation);
 
@@ -345,7 +345,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Location set successfully!'),
+            content: Text(AppLocalizations.of(context)!.locationSetSuccess),
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         );
@@ -358,7 +358,8 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to get location: $e'),
+            content: Text(
+                AppLocalizations.of(context)!.locationGetFailed(e.toString())),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
@@ -370,16 +371,16 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
     showDialog(
       context: context,
       builder: (context) => _ManualLocationDialog(
-              onLocationSelected: (city, country) async {
-        setState(() {
-          _selectedCity = city;
-          _selectedCountry = country;
-          _locationPermissionGranted = false;
-        });
-        
-        // Save the manual location to prayer times system
-        await _saveManualLocation(city, country);
-      },
+        onLocationSelected: (city, country) async {
+          setState(() {
+            _selectedCity = city;
+            _selectedCountry = country;
+            _locationPermissionGranted = false;
+          });
+
+          // Save the manual location to prayer times system
+          await _saveManualLocation(city, country);
+        },
       ),
     );
   }
@@ -388,15 +389,16 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
     try {
       // Create location object with estimated coordinates
       final location = _getLocationForCity(city, country);
-      
+
       // Save to prayer times repository
       final repository = ref.read(prayerTimesRepositoryProvider);
       await repository.savePreferredLocation(location);
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Location "$city, $country" saved successfully!'),
+            content: Text(AppLocalizations.of(context)!
+                .locationSaveSuccess(city, country)),
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         );
@@ -405,7 +407,8 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to save location: $e'),
+            content: Text(
+                AppLocalizations.of(context)!.locationSaveFailed(e.toString())),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
@@ -440,20 +443,21 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
       // Add more locations as needed
     };
 
-    return locationMap['$city,$country'] ?? Location(
-      latitude: 23.8103, // Default to Dhaka
-      longitude: 90.4125,
-      city: city,
-      country: country,
-      timezone: 'Asia/Dhaka',
-    );
+    return locationMap['$city,$country'] ??
+        Location(
+          latitude: 23.8103, // Default to Dhaka
+          longitude: 90.4125,
+          city: city,
+          country: country,
+          timezone: 'Asia/Dhaka',
+        );
   }
 
   void _showPermissionDeniedDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Location Permission Required'),
+        title: Text(AppLocalizations.of(context)!.locationPermissionRequired),
         content: Text(
           'To provide accurate prayer times, DeenMate needs access to your location. '
           'Please enable location permissions in your device settings.',
@@ -461,14 +465,14 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.buttonCancel),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
               _requestLocationPermission();
             },
-            child: Text('Try Again'),
+            child: Text(AppLocalizations.of(context)!.buttonTryAgain),
           ),
         ],
       ),

@@ -17,6 +17,7 @@ class JuzReaderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final versesAsync = ref.watch(versesByJuzProvider(juzNumber));
+    final translationResourcesAsync = ref.watch(translationResourcesProvider);
 
     return Scaffold(
       backgroundColor: ThemeHelper.getBackgroundColor(context),
@@ -61,60 +62,78 @@ class JuzReaderScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: versesAsync.when(
-        data: (verses) {
-          if (verses.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.bookmark_outline,
-                    size: 48,
-                    color: Colors.grey[400],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'No verses found for Juz $juzNumber',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
+      body: translationResourcesAsync.when(
+        data: (translationResources) => versesAsync.when(
+          data: (verses) {
+            if (verses.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.bookmark_outline,
+                      size: 48,
+                      color: Colors.grey[400],
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'This feature is under development',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[500],
+                    const SizedBox(height: 16),
+                    Text(
+                      'No verses found for Juz $juzNumber',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[600],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: verses.length,
-            itemBuilder: (context, index) {
-              final verse = verses[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: VerseCardWidget(
-                  verse: verse,
-                  translationResources: [], // TODO: Add translations
-                  onBookmark: () {
-                    // Handle bookmark tap
-                  },
-                  onShare: () {
-                    // Handle share tap
-                  },
+                    const SizedBox(height: 16),
+                    Text(
+                      'This feature is under development',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
                 ),
               );
-            },
-          );
-        },
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: verses.length,
+              itemBuilder: (context, index) {
+                final verse = verses[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: VerseCardWidget(
+                    verse: verse,
+                    translationResources: translationResources, // Now loads properly
+                    onBookmark: () {
+                      // Handle bookmark tap
+                    },
+                    onShare: () {
+                      // Handle share tap
+                    },
+                  ),
+                );
+              },
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, _) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                const SizedBox(height: 16),
+                Text('Error loading Juz $juzNumber: $error'),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => ref.invalidate(versesByJuzProvider(juzNumber)),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          ),
+        ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(
           child: Column(
@@ -122,10 +141,10 @@ class JuzReaderScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error loading Juz $juzNumber: $error'),
+              Text('Error loading translations: $error'),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () => ref.invalidate(versesByJuzProvider(juzNumber)),
+                onPressed: () => ref.invalidate(translationResourcesProvider),
                 child: const Text('Retry'),
               ),
             ],

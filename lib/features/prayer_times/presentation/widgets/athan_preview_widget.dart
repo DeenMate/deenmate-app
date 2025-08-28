@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/audio_providers.dart';
 
 /// Widget for previewing Athan audio
@@ -40,9 +41,9 @@ class AthanPreviewWidget extends ConsumerWidget {
                 size: 20,
               ),
               const SizedBox(width: 8),
-              const Text(
-                'Preview Athan',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.athanPreviewTitle,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -50,9 +51,9 @@ class AthanPreviewWidget extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Listen to a sample of the selected Muadhin voice:',
-            style: TextStyle(fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.athanPreviewDescription,
+            style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 16),
           
@@ -61,18 +62,18 @@ class AthanPreviewWidget extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (athanAudioState.isPlaying) ...[
-                _buildStopButton(ref),
+                _buildStopButton(context, ref),
                 const SizedBox(width: 16),
                 const CircularProgressIndicator(),
                 const SizedBox(width: 16),
-                const Text(
-                  'Playing...',
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                Text(
+                  AppLocalizations.of(context)!.athanPreviewPlaying,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ] else ...[
-                _buildPlayButton(ref),
+                _buildPlayButton(context, ref),
                 const SizedBox(width: 16),
-                Icon(
+                const Icon(
                   Icons.volume_up,
                   color: Colors.blue,
                   size: 20,
@@ -123,19 +124,19 @@ class AthanPreviewWidget extends ConsumerWidget {
           
           // Information about the voice
           const SizedBox(height: 16),
-          _buildVoiceInfo(),
+          _buildVoiceInfo(context),
         ],
       ),
     );
   }
 
-  Widget _buildPlayButton(WidgetRef ref) {
+  Widget _buildPlayButton(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
       onPressed: () {
         ref.read(athanAudioProvider.notifier).previewAthan(muadhinVoice);
       },
       icon: const Icon(Icons.play_arrow),
-      label: const Text('Preview'),
+      label: Text(AppLocalizations.of(context)!.athanPreviewPlay),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
@@ -144,13 +145,13 @@ class AthanPreviewWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildStopButton(WidgetRef ref) {
+  Widget _buildStopButton(BuildContext context, WidgetRef ref) {
     return ElevatedButton.icon(
       onPressed: () {
         ref.read(athanAudioProvider.notifier).stopAthan();
       },
       icon: const Icon(Icons.stop),
-      label: const Text('Stop'),
+      label: Text(AppLocalizations.of(context)!.athanPreviewStop),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red[600],
         foregroundColor: Colors.white,
@@ -159,9 +160,9 @@ class AthanPreviewWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildVoiceInfo() {
+  Widget _buildVoiceInfo(BuildContext context) {
     // Get voice information based on selected voice
-    final voiceInfo = _getVoiceInfo(muadhinVoice);
+    final voiceInfo = _getVoiceInfo(context, muadhinVoice);
     
     return Container(
       padding: const EdgeInsets.all(12),
@@ -171,7 +172,7 @@ class AthanPreviewWidget extends ConsumerWidget {
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.info_outline,
             color: Colors.blue,
             size: 16,
@@ -204,52 +205,54 @@ class AthanPreviewWidget extends ConsumerWidget {
     );
   }
 
-  Map<String, String> _getVoiceInfo(String voiceId) {
+  Map<String, String> _getVoiceInfo(BuildContext context, String voiceId) {
+    final l10n = AppLocalizations.of(context)!;
+    
     switch (voiceId) {
       case 'abdulbasit':
         return {
-          'name': 'Abdul Basit Abdul Samad',
-          'description': 'Renowned Quranic reciter from Egypt with a melodious voice',
+          'name': l10n.reciterAbdulBasit,
+          'description': l10n.reciterAbdulBasitDesc,
         };
       case 'mishary':
         return {
-          'name': 'Mishary Rashid Alafasy',
-          'description': 'Famous Imam and reciter from Kuwait',
+          'name': l10n.reciterMishary,
+          'description': l10n.reciterMisharyDesc,
         };
       case 'sudais':
         return {
-          'name': 'Sheikh Abdul Rahman Al-Sudais',
-          'description': 'Imam of Masjid al-Haram in Mecca',
+          'name': l10n.reciterSudais,
+          'description': l10n.reciterSudaisDesc,
         };
       case 'shuraim':
         return {
-          'name': 'Sheikh Saud Al-Shuraim',
-          'description': 'Imam of Masjid al-Haram in Mecca',
+          'name': l10n.reciterShuraim,
+          'description': l10n.reciterShuraimDesc,
         };
       case 'maher':
         return {
-          'name': 'Maher Al-Muaiqly',
-          'description': 'Imam of Masjid al-Haram with beautiful recitation',
+          'name': l10n.reciterMaher,
+          'description': l10n.reciterMaherDesc,
         };
       case 'yasser':
         return {
-          'name': 'Yasser Ad-Dussary',
-          'description': 'Beautiful voice from Saudi Arabia',
+          'name': l10n.reciterYasser,
+          'description': l10n.reciterYasserDesc,
         };
       case 'ajmi':
         return {
-          'name': 'Ahmad Al-Ajmi',
-          'description': 'Kuwaiti reciter with distinctive style',
+          'name': l10n.reciterAjmi,
+          'description': l10n.reciterAjmiDesc,
         };
       case 'ghamdi':
         return {
-          'name': 'Saad Al-Ghamdi',
-          'description': 'Saudi reciter known for emotional recitation',
+          'name': l10n.reciterGhamdi,
+          'description': l10n.reciterGhamdiDesc,
         };
       default:
         return {
-          'name': 'Default Athan',
-          'description': 'Standard Islamic call to prayer',
+          'name': l10n.reciterDefault,
+          'description': l10n.reciterDefaultDesc,
         };
     }
   }

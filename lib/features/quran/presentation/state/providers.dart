@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import '../../../../core/net/dio_client.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
-import '../../domain/services/audio_service.dart';
+import '../../domain/services/audio_service.dart' as audio_service;
 import '../../domain/services/offline_content_service.dart';
 import '../../domain/services/bookmarks_service.dart';
 import '../../domain/services/search_service.dart';
@@ -39,21 +39,22 @@ final quranRepoProvider = Provider((ref) => QuranRepository(
       Hive,
     ));
 
-
-
 // Audio service providers
-final quranAudioServiceProvider = Provider<QuranAudioService>((ref) {
+final quranAudioServiceProvider = Provider<audio_service.QuranAudioService>((ref) {
   final dio = ref.watch(dioQfProvider);
-  final service = QuranAudioService(dio);
+  final versesApi = ref.watch(versesApiProvider);
   
+  // Note: SharedPreferences dependency will be handled inside the service via static getter
+  final service = audio_service.QuranAudioService(dio, versesApi);
+
   // Initialize the service
   service.initialize();
-  
+
   return service;
 });
 
 // Override the providers from audio_service.dart
-final audioStateProvider = StreamProvider<AudioState>((ref) {
+final audioStateProvider = StreamProvider<audio_service.AudioState>((ref) {
   final service = ref.watch(quranAudioServiceProvider);
   return service.stateStream;
 });
@@ -68,14 +69,22 @@ final audioDurationProvider = StreamProvider<Duration>((ref) {
   return service.durationStream;
 });
 
-final audioDownloadProgressProvider = StreamProvider<AudioDownloadProgress>((ref) {
+final audioDownloadProgressProvider =
+    StreamProvider<audio_service.AudioDownloadProgress>((ref) {
   final service = ref.watch(quranAudioServiceProvider);
   return service.downloadStream;
 });
 
-final audioStorageStatsProvider = FutureProvider<AudioStorageStats>((ref) async {
+final audioStorageStatsProvider =
+    FutureProvider<audio_service.AudioStorageStats>((ref) async {
   final service = ref.watch(quranAudioServiceProvider);
   return service.getStorageStats();
+});
+
+// Search service provider
+final quranSearchServiceProvider = Provider<QuranSearchService>((ref) {
+  final quranRepo = ref.watch(quranRepoProvider);
+  return QuranSearchService(quranRepo);
 });
 
 // Offline content service provider (configured properly)
@@ -84,12 +93,14 @@ final offlineContentServiceProvider = Provider<OfflineContentService>((ref) {
   return OfflineContentService(quranRepo);
 });
 
-final offlineContentStatusProvider = FutureProvider<OfflineContentStatus>((ref) async {
+final offlineContentStatusProvider =
+    FutureProvider<OfflineContentStatus>((ref) async {
   final service = ref.watch(offlineContentServiceProvider);
   return service.getOfflineStatus();
 });
 
-final offlineStorageStatsProvider = FutureProvider<OfflineStorageStats>((ref) async {
+final offlineStorageStatsProvider =
+    FutureProvider<OfflineStorageStats>((ref) async {
   final service = ref.watch(offlineContentServiceProvider);
   return service.getStorageStats();
 });
@@ -98,19 +109,20 @@ final offlineStorageStatsProvider = FutureProvider<OfflineStorageStats>((ref) as
 final quranBackgroundDownloadProvider = FutureProvider<void>((ref) async {
   final service = ref.watch(offlineContentServiceProvider);
   final prefs = await SharedPreferences.getInstance();
-  
+
   // Check if initial download has been completed
-  final hasDownloadedBasicQuran = prefs.getBool('quran_basic_downloaded') ?? false;
-  
+  final hasDownloadedBasicQuran =
+      prefs.getBool('quran_basic_downloaded') ?? false;
+
   if (!hasDownloadedBasicQuran) {
     try {
       // Download essential Quran content in background (without audio)
       // This includes Arabic text + one translation for most important surahs
       await service.downloadEssentialQuranText();
-      
+
       // Mark as completed
       await prefs.setBool('quran_basic_downloaded', true);
-      
+
       if (kDebugMode) {
         print('Background Quran text download completed successfully');
       }
@@ -203,7 +215,7 @@ final lastReadUpdaterProvider =
 final bookmarksProvider = StreamProvider<Set<String>>((ref) async* {
   final service = ref.watch(bookmarksServiceProvider);
   final stream = service.bookmarksStream;
-  
+
   await for (final bookmarks in stream) {
     final verseKeys = bookmarks.map((b) => b.verseKey).toSet();
     yield verseKeys;
@@ -379,7 +391,8 @@ final tafsirResourcesProvider =
   return repo.getTafsirResources();
 });
 
-final tafsirByVerseProvider = FutureProvider.family<TafsirDto, Map<String, dynamic>>((ref, params) async {
+final tafsirByVerseProvider =
+    FutureProvider.family<TafsirDto, Map<String, dynamic>>((ref, params) async {
   final repo = ref.read(quranRepoProvider);
   return repo.getTafsirByVerse(
     verseKey: params['verseKey'] as String,
@@ -394,7 +407,9 @@ final wordAnalysisResourcesProvider =
   return repo.getWordAnalysisResources();
 });
 
-final wordAnalysisByVerseProvider = FutureProvider.family<WordAnalysisDto, Map<String, dynamic>>((ref, params) async {
+final wordAnalysisByVerseProvider =
+    FutureProvider.family<WordAnalysisDto, Map<String, dynamic>>(
+        (ref, params) async {
   final repo = ref.read(quranRepoProvider);
   return repo.getWordAnalysisByVerse(
     verseKey: params['verseKey'] as String,
@@ -403,7 +418,9 @@ final wordAnalysisByVerseProvider = FutureProvider.family<WordAnalysisDto, Map<S
 });
 
 // -------------------- Audio Downloads --------------------
-final audioDownloadInfoProvider = FutureProvider.family<AudioDownloadDto, Map<String, dynamic>>((ref, params) async {
+final audioDownloadInfoProvider =
+    FutureProvider.family<AudioDownloadDto, Map<String, dynamic>>(
+        (ref, params) async {
   final repo = ref.read(quranRepoProvider);
   return repo.getAudioDownloadInfo(
     chapterId: params['chapterId'] as int,
@@ -411,27 +428,120 @@ final audioDownloadInfoProvider = FutureProvider.family<AudioDownloadDto, Map<St
   );
 });
 
-final audioDownloadProgressDtoProvider = StreamProvider.family<AudioDownloadProgressDto?, Map<String, dynamic>>((ref, params) async* {
+final audioDownloadProgressDtoProvider =
+    StreamProvider.family<AudioDownloadProgressDto?, Map<String, dynamic>>(
+        (ref, params) async* {
   // This will be updated by the download service
   yield null;
 });
 
-final audioDownloadManagerProvider = StateNotifierProvider<AudioDownloadManager, Map<String, AudioDownloadDto>>((ref) {
+final audioDownloadManagerProvider =
+    StateNotifierProvider<AudioDownloadManager, Map<String, DownloadProgress>>(
+        (ref) {
   return AudioDownloadManager(ref);
 });
 
-class AudioDownloadManager extends StateNotifier<Map<String, AudioDownloadDto>> {
+// Simple download progress tracking
+class DownloadProgress {
+  const DownloadProgress({
+    required this.chapterId,
+    required this.progress,
+    required this.isDownloading,
+    required this.isComplete,
+    this.error,
+    this.currentVerse,
+  });
+
+  final String chapterId;
+  final double progress;
+  final bool isDownloading;
+  final bool isComplete;
+  final String? error;
+  final String? currentVerse;
+}
+
+class AudioDownloadManager
+    extends StateNotifier<Map<String, DownloadProgress>> {
   AudioDownloadManager(this._ref) : super({});
   final Ref _ref;
 
   Future<void> downloadAudio(String chapterId) async {
-    // Implementation for audio download
-    // This is a placeholder - will be implemented when needed
+    final audioService = _ref.read(quranAudioServiceProvider);
+    final chaptersAsync = await _ref.read(surahListProvider.future);
+    final chapter = chaptersAsync.firstWhere((c) => c.id.toString() == chapterId);
+    
+    try {
+      // Update state to show download starting
+      state = {
+        ...state,
+        chapterId: DownloadProgress(
+          chapterId: chapterId,
+          progress: 0.0,
+          isDownloading: true,
+          isComplete: false,
+          error: null,
+        ),
+      };
+
+      // Get selected reciter ID
+      final prefs = await SharedPreferences.getInstance();
+      final reciterId = prefs.getInt('quran_audio_selected_reciter_id') ?? 7;
+
+      // Start download with progress tracking
+      await audioService.downloadChapterAudio(
+        chapter.id,
+        reciterId,
+        null, // Let service fetch verses
+        onProgress: (progress, currentVerse) {
+          state = {
+            ...state,
+            chapterId: DownloadProgress(
+              chapterId: chapterId,
+              progress: progress,
+              isDownloading: true,
+              isComplete: progress >= 1.0,
+              error: null,
+              currentVerse: currentVerse,
+            ),
+          };
+        },
+      );
+
+      // Mark as complete
+      state = {
+        ...state,
+        chapterId: DownloadProgress(
+          chapterId: chapterId,
+          progress: 1.0,
+          isDownloading: false,
+          isComplete: true,
+          error: null,
+        ),
+      };
+    } catch (e) {
+      // Handle error
+      state = {
+        ...state,
+        chapterId: DownloadProgress(
+          chapterId: chapterId,
+          progress: 0.0,
+          isDownloading: false,
+          isComplete: false,
+          error: e.toString(),
+        ),
+      };
+      rethrow;
+    }
   }
 
   Future<void> cancelDownload(String chapterId) async {
-    // Implementation for canceling download
-    // This is a placeholder - will be implemented when needed
+    // Remove from state (this will stop UI progress indication)
+    final newState = Map<String, DownloadProgress>.from(state);
+    newState.remove(chapterId);
+    state = newState;
+    
+    // TODO: Implement actual cancellation in audio service
+    // For now, just update the state to reflect cancellation
   }
 }
 
@@ -602,7 +712,9 @@ class DownloadManager {
 // -------------------- Quran Preferences --------------------
 class QuranPrefs {
   const QuranPrefs({
-    this.selectedTranslationIds = const [20], // Try the original working translation ID
+    this.selectedTranslationIds = const [
+      20
+    ], // Try the original working translation ID
     this.selectedTafsirIds = const [],
     this.selectedWordAnalysisIds = const [],
     this.recitationId = 7,
@@ -666,10 +778,9 @@ class QuranPrefs {
       };
 
   static QuranPrefs fromMap(Map<String, dynamic> map) => QuranPrefs(
-        selectedTranslationIds:
-            List<int>.from(map['selectedTranslationIds'] ?? [20]), // Original working ID
-        selectedTafsirIds:
-            List<int>.from(map['selectedTafsirIds'] ?? []),
+        selectedTranslationIds: List<int>.from(
+            map['selectedTranslationIds'] ?? [20]), // Original working ID
+        selectedTafsirIds: List<int>.from(map['selectedTafsirIds'] ?? []),
         selectedWordAnalysisIds:
             List<int>.from(map['selectedWordAnalysisIds'] ?? []),
         recitationId: (map['recitationId'] ?? 7) as int,
@@ -684,7 +795,8 @@ class QuranPrefs {
         arabicLineHeight: (map['arabicLineHeight'] ?? 1.9).toDouble(),
         translationLineHeight: (map['translationLineHeight'] ?? 1.6).toDouble(),
         tafsirLineHeight: (map['tafsirLineHeight'] ?? 1.5).toDouble(),
-        wordAnalysisLineHeight: (map['wordAnalysisLineHeight'] ?? 1.4).toDouble(),
+        wordAnalysisLineHeight:
+            (map['wordAnalysisLineHeight'] ?? 1.4).toDouble(),
         arabicFontFamily: map['arabicFontFamily'] as String?,
         repeatMode: (map['repeatMode'] ?? 'off') as String,
         autoAdvance: (map['autoAdvance'] ?? true) as bool,
@@ -740,19 +852,21 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     );
     state = newPrefs;
     await box.put('prefs', newPrefs.toMap());
-    print('DEBUG: Translation IDs updated to: ${newPrefs.selectedTranslationIds}');
+    print(
+        'DEBUG: Translation IDs updated to: ${newPrefs.selectedTranslationIds}');
   }
 
   Future<void> clearCacheAndReset() async {
     final box = await ref.read(_prefsBoxProvider.future);
     await box.clear(); // Clear all stored preferences
     state = const QuranPrefs(); // Reset to default with translation ID 20
-    
+
     // Also clear verses cache to force fresh fetch with translation ID 20
     try {
       final versesBox = await Hive.openBox(boxes.Boxes.verses);
       await versesBox.clear();
-      print('DEBUG: Cleared verses cache to force fresh fetch with translation ID 20');
+      print(
+          'DEBUG: Cleared verses cache to force fresh fetch with translation ID 20');
     } catch (e) {
       print('DEBUG: Error clearing verses cache: $e');
     }
@@ -803,6 +917,48 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     await box.put('prefs', newPrefs.toMap());
   }
 
+  Future<void> updateShowTafsir(bool v) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(showTafsir: v);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateShowWordAnalysis(bool v) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(showWordAnalysis: v);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateTafsirFontSize(double size) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(tafsirFontSize: size);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateWordAnalysisFontSize(double size) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(wordAnalysisFontSize: size);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateTafsirLineHeight(double h) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(tafsirLineHeight: h);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateWordAnalysisLineHeight(double h) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(wordAnalysisLineHeight: h);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
   Future<void> updateShowArabic(bool v) async {
     final box = await ref.read(_prefsBoxProvider.future);
     final newPrefs = stateCopy(showArabic: v);
@@ -838,15 +994,30 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     await box.put('prefs', newPrefs.toMap());
   }
 
+  Future<void> resetFontSettings() async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = const QuranPrefs(); // Reset to defaults
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
   QuranPrefs stateCopy({
     List<int>? selectedTranslationIds,
+    List<int>? selectedTafsirIds,
+    List<int>? selectedWordAnalysisIds,
     int? recitationId,
     bool? showArabic,
     bool? showTranslation,
+    bool? showTafsir,
+    bool? showWordAnalysis,
     double? arabicFontSize,
     double? translationFontSize,
+    double? tafsirFontSize,
+    double? wordAnalysisFontSize,
     double? arabicLineHeight,
     double? translationLineHeight,
+    double? tafsirLineHeight,
+    double? wordAnalysisLineHeight,
     String? arabicFontFamily,
     String? repeatMode,
     bool? autoAdvance,
@@ -854,14 +1025,23 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     return QuranPrefs(
       selectedTranslationIds:
           selectedTranslationIds ?? state.selectedTranslationIds,
+      selectedTafsirIds: selectedTafsirIds ?? state.selectedTafsirIds,
+      selectedWordAnalysisIds: selectedWordAnalysisIds ?? state.selectedWordAnalysisIds,
       recitationId: recitationId ?? state.recitationId,
       showArabic: showArabic ?? state.showArabic,
       showTranslation: showTranslation ?? state.showTranslation,
+      showTafsir: showTafsir ?? state.showTafsir,
+      showWordAnalysis: showWordAnalysis ?? state.showWordAnalysis,
       arabicFontSize: arabicFontSize ?? state.arabicFontSize,
       translationFontSize: translationFontSize ?? state.translationFontSize,
+      tafsirFontSize: tafsirFontSize ?? state.tafsirFontSize,
+      wordAnalysisFontSize: wordAnalysisFontSize ?? state.wordAnalysisFontSize,
       arabicLineHeight: arabicLineHeight ?? state.arabicLineHeight,
       translationLineHeight:
           translationLineHeight ?? state.translationLineHeight,
+      tafsirLineHeight: tafsirLineHeight ?? state.tafsirLineHeight,
+      wordAnalysisLineHeight:
+          wordAnalysisLineHeight ?? state.wordAnalysisLineHeight,
       arabicFontFamily: arabicFontFamily ?? state.arabicFontFamily,
       repeatMode: repeatMode ?? state.repeatMode,
       autoAdvance: autoAdvance ?? state.autoAdvance,
@@ -925,40 +1105,39 @@ final bookmarksServiceProvider = Provider<BookmarksService>((ref) {
   return BookmarksService();
 });
 
-final bookmarksListProvider = FutureProvider.autoDispose<List<Bookmark>>((ref) async {
+final bookmarksListProvider =
+    FutureProvider.autoDispose<List<Bookmark>>((ref) async {
   final service = ref.read(bookmarksServiceProvider);
   return service.getAllBookmarks();
 });
 
-final bookmarkCategoriesProvider = FutureProvider.autoDispose<List<BookmarkCategory>>((ref) async {
+final bookmarkCategoriesProvider =
+    FutureProvider.autoDispose<List<BookmarkCategory>>((ref) async {
   final service = ref.read(bookmarksServiceProvider);
   return service.getAllCategories();
 });
 
-// Reading Plans Service (placeholder until implementation)
-final readingPlansServiceProvider = Provider<dynamic>((ref) {
-  // TODO: Replace with actual ReadingPlansService implementation  
-  return PlaceholderReadingPlansService();
-});
+// Note: Reading Plans feature is not implemented yet in production
+// These providers are commented out to prevent access to unfinished features
+// 
+// final readingPlansServiceProvider = Provider<dynamic>((ref) {
+//   // TODO: Implement actual ReadingPlansService when feature is ready
+//   throw UnimplementedError('Reading Plans feature not implemented in production');
+// });
 
-class PlaceholderReadingPlansService {
-  Future<List<dynamic>> getActivePlans() async => [];
-  Future<List<dynamic>> getTemplates() async => [];
-}
+// final activeReadingPlansProvider =
+//     FutureProvider.autoDispose<List<dynamic>>((ref) async {
+//   throw UnimplementedError('Reading Plans feature not implemented in production');
+// });
 
-final activeReadingPlansProvider = FutureProvider.autoDispose<List<dynamic>>((ref) async {
-  final service = ref.read(readingPlansServiceProvider);
-  return service.getActivePlans();
-});
-
-final readingPlanTemplatesProvider = FutureProvider.autoDispose<List<dynamic>>((ref) async {
-  final service = ref.read(readingPlansServiceProvider);
-  return service.getTemplates();
-});
+// final readingPlanTemplatesProvider =
+//     FutureProvider.autoDispose<List<dynamic>>((ref) async {
+//   throw UnimplementedError('Reading Plans feature not implemented in production');
+// });
 
 // -------------------- Navigation Providers (Juz/Page/Hizb/Ruku) --------------------
 
-/// Provider for Juz list 
+/// Provider for Juz list
 final juzListProvider = FutureProvider<List<JuzDto>>((ref) async {
   final api = ref.watch(resourcesApiProvider);
   try {
@@ -1003,7 +1182,8 @@ final rukuListProvider = FutureProvider<List<RukuDto>>((ref) async {
 });
 
 /// Provider for verses in a specific Juz
-final versesByJuzProvider = FutureProvider.family<List<VerseDto>, int>((ref, juzNumber) async {
+final versesByJuzProvider =
+    FutureProvider.family<List<VerseDto>, int>((ref, juzNumber) async {
   final api = ref.watch(resourcesApiProvider);
   try {
     return await api.getVersesByJuz(juzNumber);
@@ -1014,7 +1194,8 @@ final versesByJuzProvider = FutureProvider.family<List<VerseDto>, int>((ref, juz
 });
 
 /// Provider for verses in a specific Page
-final versesByPageProvider = FutureProvider.family<List<VerseDto>, int>((ref, pageNumber) async {
+final versesByPageProvider =
+    FutureProvider.family<List<VerseDto>, int>((ref, pageNumber) async {
   final api = ref.watch(resourcesApiProvider);
   try {
     return await api.getVersesByPage(pageNumber);
@@ -1025,7 +1206,8 @@ final versesByPageProvider = FutureProvider.family<List<VerseDto>, int>((ref, pa
 });
 
 /// Provider for verses in a specific Hizb
-final versesByHizbProvider = FutureProvider.family<List<VerseDto>, int>((ref, hizbNumber) async {
+final versesByHizbProvider =
+    FutureProvider.family<List<VerseDto>, int>((ref, hizbNumber) async {
   final api = ref.watch(resourcesApiProvider);
   try {
     return await api.getVersesByHizb(hizbNumber);
@@ -1036,7 +1218,8 @@ final versesByHizbProvider = FutureProvider.family<List<VerseDto>, int>((ref, hi
 });
 
 /// Provider for verses in a specific Ruku
-final versesByRukuProvider = FutureProvider.family<List<VerseDto>, int>((ref, rukuNumber) async {
+final versesByRukuProvider =
+    FutureProvider.family<List<VerseDto>, int>((ref, rukuNumber) async {
   final api = ref.watch(resourcesApiProvider);
   try {
     return await api.getVersesByRuku(rukuNumber);
@@ -1048,16 +1231,11 @@ final versesByRukuProvider = FutureProvider.family<List<VerseDto>, int>((ref, ru
 
 // -------------------- Search Service Provider --------------------
 
-/// Provider for Quran search service with offline cache support
-final quranSearchServiceProvider = Provider<QuranSearchService>((ref) {
-  final repository = ref.watch(quranRepoProvider);
-  return QuranSearchService(repository);
-});
-
 /// Provider for search suggestions
-final searchSuggestionsProvider = FutureProvider.family<List<SearchSuggestion>, String>((ref, query) async {
+final searchSuggestionsProvider =
+    FutureProvider.family<List<SearchSuggestion>, String>((ref, query) async {
   if (query.trim().isEmpty) return [];
-  
+
   final searchService = ref.watch(quranSearchServiceProvider);
   return await searchService.getSearchSuggestions(query);
 });
@@ -1068,12 +1246,47 @@ final searchHistoryProvider = FutureProvider<List<String>>((ref) async {
   return await searchService.getSearchHistory();
 });
 
+/// Provider for performing Quran search
+final quranSearchProvider = FutureProvider.family<List<BaseSearchResult>, Map<String, dynamic>>(
+    (ref, params) async {
+  final searchService = ref.watch(quranSearchServiceProvider);
+  
+  final query = params['query'] as String;
+  final chapterIds = params['chapterIds'] as List<int>?;
+  final translationIds = params['translationIds'] as List<int>?;
+  final scope = params['scope'] as SearchScope? ?? SearchScope.all;
+  
+  final filters = SearchFilters(
+    chapterIds: chapterIds,
+    translationIds: translationIds,
+    scope: scope,
+  );
+  
+  final options = SearchOptions(
+    maxResults: 100,
+    highlightMatches: true,
+  );
+  
+  final results = await searchService.advancedSearch(
+    query: query,
+    filters: filters,
+    options: options,
+  );
+  
+  // Combine all results into a single list with proper typing
+  final allResults = <BaseSearchResult>[];
+  allResults.addAll(results.verses);
+  allResults.addAll(results.chapters);
+  allResults.addAll(results.references);
+  return allResults;
+});
+
 // -------------------- Offline Cache Providers --------------------
 
 /// Provider to cache navigation mappings on app start
 final cacheNavigationMappingsProvider = FutureProvider<void>((ref) async {
   final service = ref.watch(offlineContentServiceProvider);
-  
+
   // Check if already cached
   final areCached = await service.areNavigationMappingsCached();
   if (!areCached) {
@@ -1084,9 +1297,9 @@ final cacheNavigationMappingsProvider = FutureProvider<void>((ref) async {
 /// Provider for cached Juz list (offline-first)
 final cachedJuzListProvider = FutureProvider<List<JuzDto>>((ref) async {
   final service = ref.watch(offlineContentServiceProvider);
-  
+
   // Ensure navigation mappings are cached first
   await ref.watch(cacheNavigationMappingsProvider.future);
-  
+
   return service.getCachedJuzList();
 });

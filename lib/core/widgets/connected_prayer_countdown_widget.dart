@@ -6,6 +6,7 @@ import '../../features/prayer_times/domain/entities/prayer_times.dart' as prayer
 import '../../features/prayer_times/domain/entities/prayer_tracking.dart';
 import '../../features/prayer_times/presentation/providers/prayer_times_providers.dart';
 import '../../core/utils/islamic_utils.dart' as islamic_utils;
+import '../../l10n/app_localizations.dart';
 import '../localization/bengali_strings.dart';
 
 /// Connected Prayer Countdown Widget that uses real prayer times data
@@ -345,12 +346,14 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
                 color: Colors.green,
               ),
               const SizedBox(height: 16),
-              Text(
-                '${'loading'.bn}...',
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Builder(
+                builder: (context) => Text(
+                  AppLocalizations.of(context)!.commonLoading,
+                  style: const TextStyle(
+                    color: Colors.green,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
@@ -384,14 +387,16 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
                 size: 48,
               ),
               const SizedBox(height: 16),
-              Text(
-                '${'error'.bn} | Error loading prayer times',
-                style: TextStyle(
-                  color: Colors.red[700],
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Builder(
+                builder: (context) => Text(
+                  AppLocalizations.of(context)!.errorPrayerTimesLoading,
+                  style: TextStyle(
+                    color: Colors.red[700],
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),

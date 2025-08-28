@@ -252,7 +252,7 @@ abstract class AppLocalizations {
   /// **'Fajr'**
   String get prayerFajr;
 
-  /// Sunrise time label
+  /// Sunrise time
   ///
   /// In en, this message translates to:
   /// **'Sunrise'**
@@ -360,119 +360,185 @@ abstract class AppLocalizations {
   /// **'Ruku'**
   String get quranRuku;
 
-  /// Title for settings screen
+  /// Suhoor meal time for Ramadan
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor'**
+  String get ramadanSuhoor;
+
+  /// Iftaar meal time for Ramadan
+  ///
+  /// In en, this message translates to:
+  /// **'Iftaar'**
+  String get ramadanIftaar;
+
+  /// Source attribution for prayer times
+  ///
+  /// In en, this message translates to:
+  /// **'timings from AlAdhan'**
+  String get prayerTimesSource;
+
+  /// Last updated time for prayer times
+  ///
+  /// In en, this message translates to:
+  /// **'Updated: {time}'**
+  String prayerTimesUpdated(String time);
+
+  /// Label for current prayer
+  ///
+  /// In en, this message translates to:
+  /// **'Current Prayer'**
+  String get prayerTimesCurrentPrayer;
+
+  /// Label for next prayer
+  ///
+  /// In en, this message translates to:
+  /// **'Next Prayer'**
+  String get prayerTimesNextPrayer;
+
+  /// Message when no prayer is currently active
+  ///
+  /// In en, this message translates to:
+  /// **'No Active Prayer'**
+  String get prayerTimesNoActivePrayer;
+
+  /// Azan (call to prayer) label
+  ///
+  /// In en, this message translates to:
+  /// **'Azan'**
+  String get prayerTimesAzan;
+
+  /// Jama'at (congregational prayer) label
+  ///
+  /// In en, this message translates to:
+  /// **'Jama\'at'**
+  String get prayerTimesJamaat;
+
+  /// Prayer end time label
+  ///
+  /// In en, this message translates to:
+  /// **'End time - {time}'**
+  String prayerTimesEndTime(String time);
+
+  /// Settings screen title
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsTitle;
 
-  /// Language setting option
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get settingsLanguage;
-
-  /// Theme setting option
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get settingsTheme;
-
-  /// Notifications setting option
+  /// Notifications settings section
   ///
   /// In en, this message translates to:
   /// **'Notifications'**
   String get settingsNotifications;
 
-  /// Prayer times setting option
+  /// Prayer reminders setting
   ///
   /// In en, this message translates to:
-  /// **'Prayer Times'**
-  String get settingsPrayerTimes;
+  /// **'Prayer Reminders'**
+  String get settingsPrayerReminders;
 
-  /// Quran setting option
+  /// Theme settings section
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
-  String get settingsQuran;
+  /// **'Theme'**
+  String get settingsTheme;
 
-  /// About setting option
+  /// Language settings option
   ///
   /// In en, this message translates to:
-  /// **'About'**
-  String get settingsAbout;
+  /// **'Language'**
+  String get settingsLanguage;
 
-  /// Common continue button text
+  /// Prayer calculation method setting
   ///
   /// In en, this message translates to:
-  /// **'Continue'**
-  String get commonContinue;
+  /// **'Calculation Method'**
+  String get settingsCalculationMethod;
 
-  /// Common back button text
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get commonBack;
-
-  /// Common next button text
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get commonNext;
-
-  /// Common save button text
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get commonSave;
-
-  /// Common cancel button text
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get commonCancel;
-
-  /// Common done button text
-  ///
-  /// In en, this message translates to:
-  /// **'Done'**
-  String get commonDone;
-
-  /// Common loading text
+  /// Generic loading message
   ///
   /// In en, this message translates to:
   /// **'Loading...'**
   String get commonLoading;
 
-  /// Common error text
+  /// Generic error message
   ///
   /// In en, this message translates to:
   /// **'Error'**
   String get commonError;
 
-  /// Common success text
+  /// Retry button text
   ///
   /// In en, this message translates to:
-  /// **'Success'**
-  String get commonSuccess;
+  /// **'Retry'**
+  String get commonRetry;
 
-  /// Common yes text
+  /// Cancel button text
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
-  String get commonYes;
+  /// **'Cancel'**
+  String get commonCancel;
 
-  /// Common no text
+  /// Save button text
   ///
   /// In en, this message translates to:
-  /// **'No'**
-  String get commonNo;
+  /// **'Save'**
+  String get commonSave;
 
-  /// Common OK text
+  /// Close button text
   ///
   /// In en, this message translates to:
-  /// **'OK'**
-  String get commonOk;
+  /// **'Close'**
+  String get commonClose;
+
+  /// Back button text
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get commonBack;
+
+  /// Next button text
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get commonNext;
+
+  /// Skip button text
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get commonSkip;
+
+  /// Continue button text
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get commonContinue;
+
+  /// Done button text
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get commonDone;
+
+  /// Exit confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Exit DeenMate'**
+  String get exitDialogTitle;
+
+  /// Exit confirmation dialog message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit the app?'**
+  String get exitDialogMessage;
+
+  /// Exit confirmation dialog exit button
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exitDialogExit;
 
   /// English language name
   ///
@@ -587,6 +653,396 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose your preferred visual style for the app.'**
   String get infoThemeDescription;
+
+  /// Success message when location is set
+  ///
+  /// In en, this message translates to:
+  /// **'Location set successfully!'**
+  String get locationSetSuccess;
+
+  /// Error message when location retrieval fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to get location: {error}'**
+  String locationGetFailed(String error);
+
+  /// Success message when location is saved
+  ///
+  /// In en, this message translates to:
+  /// **'Location \"{city}, {country}\" saved successfully!'**
+  String locationSaveSuccess(String city, String country);
+
+  /// Error message when location saving fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save location: {error}'**
+  String locationSaveFailed(String error);
+
+  /// Title for location permission dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Location Permission Required'**
+  String get locationPermissionRequired;
+
+  /// Cancel button text
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get buttonCancel;
+
+  /// Try again button text
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get buttonTryAgain;
+
+  /// Confirm button text
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get buttonConfirm;
+
+  /// About section title
+  ///
+  /// In en, this message translates to:
+  /// **'About DeenMate'**
+  String get settingsAbout;
+
+  /// About section subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Version, credits, and more'**
+  String get settingsAboutSubtitle;
+
+  /// Privacy policy option
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get settingsPrivacyPolicy;
+
+  /// Privacy policy subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'How we protect your data'**
+  String get settingsPrivacyPolicySubtitle;
+
+  /// Clear cache option
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Cache'**
+  String get settingsClearCache;
+
+  /// Clear cache subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Free up storage space'**
+  String get settingsClearCacheSubtitle;
+
+  /// Export data option
+  ///
+  /// In en, this message translates to:
+  /// **'Export Data'**
+  String get settingsExportData;
+
+  /// Export data subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Backup your settings and data'**
+  String get settingsExportDataSubtitle;
+
+  /// Prayer calculation method setting
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Calculation Method'**
+  String get settingsPrayerCalculationMethod;
+
+  /// Language selection dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Select Language'**
+  String get settingsSelectLanguage;
+
+  /// Permission required dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Permission Required'**
+  String get settingsPermissionRequired;
+
+  /// Cache cleared success message
+  ///
+  /// In en, this message translates to:
+  /// **'Cache cleared successfully'**
+  String get settingsCacheClearedSuccess;
+
+  /// Export feature coming soon message
+  ///
+  /// In en, this message translates to:
+  /// **'Export feature coming soon!'**
+  String get settingsExportComingSoon;
+
+  /// Prayer calculation methods screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Calculation Methods'**
+  String get prayerCalculationMethods;
+
+  /// Athan and notifications screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Athan & Notifications'**
+  String get prayerAthanNotifications;
+
+  /// Vibration setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration'**
+  String get prayerVibration;
+
+  /// Vibration setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Vibrate device during Athan'**
+  String get prayerVibrationSubtitle;
+
+  /// Quick actions setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get prayerQuickActions;
+
+  /// Quick actions setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show \"Mark as Prayed\" and \"Snooze\" buttons'**
+  String get prayerQuickActionsSubtitle;
+
+  /// Auto-complete setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-complete'**
+  String get prayerAutoComplete;
+
+  /// Auto-complete setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically mark prayer as completed'**
+  String get prayerAutoCompleteSubtitle;
+
+  /// Smart notifications setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Notifications'**
+  String get prayerSmartNotifications;
+
+  /// Smart notifications setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust notifications based on your activity'**
+  String get prayerSmartNotificationsSubtitle;
+
+  /// Override DND setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Override Do Not Disturb'**
+  String get prayerOverrideDND;
+
+  /// Override DND setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show prayer notifications even in DND mode'**
+  String get prayerOverrideDNDSubtitle;
+
+  /// Full screen notifications setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Full Screen Notifications'**
+  String get prayerFullScreenNotifications;
+
+  /// Full screen notifications setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show prayer time as full screen alert'**
+  String get prayerFullScreenNotificationsSubtitle;
+
+  /// Ramadan notifications setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Notifications'**
+  String get prayerRamadanNotifications;
+
+  /// Ramadan notifications setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Enable special notifications for Suhur and Iftar'**
+  String get prayerRamadanNotificationsSubtitle;
+
+  /// Special Ramadan Athan setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Special Ramadan Athan'**
+  String get prayerSpecialRamadanAthan;
+
+  /// Special Ramadan Athan setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Use special Athan recitations during Ramadan'**
+  String get prayerSpecialRamadanAthanSubtitle;
+
+  /// Include duas setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Include Duas'**
+  String get prayerIncludeDuas;
+
+  /// Include duas setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show Ramadan-specific duas in notifications'**
+  String get prayerIncludeDuasSubtitle;
+
+  /// Track fasting setting title
+  ///
+  /// In en, this message translates to:
+  /// **'Track Fasting'**
+  String get prayerTrackFasting;
+
+  /// Track fasting setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Keep track of your fasting status'**
+  String get prayerTrackFastingSubtitle;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get buttonRetry;
+
+  /// Grant button text
+  ///
+  /// In en, this message translates to:
+  /// **'Grant'**
+  String get buttonGrant;
+
+  /// Apply button text
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get buttonApply;
+
+  /// Got it button text
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get buttonGotIt;
+
+  /// Test Athan audio button text
+  ///
+  /// In en, this message translates to:
+  /// **'Test Athan Audio'**
+  String get prayerTestAthanAudio;
+
+  /// Schedule now button text
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Now'**
+  String get prayerScheduleNow;
+
+  /// Debug info button text
+  ///
+  /// In en, this message translates to:
+  /// **'Debug Info'**
+  String get prayerDebugInfo;
+
+  /// Schedule prayer notifications button text
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Prayer Notifications'**
+  String get prayerScheduleNotifications;
+
+  /// Test notification button text
+  ///
+  /// In en, this message translates to:
+  /// **'Test Notification (1 sec)'**
+  String get prayerTestNotification;
+
+  /// Demo notification button text
+  ///
+  /// In en, this message translates to:
+  /// **'Demo Notification (2 min)'**
+  String get prayerDemoNotification;
+
+  /// Immediate notification button text
+  ///
+  /// In en, this message translates to:
+  /// **'Immediate Notification'**
+  String get prayerImmediateNotification;
+
+  /// Athan test started message
+  ///
+  /// In en, this message translates to:
+  /// **'Athan audio test started'**
+  String get prayerAthanTestStarted;
+
+  /// Athan test failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Athan test failed: {error}'**
+  String prayerAthanTestFailed(String error);
+
+  /// Notifications scheduled message
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications scheduled for today'**
+  String get prayerNotificationsScheduled;
+
+  /// Scheduling failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduling failed: {error}'**
+  String prayerSchedulingFailed(String error);
+
+  /// Debug failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Debug failed: {error}'**
+  String prayerDebugFailed(String error);
+
+  /// Test notification sent message
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification sent immediately!'**
+  String get prayerTestNotificationSent;
+
+  /// Test notification failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification failed: {error}'**
+  String prayerTestNotificationFailed(String error);
+
+  /// Demo notification sent message
+  ///
+  /// In en, this message translates to:
+  /// **'Demo notification sent! Azan should play now.'**
+  String get prayerDemoNotificationSent;
+
+  /// Demo notification failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Demo notification failed: {error}'**
+  String prayerDemoNotificationFailed(String error);
+
+  /// Immediate notification sent message
+  ///
+  /// In en, this message translates to:
+  /// **'Immediate notification sent!'**
+  String get prayerImmediateNotificationSent;
+
+  /// Immediate notification failed message
+  ///
+  /// In en, this message translates to:
+  /// **'Immediate notification failed: {error}'**
+  String prayerImmediateNotificationFailed(String error);
 }
 
 class _AppLocalizationsDelegate

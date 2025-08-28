@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../l10n/app_localizations.dart';
+
 /// Islamic Inheritance Calculator based on authentic Shariah rules
 class SimpleInheritanceCalculator extends StatefulWidget {
   const SimpleInheritanceCalculator({super.key});
@@ -282,7 +284,7 @@ class _SimpleInheritanceCalculatorState
             ),
             const SizedBox(width: 12),
             Text(
-              'Islamic Inheritance Calculator',
+              AppLocalizations.of(context)!.inheritanceCalculatorTitle,
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: colorScheme.onSurface,

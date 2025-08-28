@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../prayer_times/presentation/providers/notification_providers.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
 
 /// Notifications settings screen for DeenMate onboarding
-class NotificationsScreen extends StatefulWidget {
+class NotificationsScreen extends ConsumerStatefulWidget {
   final VoidCallback? onNext;
   final VoidCallback? onPrevious;
 
   const NotificationsScreen({super.key, this.onNext, this.onPrevious});
 
   @override
-  State<NotificationsScreen> createState() => _NotificationsScreenState();
+  ConsumerState<NotificationsScreen> createState() => _NotificationsScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
+class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   bool _enableNotifications = true;
   bool _enableAthan = true;
   bool _enableReminders = true;
@@ -92,7 +96,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       
                       // Description
                       Text(
-                        'Get reminded for each prayer time',
+                        AppLocalizations.of(context)!.onboardingNotificationDescription1,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -102,7 +106,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       ),
                       
                       Text(
-                        'with beautiful Azan calls',
+                        AppLocalizations.of(context)!.onboardingNotificationDescription2,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -118,8 +122,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         child: ListView(
                           children: [
                             _buildNotificationOption(
-                              title: 'Enable',
-                              subtitle: 'Receive prayer time notifications',
+                              title: AppLocalizations.of(context)!.onboardingNotificationEnable,
+                              subtitle: AppLocalizations.of(context)!.onboardingNotificationEnableSubtitle,
                               icon: '🕌',
                               isSelected: _enableNotifications,
                               onTap: () {
@@ -130,8 +134,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             ),
                             const SizedBox(height: 16),
                             _buildNotificationOption(
-                              title: 'Disable',
-                              subtitle: 'Use silent mode only',
+                              title: AppLocalizations.of(context)!.onboardingNotificationDisable,
+                              subtitle: AppLocalizations.of(context)!.onboardingNotificationDisableSubtitle,
                               icon: '🔕',
                               isSelected: !_enableNotifications,
                               onTap: () {
@@ -310,7 +314,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                'Select Prayers for Notifications',
+                AppLocalizations.of(context)!.onboardingNotificationSelectPrayers,
                 style: IslamicTheme.textTheme.titleMedium?.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -414,14 +418,45 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     );
   }
 
-  void _navigateToNext(BuildContext context) {
-    // TODO: Save notification preferences
-    // await _preferencesService.updatePreferences(
-    //   notificationsEnabled: _notificationsEnabled,
-    //   enabledPrayers: _enabledPrayers,
-    // );
-    
-    // Navigate to next onboarding screen
-    widget.onNext?.call();
+  Future<void> _navigateToNext(BuildContext context) async {
+    try {
+      // Save notification preferences using SharedPreferences for basic settings
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('notifications_enabled', _enableNotifications);
+      await prefs.setBool('athan_enabled', _enableAthan);
+      await prefs.setBool('prayer_reminders_enabled', _enableReminders);
+      await prefs.setStringList('enabled_prayers', _selectedPrayers);
+      
+      // Initialize notification service if notifications are enabled
+      if (_enableNotifications) {
+        try {
+          await ref.read(notificationInitProvider.future);
+        } catch (e) {
+          // Handle notification initialization error
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Notifications setup will be completed later. You can enable them in settings.'),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          }
+        }
+      }
+      
+      // Navigate to next onboarding screen
+      widget.onNext?.call();
+    } catch (e) {
+      // Handle error - still navigate but show warning
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Notification preferences saved with defaults. You can change them later in settings.'),
+            backgroundColor: Colors.orange,
+          ),
+        );
+      }
+      widget.onNext?.call();
+    }
   }
 }

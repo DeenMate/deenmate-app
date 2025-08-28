@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
-import '../../domain/entities/user_preferences.dart';
+import '../../../../core/theme/theme_provider.dart';
+import '../../../../core/theme/app_theme.dart' as core_theme;
+import '../../domain/entities/user_preferences.dart' hide AppTheme;
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
 
 /// Theme selection screen for DeenMate onboarding
-class ThemeScreen extends StatefulWidget {
+class ThemeScreen extends ConsumerStatefulWidget {
   final VoidCallback? onNext;
   final VoidCallback? onPrevious;
 
   const ThemeScreen({super.key, this.onNext, this.onPrevious});
 
   @override
-  State<ThemeScreen> createState() => _ThemeScreenState();
+  ConsumerState<ThemeScreen> createState() => _ThemeScreenState();
 }
 
-class _ThemeScreenState extends State<ThemeScreen> {
-  AppTheme _selectedTheme = AppTheme.system;
+class _ThemeScreenState extends ConsumerState<ThemeScreen> {
+  core_theme.AppTheme _selectedTheme = core_theme.AppTheme.lightSerenity;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize with current theme
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentTheme = ref.read(themeProvider);
+      setState(() {
+        _selectedTheme = currentTheme;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,24 +116,25 @@ class _ThemeScreenState extends State<ThemeScreen> {
                       
                       const SizedBox(height: 40),
                       
-                      // Theme options
+                                            // Theme options
                       Expanded(
-                        child: ListView(
+                        child: Column(
                           children: [
-                            _buildThemeOption(AppTheme.light),
+                            _buildThemeOption(core_theme.AppTheme.lightSerenity),
                             const SizedBox(height: 16),
-                            _buildThemeOption(AppTheme.dark),
+                            _buildThemeOption(core_theme.AppTheme.nightCalm),
                             const SizedBox(height: 16),
-                            _buildThemeOption(AppTheme.system),
+                            _buildThemeOption(core_theme.AppTheme.heritageSepia),
                           ],
                         ),
                       ),
                       
                       const SizedBox(height: 40),
                       
+                      
                       // Continue button
                       _buildContinueButton(context),
-                      
+
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -131,7 +147,45 @@ class _ThemeScreenState extends State<ThemeScreen> {
     );
   }
 
-  Widget _buildThemeOption(AppTheme theme) {
+  Widget _buildContinueButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _navigateToNext(context),
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF424242), Color(0xFF757575)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(2, 4),
+            ),
+          ],
+        ),
+        child: Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white.withOpacity(0.3),
+            ),
+          ),
+          child: const Icon(
+            Icons.arrow_forward,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
+      ),
+    );
+  }  Widget _buildThemeOption(core_theme.AppTheme theme) {
     final isSelected = _selectedTheme == theme;
     
     return GestureDetector(
@@ -191,7 +245,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    theme.displayName,
+                    _getThemeDisplayName(theme),
                     style: IslamicTheme.textTheme.titleMedium?.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -242,97 +296,79 @@ class _ThemeScreenState extends State<ThemeScreen> {
     );
   }
 
-  Color _getThemePreviewColor(AppTheme theme) {
+  Color _getThemePreviewColor(core_theme.AppTheme theme) {
     switch (theme) {
-      case AppTheme.light:
+      case core_theme.AppTheme.lightSerenity:
         return const Color(0xFFF5F5F5);
-      case AppTheme.dark:
+      case core_theme.AppTheme.nightCalm:
         return const Color(0xFF424242);
-      case AppTheme.system:
+      case core_theme.AppTheme.heritageSepia:
         return const Color(0xFFE0E0E0);
     }
   }
 
-  IconData _getThemeIcon(AppTheme theme) {
+  IconData _getThemeIcon(core_theme.AppTheme theme) {
     switch (theme) {
-      case AppTheme.light:
+      case core_theme.AppTheme.lightSerenity:
         return Icons.wb_sunny;
-      case AppTheme.dark:
+      case core_theme.AppTheme.nightCalm:
         return Icons.nightlight_round;
-      case AppTheme.system:
+      case core_theme.AppTheme.heritageSepia:
         return Icons.settings_system_daydream;
     }
   }
 
-  Color _getThemeIconColor(AppTheme theme) {
+  Color _getThemeIconColor(core_theme.AppTheme theme) {
     switch (theme) {
-      case AppTheme.light:
+      case core_theme.AppTheme.lightSerenity:
         return const Color(0xFFFFA000);
-      case AppTheme.dark:
+      case core_theme.AppTheme.nightCalm:
         return const Color(0xFFE0E0E0);
-      case AppTheme.system:
+      case core_theme.AppTheme.heritageSepia:
         return const Color(0xFF757575);
     }
   }
 
-  String _getThemeDescription(AppTheme theme) {
+  String _getThemeDescription(core_theme.AppTheme theme) {
     switch (theme) {
-      case AppTheme.light:
-        return 'Clean and bright interface';
-      case AppTheme.dark:
+      case core_theme.AppTheme.lightSerenity:
+        return 'Clean and calming interface';
+      case core_theme.AppTheme.nightCalm:
         return 'Easy on the eyes in low light';
-      case AppTheme.system:
-        return 'Follows your device settings';
+      case core_theme.AppTheme.heritageSepia:
+        return 'Classic and elegant';
     }
   }
 
-  Widget _buildContinueButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _navigateToNext(context),
-      child: Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF424242), Color(0xFF757575)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 8,
-              offset: const Offset(2, 4),
-            ),
-          ],
-        ),
-        child: Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white.withOpacity(0.3),
-            ),
-          ),
-          child: const Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
-            size: 24,
-          ),
-        ),
-      ),
-    );
+  String _getThemeDisplayName(core_theme.AppTheme theme) {
+    switch (theme) {
+      case core_theme.AppTheme.lightSerenity:
+        return 'Light Serenity';
+      case core_theme.AppTheme.nightCalm:
+        return 'Night Calm';
+      case core_theme.AppTheme.heritageSepia:
+        return 'Heritage Sepia';
+    }
   }
 
-  void _navigateToNext(BuildContext context) {
-    // TODO: Save theme preference
-    // await _preferencesService.updatePreferences(
-    //   theme: _selectedTheme.value,
-    // );
-    
-    // Navigate to next onboarding screen
-    widget.onNext?.call();
+  Future<void> _navigateToNext(BuildContext context) async {
+    try {
+      // Save theme preference using the theme provider
+      await ref.read(themeProvider.notifier).setTheme(_selectedTheme);
+      
+      // Navigate to next onboarding screen
+      widget.onNext?.call();
+    } catch (e) {
+      // Handle error - still navigate but show warning
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Theme preference saved with default. You can change it later in settings.'),
+            backgroundColor: Colors.orange,
+          ),
+        );
+      }
+      widget.onNext?.call();
+    }
   }
 }

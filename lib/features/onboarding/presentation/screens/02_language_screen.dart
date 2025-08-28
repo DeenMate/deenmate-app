@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../../core/localization/language_models.dart';
 import '../../../../core/localization/language_provider.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/constants/preference_keys.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
 
@@ -49,7 +52,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                   color: const Color(0xFF2E7D32).withOpacity(0.05),
                 ),
               ),
-              
+
               // Progress indicator
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
@@ -58,7 +61,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                   totalSteps: 8,
                 ),
               ),
-              
+
               // Main content
               Expanded(
                 child: Padding(
@@ -66,7 +69,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
-                      
+
                       // Header icon
                       Container(
                         width: 70,
@@ -86,12 +89,12 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Title
                       Text(
-                        'Choose Your Language',
+                        AppLocalizations.of(context)!.onboardingLanguageTitle,
                         style: IslamicTheme.textTheme.headlineSmall?.copyWith(
                           fontSize: 26,
                           fontWeight: FontWeight.w600,
@@ -99,12 +102,13 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 16),
-                      
+
                       // Subtitle
                       Text(
-                        'Select your preferred language for the app',
+                        AppLocalizations.of(context)!
+                            .onboardingLanguageSubtitle,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -112,36 +116,39 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Language options
                       Expanded(
                         child: Consumer(
                           builder: (context, ref, child) {
-                            final availableLanguages = ref.watch(availableLanguagesProvider);
-                            
+                            final availableLanguages =
+                                ref.watch(availableLanguagesProvider);
+
                             return ListView.builder(
                               itemCount: availableLanguages.length,
                               itemBuilder: (context, index) {
                                 final languageData = availableLanguages[index];
-                                final language = SupportedLanguage.fromCode(languageData.code);
-                                
+                                final language = SupportedLanguage.fromCode(
+                                    languageData.code);
+
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 16),
-                                  child: _buildLanguageOption(language, languageData),
+                                  child: _buildLanguageOption(
+                                      language, languageData),
                                 );
                               },
                             );
                           },
                         ),
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Continue button
                       _buildContinueButton(context),
-                      
+
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -154,9 +161,10 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
     );
   }
 
-  Widget _buildLanguageOption(SupportedLanguage language, LanguageData languageData) {
+  Widget _buildLanguageOption(
+      SupportedLanguage language, LanguageData languageData) {
     final isSelected = selectedLanguage == language;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -166,14 +174,13 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected 
+          color: isSelected
               ? const Color(0xFFE8F5E8).withOpacity(0.8)
               : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected 
-                ? const Color(0xFF4CAF50)
-                : const Color(0xFFE0E0E0),
+            color:
+                isSelected ? const Color(0xFF4CAF50) : const Color(0xFFE0E0E0),
             width: isSelected ? 2 : 1,
           ),
           boxShadow: [
@@ -191,7 +198,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: isSelected 
+                color: isSelected
                     ? const Color(0xFF4CAF50).withOpacity(0.1)
                     : const Color(0xFFF8F9FA),
                 borderRadius: BorderRadius.circular(8),
@@ -203,9 +210,9 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                 ),
               ),
             ),
-            
+
             const SizedBox(width: 16),
-            
+
             // Language info
             Expanded(
               child: Column(
@@ -216,7 +223,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                     style: IslamicTheme.textTheme.titleMedium?.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: isSelected 
+                      color: isSelected
                           ? const Color(0xFF2E7D32)
                           : const Color(0xFF2E2E2E),
                     ),
@@ -232,9 +239,10 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                   const SizedBox(height: 4),
                   // Status indicator
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: languageData.isFullySupported 
+                      color: languageData.isFullySupported
                           ? const Color(0xFF4CAF50).withOpacity(0.1)
                           : const Color(0xFFFF9800).withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -244,7 +252,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: languageData.isFullySupported 
+                        color: languageData.isFullySupported
                             ? const Color(0xFF4CAF50)
                             : const Color(0xFFFF9800),
                       ),
@@ -253,18 +261,17 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                 ],
               ),
             ),
-            
+
             // Selection indicator
             Container(
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: isSelected 
-                    ? const Color(0xFF4CAF50)
-                    : Colors.transparent,
+                color:
+                    isSelected ? const Color(0xFF4CAF50) : Colors.transparent,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: isSelected 
+                  color: isSelected
                       ? const Color(0xFF4CAF50)
                       : const Color(0xFFE0E0E0),
                   width: 2,
@@ -326,10 +333,15 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
 
   Future<void> _navigateToNext(BuildContext context) async {
     try {
-      // Save language preference using the language provider
+      // Save language preference to SharedPreferences (onboarding system)
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+          PreferenceKeys.selectedLanguage, selectedLanguage.code);
+
+      // Also save to Hive-based language system for immediate use
       final languageSwitcher = ref.read(languageSwitcherProvider);
       final success = await languageSwitcher.switchLanguage(selectedLanguage);
-      
+
       if (success) {
         // Show success message for unsupported languages
         if (!selectedLanguage.isFullySupported) {
@@ -346,7 +358,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
             );
           }
         }
-        
+
         // Navigate to next onboarding screen
         widget.onNext?.call();
       } else {

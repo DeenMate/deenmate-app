@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../prayer_times/domain/entities/prayer_calculation_settings.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/state/prayer_settings_state.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
 
@@ -338,8 +338,7 @@ class _MadhhabScreenState extends State<MadhhabScreen> {
 
   Future<void> _saveMadhhab() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('madhhab', _selectedMadhhab.name);
+      await PrayerSettingsState.instance.setMadhhab(_selectedMadhhab.name);
     } catch (_) {}
   }
 }

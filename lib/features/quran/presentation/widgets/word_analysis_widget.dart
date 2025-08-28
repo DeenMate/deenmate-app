@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/dto/verse_dto.dart';
 import '../../data/dto/word_analysis_dto.dart';
 import '../state/providers.dart';
@@ -138,7 +139,7 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Word-by-Word Analysis',
+                    AppLocalizations.of(context)!.wordAnalysisTitle,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -148,8 +149,8 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
                   const SizedBox(height: 4),
                   Text(
                     _isExpanded 
-                      ? 'Tap to hide analysis'
-                      : 'Arabic • Transliteration • Translation',
+                      ? AppLocalizations.of(context)!.wordAnalysisHideAnalysis
+                      : AppLocalizations.of(context)!.wordAnalysisShowAnalysis,
                     style: TextStyle(
                       fontSize: 12,
                       color: ThemeHelper.getTextSecondaryColor(context),
@@ -225,7 +226,7 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Display Options',
+            AppLocalizations.of(context)!.wordAnalysisDisplayOptions,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -237,7 +238,10 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
             children: [
               Expanded(
                 child: CheckboxListTile(
-                  title: const Text('Transliteration', style: TextStyle(fontSize: 12)),
+                  title: Text(
+                    AppLocalizations.of(context)!.wordAnalysisTransliteration,
+                    style: const TextStyle(fontSize: 12),
+                  ),
                   value: _showTransliteration,
                   onChanged: (value) {
                     setState(() {
@@ -251,7 +255,10 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
               ),
               Expanded(
                 child: CheckboxListTile(
-                  title: const Text('Grammar', style: TextStyle(fontSize: 12)),
+                  title: Text(
+                    AppLocalizations.of(context)!.wordAnalysisGrammar,
+                    style: const TextStyle(fontSize: 12),
+                  ),
                   value: _showGrammar,
                   onChanged: (value) {
                     setState(() {
@@ -337,7 +344,7 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tap on any word for detailed analysis',
+            AppLocalizations.of(context)!.wordAnalysisTapInstruction,
             style: TextStyle(
               fontSize: 12,
               color: ThemeHelper.getTextSecondaryColor(context),
@@ -608,22 +615,22 @@ class _WordAnalysisWidgetState extends ConsumerState<WordAnalysisWidget>
 
   Widget _buildWordDetails(WordDto word) {
     final details = <String, String?>{
-      'Position': '${word.position}',
-      'Root': word.root,
-      'Lemma': word.lemma,
-      'Stem': word.stem,
-      'Part of Speech': word.partOfSpeech,
+      AppLocalizations.of(context)!.wordAnalysisPosition: '${word.position}',
+      AppLocalizations.of(context)!.wordAnalysisRoot: word.root,
+      AppLocalizations.of(context)!.wordAnalysisLemma: word.lemma,
+      AppLocalizations.of(context)!.wordAnalysisStem: word.stem,
+      AppLocalizations.of(context)!.wordAnalysisPartOfSpeech: word.partOfSpeech,
     };
     
     if (_showGrammar) {
       details.addAll({
-        'Gender': word.gender,
-        'Number': word.number,
-        'Person': word.person,
-        'Tense': word.tense,
-        'Mood': word.mood,
-        'Voice': word.voice,
-        'Grammar': word.grammar,
+        AppLocalizations.of(context)!.wordAnalysisGrammarGender: word.gender,
+        AppLocalizations.of(context)!.wordAnalysisGrammarNumber: word.number,
+        AppLocalizations.of(context)!.wordAnalysisGrammarPerson: word.person,
+        AppLocalizations.of(context)!.wordAnalysisGrammarTense: word.tense,
+        AppLocalizations.of(context)!.wordAnalysisGrammarMood: word.mood,
+        AppLocalizations.of(context)!.wordAnalysisGrammarVoice: word.voice,
+        AppLocalizations.of(context)!.wordAnalysisGrammarDetails: word.grammar,
       });
     }
     

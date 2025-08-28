@@ -1,0 +1,1885 @@
+{
+  "@@locale": "bn",
+  "appTitle": "দীনমেট",
+  "@appTitle": {
+    "description": "The main app title"
+  },
+
+  "onboardingWelcomeTitle": "দীনমেটে স্বাগতম",
+  "@onboardingWelcomeTitle": {
+    "description": "Title for the welcome onboarding screen"
+  },
+  "onboardingWelcomeSubtitle": "আপনার সম্পূর্ণ ইসলামিক সঙ্গী",
+  "@onboardingWelcomeSubtitle": {
+    "description": "Subtitle for the welcome onboarding screen"
+  },
+  "onboardingLanguageTitle": "আপনার ভাষা নির্বাচন করুন",
+  "@onboardingLanguageTitle": {
+    "description": "Title for language selection screen"
+  },
+  "onboardingLanguageSubtitle": "অ্যাপের জন্য আপনার পছন্দের ভাষা নির্বাচন করুন",
+  "@onboardingLanguageSubtitle": {
+    "description": "Subtitle for language selection screen"
+  },
+  "onboardingUsernameTitle": "আমরা আপনাকে কী বলব?",
+  "@onboardingUsernameTitle": {
+    "description": "Title for username input screen"
+  },
+  "onboardingUsernameSubtitle": "আপনার নাম বা পছন্দের ডাকনাম লিখুন",
+  "@onboardingUsernameSubtitle": {
+    "description": "Subtitle for username input screen"
+  },
+  "onboardingLocationTitle": "আপনার অবস্থান সেট করুন",
+  "@onboardingLocationTitle": {
+    "description": "Title for location setup screen"
+  },
+  "onboardingLocationSubtitle": "এটি আমাদের সঠিক নামাজের সময় প্রদান করতে সাহায্য করে",
+  "@onboardingLocationSubtitle": {
+    "description": "Subtitle for location setup screen"
+  },
+  "onboardingLocationGpsTitle": "জিপিএস অবস্থান ব্যবহার করুন",
+  "@onboardingLocationGpsTitle": {
+    "description": "Title for GPS location option"
+  },
+  "onboardingLocationGpsSubtitle": "স্বয়ংক্রিয়ভাবে আপনার বর্তমান অবস্থান সনাক্ত করুন",
+  "@onboardingLocationGpsSubtitle": {
+    "description": "Subtitle for GPS location option"
+  },
+  "onboardingLocationManualTitle": "ম্যানুয়াল নির্বাচন",
+  "@onboardingLocationManualTitle": {
+    "description": "Title for manual location option"
+  },
+  "onboardingLocationManualSubtitle": "আপনার শহর ম্যানুয়ালি নির্বাচন করুন",
+  "@onboardingLocationManualSubtitle": {
+    "description": "Subtitle for manual location option"
+  },
+  "onboardingUsernameHint": "আপনার নাম লিখুন",
+  "@onboardingUsernameHint": {
+    "description": "Hint text for username input field"
+  },
+  "onboardingNotificationEnable": "সক্রিয় করুন",
+  "@onboardingNotificationEnable": {
+    "description": "Enable notifications option"
+  },
+  "onboardingNotificationEnableSubtitle": "নামাজের সময়ের নোটিফিকেশন পান",
+  "@onboardingNotificationEnableSubtitle": {
+    "description": "Subtitle for enable notifications option"
+  },
+  "onboardingNotificationDisable": "নিষ্ক্রিয় করুন",
+  "@onboardingNotificationDisable": {
+    "description": "Disable notifications option"
+  },
+  "onboardingNotificationDisableSubtitle": "শুধুমাত্র নীরব মোড ব্যবহার করুন",
+  "@onboardingNotificationDisableSubtitle": {
+    "description": "Subtitle for disable notifications option"
+  },
+  "onboardingCalculationTitle": "নামাজের সময় গণনা",
+  "@onboardingCalculationTitle": {
+    "description": "Title for calculation method screen"
+  },
+  "onboardingCalculationSubtitle": "আপনার পছন্দের গণনা পদ্ধতি নির্বাচন করুন",
+  "@onboardingCalculationSubtitle": {
+    "description": "Subtitle for calculation method screen"
+  },
+  "onboardingMadhhabTitle": "আপনার মাযহাব নির্বাচন করুন",
+  "@onboardingMadhhabTitle": {
+    "description": "Title for madhhab selection screen"
+  },
+  "onboardingMadhhabSubtitle": "আপনার ইসলামিক চিন্তাধারা নির্বাচন করুন",
+  "@onboardingMadhhabSubtitle": {
+    "description": "Subtitle for madhhab selection screen"
+  },
+  "onboardingNotificationsTitle": "বিজ্ঞপ্তি",
+  "@onboardingNotificationsTitle": {
+    "description": "Title for notifications setup screen"
+  },
+  "onboardingNotificationsSubtitle": "নামাজের স্মরণিকা দিয়ে সংযুক্ত থাকুন",
+  "@onboardingNotificationsSubtitle": {
+    "description": "Subtitle for notifications setup screen"
+  },
+  "onboardingThemeTitle": "আপনার থিম নির্বাচন করুন",
+  "@onboardingThemeTitle": {
+    "description": "Title for theme selection screen"
+  },
+  "onboardingThemeSubtitle": "আপনার পছন্দের দৃশ্য শৈলী নির্বাচন করুন",
+  "@onboardingThemeSubtitle": {
+    "description": "Subtitle for theme selection screen"
+  },
+  "onboardingCompleteTitle": "আপনি প্রস্তুত!",
+  "@onboardingCompleteTitle": {
+    "description": "Title for completion screen"
+  },
+  "onboardingCompleteSubtitle": "দীনমেটে স্বাগতম। চলুন আপনার যাত্রা শুরু করি।",
+  "@onboardingCompleteSubtitle": {
+    "description": "Subtitle for completion screen"
+  },
+
+  "navigationHome": "হোম",
+  "@navigationHome": {
+    "description": "Navigation label for home screen"
+  },
+  "navigationQuran": "কুরআন",
+  "@navigationQuran": {
+    "description": "Navigation label for Quran screen"
+  },
+  "navigationHadith": "হাদিস",
+  "@navigationHadith": {
+    "description": "Navigation label for Hadith screen"
+  },
+  "navigationMore": "আরও",
+  "@navigationMore": {
+    "description": "Navigation label for more options screen"
+  },
+
+  "prayerTimesTitle": "নামাজের সময়",
+  "@prayerTimesTitle": {
+    "description": "Title for prayer times section"
+  },
+  "prayerFajr": "ফজর",
+  "@prayerFajr": {
+    "description": "Fajr prayer name"
+  },
+  "prayerSunrise": "সূর্যোদয়",
+  "@prayerSunrise": {
+    "description": "Sunrise time"
+  },
+  "prayerDhuhr": "যুহর",
+  "@prayerDhuhr": {
+    "description": "Dhuhr prayer name"
+  },
+  "prayerAsr": "আসর",
+  "@prayerAsr": {
+    "description": "Asr prayer name"
+  },
+  "prayerMaghrib": "মাগরিব",
+  "@prayerMaghrib": {
+    "description": "Maghrib prayer name"
+  },
+  "prayerIsha": "ইশা",
+  "@prayerIsha": {
+    "description": "Isha prayer name"
+  },
+  "nextPrayer": "পরবর্তী নামাজ",
+  "@nextPrayer": {
+    "description": "Label for next prayer"
+  },
+  "currentPrayer": "বর্তমান নামাজ",
+  "@currentPrayer": {
+    "description": "Label for current prayer"
+  },
+  "timeRemaining": "বাকি সময়",
+  "@timeRemaining": {
+    "description": "Label for time remaining"
+  },
+
+  "quranTitle": "কুরআন",
+  "@quranTitle": {
+    "description": "Title for Quran section"
+  },
+  "quranLastRead": "সর্বশেষ পড়া",
+  "@quranLastRead": {
+    "description": "Label for last read section"
+  },
+  "quranContinue": "চালিয়ে যান",
+  "@quranContinue": {
+    "description": "Button text to continue reading"
+  },
+  "quranSearch": "অনুসন্ধান",
+  "@quranSearch": {
+    "description": "Search placeholder text"
+  },
+  "quranNavigation": "নেভিগেশন",
+  "@quranNavigation": {
+    "description": "Navigation section title"
+  },
+  "quranSurah": "সূরা",
+  "@quranSurah": {
+    "description": "Surah navigation tab"
+  },
+  "quranPage": "পৃষ্ঠা",
+  "@quranPage": {
+    "description": "Page navigation tab"
+  },
+  "quranJuz": "জুজ",
+  "@quranJuz": {
+    "description": "Juz navigation tab"
+  },
+  "quranHizb": "হিজব",
+  "@quranHizb": {
+    "description": "Hizb navigation tab"
+  },
+  "quranRuku": "রুকু",
+  "@quranRuku": {
+    "description": "Ruku navigation tab"
+  },
+
+  "settingsTitle": "সেটিংস",
+  "@settingsTitle": {
+    "description": "Settings screen title"
+  },
+  "settingsLanguage": "ভাষা",
+  "@settingsLanguage": {
+    "description": "Language settings section"
+  },
+  "settingsTheme": "থিম",
+  "@settingsTheme": {
+    "description": "Theme settings section"
+  },
+  "settingsNotifications": "বিজ্ঞপ্তি",
+  "@settingsNotifications": {
+    "description": "Notifications settings section"
+  },
+  "settingsPrayerTimes": "নামাজের সময়",
+  "@settingsPrayerTimes": {
+    "description": "Prayer times setting option"
+  },
+  "settingsQuran": "কুরআন",
+  "@settingsQuran": {
+    "description": "Quran setting option"
+  },
+  "settingsAbout": "সম্পর্কে",
+  "@settingsAbout": {
+    "description": "About setting option"
+  },
+  "settingsPrayerSettings": "নামাজের সেটিংস",
+  "@settingsPrayerSettings": {
+    "description": "Prayer settings section title"
+  },
+  "settingsAthanSettings": "আজানের সেটিংস",
+  "@settingsAthanSettings": {
+    "description": "Athan settings option"
+  },
+  "settingsAthanSubtitle": "আজানের কাস্টমাইজেশন",
+  "@settingsAthanSubtitle": {
+    "description": "Athan settings subtitle"
+  },
+  "settingsPrayerNotifications": "নামাজের বিজ্ঞপ্তি",
+  "@settingsPrayerNotifications": {
+    "description": "Prayer notifications setting"
+  },
+  "settingsPrayerNotificationsSubtitle": "নামাজের সময়ের অনুস্মারক সক্রিয় করুন",
+  "@settingsPrayerNotificationsSubtitle": {
+    "description": "Prayer notifications subtitle"
+  },
+  "settingsPrayerReminders": "নামাজের অনুস্মারক",
+  "@settingsPrayerReminders": {
+    "description": "Prayer reminders setting"
+  },
+  "settingsPrayerRemindersSubtitle": "নামাজের সময়ের জন্য অনুস্মারক পান",
+  "@settingsPrayerRemindersSubtitle": {
+    "description": "Prayer reminders subtitle"
+  },
+  "settingsIslamicMidnight": "ইসলামিক মধ্যরাত",
+  "@settingsIslamicMidnight": {
+    "description": "Islamic midnight setting"
+  },
+  "settingsIslamicMidnightSubtitle": "ইসলামিক ঐতিহ্য অনুযায়ী মধ্যরাত গণনা করুন",
+  "@settingsIslamicMidnightSubtitle": {
+    "description": "Islamic midnight subtitle"
+  },
+  "settingsIslamicContent": "ইসলামিক কন্টেন্ট",
+  "@settingsIslamicContent": {
+    "description": "Islamic content section title"
+  },
+  "settingsDailyVerses": "দৈনিক আয়াত",
+  "@settingsDailyVerses": {
+    "description": "Daily verses setting"
+  },
+  "settingsDailyVersesSubtitle": "দৈনিক কুরআনের আয়াত পান",
+  "@settingsDailyVersesSubtitle": {
+    "description": "Daily verses subtitle"
+  },
+  "settingsQuranSettings": "কুরআনের সেটিংস",
+  "@settingsQuranSettings": {
+    "description": "Quran settings section title"
+  },
+  "settingsReadingPreferences": "পড়ার পছন্দ",
+  "@settingsReadingPreferences": {
+    "description": "Reading preferences option"
+  },
+  "settingsContentTranslations": "কন্টেন্ট ও অনুবাদ",
+  "@settingsContentTranslations": {
+    "description": "Content and translations option"
+  },
+  "settingsOfflineManagement": "অফলাইন ব্যবস্থাপনা",
+  "@settingsOfflineManagement": {
+    "description": "Offline management option"
+  },
+  "settingsOfflineSubtitle": "অফলাইন পড়ার জন্য কুরআনের টেক্সট এবং অনুবাদ",
+  "@settingsOfflineSubtitle": {
+    "description": "Offline management subtitle"
+  },
+  "settingsAudioDownloads": "অডিও ডাউনলোড",
+  "@settingsAudioDownloads": {
+    "description": "Audio downloads option"
+  },
+  "settingsAudioSubtitle": "অফলাইন শোনার জন্য তেলাওয়াত ডাউনলোড করুন",
+  "@settingsAudioSubtitle": {
+    "description": "Audio downloads subtitle"
+  },
+  "settingsAccessibility": "অভিগম্যতা",
+  "@settingsAccessibility": {
+    "description": "Accessibility settings option"
+  },
+  "settingsAppSettings": "অ্যাপ সেটিংস",
+  "@settingsAppSettings": {
+    "description": "App settings section title"
+  },
+  "settingsDataStorage": "ডেটা ও সংরক্ষণ",
+  "@settingsDataStorage": {
+    "description": "Data and storage section title"
+  },
+  "settingsUserName": "আপনার নাম",
+  "@settingsUserName": {
+    "description": "User name field label"
+  },
+  "settingsUserNameSubtitle": "আপনার প্রদর্শনের নাম সেট করুন",
+  "@settingsUserNameSubtitle": {
+    "description": "User name field subtitle"
+  },
+  "settingsEditName": "নাম সম্পাদনা করুন",
+  "@settingsEditName": {
+    "description": "Edit name dialog title"
+  },
+  "settingsEnterName": "আপনার নাম লিখুন",
+  "@settingsEnterName": {
+    "description": "Name input field hint"
+  },
+  "settingsAppDescription": "ইসলামিক ইউটিলিটি সুপার অ্যাপ",
+  "@settingsAppDescription": {
+    "description": "App description text"
+  },
+  "settingsComingSoon": "শীঘ্রই আসছে",
+  "@settingsComingSoon": {
+    "description": "Coming soon label"
+  },
+  "settingsPrayerCalculationMethodTitle": "নামাজের গণনা পদ্ধতি",
+  "@settingsPrayerCalculationMethodTitle": {
+    "description": "Prayer calculation method dialog title"
+  },
+
+  "commonContinue": "চালিয়ে যান",
+  "@commonContinue": {
+    "description": "Common continue button text"
+  },
+  "commonBack": "পিছনে",
+  "@commonBack": {
+    "description": "Common back button text"
+  },
+  "commonNext": "পরবর্তী",
+  "@commonNext": {
+    "description": "Common next button text"
+  },
+  "commonSave": "সংরক্ষণ",
+  "@commonSave": {
+    "description": "Common save button text"
+  },
+  "commonCancel": "বাতিল",
+  "@commonCancel": {
+    "description": "Common cancel button text"
+  },
+  "commonDone": "সম্পন্ন",
+  "@commonDone": {
+    "description": "Common done button text"
+  },
+  "commonLoading": "লোড হচ্ছে...",
+  "@commonLoading": {
+    "description": "Generic loading message"
+  },
+  "commonPleaseWait": "অনুগ্রহ করে অপেক্ষা করুন...",
+  "@commonPleaseWait": {
+    "description": "Please wait message"
+  },
+  "commonError": "ত্রুটি",
+  "@commonError": {
+    "description": "Generic error message"
+  },
+  "commonSuccess": "সফল",
+  "@commonSuccess": {
+    "description": "Common success text"
+  },
+  "commonYes": "হ্যাঁ",
+  "@commonYes": {
+    "description": "Common yes text"
+  },
+  "commonNo": "না",
+  "@commonNo": {
+    "description": "Common no text"
+  },
+  "commonOk": "ঠিক আছে",
+  "@commonOk": {
+    "description": "Common OK text"
+  },
+
+  "languageEnglish": "ইংরেজি",
+  "@languageEnglish": {
+    "description": "English language name"
+  },
+  "languageBengali": "বাংলা",
+  "@languageBengali": {
+    "description": "Bengali language name"
+  },
+  "languageUrdu": "উর্দু",
+  "@languageUrdu": {
+    "description": "Urdu language name"
+  },
+  "languageArabic": "আরবি",
+  "@languageArabic": {
+    "description": "Arabic language name"
+  },
+  "languageFullySupported": "সম্পূর্ণ সমর্থিত",
+  "@languageFullySupported": {
+    "description": "Language status - fully supported"
+  },
+  "languageComingSoon": "শীঘ্রই আসছে",
+  "@languageComingSoon": {
+    "description": "Language status - coming soon"
+  },
+
+  "themeLight": "হালকা",
+  "@themeLight": {
+    "description": "Light theme option"
+  },
+  "themeDark": "অন্ধকার",
+  "@themeDark": {
+    "description": "Dark theme option"
+  },
+  "themeSystem": "সিস্টেম",
+  "@themeSystem": {
+    "description": "System theme option"
+  },
+  "themeLightSerenity": "হালকা প্রশান্তি",
+  "@themeLightSerenity": {
+    "description": "Light Serenity theme option"
+  },
+  "themeNightCalm": "রাতের শান্তি",
+  "@themeNightCalm": {
+    "description": "Night Calm theme option"
+  },
+  "themeHeritageSepia": "ঐতিহ্য সেপিয়া",
+  "@themeHeritageSepia": {
+    "description": "Heritage Sepia theme option"
+  },
+
+  "errorGeneric": "কিছু ভুল হয়েছে",
+  "@errorGeneric": {
+    "description": "Generic error message"
+  },
+  "errorNetwork": "নেটওয়ার্ক ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন।",
+  "@errorNetwork": {
+    "description": "Network error message"
+  },
+  "errorLocation": "সঠিক নামাজের সময়ের জন্য অবস্থান অ্যাক্সেস প্রয়োজন।",
+  "@errorLocation": {
+    "description": "Location error message"
+  },
+  "errorPermission": "অনুমতি অস্বীকৃত",
+  "@errorPermission": {
+    "description": "Permission error message"
+  },
+  "errorLanguageChangeFailed": "ভাষা পরিবর্তন করতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+  "@errorLanguageChangeFailed": {
+    "description": "Error message when language change fails"
+  },
+  "errorLanguageChangeGeneric": "ভাষা পরিবর্তন করার সময় একটি ত্রুটি ঘটেছে।",
+  "@errorLanguageChangeGeneric": {
+    "description": "Generic language change error message"
+  },
+
+  "infoLocationRequired": "আপনার এলাকার সঠিক নামাজের সময় প্রদানের জন্য অবস্থান অ্যাক্সেস সাহায্য করে।",
+  "@infoLocationRequired": {
+    "description": "Information about location requirement"
+  },
+  "infoNotificationsHelp": "প্রতিটি নামাজের আগে বিজ্ঞপ্তি পান।",
+  "@infoNotificationsHelp": {
+    "description": "Information about notifications"
+  },
+  "infoThemeDescription": "অ্যাপের জন্য আপনার পছন্দের দৃশ্য শৈলী নির্বাচন করুন।",
+  "@infoThemeDescription": {
+    "description": "Information about theme selection"
+  },
+
+  "locationSetSuccess": "অবস্থান সফলভাবে সেট করা হয়েছে!",
+  "@locationSetSuccess": {
+    "description": "Success message when location is set"
+  },
+  "locationGetFailed": "অবস্থান পাওয়া যায়নি: {error}",
+  "@locationGetFailed": {
+    "description": "Error message when location retrieval fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+  "locationSaveSuccess": "অবস্থান \"{city}, {country}\" সফলভাবে সংরক্ষিত হয়েছে!",
+  "@locationSaveSuccess": {
+    "description": "Success message when location is saved",
+    "placeholders": {
+      "city": {
+        "type": "String",
+        "example": "ঢাকা"
+      },
+      "country": {
+        "type": "String",
+        "example": "বাংলাদেশ"
+      }
+    }
+  },
+  "locationSaveFailed": "অবস্থান সংরক্ষণ ব্যর্থ: {error}",
+  "@locationSaveFailed": {
+    "description": "Error message when location saving fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "ডাটাবেস ত্রুটি"
+      }
+    }
+  },
+  "locationPermissionRequired": "অবস্থান অনুমতি প্রয়োজন",
+  "@locationPermissionRequired": {
+    "description": "Title for location permission dialog"
+  },
+  "buttonCancel": "বাতিল",
+  "@buttonCancel": {
+    "description": "Cancel button text"
+  },
+  "buttonTryAgain": "আবার চেষ্টা করুন",
+  "@buttonTryAgain": {
+    "description": "Try again button text"
+  },
+  "buttonConfirm": "নিশ্চিত করুন",
+  "@buttonConfirm": {
+    "description": "Confirm button text"
+  },
+  "buttonClear": "পরিষ্কার করুন",
+  "@buttonClear": {
+    "description": "Clear button text"
+  },
+
+  "settingsLanguage": "ভাষা",
+  "@settingsLanguage": {
+    "description": "Language settings option"
+  },
+  "settingsAbout": "DeenMate সম্পর্কে",
+  "@settingsAbout": {
+    "description": "About section title"
+  },
+  "settingsAboutSubtitle": "সংস্করণ, ক্রেডিট এবং আরও",
+  "@settingsAboutSubtitle": {
+    "description": "About section subtitle"
+  },
+  "settingsPrivacyPolicy": "গোপনীয়তা নীতি",
+  "@settingsPrivacyPolicy": {
+    "description": "Privacy policy option"
+  },
+  "settingsPrivacyPolicySubtitle": "আমরা কীভাবে আপনার ডেটা রক্ষা করি",
+  "@settingsPrivacyPolicySubtitle": {
+    "description": "Privacy policy subtitle"
+  },
+  "settingsClearCache": "ক্যাশ মুছুন",
+  "@settingsClearCache": {
+    "description": "Clear cache option"
+  },
+  "settingsClearCacheSubtitle": "স্টোরেজ স্থান মুক্ত করুন",
+  "@settingsClearCacheSubtitle": {
+    "description": "Clear cache subtitle"
+  },
+  "settingsClearCacheConfirmMessage": "আপনি কি নিশ্চিত যে আপনি ক্যাশ মুছে ফেলতে চান? এটি অস্থায়ী ফাইলগুলি সরিয়ে দেবে এবং প্রাথমিকভাবে অ্যাপটি ধীর করতে পারে।",
+  "@settingsClearCacheConfirmMessage": {
+    "description": "Clear cache confirmation dialog message"
+  },
+  "settingsExportData": "ডেটা রপ্তানি করুন",
+  "@settingsExportData": {
+    "description": "Export data option"
+  },
+  "settingsExportDataSubtitle": "আপনার সেটিংস এবং ডেটা ব্যাকআপ করুন",
+  "@settingsExportDataSubtitle": {
+    "description": "Export data subtitle"
+  },
+  "settingsPrayerCalculationMethod": "নামাজ গণনা পদ্ধতি",
+  "@settingsPrayerCalculationMethod": {
+    "description": "Prayer calculation method setting"
+  },
+  "settingsSelectLanguage": "ভাষা নির্বাচন করুন",
+  "@settingsSelectLanguage": {
+    "description": "Language selection dialog title"
+  },
+  "settingsPermissionRequired": "অনুমতি প্রয়োজন",
+  "@settingsPermissionRequired": {
+    "description": "Permission required dialog title"
+  },
+  "settingsCacheClearedSuccess": "ক্যাশ সফলভাবে মুছে ফেলা হয়েছে",
+  "@settingsCacheClearedSuccess": {
+    "description": "Cache cleared success message"
+  },
+  "settingsExportComingSoon": "রপ্তানি বৈশিষ্ট্য শীঘ্রই আসছে!",
+  "@settingsExportComingSoon": {
+    "description": "Export feature coming soon message"
+  },
+
+  "prayerCalculationMethods": "নামাজ গণনা পদ্ধতি",
+  "@prayerCalculationMethods": {
+    "description": "Prayer calculation methods screen title"
+  },
+  "prayerAthanNotifications": "আজান ও বিজ্ঞপ্তি",
+  "@prayerAthanNotifications": {
+    "description": "Athan and notifications screen title"
+  },
+  "prayerVibration": "কম্পন",
+  "@prayerVibration": {
+    "description": "Vibration setting title"
+  },
+  "prayerVibrationSubtitle": "আজানের সময় ডিভাইস কম্পন করুন",
+  "@prayerVibrationSubtitle": {
+    "description": "Vibration setting subtitle"
+  },
+  "prayerQuickActions": "দ্রুত কর্ম",
+  "@prayerQuickActions": {
+    "description": "Quick actions setting title"
+  },
+  "prayerQuickActionsSubtitle": "\"নামাজ পড়া হয়েছে\" এবং \"স্নুজ\" বোতাম দেখান",
+  "@prayerQuickActionsSubtitle": {
+    "description": "Quick actions setting subtitle"
+  },
+  "prayerAutoComplete": "স্বয়ংক্রিয় সম্পূর্ণ",
+  "@prayerAutoComplete": {
+    "description": "Auto-complete setting title"
+  },
+  "prayerAutoCompleteSubtitle": "স্বয়ংক্রিয়ভাবে নামাজ সম্পূর্ণ হিসেবে চিহ্নিত করুন",
+  "@prayerAutoCompleteSubtitle": {
+    "description": "Auto-complete setting subtitle"
+  },
+  "prayerSmartNotifications": "স্মার্ট বিজ্ঞপ্তি",
+  "@prayerSmartNotifications": {
+    "description": "Smart notifications setting title"
+  },
+  "prayerSmartNotificationsSubtitle": "আপনার কার্যকলাপের ভিত্তিতে বিজ্ঞপ্তি সামঞ্জস্য করুন",
+  "@prayerSmartNotificationsSubtitle": {
+    "description": "Smart notifications setting subtitle"
+  },
+  "prayerOverrideDND": "ডু নট ডিসটার্ব ওভাররাইড করুন",
+  "@prayerOverrideDND": {
+    "description": "Override DND setting title"
+  },
+  "prayerOverrideDNDSubtitle": "ডিএনডি মোডেও নামাজের বিজ্ঞপ্তি দেখান",
+  "@prayerOverrideDNDSubtitle": {
+    "description": "Override DND setting subtitle"
+  },
+  "prayerFullScreenNotifications": "ফুল স্ক্রিন বিজ্ঞপ্তি",
+  "@prayerFullScreenNotifications": {
+    "description": "Full screen notifications setting title"
+  },
+  "prayerFullScreenNotificationsSubtitle": "নামাজের সময় ফুল স্ক্রিন সতর্কতা হিসেবে দেখান",
+  "@prayerFullScreenNotificationsSubtitle": {
+    "description": "Full screen notifications setting subtitle"
+  },
+  "prayerRamadanNotifications": "রমজান বিজ্ঞপ্তি",
+  "@prayerRamadanNotifications": {
+    "description": "Ramadan notifications setting title"
+  },
+  "prayerRamadanNotificationsSubtitle": "সেহরি এবং ইফতারের জন্য বিশেষ বিজ্ঞপ্তি সক্রিয় করুন",
+  "@prayerRamadanNotificationsSubtitle": {
+    "description": "Ramadan notifications setting subtitle"
+  },
+  "prayerSpecialRamadanAthan": "বিশেষ রমজান আজান",
+  "@prayerSpecialRamadanAthan": {
+    "description": "Special Ramadan Athan setting title"
+  },
+  "prayerSpecialRamadanAthanSubtitle": "রমজানের সময় বিশেষ আজান পাঠ ব্যবহার করুন",
+  "@prayerSpecialRamadanAthanSubtitle": {
+    "description": "Special Ramadan Athan setting subtitle"
+  },
+  "prayerIncludeDuas": "দোয়া অন্তর্ভুক্ত করুন",
+  "@prayerIncludeDuas": {
+    "description": "Include duas setting title"
+  },
+  "prayerIncludeDuasSubtitle": "বিজ্ঞপ্তিতে রমজান-নির্দিষ্ট দোয়া দেখান",
+  "@prayerIncludeDuasSubtitle": {
+    "description": "Include duas setting subtitle"
+  },
+  "prayerTrackFasting": "রোজা ট্র্যাক করুন",
+  "@prayerTrackFasting": {
+    "description": "Track fasting setting title"
+  },
+  "prayerTrackFastingSubtitle": "আপনার রোজার অবস্থা ট্র্যাক রাখুন",
+  "@prayerTrackFastingSubtitle": {
+    "description": "Track fasting setting subtitle"
+  },
+  "buttonRetry": "আবার চেষ্টা করুন",
+  "@buttonRetry": {
+    "description": "Retry button text"
+  },
+  "buttonGrant": "অনুমতি দিন",
+  "@buttonGrant": {
+    "description": "Grant button text"
+  },
+  "buttonApply": "প্রয়োগ করুন",
+  "@buttonApply": {
+    "description": "Apply button text"
+  },
+  "buttonGotIt": "বুঝেছি",
+  "@buttonGotIt": {
+    "description": "Got it button text"
+  },
+  "prayerTestAthanAudio": "আজান অডিও পরীক্ষা করুন",
+  "@prayerTestAthanAudio": {
+    "description": "Test Athan audio button text"
+  },
+  "prayerScheduleNow": "এখনই সময়সূচী করুন",
+  "@prayerScheduleNow": {
+    "description": "Schedule now button text"
+  },
+  "prayerDebugInfo": "ডিবাগ তথ্য",
+  "@prayerDebugInfo": {
+    "description": "Debug info button text"
+  },
+  "prayerScheduleNotifications": "নামাজের বিজ্ঞপ্তি সময়সূচী করুন",
+  "@prayerScheduleNotifications": {
+    "description": "Schedule prayer notifications button text"
+  },
+  "prayerTestNotification": "পরীক্ষামূলক বিজ্ঞপ্তি (১ সেকেন্ড)",
+  "@prayerTestNotification": {
+    "description": "Test notification button text"
+  },
+  "prayerDemoNotification": "ডেমো বিজ্ঞপ্তি (২ মিনিট)",
+  "@prayerDemoNotification": {
+    "description": "Demo notification button text"
+  },
+  "prayerImmediateNotification": "তাৎক্ষণিক বিজ্ঞপ্তি",
+  "@prayerImmediateNotification": {
+    "description": "Immediate notification button text"
+  },
+  "prayerAthanTestStarted": "আজান অডিও পরীক্ষা শুরু হয়েছে",
+  "@prayerAthanTestStarted": {
+    "description": "Athan test started message"
+  },
+  "prayerAthanTestFailed": "আজান পরীক্ষা ব্যর্থ: {error}",
+  "@prayerAthanTestFailed": {
+    "description": "Athan test failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+  "prayerNotificationsScheduled": "আজকের জন্য বিজ্ঞপ্তি সময়সূচী করা হয়েছে",
+  "@prayerNotificationsScheduled": {
+    "description": "Notifications scheduled message"
+  },
+  "prayerSchedulingFailed": "সময়সূচী ব্যর্থ: {error}",
+  "@prayerSchedulingFailed": {
+    "description": "Scheduling failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "নেটওয়ার্ক ত্রুটি"
+      }
+    }
+  },
+  "prayerDebugFailed": "ডিবাগ ব্যর্থ: {error}",
+  "@prayerDebugFailed": {
+    "description": "Debug failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+  "prayerTestNotificationSent": "পরীক্ষামূলক বিজ্ঞপ্তি তাৎক্ষণিকভাবে পাঠানো হয়েছে!",
+  "@prayerTestNotificationSent": {
+    "description": "Test notification sent message"
+  },
+  "prayerTestNotificationFailed": "পরীক্ষামূলক বিজ্ঞপ্তি ব্যর্থ: {error}",
+  "@prayerTestNotificationFailed": {
+    "description": "Test notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+  "prayerDemoNotificationSent": "ডেমো বিজ্ঞপ্তি পাঠানো হয়েছে! আজান এখন বাজবে।",
+  "@prayerDemoNotificationSent": {
+    "description": "Demo notification sent message"
+  },
+  "prayerDemoNotificationFailed": "ডেমো বিজ্ঞপ্তি ব্যর্থ: {error}",
+  "@prayerDemoNotificationFailed": {
+    "description": "Demo notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+  "prayerImmediateNotificationSent": "তাৎক্ষণিক বিজ্ঞপ্তি পাঠানো হয়েছে!",
+  "@prayerImmediateNotificationSent": {
+    "description": "Immediate notification sent message"
+  },
+  "prayerImmediateNotificationFailed": "তাৎক্ষণিক বিজ্ঞপ্তি ব্যর্থ: {error}",
+  "@prayerImmediateNotificationFailed": {
+    "description": "Immediate notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "অনুমতি অস্বীকৃত"
+      }
+    }
+  },
+
+  "ramadanSuhoor": "সেহরি",
+  "@ramadanSuhoor": {
+    "description": "Suhoor meal time for Ramadan"
+  },
+  "ramadanIftaar": "ইফতার",
+  "@ramadanIftaar": {
+    "description": "Iftaar meal time for Ramadan"
+  },
+
+  "prayerTimesSource": "আল-আধান থেকে সময়",
+  "@prayerTimesSource": {
+    "description": "Source attribution for prayer times"
+  },
+
+  "prayerTimesUpdated": "আপডেট: {time}",
+  "@prayerTimesUpdated": {
+    "description": "Last updated time for prayer times",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "২:৩০ PM"
+      }
+    }
+  },
+
+  "prayerTimesCurrentPrayer": "বর্তমান নামাজ",
+  "@prayerTimesCurrentPrayer": {
+    "description": "Label for current prayer"
+  },
+  "prayerTimesNextPrayer": "পরবর্তী নামাজ",
+  "@prayerTimesNextPrayer": {
+    "description": "Label for next prayer"
+  },
+  "prayerTimesNoActivePrayer": "কোন সক্রিয় নামাজ নেই",
+  "@prayerTimesNoActivePrayer": {
+    "description": "Message when no prayer is currently active"
+  },
+
+  "prayerTimesAzan": "আজান",
+  "@prayerTimesAzan": {
+    "description": "Azan (call to prayer) label"
+  },
+  "prayerTimesJamaat": "জামাত",
+  "@prayerTimesJamaat": {
+    "description": "Jama'at (congregational prayer) label"
+  },
+  "prayerTimesEndTime": "শেষ সময় - {time}",
+  "@prayerTimesEndTime": {
+    "description": "Prayer end time label",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "৫:৩০ AM"
+      }
+    }
+  },
+
+  "settingsTitle": "সেটিংস",
+  "@settingsTitle": {
+    "description": "Settings screen title"
+  },
+  "settingsNotifications": "বিজ্ঞপ্তি",
+  "@settingsNotifications": {
+    "description": "Notifications settings section"
+  },
+  "settingsPrayerReminders": "নামাজের স্মরণিকা",
+  "@settingsPrayerReminders": {
+    "description": "Prayer reminders setting"
+  },
+  "settingsTheme": "থিম",
+  "@settingsTheme": {
+    "description": "Theme settings section"
+  },
+  "settingsLanguage": "ভাষা",
+  "@settingsLanguage": {
+    "description": "Language settings section"
+  },
+  "settingsCalculationMethod": "গণনা পদ্ধতি",
+  "@settingsCalculationMethod": {
+    "description": "Prayer calculation method setting"
+  },
+
+  "commonLoading": "লোড হচ্ছে...",
+  "@commonLoading": {
+    "description": "Generic loading message"
+  },
+  "commonError": "ত্রুটি",
+  "@commonError": {
+    "description": "Generic error message"
+  },
+  "commonRetry": "পুনরায় চেষ্টা করুন",
+  "@commonRetry": {
+    "description": "Retry button text"
+  },
+  "commonCancel": "বাতিল",
+  "@commonCancel": {
+    "description": "Cancel button text"
+  },
+  "commonSave": "সংরক্ষণ",
+  "@commonSave": {
+    "description": "Save button text"
+  },
+  "commonClose": "বন্ধ",
+  "@commonClose": {
+    "description": "Close button text"
+  },
+  "commonBack": "পিছনে",
+  "@commonBack": {
+    "description": "Back button text"
+  },
+  "commonNext": "পরবর্তী",
+  "@commonNext": {
+    "description": "Next button text"
+  },
+  "commonSkip": "এড়িয়ে যান",
+  "@commonSkip": {
+    "description": "Skip button text"
+  },
+  "commonContinue": "চালিয়ে যান",
+  "@commonContinue": {
+    "description": "Continue button text"
+  },
+  "commonDone": "সম্পন্ন",
+  "@commonDone": {
+    "description": "Done button text"
+  },
+
+  "exitDialogTitle": "দীনমেট থেকে বের হন",
+  "@exitDialogTitle": {
+    "description": "Exit confirmation dialog title"
+  },
+  "exitDialogMessage": "আপনি কি নিশ্চিত যে আপনি অ্যাপ থেকে বের হতে চান?",
+  "@exitDialogMessage": {
+    "description": "Exit confirmation dialog message"
+  },
+  "exitDialogExit": "বের হন",
+  "@exitDialogExit": {
+    "description": "Exit confirmation dialog exit button"
+  },
+
+  "audioDownloadsTitle": "অডিও ডাউনলোড",
+  "@audioDownloadsTitle": {
+    "description": "Title for the audio downloads screen"
+  },
+  "audioStorageTitle": "অডিও স্টোরেজ",
+  "@audioStorageTitle": {
+    "description": "Header for audio storage section"
+  },
+  "audioStorageErrorStats": "স্ট্যাটিস্টিক্স লোড করতে ত্রুটি",
+  "@audioStorageErrorStats": {
+    "description": "Error message when storage stats fail to load"
+  },
+  "audioSelectReciterTitle": "তিলাওয়াতকারী নির্বাচন করুন",
+  "@audioSelectReciterTitle": {
+    "description": "Header for reciter selection section"
+  },
+  "audioRecitersLoadError": "তিলাওয়াতকারী লোড করতে ত্রুটি",
+  "@audioRecitersLoadError": {
+    "description": "Error message when reciters fail to load"
+  },
+  "audioQuickActionsTitle": "দ্রুত কার্যক্রম",
+  "@audioQuickActionsTitle": {
+    "description": "Header for quick actions section"
+  },
+  "audioDownloadPopularTitle": "জনপ্রিয় ডাউনলোড",
+  "@audioDownloadPopularTitle": {
+    "description": "Title for download popular chapters button"
+  },
+  "audioDownloadPopularSubtitle": "সবচেয়ে জনপ্রিয় সূরাগুলি ডাউনলোড করুন",
+  "@audioDownloadPopularSubtitle": {
+    "description": "Subtitle for download popular chapters button"
+  },
+  "audioDownloadAllTitle": "সব ডাউনলোড",
+  "@audioDownloadAllTitle": {
+    "description": "Title for download all chapters button"
+  },
+  "audioDownloadAllSubtitle": "সম্পূর্ণ কুরআন ডাউনলোড করুন",
+  "@audioDownloadAllSubtitle": {
+    "description": "Subtitle for download all chapters button"
+  },
+  "audioIndividualChaptersTitle": "পৃথক সূরাসমূহ",
+  "@audioIndividualChaptersTitle": {
+    "description": "Header for individual chapters section"
+  },
+  "audioDownloadCancel": "বাতিল",
+  "@audioDownloadCancel": {
+    "description": "Tooltip text for cancel download button"
+  },
+  "audioChapterDelete": "মুছুন",
+  "@audioChapterDelete": {
+    "description": "Menu item text for deleting audio chapter"
+  },
+  "audioErrorLoadingChapters": "অধ্যায় লোড করতে ত্রুটি: {error}",
+  "@audioErrorLoadingChapters": {
+    "description": "Error message when chapters fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error details"
+      }
+    }
+  },
+  "audioDownloadingPopularChapters": "জনপ্রিয় অধ্যায়গুলি ডাউনলোড হচ্ছে...",
+  "@audioDownloadingPopularChapters": {
+    "description": "Status message when downloading popular chapters"
+  },
+  "audioDownloadingChapter": "অধ্যায় {chapterId} ডাউনলোড হচ্ছে: {status}",
+  "@audioDownloadingChapter": {
+    "description": "Status message when downloading a specific chapter",
+    "placeholders": {
+      "chapterId": {
+        "type": "String",
+        "description": "The chapter ID being downloaded"
+      },
+      "status": {
+        "type": "String",
+        "description": "The download status"
+      }
+    }
+  },
+  "audioPopularChaptersDownloadSuccess": "জনপ্রিয় অধ্যায়গুলি সফলভাবে ডাউনলোড হয়েছে!",
+  "@audioPopularChaptersDownloadSuccess": {
+    "description": "Success message when popular chapters are downloaded"
+  },
+  "audioDownloadFailed": "ডাউনলোড ব্যর্থ: {error}",
+  "@audioDownloadFailed": {
+    "description": "Error message when download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error details"
+      }
+    }
+  },
+  "audioDownloadingCompleteQuran": "সম্পূর্ণ কুরআন ডাউনলোড হচ্ছে...",
+  "@audioDownloadingCompleteQuran": {
+    "description": "Status message when downloading complete Quran"
+  },
+  "audioDownloadingSurah": "সূরা {chapterName}: {status}",
+  "@audioDownloadingSurah": {
+    "description": "Status message when downloading a surah",
+    "placeholders": {
+      "chapterName": {
+        "type": "String", 
+        "description": "The chapter name being downloaded"
+      },
+      "status": {
+        "type": "String",
+        "description": "The download status"
+      }
+    }
+  },
+  "audioCompleteQuranDownloadSuccess": "সম্পূর্ণ কুরআন সফলভাবে ডাউনলোড হয়েছে!",
+  "@audioCompleteQuranDownloadSuccess": {
+    "description": "Success message when complete Quran is downloaded"
+  },
+  "audioDownloadingVerse": "{currentVerse} ডাউনলোড হচ্ছে...",
+  "@audioDownloadingVerse": {
+    "description": "Status message when downloading individual verse",
+    "placeholders": {
+      "currentVerse": {
+        "type": "String",
+        "description": "The current verse being downloaded"
+      }
+    }
+  },
+  "audioChapterDeleted": "অধ্যায়ের অডিও মুছে ফেলা হয়েছে",
+  "@audioChapterDeleted": {
+    "description": "Success message when chapter audio is deleted"
+  },
+  "audioDeleteFailed": "মুছে ফেলা ব্যর্থ: {error}",
+  "@audioDeleteFailed": {
+    "description": "Error message when delete operation fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error details"
+      }
+    }
+  },
+  "audioUserCancelled": "ব্যবহারকারী বাতিল করেছেন",
+  "@audioUserCancelled": {
+    "description": "Message when user cancels download"
+  },
+  "prayerTimesLoading": "নামাজের সময় লোড হচ্ছে",
+  "@prayerTimesLoading": {
+    "description": "Loading message for prayer times"
+  },
+  "prayerTimesUnavailable": "নামাজের সময় অনুপলব্ধ",
+  "@prayerTimesUnavailable": {
+    "description": "Title when prayer times cannot be loaded"
+  },
+  "prayerTimesUnableToLoad": "নামাজের সময় লোড করতে পারছি না",
+  "@prayerTimesUnableToLoad": {
+    "description": "Subtitle for general prayer times error"
+  },
+  "prayerTimesLocationRequired": "অবস্থান প্রয়োজন",
+  "@prayerTimesLocationRequired": {
+    "description": "Title when location is needed for prayer times"
+  },
+  "prayerTimesEnableLocation": "সঠিক নামাজের সময়ের জন্য অবস্থান সেবা চালু করুন",
+  "@prayerTimesEnableLocation": {
+    "description": "Message asking user to enable location services"
+  },
+  "prayerTimesEnableLocationAction": "অবস্থান চালু করুন",
+  "@prayerTimesEnableLocationAction": {
+    "description": "Button text to enable location"
+  },
+  "prayerTimesNetworkIssue": "নেটওয়ার্ক সমস্যা",
+  "@prayerTimesNetworkIssue": {
+    "description": "Title for network related prayer times errors"
+  },
+  "prayerTimesCheckConnection": "ইন্টারনেট সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন",
+  "@prayerTimesCheckConnection": {
+    "description": "Message for network connectivity issues"
+  },
+  "prayerTimesServiceUnavailable": "সেবা অনুপলব্ধ",
+  "@prayerTimesServiceUnavailable": {
+    "description": "Title when prayer times service is down"
+  },
+  "prayerTimesServiceTemporarilyUnavailable": "নামাজের সময় সেবা সাময়িকভাবে অনুপলব্ধ",
+  "@prayerTimesServiceTemporarilyUnavailable": {
+    "description": "Message when prayer times service is temporarily down"
+  },
+  "prayerTimesRetry": "আবার চেষ্টা করুন",
+  "@prayerTimesRetry": {
+    "description": "Button text to retry loading prayer times"
+  },
+  "prayerTimesTryAgain": "আবার চেষ্টা করুন",
+  "@prayerTimesTryAgain": {
+    "description": "Button text to try again"
+  },
+  "prayerTimesDataUnavailable": "নামাজের সময়ের তথ্য অনুপলব্ধ",
+  "@prayerTimesDataUnavailable": {
+    "description": "Message when prayer times data cannot be retrieved"
+  },
+  "prayerTimesLocationAccess": "অবস্থানে প্রবেশাধিকার",
+  "@prayerTimesLocationAccess": {
+    "description": "Title for location access dialog"
+  },
+  "prayerTimesLocationAccessMessage": "ডীনমেটের আপনার এলাকার জন্য সঠিক নামাজের সময় প্রদান করতে অবস্থানে প্রবেশাধিকার প্রয়োজন।\n\nআপনি পারেন:\n• ডিভাইস সেটিংসে অবস্থান সেবা চালু করতে\n• অ্যাপ সেটিংসে ম্যানুয়ালি আপনার শহর নির্বাচন করতে\n• আপনার অঞ্চলের ভিত্তিতে আনুমানিক সময় ব্যবহার করতে",
+  "@prayerTimesLocationAccessMessage": {
+    "description": "Full message explaining why location access is needed"
+  },
+  "prayerTimesLater": "পরে",
+  "@prayerTimesLater": {
+    "description": "Button text to dismiss location dialog"
+  },
+  "prayerTimesSettings": "সেটিংস",
+  "@prayerTimesSettings": {
+    "description": "Button text to go to settings"
+  },
+  "commonToday": "আজ",
+  "@commonToday": {
+    "description": "The word 'Today'"
+  },
+  "islamicMonthMuharram": "মুহাররম",
+  "@islamicMonthMuharram": {
+    "description": "First Islamic month"
+  },
+  "islamicMonthSafar": "সফর",
+  "@islamicMonthSafar": {
+    "description": "Second Islamic month"
+  },
+  "islamicMonthRabiAlAwwal": "রবিউল আউয়াল",
+  "@islamicMonthRabiAlAwwal": {
+    "description": "Third Islamic month"
+  },
+  "islamicMonthRabiAlThani": "রবিউস সানি",
+  "@islamicMonthRabiAlThani": {
+    "description": "Fourth Islamic month"
+  },
+  "islamicMonthJumadaAlAwwal": "জমাদিউল আউয়াল",
+  "@islamicMonthJumadaAlAwwal": {
+    "description": "Fifth Islamic month"
+  },
+  "islamicMonthJumadaAlThani": "জমাদিউস সানি",
+  "@islamicMonthJumadaAlThani": {
+    "description": "Sixth Islamic month"
+  },
+  "islamicMonthRajab": "রজব",
+  "@islamicMonthRajab": {
+    "description": "Seventh Islamic month"
+  },
+  "islamicMonthShaban": "শাবান",
+  "@islamicMonthShaban": {
+    "description": "Eighth Islamic month"
+  },
+  "islamicMonthRamadan": "রমজান",
+  "@islamicMonthRamadan": {
+    "description": "Ninth Islamic month - The holy month of fasting"
+  },
+  "islamicMonthShawwal": "শাওয়াল",
+  "@islamicMonthShawwal": {
+    "description": "Tenth Islamic month"
+  },
+  "islamicMonthDhuAlQadah": "যিলকদ",
+  "@islamicMonthDhuAlQadah": {
+    "description": "Eleventh Islamic month"
+  },
+  "islamicMonthDhuAlHijjah": "যিলহজ",
+  "@islamicMonthDhuAlHijjah": {
+    "description": "Twelfth Islamic month - The month of Hajj"
+  },
+  "ramadanSuhoor": "সাহরি",
+  "@ramadanSuhoor": {
+    "description": "Pre-dawn meal during Ramadan"
+  },
+  "ramadanIftaar": "ইফতার",
+  "@ramadanIftaar": {
+    "description": "Breaking fast meal during Ramadan"
+  },
+  "homeTimeStatusNow": "এখন",
+  "@homeTimeStatusNow": {
+    "description": "Label indicating data was updated just now"
+  },
+  "homeGreeting": "আসসালামু আলাইকুম,",
+  "@homeGreeting": {
+    "description": "Islamic greeting displayed on home screen"
+  },
+  "homeForbiddenSunrise": "সূর্যোদয়ের সময় নামাজ নিষিদ্ধ",
+  "@homeForbiddenSunrise": {
+    "description": "Alert message for forbidden prayer time during sunrise"
+  },
+  "homeForbiddenZenith": "সূর্যের মধ্যাহ্নে (জেনিথ) নামাজ নিষিদ্ধ",
+  "@homeForbiddenZenith": {
+    "description": "Alert message for forbidden prayer time during solar noon"
+  },
+  "homeForbiddenSunset": "সূর্যাস্তের সময় নামাজ নিষিদ্ধ",
+  "@homeForbiddenSunset": {
+    "description": "Alert message for forbidden prayer time during sunset"
+  },
+  "homePrayerIn": "{prayerName} ",
+  "@homePrayerIn": {
+    "description": "Prefix text for upcoming prayer countdown",
+    "placeholders": {
+      "prayerName": {
+        "type": "String",
+        "example": "ফজর"
+      }
+    }
+  },
+  "homePrayerRemaining": "{prayerName} বাকি ",
+  "@homePrayerRemaining": {
+    "description": "Prefix text for remaining prayer time",
+    "placeholders": {
+      "prayerName": {
+        "type": "String",
+        "example": "ফজর"
+      }
+    }
+  },
+  "homeNoActivePrayer": "কোন সক্রিয় নামাজ নেই",
+  "@homeNoActivePrayer": {
+    "description": "Message when no prayer is currently active"
+  },
+  "homeCurrentPrayer": "বর্তমান নামাজ",
+  "@homeCurrentPrayer": {
+    "description": "Label for current prayer section"
+  },
+  "homeNextPrayer": "পরবর্তী নামাজ",
+  "@homeNextPrayer": {
+    "description": "Label for next prayer section"
+  },
+  "athanPreviewTitle": "আযান প্রিভিউ",
+  "@athanPreviewTitle": {
+    "description": "Title for athan preview widget"
+  },
+  "athanPreviewDescription": "নির্বাচিত মুয়াজ্জিনের কণ্ঠস্বরের নমুনা শুনুন:",
+  "@athanPreviewDescription": {
+    "description": "Description text for athan preview"
+  },
+  "athanPreviewPlay": "প্রিভিউ",
+  "@athanPreviewPlay": {
+    "description": "Play button text for athan preview"
+  },
+  "athanPreviewStop": "বন্ধ",
+  "@athanPreviewStop": {
+    "description": "Stop button text for athan preview"
+  },
+  "athanPreviewPlaying": "চলছে...",
+  "@athanPreviewPlaying": {
+    "description": "Playing status text for athan preview"
+  },
+  "reciterAbdulBasit": "আব্দুল বাসিত আব্দুস সামাদ",
+  "@reciterAbdulBasit": {
+    "description": "Name of reciter Abdul Basit Abdul Samad"
+  },
+  "reciterAbdulBasitDesc": "মিশর থেকে বিখ্যাত কুরআন তেলাওয়াতকারী, মধুর কণ্ঠস্বরের অধিকারী",
+  "@reciterAbdulBasitDesc": {
+    "description": "Description of reciter Abdul Basit Abdul Samad"
+  },
+  "reciterMishary": "মিশারী রাশিদ আল-আফাসী",
+  "@reciterMishary": {
+    "description": "Name of reciter Mishary Rashid Alafasy"
+  },
+  "reciterMisharyDesc": "কুয়েতের বিখ্যাত ইমাম ও তেলাওয়াতকারী",
+  "@reciterMisharyDesc": {
+    "description": "Description of reciter Mishary Rashid Alafasy"
+  },
+  "reciterSudais": "শেখ আব্দুর রহমান আস-সুদাইস",
+  "@reciterSudais": {
+    "description": "Name of reciter Sheikh Abdul Rahman Al-Sudais"
+  },
+  "reciterSudaisDesc": "মক্কার মসজিদুল হারামের ইমাম",
+  "@reciterSudaisDesc": {
+    "description": "Description of reciter Sheikh Abdul Rahman Al-Sudais"
+  },
+  "reciterShuraim": "শেখ সউদ আশ-শুরাইম",
+  "@reciterShuraim": {
+    "description": "Name of reciter Sheikh Saud Al-Shuraim"
+  },
+  "reciterShuraimDesc": "মক্কার মসজিদুল হারামের ইমাম",
+  "@reciterShuraimDesc": {
+    "description": "Description of reciter Sheikh Saud Al-Shuraim"
+  },
+  "reciterMaher": "মাহের আল-মুয়াইকলী",
+  "@reciterMaher": {
+    "description": "Name of reciter Maher Al-Muaiqly"
+  },
+  "reciterMaherDesc": "মসজিদুল হারামের ইমাম, সুন্দর তেলাওয়াতের অধিকারী",
+  "@reciterMaherDesc": {
+    "description": "Description of reciter Maher Al-Muaiqly"
+  },
+  "reciterYasser": "ইয়াসের আদ-দুসারী",
+  "@reciterYasser": {
+    "description": "Name of reciter Yasser Ad-Dussary"
+  },
+  "reciterYasserDesc": "সৌদি আরব থেকে সুন্দর কণ্ঠস্বরের অধিকারী",
+  "@reciterYasserDesc": {
+    "description": "Description of reciter Yasser Ad-Dussary"
+  },
+  "reciterAjmi": "আহমাদ আল-আজমী",
+  "@reciterAjmi": {
+    "description": "Name of reciter Ahmad Al-Ajmi"
+  },
+  "reciterAjmiDesc": "কুয়েতি তেলাওয়াতকারী, স্বতন্ত্র ধরনের অধিকারী",
+  "@reciterAjmiDesc": {
+    "description": "Description of reciter Ahmad Al-Ajmi"
+  },
+  "reciterGhamdi": "সাদ আল-গামদী",
+  "@reciterGhamdi": {
+    "description": "Name of reciter Saad Al-Ghamdi"
+  },
+  "reciterGhamdiDesc": "সৌদি তেলাওয়াতকারী, আবেগময় তেলাওয়াতের জন্য বিখ্যাত",
+  "@reciterGhamdiDesc": {
+    "description": "Description of reciter Saad Al-Ghamdi"
+  },
+  "reciterDefault": "ডিফল্ট আযান",
+  "@reciterDefault": {
+    "description": "Default athan reciter name"
+  },
+  "reciterDefaultDesc": "মানসম্পন্ন ইসলামিক আযান",
+  "@reciterDefaultDesc": {
+    "description": "Default athan reciter description"
+  },
+  "prayerTimesNextIn": "পরবর্তী",
+  "@prayerTimesNextIn": {
+    "description": "Label for countdown to next prayer"
+  },
+  "prayerTimesPleaseWait": "অনুগ্রহ করে অপেক্ষা করুন",
+  "@prayerTimesPleaseWait": {
+    "description": "Loading message for prayer times"
+  },
+  "settingsReadingPreferencesSubtitle": "ফন্ট সাইজ, অনুবাদ, লেআউট",
+  "@settingsReadingPreferencesSubtitle": {
+    "description": "Subtitle for reading preferences settings"
+  },
+  "settingsContentTranslationsSubtitle": "প্রতিটি ভাষার জন্য কুরআন ও হাদিসের অনুবাদ নির্বাচন করুন",
+  "@settingsContentTranslationsSubtitle": {
+    "description": "Subtitle for content translations settings"
+  },
+  "settingsAccessibilitySubtitle": "স্ক্রিন রিডার, উচ্চ কনট্রাস্ট, টেক্সট স্কেলিং",
+  "@settingsAccessibilitySubtitle": {
+    "description": "Subtitle for accessibility settings"
+  },
+  "settingsLanguageComingSoon": "{languageName} সাপোর্ট শীঘ্রই আসছে। এখনকার জন্য অ্যাপটি ইংরেজি ব্যবহার করবে।",
+  "@settingsLanguageComingSoon": {
+    "description": "Message when selecting a language not fully supported yet",
+    "placeholders": {
+      "languageName": {
+        "type": "String",
+        "description": "The name of the selected language"
+      }
+    }
+  },
+  "settingsLanguageChanged": "ভাষা {languageName} এ পরিবর্তিত হয়েছে",
+  "@settingsLanguageChanged": {
+    "description": "Success message when language is changed",
+    "placeholders": {
+      "languageName": {
+        "type": "String",
+        "description": "The name of the newly selected language"
+      }
+    }
+  },
+  "translationPickerTitle": "অনুবাদ নির্বাচন করুন",
+  "@translationPickerTitle": {
+    "description": "Title for translation picker dialog"
+  },
+  "translationPickerErrorLoading": "অনুবাদ লোড করতে ত্রুটি: {error}",
+  "@translationPickerErrorLoading": {
+    "description": "Error message when translations fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "translationPickerCancel": "বাতিল",
+  "@translationPickerCancel": {
+    "description": "Cancel button in translation picker"
+  },
+  "translationPickerApply": "প্রয়োগ",
+  "@translationPickerApply": {
+    "description": "Apply button in translation picker"
+  },
+  "translationPickerLanguageLabel": "ভাষা: ",
+  "@translationPickerLanguageLabel": {
+    "description": "Label for language filter dropdown"
+  },
+  "translationPickerAllLanguages": "সকল ভাষা",
+  "@translationPickerAllLanguages": {
+    "description": "Option to show all languages in translation picker"
+  },
+  "translationPickerEnglish": "ইংরেজি",
+  "@translationPickerEnglish": {
+    "description": "English language option in translation picker"
+  },
+  "translationPickerArabic": "আরবি",
+  "@translationPickerArabic": {
+    "description": "Arabic language option in translation picker"
+  },
+  "translationPickerUrdu": "উর্দু",
+  "@translationPickerUrdu": {
+    "description": "Urdu language option in translation picker"
+  },
+  "translationPickerBengali": "বাংলা",
+  "@translationPickerBengali": {
+    "description": "Bengali language option in translation picker"
+  },
+  "translationPickerIndonesian": "ইন্দোনেশিয়ান",
+  "@translationPickerIndonesian": {
+    "description": "Indonesian language option in translation picker"
+  },
+  "translationPickerTurkish": "তুর্কি",
+  "@translationPickerTurkish": {
+    "description": "Turkish language option in translation picker"
+  },
+  "translationPickerFrench": "ফরাসি",
+  "@translationPickerFrench": {
+    "description": "French language option in translation picker"
+  },
+
+  "readingModeThemeTitle": "পঠন থিম",
+  "@readingModeThemeTitle": {
+    "description": "Title for reading theme selection dialog"
+  },
+  "readingModeThemeLight": "উজ্জ্বল থিম",
+  "@readingModeThemeLight": {
+    "description": "Light theme option in reading mode"
+  },
+  "readingModeThemeDark": "অন্ধকার থিম",
+  "@readingModeThemeDark": {
+    "description": "Dark theme option in reading mode"
+  },
+  "readingModeThemeSepia": "সেপিয়া থিম",
+  "@readingModeThemeSepia": {
+    "description": "Sepia theme option in reading mode"
+  },
+  "readingModeThemeLightApplied": "উজ্জ্বল থিম প্রয়োগ করা হয়েছে",
+  "@readingModeThemeLightApplied": {
+    "description": "Success message when light theme is applied"
+  },
+  "readingModeThemeDarkApplied": "অন্ধকার থিম প্রয়োগ করা হয়েছে",
+  "@readingModeThemeDarkApplied": {
+    "description": "Success message when dark theme is applied"
+  },
+  "readingModeThemeSepiaApplied": "সেপিয়া থিম প্রয়োগ করা হয়েছে",
+  "@readingModeThemeSepiaApplied": {
+    "description": "Success message when sepia theme is applied"
+  },
+  "readingModeFontSettings": "ফন্ট সেটিংস",
+  "@readingModeFontSettings": {
+    "description": "Title for font settings dialog"
+  },
+  "readingModeFontArabicSize": "আরবি ফন্টের আকার",
+  "@readingModeFontArabicSize": {
+    "description": "Label for Arabic font size setting"
+  },
+  "readingModeFontTranslationSize": "অনুবাদ ফন্টের আকার",
+  "@readingModeFontTranslationSize": {
+    "description": "Label for translation font size setting"
+  },
+  "readingModeDone": "সম্পন্ন",
+  "@readingModeDone": {
+    "description": "Done button text in reading mode settings"
+  },
+  "readingModeTranslationSettings": "অনুবাদ সেটিংস",
+  "@readingModeTranslationSettings": {
+    "description": "Title for translation settings dialog"
+  },
+  "readingModeOK": "ঠিক আছে",
+  "@readingModeOK": {
+    "description": "OK button text in reading mode dialogs"
+  },
+  "readingModeBookmarkAdded": "বুকমার্ক যোগ করা হয়েছে",
+  "@readingModeBookmarkAdded": {
+    "description": "Success message when bookmark is added"
+  },
+
+  "verseCardWordAnalysis": "শব্দ বিশ্লেষণ",
+  "@verseCardWordAnalysis": {
+    "description": "Button text for word analysis action in verse card"
+  },
+  "verseCardPlayAudio": "অডিও চালান",
+  "@verseCardPlayAudio": {
+    "description": "Button text for play audio action in verse card"
+  },
+  "verseCardDownloadAudio": "অডিও ডাউনলোড করুন",
+  "@verseCardDownloadAudio": {
+    "description": "Button text for download audio action in verse card"
+  },
+  "verseCardAddNote": "নোট যোগ করুন",
+  "@verseCardAddNote": {
+    "description": "Button text for add note action in verse card"
+  },
+  "verseCardAudioNotAvailable": "এই আয়াতের জন্য অডিও প্লেব্যাক উপলব্ধ নেই",
+  "@verseCardAudioNotAvailable": {
+    "description": "Error message when audio is not available for a verse"
+  },
+  "verseCardDownloadingAudio": "আয়াত {verseKey} এর অডিও ডাউনলোড করা হচ্ছে...",
+  "@verseCardDownloadingAudio": {
+    "description": "Message shown when downloading audio for a verse",
+    "placeholders": {
+      "verseKey": {
+        "type": "String",
+        "description": "The verse key in format chapter:verse"
+      }
+    }
+  },
+  "verseCardNotesTitle": "{verseKey} এর নোট",
+  "@verseCardNotesTitle": {
+    "description": "Title for notes dialog for a specific verse",
+    "placeholders": {
+      "verseKey": {
+        "type": "String",
+        "description": "The verse key in format chapter:verse"
+      }
+    }
+  },
+  "verseCardOK": "ঠিক আছে",
+  "@verseCardOK": {
+    "description": "OK button text in verse card dialogs"
+  },
+  "audioPlayerNowPlaying": "এখন চলছে",
+  "@audioPlayerNowPlaying": {
+    "description": "Header text for the audio player showing current playback"
+  },
+  "audioPlayerNoVerseSelected": "কোন আয়াত নির্বাচিত নেই",
+  "@audioPlayerNoVerseSelected": {
+    "description": "Message shown when no verse is selected in audio player"
+  },
+  "audioPlayerDefaultReciter": "মিশারী রাশিদ আল-আফাসী",
+  "@audioPlayerDefaultReciter": {
+    "description": "Default reciter name for audio playback"
+  },
+  "audioPlayerCurrentPlaylist": "বর্তমান প্লেলিস্ট",
+  "@audioPlayerCurrentPlaylist": {
+    "description": "Title for the playlist dialog"
+  },
+  "audioPlayerPlaylistComingSoon": "প্লেলিস্ট কার্যক্রম শীঘ্রই আসছে",
+  "@audioPlayerPlaylistComingSoon": {
+    "description": "Message indicating playlist features are under development"
+  },
+  "audioPlayerPlaylistCount": "প্লেলিস্টে {count}টি আয়াত রয়েছে",
+  "@audioPlayerPlaylistCount": {
+    "description": "Shows the number of verses in the current playlist",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Number of verses in the playlist"
+      }
+    }
+  },
+  "audioPlayerDownloadingVerse": "আয়াত {verseKey} ডাউনলোড করা হচ্ছে...",
+  "@audioPlayerDownloadingVerse": {
+    "description": "Message shown when downloading audio for a verse",
+    "placeholders": {
+      "verseKey": {
+        "type": "String",
+        "description": "The verse key in format chapter:verse"
+      }
+    }
+  },
+  "audioPlayerDownloadFailed": "ডাউনলোড ব্যর্থ হয়েছে: {error}",
+  "@audioPlayerDownloadFailed": {
+    "description": "Error message when audio download fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "wordAnalysisTitle": "শব্দে শব্দে বিশ্লেষণ",
+  "@wordAnalysisTitle": {
+    "description": "Title for the word analysis widget"
+  },
+  "wordAnalysisHideAnalysis": "বিশ্লেষণ লুকাতে ট্যাপ করুন",
+  "@wordAnalysisHideAnalysis": {
+    "description": "Message when analysis is expanded"
+  },
+  "wordAnalysisShowAnalysis": "আরবি • রোমান • অনুবাদ",
+  "@wordAnalysisShowAnalysis": {
+    "description": "Message when analysis is collapsed"
+  },
+  "wordAnalysisDisplayOptions": "প্রদর্শন বিকল্প",
+  "@wordAnalysisDisplayOptions": {
+    "description": "Header for display options section"
+  },
+  "wordAnalysisTransliteration": "রোমান",
+  "@wordAnalysisTransliteration": {
+    "description": "Checkbox label for transliteration display"
+  },
+  "wordAnalysisGrammar": "ব্যাকরণ",
+  "@wordAnalysisGrammar": {
+    "description": "Checkbox label for grammar display"
+  },
+  "wordAnalysisTapInstruction": "বিস্তারিত বিশ্লেষণের জন্য যেকোনো শব্দে ট্যাপ করুন",
+  "@wordAnalysisTapInstruction": {
+    "description": "Instruction text for interactive word selection"
+  },
+  "wordAnalysisOverview": "শব্দ বিশ্লেষণ সংক্ষিপ্তসার",
+  "@wordAnalysisOverview": {
+    "description": "Title for word analysis overview section"
+  },
+  "wordAnalysisWordDetails": "শব্দের বিবরণ",
+  "@wordAnalysisWordDetails": {
+    "description": "Title for detailed word information"
+  },
+  "wordAnalysisPosition": "অবস্থান",
+  "@wordAnalysisPosition": {
+    "description": "Label for word position in verse"
+  },
+  "wordAnalysisRoot": "মূল",
+  "@wordAnalysisRoot": {
+    "description": "Label for Arabic root of the word"
+  },
+  "wordAnalysisLemma": "লেমা",
+  "@wordAnalysisLemma": {
+    "description": "Label for word lemma"
+  },
+  "wordAnalysisStem": "স্টেম",
+  "@wordAnalysisStem": {
+    "description": "Label for word stem"
+  },
+  "wordAnalysisPartOfSpeech": "পদ",
+  "@wordAnalysisPartOfSpeech": {
+    "description": "Label for grammatical part of speech"
+  },
+  "wordAnalysisNoDetails": "এই শব্দের জন্য অতিরিক্ত বিবরণ উপলব্ধ নেই।",
+  "@wordAnalysisNoDetails": {
+    "description": "Message when no additional word details are available"
+  },
+  "wordAnalysisGrammarGender": "লিঙ্গ",
+  "@wordAnalysisGrammarGender": {
+    "description": "Grammar label for word gender"
+  },
+  "wordAnalysisGrammarNumber": "বচন",
+  "@wordAnalysisGrammarNumber": {
+    "description": "Grammar label for word number"
+  },
+  "wordAnalysisGrammarPerson": "পুরুষ",
+  "@wordAnalysisGrammarPerson": {
+    "description": "Grammar label for word person"
+  },
+  "wordAnalysisGrammarTense": "কাল",
+  "@wordAnalysisGrammarTense": {
+    "description": "Grammar label for word tense"
+  },
+  "wordAnalysisGrammarMood": "ভাব",
+  "@wordAnalysisGrammarMood": {
+    "description": "Grammar label for word mood"
+  },
+  "wordAnalysisGrammarVoice": "বাচ্য",
+  "@wordAnalysisGrammarVoice": {
+    "description": "Grammar label for word voice"
+  },
+  "wordAnalysisGrammarDetails": "ব্যাকরণ",
+  "@wordAnalysisGrammarDetails": {
+    "description": "Grammar label for word grammar details"
+  },
+  "wordAnalysisNotAvailable": "এই আয়াতের জন্য শব্দ বিশ্লেষণ উপলব্ধ নেই",
+  "@wordAnalysisNotAvailable": {
+    "description": "Message when word analysis data is not available"
+  },
+  
+  "navigationPrayer": "নামাজ",
+  "@navigationPrayer": {
+    "description": "Navigation label for prayer times section"
+  },
+  "navigationQibla": "কিবলা",
+  "@navigationQibla": {
+    "description": "Navigation label for qibla compass section"
+  },
+  
+  "inheritanceCalculatorTitle": "মীরাস ক্যালকুলেটর",
+  "@inheritanceCalculatorTitle": {
+    "description": "Title for Islamic inheritance calculator"
+  },
+  "inheritanceQuickStart": "দ্রুত শুরুর গাইড",
+  "@inheritanceQuickStart": {
+    "description": "Quick start section header"
+  },
+  "inheritanceEnterEstate": "১. সম্পত্তির মূল্য প্রবেশ করান",
+  "@inheritanceEnterEstate": {
+    "description": "Step 1 instruction"
+  },
+  "inheritanceSelectHeirs": "২. উত্তরাধিকারী নির্বাচন করুন",
+  "@inheritanceSelectHeirs": {
+    "description": "Step 2 instruction"
+  },
+  "inheritanceCalculate": "৩. বন্টন গণনা করুন",
+  "@inheritanceCalculate": {
+    "description": "Step 3 instruction"
+  },
+  "inheritanceStartCalculation": "গণনা শুরু করুন",
+  "@inheritanceStartCalculation": {
+    "description": "Button to begin inheritance calculation"
+  },
+  "inheritanceFeatures": "মূল বৈশিষ্ট্য",
+  "@inheritanceFeatures": {
+    "description": "Features section header"
+  },
+  "inheritanceShariahCompliant": "📖 শরীয়াহ মোতাবেক",
+  "@inheritanceShariahCompliant": {
+    "description": "Feature: Shariah compliance"
+  },
+  "inheritanceBasedOnQuran": "কুরআন ও সুন্নাহ ভিত্তিক",
+  "@inheritanceBasedOnQuran": {
+    "description": "Feature description"
+  },
+  "inheritanceStepByStep": "📊 ধাপে ধাপে নির্দেশনা",
+  "@inheritanceStepByStep": {
+    "description": "Feature: guided process"
+  },
+  "inheritanceDetailedBreakdown": "বিস্তারিত গণনার বিবরণ",
+  "@inheritanceDetailedBreakdown": {
+    "description": "Feature description"
+  },
+  "inheritanceAulRaddSupport": "⚖️ আউল ও রাদ্দ সাপোর্ট",
+  "@inheritanceAulRaddSupport": {
+    "description": "Feature: advanced Islamic law support"
+  },
+  "inheritanceComplexScenarios": "জটিল মীরাসের পরিস্থিতি সামলায়",
+  "@inheritanceComplexScenarios": {
+    "description": "Feature description"
+  },
+  "inheritanceQuranicReferences": "📚 কুরআনিক রেফারেন্স",
+  "@inheritanceQuranicReferences": {
+    "description": "Feature: religious references"
+  },
+  "inheritanceRelevantVerses": "সংশ্লিষ্ট আয়াত ও হাদিস অন্তর্ভুক্ত",
+  "@inheritanceRelevantVerses": {
+    "description": "Feature description"
+  },
+  "inheritanceBengaliLanguage": "🌍 বাংলা ভাষা",
+  "@inheritanceBengaliLanguage": {
+    "description": "Feature: language support"
+  },
+  "inheritanceBengaliSupport": "সম্পূর্ণ বাংলা ভাষা সাপোর্ট",
+  "@inheritanceBengaliSupport": {
+    "description": "Feature description"
+  },
+  "inheritanceOfflineCalculation": "📱 অফলাইন গণনা",
+  "@inheritanceOfflineCalculation": {
+    "description": "Feature: offline capability"
+  },
+  "inheritanceWorksOffline": "সম্পূর্ণ অফলাইনে কাজ করে",
+  "@inheritanceWorksOffline": {
+    "description": "Feature description"
+  },
+  
+  "qiblaCompassTitle": "কিবলা কম্পাস",
+  "@qiblaCompassTitle": {
+    "description": "Title for qibla compass screen"
+  },
+  "qiblaCompassNotAvailable": "কম্পাস উপলব্ধ নেই",
+  "@qiblaCompassNotAvailable": {
+    "description": "Message when compass is not available"
+  },
+  "qiblaCompassCalibrating": "কম্পাস ক্যালিব্রেট করা হচ্ছে...",
+  "@qiblaCompassCalibrating": {
+    "description": "Status when compass is calibrating"
+  },
+  "qiblaCompassUnavailable": "কম্পাস অনুপলব্ধ",
+  "@qiblaCompassUnavailable": {
+    "description": "Status when compass is unavailable"
+  },
+  "qiblaCompassActive": "কম্পাস সক্রিয়",
+  "@qiblaCompassActive": {
+    "description": "Status when compass is active"
+  },
+  "qiblaDirectionNorth": "উ",
+  "@qiblaDirectionNorth": {
+    "description": "North direction label"
+  },
+  "qiblaDirectionEast": "পূ",
+  "@qiblaDirectionEast": {
+    "description": "East direction label"
+  },
+  "qiblaDirectionSouth": "দ",
+  "@qiblaDirectionSouth": {
+    "description": "South direction label"
+  },
+  "qiblaDirectionWest": "প",
+  "@qiblaDirectionWest": {
+    "description": "West direction label"
+  },
+  "qiblaDirection": "কিবলার দিক",
+  "@qiblaDirection": {
+    "description": "Label for qibla direction"
+  },
+  "qiblaCurrentLocation": "বর্তমান অবস্থান",
+  "@qiblaCurrentLocation": {
+    "description": "Label for current location"
+  },
+  "qiblaRecalibrate": "পুনরায় ক্যালিব্রেট",
+  "@qiblaRecalibrate": {
+    "description": "Button to recalibrate compass"
+  },
+  "qiblaUpdateLocation": "অবস্থান আপডেট",
+  "@qiblaUpdateLocation": {
+    "description": "Button to update location"
+  },
+  
+  "onboardingNotificationDescription1": "আপনার দৈনিক নামাজের সাথে সংযুক্ত থাকুন",
+  "@onboardingNotificationDescription1": {
+    "description": "First notification description in onboarding"
+  },
+  "onboardingNotificationDescription2": "ইসলামিক অনুশীলনের জন্য সময়মতো অনুস্মারক পান",
+  "@onboardingNotificationDescription2": {
+    "description": "Second notification description in onboarding"
+  },
+  "onboardingNotificationSelectPrayers": "আপনি কোন নামাজের অনুস্মারক চান তা নির্বাচন করুন",
+  "@onboardingNotificationSelectPrayers": {
+    "description": "Instruction for prayer selection in onboarding"
+  }
+}

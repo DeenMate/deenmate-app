@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'l10n/app_localizations.dart';
 
 import 'core/state/prayer_settings_state.dart';
 import 'core/state/app_lifecycle_manager.dart';
 import 'core/theme/theme_provider.dart';
 import 'core/localization/language_provider.dart';
 import 'core/localization/language_models.dart';
+import 'core/localization/global_language_manager.dart';
 import 'features/onboarding/presentation/screens/onboarding_navigation_screen.dart';
 import 'features/onboarding/presentation/providers/onboarding_providers.dart';
 import 'core/navigation/shell_wrapper.dart';
@@ -35,9 +37,6 @@ void main() async {
   // Initialize prayer settings state
   await PrayerSettingsState.instance.loadSettings();
 
-  // Initialize language system
-  await Hive.initFlutter();
-
   runApp(
     const ProviderScope(
       child: DeenMateApp(),
@@ -50,6 +49,8 @@ class DeenMateApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Ensure language storage is initialized early
+    ref.watch(languageInitializationProvider);
     final hasCompletedOnboarding = ref.watch(onboardingProvider);
     // Warm cache for instant UI (no GPS prompt)
     ref.listen(cachedCurrentPrayerTimesProvider, (_, __) {});
@@ -77,38 +78,41 @@ class DeenMateApp extends ConsumerWidget {
             themeMode: ThemeMode.system,
             locale: ref.watch(currentLocaleProvider),
             localizationsDelegates: const [
+              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: SupportedLanguage.values.map((lang) => lang.locale).toList(),
+            supportedLocales:
+                SupportedLanguage.values.map((lang) => lang.locale).toList(),
             routerConfig: EnhancedAppRouter.router,
             builder: (context, child) {
-              return AppLifecycleManager(
-                child: WillPopScope(
-                  onWillPop: () async {
-                    // Show exit confirmation dialog
-                    final shouldExit = await showDialog<bool>(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Exit DeenMate'),
-                        content: const Text(
-                            'Are you sure you want to exit the app?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(false),
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(true),
-                            child: const Text('Exit'),
-                          ),
-                        ],
-                      ),
-                    );
-                    return shouldExit ?? false;
-                  },
-                  child: child!,
+              return GlobalLanguageManager(
+                child: AppLifecycleManager(
+                  child: WillPopScope(
+                    onWillPop: () async {
+                      // Show exit confirmation dialog
+                      final shouldExit = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text(AppLocalizations.of(context)!.exitDialogTitle),
+                          content: Text(AppLocalizations.of(context)!.exitDialogMessage),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: Text(AppLocalizations.of(context)!.commonCancel),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: Text(AppLocalizations.of(context)!.exitDialogExit),
+                            ),
+                          ],
+                        ),
+                      );
+                      return shouldExit ?? false;
+                    },
+                    child: child!,
+                  ),
                 ),
               );
             },
@@ -120,12 +124,19 @@ class DeenMateApp extends ConsumerWidget {
             themeMode: ThemeMode.system,
             locale: ref.watch(currentLocaleProvider),
             localizationsDelegates: const [
+              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: SupportedLanguage.values.map((lang) => lang.locale).toList(),
+            supportedLocales:
+                SupportedLanguage.values.map((lang) => lang.locale).toList(),
             home: const OnboardingNavigationScreen(),
+            builder: (context, child) {
+              return GlobalLanguageManager(
+                child: child ?? const SizedBox.shrink(),
+              );
+            },
           );
   }
 }

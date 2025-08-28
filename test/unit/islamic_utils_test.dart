@@ -10,9 +10,10 @@ void main() {
         // New York coordinates
         const latitude = 40.7128;
         const longitude = -74.0060;
-        
-        final qiblaDirection = IslamicUtils.calculateQiblaDirection(latitude, longitude);
-        
+
+        final qiblaDirection =
+            IslamicUtils.calculateQiblaDirection(latitude, longitude);
+
         // Expected direction for New York to Mecca is approximately 58-60 degrees
         expect(qiblaDirection, greaterThan(55));
         expect(qiblaDirection, lessThan(65));
@@ -22,9 +23,10 @@ void main() {
         // London coordinates
         const latitude = 51.5074;
         const longitude = -0.1278;
-        
-        final qiblaDirection = IslamicUtils.calculateQiblaDirection(latitude, longitude);
-        
+
+        final qiblaDirection =
+            IslamicUtils.calculateQiblaDirection(latitude, longitude);
+
         // Expected direction for London to Mecca is approximately 118-122 degrees
         expect(qiblaDirection, greaterThan(115));
         expect(qiblaDirection, lessThan(125));
@@ -34,9 +36,10 @@ void main() {
         // Sydney coordinates
         const latitude = -33.8688;
         const longitude = 151.2093;
-        
-        final qiblaDirection = IslamicUtils.calculateQiblaDirection(latitude, longitude);
-        
+
+        final qiblaDirection =
+            IslamicUtils.calculateQiblaDirection(latitude, longitude);
+
         // Expected direction for Sydney to Mecca is approximately 277-282 degrees
         expect(qiblaDirection, greaterThan(275));
         expect(qiblaDirection, lessThan(285));
@@ -44,19 +47,19 @@ void main() {
 
       test('returns value between 0 and 360 degrees', () {
         const testLocations = [
-          [0.0, 0.0],      // Equator, Prime Meridian
-          [90.0, 0.0],     // North Pole
-          [-90.0, 0.0],    // South Pole
-          [0.0, 180.0],    // Opposite side of Earth
+          [0.0, 0.0], // Equator, Prime Meridian
+          [90.0, 0.0], // North Pole
+          [-90.0, 0.0], // South Pole
+          [0.0, 180.0], // Opposite side of Earth
           [21.4225, 39.8262], // Mecca itself
         ];
 
         for (final location in testLocations) {
           final qiblaDirection = IslamicUtils.calculateQiblaDirection(
-            location[0], 
+            location[0],
             location[1],
           );
-          
+
           expect(qiblaDirection, greaterThanOrEqualTo(0));
           expect(qiblaDirection, lessThan(360));
         }
@@ -67,41 +70,44 @@ void main() {
       test('calculates correct distance from New York to Kaaba', () {
         const latitude = 40.7128;
         const longitude = -74.0060;
-        
-        final distance = IslamicUtils.calculateDistanceToKaaba(latitude, longitude);
-        
-        // Expected distance is approximately 11,000-12,000 km
-        expect(distance, greaterThan(10500));
+
+        final distance =
+            IslamicUtils.calculateDistanceToKaaba(latitude, longitude);
+
+        // Expected distance is approximately ~10,300-12,500 km (NYC -> Makkah ~10,300km)
+        expect(distance, greaterThan(10000));
         expect(distance, lessThan(12500));
       });
 
       test('calculates zero distance for Kaaba coordinates', () {
         const latitude = 21.4225;
         const longitude = 39.8262;
-        
-        final distance = IslamicUtils.calculateDistanceToKaaba(latitude, longitude);
-        
+
+        final distance =
+            IslamicUtils.calculateDistanceToKaaba(latitude, longitude);
+
         // Should be very close to zero (within 1 km due to precision)
         expect(distance, lessThan(1));
       });
 
       test('calculates reasonable distances for various locations', () {
         const testLocations = [
-          [51.5074, -0.1278],  // London
+          [51.5074, -0.1278], // London
           [35.6762, 139.6503], // Tokyo
           [-33.8688, 151.2093], // Sydney
-          [55.7558, 37.6176],  // Moscow
+          [55.7558, 37.6176], // Moscow
         ];
 
         for (final location in testLocations) {
           final distance = IslamicUtils.calculateDistanceToKaaba(
-            location[0], 
+            location[0],
             location[1],
           );
-          
+
           // All distances should be reasonable (less than half Earth's circumference)
           expect(distance, greaterThan(0));
-          expect(distance, lessThan(20000)); // Less than half Earth's circumference
+          expect(distance,
+              lessThan(20000)); // Less than half Earth's circumference
         }
       });
     });
@@ -110,7 +116,7 @@ void main() {
       test('calculates correct Zakat amount', () {
         const wealth = 10000.0;
         final zakatAmount = IslamicUtils.calculateZakat(wealth);
-        
+
         expect(zakatAmount, equals(250.0)); // 2.5% of 10000
       });
 
@@ -133,7 +139,7 @@ void main() {
       test('correctly determines if wealth meets gold Nisab', () {
         const goldPrice = 60.0; // USD per gram
         const goldNisabValue = 87.48 * 60.0; // 5248.8
-        
+
         expect(IslamicUtils.meetsGoldNisab(goldPrice, 6000), isTrue);
         expect(IslamicUtils.meetsGoldNisab(goldPrice, 5000), isFalse);
         expect(IslamicUtils.meetsGoldNisab(goldPrice, goldNisabValue), isTrue);
@@ -142,18 +148,20 @@ void main() {
       test('correctly determines if wealth meets silver Nisab', () {
         const silverPrice = 0.80; // USD per gram
         const silverNisabValue = 612.36 * 0.80; // 489.888
-        
+
         expect(IslamicUtils.meetsSilverNisab(silverPrice, 500), isTrue);
         expect(IslamicUtils.meetsSilverNisab(silverPrice, 400), isFalse);
-        expect(IslamicUtils.meetsSilverNisab(silverPrice, silverNisabValue), isTrue);
+        expect(IslamicUtils.meetsSilverNisab(silverPrice, silverNisabValue),
+            isTrue);
       });
 
       test('returns lower of gold and silver Nisab', () {
-        const goldPrice = 60.0;  // Gold Nisab: 5248.8
+        const goldPrice = 60.0; // Gold Nisab: 5248.8
         const silverPrice = 0.80; // Silver Nisab: 489.888
-        
-        final applicableNisab = IslamicUtils.getApplicableNisab(goldPrice, silverPrice);
-        
+
+        final applicableNisab =
+            IslamicUtils.getApplicableNisab(goldPrice, silverPrice);
+
         // Should return silver Nisab as it's lower
         expect(applicableNisab, equals(612.36 * silverPrice));
         expect(applicableNisab, lessThan(87.48 * goldPrice));
@@ -162,8 +170,10 @@ void main() {
 
     group('Weight Conversion Tests', () {
       test('converts kilograms to grams correctly', () {
-        expect(IslamicUtils.convertToGrams(1, WeightUnit.kilograms), equals(1000.0));
-        expect(IslamicUtils.convertToGrams(2.5, WeightUnit.kilograms), equals(2500.0));
+        expect(IslamicUtils.convertToGrams(1, WeightUnit.kilograms),
+            equals(1000.0));
+        expect(IslamicUtils.convertToGrams(2.5, WeightUnit.kilograms),
+            equals(2500.0));
       });
 
       test('converts ounces to grams correctly', () {
@@ -177,15 +187,17 @@ void main() {
       });
 
       test('returns same value for grams unit', () {
-        expect(IslamicUtils.convertToGrams(100, WeightUnit.grams), equals(100.0));
+        expect(
+            IslamicUtils.convertToGrams(100, WeightUnit.grams), equals(100.0));
       });
     });
 
     group('Hijri Date Tests', () {
       test('getCurrentHijriDate returns valid Hijri date', () {
         final hijriDate = IslamicUtils.getCurrentHijriDate();
-        
-        expect(hijriDate.hYear, greaterThan(1400)); // After Islamic calendar started
+
+        expect(hijriDate.hYear,
+            greaterThan(1400)); // After Islamic calendar started
         expect(hijriDate.hMonth, greaterThanOrEqualTo(1));
         expect(hijriDate.hMonth, lessThanOrEqualTo(12));
         expect(hijriDate.hDay, greaterThanOrEqualTo(1));
@@ -195,7 +207,7 @@ void main() {
       test('formatHijriDateEnglish returns proper format', () {
         final hijriDate = IslamicUtils.getCurrentHijriDate();
         final formatted = IslamicUtils.formatHijriDateEnglish(hijriDate);
-        
+
         expect(formatted, contains('AH'));
         expect(formatted, contains(hijriDate.hDay.toString()));
         expect(formatted, contains(hijriDate.hYear.toString()));
@@ -204,7 +216,7 @@ void main() {
       test('formatHijriDateArabic returns Arabic format', () {
         final hijriDate = IslamicUtils.getCurrentHijriDate();
         final formatted = IslamicUtils.formatHijriDateArabic(hijriDate);
-        
+
         expect(formatted, contains(hijriDate.hDay.toString()));
         expect(formatted, contains(hijriDate.hYear.toString()));
         // Should contain Arabic month names
@@ -215,7 +227,7 @@ void main() {
     group('Islamic Greeting Tests', () {
       test('getIslamicGreeting returns appropriate greeting', () {
         final greeting = IslamicUtils.getIslamicGreeting();
-        
+
         expect(greeting, isNotEmpty);
         // Should contain Arabic text
         expect(greeting, matches(RegExp(r'[\u0600-\u06FF]+')));
@@ -241,7 +253,7 @@ void main() {
       test('calculates Zakat al-Fitr correctly', () {
         const ricePricePerKg = 2.0;
         final zakatAlFitr = IslamicUtils.calculateZakatAlFitr(ricePricePerKg);
-        
+
         expect(zakatAlFitr, equals(5.0)); // 2.5 kg * 2.0 per kg
       });
 
@@ -263,24 +275,25 @@ void main() {
       test('formatCurrencyIslamic formats correctly', () {
         const amount = 1234.56;
         const currency = 'USD';
-        
+
         final formatted = IslamicUtils.formatCurrencyIslamic(amount, currency);
-        
-        expect(formatted, contains('1234.56'));
+
+        // Allow locale-aware formatting like USD1,234.56
+        expect(formatted.replaceAll(',', ''), contains('1234.56'));
         expect(formatted, contains(currency));
       });
 
       test('convertToArabicNumerals converts correctly', () {
         const westernText = '1234567890';
         final arabicText = IslamicUtils.convertToArabicNumerals(westernText);
-        
+
         expect(arabicText, equals('١٢٣٤٥٦٧٨٩٠'));
       });
 
       test('convertToArabicNumerals handles mixed text', () {
         const mixedText = r'Price: $123.45';
         final converted = IslamicUtils.convertToArabicNumerals(mixedText);
-        
+
         expect(converted, equals(r'Price: $١٢٣.٤٥'));
       });
     });
@@ -311,7 +324,7 @@ void main() {
         // Regular day should be valid
         final regularDay = DateTime(2024, 5, 15);
         expect(IslamicUtils.isValidFastingDate(regularDay), isTrue);
-        
+
         // Ramadan day should be valid
         final ramadanDay = DateTime(2024, 3, 15); // Example Ramadan date
         expect(IslamicUtils.isValidFastingDate(ramadanDay), isTrue);
@@ -334,7 +347,8 @@ void main() {
         expect(shares.containsKey('parents'), isTrue);
 
         // Verify shares add up to 1.0 (100%)
-        final totalShares = shares.values.fold<double>(0, (sum, share) => sum + share);
+        final totalShares =
+            shares.values.fold<double>(0, (sum, share) => sum + share);
         expect(totalShares, closeTo(1.0, 0.01));
       });
 
@@ -376,12 +390,15 @@ void main() {
 
       test('handles extreme coordinates in Qibla calculation', () {
         // Should not throw exception for extreme coordinates
-        expect(() => IslamicUtils.calculateQiblaDirection(90, 180), returnsNormally);
-        expect(() => IslamicUtils.calculateQiblaDirection(-90, -180), returnsNormally);
+        expect(() => IslamicUtils.calculateQiblaDirection(90, 180),
+            returnsNormally);
+        expect(() => IslamicUtils.calculateQiblaDirection(-90, -180),
+            returnsNormally);
       });
 
       test('handles zero weight conversion', () {
-        expect(IslamicUtils.convertToGrams(0, WeightUnit.kilograms), equals(0.0));
+        expect(
+            IslamicUtils.convertToGrams(0, WeightUnit.kilograms), equals(0.0));
       });
     });
   });

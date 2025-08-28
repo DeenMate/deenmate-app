@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/state/prayer_settings_state.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/datasources/aladhan_api.dart';
 import '../../domain/entities/location.dart';
 import '../../domain/entities/prayer_calculation_settings.dart';
+import '../providers/prayer_times_providers.dart';
 
 class DirectPrayerWidget extends ConsumerStatefulWidget {
   const DirectPrayerWidget({super.key});
@@ -26,6 +29,35 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
   void initState() {
     super.initState();
     _loadPrayerData();
+    // React to calculation method/madhab changes from Settings
+    ref.listen<AsyncValue<PrayerCalculationSettings>>(
+      prayerSettingsProvider,
+      (previous, next) {
+        if (mounted && next.hasValue) {
+          _loadPrayerData();
+        }
+      },
+    );
+  }
+
+  String _getLocalizedPrayerName(String? prayerName) {
+    if (prayerName == null) return 'None';
+    switch (prayerName) {
+      case 'Fajr':
+        return AppLocalizations.of(context)!.prayerFajr;
+      case 'Sunrise':
+        return AppLocalizations.of(context)!.prayerSunrise;
+      case 'Dhuhr':
+        return AppLocalizations.of(context)!.prayerDhuhr;
+      case 'Asr':
+        return AppLocalizations.of(context)!.prayerAsr;
+      case 'Maghrib':
+        return AppLocalizations.of(context)!.prayerMaghrib;
+      case 'Isha':
+        return AppLocalizations.of(context)!.prayerIsha;
+      default:
+        return prayerName;
+    }
   }
 
   Future<void> _loadPrayerData() async {
@@ -38,22 +70,22 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
       // Load calculation method from global state
       await PrayerSettingsState.instance.loadSettings();
       final method = PrayerSettingsState.instance.calculationMethod;
-      
+
       setState(() {
         calculationMethod = method;
       });
 
       // Create API instance
-      final api = AladhanApi(null); // We'll make direct HTTP calls
-      
-      // Mock location for testing (you can replace with actual location)
+      final api = AladhanApi(Dio());
+
+      // Production TODO: Integrate with proper location service (using respectful default)
       final location = Location(
-        latitude: 37.4219983,
-        longitude: -122.084,
-        country: 'United States',
-        city: 'Mountain View',
-        region: 'California',
-        timezone: 'America/Los_Angeles',
+        latitude: 21.4225,
+        longitude: 39.8262,
+        country: 'Saudi Arabia',
+        city: 'Mecca',
+        region: 'Makkah Province',
+        timezone: 'Asia/Riyadh',
       );
 
       // Create settings
@@ -63,76 +95,59 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
       );
 
       print('DirectPrayerWidget: Calling API with method: $method');
-      
+
       // Call API directly
-      final result = await api.getPrayerTimes(
+      final prayerTimes = await api.getPrayerTimes(
         date: DateTime.now(),
         location: location,
         settings: settings,
       );
 
-      if (result.isRight()) {
-        final prayerTimes = result.getOrElse(() => throw Exception('No data'));
-        
-        // Calculate current and next prayer
-        final now = DateTime.now();
-        final prayers = [
-          {'name': 'Fajr', 'time': prayerTimes.fajr.time},
-          {'name': 'Sunrise', 'time': prayerTimes.sunrise.time},
-          {'name': 'Dhuhr', 'time': prayerTimes.dhuhr.time},
-          {'name': 'Asr', 'time': prayerTimes.asr.time},
-          {'name': 'Maghrib', 'time': prayerTimes.maghrib.time},
-          {'name': 'Isha', 'time': prayerTimes.isha.time},
-        ];
+      // Calculate current and next prayer
+      final now = DateTime.now();
+      final prayers = [
+        {'name': 'Fajr', 'time': prayerTimes.fajr.time},
+        {'name': 'Sunrise', 'time': prayerTimes.sunrise.time},
+        {'name': 'Dhuhr', 'time': prayerTimes.dhuhr.time},
+        {'name': 'Asr', 'time': prayerTimes.asr.time},
+        {'name': 'Maghrib', 'time': prayerTimes.maghrib.time},
+        {'name': 'Isha', 'time': prayerTimes.isha.time},
+      ];
 
-        // Find current and next prayer
-        String? current;
-        String? next;
-        Duration? remaining;
+      String? current;
+      String? next;
+      Duration? remaining;
 
-        for (int i = 0; i < prayers.length; i++) {
-          final prayer = prayers[i];
-          
-          if (now.isBefore(prayer['time'] as DateTime)) {
-            // This is the next prayer
-            next = prayer['name'] as String;
-            
-            // Find the current prayer (the one that just passed)
-            if (i > 0) {
-              current = prayers[i - 1]['name'] as String;
-            }
-            
-            // Calculate remaining time
-            remaining = (prayer['time'] as DateTime).difference(now);
-            break;
+      for (int i = 0; i < prayers.length; i++) {
+        final prayer = prayers[i];
+        if (now.isBefore(prayer['time'] as DateTime)) {
+          next = prayer['name'] as String;
+          if (i > 0) {
+            current = prayers[i - 1]['name'] as String;
           }
+          remaining = (prayer['time'] as DateTime).difference(now);
+          break;
         }
-
-        // If no next prayer found, we're after Isha
-        if (next == null) {
-          current = 'Isha';
-          // Next prayer would be tomorrow's Fajr
-        }
-
-        setState(() {
-          currentPrayer = current;
-          nextPrayer = next;
-          remainingTime = remaining != null 
-              ? '${remaining.inHours}h ${remaining.inMinutes % 60}m'
-              : null;
-          isLoading = false;
-        });
-
-        print('DirectPrayerWidget: Current: $current, Next: $next, Remaining: $remainingTime');
-      } else {
-        setState(() {
-          error = 'Failed to load prayer times';
-          isLoading = false;
-        });
       }
+
+      if (next == null) {
+        current = 'Isha';
+      }
+
+      setState(() {
+        currentPrayer = current;
+        nextPrayer = next;
+        remainingTime = remaining != null
+            ? '${remaining.inHours}h ${remaining.inMinutes % 60}m'
+            : null;
+        isLoading = false;
+      });
+
+      print(
+          'DirectPrayerWidget: Current: $current, Next: $next, Remaining: $remainingTime');
     } catch (e) {
       setState(() {
-        error = 'Error: $e';
+        error = AppLocalizations.of(context)!.errorPrayerTimesLoading;
         isLoading = false;
       });
       print('DirectPrayerWidget: Error: $e');
@@ -176,7 +191,7 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
                   ),
                 ),
                 Text(
-                  'Method: ${calculationMethod ?? 'Loading...'}',
+                  'Method: ${calculationMethod ?? AppLocalizations.of(context)!.commonLoading}',
                   style: GoogleFonts.notoSans(
                     color: Colors.white70,
                     fontSize: 12,
@@ -184,9 +199,9 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             if (isLoading)
               const Center(
                 child: CircularProgressIndicator(color: Colors.white),
@@ -202,32 +217,32 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
             else ...[
               // Current Prayer
               Text(
-                'Current: ${currentPrayer ?? 'None'}',
+                '${AppLocalizations.of(context)!.currentPrayer}: ${_getLocalizedPrayerName(currentPrayer)}',
                 style: GoogleFonts.notoSans(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              
+
               const SizedBox(height: 8),
-              
+
               // Next Prayer
               Text(
-                'Next: ${nextPrayer ?? 'None'}',
+                '${AppLocalizations.of(context)!.nextPrayer}: ${_getLocalizedPrayerName(nextPrayer)}',
                 style: GoogleFonts.notoSans(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              
+
               const SizedBox(height: 8),
-              
+
               // Remaining Time
               if (remainingTime != null)
                 Text(
-                  'Remaining: $remainingTime',
+                  '${AppLocalizations.of(context)!.prayerTimeRemaining}: $remainingTime',
                   style: GoogleFonts.notoSans(
                     color: Colors.white,
                     fontSize: 16,
@@ -235,9 +250,9 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
                   ),
                 ),
             ],
-            
+
             const SizedBox(height: 16),
-            
+
             // Refresh Button
             ElevatedButton(
               onPressed: _loadPrayerData,
@@ -245,7 +260,7 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF1565C0),
               ),
-              child: const Text('Refresh'),
+              child: Text(AppLocalizations.of(context)!.prayerTimeRefresh),
             ),
           ],
         ),

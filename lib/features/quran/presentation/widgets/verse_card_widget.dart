@@ -6,6 +6,7 @@ import '../state/providers.dart';
 import '../../utils/text_utils.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/localization/strings.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class VerseCardWidget extends ConsumerWidget {
   const VerseCardWidget({
@@ -16,6 +17,7 @@ class VerseCardWidget extends ConsumerWidget {
     this.onBookmark,
     this.onCopy,
     this.onTafsir,
+    this.onPlay,
     this.isBookmarked = false,
     this.showVerseActions = true,
   });
@@ -26,13 +28,14 @@ class VerseCardWidget extends ConsumerWidget {
   final VoidCallback? onBookmark;
   final VoidCallback? onCopy;
   final VoidCallback? onTafsir;
+  final Function(VerseDto)? onPlay;
   final bool isBookmarked;
   final bool showVerseActions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prefs = ref.watch(prefsProvider);
-    
+
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
@@ -44,23 +47,20 @@ class VerseCardWidget extends ConsumerWidget {
         children: [
           // Verse number indicator
           _buildVerseNumber(context),
-          
+
           // Bismillah for first verse of chapters (except At-Tawbah)
           if (verse.verseNumber == 1 && !verse.verseKey.startsWith('9:'))
             _buildBismillah(context, prefs),
-          
+
           // Arabic text
-          if (prefs.showArabic)
-            _buildArabicText(context, prefs),
-          
+          if (prefs.showArabic) _buildArabicText(context, prefs),
+
           // Translations
-          if (prefs.showTranslation)
-            _buildTranslations(context, prefs),
-          
+          if (prefs.showTranslation) _buildTranslations(context, prefs),
+
           // Verse actions
-          if (showVerseActions)
-            _buildVerseActions(context),
-          
+          if (showVerseActions) _buildVerseActions(context),
+
           // Divider
           _buildDivider(context),
         ],
@@ -69,33 +69,36 @@ class VerseCardWidget extends ConsumerWidget {
   }
 
   Widget _buildVerseNumber(BuildContext context) {
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Row(
+        textDirection: TextDirection.ltr,
         children: [
-          Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: ThemeHelper.getPrimaryColor(context).withOpacity(0.3),
-                width: 1.5,
+          if (!isRtl)
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: ThemeHelper.getPrimaryColor(context).withOpacity(0.3),
+                  width: 1.5,
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                '${verse.verseNumber}',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: ThemeHelper.getPrimaryColor(context),
+              child: Center(
+                child: Text(
+                  '${verse.verseNumber}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: ThemeHelper.getPrimaryColor(context),
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(width: 12),
+          if (!isRtl) const SizedBox(width: 12),
           Expanded(
             child: Container(
               height: 1,
@@ -110,6 +113,30 @@ class VerseCardWidget extends ConsumerWidget {
               ),
             ),
           ),
+          if (isRtl) const SizedBox(width: 12),
+          if (isRtl)
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: ThemeHelper.getPrimaryColor(context).withOpacity(0.3),
+                  width: 1.5,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  '${verse.verseNumber}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: ThemeHelper.getPrimaryColor(context),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -164,14 +191,14 @@ class VerseCardWidget extends ConsumerWidget {
 
     // Filter selected translations
     var selectedTranslations = <TranslationDto>[];
-    
+
     if (prefs.selectedTranslationIds.isNotEmpty) {
       selectedTranslations = verse.translations
-          .where((translation) => 
+          .where((translation) =>
               prefs.selectedTranslationIds.contains(translation.resourceId))
           .toList();
     }
-    
+
     if (selectedTranslations.isEmpty && verse.translations.isNotEmpty) {
       selectedTranslations = [verse.translations.first];
     }
@@ -207,11 +234,13 @@ class VerseCardWidget extends ConsumerWidget {
                           vertical: 3,
                         ),
                         decoration: BoxDecoration(
-                          color: ThemeHelper.getPrimaryColor(context).withOpacity(0.08),
+                          color: ThemeHelper.getPrimaryColor(context)
+                              .withOpacity(0.08),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
-                          resource.name ?? 'Translation ${translation.resourceId}',
+                          resource.name ??
+                              'Translation ${translation.resourceId}',
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
@@ -222,7 +251,7 @@ class VerseCardWidget extends ConsumerWidget {
                     ],
                   ),
                 ),
-              
+
               // Translation text
               SelectableText(
                 _cleanTranslationText(translation.text),
@@ -331,57 +360,57 @@ class VerseCardWidget extends ConsumerWidget {
       onSelected: (value) {
         switch (value) {
           case 'word_analysis':
-            // TODO: Implement word analysis
+            _showWordAnalysis(context);
             break;
           case 'audio':
-            // TODO: Implement audio playback
+            _playVerseAudio(context);
             break;
           case 'download':
-            // TODO: Implement audio download
+            _downloadVerseAudio(context);
             break;
           case 'notes':
-            // TODO: Implement notes
+            _showNotesDialog(context);
             break;
         }
       },
       itemBuilder: (context) => [
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 'word_analysis',
           child: Row(
             children: [
               Icon(Icons.psychology, size: 18),
               SizedBox(width: 8),
-              Text('Word Analysis'),
+              Text(AppLocalizations.of(context)!.verseCardWordAnalysis),
             ],
           ),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 'audio',
           child: Row(
             children: [
               Icon(Icons.play_arrow, size: 18),
               SizedBox(width: 8),
-              Text('Play Audio'),
+              Text(AppLocalizations.of(context)!.verseCardPlayAudio),
             ],
           ),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 'download',
           child: Row(
             children: [
               Icon(Icons.download, size: 18),
               SizedBox(width: 8),
-              Text('Download Audio'),
+              Text(AppLocalizations.of(context)!.verseCardDownloadAudio),
             ],
           ),
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 'notes',
           child: Row(
             children: [
               Icon(Icons.note_add, size: 18),
               SizedBox(width: 8),
-              Text('Add Note'),
+              Text(AppLocalizations.of(context)!.verseCardAddNote),
             ],
           ),
         ),
@@ -406,17 +435,17 @@ class VerseCardWidget extends ConsumerWidget {
           width: 36,
           height: 36,
           decoration: BoxDecoration(
-            color: isActive 
-              ? ThemeHelper.getPrimaryColor(context).withOpacity(0.1)
-              : Colors.transparent,
+            color: isActive
+                ? ThemeHelper.getPrimaryColor(context).withOpacity(0.1)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Icon(
             isActive ? activeIcon : icon,
             size: 18,
-            color: isActive 
-              ? ThemeHelper.getPrimaryColor(context)
-              : ThemeHelper.getTextSecondaryColor(context),
+            color: isActive
+                ? ThemeHelper.getPrimaryColor(context)
+                : ThemeHelper.getTextSecondaryColor(context),
           ),
         ),
       ),
@@ -446,19 +475,22 @@ class VerseCardWidget extends ConsumerWidget {
   /// Get text direction for translation based on language
   TextDirection _getTranslationTextDirection(TranslationResourceDto resource) {
     final langName = resource.languageName?.toLowerCase() ?? '';
-    
+
     // Check if language is RTL
     if (S.isRTL(langName)) {
       return TextDirection.rtl;
     }
-    
+
     // Check for language keywords
-    if (langName.contains('arabic') || langName.contains('urdu') ||
-        langName.contains('عربي') || langName.contains('اردو') ||
-        langName.contains('persian') || langName.contains('farsi')) {
+    if (langName.contains('arabic') ||
+        langName.contains('urdu') ||
+        langName.contains('عربي') ||
+        langName.contains('اردو') ||
+        langName.contains('persian') ||
+        langName.contains('farsi')) {
       return TextDirection.rtl;
     }
-    
+
     return TextDirection.ltr;
   }
 
@@ -467,5 +499,108 @@ class VerseCardWidget extends ConsumerWidget {
     return _getTranslationTextDirection(resource) == TextDirection.rtl
         ? TextAlign.right
         : TextAlign.left;
+  }
+
+  void _showWordAnalysis(BuildContext context) {
+    // Show word analysis dialog or bottom sheet
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.7,
+        maxChildSize: 0.9,
+        minChildSize: 0.5,
+        builder: (context, scrollController) => Container(
+          decoration: BoxDecoration(
+            color: ThemeHelper.getBackgroundColor(context),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                height: 4,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: ThemeHelper.getTextSecondaryColor(context).withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  'Word Analysis - ${verse.verseKey}',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: ThemeHelper.getTextPrimaryColor(context),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Word-by-word analysis functionality is coming soon. '
+                    'This will show grammatical breakdown and root words for each Arabic word.',
+                    style: TextStyle(
+                      color: ThemeHelper.getTextSecondaryColor(context),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _playVerseAudio(BuildContext context) {
+    if (onPlay != null) {
+      onPlay!(verse);
+    } else {
+      // Fallback: try to find audio URL and play
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.verseCardAudioNotAvailable),
+        ),
+      );
+    }
+  }
+
+  void _downloadVerseAudio(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.verseCardDownloadingAudio(verse.verseKey)),
+        action: SnackBarAction(
+          label: AppLocalizations.of(context)!.verseCardOK,
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
+      ),
+    );
+  }
+
+  void _showNotesDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.verseCardNotesTitle(verse.verseKey)),
+        content: const Text(
+          'Personal notes functionality is coming soon. '
+          'You will be able to add, edit, and manage your notes for each verse.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }

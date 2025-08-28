@@ -6,11 +6,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Legacy notification service removed; notifications are managed via
 // prayer notification providers and repository-backed services.
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/constants/preference_keys.dart';
 // Deprecated direct service import removed; use repository-backed providers instead
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../../core/theme/theme_selector_widget.dart';
 import '../../../../core/localization/language_models.dart';
 import '../../../../core/localization/language_provider.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/state/prayer_settings_state.dart';
+import '../../../prayer_times/presentation/providers/prayer_times_providers.dart';
+import '../../../prayer_times/presentation/providers/notification_providers.dart';
+import '../../../prayer_times/domain/entities/athan_settings.dart';
 
 // Demo screen removed per product decision to avoid extra widgets on Home
 
@@ -29,6 +35,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
   bool _islamicMidnightEnabled = true; // Default to Islamic midnight
   int _selectedCalculationMethod = 2; // ISNA
   String _selectedLanguage = 'English';
+  String _userName = '';
 
   // Notifications are managed via providers; no direct service instance here.
 
@@ -51,7 +58,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          'Settings',
+          AppLocalizations.of(context)!.settingsTitle,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w600,
             color: theme.colorScheme.onSurface,
@@ -63,72 +70,39 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     );
   }
 
-  Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () => context.go('/'),
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onPrimary),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Settings',
-                  style: IslamicTheme.textTheme.headlineMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'সেটিংস | الإعدادات',
-                  style: IslamicTheme.textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // _buildAppBar removed (unused)
 
   Widget _buildSettingsList() {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
         _buildSection(
-          'Prayer Settings',
+          AppLocalizations.of(context)!.settingsPrayerSettings,
           [
             _buildNavTile(
-              title: 'Athan Settings',
-              subtitle: 'Reciter, volume, preview',
+              title: AppLocalizations.of(context)!.settingsAthanSettings,
+              subtitle: AppLocalizations.of(context)!.settingsAthanSubtitle,
               icon: Icons.volume_up,
               route: '/athan-settings',
             ),
             _buildSwitchTile(
-              'Prayer Notifications',
-              'Get notified at prayer times',
+              AppLocalizations.of(context)!.settingsPrayerNotifications,
+              AppLocalizations.of(context)!.settingsPrayerNotificationsSubtitle,
               _prayerNotificationsEnabled,
               _setPrayerNotifications,
               Icons.notifications,
             ),
             _buildSwitchTile(
-              'Prayer Reminders',
-              '10 minutes before prayer time',
+              AppLocalizations.of(context)!.settingsPrayerReminders,
+              AppLocalizations.of(context)!.settingsPrayerRemindersSubtitle,
               _prayerRemindersEnabled,
               _setPrayerReminders,
               Icons.alarm,
             ),
             _buildCalculationMethodTile(),
             _buildSwitchTile(
-              'Islamic Midnight Calculation',
-              'Use authentic hadith-based midnight (Sahih Muslim 612)',
+              AppLocalizations.of(context)!.settingsIslamicMidnight,
+              AppLocalizations.of(context)!.settingsIslamicMidnightSubtitle,
               _islamicMidnightEnabled,
               _setIslamicMidnight,
               Icons.nightlight_round,
@@ -137,11 +111,11 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         ),
         const SizedBox(height: 24),
         _buildSection(
-          'Islamic Content',
+          AppLocalizations.of(context)!.settingsIslamicContent,
           [
             _buildSwitchTile(
-              'Daily Verses',
-              'Receive daily Quranic verses',
+              AppLocalizations.of(context)!.settingsDailyVerses,
+              AppLocalizations.of(context)!.settingsDailyVersesSubtitle,
               _dailyVersesEnabled,
               _setDailyVerses,
               Icons.menu_book,
@@ -150,29 +124,35 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         ),
         const SizedBox(height: 24),
         _buildSection(
-          'Quran Settings',
+          AppLocalizations.of(context)!.settingsQuranSettings,
           [
             _buildNavTile(
-              title: 'Reading Preferences',
-              subtitle: 'Font size, translations, layout',
+              title: AppLocalizations.of(context)!.settingsReadingPreferences,
+              subtitle: AppLocalizations.of(context)!.settingsReadingPreferencesSubtitle,
               icon: Icons.text_fields,
               route: '/quran', // For now, goes to Quran home
             ),
             _buildNavTile(
-              title: 'Offline Content',
-              subtitle: 'Download content for offline use',
+              title: AppLocalizations.of(context)!.settingsContentTranslations,
+              subtitle: AppLocalizations.of(context)!.settingsContentTranslationsSubtitle,
+              icon: Icons.translate,
+              route: '/settings/content-translations',
+            ),
+            _buildNavTile(
+              title: AppLocalizations.of(context)!.settingsOfflineManagement,
+              subtitle: AppLocalizations.of(context)!.settingsOfflineSubtitle,
               icon: Icons.cloud_download,
               route: '/quran/offline-management',
             ),
             _buildNavTile(
-              title: 'Audio Downloads',
-              subtitle: 'Download recitations for offline use',
+              title: AppLocalizations.of(context)!.settingsAudioDownloads,
+              subtitle: AppLocalizations.of(context)!.settingsAudioSubtitle,
               icon: Icons.download,
               route: '/quran/audio-downloads',
             ),
             _buildNavTile(
-              title: 'Accessibility',
-              subtitle: 'Screen reader, high contrast, text scaling',
+              title: AppLocalizations.of(context)!.settingsAccessibility,
+              subtitle: AppLocalizations.of(context)!.settingsAccessibilitySubtitle,
               icon: Icons.accessibility,
               route: '/settings/accessibility',
             ),
@@ -180,8 +160,9 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         ),
         const SizedBox(height: 24),
         _buildSection(
-          'App Settings',
+          AppLocalizations.of(context)!.settingsAppSettings,
           [
+            _buildUserNameTile(),
             _buildLanguageTile(),
             _buildAboutTile(),
             _buildPrivacyTile(),
@@ -193,7 +174,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         // User Preferences section temporarily removed until proper route is implemented
         const SizedBox(height: 24),
         _buildSection(
-          'Data & Storage',
+          AppLocalizations.of(context)!.settingsDataStorage,
           [
             _buildClearCacheTile(),
             _buildExportDataTile(),
@@ -298,7 +279,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       leading: Icon(Icons.calculate, color: theme.colorScheme.primary),
       title: Text(
-        'Prayer Calculation Method',
+        AppLocalizations.of(context)!.settingsPrayerCalculationMethodTitle,
         style: theme.textTheme.bodyLarge?.copyWith(
           fontWeight: FontWeight.w500,
         ),
@@ -325,10 +306,10 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     return Consumer(
       builder: (context, ref, child) {
         final currentLanguage = ref.watch(currentLanguageProvider);
-        
+
         return ListTile(
           leading: const Icon(Icons.language, color: IslamicTheme.islamicGreen),
-          title: const Text('Language'),
+          title: Text(AppLocalizations.of(context)!.settingsLanguage),
           subtitle: Text(
             currentLanguage.nativeName,
             style: IslamicTheme.textTheme.bodySmall?.copyWith(
@@ -342,11 +323,59 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     );
   }
 
+  Widget _buildUserNameTile() {
+    return ListTile(
+      leading: const Icon(Icons.person, color: IslamicTheme.islamicGreen),
+      title: Text(AppLocalizations.of(context)!.settingsUserName),
+      subtitle: Text(
+        _userName.isEmpty ? AppLocalizations.of(context)!.settingsUserNameSubtitle : _userName,
+        style: IslamicTheme.textTheme.bodySmall?.copyWith(
+          color: IslamicTheme.textSecondary,
+        ),
+      ),
+      trailing: const Icon(Icons.edit, size: 16),
+      onTap: _showEditNameDialog,
+    );
+  }
+
+  Future<void> _showEditNameDialog() async {
+    final controller = TextEditingController(text: _userName);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.settingsEditName),
+        content: TextField(
+          controller: controller,
+          decoration: InputDecoration(hintText: AppLocalizations.of(context)!.settingsEnterName),
+          textCapitalization: TextCapitalization.words,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(false),
+            child: Text(AppLocalizations.of(context)!.commonCancel),
+          ),
+          TextButton(
+            onPressed: () => context.pop(true),
+            child: Text(AppLocalizations.of(context)!.commonSave),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true) {
+      final name = controller.text.trim();
+      if (name.isNotEmpty) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(PreferenceKeys.userName, name);
+        setState(() => _userName = name);
+      }
+    }
+  }
+
   Widget _buildAboutTile() {
     return ListTile(
       leading: const Icon(Icons.info, color: IslamicTheme.islamicGreen),
-      title: const Text('About DeenMate'),
-      subtitle: const Text('Version, credits, and more'),
+      title: Text(AppLocalizations.of(context)!.settingsAbout),
+      subtitle: Text(AppLocalizations.of(context)!.settingsAboutSubtitle),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: _showAboutDialog,
     );
@@ -355,8 +384,9 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
   Widget _buildPrivacyTile() {
     return ListTile(
       leading: const Icon(Icons.privacy_tip, color: IslamicTheme.islamicGreen),
-      title: const Text('Privacy Policy'),
-      subtitle: const Text('How we protect your data'),
+      title: Text(AppLocalizations.of(context)!.settingsPrivacyPolicy),
+      subtitle:
+          Text(AppLocalizations.of(context)!.settingsPrivacyPolicySubtitle),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: _showPrivacyDialog,
     );
@@ -365,8 +395,8 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
   Widget _buildClearCacheTile() {
     return ListTile(
       leading: const Icon(Icons.delete_sweep, color: Colors.orange),
-      title: const Text('Clear Cache'),
-      subtitle: const Text('Free up storage space'),
+      title: Text(AppLocalizations.of(context)!.settingsClearCache),
+      subtitle: Text(AppLocalizations.of(context)!.settingsClearCacheSubtitle),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: _clearCache,
     );
@@ -375,8 +405,8 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
   Widget _buildExportDataTile() {
     return ListTile(
       leading: const Icon(Icons.download, color: IslamicTheme.prayerBlue),
-      title: const Text('Export Data'),
-      subtitle: const Text('Backup your settings and data'),
+      title: Text(AppLocalizations.of(context)!.settingsExportData),
+      subtitle: Text(AppLocalizations.of(context)!.settingsExportDataSubtitle),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: _exportData,
     );
@@ -404,7 +434,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Islamic Utility Super App',
+            AppLocalizations.of(context)!.settingsAppDescription,
             style: IslamicTheme.textTheme.bodySmall?.copyWith(
               color: IslamicTheme.textSecondary,
             ),
@@ -420,15 +450,50 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       _prayerNotificationsEnabled = enabled;
     });
 
-    // Permissions and scheduling are handled in Athan Settings via providers.
+    // Persist simple flag for UI consistency
     await _saveSettings();
+
+    // Update Athan settings and reschedule notifications
+    try {
+      final notifier = ref.read(athanSettingsProvider.notifier);
+      final currentAsync = ref.read(athanSettingsProvider);
+      final current = currentAsync.maybeWhen(
+          data: (s) => s, orElse: () => const AthanSettings());
+      final updated =
+          current.copyWith(isEnabled: enabled, lastUpdated: DateTime.now());
+      await notifier.updateSettings(updated);
+
+      // Reschedule notifications to apply changes immediately
+      await ref.read(autoNotificationSchedulerProvider).rescheduleAll();
+    } catch (e) {
+      debugPrint('Error applying prayer notifications toggle: $e');
+    }
   }
 
   Future<void> _setPrayerReminders(bool enabled) async {
     setState(() {
       _prayerRemindersEnabled = enabled;
     });
+
     await _saveSettings();
+
+    // Map reminder toggle to reminderMinutes (0 disables before-prayer reminders)
+    try {
+      final notifier = ref.read(athanSettingsProvider.notifier);
+      final currentAsync = ref.read(athanSettingsProvider);
+      final current = currentAsync.maybeWhen(
+          data: (s) => s, orElse: () => const AthanSettings());
+      final updated = current.copyWith(
+        reminderMinutes: enabled
+            ? (current.reminderMinutes == 0 ? 10 : current.reminderMinutes)
+            : 0,
+        lastUpdated: DateTime.now(),
+      );
+      await notifier.updateSettings(updated);
+      await ref.read(autoNotificationSchedulerProvider).rescheduleAll();
+    } catch (e) {
+      debugPrint('Error applying prayer reminders toggle: $e');
+    }
   }
 
   Future<void> _setDailyVerses(bool enabled) async {
@@ -443,13 +508,14 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       _islamicMidnightEnabled = enabled;
     });
     await _saveSettings();
+    // No-op for scheduler here; midnight display logic handled in UI/calculation
   }
 
   void _showCalculationMethodDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Prayer Calculation Method'),
+        title: Text(AppLocalizations.of(context)!.settingsPrayerCalculationMethodTitle),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -485,12 +551,12 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Select Language'),
+        title: Text(AppLocalizations.of(context)!.settingsSelectLanguage),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: availableLanguages.map((languageData) {
             final language = SupportedLanguage.fromCode(languageData.code);
-            
+
             return RadioListTile<SupportedLanguage>(
               title: Row(
                 children: [
@@ -516,13 +582,14 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
                   ),
                   if (!languageData.isFullySupported)
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
                         color: Colors.orange.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        'Coming Soon',
+                        AppLocalizations.of(context)!.settingsComingSoon,
                         style: TextStyle(
                           fontSize: 10,
                           color: Colors.orange[700],
@@ -552,7 +619,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('About DeenMate'),
+        title: Text(AppLocalizations.of(context)!.settingsAbout),
         content: const Text(
           'DeenMate is a comprehensive Islamic utility app designed to help Muslims in their daily religious practices.\n\n'
           'Features:\n'
@@ -567,8 +634,8 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => context.pop(),
-            child: const Text('Close',
-                style: TextStyle(color: IslamicTheme.islamicGreen)),
+            child: Text(AppLocalizations.of(context)!.buttonCancel,
+                style: const TextStyle(color: IslamicTheme.islamicGreen)),
           ),
         ],
       ),
@@ -579,7 +646,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Privacy Policy'),
+        title: Text(AppLocalizations.of(context)!.settingsPrivacyPolicy),
         content: const Text(
           'Your privacy is important to us. This app:\n\n'
           '• Only uses location for prayer times and Qibla direction\n'
@@ -592,7 +659,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
         actions: [
           TextButton(
             onPressed: () => context.pop(),
-            child: const Text('Close',
+            child: Text(AppLocalizations.of(context)!.commonClose,
                 style: TextStyle(color: IslamicTheme.islamicGreen)),
           ),
         ],
@@ -600,32 +667,24 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     );
   }
 
-  void _showPermissionDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Permission Required'),
-        content: const Text(
-          'To send prayer time notifications, this app needs notification permissions. '
-          'Please enable notifications in your device settings.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => context.pop(),
-            child: const Text('OK',
-                style: TextStyle(color: IslamicTheme.islamicGreen)),
-          ),
-        ],
-      ),
-    );
-  }
+  // _showPermissionDialog removed (unused)
 
   Future<void> _setCalculationMethod(int method) async {
     setState(() {
       _selectedCalculationMethod = method;
     });
-
-    // TODO: Wire calculation method change via repository-backed providers
+    try {
+      // Convert index to method name and persist via centralized state
+      final methodName = PreferenceKeys.getCalculationMethodName(method);
+      await PrayerSettingsState.instance.setCalculationMethod(methodName);
+      // Invalidate providers to recalculate with new settings
+      ref.invalidate(prayerSettingsProvider);
+      ref.invalidate(currentPrayerTimesProvider);
+      // Reschedule notifications to reflect new prayer times
+      await ref.read(autoNotificationSchedulerProvider).rescheduleAll();
+    } catch (e) {
+      debugPrint('Error saving calculation method: $e');
+    }
 
     await _saveSettings();
   }
@@ -635,7 +694,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       // Use the language switcher to change language
       final languageSwitcher = ref.read(languageSwitcherProvider);
       final success = await languageSwitcher.switchLanguage(language);
-      
+
       if (success) {
         // Show success message for unsupported languages
         if (!language.isFullySupported) {
@@ -643,7 +702,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  '${language.nativeName} support is coming soon. The app will use English for now.',
+                  AppLocalizations.of(context)!.settingsLanguageComingSoon(language.nativeName),
                   style: const TextStyle(color: Colors.white),
                 ),
                 backgroundColor: const Color(0xFFFF9800),
@@ -656,7 +715,7 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'Language changed to ${language.nativeName}',
+                  AppLocalizations.of(context)!.settingsLanguageChanged(language.nativeName),
                   style: const TextStyle(color: Colors.white),
                 ),
                 backgroundColor: IslamicTheme.islamicGreen,
@@ -667,10 +726,10 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       } else {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                'Failed to change language. Please try again.',
-                style: TextStyle(color: Colors.white),
+                AppLocalizations.of(context)!.errorLanguageChangeFailed,
+                style: const TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.red,
             ),
@@ -681,10 +740,10 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       debugPrint('Error changing language: $error');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              'An error occurred while changing language.',
-              style: TextStyle(color: Colors.white),
+              AppLocalizations.of(context)!.errorLanguageChangeGeneric,
+              style: const TextStyle(color: Colors.white),
             ),
             backgroundColor: Colors.red,
           ),
@@ -697,17 +756,18 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear Cache'),
-        content: const Text(
-            'This will clear cached prayer times and other temporary data. Continue?'),
+        title: Text(AppLocalizations.of(context)!.settingsClearCache),
+        content: Text(
+            AppLocalizations.of(context)!.settingsClearCacheConfirmMessage),
         actions: [
           TextButton(
             onPressed: () => context.pop(false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.buttonCancel),
           ),
           TextButton(
             onPressed: () => context.pop(true),
-            child: Text('Clear', style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            child: Text(AppLocalizations.of(context)!.buttonClear,
+                style: TextStyle(color: Theme.of(context).colorScheme.error)),
           ),
         ],
       ),
@@ -716,8 +776,9 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
     if (confirmed == true) {
       // Clear cache logic here
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Cache cleared successfully'),
+        SnackBar(
+          content:
+              Text(AppLocalizations.of(context)!.settingsCacheClearedSuccess),
           backgroundColor: IslamicTheme.islamicGreen,
         ),
       );
@@ -726,8 +787,8 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
 
   Future<void> _exportData() async {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Export feature coming soon!'),
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.settingsExportComingSoon),
         backgroundColor: IslamicTheme.islamicGreen,
       ),
     );
@@ -738,12 +799,20 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
       final prefs = await SharedPreferences.getInstance();
       setState(() {
         _prayerNotificationsEnabled =
-            prefs.getBool('prayer_notifications') ?? true;
-        _prayerRemindersEnabled = prefs.getBool('prayer_reminders') ?? true;
+            prefs.getBool(PreferenceKeys.notificationsEnabled) ?? true;
+        _prayerRemindersEnabled =
+            prefs.getBool(PreferenceKeys.prayerRemindersEnabled) ?? true;
         _dailyVersesEnabled = prefs.getBool('daily_verses') ?? true;
         _islamicMidnightEnabled = prefs.getBool('islamic_midnight') ?? true;
-        _selectedCalculationMethod = prefs.getInt('calculation_method') ?? 2;
+
+        // Fix calculation method sync: read stored method name and convert to index
+        final storedMethodName =
+            prefs.getString(PreferenceKeys.calculationMethod) ?? 'MWL';
+        _selectedCalculationMethod =
+            PreferenceKeys.getCalculationMethodIndex(storedMethodName);
+
         _selectedLanguage = prefs.getString('language') ?? 'English';
+        _userName = prefs.getString(PreferenceKeys.userName) ?? '';
       });
     } catch (e) {
       debugPrint('Error loading settings: $e');
@@ -753,12 +822,22 @@ class _AppSettingsScreenState extends ConsumerState<AppSettingsScreen> {
   Future<void> _saveSettings() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('prayer_notifications', _prayerNotificationsEnabled);
-      await prefs.setBool('prayer_reminders', _prayerRemindersEnabled);
+      await prefs.setBool(
+          PreferenceKeys.notificationsEnabled, _prayerNotificationsEnabled);
+      await prefs.setBool(
+          PreferenceKeys.prayerRemindersEnabled, _prayerRemindersEnabled);
       await prefs.setBool('daily_verses', _dailyVersesEnabled);
       await prefs.setBool('islamic_midnight', _islamicMidnightEnabled);
-      await prefs.setInt('calculation_method', _selectedCalculationMethod);
+
+      // Fix calculation method sync: convert index to method name before storing
+      final methodName =
+          PreferenceKeys.getCalculationMethodName(_selectedCalculationMethod);
+      await prefs.setString(PreferenceKeys.calculationMethod, methodName);
+
       await prefs.setString('language', _selectedLanguage);
+      if (_userName.isNotEmpty) {
+        await prefs.setString(PreferenceKeys.userName, _userName);
+      }
     } catch (e) {
       debugPrint('Error saving settings: $e');
     }
