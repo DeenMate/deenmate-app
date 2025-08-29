@@ -1629,6 +1629,59 @@
     "description": "Success message when bookmark is added"
   },
 
+  "mobileReadingModeTitle": "Reading Mode",
+  "@mobileReadingModeTitle": {
+    "description": "Title for mobile reading mode overlay"
+  },
+  "mobileReadingModeProgress": "Reading Progress",
+  "@mobileReadingModeProgress": {
+    "description": "Label for reading progress indicator"
+  },
+  "mobileReadingModeTheme": "Theme",
+  "@mobileReadingModeTheme": {
+    "description": "Button label for theme selection in mobile reading mode"
+  },
+  "mobileReadingModeFont": "Font",
+  "@mobileReadingModeFont": {
+    "description": "Button label for font settings in mobile reading mode"
+  },
+  "mobileReadingModeTranslation": "Translation",
+  "@mobileReadingModeTranslation": {
+    "description": "Button label for translation settings in mobile reading mode"
+  },
+  "mobileReadingModeBookmark": "Bookmark",
+  "@mobileReadingModeBookmark": {
+    "description": "Button label for bookmark action in mobile reading mode"
+  },
+  "mobileReadingModePrevious": "Previous",
+  "@mobileReadingModePrevious": {
+    "description": "Button label for previous navigation in mobile reading mode"
+  },
+  "mobileReadingModeNext": "Next",
+  "@mobileReadingModeNext": {
+    "description": "Button label for next navigation in mobile reading mode"
+  },
+  "mobileReadingModeSettings": "Reading Settings",
+  "@mobileReadingModeSettings": {
+    "description": "Title for mobile reading settings sheet"
+  },
+  "mobileReadingModeBrightness": "Screen Brightness",
+  "@mobileReadingModeBrightness": {
+    "description": "Label for brightness control in mobile reading mode"
+  },
+  "mobileReadingModeLineHeight": "Line Height",
+  "@mobileReadingModeLineHeight": {
+    "description": "Label for line height control in mobile reading mode"
+  },
+  "mobileReadingModeNightMode": "Night Mode",
+  "@mobileReadingModeNightMode": {
+    "description": "Label for night mode theme option"
+  },
+  "mobileReadingModeGreenTheme": "Green Theme",
+  "@mobileReadingModeGreenTheme": {
+    "description": "Label for green theme option"
+  },
+
   "verseCardWordAnalysis": "Word Analysis",
   "@verseCardWordAnalysis": {
     "description": "Button text for word analysis action in verse card"
@@ -2886,5 +2939,238 @@
   "readingPlansPlanCreatedSuccess": "Reading plan created successfully!",
   "@readingPlansPlanCreatedSuccess": {
     "description": "Success message when reading plan is created"
+  },
+
+  "quickTools": "Quick Tools",
+  "@quickTools": {
+    "description": "Title for quick tools panel"
+  },
+  "navigation": "Navigation",
+  "@navigation": {
+    "description": "Navigation section header"
+  },
+  "readingControls": "Reading Controls",
+  "@readingControls": {
+    "description": "Reading controls section header"
+  },
+  "actions": "Actions",
+  "@actions": {
+    "description": "Actions section header"
+  },
+  "jumpToVerse": "Jump to Verse",
+  "@jumpToVerse": {
+    "description": "Button to jump to a specific verse"
+  },
+  "fontSizeIncrease": "Font +",
+  "@fontSizeIncrease": {
+    "description": "Button to increase font size"
+  },
+  "fontSizeDecrease": "Font -",
+  "@fontSizeDecrease": {
+    "description": "Button to decrease font size"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme toggle button"
+  },
+  "translation": "Translation",
+  "@translation": {
+    "description": "Translation picker button"
+  },
+  "addBookmark": "Bookmark",
+  "@addBookmark": {
+    "description": "Button to add bookmark"
+  },
+  "removeBookmark": "Bookmarked",
+  "@removeBookmark": {
+    "description": "Button to remove bookmark"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share button"
+  },
+  "surah": "Surah",
+  "@surah": {
+    "description": "Navigation mode for Surah"
+  },
+  "page": "Page",
+  "@page": {
+    "description": "Navigation mode for Page"
+  },
+  "juz": "Juz",
+  "@juz": {
+    "description": "Navigation mode for Juz/Para"
+  },
+
+  "playAudio": "Play Audio",
+  "@playAudio": {
+    "description": "Button to play verse audio"
+  },
+  "moreActions": "More Actions",
+  "@moreActions": {
+    "description": "Button for additional actions"
+  },
+  "quickActions": "Quick Actions",
+  "@quickActions": {
+    "description": "Quick actions panel title"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy action button"
+  },
+  "textSize": "Text Size",
+  "@textSize": {
+    "description": "Text size adjustment button"
+  },
+  "translate": "Translate",
+  "@translate": {
+    "description": "Translation button"
+  },
+  "audioPlaying": "Audio playing...",
+  "@audioPlaying": {
+    "description": "Feedback when audio starts playing"
+  },
+  "bookmarkAdded": "Bookmark added",
+  "@bookmarkAdded": {
+    "description": "Feedback when bookmark is added"
+  },
+  "bookmarkRemoved": "Bookmark removed",
+  "@bookmarkRemoved": {
+    "description": "Feedback when bookmark is removed"
+  },
+  "verseShared": "Verse shared",
+  "@verseShared": {
+    "description": "Feedback when verse is shared"
+  },
+  "moreOptionsOpened": "More options opened",
+  "@moreOptionsOpened": {
+    "description": "Feedback when more options are opened"
+  },
+  "actionCompleted": "Action completed",
+  "@actionCompleted": {
+    "description": "Generic action completion feedback"
+  },
+  "textSizeAdjustment": "Text size adjustment",
+  "@textSizeAdjustment": {
+    "description": "Text size adjustment feature"
+  },
+  "translationOptions": "Translation options",
+  "@translationOptions": {
+    "description": "Translation options feature"
+  },
+  "copyOptions": "Copy Options",
+  "@copyOptions": {
+    "description": "Copy options dialog title"
+  },
+  "copyArabicText": "Copy Arabic Text",
+  "@copyArabicText": {
+    "description": "Option to copy Arabic text"
+  },
+  "copyArabicSubtitle": "Copy only the Arabic verse",
+  "@copyArabicSubtitle": {
+    "description": "Subtitle for copy Arabic option"
+  },
+  "copyTranslation": "Copy Translation",
+  "@copyTranslation": {
+    "description": "Option to copy translation"
+  },
+  "copyTranslationSubtitle": "Copy only the translation",
+  "@copyTranslationSubtitle": {
+    "description": "Subtitle for copy translation option"
+  },
+  "copyFullVerse": "Copy Full Verse",
+  "@copyFullVerse": {
+    "description": "Option to copy full verse"
+  },
+  "copyFullVerseSubtitle": "Copy Arabic text with translation",
+  "@copyFullVerseSubtitle": {
+    "description": "Subtitle for copy full verse option"
+  },
+  "arabicTextCopied": "Arabic text copied",
+  "@arabicTextCopied": {
+    "description": "Feedback when Arabic text is copied"
+  },
+  "translationCopied": "Translation copied",
+  "@translationCopied": {
+    "description": "Feedback when translation is copied"
+  },
+  "fullVerseCopied": "Full verse copied",
+  "@fullVerseCopied": {
+    "description": "Feedback when full verse is copied"
+  },
+
+  "tapForActions": "Tap for actions",
+  "@tapForActions": {
+    "description": "Gesture hint for tap action"
+  },
+  "swipeForQuickActions": "Swipe for quick actions",
+  "@swipeForQuickActions": {
+    "description": "Gesture hint for swipe actions"
+  },
+
+  "fontControls": "Font Controls",
+  "@fontControls": {
+    "description": "Title for font controls widget"
+  },
+  "arabicText": "Arabic Text",
+  "@arabicText": {
+    "description": "Label for Arabic text font size control"
+  },
+  "translation": "Translation",
+  "@translation": {
+    "description": "Label for translation font size control"
+  },
+  "resetFontSizes": "Reset Font Sizes",
+  "@resetFontSizes": {
+    "description": "Button text to reset font sizes to default"
+  },
+  "preview": "Preview",
+  "@preview": {
+    "description": "Label for font preview section"
+  },
+  "arabicFontAdjusted": "Arabic font size adjusted",
+  "@arabicFontAdjusted": {
+    "description": "Feedback when Arabic font size is adjusted"
+  },
+  "translationFontAdjusted": "Translation font size adjusted",
+  "@translationFontAdjusted": {
+    "description": "Feedback when translation font size is adjusted"
+  },
+  "fontSizesReset": "Font sizes reset to default",
+  "@fontSizesReset": {
+    "description": "Feedback when font sizes are reset"
+  },
+
+  "audioNext": "Next",
+  "@audioNext": {
+    "description": "Next track button"
+  },
+  "audioPrevious": "Previous", 
+  "@audioPrevious": {
+    "description": "Previous track button"
+  },
+  "audioRepeat": "Repeat",
+  "@audioRepeat": {
+    "description": "Repeat mode button"
+  },
+  "audioSpeed": "Speed",
+  "@audioSpeed": {
+    "description": "Playback speed control"
+  },
+  "audioSeekForward": "Seek forward 10 seconds",
+  "@audioSeekForward": {
+    "description": "Seek forward button tooltip"
+  },
+  "audioSeekBackward": "Seek backward 10 seconds", 
+  "@audioSeekBackward": {
+    "description": "Seek backward button tooltip"
+  },
+  "audioNoTrackSelected": "No track selected",
+  "@audioNoTrackSelected": {
+    "description": "Message when no audio track is selected"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button"
   }
 }

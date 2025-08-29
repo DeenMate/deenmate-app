@@ -1183,6 +1183,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get readingModeBookmarkAdded => 'Bookmark added';
 
   @override
+  String get mobileReadingModeTitle => 'Reading Mode';
+
+  @override
+  String get mobileReadingModeProgress => 'Reading Progress';
+
+  @override
+  String get mobileReadingModeTheme => 'Theme';
+
+  @override
+  String get mobileReadingModeFont => 'Font';
+
+  @override
+  String get mobileReadingModeTranslation => 'Translation';
+
+  @override
+  String get mobileReadingModeBookmark => 'Bookmark';
+
+  @override
+  String get mobileReadingModePrevious => 'Previous';
+
+  @override
+  String get mobileReadingModeNext => 'Next';
+
+  @override
+  String get mobileReadingModeSettings => 'Reading Settings';
+
+  @override
+  String get mobileReadingModeBrightness => 'Screen Brightness';
+
+  @override
+  String get mobileReadingModeLineHeight => 'Line Height';
+
+  @override
+  String get mobileReadingModeNightMode => 'Night Mode';
+
+  @override
+  String get mobileReadingModeGreenTheme => 'Green Theme';
+
+  @override
   String get verseCardWordAnalysis => 'Word Analysis';
 
   @override
@@ -2102,4 +2141,166 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get readingPlansPlanCreatedSuccess =>
       'Reading plan created successfully!';
+
+  @override
+  String get quickTools => 'Quick Tools';
+
+  @override
+  String get navigation => 'Navigation';
+
+  @override
+  String get readingControls => 'Reading Controls';
+
+  @override
+  String get actions => 'Actions';
+
+  @override
+  String get jumpToVerse => 'Jump to Verse';
+
+  @override
+  String get fontSizeIncrease => 'Font +';
+
+  @override
+  String get fontSizeDecrease => 'Font -';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get translation => 'Translation';
+
+  @override
+  String get addBookmark => 'Bookmark';
+
+  @override
+  String get removeBookmark => 'Bookmarked';
+
+  @override
+  String get surah => 'Surah';
+
+  @override
+  String get page => 'Page';
+
+  @override
+  String get juz => 'Juz';
+
+  @override
+  String get playAudio => 'Play Audio';
+
+  @override
+  String get moreActions => 'More Actions';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get copy => 'Copy';
+
+  @override
+  String get textSize => 'Text Size';
+
+  @override
+  String get translate => 'Translate';
+
+  @override
+  String get audioPlaying => 'Audio playing...';
+
+  @override
+  String get bookmarkAdded => 'Bookmark added';
+
+  @override
+  String get verseShared => 'Verse shared';
+
+  @override
+  String get moreOptionsOpened => 'More options opened';
+
+  @override
+  String get actionCompleted => 'Action completed';
+
+  @override
+  String get textSizeAdjustment => 'Text size adjustment';
+
+  @override
+  String get translationOptions => 'Translation options';
+
+  @override
+  String get copyOptions => 'Copy Options';
+
+  @override
+  String get copyArabicText => 'Copy Arabic Text';
+
+  @override
+  String get copyArabicSubtitle => 'Copy only the Arabic verse';
+
+  @override
+  String get copyTranslation => 'Copy Translation';
+
+  @override
+  String get copyTranslationSubtitle => 'Copy only the translation';
+
+  @override
+  String get copyFullVerse => 'Copy Full Verse';
+
+  @override
+  String get copyFullVerseSubtitle => 'Copy Arabic text with translation';
+
+  @override
+  String get arabicTextCopied => 'Arabic text copied';
+
+  @override
+  String get translationCopied => 'Translation copied';
+
+  @override
+  String get fullVerseCopied => 'Full verse copied';
+
+  @override
+  String get tapForActions => 'Tap for actions';
+
+  @override
+  String get swipeForQuickActions => 'Swipe for quick actions';
+
+  @override
+  String get fontControls => 'Font Controls';
+
+  @override
+  String get arabicText => 'Arabic Text';
+
+  @override
+  String get resetFontSizes => 'Reset Font Sizes';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String get arabicFontAdjusted => 'Arabic font size adjusted';
+
+  @override
+  String get translationFontAdjusted => 'Translation font size adjusted';
+
+  @override
+  String get fontSizesReset => 'Font sizes reset to default';
+
+  @override
+  String get audioNext => 'Next';
+
+  @override
+  String get audioPrevious => 'Previous';
+
+  @override
+  String get audioRepeat => 'Repeat';
+
+  @override
+  String get audioSpeed => 'Speed';
+
+  @override
+  String get audioSeekForward => 'Seek forward 10 seconds';
+
+  @override
+  String get audioSeekBackward => 'Seek backward 10 seconds';
+
+  @override
+  String get audioNoTrackSelected => 'No track selected';
+
+  @override
+  String get close => 'Close';
 }

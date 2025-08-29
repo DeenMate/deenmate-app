@@ -1711,6 +1711,59 @@
     "description": "Success message when bookmark is added"
   },
 
+  "mobileReadingModeTitle": "পড়ার মোড",
+  "@mobileReadingModeTitle": {
+    "description": "Title for mobile reading mode overlay"
+  },
+  "mobileReadingModeProgress": "পড়ার অগ্রগতি",
+  "@mobileReadingModeProgress": {
+    "description": "Label for reading progress indicator"
+  },
+  "mobileReadingModeTheme": "থিম",
+  "@mobileReadingModeTheme": {
+    "description": "Button label for theme selection in mobile reading mode"
+  },
+  "mobileReadingModeFont": "ফন্ট",
+  "@mobileReadingModeFont": {
+    "description": "Button label for font settings in mobile reading mode"
+  },
+  "mobileReadingModeTranslation": "অনুবাদ",
+  "@mobileReadingModeTranslation": {
+    "description": "Button label for translation settings in mobile reading mode"
+  },
+  "mobileReadingModeBookmark": "বুকমার্ক",
+  "@mobileReadingModeBookmark": {
+    "description": "Button label for bookmark action in mobile reading mode"
+  },
+  "mobileReadingModePrevious": "পূর্ববর্তী",
+  "@mobileReadingModePrevious": {
+    "description": "Button label for previous navigation in mobile reading mode"
+  },
+  "mobileReadingModeNext": "পরবর্তী",
+  "@mobileReadingModeNext": {
+    "description": "Button label for next navigation in mobile reading mode"
+  },
+  "mobileReadingModeSettings": "পড়ার সেটিংস",
+  "@mobileReadingModeSettings": {
+    "description": "Title for mobile reading settings sheet"
+  },
+  "mobileReadingModeBrightness": "স্ক্রিনের উজ্জ্বলতা",
+  "@mobileReadingModeBrightness": {
+    "description": "Label for brightness control in mobile reading mode"
+  },
+  "mobileReadingModeLineHeight": "লাইনের উচ্চতা",
+  "@mobileReadingModeLineHeight": {
+    "description": "Label for line height control in mobile reading mode"
+  },
+  "mobileReadingModeNightMode": "নাইট মোড",
+  "@mobileReadingModeNightMode": {
+    "description": "Label for night mode theme option"
+  },
+  "mobileReadingModeGreenTheme": "সবুজ থিম",
+  "@mobileReadingModeGreenTheme": {
+    "description": "Label for green theme option"
+  },
+
   "verseCardWordAnalysis": "শব্দ বিশ্লেষণ",
   "@verseCardWordAnalysis": {
     "description": "Button text for word analysis action in verse card"
@@ -2631,5 +2684,67 @@
   "readingPlansThirtyDay": "৩০-দিন",
   "readingPlansRamadan": "রমজান",
   "readingPlansCustom": "কাস্টম",
-  "readingPlansPlanCreatedSuccess": "পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!"
+  "readingPlansPlanCreatedSuccess": "পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!",
+
+  "quickTools": "দ্রুত সরঞ্জাম",
+  "navigation": "নেভিগেশন",
+  "readingControls": "পঠন নিয়ন্ত্রণ",
+  "actions": "কার্যক্রম",
+  "jumpToVerse": "আয়াতে যান",
+  "fontSizeIncrease": "ফন্ট +",
+  "fontSizeDecrease": "ফন্ট -",
+  "theme": "থিম",
+  "translation": "অনুবাদ",
+  "addBookmark": "বুকমার্ক",
+  "removeBookmark": "বুকমার্কড",
+  "share": "শেয়ার",
+  "surah": "সূরা",
+  "page": "পৃষ্ঠা",
+  "juz": "পারা",
+
+  "playAudio": "অডিও চালান",
+  "moreActions": "আরও কার্যক্রম",
+  "quickActions": "দ্রুত কার্যক্রম",
+  "copy": "কপি",
+  "textSize": "টেক্সট সাইজ",
+  "translate": "অনুবাদ",
+  "audioPlaying": "অডিও চলছে...",
+  "bookmarkAdded": "বুকমার্ক যোগ করা হয়েছে",
+  "bookmarkRemoved": "বুকমার্ক সরানো হয়েছে",
+  "verseShared": "আয়াত শেয়ার করা হয়েছে",
+  "moreOptionsOpened": "আরও অপশন খোলা হয়েছে",
+  "actionCompleted": "কার্যক্রম সম্পন্ন",
+  "textSizeAdjustment": "টেক্সট সাইজ সমন্বয়",
+  "translationOptions": "অনুবাদ বিকল্প",
+  "copyOptions": "কপি বিকল্প",
+  "copyArabicText": "আরবি টেক্সট কপি করুন",
+  "copyArabicSubtitle": "শুধুমাত্র আরবি আয়াত কপি করুন",
+  "copyTranslation": "অনুবাদ কপি করুন",
+  "copyTranslationSubtitle": "শুধুমাত্র অনুবাদ কপি করুন",
+  "copyFullVerse": "সম্পূর্ণ আয়াত কপি করুন",
+  "copyFullVerseSubtitle": "অনুবাদসহ আরবি টেক্সট কপি করুন",
+  "arabicTextCopied": "আরবি টেক্সট কপি করা হয়েছে",
+  "translationCopied": "অনুবাদ কপি করা হয়েছে",
+  "fullVerseCopied": "সম্পূর্ণ আয়াত কপি করা হয়েছে",
+
+  "tapForActions": "কার্যক্রমের জন্য ট্যাপ করুন",
+  "swipeForQuickActions": "দ্রুত কার্যক্রমের জন্য সোয়াইপ করুন",
+
+  "fontControls": "ফন্ট কন্ট্রোল",
+  "arabicText": "আরবি টেক্সট",
+  "translation": "অনুবাদ",
+  "resetFontSizes": "ফন্ট সাইজ রিসেট করুন",
+  "preview": "প্রিভিউ",
+  "arabicFontAdjusted": "আরবি ফন্ট সাইজ সমন্বয় করা হয়েছে",
+  "translationFontAdjusted": "অনুবাদ ফন্ট সাইজ সমন্বয় করা হয়েছে",
+  "fontSizesReset": "ফন্ট সাইজ ডিফল্ট করা হয়েছে",
+
+  "audioNext": "পরবর্তী",
+  "audioPrevious": "পূর্ববর্তী",
+  "audioRepeat": "পুনরাবৃত্তি",
+  "audioSpeed": "গতি",
+  "audioSeekForward": "১০ সেকেন্ড এগিয়ে যান",
+  "audioSeekBackward": "১০ সেকেন্ড পিছিয়ে যান",
+  "audioNoTrackSelected": "কোন ট্র্যাক নির্বাচিত নেই",
+  "close": "বন্ধ করুন"
 }

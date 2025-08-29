@@ -146,9 +146,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get timeRemaining => 'বাকি সময়';
 
   @override
-  String get timingsFromAlAdhan => 'আল-আযান থেকে নামাজের সময়';
-
-  @override
   String get quranTitle => 'কুরআন';
 
   @override
@@ -465,87 +462,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get buttonConfirm => 'নিশ্চিত করুন';
 
   @override
-  String get buttonDelete => 'মুছুন';
-
-  @override
-  String get buttonEdit => 'সম্পাদনা করুন';
-
-  @override
-  String get buttonCopy => 'কপি করুন';
-
-  @override
-  String get buttonShare => 'শেয়ার করুন';
-
-  @override
-  String get buttonView => 'দেখুন';
-
-  @override
-  String get buttonStart => 'শুরু করুন';
-
-  @override
-  String get buttonStop => 'বন্ধ করুন';
-
-  @override
-  String get verseBookmark => 'আয়াত বুকমার্ক করুন';
-
-  @override
-  String get verseRemoveBookmark => 'বুকমার্ক সরান';
-
-  @override
-  String get verseCopy => 'আয়াত কপি করুন';
-
-  @override
-  String get verseShare => 'আয়াত শেয়ার করুন';
-
-  @override
-  String get verseViewTafsir => 'তাফসীর দেখুন';
-
-  @override
-  String get verseLoadingTranslation => 'অনুবাদ লোড করা হচ্ছে...';
-
-  @override
-  String get statusUnknown => 'অজানা';
-
-  @override
-  String get readingPlansTitle => 'পড়ার পরিকল্পনা';
-
-  @override
-  String get readingPlansMyPlans => 'আমার পরিকল্পনা';
-
-  @override
-  String get readingPlansToday => 'আজ';
-
-  @override
-  String get readingPlansStats => 'পরিসংখ্যান';
-
-  @override
-  String get readingPlansNewPlan => 'নতুন পরিকল্পনা';
-
-  @override
-  String get readingPlansActive => 'সক্রিয়';
-
-  @override
-  String get readingPlansProgress => 'অগ্রগতি';
-
-  @override
-  String get readingPlansDays => 'দিন';
-
-  @override
-  String get readingPlansVersesPerDay => 'দৈনিক আয়াত';
-
-  @override
-  String get readingPlansTodaysReading => 'আজকের পাঠ';
-
-  @override
-  String get readingPlansStartReading => 'পড়া শুরু করুন';
-
-  @override
-  String get readingPlansStartPlan => 'পরিকল্পনা শুরু করুন';
-
-  @override
-  String get readingPlansStopPlan => 'পরিকল্পনা বন্ধ করুন';
-
-  @override
   String get buttonClear => 'পরিষ্কার করুন';
 
   @override
@@ -654,22 +570,6 @@ class AppLocalizationsBn extends AppLocalizations {
       'রমজানের সময় বিশেষ আজান পাঠ ব্যবহার করুন';
 
   @override
-  String get prayerSuhurReminder => 'সেহরি অনুস্মারক';
-
-  @override
-  String get prayerIftarReminder => 'ইফতার অনুস্মারক';
-
-  @override
-  String prayerSuhurReminderText(int minutes) {
-    return 'সেহরির জন্য ফজরের $minutes মিনিট আগে আমাকে মনে করিয়ে দিন';
-  }
-
-  @override
-  String prayerIftarReminderText(int minutes) {
-    return 'ইফতারের জন্য মাগরিবের $minutes মিনিট আগে আমাকে মনে করিয়ে দিন';
-  }
-
-  @override
   String get prayerIncludeDuas => 'দোয়া অন্তর্ভুক্ত করুন';
 
   @override
@@ -681,26 +581,6 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get prayerTrackFastingSubtitle => 'আপনার রোজার অবস্থা ট্র্যাক রাখুন';
-
-  @override
-  String get ramadanMubarak => 'রমজান মুবারক!';
-
-  @override
-  String get ramadanStatus => 'রমজানের অবস্থা';
-
-  @override
-  String ramadanDaysRemaining(int days) {
-    return 'এই পবিত্র মাসে আরও $days দিন বাকি';
-  }
-
-  @override
-  String get ramadanBlessedMonth => 'রোজার পবিত্র মাস';
-
-  @override
-  String get ramadanSettingsInfo => 'পবিত্র মাসে রমজান সেটিংস সক্রিয় থাকবে';
-
-  @override
-  String get errorUnableToLoadSettings => 'সেটিংস লোড করতে অক্ষম';
 
   @override
   String get buttonRetry => 'আবার চেষ্টা করুন';
@@ -1188,45 +1068,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get readingModeBookmarkAdded => 'বুকমার্ক যোগ করা হয়েছে';
 
   @override
-  String get mobileReadingModeTitle => 'পড়ার মোড';
-
-  @override
-  String get mobileReadingModeProgress => 'পড়ার অগ্রগতি';
-
-  @override
-  String get mobileReadingModeTheme => 'থিম';
-
-  @override
-  String get mobileReadingModeFont => 'ফন্ট';
-
-  @override
-  String get mobileReadingModeTranslation => 'অনুবাদ';
-
-  @override
-  String get mobileReadingModeBookmark => 'বুকমার্ক';
-
-  @override
-  String get mobileReadingModePrevious => 'পূর্ববর্তী';
-
-  @override
-  String get mobileReadingModeNext => 'পরবর্তী';
-
-  @override
-  String get mobileReadingModeSettings => 'পড়ার সেটিংস';
-
-  @override
-  String get mobileReadingModeBrightness => 'স্ক্রিনের উজ্জ্বলতা';
-
-  @override
-  String get mobileReadingModeLineHeight => 'লাইনের উচ্চতা';
-
-  @override
-  String get mobileReadingModeNightMode => 'নাইট মোড';
-
-  @override
-  String get mobileReadingModeGreenTheme => 'সবুজ থিম';
-
-  @override
   String get verseCardWordAnalysis => 'শব্দ বিশ্লেষণ';
 
   @override
@@ -1460,6 +1301,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get qiblaUpdateLocation => 'অবস্থান আপডেট';
 
   @override
+  String get bookmarkSort => 'সাজান';
+
+  @override
+  String get bookmarkManageCategories => 'ক্যাটাগরি পরিচালনা';
+
+  @override
+  String get bookmarkExport => 'এক্সপোর্ট';
+
+  @override
   String get bookmarkEdit => 'সম্পাদনা';
 
   @override
@@ -1467,6 +1317,45 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get bookmarkDelete => 'মুছুন';
+
+  @override
+  String get bookmarks => 'বুকমার্ক';
+
+  @override
+  String get bookmarkAll => 'সব';
+
+  @override
+  String get bookmarkCategories => 'ক্যাটাগরি';
+
+  @override
+  String get bookmarkRecent => 'সাম্প্রতিক';
+
+  @override
+  String get bookmarkNoBookmarksYet => 'এখনও কোনো বুকমার্ক নেই';
+
+  @override
+  String get bookmarkNoBookmarksSubtitle => 'পড়ার সময় আয়াত বুকমার্ক করুন এখানে সংরক্ষণের জন্য';
+
+  @override
+  String get bookmarkNoCategoriesYet => 'এখনও কোনো ক্যাটাগরি নেই';
+
+  @override
+  String get bookmarkNoCategoriesSubtitle => 'আপনার বুকমার্ক সংগঠিত করতে ক্যাটাগরি তৈরি করুন';
+
+  @override
+  String get bookmarkCreateCategory => 'ক্যাটাগরি তৈরি করুন';
+
+  @override
+  String get bookmarkNoRecentBookmarks => 'কোনো সাম্প্রতিক বুকমার্ক নেই';
+
+  @override
+  String get bookmarkNoRecentSubtitle => 'আপনার সাম্প্রতিক যোগ করা বুকমার্ক এখানে দেখা যাবে';
+
+  @override
+  String get edit => 'সম্পাদনা';
+
+  @override
+  String get share => 'শেয়ার';
 
   @override
   String get quranFontSettings => 'ফন্ট সেটিংস';
@@ -1571,740 +1460,4 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get onboardingNotificationSelectPrayers =>
       'আপনি কোন নামাজের অনুস্মারক চান তা নির্বাচন করুন';
-
-  @override
-  String get bookmarks => 'বুকমার্ক';
-
-  @override
-  String get bookmarkAll => 'সব';
-
-  @override
-  String get bookmarkCategories => 'ক্যাটাগরি';
-
-  @override
-  String get bookmarkRecent => 'সাম্প্রতিক';
-
-  @override
-  String get bookmarkSort => 'সাজান';
-
-  @override
-  String get bookmarkManageCategories => 'ক্যাটাগরি পরিচালনা';
-
-  @override
-  String get bookmarkExport => 'রপ্তানি';
-
-  @override
-  String get bookmarkNoBookmarksYet => 'এখনও কোনো বুকমার্ক নেই';
-
-  @override
-  String get bookmarkNoBookmarksSubtitle =>
-      'পড়ার সময় আয়াত বুকমার্ক করুন এখানে সংরক্ষণের জন্য';
-
-  @override
-  String get bookmarkNoCategoriesYet => 'এখনও কোনো ক্যাটাগরি নেই';
-
-  @override
-  String get bookmarkNoCategoriesSubtitle =>
-      'আপনার বুকমার্ক সংগঠিত করতে ক্যাটাগরি তৈরি করুন';
-
-  @override
-  String get bookmarkCreateCategory => 'ক্যাটাগরি তৈরি করুন';
-
-  @override
-  String get bookmarkNoRecentBookmarks => 'কোনো সাম্প্রতিক বুকমার্ক নেই';
-
-  @override
-  String get bookmarkNoRecentSubtitle =>
-      'আপনার সাম্প্রতিক যোগ করা বুকমার্ক এখানে দেখা যাবে';
-
-  @override
-  String get edit => 'সম্পাদনা';
-
-  @override
-  String get share => 'শেয়ার';
-
-  @override
-  String get commonCopy => 'কপি';
-
-  @override
-  String get duaCopiedToClipboard => 'দোয়া ক্লিপবোর্ডে কপি হয়েছে';
-
-  @override
-  String get sharingSoon => 'শেয়ার করার ফিচার শীঘ্রই আসছে!';
-
-  @override
-  String get duaSavedToFavorites => 'দোয়া পছন্দের তালিকায় সংরক্ষিত হয়েছে!';
-
-  @override
-  String get accessibilitySettings => 'অ্যাক্সেসিবিলিটি সেটিংস';
-
-  @override
-  String get verseCopiedToClipboard => 'আয়াত ক্লিপবোর্ডে কপি হয়েছে';
-
-  @override
-  String get verseSavedToFavorites => 'আয়াত পছন্দের তালিকায় সংরক্ষিত হয়েছে!';
-
-  @override
-  String get learnMore => 'আরো জানুন';
-
-  @override
-  String get nameOfAllahCopied => 'আল্লাহর নাম ক্লিপবোর্ডে কপি হয়েছে';
-
-  @override
-  String get detailedExplanationsSoon => 'বিস্তারিত ব্যাখ্যা শীঘ্রই আসছে!';
-
-  @override
-  String get hadithCopiedToClipboard => 'হাদিস ক্লিপবোর্ডে কপি হয়েছে';
-
-  @override
-  String get hadithSavedToFavorites =>
-      'হাদিস পছন্দের তালিকায় সংরক্ষিত হয়েছে!';
-
-  @override
-  String get retry => 'পুনরায় চেষ্টা';
-
-  @override
-  String get commonConfirm => 'নিশ্চিত';
-
-  @override
-  String get commonClear => 'পরিষ্কার';
-
-  @override
-  String get commonView => 'দেখুন';
-
-  @override
-  String get commonGo => 'যান';
-
-  @override
-  String get commonDownload => 'ডাউনলোড';
-
-  @override
-  String get commonSendEmail => 'ইমেইল পাঠান';
-
-  @override
-  String get commonHelp => 'সাহায্য';
-
-  @override
-  String get commonDelete => 'মুছুন';
-
-  @override
-  String get commonEdit => 'সম্পাদনা';
-
-  @override
-  String get navigationExitDialogTitle => 'দীনমেট থেকে বের হন';
-
-  @override
-  String get navigationExitDialogMessage =>
-      'আপনি কি নিশ্চিত যে অ্যাপ থেকে বের হতে চান?';
-
-  @override
-  String get prayerCalculationMethodsTitle => 'নামাজের হিসাব পদ্ধতি';
-
-  @override
-  String get prayerCalculationMethodsApplyMethod => 'পদ্ধতি প্রয়োগ করুন';
-
-  @override
-  String get prayerCalculationMethodsCreateCustom => 'কাস্টম পদ্ধতি তৈরি করুন';
-
-  @override
-  String get settingsMoreFeatures => 'আরও বৈশিষ্ট্য';
-
-  @override
-  String get athanSettingsVibration => 'কম্পন';
-
-  @override
-  String get athanSettingsVibrationSubtitle => 'আজানের সময় ডিভাইস কম্পন করুন';
-
-  @override
-  String get athanSettingsQuickActions => 'দ্রুত কার্যক্রম';
-
-  @override
-  String get athanSettingsQuickActionsSubtitle =>
-      '\"নামাজ পড়া হয়েছে\" এবং \"স্নুজ\" বোতাম দেখান';
-
-  @override
-  String get athanSettingsAutoComplete => 'স্বয়ংক্রিয় সম্পূর্ণ';
-
-  @override
-  String get athanSettingsAutoCompleteSubtitle =>
-      'স্বয়ংক্রিয়ভাবে নামাজ সম্পূর্ণ হিসেবে চিহ্নিত করুন';
-
-  @override
-  String get athanSettingsAddMuteTimeRange => 'নীরব সময়সীমা যোগ করুন';
-
-  @override
-  String get athanSettingsSmartNotifications => 'স্মার্ট বিজ্ঞপ্তি';
-
-  @override
-  String get athanSettingsSmartNotificationsSubtitle =>
-      'আপনার কার্যকলাপের ভিত্তিতে বিজ্ঞপ্তি সামঞ্জস্য করুন';
-
-  @override
-  String get athanSettingsOverrideDnd => 'ডু নট ডিসটার্ব ওভাররাইড করুন';
-
-  @override
-  String get athanSettingsOverrideDndSubtitle =>
-      'ডিএনডি মোডেও নামাজের বিজ্ঞপ্তি দেখান';
-
-  @override
-  String get athanSettingsFullScreenNotifications => 'ফুল স্ক্রিন বিজ্ঞপ্তি';
-
-  @override
-  String get athanSettingsFullScreenNotificationsSubtitle =>
-      'নামাজের সময় ফুল স্ক্রিন সতর্কতা হিসেবে দেখান';
-
-  @override
-  String get permissionsGrant => 'অনুমতি দিন';
-
-  @override
-  String get athanNotificationsTitle => 'আযান ও বিজ্ঞপ্তি';
-
-  @override
-  String get athanTabTitle => 'আযান';
-
-  @override
-  String get prayersTabTitle => 'নামাজ';
-
-  @override
-  String get advancedTabTitle => 'উন্নত';
-
-  @override
-  String get ramadanTabTitle => 'রমজান';
-
-  @override
-  String get athanSettingsTitle => 'আযান সেটিংস';
-
-  @override
-  String get athanSettingsSubtitle =>
-      'নামাজের আহ্বানের অডিও এবং ভলিউম কাস্টমাইজ করুন';
-
-  @override
-  String get prayerNotificationsTitle => 'নামাজের বিজ্ঞপ্তি';
-
-  @override
-  String get prayerNotificationsSubtitle =>
-      'প্রতিটি নামাজের জন্য বিজ্ঞপ্তি কাস্টমাইজ করুন';
-
-  @override
-  String get preciseTimingRecommended =>
-      'আযানের জন্য সুনির্দিষ্ট সময় সুপারিশকৃত';
-
-  @override
-  String get advancedSettingsTitle => 'উন্নত সেটিংস';
-
-  @override
-  String get advancedSettingsSubtitle =>
-      'বিজ্ঞপ্তির আচরণ সূক্ষ্ম সামঞ্জস্য করুন';
-
-  @override
-  String get ramadanSettingsTitle => 'রমজান সেটিংস';
-
-  @override
-  String get ramadanSettingsSubtitle => 'পবিত্র মাসের জন্য বিশেষ বিজ্ঞপ্তি';
-
-  @override
-  String get notificationsEnabled => 'বিজ্ঞপ্তি সক্রিয় আছে';
-
-  @override
-  String get notificationsDisabled => 'বিজ্ঞপ্তি নিষ্ক্রিয় আছে';
-
-  @override
-  String get audioSettingsTitle => 'অডিও সেটিংস';
-
-  @override
-  String get durationLabel => 'সময়কাল: ';
-
-  @override
-  String get reminderTimeTitle => 'রিমাইন্ডার সময়';
-
-  @override
-  String get reminderTimeSubtitle =>
-      'নামাজের সময়ের এই কয়েক মিনিট আগে আমাকে জানান:';
-
-  @override
-  String get choosePrayerNotifications =>
-      'কোন নামাজের জন্য বিজ্ঞপ্তি পেতে চান তা বেছে নিন:';
-
-  @override
-  String get notificationActionsTitle => 'বিজ্ঞপ্তি কার্যক্রম';
-
-  @override
-  String get muteSettingsTitle => 'নিঃশব্দ সেটিংস';
-
-  @override
-  String get muteSettingsSubtitle =>
-      'কখন বিজ্ঞপ্তি নিঃশব্দ করা হবে তা কনফিগার করুন:';
-
-  @override
-  String get mutedDaysLabel => 'নিঃশব্দ দিন:';
-
-  @override
-  String get monday => 'সোমবার';
-
-  @override
-  String get tuesday => 'মঙ্গলবার';
-
-  @override
-  String get wednesday => 'বুধবার';
-
-  @override
-  String get thursday => 'বৃহস্পতিবার';
-
-  @override
-  String get friday => 'শুক্রবার';
-
-  @override
-  String get saturday => 'শনিবার';
-
-  @override
-  String get sunday => 'রবিবার';
-
-  @override
-  String get methodsRecommended => 'সুপারিশকৃত';
-
-  @override
-  String get methodsAllMethods => 'সকল পদ্ধতি';
-
-  @override
-  String get methodsCompare => 'তুলনা';
-
-  @override
-  String get methodsLocationBasedRecommendations => 'অবস্থান-ভিত্তিক সুপারিশ';
-
-  @override
-  String get methodsLocationRecommendationText =>
-      'এই পদ্ধতিগুলি আপনার অঞ্চলের জন্য সুপারিশ করা হয়। অবস্থান সনাক্তকরণ সাধারণত এটি স্বয়ংক্রিয়ভাবে নির্ধারণ করবে।';
-
-  @override
-  String get methodsAllAvailableMethods => 'সব উপলব্ধ পদ্ধতি';
-
-  @override
-  String methodsFromOrganizations(int count) {
-    return 'বিশ্বব্যাপী ইসলামিক সংস্থাগুলি থেকে $countটি গণনা পদ্ধতি।';
-  }
-
-  @override
-  String get methodComparison => 'পদ্ধতি তুলনা';
-
-  @override
-  String get methodComparisonDescription =>
-      'তাদের কোণ এবং বৈশিষ্ট্য তুলনা করতে দুটি পদ্ধতি নির্বাচন করুন।';
-
-  @override
-  String get methodComparisonMethod1 => 'পদ্ধতি ১';
-
-  @override
-  String get methodComparisonMethod2 => 'পদ্ধতি ২';
-
-  @override
-  String get methodUnknownOrganization => 'অজানা সংস্থা';
-
-  @override
-  String methodAngleFormat(String label, String angle) {
-    return '$label: $angle°';
-  }
-
-  @override
-  String get methodsAboutTooltip => 'গণনা পদ্ধতি সম্পর্কে';
-
-  @override
-  String get methodsHideComparisonTooltip => 'তুলনা লুকান';
-
-  @override
-  String get methodsApplyMethod => 'পদ্ধতি প্রয়োগ করুন';
-
-  @override
-  String get methodsCustom => 'কাস্টম';
-
-  @override
-  String get methodsUnknownOrganization => 'অজানা সংস্থা';
-
-  @override
-  String get methodsNotAvailable => 'প্রযোজ্য নয়';
-
-  @override
-  String get methodsImpactAssessment => 'প্রভাব মূল্যায়ন:';
-
-  @override
-  String get methodsFajr => 'ফজর';
-
-  @override
-  String get methodsIsha => 'ইশা';
-
-  @override
-  String get methodsSelectMethod => 'একটি গণনা পদ্ধতি নির্বাচন করুন';
-
-  @override
-  String get methodsComparisonResults => 'তুলনা ফলাফল';
-
-  @override
-  String get methodsFajrAngle => 'ফজরের কোণ';
-
-  @override
-  String get methodsIshaAngle => 'ইশার কোণ';
-
-  @override
-  String get methodsOrganization => 'সংস্থা';
-
-  @override
-  String get methodsRetry => 'পুনরায় চেষ্টা করুন';
-
-  @override
-  String get methodsYourLocation => 'আপনার অবস্থান';
-
-  @override
-  String get methodsRecommendedMethods => 'সুপারিশকৃত পদ্ধতি';
-
-  @override
-  String get methodsCustomMethod => 'কাস্টম পদ্ধতি';
-
-  @override
-  String get methodsCustomMethodCreator => 'কাস্টম পদ্ধতি তৈরিকারী';
-
-  @override
-  String get methodsCreateCustomMethod => 'কাস্টম পদ্ধতি তৈরি করুন';
-
-  @override
-  String get methodsView => 'দেখুন';
-
-  @override
-  String get methodsAboutCalculationMethods => 'গণনা পদ্ধতি সম্পর্কে';
-
-  @override
-  String get methodsGotIt => 'বুঝেছি';
-
-  @override
-  String get unableToLoadLocation => 'অবস্থান লোড করতে অক্ষম';
-
-  @override
-  String get locationIsNeeded => 'সুপারিশকৃত পদ্ধতি দেখাতে অবস্থান প্রয়োজন';
-
-  @override
-  String get athanSettingsRetry => 'পুনরায় চেষ্টা করুন';
-
-  @override
-  String get athanSettingsFeatureComingSoon => 'বৈশিষ্ট্য শীঘ্রই আসছে...';
-
-  @override
-  String get athanSettingsTestStarted => 'আযান অডিও পরীক্ষা শুরু হয়েছে';
-
-  @override
-  String get athanSettingsTestFailed => 'আযান পরীক্ষা ব্যর্থ হয়েছে';
-
-  @override
-  String get athanSettingsTestAthanAudio => 'আযান অডিও পরীক্ষা করুন';
-
-  @override
-  String get athanSettingsNotificationsScheduled =>
-      'আজকের জন্য বিজ্ঞপ্তি নির্ধারণ করা হয়েছে';
-
-  @override
-  String get athanSettingsSchedulingFailed => 'নির্ধারণ ব্যর্থ হয়েছে';
-
-  @override
-  String get athanSettingsScheduleNow => 'এখনই নির্ধারণ করুন';
-
-  @override
-  String get athanSettingsDebugFailed => 'ডিবাগ ব্যর্থ হয়েছে';
-
-  @override
-  String get athanSettingsDebugInfo => 'ডিবাগ তথ্য';
-
-  @override
-  String get athanSettingsPrayerNotificationsScheduled =>
-      'আজকের জন্য নামাজের বিজ্ঞপ্তি নির্ধারণ করা হয়েছে';
-
-  @override
-  String get athanSettingsTestNotificationFailed =>
-      'পরীক্ষামূলক বিজ্ঞপ্তি ব্যর্থ হয়েছে';
-
-  @override
-  String get athanSettingsSchedulePrayerNotifications =>
-      'নামাজের বিজ্ঞপ্তি নির্ধারণ করুন';
-
-  @override
-  String get athanSettingsTestNotificationSent =>
-      'পরীক্ষামূলক বিজ্ঞপ্তি তৎক্ষণাৎ পাঠানো হয়েছে!';
-
-  @override
-  String get athanSettingsTestNotification1Sec =>
-      'পরীক্ষামূলক বিজ্ঞপ্তি (১ সেকেন্ড)';
-
-  @override
-  String get athanSettingsDemoNotificationSent =>
-      'ডেমো বিজ্ঞপ্তি পাঠানো হয়েছে! আযান এখন বাজতে হবে।';
-
-  @override
-  String get athanSettingsDemoNotificationFailed =>
-      'ডেমো বিজ্ঞপ্তি ব্যর্থ হয়েছে';
-
-  @override
-  String get athanSettingsDemoNotification2Min => 'ডেমো বিজ্ঞপ্তি (২ মিনিট)';
-
-  @override
-  String get athanSettingsImmediateNotificationSent =>
-      'তাৎক্ষণিক বিজ্ঞপ্তি পাঠানো হয়েছে!';
-
-  @override
-  String quranReaderLoadError(String errorMessage) {
-    return 'লোড করতে ব্যর্থ: $errorMessage';
-  }
-
-  @override
-  String get quranReaderAudioManager => 'অডিও ম্যানেজার';
-
-  @override
-  String get quranReaderAutoScroll => 'স্বয়ংক্রিয় স্ক্রল';
-
-  @override
-  String get quranReaderEnableAutoScroll => 'স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন';
-
-  @override
-  String get quranReaderQuickJump => 'দ্রুত জাম্প';
-
-  @override
-  String get quranReaderCopyArabicText => 'আরবি টেক্সট কপি করুন';
-
-  @override
-  String get quranReaderCopyArabicSubtitle => 'শুধুমাত্র আরবি আয়াত কপি করুন';
-
-  @override
-  String get quranReaderCopyTranslation => 'অনুবাদ কপি করুন';
-
-  @override
-  String get quranReaderCopyTranslationSubtitle => 'শুধুমাত্র অনুবাদ কপি করুন';
-
-  @override
-  String get quranReaderCopyFullVerse => 'সম্পূর্ণ আয়াত কপি করুন';
-
-  @override
-  String get quranReaderCopyFullVerseSubtitle =>
-      'অনুবাদসহ আরবি টেক্সট কপি করুন';
-
-  @override
-  String get quranReaderReportError => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
-
-  @override
-  String get quranReaderReportErrorSubtitle =>
-      'অনুবাদের নির্ভুলতা উন্নত করতে সহায়তা করুন';
-
-  @override
-  String get quranReaderReportErrorDialogTitle => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
-
-  @override
-  String get quranVerseCopiedToClipboard => 'আয়াত ক্লিপবোর্ডে কপি করা হয়েছে';
-
-  @override
-  String get bookmarksAddBookmark => 'বুকমার্ক যোগ করুন';
-
-  @override
-  String get bookmarksAddBookmarkComingSoon =>
-      'বুকমার্ক যোগ করার ডায়ালগ - শীঘ্রই আসছে';
-
-  @override
-  String get bookmarksCreateCategoryComingSoon =>
-      'ক্যাটেগরি তৈরির ডায়ালগ - শীঘ্রই আসছে';
-
-  @override
-  String get bookmarksSortOptionsComingSoon => 'সাজানোর অপশন - শীঘ্রই আসছে';
-
-  @override
-  String get bookmarksManageCategoriesComingSoon =>
-      'ক্যাটেগরি পরিচালনা - শীঘ্রই আসছে';
-
-  @override
-  String get bookmarksExportBookmarksComingSoon =>
-      'বুকমার্ক এক্সপোর্ট - শীঘ্রই আসছে';
-
-  @override
-  String get readingPlansMarkComplete => 'সম্পূর্ণ হিসেবে চিহ্নিত করুন';
-
-  @override
-  String get readingPlansCreatePlan => 'পরিকল্পনা তৈরি করুন';
-
-  @override
-  String get readingPlansDeletePlan => 'পরিকল্পনা মুছুন';
-
-  @override
-  String readingPlansDeletePlanConfirm(String planName) {
-    return 'আপনি কি নিশ্চিত যে \"$planName\" মুছতে চান?';
-  }
-
-  @override
-  String get readingPlansCreatePlanTitle => 'পঠন পরিকল্পনা তৈরি করুন';
-
-  @override
-  String get readingPlansThirtyDay => '৩০-দিন';
-
-  @override
-  String get readingPlansRamadan => 'রমজান';
-
-  @override
-  String get readingPlansCustom => 'কাস্টম';
-
-  @override
-  String get readingPlansPlanCreatedSuccess =>
-      'পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!';
-
-  @override
-  String get quickTools => 'দ্রুত সরঞ্জাম';
-
-  @override
-  String get navigation => 'নেভিগেশন';
-
-  @override
-  String get readingControls => 'পঠন নিয়ন্ত্রণ';
-
-  @override
-  String get actions => 'কার্যক্রম';
-
-  @override
-  String get jumpToVerse => 'আয়াতে যান';
-
-  @override
-  String get fontSizeIncrease => 'ফন্ট +';
-
-  @override
-  String get fontSizeDecrease => 'ফন্ট -';
-
-  @override
-  String get theme => 'থিম';
-
-  @override
-  String get translation => 'অনুবাদ';
-
-  @override
-  String get addBookmark => 'বুকমার্ক';
-
-  @override
-  String get removeBookmark => 'বুকমার্কড';
-
-  @override
-  String get surah => 'সূরা';
-
-  @override
-  String get page => 'পৃষ্ঠা';
-
-  @override
-  String get juz => 'পারা';
-
-  @override
-  String get playAudio => 'অডিও চালান';
-
-  @override
-  String get moreActions => 'আরও কার্যক্রম';
-
-  @override
-  String get quickActions => 'দ্রুত কার্যক্রম';
-
-  @override
-  String get copy => 'কপি';
-
-  @override
-  String get textSize => 'টেক্সট সাইজ';
-
-  @override
-  String get translate => 'অনুবাদ';
-
-  @override
-  String get audioPlaying => 'অডিও চলছে...';
-
-  @override
-  String get bookmarkAdded => 'বুকমার্ক যোগ করা হয়েছে';
-
-  @override
-  String get verseShared => 'আয়াত শেয়ার করা হয়েছে';
-
-  @override
-  String get moreOptionsOpened => 'আরও অপশন খোলা হয়েছে';
-
-  @override
-  String get actionCompleted => 'কার্যক্রম সম্পন্ন';
-
-  @override
-  String get textSizeAdjustment => 'টেক্সট সাইজ সমন্বয়';
-
-  @override
-  String get translationOptions => 'অনুবাদ বিকল্প';
-
-  @override
-  String get copyOptions => 'কপি বিকল্প';
-
-  @override
-  String get copyArabicText => 'আরবি টেক্সট কপি করুন';
-
-  @override
-  String get copyArabicSubtitle => 'শুধুমাত্র আরবি আয়াত কপি করুন';
-
-  @override
-  String get copyTranslation => 'অনুবাদ কপি করুন';
-
-  @override
-  String get copyTranslationSubtitle => 'শুধুমাত্র অনুবাদ কপি করুন';
-
-  @override
-  String get copyFullVerse => 'সম্পূর্ণ আয়াত কপি করুন';
-
-  @override
-  String get copyFullVerseSubtitle => 'অনুবাদসহ আরবি টেক্সট কপি করুন';
-
-  @override
-  String get arabicTextCopied => 'আরবি টেক্সট কপি করা হয়েছে';
-
-  @override
-  String get translationCopied => 'অনুবাদ কপি করা হয়েছে';
-
-  @override
-  String get fullVerseCopied => 'সম্পূর্ণ আয়াত কপি করা হয়েছে';
-
-  @override
-  String get tapForActions => 'কার্যক্রমের জন্য ট্যাপ করুন';
-
-  @override
-  String get swipeForQuickActions => 'দ্রুত কার্যক্রমের জন্য সোয়াইপ করুন';
-
-  @override
-  String get fontControls => 'ফন্ট কন্ট্রোল';
-
-  @override
-  String get arabicText => 'আরবি টেক্সট';
-
-  @override
-  String get resetFontSizes => 'ফন্ট সাইজ রিসেট করুন';
-
-  @override
-  String get preview => 'প্রিভিউ';
-
-  @override
-  String get arabicFontAdjusted => 'আরবি ফন্ট সাইজ সমন্বয় করা হয়েছে';
-
-  @override
-  String get translationFontAdjusted => 'অনুবাদ ফন্ট সাইজ সমন্বয় করা হয়েছে';
-
-  @override
-  String get fontSizesReset => 'ফন্ট সাইজ ডিফল্ট করা হয়েছে';
-
-  @override
-  String get audioNext => 'পরবর্তী';
-
-  @override
-  String get audioPrevious => 'পূর্ববর্তী';
-
-  @override
-  String get audioRepeat => 'পুনরাবৃত্তি';
-
-  @override
-  String get audioSpeed => 'গতি';
-
-  @override
-  String get audioSeekForward => '১০ সেকেন্ড এগিয়ে যান';
-
-  @override
-  String get audioSeekBackward => '১০ সেকেন্ড পিছিয়ে যান';
-
-  @override
-  String get audioNoTrackSelected => 'কোন ট্র্যাক নির্বাচিত নেই';
-
-  @override
-  String get close => 'বন্ধ করুন';
 }

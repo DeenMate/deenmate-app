@@ -11,10 +11,15 @@ import '../../data/dto/verses_page_dto.dart';
 import '../../data/dto/chapter_dto.dart';
 import '../../data/dto/translation_resource_dto.dart';
 import '../state/providers.dart';
+import '../controllers/smart_navigation_controller.dart';
 import '../widgets/verse_card_widget.dart';
 import '../widgets/reading_mode_overlay.dart';
+import '../widgets/mobile_reading_mode_overlay.dart';
+import '../widgets/mobile_quran_navigation_bar.dart';
+import '../widgets/last_reading_position_banner.dart';
+import '../widgets/enhanced_jump_controls.dart';
+import '../widgets/breadcrumb_navigation.dart';
 import '../widgets/enhanced_font_settings_widget.dart';
-import '../widgets/translation_picker_widget.dart';
 import '../widgets/tafsir_widget.dart';
 import '../widgets/word_analysis_widget.dart';
 import '../widgets/audio_download_prompt.dart';
@@ -52,6 +57,9 @@ class _EnhancedQuranReaderScreenState
   bool _isFetchingMore = false;
   bool _hasMorePages = true;
   bool _isReadingMode = false;
+  bool _showLastPositionBanner = true;
+  QuranNavigationMode _currentNavigationMode = QuranNavigationMode.surah;
+  DateTime _sessionStartTime = DateTime.now();
   StreamSubscription? _prefsSubscription;
 
   @override
@@ -74,6 +82,11 @@ class _EnhancedQuranReaderScreenState
 
   @override
   void dispose() {
+    // Track reading session before disposing
+    final sessionDuration = DateTime.now().difference(_sessionStartTime);
+    final smartNavController = ref.read(smartNavigationControllerProvider.notifier);
+    smartNavController.trackReadingSession(_currentNavigationMode, sessionDuration);
+
     WidgetsBinding.instance.removeObserver(this);
     _controller.removeListener(_onScroll);
     _controller.dispose();
@@ -209,6 +222,89 @@ class _EnhancedQuranReaderScreenState
     });
   }
 
+  void _onNavigationChanged(QuranNavigationMode mode, int target) {
+    setState(() {
+      _currentNavigationMode = mode;
+    });
+
+    // Save reading position and track mode usage
+    final smartNavController = ref.read(smartNavigationControllerProvider.notifier);
+    smartNavController.saveReadingPosition(widget.chapterId, 1, mode);
+
+    // Navigate to appropriate route based on mode with smart position mapping
+    switch (mode) {
+      case QuranNavigationMode.surah:
+        // Stay in current surah mode - no navigation needed
+        break;
+      case QuranNavigationMode.page:
+        context.go('/quran/page/$target');
+        break;
+      case QuranNavigationMode.juz:
+        context.go('/quran/juz/$target');
+        break;
+      case QuranNavigationMode.hizb:
+        context.go('/quran/hizb/$target');
+        break;
+      case QuranNavigationMode.ruku:
+        context.go('/quran/ruku/$target');
+        break;
+    }
+  }
+
+  void _onRestoreLastPosition(LastReadingPosition position) {
+    setState(() {
+      _showLastPositionBanner = false;
+      _currentNavigationMode = position.suggestedMode;
+    });
+
+    // Navigate to the last reading position using suggested mode
+    final target = position.position.getTargetForMode(position.suggestedMode);
+    _onNavigationChanged(position.suggestedMode, target);
+  }
+
+  void _onDismissBanner() {
+    setState(() {
+      _showLastPositionBanner = false;
+    });
+  }
+
+  void _onJumpToVerse(int chapterId, int verseNumber) {
+    // Navigate to the specified verse
+    context.go('/quran/surah/$chapterId?verse=$verseNumber');
+  }
+
+  void _onJumpToPage(int pageNumber) {
+    // Navigate to the specified page
+    context.go('/quran/page/$pageNumber');
+  }
+
+  void _onJumpToBookmark(String bookmarkKey) {
+    // Parse bookmark key (format: "chapterId:verseNumber")
+    final parts = bookmarkKey.split(':');
+    if (parts.length == 2) {
+      final chapterId = int.tryParse(parts[0]);
+      final verseNumber = int.tryParse(parts[1]);
+      if (chapterId != null && verseNumber != null) {
+        _onJumpToVerse(chapterId, verseNumber);
+      }
+    }
+  }
+
+  void _showJumpControls() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => EnhancedJumpControls(
+        currentChapterId: widget.chapterId,
+        currentVerseNumber: 1, // In real implementation, get actual current verse
+        onJumpToVerse: _onJumpToVerse,
+        onJumpToPage: _onJumpToPage,
+        onJumpToBookmark: _onJumpToBookmark,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final chaptersAsync = ref.watch(surahListProvider);
@@ -221,18 +317,42 @@ class _EnhancedQuranReaderScreenState
       }
     });
 
+    // Detect mobile device for enhanced reading mode
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 768; // Mobile breakpoint
+
     if (_isReadingMode) {
-      return ReadingModeOverlay(
-        onExitReadingMode: _toggleReadingMode,
-        child: _buildReadingContent(
-            context, chaptersAsync, translationResourcesAsync),
-      );
+      // Use mobile-optimized overlay on mobile devices
+      if (isMobile) {
+        return MobileReadingModeOverlay(
+          onExitReadingMode: _toggleReadingMode,
+          chapterId: widget.chapterId,
+          child: _buildReadingContent(
+              context, chaptersAsync, translationResourcesAsync),
+        );
+      } else {
+        // Use original overlay for tablets/desktop
+        return ReadingModeOverlay(
+          onExitReadingMode: _toggleReadingMode,
+          child: _buildReadingContent(
+              context, chaptersAsync, translationResourcesAsync),
+        );
+      }
     }
 
     return Scaffold(
       backgroundColor: ThemeHelper.getBackgroundColor(context),
       body: _buildReadingContent(
           context, chaptersAsync, translationResourcesAsync),
+      floatingActionButton: !_isReadingMode
+          ? FloatingActionButton(
+              onPressed: _showJumpControls,
+              backgroundColor: ThemeHelper.getPrimaryColor(context),
+              foregroundColor: Colors.white,
+              child: const Icon(Icons.search),
+              tooltip: 'Jump to Location',
+            )
+          : null,
     );
   }
 
@@ -253,6 +373,27 @@ class _EnhancedQuranReaderScreenState
             slivers: [
               // App bar
               if (!_isReadingMode) _buildSliverAppBar(context, chaptersAsync),
+
+              // Last reading position banner
+              if (!_isReadingMode && _showLastPositionBanner)
+                SliverToBoxAdapter(
+                  child: LastReadingPositionBanner(
+                    onRestorePosition: _onRestoreLastPosition,
+                    onDismiss: _onDismissBanner,
+                  ),
+                ),
+
+              // Breadcrumb navigation
+              if (!_isReadingMode)
+                SliverToBoxAdapter(
+                  child: BreadcrumbNavigation(
+                    currentSurah: widget.chapterId,
+                    currentAyah: _getCurrentAyahNumber(),
+                    readingMode: _getCurrentReadingMode(),
+                    onSurahTap: () => _navigateToSurah(),
+                    onLocationTap: () => _showLocationOptions(),
+                  ),
+                ),
 
               // Verses content
               SliverPadding(
@@ -453,23 +594,23 @@ class _EnhancedQuranReaderScreenState
                           ],
                         ),
                       ),
-                      // Navigation tabs row (static shortcuts)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            _buildChip(context, AppLocalizations.of(context)!.quranSura, selected: true),
-                            _buildChip(context, AppLocalizations.of(context)!.quranPage),
-                            _buildChip(context, AppLocalizations.of(context)!.quranJuz),
-                            _buildChip(context, AppLocalizations.of(context)!.quranHizb),
-                            _buildChip(context, AppLocalizations.of(context)!.quranRuku),
-                          ],
-                        ),
+                      // Mobile navigation bar with smart recommendations (QURAN-102 enhancement)
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final smartNavController = ref.read(smartNavigationControllerProvider.notifier);
+                          final suggestedMode = smartNavController.suggestOptimalMode(
+                            widget.chapterId, 
+                            1, // Using first verse for simplicity
+                          );
+                          
+                          return MobileQuranNavigationBar(
+                            currentChapterId: widget.chapterId,
+                            targetVerseKey: widget.targetVerseKey,
+                            onNavigationChanged: _onNavigationChanged,
+                            suggestedMode: suggestedMode,
+                          );
+                        },
                       ),
-                      const Divider(height: 1),
                       // Content toggles
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -551,34 +692,6 @@ class _EnhancedQuranReaderScreenState
               );
             },
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildChip(BuildContext context, String text,
-      {bool selected = false}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: selected
-            ? ThemeHelper.getPrimaryColor(context).withOpacity(0.1)
-            : ThemeHelper.getSurfaceColor(context),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: selected
-              ? ThemeHelper.getPrimaryColor(context)
-              : ThemeHelper.getDividerColor(context),
-        ),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: selected
-              ? ThemeHelper.getPrimaryColor(context)
-              : ThemeHelper.getTextSecondaryColor(context),
         ),
       ),
     );
@@ -912,5 +1025,75 @@ Quran ${verse.verseKey}''';
     // If no RTL translations selected, still use RTL for Arabic Quran text
     // This ensures Arabic verses are always displayed RTL
     return true; // Default to RTL since Quran is Arabic
+  }
+
+  /// Get current ayah number for breadcrumb navigation
+  int _getCurrentAyahNumber() {
+    // In a real implementation, this would track the current visible ayah
+    // For now, try to parse the targetVerseKey or return 1
+    if (widget.targetVerseKey != null) {
+      final parts = widget.targetVerseKey!.split(':');
+      if (parts.length >= 2) {
+        return int.tryParse(parts[1]) ?? 1;
+      }
+    }
+    return 1;
+  }
+
+  /// Get current reading mode for breadcrumb navigation
+  String _getCurrentReadingMode() {
+    // In a real implementation, this would track the current reading mode
+    // For now, return verse-by-verse as default
+    return 'verse_by_verse';
+  }
+
+  /// Navigate to surah selection
+  void _navigateToSurah() {
+    // Implementation for navigating to surah selection
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Surah navigation feature'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  /// Show location options menu
+  void _showLocationOptions() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.search),
+              title: const Text('Jump to Verse'),
+              onTap: () {
+                Navigator.pop(context);
+                _showJumpControls();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.bookmark),
+              title: const Text('Bookmark This Location'),
+              onTap: () {
+                Navigator.pop(context);
+                // Add bookmark functionality
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.share),
+              title: const Text('Share This Location'),
+              onTap: () {
+                Navigator.pop(context);
+                // Add share functionality
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

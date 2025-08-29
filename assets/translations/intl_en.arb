@@ -1,0 +1,813 @@
+{
+  "@@locale": "en",
+  "appTitle": "DeenMate",
+  "@appTitle": {
+    "description": "The main app title"
+  },
+
+  "onboardingWelcomeTitle": "Welcome to DeenMate",
+  "@onboardingWelcomeTitle": {
+    "description": "Title for the welcome onboarding screen"
+  },
+  "onboardingWelcomeSubtitle": "Your Complete Islamic Companion",
+  "@onboardingWelcomeSubtitle": {
+    "description": "Subtitle for the welcome onboarding screen"
+  },
+  "onboardingLanguageTitle": "Choose Your Language",
+  "@onboardingLanguageTitle": {
+    "description": "Title for language selection screen"
+  },
+  "onboardingLanguageSubtitle": "Select your preferred language for the app",
+  "@onboardingLanguageSubtitle": {
+    "description": "Subtitle for language selection screen"
+  },
+  "onboardingUsernameTitle": "What should we call you?",
+  "@onboardingUsernameTitle": {
+    "description": "Title for username input screen"
+  },
+  "onboardingUsernameSubtitle": "Enter your name or preferred nickname",
+  "@onboardingUsernameSubtitle": {
+    "description": "Subtitle for username input screen"
+  },
+  "onboardingLocationTitle": "Set Your Location",
+  "@onboardingLocationTitle": {
+    "description": "Title for location setup screen"
+  },
+  "onboardingLocationSubtitle": "This helps us provide accurate prayer times",
+  "@onboardingLocationSubtitle": {
+    "description": "Subtitle for location setup screen"
+  },
+  "onboardingLocationGpsTitle": "Use GPS Location",
+  "@onboardingLocationGpsTitle": {
+    "description": "Title for GPS location option"
+  },
+  "onboardingLocationGpsSubtitle": "Automatically detect your current location",
+  "@onboardingLocationGpsSubtitle": {
+    "description": "Subtitle for GPS location option"
+  },
+  "onboardingLocationManualTitle": "Manual Selection",
+  "@onboardingLocationManualTitle": {
+    "description": "Title for manual location option"
+  },
+  "onboardingLocationManualSubtitle": "Choose your city manually",
+  "@onboardingLocationManualSubtitle": {
+    "description": "Subtitle for manual location option"
+  },
+  "onboardingUsernameHint": "Enter your name",
+  "@onboardingUsernameHint": {
+    "description": "Hint text for username input field"
+  },
+  "onboardingNotificationEnable": "Enable",
+  "@onboardingNotificationEnable": {
+    "description": "Enable notifications option"
+  },
+  "onboardingNotificationEnableSubtitle": "Receive prayer time notifications",
+  "@onboardingNotificationEnableSubtitle": {
+    "description": "Subtitle for enable notifications option"
+  },
+  "onboardingNotificationDisable": "Disable",
+  "@onboardingNotificationDisable": {
+    "description": "Disable notifications option"
+  },
+  "onboardingNotificationDisableSubtitle": "Use silent mode only",
+  "@onboardingNotificationDisableSubtitle": {
+    "description": "Subtitle for disable notifications option"
+  },
+  "onboardingCalculationTitle": "Prayer Time Calculation",
+  "@onboardingCalculationTitle": {
+    "description": "Title for calculation method screen"
+  },
+  "onboardingCalculationSubtitle": "Choose your preferred calculation method",
+  "@onboardingCalculationSubtitle": {
+    "description": "Subtitle for calculation method screen"
+  },
+  "onboardingMadhhabTitle": "Select Your Madhhab",
+  "@onboardingMadhhabTitle": {
+    "description": "Title for madhhab selection screen"
+  },
+  "onboardingMadhhabSubtitle": "Choose your Islamic school of thought",
+  "@onboardingMadhhabSubtitle": {
+    "description": "Subtitle for madhhab selection screen"
+  },
+  "onboardingNotificationsTitle": "Notifications",
+  "@onboardingNotificationsTitle": {
+    "description": "Title for notifications setup screen"
+  },
+  "onboardingNotificationsSubtitle": "Stay connected with prayer reminders",
+  "@onboardingNotificationsSubtitle": {
+    "description": "Subtitle for notifications setup screen"
+  },
+  "onboardingThemeTitle": "Choose Your Theme",
+  "@onboardingThemeTitle": {
+    "description": "Title for theme selection screen"
+  },
+  "onboardingThemeSubtitle": "Select your preferred visual style",
+  "@onboardingThemeSubtitle": {
+    "description": "Subtitle for theme selection screen"
+  },
+  "onboardingCompleteTitle": "You're All Set!",
+  "@onboardingCompleteTitle": {
+    "description": "Title for completion screen"
+  },
+  "onboardingCompleteSubtitle": "Welcome to DeenMate. Let's begin your journey.",
+  "@onboardingCompleteSubtitle": {
+    "description": "Subtitle for completion screen"
+  },
+
+  "navigationHome": "Home",
+  "@navigationHome": {
+    "description": "Navigation label for home screen"
+  },
+  "navigationQuran": "Quran",
+  "@navigationQuran": {
+    "description": "Navigation label for Quran screen"
+  },
+  "navigationHadith": "Hadith",
+  "@navigationHadith": {
+    "description": "Navigation label for Hadith screen"
+  },
+  "navigationMore": "More",
+  "@navigationMore": {
+    "description": "Navigation label for more options screen"
+  },
+
+  "prayerTimesTitle": "Prayer Times",
+  "@prayerTimesTitle": {
+    "description": "Title for prayer times section"
+  },
+  "prayerFajr": "Fajr",
+  "@prayerFajr": {
+    "description": "Fajr prayer name"
+  },
+  "prayerSunrise": "Sunrise",
+  "@prayerSunrise": {
+    "description": "Sunrise time"
+  },
+  "prayerDhuhr": "Dhuhr",
+  "@prayerDhuhr": {
+    "description": "Dhuhr prayer name"
+  },
+  "prayerAsr": "Asr",
+  "@prayerAsr": {
+    "description": "Asr prayer name"
+  },
+  "prayerMaghrib": "Maghrib",
+  "@prayerMaghrib": {
+    "description": "Maghrib prayer name"
+  },
+  "prayerIsha": "Isha",
+  "@prayerIsha": {
+    "description": "Isha prayer name"
+  },
+  "nextPrayer": "Next Prayer",
+  "@nextPrayer": {
+    "description": "Label for next prayer"
+  },
+  "currentPrayer": "Current Prayer",
+  "@currentPrayer": {
+    "description": "Label for current prayer"
+  },
+  "timeRemaining": "Time Remaining",
+  "@timeRemaining": {
+    "description": "Label for time remaining"
+  },
+
+  "quranTitle": "Quran",
+  "@quranTitle": {
+    "description": "Title for Quran section"
+  },
+  "quranLastRead": "Last Read",
+  "@quranLastRead": {
+    "description": "Label for last read section"
+  },
+  "quranContinue": "Continue",
+  "@quranContinue": {
+    "description": "Button text to continue reading"
+  },
+  "quranSearch": "Search",
+  "@quranSearch": {
+    "description": "Search placeholder text"
+  },
+  "quranNavigation": "Navigation",
+  "@quranNavigation": {
+    "description": "Navigation section title"
+  },
+  "quranSurah": "Surah",
+  "@quranSurah": {
+    "description": "Surah navigation tab"
+  },
+  "quranPage": "Page",
+  "@quranPage": {
+    "description": "Page navigation tab"
+  },
+  "quranJuz": "Juz",
+  "@quranJuz": {
+    "description": "Juz navigation tab"
+  },
+  "quranHizb": "Hizb",
+  "@quranHizb": {
+    "description": "Hizb navigation tab"
+  },
+  "quranRuku": "Ruku",
+  "@quranRuku": {
+    "description": "Ruku navigation tab"
+  },
+
+  "ramadanSuhoor": "Suhoor",
+  "@ramadanSuhoor": {
+    "description": "Suhoor meal time for Ramadan"
+  },
+  "ramadanIftaar": "Iftaar",
+  "@ramadanIftaar": {
+    "description": "Iftaar meal time for Ramadan"
+  },
+
+  "prayerTimesSource": "timings from AlAdhan",
+  "@prayerTimesSource": {
+    "description": "Source attribution for prayer times"
+  },
+
+  "prayerTimesUpdated": "Updated: {time}",
+  "@prayerTimesUpdated": {
+    "description": "Last updated time for prayer times",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2:30 PM"
+      }
+    }
+  },
+
+  "prayerTimesCurrentPrayer": "Current Prayer",
+  "@prayerTimesCurrentPrayer": {
+    "description": "Label for current prayer"
+  },
+  "prayerTimesNextPrayer": "Next Prayer",
+  "@prayerTimesNextPrayer": {
+    "description": "Label for next prayer"
+  },
+  "prayerTimesNoActivePrayer": "No Active Prayer",
+  "@prayerTimesNoActivePrayer": {
+    "description": "Message when no prayer is currently active"
+  },
+
+  "prayerTimesAzan": "Azan",
+  "@prayerTimesAzan": {
+    "description": "Azan (call to prayer) label"
+  },
+  "prayerTimesJamaat": "Jama'at",
+  "@prayerTimesJamaat": {
+    "description": "Jama'at (congregational prayer) label"
+  },
+  "prayerTimesEndTime": "End time - {time}",
+  "@prayerTimesEndTime": {
+    "description": "Prayer end time label",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "5:30 AM"
+      }
+    }
+  },
+
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Settings screen title"
+  },
+  "settingsNotifications": "Notifications",
+  "@settingsNotifications": {
+    "description": "Notifications settings section"
+  },
+  "settingsPrayerReminders": "Prayer Reminders",
+  "@settingsPrayerReminders": {
+    "description": "Prayer reminders setting"
+  },
+  "settingsTheme": "Theme",
+  "@settingsTheme": {
+    "description": "Theme settings section"
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language settings section"
+  },
+  "settingsCalculationMethod": "Calculation Method",
+  "@settingsCalculationMethod": {
+    "description": "Prayer calculation method setting"
+  },
+
+  "commonLoading": "Loading...",
+  "@commonLoading": {
+    "description": "Generic loading message"
+  },
+  "commonError": "Error",
+  "@commonError": {
+    "description": "Generic error message"
+  },
+  "commonRetry": "Retry",
+  "@commonRetry": {
+    "description": "Retry button text"
+  },
+  "commonCancel": "Cancel",
+  "@commonCancel": {
+    "description": "Cancel button text"
+  },
+  "commonSave": "Save",
+  "@commonSave": {
+    "description": "Save button text"
+  },
+  "commonClose": "Close",
+  "@commonClose": {
+    "description": "Close button text"
+  },
+  "commonBack": "Back",
+  "@commonBack": {
+    "description": "Back button text"
+  },
+  "commonNext": "Next",
+  "@commonNext": {
+    "description": "Next button text"
+  },
+  "commonSkip": "Skip",
+  "@commonSkip": {
+    "description": "Skip button text"
+  },
+  "commonContinue": "Continue",
+  "@commonContinue": {
+    "description": "Continue button text"
+  },
+  "commonDone": "Done",
+  "@commonDone": {
+    "description": "Done button text"
+  },
+
+  "exitDialogTitle": "Exit DeenMate",
+  "@exitDialogTitle": {
+    "description": "Exit confirmation dialog title"
+  },
+  "exitDialogMessage": "Are you sure you want to exit the app?",
+  "@exitDialogMessage": {
+    "description": "Exit confirmation dialog message"
+  },
+  "exitDialogExit": "Exit",
+  "@exitDialogExit": {
+    "description": "Exit confirmation dialog exit button"
+  },
+
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language name"
+  },
+  "languageBengali": "Bengali",
+  "@languageBengali": {
+    "description": "Bengali language name"
+  },
+  "languageUrdu": "Urdu",
+  "@languageUrdu": {
+    "description": "Urdu language name"
+  },
+  "languageArabic": "Arabic",
+  "@languageArabic": {
+    "description": "Arabic language name"
+  },
+  "languageFullySupported": "Fully Supported",
+  "@languageFullySupported": {
+    "description": "Language status - fully supported"
+  },
+  "languageComingSoon": "Coming Soon",
+  "@languageComingSoon": {
+    "description": "Language status - coming soon"
+  },
+
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme option"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme option"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme option"
+  },
+  "themeLightSerenity": "Light Serenity",
+  "@themeLightSerenity": {
+    "description": "Light Serenity theme option"
+  },
+  "themeNightCalm": "Night Calm",
+  "@themeNightCalm": {
+    "description": "Night Calm theme option"
+  },
+  "themeHeritageSepia": "Heritage Sepia",
+  "@themeHeritageSepia": {
+    "description": "Heritage Sepia theme option"
+  },
+
+  "errorGeneric": "Something went wrong",
+  "@errorGeneric": {
+    "description": "Generic error message"
+  },
+  "errorNetwork": "Network error. Please check your connection.",
+  "@errorNetwork": {
+    "description": "Network error message"
+  },
+  "errorLocation": "Location access is required for accurate prayer times.",
+  "@errorLocation": {
+    "description": "Location error message"
+  },
+  "errorPermission": "Permission denied",
+  "@errorPermission": {
+    "description": "Permission error message"
+  },
+
+  "infoLocationRequired": "Location access helps provide accurate prayer times for your area.",
+  "@infoLocationRequired": {
+    "description": "Information about location requirement"
+  },
+  "infoNotificationsHelp": "Get notified before each prayer time.",
+  "@infoNotificationsHelp": {
+    "description": "Information about notifications"
+  },
+  "infoThemeDescription": "Choose your preferred visual style for the app.",
+  "@infoThemeDescription": {
+    "description": "Information about theme selection"
+  },
+
+  "locationSetSuccess": "Location set successfully!",
+  "@locationSetSuccess": {
+    "description": "Success message when location is set"
+  },
+  "locationGetFailed": "Failed to get location: {error}",
+  "@locationGetFailed": {
+    "description": "Error message when location retrieval fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "locationSaveSuccess": "Location \"{city}, {country}\" saved successfully!",
+  "@locationSaveSuccess": {
+    "description": "Success message when location is saved",
+    "placeholders": {
+      "city": {
+        "type": "String",
+        "example": "Dhaka"
+      },
+      "country": {
+        "type": "String",
+        "example": "Bangladesh"
+      }
+    }
+  },
+  "locationSaveFailed": "Failed to save location: {error}",
+  "@locationSaveFailed": {
+    "description": "Error message when location saving fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Database error"
+      }
+    }
+  },
+  "locationPermissionRequired": "Location Permission Required",
+  "@locationPermissionRequired": {
+    "description": "Title for location permission dialog"
+  },
+  "buttonCancel": "Cancel",
+  "@buttonCancel": {
+    "description": "Cancel button text"
+  },
+  "buttonTryAgain": "Try Again",
+  "@buttonTryAgain": {
+    "description": "Try again button text"
+  },
+  "buttonConfirm": "Confirm",
+  "@buttonConfirm": {
+    "description": "Confirm button text"
+  },
+
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language settings option"
+  },
+  "settingsAbout": "About DeenMate",
+  "@settingsAbout": {
+    "description": "About section title"
+  },
+  "settingsAboutSubtitle": "Version, credits, and more",
+  "@settingsAboutSubtitle": {
+    "description": "About section subtitle"
+  },
+  "settingsPrivacyPolicy": "Privacy Policy",
+  "@settingsPrivacyPolicy": {
+    "description": "Privacy policy option"
+  },
+  "settingsPrivacyPolicySubtitle": "How we protect your data",
+  "@settingsPrivacyPolicySubtitle": {
+    "description": "Privacy policy subtitle"
+  },
+  "settingsClearCache": "Clear Cache",
+  "@settingsClearCache": {
+    "description": "Clear cache option"
+  },
+  "settingsClearCacheSubtitle": "Free up storage space",
+  "@settingsClearCacheSubtitle": {
+    "description": "Clear cache subtitle"
+  },
+  "settingsExportData": "Export Data",
+  "@settingsExportData": {
+    "description": "Export data option"
+  },
+  "settingsExportDataSubtitle": "Backup your settings and data",
+  "@settingsExportDataSubtitle": {
+    "description": "Export data subtitle"
+  },
+  "settingsPrayerCalculationMethod": "Prayer Calculation Method",
+  "@settingsPrayerCalculationMethod": {
+    "description": "Prayer calculation method setting"
+  },
+  "settingsSelectLanguage": "Select Language",
+  "@settingsSelectLanguage": {
+    "description": "Language selection dialog title"
+  },
+  "settingsPermissionRequired": "Permission Required",
+  "@settingsPermissionRequired": {
+    "description": "Permission required dialog title"
+  },
+  "settingsCacheClearedSuccess": "Cache cleared successfully",
+  "@settingsCacheClearedSuccess": {
+    "description": "Cache cleared success message"
+  },
+  "settingsExportComingSoon": "Export feature coming soon!",
+  "@settingsExportComingSoon": {
+    "description": "Export feature coming soon message"
+  },
+
+  "prayerCalculationMethods": "Prayer Calculation Methods",
+  "@prayerCalculationMethods": {
+    "description": "Prayer calculation methods screen title"
+  },
+  "prayerAthanNotifications": "Athan & Notifications",
+  "@prayerAthanNotifications": {
+    "description": "Athan and notifications screen title"
+  },
+  "prayerVibration": "Vibration",
+  "@prayerVibration": {
+    "description": "Vibration setting title"
+  },
+  "prayerVibrationSubtitle": "Vibrate device during Athan",
+  "@prayerVibrationSubtitle": {
+    "description": "Vibration setting subtitle"
+  },
+  "prayerQuickActions": "Quick Actions",
+  "@prayerQuickActions": {
+    "description": "Quick actions setting title"
+  },
+  "prayerQuickActionsSubtitle": "Show \"Mark as Prayed\" and \"Snooze\" buttons",
+  "@prayerQuickActionsSubtitle": {
+    "description": "Quick actions setting subtitle"
+  },
+  "prayerAutoComplete": "Auto-complete",
+  "@prayerAutoComplete": {
+    "description": "Auto-complete setting title"
+  },
+  "prayerAutoCompleteSubtitle": "Automatically mark prayer as completed",
+  "@prayerAutoCompleteSubtitle": {
+    "description": "Auto-complete setting subtitle"
+  },
+  "prayerSmartNotifications": "Smart Notifications",
+  "@prayerSmartNotifications": {
+    "description": "Smart notifications setting title"
+  },
+  "prayerSmartNotificationsSubtitle": "Adjust notifications based on your activity",
+  "@prayerSmartNotificationsSubtitle": {
+    "description": "Smart notifications setting subtitle"
+  },
+  "prayerOverrideDND": "Override Do Not Disturb",
+  "@prayerOverrideDND": {
+    "description": "Override DND setting title"
+  },
+  "prayerOverrideDNDSubtitle": "Show prayer notifications even in DND mode",
+  "@prayerOverrideDNDSubtitle": {
+    "description": "Override DND setting subtitle"
+  },
+  "prayerFullScreenNotifications": "Full Screen Notifications",
+  "@prayerFullScreenNotifications": {
+    "description": "Full screen notifications setting title"
+  },
+  "prayerFullScreenNotificationsSubtitle": "Show prayer time as full screen alert",
+  "@prayerFullScreenNotificationsSubtitle": {
+    "description": "Full screen notifications setting subtitle"
+  },
+  "prayerRamadanNotifications": "Ramadan Notifications",
+  "@prayerRamadanNotifications": {
+    "description": "Ramadan notifications setting title"
+  },
+  "prayerRamadanNotificationsSubtitle": "Enable special notifications for Suhur and Iftar",
+  "@prayerRamadanNotificationsSubtitle": {
+    "description": "Ramadan notifications setting subtitle"
+  },
+  "prayerSpecialRamadanAthan": "Special Ramadan Athan",
+  "@prayerSpecialRamadanAthan": {
+    "description": "Special Ramadan Athan setting title"
+  },
+  "prayerSpecialRamadanAthanSubtitle": "Use special Athan recitations during Ramadan",
+  "@prayerSpecialRamadanAthanSubtitle": {
+    "description": "Special Ramadan Athan setting subtitle"
+  },
+  "prayerIncludeDuas": "Include Duas",
+  "@prayerIncludeDuas": {
+    "description": "Include duas setting title"
+  },
+  "prayerIncludeDuasSubtitle": "Show Ramadan-specific duas in notifications",
+  "@prayerIncludeDuasSubtitle": {
+    "description": "Include duas setting subtitle"
+  },
+  "prayerTrackFasting": "Track Fasting",
+  "@prayerTrackFasting": {
+    "description": "Track fasting setting title"
+  },
+  "prayerTrackFastingSubtitle": "Keep track of your fasting status",
+  "@prayerTrackFastingSubtitle": {
+    "description": "Track fasting setting subtitle"
+  },
+  "buttonRetry": "Retry",
+  "@buttonRetry": {
+    "description": "Retry button text"
+  },
+  "buttonGrant": "Grant",
+  "@buttonGrant": {
+    "description": "Grant button text"
+  },
+  "buttonApply": "Apply",
+  "@buttonApply": {
+    "description": "Apply button text"
+  },
+  "buttonGotIt": "Got it",
+  "@buttonGotIt": {
+    "description": "Got it button text"
+  },
+  "prayerTestAthanAudio": "Test Athan Audio",
+  "@prayerTestAthanAudio": {
+    "description": "Test Athan audio button text"
+  },
+  "prayerScheduleNow": "Schedule Now",
+  "@prayerScheduleNow": {
+    "description": "Schedule now button text"
+  },
+  "prayerDebugInfo": "Debug Info",
+  "@prayerDebugInfo": {
+    "description": "Debug info button text"
+  },
+  "prayerScheduleNotifications": "Schedule Prayer Notifications",
+  "@prayerScheduleNotifications": {
+    "description": "Schedule prayer notifications button text"
+  },
+  "prayerTestNotification": "Test Notification (1 sec)",
+  "@prayerTestNotification": {
+    "description": "Test notification button text"
+  },
+  "prayerDemoNotification": "Demo Notification (2 min)",
+  "@prayerDemoNotification": {
+    "description": "Demo notification button text"
+  },
+  "prayerImmediateNotification": "Immediate Notification",
+  "@prayerImmediateNotification": {
+    "description": "Immediate notification button text"
+  },
+  "prayerAthanTestStarted": "Athan audio test started",
+  "@prayerAthanTestStarted": {
+    "description": "Athan test started message"
+  },
+  "prayerAthanTestFailed": "Athan test failed: {error}",
+  "@prayerAthanTestFailed": {
+    "description": "Athan test failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "prayerNotificationsScheduled": "Notifications scheduled for today",
+  "@prayerNotificationsScheduled": {
+    "description": "Notifications scheduled message"
+  },
+  "prayerSchedulingFailed": "Scheduling failed: {error}",
+  "@prayerSchedulingFailed": {
+    "description": "Scheduling failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "prayerDebugFailed": "Debug failed: {error}",
+  "@prayerDebugFailed": {
+    "description": "Debug failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "prayerTestNotificationSent": "Test notification sent immediately!",
+  "@prayerTestNotificationSent": {
+    "description": "Test notification sent message"
+  },
+  "prayerTestNotificationFailed": "Test notification failed: {error}",
+  "@prayerTestNotificationFailed": {
+    "description": "Test notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "prayerDemoNotificationSent": "Demo notification sent! Azan should play now.",
+  "@prayerDemoNotificationSent": {
+    "description": "Demo notification sent message"
+  },
+  "prayerDemoNotificationFailed": "Demo notification failed: {error}",
+  "@prayerDemoNotificationFailed": {
+    "description": "Demo notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+  "prayerImmediateNotificationSent": "Immediate notification sent!",
+  "@prayerImmediateNotificationSent": {
+    "description": "Immediate notification sent message"
+  },
+  "prayerImmediateNotificationFailed": "Immediate notification failed: {error}",
+  "@prayerImmediateNotificationFailed": {
+    "description": "Immediate notification failed message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Permission denied"
+      }
+    }
+  },
+
+  "audioDownloadsTitle": "Audio Downloads",
+  "@audioDownloadsTitle": {
+    "description": "Title for the audio downloads screen"
+  },
+  "audioStorageTitle": "Audio Storage",
+  "@audioStorageTitle": {
+    "description": "Header for audio storage section"
+  },
+  "audioStorageErrorStats": "Error loading stats",
+  "@audioStorageErrorStats": {
+    "description": "Error message when storage stats fail to load"
+  },
+  "audioSelectReciterTitle": "Select Reciter",
+  "@audioSelectReciterTitle": {
+    "description": "Header for reciter selection section"
+  },
+  "audioRecitersLoadError": "Error loading reciters",
+  "@audioRecitersLoadError": {
+    "description": "Error message when reciters fail to load"
+  },
+  "audioQuickActionsTitle": "Quick Actions",
+  "@audioQuickActionsTitle": {
+    "description": "Header for quick actions section"
+  },
+  "audioDownloadPopularTitle": "Download Popular",
+  "@audioDownloadPopularTitle": {
+    "description": "Title for download popular chapters button"
+  },
+  "audioDownloadPopularSubtitle": "Download most popular chapters",
+  "@audioDownloadPopularSubtitle": {
+    "description": "Subtitle for download popular chapters button"
+  },
+  "audioDownloadAllTitle": "Download All",
+  "@audioDownloadAllTitle": {
+    "description": "Title for download all chapters button"
+  },
+  "audioDownloadAllSubtitle": "Download complete Quran",
+  "@audioDownloadAllSubtitle": {
+    "description": "Subtitle for download all chapters button"
+  },
+  "audioIndividualChaptersTitle": "Individual Chapters",
+  "@audioIndividualChaptersTitle": {
+    "description": "Header for individual chapters section"
+  },
+  "audioDownloadCancel": "Cancel",
+  "@audioDownloadCancel": {
+    "description": "Tooltip text for cancel download button"
+  },
+  "audioChapterDelete": "Delete",
+  "@audioChapterDelete": {
+    "description": "Menu item text for deleting audio chapter"
+  }
+}

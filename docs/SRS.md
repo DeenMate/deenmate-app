@@ -361,6 +361,39 @@ class IslamicContentService {
 - **Number Format** (Western/Arabic numerals)
 - **Date Format** (Gregorian/Hijri priority)
 
+### 3.7 Hadith Module
+
+#### 3.7.1 Core Features
+- Collections: Phase 1 – Sahih al-Bukhari, Sahih Muslim (expandable)
+- Browse Hierarchy: Collection → Book → Chapter → Hadith
+- Detail View: Arabic (RTL, Arabic font), translation (l10n), reference, grade, narrator, translator/source attribution
+- Search: Client-side over fetched sets (text, optional collection filter); server search if endpoint available
+- Bookmarks: Add/remove, persist in Hive, dedicated list
+- Offline-First: Use Hive cache when offline; hydrate when online
+- Sharing: Share hadith text + reference + attribution
+
+#### 3.7.2 Localization & RTL
+- l10n via ARB in `lib/l10n/`, generated `AppLocalizations`
+- Fallbacks: Preferred → English → Arabic-only with localized “translation unavailable” note
+- RTL: Use `TextDirection.rtl` for Arabic blocks; mirror layout appropriately
+
+#### 3.7.3 Data & Storage
+- API Payload: `{ id, collection, book, chapter, arabic_text, translations[{lang,translator,text}], reference, grades[], narrator, source{name,license}, tags[] }`
+- Hive Caching:
+  - Lists: `list:<collection>:<book>:<chapter>:<lang>:<page>` (TTL 7 days)
+  - Detail: `detail:<collection>:<id>:<lang>`
+  - Bookmarks: `hadith_bookmarks` (Set<String>)
+- Versioning: cache control key `hadith_cache_version` to invalidate on schema changes
+
+#### 3.7.4 Performance & Accessibility
+- KPIs: Detail P50 < 800ms cached / < 1500ms network; list first frame < 200ms (skeleton)
+- Pagination: Default page size 20; infinite scroll (mobile), load more (web)
+- Accessibility: Semantic labels for Arabic and controls; scalable text; contrast-safe
+
+#### 3.7.5 Error Handling
+- Dio → Failure Mapping: Timeout/Socket → NetworkFailure; 4xx → ClientFailure; 5xx → ServerFailure; Parsing → ParsingFailure
+- UI Responses: Retry CTAs; show cached fallback when available; friendly localized errors
+
 ---
 
 ## 4. Non-Functional Requirements

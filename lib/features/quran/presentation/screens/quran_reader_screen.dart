@@ -8,6 +8,7 @@ import '../../data/dto/verse_dto.dart';
 import '../../data/dto/translation_resource_dto.dart';
 import '../state/providers.dart';
 import '../widgets/translation_picker_widget.dart';
+import '../widgets/quick_tools_panel.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
 
@@ -1815,5 +1816,102 @@ ${chapter.nameSimple} ${verse.verseNumber} (${verse.verseKey})
         ],
       ),
     );
+  }
+
+  // Helper methods for QuickToolsPanel integration
+
+  String? _getCurrentVerseKey() {
+    if (_verses.isEmpty) return null;
+    
+    // Find the verse closest to the center of the screen
+    if (!_controller.hasClients) return _verses.first.verseKey;
+    
+    final scrollPosition = _controller.offset;
+    final viewportHeight = _controller.position.viewportDimension;
+    final centerY = scrollPosition + (viewportHeight / 2);
+    
+    final totalHeight = _controller.position.maxScrollExtent + viewportHeight;
+    final averageVerseHeight = totalHeight / _verses.length;
+    final estimatedIndex = centerY / averageVerseHeight;
+    final clampedIndex = estimatedIndex.round().clamp(0, _verses.length - 1);
+    
+    return _verses[clampedIndex].verseKey;
+  }
+
+  bool _isCurrentVerseBookmarked() {
+    final currentVerseKey = _getCurrentVerseKey();
+    if (currentVerseKey == null) return false;
+    return _localBookmarkOn.contains(currentVerseKey);
+  }
+
+  void _handleNavigationModeChange(String mode) {
+    // Open the existing navigation modal with the selected mode
+    switch (mode) {
+      case 'surah':
+        _openChapterPicker(context);
+        break;
+      case 'page':
+        _openPageJumper(context);
+        break;
+      case 'juz':
+        _openJuzPicker(context);
+        break;
+    }
+  }
+
+  void _handleJumpToVerse() {
+    _openQuickJump(context);
+  }
+
+  void _handleFontSizeAdjust(double delta) {
+    // This would integrate with existing font size settings
+    // For now, show a feedback message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(delta > 0 ? 'Font size increased' : 'Font size decreased'),
+        duration: const Duration(seconds: 1),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: ThemeHelper.getPrimaryColor(context),
+      ),
+    );
+  }
+
+  void _handleThemeToggle() {
+    // This would integrate with existing theme toggle functionality
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Theme toggle - Feature coming soon'),
+        duration: Duration(seconds: 1),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _handleTranslationPicker() {
+    _openTranslationPicker(context);
+  }
+
+  void _handleBookmarkToggle() {
+    final currentVerseKey = _getCurrentVerseKey();
+    if (currentVerseKey == null) return;
+
+    final currentVerse = _verses.firstWhere(
+      (verse) => verse.verseKey == currentVerseKey,
+      orElse: () => _verses.first,
+    );
+
+    _toggleBookmark(currentVerse);
+  }
+
+  void _handleShareVerse() {
+    final currentVerseKey = _getCurrentVerseKey();
+    if (currentVerseKey == null) return;
+
+    final currentVerse = _verses.firstWhere(
+      (verse) => verse.verseKey == currentVerseKey,
+      orElse: () => _verses.first,
+    );
+
+    _shareVerse(currentVerse);
   }
 }
