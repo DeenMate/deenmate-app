@@ -1819,4 +1819,291 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get sunday => 'রবিবার';
+
+  @override
+  String get methodsRecommended => 'সুপারিশকৃত';
+
+  @override
+  String get methodsAllMethods => 'সকল পদ্ধতি';
+
+  @override
+  String get methodsCompare => 'তুলনা';
+
+  @override
+  String get methodsLocationBasedRecommendations => 'অবস্থান-ভিত্তিক সুপারিশ';
+
+  @override
+  String get methodsLocationRecommendationText =>
+      'এই পদ্ধতিগুলি আপনার অঞ্চলের জন্য সুপারিশ করা হয়। অবস্থান সনাক্তকরণ সাধারণত এটি স্বয়ংক্রিয়ভাবে নির্ধারণ করবে।';
+
+  @override
+  String get methodsAllAvailableMethods => 'সব উপলব্ধ পদ্ধতি';
+
+  @override
+  String methodsFromOrganizations(int count) {
+    return 'বিশ্বব্যাপী ইসলামিক সংস্থাগুলি থেকে $countটি গণনা পদ্ধতি।';
+  }
+
+  @override
+  String get methodComparison => 'পদ্ধতি তুলনা';
+
+  @override
+  String get methodComparisonDescription =>
+      'তাদের কোণ এবং বৈশিষ্ট্য তুলনা করতে দুটি পদ্ধতি নির্বাচন করুন।';
+
+  @override
+  String get methodComparisonMethod1 => 'পদ্ধতি ১';
+
+  @override
+  String get methodComparisonMethod2 => 'পদ্ধতি ২';
+
+  @override
+  String get methodUnknownOrganization => 'অজানা সংস্থা';
+
+  @override
+  String methodAngleFormat(String label, String angle) {
+    return '$label: $angle°';
+  }
+
+  @override
+  String get methodsAboutTooltip => 'গণনা পদ্ধতি সম্পর্কে';
+
+  @override
+  String get methodsHideComparisonTooltip => 'তুলনা লুকান';
+
+  @override
+  String get methodsApplyMethod => 'পদ্ধতি প্রয়োগ করুন';
+
+  @override
+  String get methodsCustom => 'কাস্টম';
+
+  @override
+  String get methodsUnknownOrganization => 'অজানা সংস্থা';
+
+  @override
+  String get methodsNotAvailable => 'প্রযোজ্য নয়';
+
+  @override
+  String get methodsImpactAssessment => 'প্রভাব মূল্যায়ন:';
+
+  @override
+  String get methodsFajr => 'ফজর';
+
+  @override
+  String get methodsIsha => 'ইশা';
+
+  @override
+  String get methodsSelectMethod => 'একটি গণনা পদ্ধতি নির্বাচন করুন';
+
+  @override
+  String get methodsComparisonResults => 'তুলনা ফলাফল';
+
+  @override
+  String get methodsFajrAngle => 'ফজরের কোণ';
+
+  @override
+  String get methodsIshaAngle => 'ইশার কোণ';
+
+  @override
+  String get methodsOrganization => 'সংস্থা';
+
+  @override
+  String get methodsRetry => 'পুনরায় চেষ্টা করুন';
+
+  @override
+  String get methodsYourLocation => 'আপনার অবস্থান';
+
+  @override
+  String get methodsRecommendedMethods => 'সুপারিশকৃত পদ্ধতি';
+
+  @override
+  String get methodsCustomMethod => 'কাস্টম পদ্ধতি';
+
+  @override
+  String get methodsCustomMethodCreator => 'কাস্টম পদ্ধতি তৈরিকারী';
+
+  @override
+  String get methodsCreateCustomMethod => 'কাস্টম পদ্ধতি তৈরি করুন';
+
+  @override
+  String get methodsView => 'দেখুন';
+
+  @override
+  String get methodsAboutCalculationMethods => 'গণনা পদ্ধতি সম্পর্কে';
+
+  @override
+  String get methodsGotIt => 'বুঝেছি';
+
+  @override
+  String get unableToLoadLocation => 'অবস্থান লোড করতে অক্ষম';
+
+  @override
+  String get locationIsNeeded => 'সুপারিশকৃত পদ্ধতি দেখাতে অবস্থান প্রয়োজন';
+
+  @override
+  String get athanSettingsRetry => 'পুনরায় চেষ্টা করুন';
+
+  @override
+  String get athanSettingsFeatureComingSoon => 'বৈশিষ্ট্য শীঘ্রই আসছে...';
+
+  @override
+  String get athanSettingsTestStarted => 'আযান অডিও পরীক্ষা শুরু হয়েছে';
+
+  @override
+  String get athanSettingsTestFailed => 'আযান পরীক্ষা ব্যর্থ হয়েছে';
+
+  @override
+  String get athanSettingsTestAthanAudio => 'আযান অডিও পরীক্ষা করুন';
+
+  @override
+  String get athanSettingsNotificationsScheduled =>
+      'আজকের জন্য বিজ্ঞপ্তি নির্ধারণ করা হয়েছে';
+
+  @override
+  String get athanSettingsSchedulingFailed => 'নির্ধারণ ব্যর্থ হয়েছে';
+
+  @override
+  String get athanSettingsScheduleNow => 'এখনই নির্ধারণ করুন';
+
+  @override
+  String get athanSettingsDebugFailed => 'ডিবাগ ব্যর্থ হয়েছে';
+
+  @override
+  String get athanSettingsDebugInfo => 'ডিবাগ তথ্য';
+
+  @override
+  String get athanSettingsPrayerNotificationsScheduled =>
+      'আজকের জন্য নামাজের বিজ্ঞপ্তি নির্ধারণ করা হয়েছে';
+
+  @override
+  String get athanSettingsTestNotificationFailed =>
+      'পরীক্ষামূলক বিজ্ঞপ্তি ব্যর্থ হয়েছে';
+
+  @override
+  String get athanSettingsSchedulePrayerNotifications =>
+      'নামাজের বিজ্ঞপ্তি নির্ধারণ করুন';
+
+  @override
+  String get athanSettingsTestNotificationSent =>
+      'পরীক্ষামূলক বিজ্ঞপ্তি তৎক্ষণাৎ পাঠানো হয়েছে!';
+
+  @override
+  String get athanSettingsTestNotification1Sec =>
+      'পরীক্ষামূলক বিজ্ঞপ্তি (১ সেকেন্ড)';
+
+  @override
+  String get athanSettingsDemoNotificationSent =>
+      'ডেমো বিজ্ঞপ্তি পাঠানো হয়েছে! আযান এখন বাজতে হবে।';
+
+  @override
+  String get athanSettingsDemoNotificationFailed =>
+      'ডেমো বিজ্ঞপ্তি ব্যর্থ হয়েছে';
+
+  @override
+  String get athanSettingsDemoNotification2Min => 'ডেমো বিজ্ঞপ্তি (২ মিনিট)';
+
+  @override
+  String get athanSettingsImmediateNotificationSent =>
+      'তাৎক্ষণিক বিজ্ঞপ্তি পাঠানো হয়েছে!';
+
+  @override
+  String quranReaderLoadError(String errorMessage) {
+    return 'লোড করতে ব্যর্থ: $errorMessage';
+  }
+
+  @override
+  String get quranReaderAudioManager => 'অডিও ম্যানেজার';
+
+  @override
+  String get quranReaderAutoScroll => 'স্বয়ংক্রিয় স্ক্রল';
+
+  @override
+  String get quranReaderEnableAutoScroll => 'স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন';
+
+  @override
+  String get quranReaderQuickJump => 'দ্রুত জাম্প';
+
+  @override
+  String get quranReaderCopyArabicText => 'আরবি টেক্সট কপি করুন';
+
+  @override
+  String get quranReaderCopyArabicSubtitle => 'শুধুমাত্র আরবি আয়াত কপি করুন';
+
+  @override
+  String get quranReaderCopyTranslation => 'অনুবাদ কপি করুন';
+
+  @override
+  String get quranReaderCopyTranslationSubtitle => 'শুধুমাত্র অনুবাদ কপি করুন';
+
+  @override
+  String get quranReaderCopyFullVerse => 'সম্পূর্ণ আয়াত কপি করুন';
+
+  @override
+  String get quranReaderCopyFullVerseSubtitle =>
+      'অনুবাদসহ আরবি টেক্সট কপি করুন';
+
+  @override
+  String get quranReaderReportError => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
+
+  @override
+  String get quranReaderReportErrorSubtitle =>
+      'অনুবাদের নির্ভুলতা উন্নত করতে সহায়তা করুন';
+
+  @override
+  String get quranReaderReportErrorDialogTitle => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
+
+  @override
+  String get quranVerseCopiedToClipboard => 'আয়াত ক্লিপবোর্ডে কপি করা হয়েছে';
+
+  @override
+  String get bookmarksAddBookmark => 'বুকমার্ক যোগ করুন';
+
+  @override
+  String get bookmarksAddBookmarkComingSoon =>
+      'বুকমার্ক যোগ করার ডায়ালগ - শীঘ্রই আসছে';
+
+  @override
+  String get bookmarksCreateCategoryComingSoon =>
+      'ক্যাটেগরি তৈরির ডায়ালগ - শীঘ্রই আসছে';
+
+  @override
+  String get bookmarksSortOptionsComingSoon => 'সাজানোর অপশন - শীঘ্রই আসছে';
+
+  @override
+  String get bookmarksManageCategoriesComingSoon =>
+      'ক্যাটেগরি পরিচালনা - শীঘ্রই আসছে';
+
+  @override
+  String get bookmarksExportBookmarksComingSoon =>
+      'বুকমার্ক এক্সপোর্ট - শীঘ্রই আসছে';
+
+  @override
+  String get readingPlansMarkComplete => 'সম্পূর্ণ হিসেবে চিহ্নিত করুন';
+
+  @override
+  String get readingPlansCreatePlan => 'পরিকল্পনা তৈরি করুন';
+
+  @override
+  String get readingPlansDeletePlan => 'পরিকল্পনা মুছুন';
+
+  @override
+  String readingPlansDeletePlanConfirm(String planName) {
+    return 'আপনি কি নিশ্চিত যে \"$planName\" মুছতে চান?';
+  }
+
+  @override
+  String get readingPlansCreatePlanTitle => 'পঠন পরিকল্পনা তৈরি করুন';
+
+  @override
+  String get readingPlansThirtyDay => '৩০-দিন';
+
+  @override
+  String get readingPlansRamadan => 'রমজান';
+
+  @override
+  String get readingPlansCustom => 'কাস্টম';
+
+  @override
+  String get readingPlansPlanCreatedSuccess =>
+      'পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!';
 }

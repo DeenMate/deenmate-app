@@ -390,7 +390,7 @@ abstract class AppLocalizations {
   /// **'Navigation'**
   String get quranNavigation;
 
-  /// Surah navigation tab
+  /// Label for Islamic chapter (Surah)
   ///
   /// In en, this message translates to:
   /// **'Surah'**
@@ -402,7 +402,7 @@ abstract class AppLocalizations {
   /// **'Page'**
   String get quranPage;
 
-  /// Juz/Para navigation tab
+  /// Label for Islamic section (Juz/Para)
   ///
   /// In en, this message translates to:
   /// **'Juz'**
@@ -1104,7 +1104,7 @@ abstract class AppLocalizations {
   /// **'Start Plan'**
   String get readingPlansStartPlan;
 
-  /// Stop plan menu action
+  /// Button to stop/pause a reading plan
   ///
   /// In en, this message translates to:
   /// **'Stop Plan'**
@@ -3449,6 +3449,528 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sunday'**
   String get sunday;
+
+  /// Label for recommended calculation method
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get methodsRecommended;
+
+  /// All calculation methods tab
+  ///
+  /// In en, this message translates to:
+  /// **'All Methods'**
+  String get methodsAllMethods;
+
+  /// Compare calculation methods tab
+  ///
+  /// In en, this message translates to:
+  /// **'Compare'**
+  String get methodsCompare;
+
+  /// Location-based recommendations section title
+  ///
+  /// In en, this message translates to:
+  /// **'Location-Based Recommendations'**
+  String get methodsLocationBasedRecommendations;
+
+  /// Explanation text for location-based recommendations
+  ///
+  /// In en, this message translates to:
+  /// **'These methods are recommended for your region. Location detection would normally determine this automatically.'**
+  String get methodsLocationRecommendationText;
+
+  /// Title for all available methods section
+  ///
+  /// In en, this message translates to:
+  /// **'All Available Methods'**
+  String get methodsAllAvailableMethods;
+
+  /// Description of available calculation methods
+  ///
+  /// In en, this message translates to:
+  /// **'{count} calculation methods from Islamic organizations worldwide.'**
+  String methodsFromOrganizations(int count);
+
+  /// Method comparison section title
+  ///
+  /// In en, this message translates to:
+  /// **'Method Comparison'**
+  String get methodComparison;
+
+  /// Method comparison description
+  ///
+  /// In en, this message translates to:
+  /// **'Select two methods to compare their angles and characteristics.'**
+  String get methodComparisonDescription;
+
+  /// First method in comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Method 1'**
+  String get methodComparisonMethod1;
+
+  /// Second method in comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Method 2'**
+  String get methodComparisonMethod2;
+
+  /// Fallback text for unknown organization
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Organization'**
+  String get methodUnknownOrganization;
+
+  /// Format for displaying prayer angle
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {angle}°'**
+  String methodAngleFormat(String label, String angle);
+
+  /// Tooltip for about calculation methods button
+  ///
+  /// In en, this message translates to:
+  /// **'About Calculation Methods'**
+  String get methodsAboutTooltip;
+
+  /// Tooltip for hide comparison button
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Comparison'**
+  String get methodsHideComparisonTooltip;
+
+  /// Apply method button text
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Method'**
+  String get methodsApplyMethod;
+
+  /// Custom methods tab
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get methodsCustom;
+
+  /// Placeholder text when calculation method organization is unknown
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Organization'**
+  String get methodsUnknownOrganization;
+
+  /// Placeholder text when data is not available
+  ///
+  /// In en, this message translates to:
+  /// **'N/A'**
+  String get methodsNotAvailable;
+
+  /// Label for impact assessment section in method comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Impact Assessment:'**
+  String get methodsImpactAssessment;
+
+  /// Label for Fajr prayer in calculation methods
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get methodsFajr;
+
+  /// Label for Isha prayer in calculation methods
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get methodsIsha;
+
+  /// Hint text for method selection dropdown
+  ///
+  /// In en, this message translates to:
+  /// **'Select a calculation method'**
+  String get methodsSelectMethod;
+
+  /// Title for comparison results section
+  ///
+  /// In en, this message translates to:
+  /// **'Comparison Results'**
+  String get methodsComparisonResults;
+
+  /// Label for Fajr angle in method comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr Angle'**
+  String get methodsFajrAngle;
+
+  /// Label for Isha angle in method comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Isha Angle'**
+  String get methodsIshaAngle;
+
+  /// Label for organization in method comparison
+  ///
+  /// In en, this message translates to:
+  /// **'Organization'**
+  String get methodsOrganization;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get methodsRetry;
+
+  /// Label for user's current location
+  ///
+  /// In en, this message translates to:
+  /// **'Your Location'**
+  String get methodsYourLocation;
+
+  /// Title for recommended methods section
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Methods'**
+  String get methodsRecommendedMethods;
+
+  /// Title for custom method section
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Method'**
+  String get methodsCustomMethod;
+
+  /// Title for custom method creator
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Method Creator'**
+  String get methodsCustomMethodCreator;
+
+  /// Button text to create custom method
+  ///
+  /// In en, this message translates to:
+  /// **'Create Custom Method'**
+  String get methodsCreateCustomMethod;
+
+  /// View button text
+  ///
+  /// In en, this message translates to:
+  /// **'View'**
+  String get methodsView;
+
+  /// Title for calculation methods info dialog
+  ///
+  /// In en, this message translates to:
+  /// **'About Calculation Methods'**
+  String get methodsAboutCalculationMethods;
+
+  /// Button text to dismiss dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get methodsGotIt;
+
+  /// Error message when location cannot be loaded
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load location'**
+  String get unableToLoadLocation;
+
+  /// Message explaining location requirement
+  ///
+  /// In en, this message translates to:
+  /// **'Location is needed to show recommended methods'**
+  String get locationIsNeeded;
+
+  /// Retry button text in Athan settings
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get athanSettingsRetry;
+
+  /// Coming soon message for features
+  ///
+  /// In en, this message translates to:
+  /// **'Feature coming soon...'**
+  String get athanSettingsFeatureComingSoon;
+
+  /// Success message when Athan test starts
+  ///
+  /// In en, this message translates to:
+  /// **'Athan audio test started'**
+  String get athanSettingsTestStarted;
+
+  /// Error message when Athan test fails
+  ///
+  /// In en, this message translates to:
+  /// **'Athan test failed'**
+  String get athanSettingsTestFailed;
+
+  /// Test Athan audio button text
+  ///
+  /// In en, this message translates to:
+  /// **'Test Athan Audio'**
+  String get athanSettingsTestAthanAudio;
+
+  /// Success message when notifications are scheduled
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications scheduled for today'**
+  String get athanSettingsNotificationsScheduled;
+
+  /// Error message when scheduling fails
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduling failed'**
+  String get athanSettingsSchedulingFailed;
+
+  /// Schedule notifications button text
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Now'**
+  String get athanSettingsScheduleNow;
+
+  /// Error message when debug info fails
+  ///
+  /// In en, this message translates to:
+  /// **'Debug failed'**
+  String get athanSettingsDebugFailed;
+
+  /// Debug info button text
+  ///
+  /// In en, this message translates to:
+  /// **'Debug Info'**
+  String get athanSettingsDebugInfo;
+
+  /// Success message for prayer notifications scheduling
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer notifications scheduled for today'**
+  String get athanSettingsPrayerNotificationsScheduled;
+
+  /// Error message when test notification fails
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification failed'**
+  String get athanSettingsTestNotificationFailed;
+
+  /// Schedule prayer notifications button text
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Prayer Notifications'**
+  String get athanSettingsSchedulePrayerNotifications;
+
+  /// Success message when test notification is sent
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification sent immediately!'**
+  String get athanSettingsTestNotificationSent;
+
+  /// Test notification 1 second button text
+  ///
+  /// In en, this message translates to:
+  /// **'Test Notification (1 sec)'**
+  String get athanSettingsTestNotification1Sec;
+
+  /// Success message when demo notification is sent
+  ///
+  /// In en, this message translates to:
+  /// **'Demo notification sent! Azan should play now.'**
+  String get athanSettingsDemoNotificationSent;
+
+  /// Error message when demo notification fails
+  ///
+  /// In en, this message translates to:
+  /// **'Demo notification failed'**
+  String get athanSettingsDemoNotificationFailed;
+
+  /// Demo notification 2 minutes button text
+  ///
+  /// In en, this message translates to:
+  /// **'Demo Notification (2 min)'**
+  String get athanSettingsDemoNotification2Min;
+
+  /// Success message for immediate notification
+  ///
+  /// In en, this message translates to:
+  /// **'Immediate notification sent!'**
+  String get athanSettingsImmediateNotificationSent;
+
+  /// Error message when Quran reader fails to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load: {errorMessage}'**
+  String quranReaderLoadError(String errorMessage);
+
+  /// Label for audio management controls
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Manager'**
+  String get quranReaderAudioManager;
+
+  /// Label for auto scroll feature
+  ///
+  /// In en, this message translates to:
+  /// **'Auto Scroll'**
+  String get quranReaderAutoScroll;
+
+  /// Label to enable auto scroll functionality
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Auto Scroll'**
+  String get quranReaderEnableAutoScroll;
+
+  /// Label for quick navigation feature
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Jump'**
+  String get quranReaderQuickJump;
+
+  /// Option to copy only Arabic verse text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Arabic Text'**
+  String get quranReaderCopyArabicText;
+
+  /// Subtitle explaining Arabic text copy feature
+  ///
+  /// In en, this message translates to:
+  /// **'Copy only the Arabic verse'**
+  String get quranReaderCopyArabicSubtitle;
+
+  /// Option to copy only translation text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Translation'**
+  String get quranReaderCopyTranslation;
+
+  /// Subtitle explaining translation copy feature
+  ///
+  /// In en, this message translates to:
+  /// **'Copy only the translation'**
+  String get quranReaderCopyTranslationSubtitle;
+
+  /// Option to copy complete verse with translation
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Full Verse'**
+  String get quranReaderCopyFullVerse;
+
+  /// Subtitle explaining full verse copy feature
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Arabic text with translation'**
+  String get quranReaderCopyFullVerseSubtitle;
+
+  /// Option to report translation errors
+  ///
+  /// In en, this message translates to:
+  /// **'Report Translation Error'**
+  String get quranReaderReportError;
+
+  /// Subtitle explaining error reporting feature
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve translation accuracy'**
+  String get quranReaderReportErrorSubtitle;
+
+  /// Dialog title for reporting translation errors
+  ///
+  /// In en, this message translates to:
+  /// **'Report Translation Error'**
+  String get quranReaderReportErrorDialogTitle;
+
+  /// Success message when verse is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Verse copied to clipboard'**
+  String get quranVerseCopiedToClipboard;
+
+  /// Button to add a new bookmark
+  ///
+  /// In en, this message translates to:
+  /// **'Add Bookmark'**
+  String get bookmarksAddBookmark;
+
+  /// Placeholder message for bookmark dialog feature
+  ///
+  /// In en, this message translates to:
+  /// **'Add bookmark dialog - Coming soon'**
+  String get bookmarksAddBookmarkComingSoon;
+
+  /// Placeholder message for category creation feature
+  ///
+  /// In en, this message translates to:
+  /// **'Create category dialog - Coming soon'**
+  String get bookmarksCreateCategoryComingSoon;
+
+  /// Placeholder message for bookmark sorting feature
+  ///
+  /// In en, this message translates to:
+  /// **'Sort options - Coming soon'**
+  String get bookmarksSortOptionsComingSoon;
+
+  /// Placeholder message for category management feature
+  ///
+  /// In en, this message translates to:
+  /// **'Manage categories - Coming soon'**
+  String get bookmarksManageCategoriesComingSoon;
+
+  /// Placeholder message for bookmark export feature
+  ///
+  /// In en, this message translates to:
+  /// **'Export bookmarks - Coming soon'**
+  String get bookmarksExportBookmarksComingSoon;
+
+  /// Button to mark reading session as complete
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Complete'**
+  String get readingPlansMarkComplete;
+
+  /// Button to create a new reading plan
+  ///
+  /// In en, this message translates to:
+  /// **'Create Plan'**
+  String get readingPlansCreatePlan;
+
+  /// Button to delete a reading plan
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Plan'**
+  String get readingPlansDeletePlan;
+
+  /// Confirmation dialog for deleting a reading plan
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{planName}\"?'**
+  String readingPlansDeletePlanConfirm(String planName);
+
+  /// Title for create reading plan dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Create Reading Plan'**
+  String get readingPlansCreatePlanTitle;
+
+  /// Label for 30-day reading plan type
+  ///
+  /// In en, this message translates to:
+  /// **'30-Day'**
+  String get readingPlansThirtyDay;
+
+  /// Label for Ramadan reading plan type
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get readingPlansRamadan;
+
+  /// Label for custom reading plan type
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get readingPlansCustom;
+
+  /// Success message when reading plan is created
+  ///
+  /// In en, this message translates to:
+  /// **'Reading plan created successfully!'**
+  String get readingPlansPlanCreatedSuccess;
 }
 
 class _AppLocalizationsDelegate

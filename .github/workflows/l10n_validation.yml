@@ -1,0 +1,273 @@
+name: Localization Validation
+
+on:
+  push:
+    branches: [ main, develop, 'feature/QURAN-*' ]
+    paths:
+      - 'lib/l10n/**'
+      - 'lib/features/quran/**'
+      - 'scripts/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'lib/l10n/**'
+      - 'lib/features/quran/**'
+      - 'scripts/**'
+
+jobs:
+  validate-localization:
+    name: Validate Translations and Check Coverage
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📱 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🔧 Generate localizations
+        run: flutter gen-l10n
+        
+      - name: 🔍 Check for hardcoded strings
+        run: |
+          echo "🔍 Scanning for hardcoded strings in Quran module..."
+          dart run scripts/find_hardcoded_strings.dart lib/features/quran/
+          
+      - name: ✅ Validate translations
+        run: |
+          echo "✅ Validating ARB translations..."
+          dart run scripts/validate_translations.dart
+          
+      - name: 📊 Generate coverage report
+        run: |
+          echo "📊 Generating localization coverage report..."
+          dart run scripts/l10n_coverage_report.dart
+          
+      - name: 📋 Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: l10n-coverage-report
+          path: coverage/l10n_coverage_report.json
+          
+      - name: 💬 Comment PR with coverage
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            
+            try {
+              const reportPath = 'coverage/l10n_coverage_report.json';
+              if (fs.existsSync(reportPath)) {
+                const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+                
+                let comment = `## 🌍 Localization Coverage Report\n\n`;
+                comment += `**Overall Coverage**: ${report.averageCoverage.toFixed(1)}%\n`;
+                comment += `**Total Keys**: ${report.totalKeys}\n\n`;
+                
+                comment += `### Per-Locale Coverage\n`;
+                for (const locale of report.locales) {
+                  const coverage = report.localeCoverage[locale];
+                  const status = coverage >= 95 ? '✅' : coverage >= 80 ? '⚠️' : '❌';
+                  comment += `${status} **${locale}**: ${coverage.toFixed(1)}%\n`;
+                }
+                
+                if (Object.values(report.missingKeys).some(keys => keys.length > 0)) {
+                  comment += `\n### ⚠️ Missing Translations\n`;
+                  for (const [locale, keys] of Object.entries(report.missingKeys)) {
+                    if (keys.length > 0) {
+                      comment += `- **${locale}**: ${keys.slice(0, 3).join(', ')}${keys.length > 3 ? '...' : ''}\n`;
+                    }
+                  }
+                }
+                
+                comment += `\n### 🎯 Feature Coverage\n`;
+                for (const [feature, coverage] of Object.entries(report.featureCoverage)) {
+                  const status = coverage >= 95 ? '✅' : coverage >= 80 ? '⚠️' : '❌';
+                  comment += `${status} **${feature}**: ${coverage.toFixed(1)}%\n`;
+                }
+                
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.log('Could not generate coverage comment:', error);
+            }
+
+  test-localization:
+    name: Test Localized Components
+    runs-on: ubuntu-latest
+    needs: validate-localization
+    
+    strategy:
+      matrix:
+        locale: ['en', 'bn']
+        
+    steps:
+      - name: 📱 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🔧 Generate localizations
+        run: flutter gen-l10n
+        
+      - name: 🧪 Run localization tests
+        run: |
+          echo "🧪 Running tests for locale: ${{ matrix.locale }}"
+          flutter test --coverage test/l10n/ --test-randomize-ordering-seed=random
+          
+      - name: 🧪 Run widget tests with locale
+        run: |
+          echo "🧪 Running widget tests with locale: ${{ matrix.locale }}"
+          flutter test test/features/quran/ --coverage --test-randomize-ordering-seed=random
+          
+      - name: 📊 Upload test coverage
+        if: matrix.locale == 'en'
+        uses: codecov/codecov-action@v3
+        with:
+          file: coverage/lcov.info
+          name: localization-tests
+          
+  validate-islamic-terminology:
+    name: Validate Islamic Terminology
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📱 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🕌 Validate Islamic terms
+        run: |
+          echo "🕌 Validating Islamic terminology consistency..."
+          
+          # Check for consistent Islamic terminology
+          echo "Checking Prayer Time terms..."
+          grep -r "fajr\|dhuhr\|asr\|maghrib\|isha" lib/l10n/ || echo "No prayer time terms found"
+          
+          echo "Checking Quran terms..."
+          grep -r "surah\|ayah\|juz\|hizb\|ruku" lib/l10n/ || echo "No Quran terms found"
+          
+          echo "Checking Audio terms..."
+          grep -r "reciter\|qari\|tilawah" lib/l10n/ || echo "No audio terms found"
+          
+          # Validate that Bengali translations exist for key Islamic terms
+          if [ -f "lib/l10n/app_bn.arb" ]; then
+            echo "✅ Bengali ARB file exists"
+            
+            # Check for key Islamic terms in Bengali
+            if grep -q "নামাজ\|ফজর\|যুহর\|আসর\|মাগরিব\|ইশা" lib/l10n/app_bn.arb; then
+              echo "✅ Bengali prayer terms found"
+            else
+              echo "⚠️ Consider adding Bengali prayer terms"
+            fi
+            
+            if grep -q "কুরআন\|সূরা\|আয়াত" lib/l10n/app_bn.arb; then
+              echo "✅ Bengali Quran terms found"
+            else
+              echo "⚠️ Consider adding Bengali Quran terms"
+            fi
+          fi
+
+  performance-check:
+    name: Check Localization Performance
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📱 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🔧 Generate localizations
+        run: flutter gen-l10n
+        
+      - name: ⚡ Check localization file sizes
+        run: |
+          echo "⚡ Checking localization file sizes..."
+          
+          for file in lib/l10n/*.arb; do
+            if [ -f "$file" ]; then
+              size=$(wc -c < "$file")
+              echo "📄 $(basename "$file"): ${size} bytes"
+              
+              # Warn if ARB file is getting very large (>100KB)
+              if [ "$size" -gt 102400 ]; then
+                echo "⚠️ Warning: $file is over 100KB. Consider splitting into modules."
+              fi
+            fi
+          done
+          
+      - name: 🔍 Check for duplicate keys
+        run: |
+          echo "🔍 Checking for duplicate keys in ARB files..."
+          
+          for file in lib/l10n/*.arb; do
+            if [ -f "$file" ]; then
+              echo "Checking $(basename "$file")..."
+              
+              # Extract all keys and check for duplicates
+              if command -v jq >/dev/null 2>&1; then
+                duplicates=$(jq -r 'keys[]' "$file" | sort | uniq -d)
+                if [ -n "$duplicates" ]; then
+                  echo "❌ Duplicate keys found in $file: $duplicates"
+                  exit 1
+                else
+                  echo "✅ No duplicate keys in $(basename "$file")"
+                fi
+              else
+                echo "⚠️ jq not available, skipping duplicate check"
+              fi
+            fi
+          done

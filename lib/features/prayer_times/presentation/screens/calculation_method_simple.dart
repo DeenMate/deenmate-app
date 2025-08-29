@@ -36,10 +36,11 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
   @override
   Widget build(BuildContext context) {
     final allMethods = _service.getAllMethods();
+    final l10n = AppLocalizations.of(context)!;
     
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.prayerCalculationMethodsTitle),
+        title: Text(l10n.prayerCalculationMethodsTitle),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -48,10 +49,10 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           indicatorColor: Colors.white,
-          tabs: const [
-            Tab(icon: Icon(Icons.star), text: 'Recommended'),
-            Tab(icon: Icon(Icons.list), text: 'All Methods'),
-            Tab(icon: Icon(Icons.compare), text: 'Compare'),
+          tabs: [
+            Tab(icon: const Icon(Icons.star), text: l10n.methodsRecommended),
+            Tab(icon: const Icon(Icons.list), text: l10n.methodsAllMethods),
+            Tab(icon: const Icon(Icons.compare), text: l10n.methodsCompare),
           ],
         ),
       ),
@@ -89,7 +90,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                   Icon(Icons.location_on, color: Colors.blue[700], size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    'Location-Based Recommendations',
+                    l10n.methodsLocationBasedRecommendations,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue[700],
@@ -99,7 +100,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
               ),
               const SizedBox(height: 8),
               Text(
-                'These methods are recommended for your region. Location detection would normally determine this automatically.',
+                l10n.methodsLocationRecommendationText,
                 style: TextStyle(color: Colors.blue[600]),
               ),
             ],
@@ -139,7 +140,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                   Icon(Icons.public, color: Colors.green[700], size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    'All Available Methods',
+                    l10n.methodsAllAvailableMethods,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.green[700],
@@ -149,7 +150,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
               ),
               const SizedBox(height: 8),
               Text(
-                '${allMethods.length} calculation methods from Islamic organizations worldwide.',
+                l10n.methodsFromOrganizations(allMethods.length),
                 style: TextStyle(color: Colors.green[600]),
               ),
             ],
@@ -191,7 +192,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                     Icon(Icons.compare_arrows, color: Colors.orange[700], size: 20),
                     const SizedBox(width: 8),
                     Text(
-                      'Method Comparison',
+                      l10n.methodComparison,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.orange[700],
@@ -201,7 +202,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Select two methods to compare their angles and characteristics.',
+                  l10n.methodComparisonDescription,
                   style: TextStyle(color: Colors.orange[600]),
                 ),
               ],
@@ -211,7 +212,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
           const SizedBox(height: 24),
           
           _buildMethodDropdown(
-            label: 'Method 1',
+            label: l10n.methodComparisonMethod1,
             selectedValue: _selectedMethod1,
             methods: allMethods,
             onChanged: (method) {
@@ -224,7 +225,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
           const SizedBox(height: 16),
           
           _buildMethodDropdown(
-            label: 'Method 2',
+            label: l10n.methodComparisonMethod2,
             selectedValue: _selectedMethod2,
             methods: allMethods,
             onChanged: (method) {
@@ -294,7 +295,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                           Icon(Icons.star, size: 12, color: Colors.amber[700]),
                           const SizedBox(width: 4),
                           Text(
-                            'Recommended',
+                            AppLocalizations.of(context)!.methodsRecommended,
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
@@ -325,9 +326,9 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
               
               Row(
                 children: [
-                  _buildAngleChip('Fajr', method.fajrAngle),
+                  _buildAngleChip(AppLocalizations.of(context)!.methodsFajr, method.fajrAngle),
                   const SizedBox(width: 8),
-                  _buildAngleChip('Isha', method.ishaAngle),
+                  _buildAngleChip(AppLocalizations.of(context)!.methodsIsha, method.ishaAngle),
                   const SizedBox(width: 8),
                   if (method.region != null) _buildRegionChip(method.region!),
                 ],
@@ -341,7 +342,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
                   const SizedBox(width: 4),
                   Expanded(
                     child: Text(
-                      method.organization ?? 'Unknown Organization',
+                      method.organization ?? AppLocalizations.of(context)!.methodsUnknownOrganization,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.grey[500],
                       ),
@@ -414,7 +415,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
           value: selectedValue,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            hintText: 'Select a calculation method',
+            hintText: AppLocalizations.of(context)!.methodsSelectMethod,
           ),
           items: methods.map((method) {
             return DropdownMenuItem(
@@ -438,7 +439,7 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Comparison Results',
+              AppLocalizations.of(context)!.methodsComparisonResults,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -484,14 +485,14 @@ class _CalculationMethodSimpleScreenState extends State<CalculationMethodSimpleS
             
             const SizedBox(height: 8),
             
-            _buildDifferenceRow('Fajr Angle', '${method1.fajrAngle}°', '${method2.fajrAngle}°'),
-            _buildDifferenceRow('Isha Angle', '${method1.ishaAngle}°', '${method2.ishaAngle}°'),
-            _buildDifferenceRow('Organization', method1.organization ?? 'N/A', method2.organization ?? 'N/A'),
+            _buildDifferenceRow(AppLocalizations.of(context)!.methodsFajrAngle, '${method1.fajrAngle}°', '${method2.fajrAngle}°'),
+            _buildDifferenceRow(AppLocalizations.of(context)!.methodsIshaAngle, '${method1.ishaAngle}°', '${method2.ishaAngle}°'),
+            _buildDifferenceRow(AppLocalizations.of(context)!.methodsOrganization, method1.organization ?? AppLocalizations.of(context)!.methodsNotAvailable, method2.organization ?? AppLocalizations.of(context)!.methodsNotAvailable),
             
             const SizedBox(height: 16),
             
             Text(
-              'Impact Assessment:',
+              AppLocalizations.of(context)!.methodsImpactAssessment,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

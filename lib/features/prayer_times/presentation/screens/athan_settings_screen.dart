@@ -1012,7 +1012,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             ElevatedButton.icon(
               onPressed: () => ref.refresh(athanSettingsProvider),
               icon: const Icon(Icons.refresh),
-              label: const Text('Retry'),
+              label: Text(AppLocalizations.of(context)!.athanSettingsRetry),
             ),
           ],
         ),
@@ -1026,7 +1026,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
-        content: const Text('Feature coming soon...'),
+        content: Text(AppLocalizations.of(context)!.athanSettingsFeatureComingSoon),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -1068,17 +1068,17 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                           ref.read(athanAudioProvider.notifier);
                       await audioNotifier.previewAthan('abdulbasit');
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Athan audio test started')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!.athanSettingsTestStarted)),
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Athan test failed: $e')),
+                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.volume_up),
-                  label: const Text('Test Athan Audio'),
+                  label: Text(AppLocalizations.of(context)!.athanSettingsTestAthanAudio),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
                     foregroundColor: Colors.white,
@@ -1095,17 +1095,17 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                       await scheduler.scheduleToday(
                           force: true); // Force reschedule for testing
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Notifications scheduled for today')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!.athanSettingsNotificationsScheduled)),
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Scheduling failed: $e')),
+                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsSchedulingFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.schedule),
-                  label: const Text('Schedule Now'),
+                  label: Text(AppLocalizations.of(context)!.athanSettingsScheduleNow),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -1140,12 +1140,12 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Debug failed: $e')),
+                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsDebugFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.info),
-                  label: const Text('Debug Info'),
+                  label: Text(AppLocalizations.of(context)!.athanSettingsDebugInfo),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -1178,18 +1178,18 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                     testPrayerTimes, testSettings);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
+                  SnackBar(
                       content:
-                          Text('Prayer notifications scheduled for today')),
+                          Text(AppLocalizations.of(context)!.athanSettingsPrayerNotificationsScheduled)),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Test notification failed: $e')),
+                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.notification_add),
-            label: const Text('Schedule Prayer Notifications'),
+            label: Text(AppLocalizations.of(context)!.athanSettingsSchedulePrayerNotifications),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
@@ -1225,19 +1225,19 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 );
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Test notification sent immediately!'),
+                  SnackBar(
+                    content: Text(AppLocalizations.of(context)!.athanSettingsTestNotificationSent),
                     duration: Duration(seconds: 2),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Test notification failed: $e')),
+                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.flash_on),
-            label: const Text('Test Notification (1 sec)'),
+            label: Text(AppLocalizations.of(context)!.athanSettingsTestNotification1Sec),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
@@ -1287,18 +1287,18 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content:
-                        Text('Demo notification sent! Azan should play now.'),
+                        Text(AppLocalizations.of(context)!.athanSettingsDemoNotificationSent),
                     duration: const Duration(seconds: 3),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Demo notification failed: $e')),
+                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsDemoNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.timer),
-            label: const Text('Demo Notification (2 min)'),
+            label: Text(AppLocalizations.of(context)!.athanSettingsDemoNotification2Min),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.deepPurple,
               foregroundColor: Colors.white,
@@ -1338,14 +1338,14 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 );
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Immediate notification sent!'),
+                  SnackBar(
+                    content: Text(AppLocalizations.of(context)!.athanSettingsImmediateNotificationSent),
                     duration: Duration(seconds: 2),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Immediate notification failed: $e')),
+                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },

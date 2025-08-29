@@ -2471,5 +2471,165 @@
   "thursday": "বৃহস্পতিবার",
   "friday": "শুক্রবার",
   "saturday": "শনিবার",
-  "sunday": "রবিবার"
+  "sunday": "রবিবার",
+
+  "methodsRecommended": "সুপারিশকৃত",
+  "methodsAllMethods": "সকল পদ্ধতি",
+  "methodsCompare": "তুলনা",
+  "methodsLocationBasedRecommendations": "অবস্থান-ভিত্তিক সুপারিশ",
+  "methodsLocationRecommendationText": "এই পদ্ধতিগুলি আপনার অঞ্চলের জন্য সুপারিশ করা হয়। অবস্থান সনাক্তকরণ সাধারণত এটি স্বয়ংক্রিয়ভাবে নির্ধারণ করবে।",
+  "methodsAllAvailableMethods": "সকল উপলব্ধ পদ্ধতি",
+  "methodsFromOrganizations": "বিশ্বব্যাপী ইসলামিক সংস্থাগুলি থেকে {count}টি গণনা পদ্ধতি।",
+  "methodComparison": "পদ্ধতি তুলনা",
+  "methodComparisonDescription": "তাদের কোণ এবং বৈশিষ্ট্য তুলনা করতে দুটি পদ্ধতি নির্বাচন করুন।",
+  "methodComparisonMethod1": "পদ্ধতি ১",
+  "methodComparisonMethod2": "পদ্ধতি ২",
+  "methodUnknownOrganization": "অজানা সংস্থা",
+  "methodAngleFormat": "{label}: {angle}°",
+  "methodsAboutTooltip": "গণনা পদ্ধতি সম্পর্কে",
+  "methodsHideComparisonTooltip": "তুলনা লুকান",
+  "methodsApplyMethod": "পদ্ধতি প্রয়োগ করুন",
+  "methodsCustom": "কাস্টম",
+  "methodsUnknownOrganization": "অজানা সংস্থা",
+  "@methodsUnknownOrganization": {
+    "description": "Placeholder text when calculation method organization is unknown"
+  },
+  "methodsNotAvailable": "প্রযোজ্য নয়",
+  "@methodsNotAvailable": {
+    "description": "Placeholder text when data is not available"
+  },
+  "methodsImpactAssessment": "প্রভাব মূল্যায়ন:",
+  "@methodsImpactAssessment": {
+    "description": "Label for impact assessment section in method comparison"
+  },
+  "methodsRecommended": "সুপারিশকৃত",
+  "@methodsRecommended": {
+    "description": "Label for recommended calculation method"
+  },
+  "methodsFajr": "ফজর",
+  "@methodsFajr": {
+    "description": "Label for Fajr prayer in calculation methods"
+  },
+  "methodsIsha": "ইশা",
+  "@methodsIsha": {
+    "description": "Label for Isha prayer in calculation methods"
+  },
+  "methodsSelectMethod": "একটি গণনা পদ্ধতি নির্বাচন করুন",
+  "@methodsSelectMethod": {
+    "description": "Hint text for method selection dropdown"
+  },
+  "methodsComparisonResults": "তুলনা ফলাফল",
+  "@methodsComparisonResults": {
+    "description": "Title for comparison results section"
+  },
+  "methodsFajrAngle": "ফজরের কোণ",
+  "@methodsFajrAngle": {
+    "description": "Label for Fajr angle in method comparison"
+  },
+  "methodsIshaAngle": "ইশার কোণ",
+  "@methodsIshaAngle": {
+    "description": "Label for Isha angle in method comparison"
+  },
+  "methodsOrganization": "সংস্থা",
+  "@methodsOrganization": {
+    "description": "Label for organization in method comparison"
+  },
+  "methodsRetry": "পুনরায় চেষ্টা করুন",
+  "@methodsRetry": {
+    "description": "Retry button text"
+  },
+  "methodsYourLocation": "আপনার অবস্থান",
+  "@methodsYourLocation": {
+    "description": "Label for user's current location"
+  },
+  "methodsRecommendedMethods": "সুপারিশকৃত পদ্ধতি",
+  "@methodsRecommendedMethods": {
+    "description": "Title for recommended methods section"
+  },
+  "methodsAllAvailableMethods": "সব উপলব্ধ পদ্ধতি",
+  "@methodsAllAvailableMethods": {
+    "description": "Title for all available methods section"
+  },
+  "methodsCustomMethod": "কাস্টম পদ্ধতি",
+  "@methodsCustomMethod": {
+    "description": "Title for custom method section"
+  },
+  "methodsCustomMethodCreator": "কাস্টম পদ্ধতি তৈরিকারী",
+  "@methodsCustomMethodCreator": {
+    "description": "Title for custom method creator"
+  },
+  "methodsCreateCustomMethod": "কাস্টম পদ্ধতি তৈরি করুন",
+  "@methodsCreateCustomMethod": {
+    "description": "Button text to create custom method"
+  },
+  "methodsView": "দেখুন",
+  "@methodsView": {
+    "description": "View button text"
+  },
+  "methodsAboutCalculationMethods": "গণনা পদ্ধতি সম্পর্কে",
+  "@methodsAboutCalculationMethods": {
+    "description": "Title for calculation methods info dialog"
+  },
+  "methodsGotIt": "বুঝেছি",
+  "@methodsGotIt": {
+    "description": "Button text to dismiss dialog"
+  },
+  "unableToLoadLocation": "অবস্থান লোড করতে অক্ষম",
+  "locationIsNeeded": "সুপারিশকৃত পদ্ধতি দেখাতে অবস্থান প্রয়োজন",
+
+  "athanSettingsRetry": "পুনরায় চেষ্টা করুন",
+  "athanSettingsFeatureComingSoon": "বৈশিষ্ট্য শীঘ্রই আসছে...",
+  "athanSettingsTestStarted": "আযান অডিও পরীক্ষা শুরু হয়েছে",
+  "athanSettingsTestFailed": "আযান পরীক্ষা ব্যর্থ হয়েছে",
+  "athanSettingsTestAthanAudio": "আযান অডিও পরীক্ষা করুন",
+  "athanSettingsNotificationsScheduled": "আজকের জন্য বিজ্ঞপ্তি নির্ধারণ করা হয়েছে",
+  "athanSettingsSchedulingFailed": "নির্ধারণ ব্যর্থ হয়েছে",
+  "athanSettingsScheduleNow": "এখনই নির্ধারণ করুন",
+  "athanSettingsDebugFailed": "ডিবাগ ব্যর্থ হয়েছে",
+  "athanSettingsDebugInfo": "ডিবাগ তথ্য",
+  "athanSettingsPrayerNotificationsScheduled": "আজকের জন্য নামাজের বিজ্ঞপ্তি নির্ধারণ করা হয়েছে",
+  "athanSettingsTestNotificationFailed": "পরীক্ষামূলক বিজ্ঞপ্তি ব্যর্থ হয়েছে",
+  "athanSettingsSchedulePrayerNotifications": "নামাজের বিজ্ঞপ্তি নির্ধারণ করুন",
+  "athanSettingsTestNotificationSent": "পরীক্ষামূলক বিজ্ঞপ্তি তৎক্ষণাৎ পাঠানো হয়েছে!",
+  "athanSettingsTestNotification1Sec": "পরীক্ষামূলক বিজ্ঞপ্তি (১ সেকেন্ড)",
+  "athanSettingsDemoNotificationSent": "ডেমো বিজ্ঞপ্তি পাঠানো হয়েছে! আযান এখন বাজতে হবে।",
+  "athanSettingsDemoNotificationFailed": "ডেমো বিজ্ঞপ্তি ব্যর্থ হয়েছে",
+  "athanSettingsDemoNotification2Min": "ডেমো বিজ্ঞপ্তি (২ মিনিট)",
+  "athanSettingsImmediateNotificationSent": "তাৎক্ষণিক বিজ্ঞপ্তি পাঠানো হয়েছে!",
+
+  "quranReaderLoadError": "লোড করতে ব্যর্থ: {errorMessage}",
+  "quranReaderAudioManager": "অডিও ম্যানেজার",
+  "quranReaderAutoScroll": "স্বয়ংক্রিয় স্ক্রল",
+  "quranReaderEnableAutoScroll": "স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন",
+  "quranReaderQuickJump": "দ্রুত জাম্প",
+  "quranSurah": "সূরা",
+  "quranJuz": "পারা",
+  "quranReaderCopyArabicText": "আরবি টেক্সট কপি করুন",
+  "quranReaderCopyArabicSubtitle": "শুধুমাত্র আরবি আয়াত কপি করুন",
+  "quranReaderCopyTranslation": "অনুবাদ কপি করুন",
+  "quranReaderCopyTranslationSubtitle": "শুধুমাত্র অনুবাদ কপি করুন",
+  "quranReaderCopyFullVerse": "সম্পূর্ণ আয়াত কপি করুন",
+  "quranReaderCopyFullVerseSubtitle": "অনুবাদসহ আরবি টেক্সট কপি করুন",
+  "quranReaderReportError": "অনুবাদ ত্রুটি রিপোর্ট করুন",
+  "quranReaderReportErrorSubtitle": "অনুবাদের নির্ভুলতা উন্নত করতে সহায়তা করুন",
+  "quranReaderReportErrorDialogTitle": "অনুবাদ ত্রুটি রিপোর্ট করুন",
+  "quranVerseCopiedToClipboard": "আয়াত ক্লিপবোর্ডে কপি করা হয়েছে",
+
+  "bookmarksAddBookmark": "বুকমার্ক যোগ করুন",
+  "bookmarksAddBookmarkComingSoon": "বুকমার্ক যোগ করার ডায়ালগ - শীঘ্রই আসছে",
+  "bookmarksCreateCategoryComingSoon": "ক্যাটেগরি তৈরির ডায়ালগ - শীঘ্রই আসছে",
+  "bookmarksSortOptionsComingSoon": "সাজানোর অপশন - শীঘ্রই আসছে",
+  "bookmarksManageCategoriesComingSoon": "ক্যাটেগরি পরিচালনা - শীঘ্রই আসছে",
+  "bookmarksExportBookmarksComingSoon": "বুকমার্ক এক্সপোর্ট - শীঘ্রই আসছে",
+
+  "readingPlansStopPlan": "পরিকল্পনা বন্ধ করুন",
+  "readingPlansMarkComplete": "সম্পূর্ণ হিসেবে চিহ্নিত করুন",
+  "readingPlansCreatePlan": "পরিকল্পনা তৈরি করুন",
+  "readingPlansDeletePlan": "পরিকল্পনা মুছুন",
+  "readingPlansDeletePlanConfirm": "আপনি কি নিশ্চিত যে \"{planName}\" মুছতে চান?",
+  "readingPlansCreatePlanTitle": "পঠন পরিকল্পনা তৈরি করুন",
+  "readingPlansThirtyDay": "৩০-দিন",
+  "readingPlansRamadan": "রমজান",
+  "readingPlansCustom": "কাস্টম",
+  "readingPlansPlanCreatedSuccess": "পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!"
 }

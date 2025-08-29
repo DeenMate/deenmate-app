@@ -1815,4 +1815,290 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sunday => 'Sunday';
+
+  @override
+  String get methodsRecommended => 'Recommended';
+
+  @override
+  String get methodsAllMethods => 'All Methods';
+
+  @override
+  String get methodsCompare => 'Compare';
+
+  @override
+  String get methodsLocationBasedRecommendations =>
+      'Location-Based Recommendations';
+
+  @override
+  String get methodsLocationRecommendationText =>
+      'These methods are recommended for your region. Location detection would normally determine this automatically.';
+
+  @override
+  String get methodsAllAvailableMethods => 'All Available Methods';
+
+  @override
+  String methodsFromOrganizations(int count) {
+    return '$count calculation methods from Islamic organizations worldwide.';
+  }
+
+  @override
+  String get methodComparison => 'Method Comparison';
+
+  @override
+  String get methodComparisonDescription =>
+      'Select two methods to compare their angles and characteristics.';
+
+  @override
+  String get methodComparisonMethod1 => 'Method 1';
+
+  @override
+  String get methodComparisonMethod2 => 'Method 2';
+
+  @override
+  String get methodUnknownOrganization => 'Unknown Organization';
+
+  @override
+  String methodAngleFormat(String label, String angle) {
+    return '$label: $angle°';
+  }
+
+  @override
+  String get methodsAboutTooltip => 'About Calculation Methods';
+
+  @override
+  String get methodsHideComparisonTooltip => 'Hide Comparison';
+
+  @override
+  String get methodsApplyMethod => 'Apply Method';
+
+  @override
+  String get methodsCustom => 'Custom';
+
+  @override
+  String get methodsUnknownOrganization => 'Unknown Organization';
+
+  @override
+  String get methodsNotAvailable => 'N/A';
+
+  @override
+  String get methodsImpactAssessment => 'Impact Assessment:';
+
+  @override
+  String get methodsFajr => 'Fajr';
+
+  @override
+  String get methodsIsha => 'Isha';
+
+  @override
+  String get methodsSelectMethod => 'Select a calculation method';
+
+  @override
+  String get methodsComparisonResults => 'Comparison Results';
+
+  @override
+  String get methodsFajrAngle => 'Fajr Angle';
+
+  @override
+  String get methodsIshaAngle => 'Isha Angle';
+
+  @override
+  String get methodsOrganization => 'Organization';
+
+  @override
+  String get methodsRetry => 'Retry';
+
+  @override
+  String get methodsYourLocation => 'Your Location';
+
+  @override
+  String get methodsRecommendedMethods => 'Recommended Methods';
+
+  @override
+  String get methodsCustomMethod => 'Custom Method';
+
+  @override
+  String get methodsCustomMethodCreator => 'Custom Method Creator';
+
+  @override
+  String get methodsCreateCustomMethod => 'Create Custom Method';
+
+  @override
+  String get methodsView => 'View';
+
+  @override
+  String get methodsAboutCalculationMethods => 'About Calculation Methods';
+
+  @override
+  String get methodsGotIt => 'Got it';
+
+  @override
+  String get unableToLoadLocation => 'Unable to load location';
+
+  @override
+  String get locationIsNeeded =>
+      'Location is needed to show recommended methods';
+
+  @override
+  String get athanSettingsRetry => 'Retry';
+
+  @override
+  String get athanSettingsFeatureComingSoon => 'Feature coming soon...';
+
+  @override
+  String get athanSettingsTestStarted => 'Athan audio test started';
+
+  @override
+  String get athanSettingsTestFailed => 'Athan test failed';
+
+  @override
+  String get athanSettingsTestAthanAudio => 'Test Athan Audio';
+
+  @override
+  String get athanSettingsNotificationsScheduled =>
+      'Notifications scheduled for today';
+
+  @override
+  String get athanSettingsSchedulingFailed => 'Scheduling failed';
+
+  @override
+  String get athanSettingsScheduleNow => 'Schedule Now';
+
+  @override
+  String get athanSettingsDebugFailed => 'Debug failed';
+
+  @override
+  String get athanSettingsDebugInfo => 'Debug Info';
+
+  @override
+  String get athanSettingsPrayerNotificationsScheduled =>
+      'Prayer notifications scheduled for today';
+
+  @override
+  String get athanSettingsTestNotificationFailed => 'Test notification failed';
+
+  @override
+  String get athanSettingsSchedulePrayerNotifications =>
+      'Schedule Prayer Notifications';
+
+  @override
+  String get athanSettingsTestNotificationSent =>
+      'Test notification sent immediately!';
+
+  @override
+  String get athanSettingsTestNotification1Sec => 'Test Notification (1 sec)';
+
+  @override
+  String get athanSettingsDemoNotificationSent =>
+      'Demo notification sent! Azan should play now.';
+
+  @override
+  String get athanSettingsDemoNotificationFailed => 'Demo notification failed';
+
+  @override
+  String get athanSettingsDemoNotification2Min => 'Demo Notification (2 min)';
+
+  @override
+  String get athanSettingsImmediateNotificationSent =>
+      'Immediate notification sent!';
+
+  @override
+  String quranReaderLoadError(String errorMessage) {
+    return 'Failed to load: $errorMessage';
+  }
+
+  @override
+  String get quranReaderAudioManager => 'Audio Manager';
+
+  @override
+  String get quranReaderAutoScroll => 'Auto Scroll';
+
+  @override
+  String get quranReaderEnableAutoScroll => 'Enable Auto Scroll';
+
+  @override
+  String get quranReaderQuickJump => 'Quick Jump';
+
+  @override
+  String get quranReaderCopyArabicText => 'Copy Arabic Text';
+
+  @override
+  String get quranReaderCopyArabicSubtitle => 'Copy only the Arabic verse';
+
+  @override
+  String get quranReaderCopyTranslation => 'Copy Translation';
+
+  @override
+  String get quranReaderCopyTranslationSubtitle => 'Copy only the translation';
+
+  @override
+  String get quranReaderCopyFullVerse => 'Copy Full Verse';
+
+  @override
+  String get quranReaderCopyFullVerseSubtitle =>
+      'Copy Arabic text with translation';
+
+  @override
+  String get quranReaderReportError => 'Report Translation Error';
+
+  @override
+  String get quranReaderReportErrorSubtitle =>
+      'Help improve translation accuracy';
+
+  @override
+  String get quranReaderReportErrorDialogTitle => 'Report Translation Error';
+
+  @override
+  String get quranVerseCopiedToClipboard => 'Verse copied to clipboard';
+
+  @override
+  String get bookmarksAddBookmark => 'Add Bookmark';
+
+  @override
+  String get bookmarksAddBookmarkComingSoon =>
+      'Add bookmark dialog - Coming soon';
+
+  @override
+  String get bookmarksCreateCategoryComingSoon =>
+      'Create category dialog - Coming soon';
+
+  @override
+  String get bookmarksSortOptionsComingSoon => 'Sort options - Coming soon';
+
+  @override
+  String get bookmarksManageCategoriesComingSoon =>
+      'Manage categories - Coming soon';
+
+  @override
+  String get bookmarksExportBookmarksComingSoon =>
+      'Export bookmarks - Coming soon';
+
+  @override
+  String get readingPlansMarkComplete => 'Mark Complete';
+
+  @override
+  String get readingPlansCreatePlan => 'Create Plan';
+
+  @override
+  String get readingPlansDeletePlan => 'Delete Plan';
+
+  @override
+  String readingPlansDeletePlanConfirm(String planName) {
+    return 'Are you sure you want to delete \"$planName\"?';
+  }
+
+  @override
+  String get readingPlansCreatePlanTitle => 'Create Reading Plan';
+
+  @override
+  String get readingPlansThirtyDay => '30-Day';
+
+  @override
+  String get readingPlansRamadan => 'Ramadan';
+
+  @override
+  String get readingPlansCustom => 'Custom';
+
+  @override
+  String get readingPlansPlanCreatedSuccess =>
+      'Reading plan created successfully!';
 }

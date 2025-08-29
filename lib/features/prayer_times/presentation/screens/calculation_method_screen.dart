@@ -65,12 +65,12 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
             IconButton(
               onPressed: _hideComparison,
               icon: const Icon(Icons.close),
-              tooltip: 'Hide Comparison',
+              tooltip: AppLocalizations.of(context)!.methodsHideComparisonTooltip,
             ),
           IconButton(
             onPressed: _showInfoDialog,
             icon: const Icon(Icons.info_outline),
-            tooltip: 'About Calculation Methods',
+            tooltip: AppLocalizations.of(context)!.methodsAboutTooltip,
           ),
         ],
         bottom: TabBar(
@@ -78,10 +78,10 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
           indicatorColor: Colors.white,
-          tabs: const [
-            Tab(text: 'Recommended', icon: Icon(Icons.star_outline)),
-            Tab(text: 'All Methods', icon: Icon(Icons.list)),
-            Tab(text: 'Custom', icon: Icon(Icons.tune)),
+          tabs: [
+            Tab(text: AppLocalizations.of(context)!.methodsRecommended, icon: Icon(Icons.star_outline)),
+            Tab(text: AppLocalizations.of(context)!.methodsAllMethods, icon: Icon(Icons.list)),
+            Tab(text: AppLocalizations.of(context)!.methodsCustom, icon: Icon(Icons.tune)),
           ],
         ),
       ),
@@ -106,19 +106,19 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
               ),
               const SizedBox(height: 16),
               Text(
-                'Unable to load location',
+                AppLocalizations.of(context)!.unableToLoadLocation,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 8),
               Text(
-                'Location is needed to show recommended methods',
+                AppLocalizations.of(context)!.locationIsNeeded,
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => ref.invalidate(currentLocationProvider),
-                child: const Text('Retry'),
+                child: Text(AppLocalizations.of(context)!.methodsRetry),
               ),
             ],
           ),
@@ -129,7 +129,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           : FloatingActionButton.extended(
               onPressed: _applySelectedMethod,
               icon: const Icon(Icons.check),
-              label: const Text('Apply Method'),
+              label: Text(AppLocalizations.of(context)!.methodsApplyMethod),
               backgroundColor: Colors.green,
             ),
     );
@@ -157,7 +157,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Your Location',
+                        AppLocalizations.of(context)!.methodsYourLocation,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -173,7 +173,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           ),
           const SizedBox(height: 16),
           Text(
-            'Recommended Methods',
+            AppLocalizations.of(context)!.methodsRecommendedMethods,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.green,
@@ -215,7 +215,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'All Available Methods',
+            AppLocalizations.of(context)!.methodsAllAvailableMethods,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.green,
@@ -254,7 +254,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Custom Method',
+            AppLocalizations.of(context)!.methodsCustomMethod,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.green,
@@ -280,7 +280,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Custom Method Creator',
+                    AppLocalizations.of(context)!.methodsCustomMethodCreator,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -294,7 +294,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: _showCustomMethodDialog,
-                    child: const Text('Create Custom Method'),
+                    child: Text(AppLocalizations.of(context)!.methodsCreateCustomMethod),
                   ),
                 ],
               ),
@@ -349,7 +349,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
             content: Text('Applied "${method.name}" calculation method'),
             backgroundColor: Colors.green,
             action: SnackBarAction(
-              label: 'View',
+              label: AppLocalizations.of(context)!.methodsView,
               textColor: Colors.white,
               onPressed: () => context.pop(),
             ),
@@ -372,7 +372,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('About Calculation Methods'),
+        title: Text(AppLocalizations.of(context)!.methodsAboutCalculationMethods),
         content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -401,7 +401,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
         actions: [
           TextButton(
             onPressed: () => context.pop(),
-            child: const Text('Got it'),
+            child: Text(AppLocalizations.of(context)!.methodsGotIt),
           ),
         ],
       ),
@@ -412,7 +412,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Custom Method'),
+        title: Text(AppLocalizations.of(context)!.methodsCustomMethod),
         content: const Text(
           'Custom method creation will be available in a future update. '
           'For now, please choose from the available methods which cover '

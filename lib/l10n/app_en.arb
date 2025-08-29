@@ -2485,5 +2485,406 @@
   "sunday": "Sunday",
   "@sunday": {
     "description": "Sunday weekday name"
+  },
+
+  "methodsRecommended": "Recommended",
+  "@methodsRecommended": {
+    "description": "Recommended calculation methods tab"
+  },
+  "methodsAllMethods": "All Methods",
+  "@methodsAllMethods": {
+    "description": "All calculation methods tab"
+  },
+  "methodsCompare": "Compare",
+  "@methodsCompare": {
+    "description": "Compare calculation methods tab"
+  },
+  "methodsLocationBasedRecommendations": "Location-Based Recommendations",
+  "@methodsLocationBasedRecommendations": {
+    "description": "Location-based recommendations section title"
+  },
+  "methodsLocationRecommendationText": "These methods are recommended for your region. Location detection would normally determine this automatically.",
+  "@methodsLocationRecommendationText": {
+    "description": "Explanation text for location-based recommendations"
+  },
+  "methodsAllAvailableMethods": "All Available Methods",
+  "@methodsAllAvailableMethods": {
+    "description": "All available methods section title"
+  },
+  "methodsFromOrganizations": "{count} calculation methods from Islamic organizations worldwide.",
+  "@methodsFromOrganizations": {
+    "description": "Description of available calculation methods",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "15"
+      }
+    }
+  },
+  "methodComparison": "Method Comparison",
+  "@methodComparison": {
+    "description": "Method comparison section title"
+  },
+  "methodComparisonDescription": "Select two methods to compare their angles and characteristics.",
+  "@methodComparisonDescription": {
+    "description": "Method comparison description"
+  },
+  "methodComparisonMethod1": "Method 1",
+  "@methodComparisonMethod1": {
+    "description": "First method in comparison"
+  },
+  "methodComparisonMethod2": "Method 2",
+  "@methodComparisonMethod2": {
+    "description": "Second method in comparison"
+  },
+  "methodUnknownOrganization": "Unknown Organization",
+  "@methodUnknownOrganization": {
+    "description": "Fallback text for unknown organization"
+  },
+  "methodAngleFormat": "{label}: {angle}°",
+  "@methodAngleFormat": {
+    "description": "Format for displaying prayer angle",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Fajr"
+      },
+      "angle": {
+        "type": "String",
+        "example": "18.5"
+      }
+    }
+  },
+  "methodsAboutTooltip": "About Calculation Methods",
+  "@methodsAboutTooltip": {
+    "description": "Tooltip for about calculation methods button"
+  },
+  "methodsHideComparisonTooltip": "Hide Comparison",
+  "@methodsHideComparisonTooltip": {
+    "description": "Tooltip for hide comparison button"
+  },
+  "methodsApplyMethod": "Apply Method",
+  "@methodsApplyMethod": {
+    "description": "Apply method button text"
+  },
+  "methodsCustom": "Custom",
+  "@methodsCustom": {
+    "description": "Custom methods tab"
+  },
+  "methodsUnknownOrganization": "Unknown Organization",
+  "@methodsUnknownOrganization": {
+    "description": "Placeholder text when calculation method organization is unknown"
+  },
+  "methodsNotAvailable": "N/A",
+  "@methodsNotAvailable": {
+    "description": "Placeholder text when data is not available"
+  },
+  "methodsImpactAssessment": "Impact Assessment:",
+  "@methodsImpactAssessment": {
+    "description": "Label for impact assessment section in method comparison"
+  },
+  "methodsRecommended": "Recommended",
+  "@methodsRecommended": {
+    "description": "Label for recommended calculation method"
+  },
+  "methodsFajr": "Fajr",
+  "@methodsFajr": {
+    "description": "Label for Fajr prayer in calculation methods"
+  },
+  "methodsIsha": "Isha",
+  "@methodsIsha": {
+    "description": "Label for Isha prayer in calculation methods"
+  },
+  "methodsSelectMethod": "Select a calculation method",
+  "@methodsSelectMethod": {
+    "description": "Hint text for method selection dropdown"
+  },
+  "methodsComparisonResults": "Comparison Results",
+  "@methodsComparisonResults": {
+    "description": "Title for comparison results section"
+  },
+  "methodsFajrAngle": "Fajr Angle",
+  "@methodsFajrAngle": {
+    "description": "Label for Fajr angle in method comparison"
+  },
+  "methodsIshaAngle": "Isha Angle",
+  "@methodsIshaAngle": {
+    "description": "Label for Isha angle in method comparison"
+  },
+  "methodsOrganization": "Organization",
+  "@methodsOrganization": {
+    "description": "Label for organization in method comparison"
+  },
+  "methodsRetry": "Retry",
+  "@methodsRetry": {
+    "description": "Retry button text"
+  },
+  "methodsYourLocation": "Your Location",
+  "@methodsYourLocation": {
+    "description": "Label for user's current location"
+  },
+  "methodsRecommendedMethods": "Recommended Methods",
+  "@methodsRecommendedMethods": {
+    "description": "Title for recommended methods section"
+  },
+  "methodsAllAvailableMethods": "All Available Methods",
+  "@methodsAllAvailableMethods": {
+    "description": "Title for all available methods section"
+  },
+  "methodsCustomMethod": "Custom Method",
+  "@methodsCustomMethod": {
+    "description": "Title for custom method section"
+  },
+  "methodsCustomMethodCreator": "Custom Method Creator",
+  "@methodsCustomMethodCreator": {
+    "description": "Title for custom method creator"
+  },
+  "methodsCreateCustomMethod": "Create Custom Method",
+  "@methodsCreateCustomMethod": {
+    "description": "Button text to create custom method"
+  },
+  "methodsView": "View",
+  "@methodsView": {
+    "description": "View button text"
+  },
+  "methodsAboutCalculationMethods": "About Calculation Methods",
+  "@methodsAboutCalculationMethods": {
+    "description": "Title for calculation methods info dialog"
+  },
+  "methodsGotIt": "Got it",
+  "@methodsGotIt": {
+    "description": "Button text to dismiss dialog"
+  },
+  "unableToLoadLocation": "Unable to load location",
+  "@unableToLoadLocation": {
+    "description": "Error message when location cannot be loaded"
+  },
+  "locationIsNeeded": "Location is needed to show recommended methods",
+  "@locationIsNeeded": {
+    "description": "Message explaining location requirement"
+  },
+
+  "athanSettingsRetry": "Retry",
+  "@athanSettingsRetry": {
+    "description": "Retry button text in Athan settings"
+  },
+  "athanSettingsFeatureComingSoon": "Feature coming soon...",
+  "@athanSettingsFeatureComingSoon": {
+    "description": "Coming soon message for features"
+  },
+  "athanSettingsTestStarted": "Athan audio test started",
+  "@athanSettingsTestStarted": {
+    "description": "Success message when Athan test starts"
+  },
+  "athanSettingsTestFailed": "Athan test failed",
+  "@athanSettingsTestFailed": {
+    "description": "Error message when Athan test fails"
+  },
+  "athanSettingsTestAthanAudio": "Test Athan Audio",
+  "@athanSettingsTestAthanAudio": {
+    "description": "Test Athan audio button text"
+  },
+  "athanSettingsNotificationsScheduled": "Notifications scheduled for today",
+  "@athanSettingsNotificationsScheduled": {
+    "description": "Success message when notifications are scheduled"
+  },
+  "athanSettingsSchedulingFailed": "Scheduling failed",
+  "@athanSettingsSchedulingFailed": {
+    "description": "Error message when scheduling fails"
+  },
+  "athanSettingsScheduleNow": "Schedule Now",
+  "@athanSettingsScheduleNow": {
+    "description": "Schedule notifications button text"
+  },
+  "athanSettingsDebugFailed": "Debug failed",
+  "@athanSettingsDebugFailed": {
+    "description": "Error message when debug info fails"
+  },
+  "athanSettingsDebugInfo": "Debug Info",
+  "@athanSettingsDebugInfo": {
+    "description": "Debug info button text"
+  },
+  "athanSettingsPrayerNotificationsScheduled": "Prayer notifications scheduled for today",
+  "@athanSettingsPrayerNotificationsScheduled": {
+    "description": "Success message for prayer notifications scheduling"
+  },
+  "athanSettingsTestNotificationFailed": "Test notification failed",
+  "@athanSettingsTestNotificationFailed": {
+    "description": "Error message when test notification fails"
+  },
+  "athanSettingsSchedulePrayerNotifications": "Schedule Prayer Notifications",
+  "@athanSettingsSchedulePrayerNotifications": {
+    "description": "Schedule prayer notifications button text"
+  },
+  "athanSettingsTestNotificationSent": "Test notification sent immediately!",
+  "@athanSettingsTestNotificationSent": {
+    "description": "Success message when test notification is sent"
+  },
+  "athanSettingsTestNotification1Sec": "Test Notification (1 sec)",
+  "@athanSettingsTestNotification1Sec": {
+    "description": "Test notification 1 second button text"
+  },
+  "athanSettingsDemoNotificationSent": "Demo notification sent! Azan should play now.",
+  "@athanSettingsDemoNotificationSent": {
+    "description": "Success message when demo notification is sent"
+  },
+  "athanSettingsDemoNotificationFailed": "Demo notification failed",
+  "@athanSettingsDemoNotificationFailed": {
+    "description": "Error message when demo notification fails"
+  },
+  "athanSettingsDemoNotification2Min": "Demo Notification (2 min)",
+  "@athanSettingsDemoNotification2Min": {
+    "description": "Demo notification 2 minutes button text"
+  },
+  "athanSettingsImmediateNotificationSent": "Immediate notification sent!",
+  "@athanSettingsImmediateNotificationSent": {
+    "description": "Success message for immediate notification"
+  },
+
+  "quranReaderLoadError": "Failed to load: {errorMessage}",
+  "@quranReaderLoadError": {
+    "description": "Error message when Quran reader fails to load",
+    "placeholders": {
+      "errorMessage": {
+        "type": "String",
+        "description": "The error message details"
+      }
+    }
+  },
+  "quranReaderAudioManager": "Audio Manager",
+  "@quranReaderAudioManager": {
+    "description": "Label for audio management controls"
+  },
+  "quranReaderAutoScroll": "Auto Scroll",
+  "@quranReaderAutoScroll": {
+    "description": "Label for auto scroll feature"
+  },
+  "quranReaderEnableAutoScroll": "Enable Auto Scroll",
+  "@quranReaderEnableAutoScroll": {
+    "description": "Label to enable auto scroll functionality"
+  },
+  "quranReaderQuickJump": "Quick Jump",
+  "@quranReaderQuickJump": {
+    "description": "Label for quick navigation feature"
+  },
+  "quranSurah": "Surah",
+  "@quranSurah": {
+    "description": "Label for Islamic chapter (Surah)"
+  },
+  "quranJuz": "Juz",
+  "@quranJuz": {
+    "description": "Label for Islamic section (Juz/Para)"
+  },
+  "quranReaderCopyArabicText": "Copy Arabic Text",
+  "@quranReaderCopyArabicText": {
+    "description": "Option to copy only Arabic verse text"
+  },
+  "quranReaderCopyArabicSubtitle": "Copy only the Arabic verse",
+  "@quranReaderCopyArabicSubtitle": {
+    "description": "Subtitle explaining Arabic text copy feature"
+  },
+  "quranReaderCopyTranslation": "Copy Translation",
+  "@quranReaderCopyTranslation": {
+    "description": "Option to copy only translation text"
+  },
+  "quranReaderCopyTranslationSubtitle": "Copy only the translation",
+  "@quranReaderCopyTranslationSubtitle": {
+    "description": "Subtitle explaining translation copy feature"
+  },
+  "quranReaderCopyFullVerse": "Copy Full Verse",
+  "@quranReaderCopyFullVerse": {
+    "description": "Option to copy complete verse with translation"
+  },
+  "quranReaderCopyFullVerseSubtitle": "Copy Arabic text with translation",
+  "@quranReaderCopyFullVerseSubtitle": {
+    "description": "Subtitle explaining full verse copy feature"
+  },
+  "quranReaderReportError": "Report Translation Error",
+  "@quranReaderReportError": {
+    "description": "Option to report translation errors"
+  },
+  "quranReaderReportErrorSubtitle": "Help improve translation accuracy",
+  "@quranReaderReportErrorSubtitle": {
+    "description": "Subtitle explaining error reporting feature"
+  },
+  "quranReaderReportErrorDialogTitle": "Report Translation Error",
+  "@quranReaderReportErrorDialogTitle": {
+    "description": "Dialog title for reporting translation errors"
+  },
+  "quranVerseCopiedToClipboard": "Verse copied to clipboard",
+  "@quranVerseCopiedToClipboard": {
+    "description": "Success message when verse is copied"
+  },
+
+  "bookmarksAddBookmark": "Add Bookmark",
+  "@bookmarksAddBookmark": {
+    "description": "Button to add a new bookmark"
+  },
+  "bookmarksAddBookmarkComingSoon": "Add bookmark dialog - Coming soon",
+  "@bookmarksAddBookmarkComingSoon": {
+    "description": "Placeholder message for bookmark dialog feature"
+  },
+  "bookmarksCreateCategoryComingSoon": "Create category dialog - Coming soon",
+  "@bookmarksCreateCategoryComingSoon": {
+    "description": "Placeholder message for category creation feature"
+  },
+  "bookmarksSortOptionsComingSoon": "Sort options - Coming soon",
+  "@bookmarksSortOptionsComingSoon": {
+    "description": "Placeholder message for bookmark sorting feature"
+  },
+  "bookmarksManageCategoriesComingSoon": "Manage categories - Coming soon",
+  "@bookmarksManageCategoriesComingSoon": {
+    "description": "Placeholder message for category management feature"
+  },
+  "bookmarksExportBookmarksComingSoon": "Export bookmarks - Coming soon",
+  "@bookmarksExportBookmarksComingSoon": {
+    "description": "Placeholder message for bookmark export feature"
+  },
+
+  "readingPlansStopPlan": "Stop Plan",
+  "@readingPlansStopPlan": {
+    "description": "Button to stop/pause a reading plan"
+  },
+  "readingPlansMarkComplete": "Mark Complete",
+  "@readingPlansMarkComplete": {
+    "description": "Button to mark reading session as complete"
+  },
+  "readingPlansCreatePlan": "Create Plan",
+  "@readingPlansCreatePlan": {
+    "description": "Button to create a new reading plan"
+  },
+  "readingPlansDeletePlan": "Delete Plan",
+  "@readingPlansDeletePlan": {
+    "description": "Button to delete a reading plan"
+  },
+  "readingPlansDeletePlanConfirm": "Are you sure you want to delete \"{planName}\"?",
+  "@readingPlansDeletePlanConfirm": {
+    "description": "Confirmation dialog for deleting a reading plan",
+    "placeholders": {
+      "planName": {
+        "type": "String",
+        "description": "Name of the reading plan to be deleted"
+      }
+    }
+  },
+  "readingPlansCreatePlanTitle": "Create Reading Plan",
+  "@readingPlansCreatePlanTitle": {
+    "description": "Title for create reading plan dialog"
+  },
+  "readingPlansThirtyDay": "30-Day",
+  "@readingPlansThirtyDay": {
+    "description": "Label for 30-day reading plan type"
+  },
+  "readingPlansRamadan": "Ramadan",
+  "@readingPlansRamadan": {
+    "description": "Label for Ramadan reading plan type"
+  },
+  "readingPlansCustom": "Custom",
+  "@readingPlansCustom": {
+    "description": "Label for custom reading plan type"
+  },
+  "readingPlansPlanCreatedSuccess": "Reading plan created successfully!",
+  "@readingPlansPlanCreatedSuccess": {
+    "description": "Success message when reading plan is created"
   }
 }
