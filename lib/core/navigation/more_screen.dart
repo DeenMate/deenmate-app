@@ -101,6 +101,17 @@ class MoreScreen extends ConsumerWidget {
                     '/shariah-clarification',
                   ),
 
+                  // HADITH MODULE
+                  _buildFeatureCard(
+                    context,
+                    'Hadith',
+                    'হাদিস',
+                    Icons.book_outlined,
+                    'Authentic Islamic traditions',
+                    FeatureColors.getColor('islamic', context),
+                    '/hadith',
+                  ),
+
                   // USER FEATURES
                   _buildFeatureCard(
                     context,

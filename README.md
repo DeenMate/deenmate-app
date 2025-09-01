@@ -1,19 +1,6 @@
-# DeenMate - Your Deen Compani## 📚 Documentation
+# DeenMate - Your Islamic Companion
 
-### Essential Documentation (4 Files)
-- **📋 [Project Status & Progress](docs/PROJECT_TRACKING.md)** - Complete development status, feature completion, and recent changes
-- **✅ [TODO & Development Tasks](docs/TODO.md)** - Active tasks, localization fixes, and development roadmap  
-- **👨‍💻 [Developer Guide](docs/DEVELOPER_GUIDE.md)** - Complete technical guide with architecture, testing, and multi-language system details
-- **📋 [Requirements Specification](docs/SRS.md)** - Detailed project requirements and specifications
-
-### Feature-Specific Documentation
-- **🕌 [Features Overview](docs/features/README.md)** - Complete feature documentation index
-- **🕐 [Prayer Times](docs/features/prayer_times.md)** - Calculation methods, notifications, location services
-- **🧭 [Qibla Compass](docs/features/qibla_compass.md)** - Sensor integration, calibration, magnetic declination
-- **💰 [Inheritance Calculator](docs/features/inheritance_calculator.md)** - Islamic jurisprudence, validation, Zakat
-- **🌍 [Multi-Language System](docs/features/multi_language.md)** - RTL support, localization, dynamic switching
-
-> 💡 **New Developers**: Start with the [Developer Guide](docs/DEVELOPER_GUIDE.md) for complete technical overview and quick setup.للَّهِ الرَّحْمَنِ الرَّحِيم
+**بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم**
 
 **The most comprehensive, user-friendly Islamic utility platform for the global Muslim community**
 
@@ -21,33 +8,74 @@
 ![Dart](https://img.shields.io/badge/Dart-3.x-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20Android%20%7C%20Web-lightgrey)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
-![Verification](https://img.shields.io/badge/Deep%20Verification-Complete-brightgreen)
-![Stability](https://img.shields.io/badge/System%20Stability-100%25-success)
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 
 ## 🌙 About
 
-DeenMate is a production-ready Islamic utility super-app built with Flutter 3.x following Clean Architecture principles. It provides essential Islamic tools and calculators with beautiful, accessible UI design following Islamic design principles.
+DeenMate is a Flutter 3.x Islamic utility super-app built with Clean Architecture principles. It provides essential Islamic tools and calculators with beautiful, accessible UI design following Islamic design principles.
 
-### ✨ Features
+### ✨ Core Features
 
-- **🕐 Prayer Times** - Accurate times with clean, reliable Azan notifications
-- **🧭 Qibla Finder** - GPS-based direction to Kaaba with compass
-- **💰 Zakat Calculator** - Comprehensive Zakat calculation with multiple asset types
-- **📖 Islamic Content** - Daily Quran verses, Hadith, and Duas
-- **🌙 Sawm Tracker** - Ramadan fasting tracker (Coming Soon)
-- **📜 Islamic Will** - Generate Islamic will according to Shariah (Coming Soon)
-- **📱 Responsive Design** - Works on iOS, Android, and Web
-- **🌍 Multi-language** - English, Bengali, Arabic support
-- **🎨 Islamic UI** - Beautiful Islamic-themed Material 3 design
+- **🕐 Prayer Times** - Accurate prayer times with Azan notifications (85% complete)
+- **📖 Quran Reader** - Complete Quran with translations and audio (95% complete)
+- **🧭 Qibla Finder** - GPS-based direction to Kaaba with compass (60% complete)
+- **� Hadith Collection** - Authentic Hadith with search (70% complete)
+- **⚙️ Settings & Preferences** - Comprehensive app customization (75% complete)
+- **🏠 Home Dashboard** - Centralized navigation hub (85% complete)
+- **� Multi-language Support** - English, Bengali, Arabic, Urdu
+- **🎨 Islamic UI Design** - Material 3 with Islamic themes
 
-## � Documentation
+### 🚧 In Development
+
+- **💰 Zakat Calculator** - Islamic wealth calculation (needs implementation)
+- **📜 Inheritance Calculator** - Islamic inheritance law calculator (needs implementation)
+- **� Islamic Content** - Daily verses, duas, calendar (65% complete)
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/0xsaju/DeenMate.git
+
+# Install dependencies
+flutter pub get
+
+# Run the app
+flutter run
+```
+
+## 📚 Documentation
+
+**→ [Complete Documentation](docs/README.md)** - Full project documentation, architecture, and development guides
 
 ### Quick Links
-- **📋 [Project Status & Progress](docs/PROJECT_TRACKING.md)** - Current development status and feature completion
-- **✅ [TODO & Development Tasks](docs/TODO.md)** - Active tasks and development roadmap  
-- **👨‍💻 [Developer Guide](docs/DEVELOPER_GUIDE.md)** - Complete technical guide for contributors
+- **📋 [Project Status](docs/PROJECT_TRACKING.md)** - Current development status and feature completion
+- **✅ [Development Tasks](docs/TODO.md)** - Active tasks and development roadmap  
+- **👨‍💻 [Developer Guide](docs/developers_guide.md)** - Technical setup and contribution guide
+- **🏗️ [Architecture](docs/ARCHITECTURE.md)** - System architecture and design patterns
 - **📝 [Changelog](docs/CHANGELOG.md)** - Version history and updates
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Developer Guide](docs/developers_guide.md) for:
+- Development setup instructions
+- Code standards and architecture
+- Testing guidelines
+- Islamic compliance requirements
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤲 Dua
+
+*اللَّهُمَّ بَارِكْ لَنَا فِيمَا رَزَقْتَنَا*
+
+*"O Allah, bless us in what You have provided us"*
+
+---
+
+**Made with ❤️ for the Muslim Ummah**
 
 ### Additional Resources
 - **🧪 [Testing Guide](docs/test_plan.md)** - Comprehensive testing strategy

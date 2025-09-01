@@ -92,6 +92,109 @@ class AppLocalizationsUr extends AppLocalizations {
   String get onboardingThemeTitle => 'Choose Your Theme';
 
   @override
+  String get hadithTitle => 'Hadith';
+
+  @override
+  String get hadithCollections => 'Hadith Collections';
+
+  @override
+  String get hadithPopular => 'Popular Hadiths';
+
+  @override
+  String get hadithRecentlyRead => 'Recently Read';
+
+  @override
+  String get hadithQuickActions => 'Quick Actions';
+
+  @override
+  String get hadithSearch => 'Search';
+
+  @override
+  String get hadithTopics => 'Topics';
+
+  @override
+  String get hadithBookmarks => 'Bookmarks';
+
+  @override
+  String hadithReadCount(int count) {
+    return 'Read: $count';
+  }
+
+  @override
+  String hadithCount(int count) {
+    return '$count Hadiths';
+  }
+
+  @override
+  String get hadithNoCollections => 'No Hadith collections found';
+
+  @override
+  String get hadithNoPopular => 'No popular hadiths';
+
+  @override
+  String get hadithNoRecentlyRead => 'No recently read hadiths';
+
+  @override
+  String get hadithErrorLoadingCollections => 'Error loading collections';
+
+  @override
+  String get hadithErrorLoadingPopular => 'Error loading popular hadiths';
+
+  @override
+  String get hadithErrorLoadingRecentlyRead => 'Error loading recently read';
+
+  @override
+  String get hadithSearchTitle => 'Hadith Search';
+
+  @override
+  String get hadithSearchHint => 'Search for hadiths...';
+
+  @override
+  String get hadithSearching => 'Searching...';
+
+  @override
+  String get hadithSearchEmpty => 'Search for Hadiths';
+
+  @override
+  String get hadithSearchEmptySubtitle => 'Search using keywords';
+
+  @override
+  String get hadithNoResults => 'No results found';
+
+  @override
+  String hadithNoResultsForQuery(String query) {
+    return 'No hadiths found for \"$query\"';
+  }
+
+  @override
+  String get hadithSearchError => 'Error occurred while searching';
+
+  @override
+  String get hadithTryAgain => 'Try Again';
+
+  @override
+  String hadithResultsFound(int count) {
+    return '$count results found';
+  }
+
+  @override
+  String hadithNarrator(String name) {
+    return 'Narrator: $name';
+  }
+
+  @override
+  String get hadithFilters => 'Filters';
+
+  @override
+  String get hadithCollection => 'Collection';
+
+  @override
+  String get hadithGrade => 'Grade';
+
+  @override
+  String get hadithAll => 'All';
+
+  @override
   String get onboardingThemeSubtitle => 'Select your preferred visual style';
 
   @override

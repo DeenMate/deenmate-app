@@ -252,6 +252,192 @@ abstract class AppLocalizations {
   /// **'Choose Your Theme'**
   String get onboardingThemeTitle;
 
+  /// Title for Hadith module
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get hadithTitle;
+
+  /// Hadith collections section title
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Collections'**
+  String get hadithCollections;
+
+  /// Popular hadiths section title
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Hadiths'**
+  String get hadithPopular;
+
+  /// Recently read hadiths section title
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Read'**
+  String get hadithRecentlyRead;
+
+  /// Quick actions section title
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get hadithQuickActions;
+
+  /// Search action
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get hadithSearch;
+
+  /// Topics filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Topics'**
+  String get hadithTopics;
+
+  /// Bookmarks action
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get hadithBookmarks;
+
+  /// Read count display
+  ///
+  /// In en, this message translates to:
+  /// **'Read: {count}'**
+  String hadithReadCount(int count);
+
+  /// Hadith count display
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Hadiths'**
+  String hadithCount(int count);
+
+  /// No collections found message
+  ///
+  /// In en, this message translates to:
+  /// **'No Hadith collections found'**
+  String get hadithNoCollections;
+
+  /// No popular hadiths message
+  ///
+  /// In en, this message translates to:
+  /// **'No popular hadiths'**
+  String get hadithNoPopular;
+
+  /// No recently read message
+  ///
+  /// In en, this message translates to:
+  /// **'No recently read hadiths'**
+  String get hadithNoRecentlyRead;
+
+  /// Error loading collections
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading collections'**
+  String get hadithErrorLoadingCollections;
+
+  /// Error loading popular hadiths
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading popular hadiths'**
+  String get hadithErrorLoadingPopular;
+
+  /// Error loading recently read
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading recently read'**
+  String get hadithErrorLoadingRecentlyRead;
+
+  /// Title for Hadith search screen
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Search'**
+  String get hadithSearchTitle;
+
+  /// Hint text for Hadith search
+  ///
+  /// In en, this message translates to:
+  /// **'Search for hadiths...'**
+  String get hadithSearchHint;
+
+  /// Searching message
+  ///
+  /// In en, this message translates to:
+  /// **'Searching...'**
+  String get hadithSearching;
+
+  /// Empty search state message
+  ///
+  /// In en, this message translates to:
+  /// **'Search for Hadiths'**
+  String get hadithSearchEmpty;
+
+  /// Empty search state subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Search using keywords'**
+  String get hadithSearchEmptySubtitle;
+
+  /// No search results message
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get hadithNoResults;
+
+  /// No results for specific query
+  ///
+  /// In en, this message translates to:
+  /// **'No hadiths found for \"{query}\"'**
+  String hadithNoResultsForQuery(String query);
+
+  /// Search error message
+  ///
+  /// In en, this message translates to:
+  /// **'Error occurred while searching'**
+  String get hadithSearchError;
+
+  /// Try again button text
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get hadithTryAgain;
+
+  /// Search results count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} results found'**
+  String hadithResultsFound(int count);
+
+  /// Narrator label
+  ///
+  /// In en, this message translates to:
+  /// **'Narrator: {name}'**
+  String hadithNarrator(String name);
+
+  /// Filters section title
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get hadithFilters;
+
+  /// Collection filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Collection'**
+  String get hadithCollection;
+
+  /// Grade filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get hadithGrade;
+
+  /// All filter option
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get hadithAll;
+
   /// Subtitle for theme selection screen
   ///
   /// In en, this message translates to:

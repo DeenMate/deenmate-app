@@ -5,36 +5,36 @@ import 'package:google_fonts/google_fonts.dart';
 /// DeenMate Material 3 Theme System
 /// Implements three carefully designed theme palettes for optimal Islamic app experience
 
-enum AppTheme { 
-  lightSerenity, 
-  nightCalm, 
-  heritageSepia 
-}
+enum AppTheme { lightSerenity, nightCalm, heritageSepia }
 
 class AppThemeData {
   /// 🌞 Light Serenity Theme (Default / Day Reading)
-  static const Color _lightSerenityPrimary = Color(0xFF2E7D32);      // Emerald Green
-  static const Color _lightSerenitySecondary = Color(0xFFC6A700);    // Gold
-  static const Color _lightSerenityBackground = Color(0xFFFAFAF7);   // Off-White
-  static const Color _lightSerenitySurface = Color(0xFFFFFFFF);      // Ivory
-  static const Color _lightSerenityArabicText = Color(0xFF1C1C1C);   // Dark Charcoal
-  static const Color _lightSerenityTranslationText = Color(0xFF4A4A4A); // Neutral Gray
+  static const Color _lightSerenityPrimary = Color(0xFF2E7D32); // Emerald Green
+  static const Color _lightSerenitySecondary = Color(0xFFC6A700); // Gold
+  static const Color _lightSerenityBackground = Color(0xFFFAFAF7); // Off-White
+  static const Color _lightSerenitySurface = Color(0xFFFFFFFF); // Ivory
+  static const Color _lightSerenityArabicText =
+      Color(0xFF1C1C1C); // Dark Charcoal
+  static const Color _lightSerenityTranslationText =
+      Color(0xFF4A4A4A); // Neutral Gray
 
   /// 🌙 Night Calm Theme (Dark Mode)
-  static const Color _nightCalmPrimary = Color(0xFF26A69A);          // Teal Green
-  static const Color _nightCalmSecondary = Color(0xFFFFB300);        // Amber
-  static const Color _nightCalmBackground = Color(0xFF121212);       // Deep Charcoal
-  static const Color _nightCalmSurface = Color(0xFF1E1E1E);         // Slate Gray
-  static const Color _nightCalmArabicText = Color(0xFFEAEAEA);      // Soft White
-  static const Color _nightCalmTranslationText = Color(0xFFB0B0B0);  // Cool Gray
+  static const Color _nightCalmPrimary = Color(0xFF26A69A); // Teal Green
+  static const Color _nightCalmSecondary = Color(0xFFFFB300); // Amber
+  static const Color _nightCalmBackground = Color(0xFF121212); // Deep Charcoal
+  static const Color _nightCalmSurface = Color(0xFF1E1E1E); // Slate Gray
+  static const Color _nightCalmArabicText = Color(0xFFEAEAEA); // Soft White
+  static const Color _nightCalmTranslationText = Color(0xFFB0B0B0); // Cool Gray
 
   /// 🍃 Heritage Sepia Theme (Scholarly / Classic Reading)
-  static const Color _heritageSepiaPromary = Color(0xFF6B8E23);      // Olive Green
-  static const Color _heritageSepiaSecondary = Color(0xFF8B6F47);    // Bronze
-  static const Color _heritageSepiaBackground = Color(0xFFFDF6E3);   // Warm Parchment
-  static const Color _heritageSepiaSurface = Color(0xFFF5EAD7);      // Light Beige
-  static const Color _heritageSepiaArabicText = Color(0xFF000000);   // Deep Black
-  static const Color _heritageSepiaTranslationText = Color(0xFF3E2C23); // Dark Brown
+  static const Color _heritageSepiaPromary = Color(0xFF6B8E23); // Olive Green
+  static const Color _heritageSepiaSecondary = Color(0xFF8B6F47); // Bronze
+  static const Color _heritageSepiaBackground =
+      Color(0xFFFDF6E3); // Warm Parchment
+  static const Color _heritageSepiaSurface = Color(0xFFF5EAD7); // Light Beige
+  static const Color _heritageSepiaArabicText = Color(0xFF000000); // Deep Black
+  static const Color _heritageSepiaTranslationText =
+      Color(0xFF3E2C23); // Dark Brown
 
   /// Get theme data for specific theme
   static ThemeData getTheme(AppTheme theme) {
@@ -99,7 +99,7 @@ class AppThemeData {
   /// 🌞 Build Light Serenity Theme
   static ThemeData _buildLightSerenityTheme() {
     const brightness = Brightness.light;
-    
+
     final colorScheme = ColorScheme.fromSeed(
       seedColor: _lightSerenityPrimary,
       brightness: brightness,
@@ -109,7 +109,7 @@ class AppThemeData {
       background: _lightSerenityBackground,
     );
 
-        return _buildTheme(
+    return _buildTheme(
       colorScheme: colorScheme,
       brightness: brightness,
       arabicTextColor: _lightSerenityArabicText,
@@ -120,7 +120,7 @@ class AppThemeData {
   /// 🌙 Build Night Calm Theme
   static ThemeData _buildNightCalmTheme() {
     const brightness = Brightness.dark;
-    
+
     final colorScheme = ColorScheme.fromSeed(
       seedColor: _nightCalmPrimary,
       brightness: brightness,
@@ -130,7 +130,7 @@ class AppThemeData {
       background: _nightCalmBackground,
     );
 
-        return _buildTheme(
+    return _buildTheme(
       colorScheme: colorScheme,
       brightness: brightness,
       arabicTextColor: _nightCalmArabicText,
@@ -141,7 +141,7 @@ class AppThemeData {
   /// 🍃 Build Heritage Sepia Theme
   static ThemeData _buildHeritageSepiaTheme() {
     const brightness = Brightness.light;
-    
+
     final colorScheme = ColorScheme.fromSeed(
       seedColor: _heritageSepiaPromary,
       brightness: brightness,
@@ -179,10 +179,10 @@ class AppThemeData {
       useMaterial3: true,
       colorScheme: colorScheme,
       brightness: brightness,
-      
+
       // Text theme with Islamic fonts
       textTheme: textTheme,
-      
+
       // App Bar theme
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.surface,
@@ -199,7 +199,7 @@ class AppThemeData {
           color: colorScheme.onSurface,
         ),
       ),
-      
+
       // Card theme with soft shadows
       cardTheme: CardThemeData(
         elevation: 2,
@@ -209,7 +209,7 @@ class AppThemeData {
         ),
         color: colorScheme.surface,
       ),
-      
+
       // Bottom Navigation theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: colorScheme.surface,
@@ -218,7 +218,7 @@ class AppThemeData {
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
-      
+
       // Button themes
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -230,7 +230,7 @@ class AppThemeData {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         ),
       ),
-      
+
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: colorScheme.primary,
@@ -240,7 +240,7 @@ class AppThemeData {
           ),
         ),
       ),
-      
+
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: colorScheme.primary,
@@ -250,7 +250,7 @@ class AppThemeData {
           ),
         ),
       ),
-      
+
       // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
@@ -268,20 +268,20 @@ class AppThemeData {
         fillColor: colorScheme.surface,
         filled: true,
       ),
-      
+
       // Divider theme
       dividerTheme: DividerThemeData(
         color: colorScheme.outline.withOpacity(0.2),
         thickness: 0.5,
         space: 1,
       ),
-      
+
       // Icon theme
       iconTheme: IconThemeData(
         color: colorScheme.onSurface.withOpacity(0.7),
         size: 24,
       ),
-      
+
       // List tile theme
       listTileTheme: ListTileThemeData(
         tileColor: colorScheme.surface,
@@ -289,7 +289,7 @@ class AppThemeData {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      
+
       // Floating Action Button theme
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: colorScheme.primary,
@@ -298,7 +298,7 @@ class AppThemeData {
           borderRadius: BorderRadius.circular(16),
         ),
       ),
-      
+
       // Tab bar theme
       tabBarTheme: TabBarThemeData(
         labelColor: colorScheme.primary,
@@ -341,7 +341,7 @@ class AppThemeData {
         height: 1.8,
         letterSpacing: 0.5,
       ),
-      
+
       // Headline styles for Arabic section headers
       headlineLarge: GoogleFonts.amiri(
         fontSize: 22,
@@ -361,7 +361,7 @@ class AppThemeData {
         color: arabicTextColor,
         height: 1.6,
       ),
-      
+
       // Title styles for UI headers
       titleLarge: GoogleFonts.inter(
         fontSize: 20,
@@ -381,7 +381,7 @@ class AppThemeData {
         color: translationTextColor,
         height: 1.4,
       ),
-      
+
       // Body styles for translations and general text
       bodyLarge: GoogleFonts.crimsonText(
         fontSize: 16,
@@ -403,7 +403,7 @@ class AppThemeData {
         color: translationTextColor.withOpacity(0.8),
         height: 1.5,
       ),
-      
+
       // Label styles for small UI text
       labelLarge: GoogleFonts.inter(
         fontSize: 14,
@@ -432,8 +432,8 @@ class AppThemeData {
       arabicTextColor: getArabicTextColor(theme),
       translationTextColor: getTranslationTextColor(theme),
       verseNumberColor: getArabicTextColor(theme).withOpacity(0.6),
-      bookmarkColor: theme == AppTheme.nightCalm 
-          ? const Color(0xFFFFB300) 
+      bookmarkColor: theme == AppTheme.nightCalm
+          ? const Color(0xFFFFB300)
           : const Color(0xFFC6A700),
       highlightColor: theme == AppTheme.nightCalm
           ? const Color(0xFF26A69A).withOpacity(0.2)
@@ -485,8 +485,10 @@ class IslamicThemeExtension extends ThemeExtension<IslamicThemeExtension> {
     }
     return IslamicThemeExtension(
       arabicTextColor: Color.lerp(arabicTextColor, other.arabicTextColor, t)!,
-      translationTextColor: Color.lerp(translationTextColor, other.translationTextColor, t)!,
-      verseNumberColor: Color.lerp(verseNumberColor, other.verseNumberColor, t)!,
+      translationTextColor:
+          Color.lerp(translationTextColor, other.translationTextColor, t)!,
+      verseNumberColor:
+          Color.lerp(verseNumberColor, other.verseNumberColor, t)!,
       bookmarkColor: Color.lerp(bookmarkColor, other.bookmarkColor, t)!,
       highlightColor: Color.lerp(highlightColor, other.highlightColor, t)!,
     );

@@ -8,7 +8,6 @@ import '../../data/dto/verse_dto.dart';
 import '../../data/dto/translation_resource_dto.dart';
 import '../state/providers.dart';
 import '../widgets/translation_picker_widget.dart';
-import '../widgets/quick_tools_panel.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
 
@@ -89,14 +88,15 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   }
 
   void _onTranslationPreferencesChanged() async {
-    print('DEBUG: _onTranslationPreferencesChanged - clearing cache and reloading page $_page');
-    
+    print(
+        'DEBUG: _onTranslationPreferencesChanged - clearing cache and reloading page $_page');
+
     // Clear the page cache when translations change
     _pageCache.clear();
-    
+
     // Clear the Hive cache for all pages of this chapter to force fresh API calls
     final vBox = await Hive.openBox(boxes.Boxes.verses);
-    
+
     // Clear all cached pages for this chapter with any translation combination
     final keysToDelete = <String>[];
     for (final key in vBox.keys) {
@@ -104,12 +104,12 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
         keysToDelete.add(key.toString());
       }
     }
-    
+
     for (final key in keysToDelete) {
       await vBox.delete(key);
       print('DEBUG: Deleted cache key: $key');
     }
-    
+
     // Reload the current page with new translations
     await _loadPage(_page);
   }
@@ -216,9 +216,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
     });
     try {
       final prefs = ref.read(prefsProvider);
-      print('DEBUG: Loading page $page with translation IDs: ${prefs.selectedTranslationIds}');
+      print(
+          'DEBUG: Loading page $page with translation IDs: ${prefs.selectedTranslationIds}');
       final args = SurahPageArgs(
-        widget.chapterId, 
+        widget.chapterId,
         page,
         translationIds: prefs.selectedTranslationIds,
       );
@@ -303,7 +304,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   Widget build(BuildContext context) {
     // Listen for translation preference changes in build method
     ref.listen(prefsProvider, (previous, next) {
-      print('DEBUG: Translation preferences changed from ${previous?.selectedTranslationIds} to ${next.selectedTranslationIds}');
+      print(
+          'DEBUG: Translation preferences changed from ${previous?.selectedTranslationIds} to ${next.selectedTranslationIds}');
       if (previous?.selectedTranslationIds != next.selectedTranslationIds) {
         print('DEBUG: Calling _onTranslationPreferencesChanged');
         _onTranslationPreferencesChanged();
@@ -538,19 +540,19 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
               builder: (context, ref, child) {
                 final prefs = ref.watch(prefsProvider);
                 if (!prefs.showArabic) return const SizedBox.shrink();
-                
+
                 return Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              child: Text(
-                'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                style: TextStyle(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                    style: TextStyle(
                       fontSize: prefs.arabicFontSize,
-                  fontWeight: FontWeight.w600,
-                  color: ThemeHelper.getPrimaryColor(context),
-                  fontFamily: 'Uthmani',
-                ),
-                textAlign: TextAlign.center,
-              ),
+                      fontWeight: FontWeight.w600,
+                      color: ThemeHelper.getPrimaryColor(context),
+                      fontFamily: 'Uthmani',
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 );
               },
             ),
@@ -615,16 +617,16 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
             builder: (context, ref, child) {
               final prefs = ref.watch(prefsProvider);
               if (!prefs.showArabic) return const SizedBox.shrink();
-              
+
               return Text(
-            verse.textUthmani,
-            style: TextStyle(
+                verse.textUthmani,
+                style: TextStyle(
                   fontSize: prefs.arabicFontSize,
-              fontWeight: FontWeight.w500,
-              color: ThemeHelper.getTextPrimaryColor(context),
-              fontFamily: 'Uthmani',
+                  fontWeight: FontWeight.w500,
+                  color: ThemeHelper.getTextPrimaryColor(context),
+                  fontFamily: 'Uthmani',
                   height: prefs.arabicLineHeight,
-            ),
+                ),
                 textAlign: TextAlign.right,
                 textDirection: TextDirection.rtl,
               );
@@ -636,7 +638,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
           // Translations
           // Debug: Check if translations exist
           Builder(builder: (context) {
-            print('DEBUG: Verse ${verse.verseNumber} - translations.isNotEmpty: ${verse.translations.isNotEmpty}');
+            print(
+                'DEBUG: Verse ${verse.verseNumber} - translations.isNotEmpty: ${verse.translations.isNotEmpty}');
             return const SizedBox.shrink();
           }),
           Consumer(
@@ -652,7 +655,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                 ],
               );
             },
-            ),
+          ),
         ],
       ),
     );
@@ -754,39 +757,45 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   Widget _buildTranslationsSection(VerseDto verse) {
     final prefs = ref.watch(prefsProvider);
     final resourcesAsync = ref.watch(translationResourcesProvider);
-    
+
     return resourcesAsync.when(
       data: (resources) {
         // Debug: Print all available translations and selected IDs
-        print('DEBUG: Available translations in verse: ${verse.translations.length}');
-        print('DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
+        print(
+            'DEBUG: Available translations in verse: ${verse.translations.length}');
+        print(
+            'DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
         for (var translation in verse.translations) {
-          print('DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
+          print(
+              'DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
         }
-        
+
         // Get selected translations with fallback logic
         var selectedTranslations = <TranslationDto>[];
-        
+
         // First try to match selected translation IDs
         if (prefs.selectedTranslationIds.isNotEmpty) {
           selectedTranslations = verse.translations
-              .where((translation) => 
+              .where((translation) =>
                   prefs.selectedTranslationIds.contains(translation.resourceId))
               .toList();
         }
-        
+
         // If no matches found, use any available translation
         if (selectedTranslations.isEmpty && verse.translations.isNotEmpty) {
           selectedTranslations = [verse.translations.first];
         }
-        
+
         // Debug info to see what's happening
-        print('DEBUG: Available translations: ${verse.translations.length}, Selected: ${selectedTranslations.length}');
-        print('DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
+        print(
+            'DEBUG: Available translations: ${verse.translations.length}, Selected: ${selectedTranslations.length}');
+        print(
+            'DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
         for (var translation in verse.translations) {
-          print('DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
+          print(
+              'DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
         }
-        
+
         if (selectedTranslations.isEmpty) {
           return Container(
             padding: const EdgeInsets.all(12),
@@ -869,7 +878,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                          color: ThemeHelper.getPrimaryColor(context)
+                              .withOpacity(0.1),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
@@ -981,7 +991,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
       );
 
       final arabicText = verse.textUthmani;
-      final translationText = verse.translations.isNotEmpty 
+      final translationText = verse.translations.isNotEmpty
           ? _cleanTranslationText(verse.translations.first.text)
           : '';
 
@@ -1084,7 +1094,7 @@ $translationText
 
 class _QuickToolsOverlay extends ConsumerWidget {
   const _QuickToolsOverlay({required this.onOpenTranslationPicker});
-  
+
   final VoidCallback onOpenTranslationPicker;
 
   @override
@@ -1133,17 +1143,18 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       children: [
                         IconButton(
                           onPressed: () => Navigator.pop(context),
-                          icon: Icon(Icons.close, color: ThemeHelper.getTextPrimaryColor(context)),
+                          icon: Icon(Icons.close,
+                              color: ThemeHelper.getTextPrimaryColor(context)),
                         ),
                         Expanded(
                           child: Text(
-                          'Quick Tools',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: ThemeHelper.getTextPrimaryColor(context),
+                            'Quick Tools',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: ThemeHelper.getTextPrimaryColor(context),
+                            ),
                           ),
-                        ),
                         ),
                       ],
                     ),
@@ -1153,13 +1164,14 @@ class _QuickToolsOverlay extends ConsumerWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: ['Sura', 'Page', 'Juz', 'Hizb', 'Ruku'].map((tab) {
+                        children:
+                            ['Sura', 'Page', 'Juz', 'Hizb', 'Ruku'].map((tab) {
                           return Container(
                             margin: const EdgeInsets.only(right: 8),
                             child: ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: tab == 'Sura' 
+                                backgroundColor: tab == 'Sura'
                                     ? ThemeHelper.getPrimaryColor(context)
                                     : Colors.transparent,
                                 foregroundColor: tab == 'Sura'
@@ -1201,7 +1213,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       (value) => notifier.updateShowArabic(value),
                       context,
                     ),
-                    
+
                     // Translation Toggle
                     _buildToggleRow(
                       'Translation',
@@ -1209,7 +1221,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       (value) => notifier.updateShowTranslation(value),
                       context,
                     ),
-                    
+
                     // Translation Settings
                     if (prefs.showTranslation) ...[
                       const SizedBox(height: 8),
@@ -1254,7 +1266,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Arabic Font Size
                     _buildSliderRow(
                       'Arabic Font Size',
@@ -1264,7 +1276,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       (value) => notifier.updateArabicFontSize(value),
                       context,
                     ),
-                    
+
                     // Translation Font Size
                     _buildSliderRow(
                       'Translation Font Size',
@@ -1274,7 +1286,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       (value) => notifier.updateTranslationFontSize(value),
                       context,
                     ),
-                    
+
                     const SizedBox(height: 32),
                   ],
                 ),
@@ -1286,7 +1298,8 @@ class _QuickToolsOverlay extends ConsumerWidget {
     );
   }
 
-  Widget _buildToggleRow(String label, bool value, ValueChanged<bool> onChanged, BuildContext context) {
+  Widget _buildToggleRow(String label, bool value, ValueChanged<bool> onChanged,
+      BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -1309,32 +1322,33 @@ class _QuickToolsOverlay extends ConsumerWidget {
     );
   }
 
-  Widget _buildSliderRow(String label, double value, double min, double max, ValueChanged<double> onChanged, BuildContext context) {
+  Widget _buildSliderRow(String label, double value, double min, double max,
+      ValueChanged<double> onChanged, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
+            children: [
+              Text(
                 label,
                 style: TextStyle(
-                fontSize: 16,
+                  fontSize: 16,
                   color: ThemeHelper.getTextPrimaryColor(context),
+                ),
               ),
-            ),
-            Text(
+              Text(
                 value.toInt().toString(),
                 style: TextStyle(
-                fontSize: 16,
+                  fontSize: 16,
                   color: ThemeHelper.getPrimaryColor(context),
                   fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
           Slider(
             value: value,
             min: min,
@@ -1347,12 +1361,6 @@ class _QuickToolsOverlay extends ConsumerWidget {
       ),
     );
   }
-
-
-
-
-
-
 }
 
 class _AudioManagerSheet extends ConsumerWidget {
@@ -1519,8 +1527,6 @@ class _AutoScrollSheet extends StatelessWidget {
   }
 }
 
-
-
 class _QuickJumpSheet extends ConsumerStatefulWidget {
   const _QuickJumpSheet({
     required this.currentChapterId,
@@ -1645,11 +1651,9 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
   }
 }
 
-
-
 class _VerseOptionsSheet extends ConsumerWidget {
   const _VerseOptionsSheet({required this.verse});
-  
+
   final VerseDto verse;
 
   @override
@@ -1678,16 +1682,18 @@ class _VerseOptionsSheet extends ConsumerWidget {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.close, color: ThemeHelper.getTextPrimaryColor(context)),
+                icon: Icon(Icons.close,
+                    color: ThemeHelper.getTextPrimaryColor(context)),
                 onPressed: () => Navigator.pop(context),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          
+
           // Copy Arabic Text
           ListTile(
-            leading: Icon(Icons.copy, color: ThemeHelper.getPrimaryColor(context)),
+            leading:
+                Icon(Icons.copy, color: ThemeHelper.getPrimaryColor(context)),
             title: const Text('Copy Arabic Text'),
             subtitle: const Text('Copy only the Arabic verse'),
             onTap: () {
@@ -1695,11 +1701,12 @@ class _VerseOptionsSheet extends ConsumerWidget {
               Navigator.pop(context);
             },
           ),
-          
+
           // Copy Translation
           if (verse.translations.isNotEmpty)
             ListTile(
-              leading: Icon(Icons.translate, color: ThemeHelper.getPrimaryColor(context)),
+              leading: Icon(Icons.translate,
+                  color: ThemeHelper.getPrimaryColor(context)),
               title: const Text('Copy Translation'),
               subtitle: const Text('Copy only the translation'),
               onTap: () {
@@ -1707,10 +1714,11 @@ class _VerseOptionsSheet extends ConsumerWidget {
                 Navigator.pop(context);
               },
             ),
-          
+
           // Copy Full Verse
           ListTile(
-            leading: Icon(Icons.content_copy, color: ThemeHelper.getPrimaryColor(context)),
+            leading: Icon(Icons.content_copy,
+                color: ThemeHelper.getPrimaryColor(context)),
             title: const Text('Copy Full Verse'),
             subtitle: const Text('Copy Arabic text with translation'),
             onTap: () {
@@ -1718,7 +1726,7 @@ class _VerseOptionsSheet extends ConsumerWidget {
               Navigator.pop(context);
             },
           ),
-          
+
           // Report Error
           ListTile(
             leading: Icon(Icons.report_problem, color: Colors.orange),
@@ -1746,7 +1754,7 @@ class _VerseOptionsSheet extends ConsumerWidget {
         .replaceAll(RegExp(r'<[^>]+>'), ' ')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
-    
+
     Clipboard.setData(ClipboardData(text: cleanText));
     _showCopySuccess(context, 'Translation copied');
   }
@@ -1762,7 +1770,8 @@ class _VerseOptionsSheet extends ConsumerWidget {
 
       final translationText = verse.translations.isNotEmpty
           ? verse.translations.first.text
-              .replaceAll(RegExp(r'<sup[^>]*>[\s\S]*?<\/sup>', dotAll: true), ' ')
+              .replaceAll(
+                  RegExp(r'<sup[^>]*>[\s\S]*?<\/sup>', dotAll: true), ' ')
               .replaceAll(RegExp(r'<[^>]+>'), ' ')
               .replaceAll(RegExp(r'\s+'), ' ')
               .trim()
@@ -1816,102 +1825,5 @@ ${chapter.nameSimple} ${verse.verseNumber} (${verse.verseKey})
         ],
       ),
     );
-  }
-
-  // Helper methods for QuickToolsPanel integration
-
-  String? _getCurrentVerseKey() {
-    if (_verses.isEmpty) return null;
-    
-    // Find the verse closest to the center of the screen
-    if (!_controller.hasClients) return _verses.first.verseKey;
-    
-    final scrollPosition = _controller.offset;
-    final viewportHeight = _controller.position.viewportDimension;
-    final centerY = scrollPosition + (viewportHeight / 2);
-    
-    final totalHeight = _controller.position.maxScrollExtent + viewportHeight;
-    final averageVerseHeight = totalHeight / _verses.length;
-    final estimatedIndex = centerY / averageVerseHeight;
-    final clampedIndex = estimatedIndex.round().clamp(0, _verses.length - 1);
-    
-    return _verses[clampedIndex].verseKey;
-  }
-
-  bool _isCurrentVerseBookmarked() {
-    final currentVerseKey = _getCurrentVerseKey();
-    if (currentVerseKey == null) return false;
-    return _localBookmarkOn.contains(currentVerseKey);
-  }
-
-  void _handleNavigationModeChange(String mode) {
-    // Open the existing navigation modal with the selected mode
-    switch (mode) {
-      case 'surah':
-        _openChapterPicker(context);
-        break;
-      case 'page':
-        _openPageJumper(context);
-        break;
-      case 'juz':
-        _openJuzPicker(context);
-        break;
-    }
-  }
-
-  void _handleJumpToVerse() {
-    _openQuickJump(context);
-  }
-
-  void _handleFontSizeAdjust(double delta) {
-    // This would integrate with existing font size settings
-    // For now, show a feedback message
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(delta > 0 ? 'Font size increased' : 'Font size decreased'),
-        duration: const Duration(seconds: 1),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: ThemeHelper.getPrimaryColor(context),
-      ),
-    );
-  }
-
-  void _handleThemeToggle() {
-    // This would integrate with existing theme toggle functionality
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Theme toggle - Feature coming soon'),
-        duration: Duration(seconds: 1),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-  }
-
-  void _handleTranslationPicker() {
-    _openTranslationPicker(context);
-  }
-
-  void _handleBookmarkToggle() {
-    final currentVerseKey = _getCurrentVerseKey();
-    if (currentVerseKey == null) return;
-
-    final currentVerse = _verses.firstWhere(
-      (verse) => verse.verseKey == currentVerseKey,
-      orElse: () => _verses.first,
-    );
-
-    _toggleBookmark(currentVerse);
-  }
-
-  void _handleShareVerse() {
-    final currentVerseKey = _getCurrentVerseKey();
-    if (currentVerseKey == null) return;
-
-    final currentVerse = _verses.firstWhere(
-      (verse) => verse.verseKey == currentVerseKey,
-      orElse: () => _verses.first,
-    );
-
-    _shareVerse(currentVerse);
   }
 }

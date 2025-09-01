@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../state/providers.dart';
 import 'mobile_font_controls.dart';
 
 /// Floating font controls button for mobile interface

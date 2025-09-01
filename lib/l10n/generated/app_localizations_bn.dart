@@ -93,6 +93,110 @@ class AppLocalizationsBn extends AppLocalizations {
   String get onboardingThemeTitle => 'আপনার থিম নির্বাচন করুন';
 
   @override
+  String get hadithTitle => 'হাদীস';
+
+  @override
+  String get hadithCollections => 'হাদীস সংকলন';
+
+  @override
+  String get hadithPopular => 'জনপ্রিয় হাদীস';
+
+  @override
+  String get hadithRecentlyRead => 'সাম্প্রতিক পড়া';
+
+  @override
+  String get hadithQuickActions => 'দ্রুত অ্যাকশন';
+
+  @override
+  String get hadithSearch => 'অনুসন্ধান';
+
+  @override
+  String get hadithTopics => 'বিষয়';
+
+  @override
+  String get hadithBookmarks => 'বুকমার্ক';
+
+  @override
+  String hadithReadCount(int count) {
+    return 'পঠিত: $count';
+  }
+
+  @override
+  String hadithCount(int count) {
+    return '$count হাদীস';
+  }
+
+  @override
+  String get hadithNoCollections => 'কোন হাদীস সংকলন পাওয়া যায়নি';
+
+  @override
+  String get hadithNoPopular => 'কোন জনপ্রিয় হাদীস নেই';
+
+  @override
+  String get hadithNoRecentlyRead => 'কোন সাম্প্রতিক পড়া নেই';
+
+  @override
+  String get hadithErrorLoadingCollections => 'সংকলন লোড করতে সমস্যা';
+
+  @override
+  String get hadithErrorLoadingPopular => 'জনপ্রিয় হাদীস লোড করতে সমস্যা';
+
+  @override
+  String get hadithErrorLoadingRecentlyRead =>
+      'সাম্প্রতিক পড়া লোড করতে সমস্যা';
+
+  @override
+  String get hadithSearchTitle => 'হাদীস অনুসন্ধান';
+
+  @override
+  String get hadithSearchHint => 'হাদীস অনুসন্ধান করুন...';
+
+  @override
+  String get hadithSearching => 'অনুসন্ধান করা হচ্ছে...';
+
+  @override
+  String get hadithSearchEmpty => 'হাদীস অনুসন্ধান করুন';
+
+  @override
+  String get hadithSearchEmptySubtitle => 'কীওয়ার্ড দিয়ে অনুসন্ধান করুন';
+
+  @override
+  String get hadithNoResults => 'কোন ফলাফল পাওয়া যায়নি';
+
+  @override
+  String hadithNoResultsForQuery(String query) {
+    return '\"$query\" এর জন্য কোন হাদীস পাওয়া যায়নি';
+  }
+
+  @override
+  String get hadithSearchError => 'অনুসন্ধানে সমস্যা হয়েছে';
+
+  @override
+  String get hadithTryAgain => 'আবার চেষ্টা করুন';
+
+  @override
+  String hadithResultsFound(int count) {
+    return '$count টি ফলাফল পাওয়া গেছে';
+  }
+
+  @override
+  String hadithNarrator(String name) {
+    return 'বর্ণনাকারী: $name';
+  }
+
+  @override
+  String get hadithFilters => 'ফিল্টার';
+
+  @override
+  String get hadithCollection => 'সংকলন';
+
+  @override
+  String get hadithGrade => 'গ্রেড';
+
+  @override
+  String get hadithAll => 'সব';
+
+  @override
   String get onboardingThemeSubtitle =>
       'আপনার পছন্দের দৃশ্য শৈলী নির্বাচন করুন';
 

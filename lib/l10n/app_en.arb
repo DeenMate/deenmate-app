@@ -98,6 +98,165 @@
     "description": "Subtitle for notifications setup screen"
   },
   "onboardingThemeTitle": "Choose Your Theme",
+  
+  "hadithTitle": "Hadith",
+  "@hadithTitle": {
+    "description": "Title for Hadith module"
+  },
+  "hadithCollections": "Hadith Collections",
+  "@hadithCollections": {
+    "description": "Hadith collections section title"
+  },
+  "hadithPopular": "Popular Hadiths",
+  "@hadithPopular": {
+    "description": "Popular hadiths section title"
+  },
+  "hadithRecentlyRead": "Recently Read",
+  "@hadithRecentlyRead": {
+    "description": "Recently read hadiths section title"
+  },
+  "hadithQuickActions": "Quick Actions",
+  "@hadithQuickActions": {
+    "description": "Quick actions section title"
+  },
+  "hadithSearch": "Search",
+  "@hadithSearch": {
+    "description": "Search action"
+  },
+  "hadithTopics": "Topics",
+  "@hadithTopics": {
+    "description": "Topics action"
+  },
+  "hadithBookmarks": "Bookmarks",
+  "@hadithBookmarks": {
+    "description": "Bookmarks action"
+  },
+  "hadithReadCount": "Read: {count}",
+  "@hadithReadCount": {
+    "description": "Read count display",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "hadithCount": "{count} Hadiths",
+  "@hadithCount": {
+    "description": "Hadith count display",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "100"
+      }
+    }
+  },
+  "hadithNoCollections": "No Hadith collections found",
+  "@hadithNoCollections": {
+    "description": "No collections found message"
+  },
+  "hadithNoPopular": "No popular hadiths",
+  "@hadithNoPopular": {
+    "description": "No popular hadiths message"
+  },
+  "hadithNoRecentlyRead": "No recently read hadiths",
+  "@hadithNoRecentlyRead": {
+    "description": "No recently read message"
+  },
+  "hadithErrorLoadingCollections": "Error loading collections",
+  "@hadithErrorLoadingCollections": {
+    "description": "Error loading collections"
+  },
+  "hadithErrorLoadingPopular": "Error loading popular hadiths",
+  "@hadithErrorLoadingPopular": {
+    "description": "Error loading popular hadiths"
+  },
+  "hadithErrorLoadingRecentlyRead": "Error loading recently read",
+  "@hadithErrorLoadingRecentlyRead": {
+    "description": "Error loading recently read"
+  },
+  "hadithSearchTitle": "Hadith Search",
+  "@hadithSearchTitle": {
+    "description": "Title for Hadith search screen"
+  },
+  "hadithSearchHint": "Search for hadiths...",
+  "@hadithSearchHint": {
+    "description": "Hint text for Hadith search"
+  },
+  "hadithSearching": "Searching...",
+  "@hadithSearching": {
+    "description": "Searching message"
+  },
+  "hadithSearchEmpty": "Search for Hadiths",
+  "@hadithSearchEmpty": {
+    "description": "Empty search state message"
+  },
+  "hadithSearchEmptySubtitle": "Search using keywords",
+  "@hadithSearchEmptySubtitle": {
+    "description": "Empty search state subtitle"
+  },
+  "hadithNoResults": "No results found",
+  "@hadithNoResults": {
+    "description": "No search results message"
+  },
+  "hadithNoResultsForQuery": "No hadiths found for \"{query}\"",
+  "@hadithNoResultsForQuery": {
+    "description": "No results for specific query",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "faith"
+      }
+    }
+  },
+  "hadithSearchError": "Error occurred while searching",
+  "@hadithSearchError": {
+    "description": "Search error message"
+  },
+  "hadithTryAgain": "Try Again",
+  "@hadithTryAgain": {
+    "description": "Try again button text"
+  },
+  "hadithResultsFound": "{count} results found",
+  "@hadithResultsFound": {
+    "description": "Search results count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "hadithNarrator": "Narrator: {name}",
+  "@hadithNarrator": {
+    "description": "Narrator label",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Abu Huraira"
+      }
+    }
+  },
+  "hadithFilters": "Filters",
+  "@hadithFilters": {
+    "description": "Filters section title"
+  },
+  "hadithCollection": "Collection",
+  "@hadithCollection": {
+    "description": "Collection filter label"
+  },
+  "hadithGrade": "Grade",
+  "@hadithGrade": {
+    "description": "Grade filter label"
+  },
+  "hadithTopics": "Topics",
+  "@hadithTopics": {
+    "description": "Topics filter label"
+  },
+  "hadithAll": "All",
+  "@hadithAll": {
+    "description": "All filter option"
+  },
   "@onboardingThemeTitle": {
     "description": "Title for theme selection screen"
   },

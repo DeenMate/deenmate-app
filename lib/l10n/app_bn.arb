@@ -98,6 +98,165 @@
     "description": "Subtitle for notifications setup screen"
   },
   "onboardingThemeTitle": "আপনার থিম নির্বাচন করুন",
+  
+  "hadithTitle": "হাদীস",
+  "@hadithTitle": {
+    "description": "Title for Hadith module"
+  },
+  "hadithCollections": "হাদীস সংকলন",
+  "@hadithCollections": {
+    "description": "Hadith collections section title"
+  },
+  "hadithPopular": "জনপ্রিয় হাদীস",
+  "@hadithPopular": {
+    "description": "Popular hadiths section title"
+  },
+  "hadithRecentlyRead": "সাম্প্রতিক পড়া",
+  "@hadithRecentlyRead": {
+    "description": "Recently read hadiths section title"
+  },
+  "hadithQuickActions": "দ্রুত অ্যাকশন",
+  "@hadithQuickActions": {
+    "description": "Quick actions section title"
+  },
+  "hadithSearch": "অনুসন্ধান",
+  "@hadithSearch": {
+    "description": "Search action"
+  },
+  "hadithTopics": "বিষয়",
+  "@hadithTopics": {
+    "description": "Topics action"
+  },
+  "hadithBookmarks": "বুকমার্ক",
+  "@hadithBookmarks": {
+    "description": "Bookmarks action"
+  },
+  "hadithReadCount": "পঠিত: {count}",
+  "@hadithReadCount": {
+    "description": "Read count display",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "hadithCount": "{count} হাদীস",
+  "@hadithCount": {
+    "description": "Hadith count display",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "100"
+      }
+    }
+  },
+  "hadithNoCollections": "কোন হাদীস সংকলন পাওয়া যায়নি",
+  "@hadithNoCollections": {
+    "description": "No collections found message"
+  },
+  "hadithNoPopular": "কোন জনপ্রিয় হাদীস নেই",
+  "@hadithNoPopular": {
+    "description": "No popular hadiths message"
+  },
+  "hadithNoRecentlyRead": "কোন সাম্প্রতিক পড়া নেই",
+  "@hadithNoRecentlyRead": {
+    "description": "No recently read message"
+  },
+  "hadithErrorLoadingCollections": "সংকলন লোড করতে সমস্যা",
+  "@hadithErrorLoadingCollections": {
+    "description": "Error loading collections"
+  },
+  "hadithErrorLoadingPopular": "জনপ্রিয় হাদীস লোড করতে সমস্যা",
+  "@hadithErrorLoadingPopular": {
+    "description": "Error loading popular hadiths"
+  },
+  "hadithErrorLoadingRecentlyRead": "সাম্প্রতিক পড়া লোড করতে সমস্যা",
+  "@hadithErrorLoadingRecentlyRead": {
+    "description": "Error loading recently read"
+  },
+  "hadithSearchTitle": "হাদীস অনুসন্ধান",
+  "@hadithSearchTitle": {
+    "description": "Title for Hadith search screen"
+  },
+  "hadithSearchHint": "হাদীস অনুসন্ধান করুন...",
+  "@hadithSearchTitle": {
+    "description": "Hint text for Hadith search"
+  },
+  "hadithSearching": "অনুসন্ধান করা হচ্ছে...",
+  "@hadithSearching": {
+    "description": "Searching message"
+  },
+  "hadithSearchEmpty": "হাদীস অনুসন্ধান করুন",
+  "@hadithSearchEmpty": {
+    "description": "Empty search state message"
+  },
+  "hadithSearchEmptySubtitle": "কীওয়ার্ড দিয়ে অনুসন্ধান করুন",
+  "@hadithSearchEmptySubtitle": {
+    "description": "Empty search state subtitle"
+  },
+  "hadithNoResults": "কোন ফলাফল পাওয়া যায়নি",
+  "@hadithNoResults": {
+    "description": "No search results message"
+  },
+  "hadithNoResultsForQuery": "\"{query}\" এর জন্য কোন হাদীস পাওয়া যায়নি",
+  "@hadithNoResultsForQuery": {
+    "description": "No results for specific query",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "faith"
+      }
+    }
+  },
+  "hadithSearchError": "অনুসন্ধানে সমস্যা হয়েছে",
+  "@hadithSearchError": {
+    "description": "Search error message"
+  },
+  "hadithTryAgain": "আবার চেষ্টা করুন",
+  "@hadithTryAgain": {
+    "description": "Try again button text"
+  },
+  "hadithResultsFound": "{count} টি ফলাফল পাওয়া গেছে",
+  "@hadithResultsFound": {
+    "description": "Search results count",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "hadithNarrator": "বর্ণনাকারী: {name}",
+  "@hadithNarrator": {
+    "description": "Narrator label",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Abu Huraira"
+      }
+    }
+  },
+  "hadithFilters": "ফিল্টার",
+  "@hadithFilters": {
+    "description": "Filters section title"
+  },
+  "hadithCollection": "সংকলন",
+  "@hadithCollection": {
+    "description": "Collection filter label"
+  },
+  "hadithGrade": "গ্রেড",
+  "@hadithGrade": {
+    "description": "Grade filter label"
+  },
+  "hadithTopics": "বিষয়",
+  "@hadithTopics": {
+    "description": "Topics filter label"
+  },
+  "hadithAll": "সব",
+  "@hadithAll": {
+    "description": "All filter option"
+  },
   "@onboardingThemeTitle": {
     "description": "Title for theme selection screen"
   },

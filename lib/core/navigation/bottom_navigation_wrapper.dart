@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
 import '../localization/strings.dart';
 import '../../features/home/presentation/widgets/islamic_bottom_navigation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -116,15 +115,15 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
     switch (widget.currentLocation) {
       case '/':
         return 0;
-      case '/islamic-content':
-        return 1;
       case '/quran':
         return 1;
+      case '/hadith':
+        return 2;
       case '/prayer-times':
         // Treat prayer-times as Home for selection since it renders HomeScreen
         return 0;
       case '/qibla-finder':
-        return 2;
+        return 3; // Move to More tab since we have 4 items now
       default:
         // Settings, profile, etc. go to "More" tab
         if (_isMoreTabRoute(widget.currentLocation)) {
@@ -164,8 +163,8 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
         context.go('/quran');
         break;
       case 2:
-        // Navigate to Hadith/Islamic content
-        context.go('/islamic-content');
+        // Navigate to Hadith module
+        context.go('/hadith');
         break;
       case 3:
         // Navigate to the "More" screen
@@ -177,7 +176,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
   Future<bool> _onWillPop() async {
     try {
       final go = GoRouter.of(context);
-      
+
       // Check if we can safely pop
       if (go.canPop()) {
         go.pop();
@@ -194,7 +193,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
 
       // We are on Home and cannot pop -> confirm exit
       if (!mounted) return true;
-      
+
       final shouldExit = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(

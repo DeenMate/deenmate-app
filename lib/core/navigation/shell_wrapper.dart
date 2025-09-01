@@ -25,6 +25,8 @@ import '../../features/quran/presentation/screens/ruku_reader_screen.dart';
 import '../../features/inheritance/presentation/screens/inheritance_calculator_screen.dart';
 import '../../features/inheritance/presentation/screens/shariah_clarification_screen.dart';
 import '../../core/widgets/content_translation_settings.dart';
+import '../../features/hadith/presentation/screens/hadith_home_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_search_screen_simple.dart';
 
 import '../widgets/themed_widgets.dart';
 import 'bottom_navigation_wrapper.dart';
@@ -48,7 +50,9 @@ class ShellWrapper extends StatelessWidget {
         ? const HomeScreen()
         : state.matchedLocation == '/more'
             ? const MoreScreen()
-            : child;
+            : state.matchedLocation == '/hadith'
+                ? const HadithHomeScreen()
+                : child;
 
     return BottomNavigationWrapper(
       currentLocation: state.matchedLocation,
@@ -218,6 +222,18 @@ class EnhancedAppRouter {
             builder: (context, state) => RukuReaderScreen(
               rukuNumber: int.parse(state.pathParameters['rukuNumber']!),
             ),
+          ),
+
+          // Hadith Module Routes
+          GoRoute(
+            path: '/hadith',
+            name: 'hadith-home',
+            builder: (context, state) => const HadithHomeScreen(),
+          ),
+          GoRoute(
+            path: '/hadith/search',
+            name: 'hadith-search',
+            builder: (context, state) => const HadithSearchScreen(),
           ),
 
           // Secondary routes
