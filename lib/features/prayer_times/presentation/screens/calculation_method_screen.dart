@@ -223,7 +223,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           ),
           const SizedBox(height: 8),
           Text(
-            'Choose from all ${allMethods.length} available calculation methods used worldwide.',
+            AppLocalizations.of(context)!.methodsAllAvailableMethodsCount(allMethods.length),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Colors.grey[600],
             ),
@@ -346,7 +346,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Applied "${method.name}" calculation method'),
+            content: Text(AppLocalizations.of(context)!.methodsApplied(method.name)),
             backgroundColor: Colors.green,
             action: SnackBarAction(
               label: AppLocalizations.of(context)!.methodsView,
@@ -360,7 +360,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to apply method: $e'),
+            content: Text(AppLocalizations.of(context)!.methodsApplyFailed(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -379,18 +379,20 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Prayer time calculation methods use different angles for Fajr and Isha prayers, resulting in slight variations in prayer times.',
+                AppLocalizations.of(context)!.methodsInfoFajrAngle,
               ),
               SizedBox(height: 16),
               Text(
-                'Key Differences:',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                AppLocalizations.of(context)!.methodsInfoIshaAngle,
               ),
-              SizedBox(height: 8),
-              Text('• Fajr Angle: Determines morning prayer time'),
-              Text('• Isha Angle: Determines night prayer time'),
-              Text('• Regional Preferences: Based on local scholarly consensus'),
-              Text('• Madhab Differences: Mainly affect Asr calculation'),
+              SizedBox(height: 16),
+              Text(
+                AppLocalizations.of(context)!.methodsInfoRegionalPref,
+              ),
+              SizedBox(height: 16),
+              Text(
+                AppLocalizations.of(context)!.methodsInfoMadhabDiff,
+              ),
               SizedBox(height: 16),
               Text(
                 'We recommend using the method preferred in your region for consistency with your local Muslim community.',
@@ -413,11 +415,7 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.methodsCustomMethod),
-        content: const Text(
-          'Custom method creation will be available in a future update. '
-          'For now, please choose from the available methods which cover '
-          'most regional preferences worldwide.',
-        ),
+        content: Text(AppLocalizations.of(context)!.methodsCustomComingSoon),
         actions: [
           TextButton(
             onPressed: () => context.pop(),

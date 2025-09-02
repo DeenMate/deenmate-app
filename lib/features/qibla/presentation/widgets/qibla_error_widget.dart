@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../../core/localization/strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Qibla error widget with recovery options
 class QiblaErrorWidget extends StatelessWidget {
@@ -59,7 +60,7 @@ class QiblaErrorWidget extends StatelessWidget {
 
   Widget _buildErrorTitle(BuildContext context) {
     return Text(
-      S.t(context, 'qibla_error', 'Qibla Error'),
+      AppLocalizations.of(context)!.qiblaError,
       style: IslamicTheme.textTheme.headlineSmall?.copyWith(
         color: Colors.white,
         fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class QiblaErrorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            S.t(context, 'error_help_text', 'Please check your device settings and try again.'),
+            AppLocalizations.of(context)!.qiblaErrorHelp,
             style: IslamicTheme.textTheme.bodySmall?.copyWith(
               color: Colors.white.withOpacity(0.7),
             ),
@@ -106,7 +107,7 @@ class QiblaErrorWidget extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: onRetry,
           icon: const Icon(Icons.refresh),
-          label: Text(S.t(context, 'retry', 'Retry')),
+          label: Text(AppLocalizations.of(context)!.commonRetry),
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white,
             foregroundColor: IslamicTheme.islamicGreen,
@@ -117,7 +118,7 @@ class QiblaErrorWidget extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: onCalibrate,
           icon: const Icon(Icons.compass_calibration),
-          label: Text(S.t(context, 'calibrate_compass', 'Calibrate Compass')),
+          label: Text(AppLocalizations.of(context)!.qiblaCalibrateCompass),
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.white.withOpacity(0.9),
             foregroundColor: IslamicTheme.islamicGreen,
@@ -135,7 +136,7 @@ class QiblaErrorWidget extends StatelessWidget {
           },
           icon: const Icon(Icons.help_outline, color: Colors.white),
           label: Text(
-            S.t(context, 'help', 'Help'),
+            AppLocalizations.of(context)!.commonHelp,
             style: const TextStyle(color: Colors.white),
           ),
         ),
@@ -145,13 +146,13 @@ class QiblaErrorWidget extends StatelessWidget {
 
   Widget _buildHelpDialog(BuildContext context) {
     return AlertDialog(
-      title: Text(S.t(context, 'qibla_help', 'Qibla Help')),
+      title: Text(AppLocalizations.of(context)!.qiblaHelpTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            S.t(context, 'help_title', 'Common Issues:'),
+            AppLocalizations.of(context)!.qiblaHelpCommonIssues,
             style: IslamicTheme.textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -159,31 +160,32 @@ class QiblaErrorWidget extends StatelessWidget {
           const SizedBox(height: 12),
           _buildHelpItem(
             context,
-            S.t(context, 'location_permission', 'Location Permission'),
-            S.t(context, 'location_permission_help', 'Make sure location services are enabled and permission is granted.'),
+            AppLocalizations.of(context)!.qiblaHelpLocationPermission,
+            AppLocalizations.of(context)!.qiblaHelpLocationPermissionText,
           ),
           _buildHelpItem(
             context,
-            S.t(context, 'compass_sensor', 'Compass Sensor'),
-            S.t(context, 'compass_sensor_help', 'Ensure your device has a compass sensor and it\'s working properly.'),
+            AppLocalizations.of(context)!.qiblaHelpCompassSensor,
+            AppLocalizations.of(context)!.qiblaHelpCompassSensorText,
           ),
           _buildHelpItem(
             context,
-            S.t(context, 'calibration', 'Calibration'),
-            S.t(context, 'calibration_help', 'Move your device in a figure-8 pattern to calibrate the compass.'),
+            AppLocalizations.of(context)!.qiblaHelpCalibration,
+            AppLocalizations.of(context)!.qiblaHelpCalibrationText,
           ),
         ],
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(S.t(context, 'close', 'Close')),
+          child: Text(AppLocalizations.of(context)!.close),
         ),
       ],
     );
   }
 
-  Widget _buildHelpItem(BuildContext context, String title, String description) {
+  Widget _buildHelpItem(
+      BuildContext context, String title, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(

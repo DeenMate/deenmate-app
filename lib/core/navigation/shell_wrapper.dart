@@ -25,8 +25,12 @@ import '../../features/quran/presentation/screens/ruku_reader_screen.dart';
 import '../../features/inheritance/presentation/screens/inheritance_calculator_screen.dart';
 import '../../features/inheritance/presentation/screens/shariah_clarification_screen.dart';
 import '../../core/widgets/content_translation_settings.dart';
-import '../../features/hadith/presentation/screens/hadith_home_screen.dart';
-import '../../features/hadith/presentation/screens/hadith_search_screen_simple.dart';
+
+// Hadith Module - Clean imports for new screens
+import '../../features/hadith/presentation/screens/hadith_main_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_books_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_search_screen.dart';
+import '../../features/hadith/presentation/screens/hadith_detail_screen.dart';
 
 import '../widgets/themed_widgets.dart';
 import 'bottom_navigation_wrapper.dart';
@@ -50,9 +54,7 @@ class ShellWrapper extends StatelessWidget {
         ? const HomeScreen()
         : state.matchedLocation == '/more'
             ? const MoreScreen()
-            : state.matchedLocation == '/hadith'
-                ? const HadithHomeScreen()
-                : child;
+            : child;
 
     return BottomNavigationWrapper(
       currentLocation: state.matchedLocation,
@@ -224,15 +226,74 @@ class EnhancedAppRouter {
             ),
           ),
 
-          // Hadith Module Routes
+          // Hadith Module Routes - Updated for new screen structure
           GoRoute(
             path: '/hadith',
             name: 'hadith-home',
-            builder: (context, state) => const HadithHomeScreen(),
+            builder: (context, state) => const HadithMainScreen(),
+          ),
+          GoRoute(
+            path: '/hadith/books',
+            name: 'hadith-books',
+            builder: (context, state) => const HadithBooksScreen(),
           ),
           GoRoute(
             path: '/hadith/search',
             name: 'hadith-search',
+            builder: (context, state) {
+              final query = state.uri.queryParameters['q'];
+              return HadithSearchScreen(initialQuery: query);
+            },
+          ),
+          GoRoute(
+            path: '/hadith/detail/:hadithId',
+            name: 'hadith-detail',
+            builder: (context, state) {
+              final hadithId = state.pathParameters['hadithId']!;
+              return HadithDetailScreen(hadithId: hadithId);
+            },
+          ),
+          
+          // Additional Hadith Routes - Fix for missing routes
+          GoRoute(
+            path: '/hadith/bookmarks',
+            name: 'hadith-bookmarks',
+            builder: (context, state) => const HadithMainScreen(), // Placeholder
+          ),
+          
+          GoRoute(
+            path: '/hadith/collections',
+            name: 'hadith-collections',
+            builder: (context, state) => const HadithBooksScreen(),
+          ),
+          
+          GoRoute(
+            path: '/hadith/topics',
+            name: 'hadith-topics',
+            builder: (context, state) => const HadithMainScreen(), // Placeholder
+          ),
+          
+          GoRoute(
+            path: '/hadith/collection/:collectionId',
+            name: 'hadith-collection',
+            builder: (context, state) {
+              final collectionId = state.pathParameters['collectionId']!;
+              return HadithBooksScreen(selectedBookId: collectionId);
+            },
+          ),
+          
+          GoRoute(
+            path: '/hadith/topics/:topicId',
+            name: 'hadith-topic',
+            builder: (context, state) {
+              final topicId = state.pathParameters['topicId']!;
+              return HadithSearchScreen(topicId: topicId);
+            },
+          ),
+          
+          GoRoute(
+            path: '/hadith/advanced-search',
+            name: 'hadith-advanced-search',
             builder: (context, state) => const HadithSearchScreen(),
           ),
 

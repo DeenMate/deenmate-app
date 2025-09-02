@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../prayer_times/domain/entities/prayer_calculation_settings.dart';
@@ -79,7 +80,7 @@ class _MadhhabScreenState extends State<MadhhabScreen> {
 
                       // Title
                       Text(
-                        'Select Your Mazhab',
+                        AppLocalizations.of(context)!.onboardingMadhhabTitle,
                         style: IslamicTheme.textTheme.headlineSmall?.copyWith(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -92,7 +93,7 @@ class _MadhhabScreenState extends State<MadhhabScreen> {
 
                       // Description
                       Text(
-                        'Choose your school of Islamic',
+                        AppLocalizations.of(context)!.onboardingMadhhabSubtitle,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -284,12 +285,14 @@ class _MadhhabScreenState extends State<MadhhabScreen> {
 
   String _getMadhhabDetails(Madhab madhhab) {
     return madhhab == Madhab.hanafi
-        ? 'Most widely followed mazhab'
-        : 'Other major schools of thought';
+        ? AppLocalizations.of(context)!.onboardingMadhhabMostWidelyFollowed
+        : AppLocalizations.of(context)!.onboardingMadhhabOtherSchools;
   }
 
   String _getMadhhabTitle(Madhab madhhab) {
-    return madhhab == Madhab.hanafi ? 'Hanafi' : "Shafi'i, Maliki, Hanbali";
+    return madhhab == Madhab.hanafi
+        ? AppLocalizations.of(context)!.madhhabHanafi
+        : AppLocalizations.of(context)!.madhhabShafiMalikiHanbali;
   }
 
   Widget _buildContinueButton(BuildContext context) {

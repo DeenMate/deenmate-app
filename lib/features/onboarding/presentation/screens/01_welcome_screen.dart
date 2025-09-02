@@ -94,7 +94,7 @@ class WelcomeScreen extends ConsumerWidget {
                   const SizedBox(height: 64),
 
                   // Feature highlights
-                  _buildFeatureHighlights(theme),
+                  _buildFeatureHighlights(context, theme),
 
                   const SizedBox(height: 48),
 
@@ -112,7 +112,7 @@ class WelcomeScreen extends ConsumerWidget {
                   _buildContinueButton(context, theme),
                   const SizedBox(height: 16),
                   Text(
-                    'Tap to continue',
+                    AppLocalizations.of(context)!.onboardingTapToContinue,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
@@ -126,12 +126,25 @@ class WelcomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildFeatureHighlights(ThemeData theme) {
+  Widget _buildFeatureHighlights(BuildContext context, ThemeData theme) {
     final features = [
-      {'icon': Icons.access_time, 'text': 'Accurate Prayer Times'},
-      {'icon': Icons.menu_book, 'text': 'Complete Quran Reading'},
-      {'icon': Icons.explore, 'text': 'Qibla Direction'},
-      {'icon': Icons.notifications, 'text': 'Azan Notifications'},
+      {
+        'icon': Icons.access_time,
+        'text':
+            AppLocalizations.of(context)!.onboardingFeatureAccuratePrayerTimes
+      },
+      {
+        'icon': Icons.menu_book,
+        'text': AppLocalizations.of(context)!.onboardingFeatureCompleteQuran
+      },
+      {
+        'icon': Icons.explore,
+        'text': AppLocalizations.of(context)!.onboardingFeatureQibla
+      },
+      {
+        'icon': Icons.notifications,
+        'text': AppLocalizations.of(context)!.onboardingFeatureAzanNotifications
+      },
     ];
 
     return Container(

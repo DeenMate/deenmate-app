@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../localization/strings.dart';
 import '../../features/home/presentation/widgets/islamic_bottom_navigation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Bottom Navigation Wrapper for DeenMate
 /// Provides Islamic-themed bottom navigation without breaking existing routing
@@ -197,8 +198,8 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       final shouldExit = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Exit DeenMate'),
-          content: const Text('Are you sure you want to exit the app?'),
+          title: Text(AppLocalizations.of(context)!.navigationExitDialogTitle),
+          content: Text(AppLocalizations.of(context)!.navigationExitDialogMessage),
           actions: [
             TextButton(
               onPressed: () {
@@ -206,7 +207,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
                   Navigator.of(context).pop(false);
                 }
               },
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context)!.buttonCancel),
             ),
             TextButton(
               onPressed: () {
@@ -214,7 +215,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
                   Navigator.of(context).pop(true);
                 }
               },
-              child: const Text('Exit'),
+              child: Text(AppLocalizations.of(context)!.exitDialogExit),
             ),
           ],
         ),

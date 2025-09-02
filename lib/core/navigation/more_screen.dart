@@ -112,6 +112,17 @@ class MoreScreen extends ConsumerWidget {
                     '/hadith',
                   ),
 
+                  // HADITH DEMO (Web Scraping)
+                  _buildFeatureCard(
+                    context,
+                    'Hadith Demo',
+                    'হাদিস ডেমো',
+                    Icons.computer,
+                    'Web scraping test (Dev)',
+                    FeatureColors.getColor('prayer', context),
+                    '/hadith-demo',
+                  ),
+
                   // USER FEATURES
                   _buildFeatureCard(
                     context,

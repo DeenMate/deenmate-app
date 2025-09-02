@@ -9,19 +9,19 @@ import 'dart:convert';
 void main(List<String> args) {
   final directory = args.isNotEmpty ? args[0] : 'lib/';
   print('🔍 Scanning for hardcoded strings in: $directory');
-  
+
   final issues = <String>[];
   final excludePatterns = [
-    r"import\s+['\"]", // Import statements
-    r"part\s+['\"]", // Part statements
-    r"//.*['\"]", // Comments
-    r"/\*.*\*/", // Block comments
-    r"@[A-Z]\w*\(['\"]", // Annotations
-    r"assert\s*\(['\"]", // Assert statements
+    "import\\s+[\"']", // Import statements
+    "part\\s+[\"']", // Part statements
+    "//.*[\"']", // Comments
+    "/\\*.*\\*/", // Block comments
+    "@[A-Z]\\w*\\([\"']", // Annotations
+    "assert\\s*\\([\"']", // Assert statements
   ];
-  
+
   scanDirectory(Directory(directory), issues, excludePatterns);
-  
+
   if (issues.isEmpty) {
     print('✅ No hardcoded strings found!');
     exit(0);
@@ -34,7 +34,8 @@ void main(List<String> args) {
   }
 }
 
-void scanDirectory(Directory dir, List<String> issues, List<String> excludePatterns) {
+void scanDirectory(
+    Directory dir, List<String> issues, List<String> excludePatterns) {
   for (final entity in dir.listSync()) {
     if (entity is File && entity.path.endsWith('.dart')) {
       scanFile(entity, issues, excludePatterns);
@@ -47,25 +48,25 @@ void scanDirectory(Directory dir, List<String> issues, List<String> excludePatte
 void scanFile(File file, List<String> issues, List<String> excludePatterns) {
   final content = file.readAsStringSync();
   final lines = content.split('\n');
-  
+
   for (int i = 0; i < lines.length; i++) {
     final line = lines[i];
     final lineNumber = i + 1;
-    
+
     // Skip if line matches exclude patterns
     if (excludePatterns.any((pattern) => RegExp(pattern).hasMatch(line))) {
       continue;
     }
-    
+
     // Look for string literals that might be user-facing
-    final stringMatches = RegExp(r"['\"]([^'\"]{3,})['\"]").allMatches(line);
-    
+    final stringMatches = RegExp("[\"']([^\"']{3,})[\"']").allMatches(line);
+
     for (final match in stringMatches) {
       final stringValue = match.group(1)!;
-      
+
       // Skip common non-user-facing strings
       if (shouldSkipString(stringValue)) continue;
-      
+
       // Check if this looks like user-facing text
       if (isLikelyUserFacingString(stringValue)) {
         issues.add('${file.path}:$lineNumber - "$stringValue"');
@@ -84,7 +85,7 @@ bool shouldSkipString(String value) {
     r'^[a-z]+\.[a-z]+', // Dot notation
     r'^[a-zA-Z]+\([^)]*\)$', // Function calls
   ];
-  
+
   return skipPatterns.any((pattern) => RegExp(pattern).hasMatch(value));
 }
 
@@ -97,8 +98,8 @@ bool isLikelyUserFacingString(String value) {
     r'\b(download|upload|save|delete|cancel)\b', // Action words
     r'[.!?]$', // Ends with punctuation
   ];
-  
-  return userFacingPatterns.any((pattern) => 
-    RegExp(pattern, caseSensitive: false).hasMatch(value)
-  ) && value.length > 5; // Minimum length for meaningful text
+
+  return userFacingPatterns.any(
+          (pattern) => RegExp(pattern, caseSensitive: false).hasMatch(value)) &&
+      value.length > 5; // Minimum length for meaningful text
 }

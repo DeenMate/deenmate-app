@@ -10,6 +10,7 @@ import '../state/providers.dart';
 import '../widgets/translation_picker_widget.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuranReaderScreen extends ConsumerStatefulWidget {
   const QuranReaderScreen({
@@ -708,7 +709,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                 icon: Icon(Icons.headphones,
                     color: ThemeHelper.getPrimaryColor(context)),
                 label: Text(
-                  'Audio Manager',
+                  AppLocalizations.of(context)!.quranAudioManager,
                   style: TextStyle(color: ThemeHelper.getPrimaryColor(context)),
                 ),
                 style: OutlinedButton.styleFrom(
@@ -727,7 +728,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                 icon: Icon(Icons.auto_awesome,
                     color: ThemeHelper.getPrimaryColor(context)),
                 label: Text(
-                  'Auto Scroll',
+                  AppLocalizations.of(context)!.quranAutoScroll,
                   style: TextStyle(color: ThemeHelper.getPrimaryColor(context)),
                 ),
                 style: OutlinedButton.styleFrom(
@@ -811,7 +812,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Translation Loading...',
+                  AppLocalizations.of(context)!.quranTranslationLoading,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -820,7 +821,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Available translations: ${verse.translations.length}\nSelected IDs: ${prefs.selectedTranslationIds.join(', ')}',
+                  '${AppLocalizations.of(context)!.quranAvailableTranslations}: ${verse.translations.length}\n${AppLocalizations.of(context)!.quranSelectedTranslationIds}: ${prefs.selectedTranslationIds.join(', ')}',
                   style: TextStyle(
                     fontSize: 12,
                     color: ThemeHelper.getTextSecondaryColor(context),
@@ -829,7 +830,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Please wait while translations are being loaded...',
+                  AppLocalizations.of(context)!
+                      .quranPleaseWaitWhileTranslationsAreBeingLoaded,
                   style: TextStyle(
                     fontSize: 12,
                     color: ThemeHelper.getTextSecondaryColor(context),
@@ -943,7 +945,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
           border: Border.all(color: Colors.red.withOpacity(0.3)),
         ),
         child: Text(
-          'Failed to load translations',
+          AppLocalizations.of(context)!.quranFailedToLoadTranslations,
           style: TextStyle(
             fontSize: 14,
             color: Colors.red,
@@ -1148,7 +1150,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                         ),
                         Expanded(
                           child: Text(
-                            'Quick Tools',
+                            AppLocalizations.of(context)!.quranQuickTools,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -1197,7 +1199,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Content Settings
                     Text(
-                      'Content',
+                      AppLocalizations.of(context)!.quranContent,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -1208,7 +1210,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Arabic Toggle
                     _buildToggleRow(
-                      'Arabic',
+                      AppLocalizations.of(context)!.quranArabic,
                       prefs.showArabic,
                       (value) => notifier.updateShowArabic(value),
                       context,
@@ -1216,7 +1218,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Translation Toggle
                     _buildToggleRow(
-                      'Translation',
+                      AppLocalizations.of(context)!.quranTranslation,
                       prefs.showTranslation,
                       (value) => notifier.updateShowTranslation(value),
                       context,
@@ -1228,7 +1230,8 @@ class _QuickToolsOverlay extends ConsumerWidget {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         title: Text(
-                          'Translation Settings',
+                          AppLocalizations.of(context)!
+                              .quranTranslationSettings,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -1236,7 +1239,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
                           ),
                         ),
                         subtitle: Text(
-                          '${prefs.selectedTranslationIds.length} selected',
+                          '${prefs.selectedTranslationIds.length} ${AppLocalizations.of(context)!.quranSelectedTranslations}',
                           style: TextStyle(
                             fontSize: 12,
                             color: ThemeHelper.getTextSecondaryColor(context),
@@ -1258,7 +1261,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Font Settings
                     Text(
-                      'Font Settings',
+                      AppLocalizations.of(context)!.quranFontSettings,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -1269,7 +1272,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Arabic Font Size
                     _buildSliderRow(
-                      'Arabic Font Size',
+                      AppLocalizations.of(context)!.quranArabicFontSize,
                       prefs.arabicFontSize,
                       18.0,
                       32.0,
@@ -1279,7 +1282,7 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     // Translation Font Size
                     _buildSliderRow(
-                      'Translation Font Size',
+                      AppLocalizations.of(context)!.quranTranslationFontSize,
                       prefs.translationFontSize,
                       12.0,
                       20.0,
@@ -1383,9 +1386,9 @@ class _AudioManagerSheet extends ConsumerWidget {
         children: [
           Row(
             children: [
-              const Expanded(
-                  child: Text('Audio Manager',
-                      style: TextStyle(
+              Expanded(
+                  child: Text(AppLocalizations.of(context)!.quranAudioManager,
+                      style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600))),
               IconButton(
                 icon: const Icon(Icons.close),
@@ -1396,7 +1399,7 @@ class _AudioManagerSheet extends ConsumerWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              const Text('Reciter:'),
+              Text(AppLocalizations.of(context)!.quranReciterLabel),
               const SizedBox(width: 12),
               Expanded(
                 child: recitations.when(
@@ -1423,7 +1426,8 @@ class _AudioManagerSheet extends ConsumerWidget {
                     },
                   ),
                   loading: () => const LinearProgressIndicator(minHeight: 2),
-                  error: (e, _) => Text('Failed to load reciters: $e'),
+                  error: (e, _) => Text(AppLocalizations.of(context)!
+                      .quranFailedToLoadReciters(e.toString())),
                 ),
               ),
             ],
@@ -1494,9 +1498,9 @@ class _AutoScrollSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Expanded(
-                  child: Text('Auto Scroll',
-                      style: TextStyle(
+              Expanded(
+                  child: Text(AppLocalizations.of(context)!.quranAutoScroll,
+                      style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600))),
               IconButton(
                 icon: const Icon(Icons.close),
@@ -1506,13 +1510,13 @@ class _AutoScrollSheet extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           SwitchListTile(
-            title: const Text('Enable Auto Scroll'),
+            title: Text(AppLocalizations.of(context)!.quranEnableAutoScroll),
             value: isOn,
             onChanged: onToggle,
             contentPadding: EdgeInsets.zero,
           ),
           const SizedBox(height: 8),
-          const Text('Speed (px/sec)'),
+          Text(AppLocalizations.of(context)!.quranSpeedPxSec),
           Slider(
             value: speed.clamp(20, 200),
             min: 20,
@@ -1569,9 +1573,9 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
           children: [
             Row(
               children: [
-                const Expanded(
-                    child: Text('Quick Jump',
-                        style: TextStyle(
+                Expanded(
+                    child: Text(AppLocalizations.of(context)!.quranQuickJump,
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600))),
                 IconButton(
                   icon: const Icon(Icons.close),
@@ -1580,7 +1584,7 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
               ],
             ),
             const SizedBox(height: 8),
-            const Text('Surah'),
+            Text(AppLocalizations.of(context)!.quranSurah),
             const SizedBox(height: 4),
             DropdownButton<int>(
               isExpanded: true,
@@ -1600,14 +1604,17 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
               },
             ),
             const SizedBox(height: 12),
-            const Text('Juz'),
+            Text(AppLocalizations.of(context)!.quranJuz),
             const SizedBox(height: 4),
             DropdownButton<int>(
               isExpanded: true,
               value: _selectedJuz,
               items: [
                 for (int i = 1; i <= 30; i++)
-                  DropdownMenuItem(value: i, child: Text('Juz $i'))
+                  DropdownMenuItem(
+                      value: i,
+                      child:
+                          Text(AppLocalizations.of(context)!.quranJuzItem(i)))
               ],
               onChanged: (v) {
                 if (v == null) return;
@@ -1616,7 +1623,7 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
               },
             ),
             const SizedBox(height: 12),
-            const Text('Go to Ayah (chapter:verse, e.g., 2:255)'),
+            Text(AppLocalizations.of(context)!.quranGoToAyahHint),
             const SizedBox(height: 4),
             Row(
               children: [
@@ -1624,8 +1631,9 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
                   child: TextField(
                     controller: _ayahCtrl,
                     keyboardType: TextInputType.text,
-                    decoration:
-                        const InputDecoration(hintText: 'e.g., 18:10 or 36:1'),
+                    decoration: InputDecoration(
+                        hintText:
+                            AppLocalizations.of(context)!.quranExampleAyahHint),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -1640,7 +1648,7 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
                     if (c == null || v == null) return;
                     widget.onGoToAyah(c, '$c:$v');
                   },
-                  child: const Text('Go'),
+                  child: Text(AppLocalizations.of(context)!.quranGoButton),
                 )
               ],
             )
@@ -1673,7 +1681,7 @@ class _VerseOptionsSheet extends ConsumerWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Verse Options',
+                  AppLocalizations.of(context)!.quranVerseOptions,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -1694,8 +1702,9 @@ class _VerseOptionsSheet extends ConsumerWidget {
           ListTile(
             leading:
                 Icon(Icons.copy, color: ThemeHelper.getPrimaryColor(context)),
-            title: const Text('Copy Arabic Text'),
-            subtitle: const Text('Copy only the Arabic verse'),
+            title: Text(AppLocalizations.of(context)!.quranCopyArabicText),
+            subtitle:
+                Text(AppLocalizations.of(context)!.quranCopyOnlyArabicVerse),
             onTap: () {
               _copyArabicText(context);
               Navigator.pop(context);
@@ -1707,8 +1716,9 @@ class _VerseOptionsSheet extends ConsumerWidget {
             ListTile(
               leading: Icon(Icons.translate,
                   color: ThemeHelper.getPrimaryColor(context)),
-              title: const Text('Copy Translation'),
-              subtitle: const Text('Copy only the translation'),
+              title: Text(AppLocalizations.of(context)!.quranCopyTranslation),
+              subtitle:
+                  Text(AppLocalizations.of(context)!.quranCopyOnlyTranslation),
               onTap: () {
                 _copyTranslation(context);
                 Navigator.pop(context);
@@ -1719,8 +1729,9 @@ class _VerseOptionsSheet extends ConsumerWidget {
           ListTile(
             leading: Icon(Icons.content_copy,
                 color: ThemeHelper.getPrimaryColor(context)),
-            title: const Text('Copy Full Verse'),
-            subtitle: const Text('Copy Arabic text with translation'),
+            title: Text(AppLocalizations.of(context)!.quranCopyFullVerse),
+            subtitle: Text(
+                AppLocalizations.of(context)!.quranCopyArabicWithTranslation),
             onTap: () {
               _copyFullVerse(context, ref);
               Navigator.pop(context);
@@ -1730,8 +1741,10 @@ class _VerseOptionsSheet extends ConsumerWidget {
           // Report Error
           ListTile(
             leading: Icon(Icons.report_problem, color: Colors.orange),
-            title: const Text('Report Translation Error'),
-            subtitle: const Text('Help improve translation accuracy'),
+            title:
+                Text(AppLocalizations.of(context)!.quranReportTranslationError),
+            subtitle: Text(AppLocalizations.of(context)!
+                .quranHelpImproveTranslationAccuracy),
             onTap: () {
               Navigator.pop(context);
               _showReportDialog(context);
@@ -1744,7 +1757,8 @@ class _VerseOptionsSheet extends ConsumerWidget {
 
   void _copyArabicText(BuildContext context) {
     Clipboard.setData(ClipboardData(text: verse.textUthmani));
-    _showCopySuccess(context, 'Arabic text copied');
+    _showCopySuccess(
+        context, AppLocalizations.of(context)!.quranArabicTextCopied);
   }
 
   void _copyTranslation(BuildContext context) {
@@ -1756,7 +1770,8 @@ class _VerseOptionsSheet extends ConsumerWidget {
         .trim();
 
     Clipboard.setData(ClipboardData(text: cleanText));
-    _showCopySuccess(context, 'Translation copied');
+    _showCopySuccess(
+        context, AppLocalizations.of(context)!.quranTranslationCopied);
   }
 
   void _copyFullVerse(BuildContext context, WidgetRef ref) {
@@ -1786,7 +1801,8 @@ ${chapter.nameSimple} ${verse.verseNumber} (${verse.verseKey})
 ''';
 
       Clipboard.setData(ClipboardData(text: fullText));
-      _showCopySuccess(context, 'Full verse copied');
+      _showCopySuccess(
+          context, AppLocalizations.of(context)!.quranFullVerseCopied);
     });
   }
 
@@ -1805,22 +1821,23 @@ ${chapter.nameSimple} ${verse.verseNumber} (${verse.verseKey})
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Report Translation Error'),
+        title: Text(
+            AppLocalizations.of(context)!.quranReportTranslationErrorTitle),
         content: Text(
-          'Thank you for helping improve the Quran translation. '
-          'Please email us at support@deenmate.app with details about the error in verse ${verse.verseKey}.',
+          '${AppLocalizations.of(context)!.quranThankYouForHelpingImproveQuranTranslation}. '
+          '${AppLocalizations.of(context)!.quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse(verse.verseKey)}.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(AppLocalizations.of(context)!.quranClose),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               // Could implement email functionality here
             },
-            child: const Text('Send Email'),
+            child: Text(AppLocalizations.of(context)!.quranSendEmail),
           ),
         ],
       ),

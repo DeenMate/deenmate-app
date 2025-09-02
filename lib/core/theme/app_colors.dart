@@ -33,6 +33,14 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color mintCard;
   final Color iconMuted;
 
+  // Static color constants for direct access (used by Zakat module)
+  static const Color primary = Color(0xFF626126);
+  static const Color success = Color(0xFF4CAF50);
+  static const Color warning = Color(0xFFFF9800);
+  static const Color error = Color(0xFFF44336);
+  static const Color info = Color(0xFF2196F3);
+  static const Color borderColor = Color(0xFFD6CBB3);
+
   static const AppColors light = AppColors(
     background: Color(0xFFFEFBFA),
     card: Color(0xFFF9F1EC),

@@ -16,14 +16,21 @@ class NotificationsScreen extends ConsumerStatefulWidget {
   const NotificationsScreen({super.key, this.onNext, this.onPrevious});
 
   @override
-  ConsumerState<NotificationsScreen> createState() => _NotificationsScreenState();
+  ConsumerState<NotificationsScreen> createState() =>
+      _NotificationsScreenState();
 }
 
 class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   bool _enableNotifications = true;
   bool _enableAthan = true;
   bool _enableReminders = true;
-  final List<String> _selectedPrayers = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  final List<String> _selectedPrayers = [
+    'fajr',
+    'dhuhr',
+    'asr',
+    'maghrib',
+    'isha'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +48,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   color: const Color(0xFF2E7D32).withOpacity(0.05),
                 ),
               ),
-              
+
               // Progress indicator
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
@@ -50,7 +57,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   totalSteps: 8,
                 ),
               ),
-              
+
               // Main content
               Expanded(
                 child: Padding(
@@ -58,7 +65,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   child: Column(
                     children: [
                       const SizedBox(height: 40),
-                      
+
                       // Header icon
                       Container(
                         width: 70,
@@ -78,12 +85,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Title
                       Text(
-                        'Enable Azan & Salah Notifications?',
+                        AppLocalizations.of(context)!
+                            .onboardingEnableAthanAndSalah,
                         style: IslamicTheme.textTheme.headlineSmall?.copyWith(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -91,12 +99,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 16),
-                      
+
                       // Description
                       Text(
-                        AppLocalizations.of(context)!.onboardingNotificationDescription1,
+                        AppLocalizations.of(context)!
+                            .onboardingNotificationDescription1,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -104,9 +113,10 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       Text(
-                        AppLocalizations.of(context)!.onboardingNotificationDescription2,
+                        AppLocalizations.of(context)!
+                            .onboardingNotificationDescription2,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -114,16 +124,18 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Notification options
                       Expanded(
                         child: ListView(
                           children: [
                             _buildNotificationOption(
-                              title: AppLocalizations.of(context)!.onboardingNotificationEnable,
-                              subtitle: AppLocalizations.of(context)!.onboardingNotificationEnableSubtitle,
+                              title: AppLocalizations.of(context)!
+                                  .onboardingNotificationEnable,
+                              subtitle: AppLocalizations.of(context)!
+                                  .onboardingNotificationEnableSubtitle,
                               icon: '🕌',
                               isSelected: _enableNotifications,
                               onTap: () {
@@ -134,8 +146,10 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                             ),
                             const SizedBox(height: 16),
                             _buildNotificationOption(
-                              title: AppLocalizations.of(context)!.onboardingNotificationDisable,
-                              subtitle: AppLocalizations.of(context)!.onboardingNotificationDisableSubtitle,
+                              title: AppLocalizations.of(context)!
+                                  .onboardingNotificationDisable,
+                              subtitle: AppLocalizations.of(context)!
+                                  .onboardingNotificationDisableSubtitle,
                               icon: '🔕',
                               isSelected: !_enableNotifications,
                               onTap: () {
@@ -144,7 +158,6 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                                 });
                               },
                             ),
-                            
                             if (_enableNotifications) ...[
                               const SizedBox(height: 24),
                               _buildPrayerSelectionSection(),
@@ -152,12 +165,12 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                           ],
                         ),
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Continue button
                       _buildContinueButton(context),
-                      
+
                       const SizedBox(height: 20),
                     ],
                   ),
@@ -182,14 +195,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: isSelected 
+          color: isSelected
               ? const Color(0xFFE8F5E8).withOpacity(0.8)
               : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected 
-                ? const Color(0xFF4CAF50)
-                : const Color(0xFFE0E0E0),
+            color:
+                isSelected ? const Color(0xFF4CAF50) : const Color(0xFFE0E0E0),
             width: isSelected ? 2 : 1,
           ),
           boxShadow: [
@@ -207,7 +219,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: isSelected 
+                color: isSelected
                     ? const Color(0xFF4CAF50).withOpacity(0.1)
                     : const Color(0xFFF8F9FA),
                 borderRadius: BorderRadius.circular(8),
@@ -219,9 +231,9 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                 ),
               ),
             ),
-            
+
             const SizedBox(width: 16),
-            
+
             // Text content
             Expanded(
               child: Column(
@@ -232,7 +244,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                     style: IslamicTheme.textTheme.titleMedium?.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: isSelected 
+                      color: isSelected
                           ? const Color(0xFF2E7D32)
                           : const Color(0xFF2E2E2E),
                     ),
@@ -248,13 +260,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                 ],
               ),
             ),
-            
+
             // Toggle switch
             Container(
               width: 50,
               height: 26,
               decoration: BoxDecoration(
-                color: isSelected 
+                color: isSelected
                     ? const Color(0xFF4CAF50)
                     : const Color(0xFFE0E0E0),
                 borderRadius: BorderRadius.circular(13),
@@ -314,7 +326,8 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
               ),
               const SizedBox(width: 12),
               Text(
-                AppLocalizations.of(context)!.onboardingNotificationSelectPrayers,
+                AppLocalizations.of(context)!
+                    .onboardingNotificationSelectPrayers,
                 style: IslamicTheme.textTheme.titleMedium?.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -332,7 +345,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
 
   Widget _buildPrayerCheckbox(String prayer) {
     final isEnabled = _selectedPrayers.contains(prayer);
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -426,7 +439,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
       await prefs.setBool('athan_enabled', _enableAthan);
       await prefs.setBool('prayer_reminders_enabled', _enableReminders);
       await prefs.setStringList('enabled_prayers', _selectedPrayers);
-      
+
       // Initialize notification service if notifications are enabled
       if (_enableNotifications) {
         try {
@@ -435,23 +448,25 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
           // Handle notification initialization error
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Notifications setup will be completed later. You can enable them in settings.'),
+              SnackBar(
+                content: Text(AppLocalizations.of(context)!
+                    .onboardingNotificationsSetupLater),
                 backgroundColor: Colors.orange,
               ),
             );
           }
         }
       }
-      
+
       // Navigate to next onboarding screen
       widget.onNext?.call();
     } catch (e) {
       // Handle error - still navigate but show warning
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Notification preferences saved with defaults. You can change them later in settings.'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!
+                .onboardingNotificationsSavedWithDefaults),
             backgroundColor: Colors.orange,
           ),
         );

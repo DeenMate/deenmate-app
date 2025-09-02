@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../providers/onboarding_providers.dart';
 import '01_welcome_screen.dart';
@@ -30,41 +31,41 @@ class _OnboardingNavigationScreenState
   List<OnboardingPage> get _pages => [
         OnboardingPage(
           screen: WelcomeScreen(onNext: _nextPage),
-          title: 'Welcome',
+          title: AppLocalizations.of(context)!.onboardingWelcomeTitle,
         ),
         OnboardingPage(
           screen: UsernameScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Username',
+          title: AppLocalizations.of(context)!.onboardingUsernameTitle,
         ),
         OnboardingPage(
           screen: LanguageScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Language',
+          title: AppLocalizations.of(context)!.onboardingLanguageTitle,
         ),
         OnboardingPage(
           screen: LocationScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Location',
+          title: AppLocalizations.of(context)!.onboardingLocationTitle,
         ),
         OnboardingPage(
           screen: CalculationMethodScreen(
               onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Calculation Method',
+          title: AppLocalizations.of(context)!.onboardingCalculationTitle,
         ),
         OnboardingPage(
           screen: MadhhabScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Madhhab',
+          title: AppLocalizations.of(context)!.onboardingMadhhabTitle,
         ),
         OnboardingPage(
           screen:
               NotificationsScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Notifications',
+          title: AppLocalizations.of(context)!.onboardingNotificationsTitle,
         ),
         OnboardingPage(
           screen: ThemeScreen(onNext: _nextPage, onPrevious: _previousPage),
-          title: 'Theme',
+          title: AppLocalizations.of(context)!.onboardingThemeTitle,
         ),
         OnboardingPage(
           screen: CompleteScreen(onComplete: _nextPage),
-          title: 'Complete',
+          title: AppLocalizations.of(context)!.onboardingCompleteTitle,
         ),
       ];
 
@@ -151,7 +152,7 @@ class _OnboardingNavigationScreenState
                 if (_currentPage < _pages.length - 1)
                   TextButton(
                     onPressed: _skipOnboarding,
-                    child: const Text('Skip'),
+                    child: Text(AppLocalizations.of(context)!.commonSkip),
                   ),
               ],
             ),

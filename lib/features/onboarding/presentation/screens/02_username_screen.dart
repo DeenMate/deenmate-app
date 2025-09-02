@@ -120,7 +120,8 @@ class _UsernameScreenState extends State<UsernameScreen> {
                     child: TextField(
                       controller: _usernameController,
                       decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)!.onboardingUsernameHint,
+                        hintText: AppLocalizations.of(context)!
+                            .onboardingUsernameHint,
                         hintStyle: GoogleFonts.notoSans(
                           color: Colors.grey[400],
                         ),
@@ -152,7 +153,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                   // Validation message
                   if (_usernameController.text.isNotEmpty && !_isValid)
                     Text(
-                      'Name must be at least 2 characters long',
+                      AppLocalizations.of(context)!.onboardingNameTooShort,
                       style: GoogleFonts.notoSans(
                         fontSize: 14,
                         color: Theme.of(context).colorScheme.error,
@@ -168,7 +169,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
                         _buildContinueButton(),
                         const SizedBox(height: 16),
                         Text(
-                          'Tap to continue',
+                          AppLocalizations.of(context)!.onboardingTapToContinue,
                           style: GoogleFonts.notoSans(
                             fontSize: 14,
                             color:

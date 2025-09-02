@@ -31,7 +31,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get onboardingUsernameSubtitle => 'আপনার নাম বা পছন্দের ডাকনাম লিখুন';
 
   @override
-  String get onboardingLocationTitle => 'আপনার অবস্থান সেট করুন';
+  String get onboardingLocationTitle => 'অবস্থান';
 
   @override
   String get onboardingLocationSubtitle =>
@@ -80,7 +80,19 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get onboardingMadhhabSubtitle =>
-      'আপনার ইসলামিক চিন্তাধারা নির্বাচন করুন';
+      'নামাজ গণনার জন্য আপনার ফিকাহ্ মাযহাব নির্বাচন করুন';
+
+  @override
+  String get onboardingMadhhabMostWidelyFollowed => 'সবচেয়ে অনুসৃত মাযহাব';
+
+  @override
+  String get onboardingMadhhabOtherSchools => 'অন্যান্য প্রধান মাজহাবসমূহ';
+
+  @override
+  String get madhhabHanafi => 'হানাফি';
+
+  @override
+  String get madhhabShafiMalikiHanbali => 'শাফেয়ি, মালিকি, হাম্বলি';
 
   @override
   String get onboardingNotificationsTitle => 'বিজ্ঞপ্তি';
@@ -176,7 +188,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String hadithResultsFound(int count) {
-    return '$count টি ফলাফল পাওয়া গেছে';
+    return '$countটি হাদিস পাওয়া গেছে';
   }
 
   @override
@@ -197,15 +209,47 @@ class AppLocalizationsBn extends AppLocalizations {
   String get hadithAll => 'সব';
 
   @override
+  String get hadithTodaysHadith => 'আজকের হাদিস';
+
+  @override
+  String get hadithSearchHintWithShortcut => 'হাদিস সার্চ করুন (Ctrl+K)';
+
+  @override
+  String get hadithPopularBooks => 'জনপ্রিয় বই';
+
+  @override
+  String get hadithPopularTopics => 'জনপ্রিয় বিষয়';
+
+  @override
+  String get hadithExploreMore => 'আরও দেখুন';
+
+  @override
+  String get hadithViewAll => 'সব দেখুন';
+
+  @override
+  String get hadithBooksTitle => 'হাদিস বই';
+
+  @override
+  String get hadithMainTitle => 'হাদিস';
+
+  @override
   String get onboardingThemeSubtitle =>
       'আপনার পছন্দের দৃশ্য শৈলী নির্বাচন করুন';
 
   @override
-  String get onboardingCompleteTitle => 'আপনি প্রস্তুত!';
+  String get onboardingCompleteTitle => 'সেটআপ সম্পন্ন!';
 
   @override
-  String get onboardingCompleteSubtitle =>
-      'দীনমেটে স্বাগতম। চলুন আপনার যাত্রা শুরু করি।';
+  String get onboardingCompleteSubtitle => 'আপনার ডিনমেট এখন ব্যবহার উপযোগী';
+
+  @override
+  String get onboardingFeaturesTitle => 'ফিচারসমূহ';
+
+  @override
+  String get onboardingGetStarted => 'শুরু করুন';
+
+  @override
+  String get errorSavingPreferences => 'পছন্দ সংরক্ষণে ত্রুটি';
 
   @override
   String get navigationHome => 'হোম';
@@ -521,11 +565,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get errorLanguageChangeFailed =>
-      'ভাষা পরিবর্তন করতে ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
+      'ভাষা পছন্দ সংরক্ষণ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।';
 
   @override
   String get errorLanguageChangeGeneric =>
-      'ভাষা পরিবর্তন করার সময় একটি ত্রুটি ঘটেছে।';
+      'একটি ত্রুটি ঘটেছে। আবার চেষ্টা করুন।';
 
   @override
   String get infoLocationRequired =>
@@ -1879,8 +1923,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get athanSettingsTitle => 'আযান সেটিংস';
 
   @override
-  String get athanSettingsSubtitle =>
-      'নামাজের আহ্বানের অডিও এবং ভলিউম কাস্টমাইজ করুন';
+  String get athanSettingsSubtitle => 'নামাজের সময় হলে আজানের নোটিফিকেশন';
 
   @override
   String get prayerNotificationsTitle => 'নামাজের বিজ্ঞপ্তি';
@@ -2411,4 +2454,488 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get close => 'বন্ধ করুন';
+
+  @override
+  String get hadithSearchDetailedHint => 'হাদিস খুঁজুন... (যেমন: নিয়ত, আমল)';
+
+  @override
+  String get hadithSearchButton => 'খুঁজুন';
+
+  @override
+  String get hadithSearchingProgress => 'খুঁজছি...';
+
+  @override
+  String get hadithPopularSearches => 'জনপ্রিয় খোঁজ';
+
+  @override
+  String get hadithRecentSearches => 'সাম্প্রতিক খোঁজ';
+
+  @override
+  String get hadithNoRecentSearches => 'এখনো কোনো সাম্প্রতিক খোঁজ নেই';
+
+  @override
+  String get hadithSearchLoadingMessage => 'হাদিস খুঁজছি...';
+
+  @override
+  String get hadithNoResultsFound => 'কোনো হাদিস পাওয়া যায়নি';
+
+  @override
+  String hadithNoResultsFoundDetails(String query) {
+    return '\'$query\' এর জন্য কোনো হাদিস খুঁজে পাওয়া যায়নি। অন্য কিছু খুঁজে দেখুন।';
+  }
+
+  @override
+  String get hadithTryDifferentSearch => 'ভিন্ন অনুসন্ধান করুন';
+
+  @override
+  String get hadithClearSearch => 'অনুসন্ধান পরিষ্কার করুন';
+
+  @override
+  String get hadithChangeFilter => 'ফিল্টার পরিবর্তন';
+
+  @override
+  String hadithSearchContextFor(String query) {
+    return '\'$query\' এর জন্য';
+  }
+
+  @override
+  String get hadithBooksScreenTitle => 'হাদিসের বইসমূহ';
+
+  @override
+  String get hadithBooksSearchHint => 'হাদিসের বই খুঁজুন...';
+
+  @override
+  String get hadithBooksFilterAll => 'সব বই';
+
+  @override
+  String get hadithBooksFilterPopular => 'জনপ্রিয়';
+
+  @override
+  String get hadithBooksFilterKutubSittah => 'কুতুব সিত্তাহ';
+
+  @override
+  String hadithBooksCountText(int count) {
+    return '$count হাদিস';
+  }
+
+  @override
+  String get hadithBooksPopularLabel => 'জনপ্রিয়';
+
+  @override
+  String get hadithBooksNoBooksFound => 'কোনো বই পাওয়া যায়নি';
+
+  @override
+  String get hadithBooksEmptyStateSubtitle =>
+      'অন্য কিছু খুঁজে দেখুন বা ফিল্টার পরিবর্তন করুন';
+
+  @override
+  String get hadithBooksShowAllBooks => 'সব বই দেখুন';
+
+  @override
+  String get hadithPopularBooksSubtitle =>
+      'ইসলামের আলোকে জীবন সাজাতে মূল্যবান হাদিস গ্রন্থসমূহ';
+
+  @override
+  String get hadithPopularTopicsSubtitle =>
+      'জীবনের সকল ক্ষেত্রে সহায়ক বিভিন্ন বিষয়ভিত্তিক হাদিসের কালেকশন';
+
+  @override
+  String hadithTotalCount(int count) {
+    return 'মোট হাদিস $count';
+  }
+
+  @override
+  String get hadithBookmarkTitle => 'বুকমার্ক';
+
+  @override
+  String get hadithBookmarkSubtitle => 'সংরক্ষিত হাদিস';
+
+  @override
+  String get hadithQuickAccess => 'দ্রুত অ্যাক্সেস';
+
+  @override
+  String get hadithAdvancedSearch => 'উন্নত সার্চ';
+
+  @override
+  String get hadithAdvancedSearchSubtitle => 'বিস্তারিত সার্চ করুন';
+
+  @override
+  String get hadithDetailCopy => 'কপি করুন';
+
+  @override
+  String get hadithDetailShare => 'শেয়ার করুন';
+
+  @override
+  String get hadithDetailSettings => 'সেটিংস';
+
+  @override
+  String hadithDetailNumber(String number) {
+    return 'হাদিস নম্বর $number';
+  }
+
+  @override
+  String get hadithDetailArabicText => 'আরবি';
+
+  @override
+  String get hadithDetailTranslation => 'বাংলা অনুবাদ';
+
+  @override
+  String get hadithDetailFontSize => 'ফন্ট সাইজ';
+
+  @override
+  String get hadithDetailArabicLabel => 'আরবি';
+
+  @override
+  String get hadithDetailTranslationLabel => 'অনুবাদ';
+
+  @override
+  String get hadithDetailReferenceInfo => 'রেফারেন্স তথ্য';
+
+  @override
+  String get hadithDetailNarrator => 'বর্ণনাকারী';
+
+  @override
+  String get hadithDetailChapter => 'অধ্যায়';
+
+  @override
+  String get hadithDetailGrade => 'গ্রেড';
+
+  @override
+  String get hadithDetailReference => 'রেফারেন্স';
+
+  @override
+  String get hadithDetailRelatedTopics => 'সম্পর্কিত বিষয়';
+
+  @override
+  String get hadithDetailCopyFull => 'সম্পূর্ণ কপি';
+
+  @override
+  String get hadithDetailShareButton => 'শেয়ার';
+
+  @override
+  String get hadithDetailBookmarkAdded => 'হাদিস বুকমার্ক করা হয়েছে';
+
+  @override
+  String get hadithDetailBookmarkRemoved => 'বুকমার্ক সরানো হয়েছে';
+
+  @override
+  String get hadithDetailCopied => 'কপি করা হয়েছে';
+
+  @override
+  String get hadithDetailShared => 'শেয়ার করা হয়েছে';
+
+  @override
+  String hadithShareTemplate(String arabicText, String bengaliText,
+      String reference, String narrator) {
+    return '$arabicText\n\n$bengaliText\n\nরেফারেন্স: $reference\nবর্ণনাকারী: $narrator';
+  }
+
+  @override
+  String hadithTopicFormat(String order, String name) {
+    return '০$order $name';
+  }
+
+  @override
+  String hadithReferenceLabel(String reference) {
+    return 'রেফারেন্স: $reference';
+  }
+
+  @override
+  String hadithNarratorLabel(String narrator) {
+    return 'বর্ণনাকারী: $narrator';
+  }
+
+  @override
+  String hadithChapterLabel(String chapter) {
+    return 'অধ্যায়: $chapter';
+  }
+
+  @override
+  String get quranAudioManager => 'অডিও ম্যানেজার';
+
+  @override
+  String get quranReciterLabel => 'কারি:';
+
+  @override
+  String quranFailedToLoadReciters(String error) {
+    return 'কারি লোড করতে ব্যর্থ: $error';
+  }
+
+  @override
+  String get audioDownloadStarting => 'ডাউনলোড শুরু হচ্ছে...';
+
+  @override
+  String audioDownloadProgress(String name, num progress) {
+    return '$name ডাউনলোড হচ্ছে: $progress%';
+  }
+
+  @override
+  String get audioDownloadComplete => 'ডাউনলোড সম্পূর্ণ';
+
+  @override
+  String audioStorageUsed(String size) {
+    return 'ব্যবহৃত স্টোরেজ: $size';
+  }
+
+  @override
+  String get audioSelectReciter => 'কারি নির্বাচন করুন';
+
+  @override
+  String get zakatTitle => 'যাকাত ক্যালকুলেটর';
+
+  @override
+  String get zakatResetDialogTitle => 'ক্যালকুলেটর রিসেট';
+
+  @override
+  String get zakatResetDialogMessage => 'সব প্রবেশ করানো ডেটা মুছে ফেলবেন?';
+
+  @override
+  String get zakatResetSuccess => 'ক্যালকুলেটর সফলভাবে রিসেট হয়েছে';
+
+  @override
+  String get zakatResetFormTooltip => 'ফর্ম রিসেট';
+
+  @override
+  String get zakatCalculate => 'যাকাত হিসাব করুন';
+
+  @override
+  String get zakatCalculating => 'হিসাব করা হচ্ছে...';
+
+  @override
+  String get commonReset => 'রিসেট';
+
+  @override
+  String get quranGoToAyahHint => 'আয়াতে যান (সুরা:আয়াত)';
+
+  @override
+  String get quranExampleAyahHint => 'যেমন: ২:২৫৫';
+
+  @override
+  String get quranGoButton => 'যান';
+
+  @override
+  String get quranVerseOptions => 'আয়াতের অপশন';
+
+  @override
+  String quranJuzItem(int number) {
+    return 'জুজ $number';
+  }
+
+  @override
+  String zakatCalcError(String error) {
+    return 'যাকাত হিসাব করতে ত্রুটি: $error';
+  }
+
+  @override
+  String get zakatCalculationSuccess => 'যাকাত হিসাব সফলভাবে সম্পন্ন হয়েছে';
+
+  @override
+  String zakatUnableToLoadNisab(String error) {
+    return 'নিসাব তথ্য লোড করা যায়নি: $error';
+  }
+
+  @override
+  String get zakatCalculationError => 'হিসাব ত্রুটি';
+
+  @override
+  String get zakatAboutTitle => 'যাকাত সম্পর্কে';
+
+  @override
+  String get zakatAboutBody =>
+      'যাকাত ইসলামের পাঁচটি স্তম্ভের একটি। আপনার সম্পদের ২.৫% যাকাত দিতে হয় যখন আপনার সম্পদ এক হিজরি বছর নিসাবের উপরে থাকে।';
+
+  @override
+  String get zakatCurrencyLabel => 'মুদ্রা';
+
+  @override
+  String zakatCurrencyName(String code) {
+    return '$code';
+  }
+
+  @override
+  String get zakatInvalidAmount => 'একটি সঠিক পরিমাণ লিখুন';
+
+  @override
+  String methodsAllAvailableMethodsCount(int count) {
+    return 'বিশ্বব্যাপী $countটি উপলভ্য গণনা পদ্ধতি থেকে বেছে নিন।';
+  }
+
+  @override
+  String get methodsCreateCustomAngles =>
+      'নিজস্ব ফজর ও ইশা কোণ দিয়ে কাস্টম পদ্ধতি তৈরি করুন।';
+
+  @override
+  String methodsApplied(String name) {
+    return '\"$name\" গণনা পদ্ধতি প্রয়োগ হয়েছে';
+  }
+
+  @override
+  String methodsApplyFailed(String error) {
+    return 'পদ্ধতি প্রয়োগ ব্যর্থ: $error';
+  }
+
+  @override
+  String get methodsInfoFajrAngle => '• ফজর কোণ: ফজরের সময় নির্ধারণ করে';
+
+  @override
+  String get methodsInfoIshaAngle => '• ইশা কোণ: ইশার সময় নির্ধারণ করে';
+
+  @override
+  String get methodsInfoRegionalPref =>
+      '• আঞ্চলিক পছন্দ: স্থানীয় আলেমদের মতামতের ভিত্তিতে';
+
+  @override
+  String get methodsInfoMadhabDiff =>
+      '• মাযহাবগত পার্থক্য: মূলত আসরের হিসাবকে প্রভাবিত করে';
+
+  @override
+  String get methodsCustomComingSoon => 'কাস্টম পদ্ধতি ভবিষ্যৎ আপডেটে আসছে।';
+
+  @override
+  String get athanSettingsTestNotificationMessage =>
+      'এটি একটি পরীক্ষামূলক নামাজ নোটিফিকেশন';
+
+  @override
+  String get athanSettingsDemoNotificationMessage =>
+      'এটি আজানসহ একটি ডেমো নোটিফিকেশন';
+
+  @override
+  String get athanSettingsImmediateTestMessage =>
+      'এটি একটি তাৎক্ষণিক পরীক্ষামূলক নোটিফিকেশন';
+
+  @override
+  String get labelImmediateNotification => 'তাৎক্ষণিক নোটিফিকেশন';
+
+  @override
+  String get qiblaCalibrateFigure8 =>
+      'আপনার ডিভাইসকে ফিগার-৮ আকারে নাড়িয়ে কম্পাস ক্যালিব্রেট করুন';
+
+  @override
+  String get qiblaErrorInitializingCompass => 'কম্পাস চালু করতে ত্রুটি';
+
+  @override
+  String get qiblaErrorGettingLocation => 'অবস্থান পেতে ত্রুটি';
+
+  @override
+  String get qiblaCalibratingCompass => 'কম্পাস ক্যালিব্রেট করা হচ্ছে...';
+
+  @override
+  String get qiblaDirectionPerfect => 'দিক ঠিক আছে';
+
+  @override
+  String get qiblaTurnRight => 'ডান দিকে ঘুরুন';
+
+  @override
+  String get qiblaTurnAround => 'ঘুরে দাঁড়ান';
+
+  @override
+  String get qiblaTurnLeft => 'বাম দিকে ঘুরুন';
+
+  @override
+  String get qiblaAccuracyExcellent => 'চমৎকার';
+
+  @override
+  String get qiblaAccuracyGood => 'ভাল';
+
+  @override
+  String get qiblaAccuracyFair => 'মোটামুটি';
+
+  @override
+  String get qiblaAccuracyPoor => 'দুর্বল';
+
+  @override
+  String get qiblaError => 'কিবলা ত্রুটি';
+
+  @override
+  String get qiblaErrorHelp => 'আপনার ডিভাইস সেটিংস চেক করে আবার চেষ্টা করুন।';
+
+  @override
+  String get qiblaCalibrateCompass => 'কম্পাস ক্যালিব্রেট';
+
+  @override
+  String get qiblaHelpTitle => 'কিবলা সহায়তা';
+
+  @override
+  String get qiblaHelpCommonIssues => 'সাধারণ সমস্যা:';
+
+  @override
+  String get qiblaHelpLocationPermission => 'লোকেশন অনুমতি';
+
+  @override
+  String get qiblaHelpLocationPermissionText =>
+      'লোকেশন সার্ভিস চালু আছে এবং অনুমতি দেওয়া হয়েছে তা নিশ্চিত করুন।';
+
+  @override
+  String get qiblaHelpCompassSensor => 'কম্পাস সেন্সর';
+
+  @override
+  String get qiblaHelpCompassSensorText =>
+      'আপনার ডিভাইসে কম্পাস সেন্সর আছে এবং ঠিকভাবে কাজ করছে তা নিশ্চিত করুন।';
+
+  @override
+  String get qiblaHelpCalibration => 'ক্যালিব্রেশন';
+
+  @override
+  String get qiblaHelpCalibrationText =>
+      'কম্পাস ক্যালিব্রেট করতে ডিভাইসকে ফিগার-৮ আকারে নাড়ান।';
+
+  @override
+  String onboardingStepOfTotal(int step, int total) {
+    return 'ধাপ $step মোট $total এর মধ্যে';
+  }
+
+  @override
+  String get onboardingLocationPermissionTitle => 'অবস্থান অ্যাক্সেস দিন';
+
+  @override
+  String get onboardingLocationPermissionBody =>
+      'সঠিক নামাজের সময় দেখাতে ডিনমেটকে আপনার অবস্থানেアクセス দরকার। দয়া করে ডিভাইস সেটিংস থেকে লোকেশন পারমিশন চালু করুন।';
+
+  @override
+  String get locationCurrentLocation => 'বর্তমান অবস্থান';
+
+  @override
+  String get locationAutoDetected => 'স্বয়ংক্রিয়';
+
+  @override
+  String get locationAutoTimezone => 'স্বয়ংক্রিয়';
+
+  @override
+  String get onboardingSelectLocation => 'আপনার অবস্থান নির্বাচন করুন';
+
+  @override
+  String get commonCountry => 'দেশ';
+
+  @override
+  String get commonCity => 'শহর';
+
+  @override
+  String get onboardingTapToContinue => 'চালিয়ে যেতে ট্যাপ করুন';
+
+  @override
+  String get onboardingFeatureAccuratePrayerTimes => 'নির্ভুল নামাজের সময়';
+
+  @override
+  String get onboardingFeatureCompleteQuran => 'পূর্ণ কুরআন তিলাওয়াত';
+
+  @override
+  String get onboardingFeatureQibla => 'কিবলা নির্ণয়';
+
+  @override
+  String get onboardingFeatureAzanNotifications => 'আজান নোটিফিকেশন';
+
+  @override
+  String get onboardingEnableAthanAndSalah =>
+      'আজান ও সালাত নোটিফিকেশন চালু করবেন?';
+
+  @override
+  String get onboardingNotificationsSetupLater =>
+      'নোটিফিকেশন সেটআপ পরে সম্পন্ন হবে। সেটিংস থেকে যেকোনো সময় চালু করতে পারবেন।';
+
+  @override
+  String get onboardingNotificationsSavedWithDefaults =>
+      'ডিফল্ট পছন্দসহ নোটিফিকেশন সংরক্ষিত হয়েছে। পরে সেটিংস থেকে পরিবর্তন করতে পারবেন।';
+
+  @override
+  String get onboardingNameTooShort => 'নাম কমপক্ষে ২ অক্ষরের হতে হবে';
 }

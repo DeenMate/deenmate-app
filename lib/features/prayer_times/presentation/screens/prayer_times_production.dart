@@ -578,7 +578,7 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
     Color statusColor;
     
     // Check if this is tomorrow's Fajr (when current time is after Isha)
-    final isTomorrowFajr = currentPrayer['name'] == 'Fajr | ফজর' && 
+    final isTomorrowFajr = currentPrayer['name'] == AppLocalizations.of(context)!.prayerFajr && 
                            now.isAfter(prayerTimes.isha.time);
     
     if (isTomorrowFajr) {
@@ -723,11 +723,11 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
           const SizedBox(height: 16),
           Row(
             children: [
-              _buildProgressItem('Prayers', '1/5', const Color(0xFF2E7D32)),
+              _buildProgressItem(AppLocalizations.of(context)!.prayerStatsPrayers, '1/5', const Color(0xFF2E7D32)),
               const SizedBox(width: 16),
-              _buildProgressItem('Streak', '7 days', const Color(0xFFFF8F00)),
+              _buildProgressItem(AppLocalizations.of(context)!.prayerStatsStreak, '7 days', const Color(0xFFFF8F00)),
               const SizedBox(width: 16),
-              _buildProgressItem('Month', '85%', const Color(0xFF1565C0)),
+              _buildProgressItem(AppLocalizations.of(context)!.prayerStatsMonth, '85%', const Color(0xFF1565C0)),
             ],
           ),
         ],
@@ -803,7 +803,7 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
   String _getHijriDate(DateTime date) {
     // Use proper Hijri date calculation
     final hijriDate = IslamicUtils.getCurrentHijriDate();
-    final weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    final weekdays = [AppLocalizations.of(context)!.weekdayMonday, AppLocalizations.of(context)!.weekdayTuesday, AppLocalizations.of(context)!.weekdayWednesday, AppLocalizations.of(context)!.weekdayThursday, AppLocalizations.of(context)!.weekdayFriday, AppLocalizations.of(context)!.weekdaySaturday, AppLocalizations.of(context)!.weekdaySunday];
     final weekday = weekdays[date.weekday - 1];
     final monthNames = [
       'Muharram', 'Safar', "Rabi' al-awwal", "Rabi' al-thani",
@@ -827,7 +827,7 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
   }
 
   String _formatEnglishDate(DateTime date) {
-    final weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    final weekdays = [AppLocalizations.of(context)!.weekdayMonday, AppLocalizations.of(context)!.weekdayTuesday, AppLocalizations.of(context)!.weekdayWednesday, AppLocalizations.of(context)!.weekdayThursday, AppLocalizations.of(context)!.weekdayFriday, AppLocalizations.of(context)!.weekdaySaturday, AppLocalizations.of(context)!.weekdaySunday];
     final months = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December',
@@ -841,25 +841,25 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
     
     return prayerTimesAsync.when(
       data: (prayerTimes) {
-        if (prayerTimes == null) return 'Location needed';
+        if (prayerTimes == null) return AppLocalizations.of(context)!.prayerTimesLocationRequired;
         
         final now = DateTime.now();
         final nextPrayer = _getNextPrayerTime(prayerTimes, now);
         
-        if (nextPrayer == null) return 'Location needed';
+        if (nextPrayer == null) return AppLocalizations.of(context)!.prayerTimesLocationRequired;
         
         final difference = nextPrayer.difference(now);
         final hours = difference.inHours;
         final minutes = difference.inMinutes % 60;
         
         if (hours > 0) {
-          return '${hours}h ${minutes}m';
+          return AppLocalizations.of(context)!.prayerRemainingIn(hours.toString(), minutes.toString());
         } else {
-          return '${minutes}m';
+          return AppLocalizations.of(context)!.prayerRemainingInMinutes(minutes.toString());
         }
       },
       loading: () => AppLocalizations.of(context)!.commonLoading,
-      error: (_, __) => 'Location needed',
+      error: (_, __) => AppLocalizations.of(context)!.prayerTimesLocationRequired,
     );
   }
 
@@ -900,9 +900,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
         if (prayerTimes == null) {
           return [
             {
-              'name': 'Prayer Times Unavailable',
-              'time': 'Location needed',
-              'remaining': 'Enable location',
+              'name': AppLocalizations.of(context)!.prayerTimesUnavailable,
+              'time': AppLocalizations.of(context)!.prayerTimesLocationAccess,
+              'remaining': AppLocalizations.of(context)!.prayerTimesEnableLocationAction,
               'icon': '📍',
               'color': const Color(0xFF999999),
             }
@@ -914,31 +914,31 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
         
         final prayerData = [
           {
-            'name': 'Fajr | ফজর',
+            'name': '${AppLocalizations.of(context)!.prayerFajr} | ফজর',
             'time': prayerTimes.fajr.time,
             'icon': '🌅',
             'color': const Color(0xFF2E7D32),
           },
           {
-            'name': 'Dhuhr | যুহর',
+            'name': '${AppLocalizations.of(context)!.prayerDhuhr} | যুহর',
             'time': prayerTimes.dhuhr.time,
             'icon': '☀️',
             'color': const Color(0xFFFF8F00),
           },
           {
-            'name': 'Asr | আসর',
+            'name': '${AppLocalizations.of(context)!.prayerAsr} | আসর',
             'time': prayerTimes.asr.time,
             'icon': '🌤',
             'color': const Color(0xFF7B1FA2),
           },
           {
-            'name': 'Maghrib | মাগরিব',
+            'name': '${AppLocalizations.of(context))!.prayerMaghrib} | মাগরিব',
             'time': prayerTimes.maghrib.time,
             'icon': '🌆',
             'color': const Color(0xFFD84315),
           },
           {
-            'name': 'Isha | ইশা',
+            'name': '${AppLocalizations.of(context)!.prayerIsha} | ইশা',
             'time': prayerTimes.isha.time,
             'icon': '🌙',
             'color': const Color(0xFF5D4037),
@@ -954,9 +954,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
             
             String remaining;
             if (hours > 0) {
-              remaining = 'in ${hours}h ${minutes}m';
+              remaining = AppLocalizations.of(context)!.prayerRemainingIn(hours.toString(), minutes.toString());
             } else {
-              remaining = 'in ${minutes}m';
+              remaining = AppLocalizations.of(context)!.prayerRemainingInMinutes(minutes.toString());
             }
             
             upcomingPrayers.add({
@@ -982,9 +982,9 @@ class _PrayerTimesProductionScreenState extends ConsumerState<PrayerTimesProduct
       ],
       error: (_, __) => [
         {
-          'name': 'Prayer Times Error',
-          'time': 'Check location',
-          'remaining': 'Retry needed',
+          'name': AppLocalizations.of(context)!.prayerTimesError,
+          'time': AppLocalizations.of(context)!.prayerTimesLocationAccess,
+          'remaining': AppLocalizations.of(context)!.prayerTimesRetry,
           'icon': '⚠️',
           'color': const Color(0xFFE53935),
         }

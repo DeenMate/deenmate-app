@@ -365,10 +365,10 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
         // Show error message
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                'Failed to save language preference. Please try again.',
-                style: TextStyle(color: Colors.white),
+                AppLocalizations.of(context)!.errorLanguageChangeGeneric,
+                style: const TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.red,
             ),
@@ -376,13 +376,14 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
         }
       }
     } catch (error) {
-      debugPrint('Error saving language preference: $error');
+      debugPrint(
+          '${AppLocalizations.of(context)!.errorLanguageChangeFailed}: $error');
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              'An error occurred. Please try again.',
-              style: TextStyle(color: Colors.white),
+              AppLocalizations.of(context)!.errorLanguageChangeGeneric,
+              style: const TextStyle(color: Colors.white),
             ),
             backgroundColor: Colors.red,
           ),

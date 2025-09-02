@@ -29,9 +29,9 @@
   "@onboardingUsernameSubtitle": {
     "description": "Subtitle for username input screen"
   },
-  "onboardingLocationTitle": "Set Your Location",
+  "onboardingLocationTitle": "Location",
   "@onboardingLocationTitle": {
-    "description": "Title for location setup screen"
+    "description": "Onboarding location screen title"
   },
   "onboardingLocationSubtitle": "This helps us provide accurate prayer times",
   "@onboardingLocationSubtitle": {
@@ -81,13 +81,29 @@
   "@onboardingCalculationSubtitle": {
     "description": "Subtitle for calculation method screen"
   },
-  "onboardingMadhhabTitle": "Select Your Madhhab",
+  "onboardingMadhhabTitle": "Select Your Mazhab",
   "@onboardingMadhhabTitle": {
-    "description": "Title for madhhab selection screen"
+    "description": "Madhhab selection title"
   },
-  "onboardingMadhhabSubtitle": "Choose your Islamic school of thought",
+  "onboardingMadhhabSubtitle": "Choose your school of Islamic jurisprudence for prayer calculations",
   "@onboardingMadhhabSubtitle": {
-    "description": "Subtitle for madhhab selection screen"
+    "description": "Madhhab subtitle"
+  },
+  "onboardingMadhhabMostWidelyFollowed": "Most widely followed mazhab",
+  "@onboardingMadhhabMostWidelyFollowed": {
+    "description": "Badge for Hanafi"
+  },
+  "onboardingMadhhabOtherSchools": "Other major schools of thought",
+  "@onboardingMadhhabOtherSchools": {
+    "description": "Badge for non-Hanafi"
+  },
+  "madhhabHanafi": "Hanafi",
+  "@madhhabHanafi": {
+    "description": "Hanafi label"
+  },
+  "madhhabShafiMalikiHanbali": "Shafi'i, Maliki, Hanbali",
+  "@madhhabShafiMalikiHanbali": {
+    "description": "Group label"
   },
   "onboardingNotificationsTitle": "Notifications",
   "@onboardingNotificationsTitle": {
@@ -257,6 +273,38 @@
   "@hadithAll": {
     "description": "All filter option"
   },
+  "hadithTodaysHadith": "Today's Hadith",
+  "@hadithTodaysHadith": {
+    "description": "Today's hadith section title"
+  },
+  "hadithSearchHintWithShortcut": "Search hadiths (Ctrl+K)",
+  "@hadithSearchHintWithShortcut": {
+    "description": "Search hint text with keyboard shortcut"
+  },
+  "hadithPopularBooks": "Popular Books",
+  "@hadithPopularBooks": {
+    "description": "Popular books section title"
+  },
+  "hadithPopularTopics": "Popular Topics",
+  "@hadithPopularTopics": {
+    "description": "Popular topics section title"
+  },
+  "hadithExploreMore": "Explore More",
+  "@hadithExploreMore": {
+    "description": "Explore more button text"
+  },
+  "hadithViewAll": "View All",
+  "@hadithViewAll": {
+    "description": "View all button text"
+  },
+  "hadithBooksTitle": "Hadith Books",
+  "@hadithBooksTitle": {
+    "description": "Hadith books screen title"
+  },
+  "hadithMainTitle": "Hadith",
+  "@hadithMainTitle": {
+    "description": "Main hadith screen title"
+  },
   "@onboardingThemeTitle": {
     "description": "Title for theme selection screen"
   },
@@ -264,14 +312,16 @@
   "@onboardingThemeSubtitle": {
     "description": "Subtitle for theme selection screen"
   },
-  "onboardingCompleteTitle": "You're All Set!",
-  "@onboardingCompleteTitle": {
-    "description": "Title for completion screen"
-  },
-  "onboardingCompleteSubtitle": "Welcome to DeenMate. Let's begin your journey.",
-  "@onboardingCompleteSubtitle": {
-    "description": "Subtitle for completion screen"
-  },
+  "onboardingCompleteTitle": "Setup Complete!",
+  "@onboardingCompleteTitle": {"description": "Onboarding completion title"},
+  "onboardingCompleteSubtitle": "Your DeenMate app is ready to use",
+  "@onboardingCompleteSubtitle": {"description": "Onboarding completion subtitle"},
+  "onboardingFeaturesTitle": "Features",
+  "@onboardingFeaturesTitle": {"description": "Features section header"},
+  "onboardingGetStarted": "Get Started",
+  "@onboardingGetStarted": {"description": "Final CTA"},
+  "errorSavingPreferences": "Error saving preferences",
+  "@errorSavingPreferences": {"description": "Generic save error"},
 
   "navigationHome": "Home",
   "@navigationHome": {
@@ -772,7 +822,7 @@
   },
   "buttonConfirm": "Confirm",
   "@buttonConfirm": {
-    "description": "Confirm button text"
+    "description": "Confirm button"
   },
   "buttonDelete": "Delete",
   "@buttonDelete": {
@@ -2223,7 +2273,7 @@
   },
   "quranJuz": "Juz",
   "@quranJuz": {
-    "description": "Juz/Para navigation tab"
+    "description": "Juz navigation tab"
   },
   "quranHizb": "Hizb",
   "@quranHizb": {
@@ -2594,10 +2644,8 @@
   "@athanSettingsTitle": {
     "description": "Section title for Athan Settings"
   },
-  "athanSettingsSubtitle": "Customize the call to prayer audio and volume",
-  "@athanSettingsSubtitle": {
-    "description": "Section subtitle for Athan Settings"
-  },
+  "athanSettingsSubtitle": "Call to prayer notifications when prayer time arrives",
+  "@athanSettingsSubtitle": {"description": "Subtitle/description for Athan notifications"},
   "prayerNotificationsTitle": "Prayer Notifications",
   "@prayerNotificationsTitle": {
     "description": "Section title for Prayer Notifications"
@@ -3331,5 +3379,481 @@
   "close": "Close",
   "@close": {
     "description": "Close button"
-  }
+  },
+  "hadithSearchDetailedHint": "Search hadiths... (e.g., intention, deed)",
+  "@hadithSearchDetailedHint": {
+    "description": "Detailed hint text for hadith search"
+  },
+  "hadithSearchButton": "Search",
+  "@hadithSearchButton": {
+    "description": "Search button text"
+  },
+  "hadithSearchingProgress": "Searching...",
+  "@hadithSearchingProgress": {
+    "description": "Progress text while searching"
+  },
+  "hadithPopularSearches": "Popular Searches",
+  "@hadithPopularSearches": {
+    "description": "Popular searches section title"
+  },
+  "hadithRecentSearches": "Recent Searches",
+  "@hadithRecentSearches": {
+    "description": "Recent searches section title"
+  },
+  "hadithNoRecentSearches": "No recent searches yet",
+  "@hadithNoRecentSearches": {
+    "description": "Message when no recent searches"
+  },
+  "hadithSearchLoadingMessage": "Searching hadiths...",
+  "@hadithSearchLoadingMessage": {
+    "description": "Loading message while searching"
+  },
+  "hadithNoResultsFound": "No hadiths found",
+  "@hadithNoResultsFound": {
+    "description": "No search results found message"
+  },
+  "hadithNoResultsFoundDetails": "No hadiths found for '{query}'. Try searching for something else.",
+  "@hadithNoResultsFoundDetails": {
+    "description": "Detailed no results message",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "prayer"
+      }
+    }
+  },
+  "hadithTryDifferentSearch": "Try Different Search",
+  "@hadithTryDifferentSearch": {
+    "description": "Button to try different search"
+  },
+  "hadithClearSearch": "Clear Search",
+  "@hadithClearSearch": {
+    "description": "Button to clear search"
+  },
+  "hadithChangeFilter": "Change Filter",
+  "@hadithChangeFilter": {
+    "description": "Button to change filter"
+  },
+  "hadithResultsFound": "{count} hadiths found",
+  "@hadithResultsFound": {
+    "description": "Number of search results found",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "25"
+      }
+    }
+  },
+  "hadithSearchContextFor": "for '{query}'",
+  "@hadithSearchContextFor": {
+    "description": "Search context showing what was searched for",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "example": "prayer"
+      }
+    }
+  },
+  "hadithBooksScreenTitle": "Hadith Books",
+  "@hadithBooksScreenTitle": {
+    "description": "Title for hadith books screen"
+  },
+  "hadithBooksSearchHint": "Search hadith books...",
+  "@hadithBooksSearchHint": {
+    "description": "Hint text for hadith books search"
+  },
+  "hadithBooksFilterAll": "All Books",
+  "@hadithBooksFilterAll": {
+    "description": "Filter option for all books"
+  },
+  "hadithBooksFilterPopular": "Popular",
+  "@hadithBooksFilterPopular": {
+    "description": "Filter option for popular books"
+  },
+  "hadithBooksFilterKutubSittah": "Kutub Sittah",
+  "@hadithBooksFilterKutubSittah": {
+    "description": "Filter option for Kutub Sittah books"
+  },
+  "hadithBooksCountText": "{count} hadiths",
+  "@hadithBooksCountText": {
+    "description": "Text showing number of hadiths in a book",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2500"
+      }
+    }
+  },
+  "hadithBooksPopularLabel": "Popular",
+  "@hadithBooksPopularLabel": {
+    "description": "Label for popular hadith books"
+  },
+  "hadithBooksNoBooksFound": "No books found",
+  "@hadithBooksNoBooksFound": {
+    "description": "Message when no books found"
+  },
+  "hadithBooksEmptyStateSubtitle": "Try searching for something else or change your filter",
+  "@hadithBooksEmptyStateSubtitle": {
+    "description": "Subtitle for empty state in hadith books screen"
+  },
+  "hadithBooksShowAllBooks": "Show all books",
+  "@hadithBooksShowAllBooks": {
+    "description": "Button text to show all books when no results found"
+  },
+  "hadithPopularBooksSubtitle": "Valuable hadith collections to organize life in the light of Islam",
+  "@hadithPopularBooksSubtitle": {
+    "description": "Subtitle for popular hadith books section"
+  },
+  "hadithPopularTopicsSubtitle": "Subject-wise hadith collections helpful in all areas of life",
+  "@hadithPopularTopicsSubtitle": {
+    "description": "Subtitle for popular hadith topics section"
+  },
+  "hadithTotalCount": "Total hadiths {count}",
+  "@hadithTotalCount": {
+    "description": "Text showing total number of hadiths",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2500"
+      }
+    }
+  },
+  "hadithBookmarkTitle": "Bookmark",
+  "@hadithBookmarkTitle": {
+    "description": "Title for bookmark action"
+  },
+  "hadithBookmarkSubtitle": "Saved hadiths",
+  "hadithQuickAccess": "Quick Access",
+  "hadithAdvancedSearch": "Advanced Search",
+  "hadithAdvancedSearchSubtitle": "Search in detail",
+  "@hadithBookmarkSubtitle": {
+    "description": "Subtitle for bookmark action"
+  },
+  "hadithDetailCopy": "Copy",
+  "@hadithDetailCopy": {
+    "description": "Copy button text in hadith detail screen"
+  },
+  "hadithDetailShare": "Share",
+  "@hadithDetailShare": {
+    "description": "Share button text in hadith detail screen"
+  },
+  "hadithDetailSettings": "Settings",
+  "@hadithDetailSettings": {
+    "description": "Settings button text in hadith detail screen"
+  },
+  "hadithDetailNumber": "Hadith number {number}",
+  "@hadithDetailNumber": {
+    "description": "Hadith number display text",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithDetailArabicText": "Arabic",
+  "@hadithDetailArabicText": {
+    "description": "Label for Arabic text section"
+  },
+  "hadithDetailTranslation": "Bengali Translation",
+  "@hadithDetailTranslation": {
+    "description": "Label for translation section"
+  },
+  "hadithDetailFontSize": "Font Size",
+  "@hadithDetailFontSize": {
+    "description": "Font size setting label"
+  },
+  "hadithDetailArabicLabel": "Arabic",
+  "@hadithDetailArabicLabel": {
+    "description": "Arabic text toggle label"
+  },
+  "hadithDetailTranslationLabel": "Translation",
+  "@hadithDetailTranslationLabel": {
+    "description": "Translation text toggle label"
+  },
+  "hadithDetailReferenceInfo": "Reference Information",
+  "@hadithDetailReferenceInfo": {
+    "description": "Reference information section title"
+  },
+  "hadithDetailNarrator": "Narrator",
+  "@hadithDetailNarrator": {
+    "description": "Narrator field label"
+  },
+  "hadithDetailChapter": "Chapter",
+  "@hadithDetailChapter": {
+    "description": "Chapter field label"
+  },
+  "hadithDetailGrade": "Grade",
+  "@hadithDetailGrade": {
+    "description": "Grade field label"
+  },
+  "hadithDetailReference": "Reference",
+  "@hadithDetailReference": {
+    "description": "Reference field label"
+  },
+  "hadithDetailRelatedTopics": "Related Topics",
+  "@hadithDetailRelatedTopics": {
+    "description": "Related topics section title"
+  },
+  "hadithDetailCopyFull": "Copy Full",
+  "@hadithDetailCopyFull": {
+    "description": "Copy full hadith button text"
+  },
+  "hadithDetailShareButton": "Share",
+  "@hadithDetailShareButton": {
+    "description": "Share hadith button text"
+  },
+  "hadithDetailBookmarkAdded": "Hadith bookmarked",
+  "@hadithDetailBookmarkAdded": {
+    "description": "Message when hadith is bookmarked"
+  },
+  "hadithDetailBookmarkRemoved": "Bookmark removed",
+  "@hadithDetailBookmarkRemoved": {
+    "description": "Message when bookmark is removed"
+  },
+  "hadithDetailCopied": "Copied",
+  "@hadithDetailCopied": {
+    "description": "Message when text is copied"
+  },
+  "hadithDetailShared": "Shared",
+  "@hadithDetailShared": {
+    "description": "Message when text is shared"
+  },
+  "hadithShareTemplate": "{arabicText}\n\n{bengaliText}\n\nReference: {reference}\nNarrator: {narrator}",
+  "@hadithShareTemplate": {
+    "description": "Template for sharing hadith",
+    "placeholders": {
+      "arabicText": {
+        "type": "String"
+      },
+      "bengaliText": {
+        "type": "String"
+      },
+      "reference": {
+        "type": "String"
+      },
+      "narrator": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithTopicFormat": "{order} {name}",
+  "@hadithTopicFormat": {
+    "description": "Format for topic display",
+    "placeholders": {
+      "order": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithReferenceLabel": "Reference: {reference}",
+  "@hadithReferenceLabel": {
+    "description": "Reference label format",
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithNarratorLabel": "Narrator: {narrator}",
+  "@hadithNarratorLabel": {
+    "description": "Narrator label format",
+    "placeholders": {
+      "narrator": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithChapterLabel": "Chapter: {chapter}",
+  "@hadithChapterLabel": {
+    "description": "Chapter label format",
+    "placeholders": {
+      "chapter": {
+        "type": "String"
+      }
+    }
+  },
+  "quranAudioManager": "Audio Manager",
+  "@quranAudioManager": {"description": "Title for Quran audio manager sheet"},
+  "quranReciterLabel": "Reciter:",
+  "@quranReciterLabel": {"description": "Label before reciter name"},
+  "quranFailedToLoadReciters": "Failed to load reciters: {error}",
+  "@quranFailedToLoadReciters": {
+    "description": "Error text when loading reciters fails",
+    "placeholders": {"error": {"type": "String"}}
+  },
+  "audioDownloadStarting": "Starting download...",
+  "@audioDownloadStarting": {"description": "Generic start of download message"},
+  "audioDownloadProgress": "Downloading {name}: {progress}%",
+  "@audioDownloadProgress": {
+    "description": "Download progress message",
+    "placeholders": {
+      "name": {"type": "String"},
+      "progress": {"type": "num"}
+    }
+  },
+  "audioDownloadComplete": "Download complete",
+  "@audioDownloadComplete": {"description": "Download completed message"},
+  "audioStorageUsed": "Storage used: {size}",
+  "@audioStorageUsed": {"description": "Storage used label","placeholders": {"size": {"type": "String"}}},
+  "audioSelectReciter": "Select reciter",
+  "@audioSelectReciter": {"description": "Prompt to select reciter"},
+  "zakatTitle": "Zakat Calculator",
+  "@zakatTitle": {"description": "Title for Zakat calculator screen"},
+  "zakatResetDialogTitle": "Reset Calculator",
+  "@zakatResetDialogTitle": {"description": "Reset confirmation title"},
+  "zakatResetDialogMessage": "Clear all entered data?",
+  "@zakatResetDialogMessage": {"description": "Reset confirmation message"},
+  "zakatResetSuccess": "Calculator reset successfully",
+  "@zakatResetSuccess": {"description": "Snackbar after reset"},
+  "zakatResetFormTooltip": "Reset Form",
+  "@zakatResetFormTooltip": {"description": "Reset form tooltip"},
+  "zakatCalculate": "Calculate Zakat",
+  "@zakatCalculate": {"description": "Calculate button"},
+  "zakatCalculating": "Calculating...",
+  "@zakatCalculating": {"description": "Calculating label"},
+  "commonReset": "Reset",
+  "@commonReset": {"description": "Reset button common"},
+  "quranGoToAyahHint": "Go to Ayah (chapter:verse)",
+  "@quranGoToAyahHint": {"description": "Label above ayah navigation input"},
+  "quranExampleAyahHint": "e.g., 2:255",
+  "@quranExampleAyahHint": {"description": "Example placeholder for ayah input"},
+  "quranGoButton": "Go",
+  "@quranGoButton": {"description": "Go button for ayah navigation"},
+  "quranVerseOptions": "Verse Options",
+  "@quranVerseOptions": {"description": "Header for verse options sheet"},
+  "quranJuzItem": "Juz {number}",
+  "@quranJuzItem": {"description": "Juz dropdown item label","placeholders": {"number": {"type": "int"}}},
+  "zakatCalcError": "Error calculating Zakat: {error}",
+  "@zakatCalcError": {"description": "Snackbar for calc error","placeholders": {"error": {"type": "String"}}},
+  "zakatCalculationSuccess": "Zakat calculation completed successfully",
+  "@zakatCalculationSuccess": {"description": "Snackbar for calc success"},
+  "zakatUnableToLoadNisab": "Unable to load Nisab information: {error}",
+  "@zakatUnableToLoadNisab": {"description": "Error loading nisab","placeholders": {"error": {"type": "String"}}},
+  "zakatCalculationError": "Calculation Error",
+  "@zakatCalculationError": {"description": "Calculation error title"},
+  "zakatAboutTitle": "About Zakat",
+  "@zakatAboutTitle": {"description": "About section title"},
+  "zakatAboutBody": "Zakat is one of the Five Pillars of Islam and represents 2.5% of your wealth that must be given to those in need when your assets exceed the Nisab threshold for a full lunar year.",
+  "@zakatAboutBody": {"description": "About text body"},
+  "zakatCurrencyLabel": "Currency",
+  "@zakatCurrencyLabel": {"description": "Currency label"},
+  "zakatCurrencyName": "{code}",
+  "@zakatCurrencyName": {"description": "Maps currency code to label via switch in code","placeholders": {"code": {"type": "String"}}},
+  "zakatInvalidAmount": "Please enter a valid amount",
+  "@zakatInvalidAmount": {"description": "Validation message"},
+  "methodsAllAvailableMethodsCount": "Choose from all {count} available calculation methods used worldwide.",
+  "@methodsAllAvailableMethodsCount": {"placeholders": {"count": {"type": "int"}}},
+  "methodsCreateCustomAngles": "Create your own calculation method with custom angles.",
+  "@methodsCreateCustomAngles": {"description": "Prompt to create custom method"},
+  "methodsApplied": "Applied \"{name}\" calculation method",
+  "@methodsApplied": {"placeholders": {"name": {"type": "String"}}},
+  "methodsApplyFailed": "Failed to apply method: {error}",
+  "@methodsApplyFailed": {"placeholders": {"error": {"type": "String"}}},
+  "methodsInfoFajrAngle": "• Fajr Angle: Determines morning prayer time",
+  "@methodsInfoFajrAngle": {"description": "Info bullet"},
+  "methodsInfoIshaAngle": "• Isha Angle: Determines night prayer time",
+  "@methodsInfoIshaAngle": {"description": "Info bullet"},
+  "methodsInfoRegionalPref": "• Regional Preferences: Based on local scholarly consensus",
+  "@methodsInfoRegionalPref": {"description": "Info bullet"},
+  "methodsInfoMadhabDiff": "• Madhab Differences: Mainly affect Asr calculation",
+  "@methodsInfoMadhabDiff": {"description": "Info bullet"},
+  "methodsCustomComingSoon": "Custom method creation will be available in a future update.",
+  "@methodsCustomComingSoon": {"description": "Coming soon message"},
+  "athanSettingsTestNotificationMessage": "This is a test prayer notification",
+  "@athanSettingsTestNotificationMessage": {"description": "Test notification body"},
+  "athanSettingsDemoNotificationMessage": "This is a demo prayer notification with Azan",
+  "@athanSettingsDemoNotificationMessage": {"description": "Demo notification body"},
+  "athanSettingsImmediateTestMessage": "This is an immediate test notification",
+  "@athanSettingsImmediateTestMessage": {"description": "Immediate notification body"},
+  "labelImmediateNotification": "Immediate Notification",
+  "@labelImmediateNotification": {"description": "Label for immediate notification toggle/button"},
+  "qiblaCalibrateFigure8": "Please calibrate your compass by moving your device in a figure-8 pattern",
+  "@qiblaCalibrateFigure8": {"description": "Calibration instruction"},
+  "qiblaErrorInitializingCompass": "Error initializing compass",
+  "@qiblaErrorInitializingCompass": {"description": "Compass init error"},
+  "qiblaErrorGettingLocation": "Error getting location",
+  "@qiblaErrorGettingLocation": {"description": "Location error"},
+  "qiblaCalibratingCompass": "Calibrating Compass...",
+  "@qiblaCalibratingCompass": {"description": "Calibrating text"},
+  "qiblaDirectionPerfect": "Perfect Direction",
+  "@qiblaDirectionPerfect": {"description": "Direction status"},
+  "qiblaTurnRight": "Turn Right",
+  "@qiblaTurnRight": {"description": "Turn right"},
+  "qiblaTurnAround": "Turn Around",
+  "@qiblaTurnAround": {"description": "Turn around"},
+  "qiblaTurnLeft": "Turn Left",
+  "@qiblaTurnLeft": {"description": "Turn left"},
+  "qiblaAccuracyExcellent": "Excellent",
+  "@qiblaAccuracyExcellent": {"description": "Accuracy excellent"},
+  "qiblaAccuracyGood": "Good",
+  "@qiblaAccuracyGood": {"description": "Accuracy good"},
+  "qiblaAccuracyFair": "Fair",
+  "@qiblaAccuracyFair": {"description": "Accuracy fair"},
+  "qiblaAccuracyPoor": "Poor",
+  "@qiblaAccuracyPoor": {"description": "Accuracy poor"},
+  "qiblaError": "Qibla Error",
+  "@qiblaError": {"description": "Error title"},
+  "qiblaErrorHelp": "Please check your device settings and try again.",
+  "@qiblaErrorHelp": {"description": "Error help text"},
+  "qiblaCalibrateCompass": "Calibrate Compass",
+  "@qiblaCalibrateCompass": {"description": "Calibrate button"},
+  "qiblaHelpTitle": "Qibla Help",
+  "@qiblaHelpTitle": {"description": "Help dialog title"},
+  "qiblaHelpCommonIssues": "Common Issues:",
+  "@qiblaHelpCommonIssues": {"description": "Help section header"},
+  "qiblaHelpLocationPermission": "Location Permission",
+  "@qiblaHelpLocationPermission": {"description": "Help item"},
+  "qiblaHelpLocationPermissionText": "Make sure location services are enabled and permission is granted.",
+  "@qiblaHelpLocationPermissionText": {"description": "Help item text"},
+  "qiblaHelpCompassSensor": "Compass Sensor",
+  "@qiblaHelpCompassSensor": {"description": "Help item"},
+  "qiblaHelpCompassSensorText": "Ensure your device has a compass sensor and it's working properly.",
+  "@qiblaHelpCompassSensorText": {"description": "Help item text"},
+  "qiblaHelpCalibration": "Calibration",
+  "@qiblaHelpCalibration": {"description": "Help item"},
+  "qiblaHelpCalibrationText": "Move your device in a figure-8 pattern to calibrate the compass.",
+  "@qiblaHelpCalibrationText": {"description": "Help item text"},
+  "onboardingStepOfTotal": "Step {step} of {total}",
+  "@onboardingStepOfTotal": {"placeholders": {"step": {"type": "int"}, "total": {"type": "int"}}},
+  "onboardingLocationPermissionTitle": "Allow Location Access",
+  "@onboardingLocationPermissionTitle": {"description": "Permission title"},
+  "onboardingLocationPermissionBody": "To provide accurate prayer times, DeenMate needs access to your location. Please enable location permissions in your device settings.",
+  "@onboardingLocationPermissionBody": {"description": "Permission rationale"},
+  "locationCurrentLocation": "Current Location",
+  "@locationCurrentLocation": {"description": "Auto-detected current location label"},
+  "locationAutoDetected": "Auto-detected",
+  "@locationAutoDetected": {"description": "Auto detected label"},
+  "locationAutoTimezone": "Auto",
+  "@locationAutoTimezone": {"description": "Auto timezone label"},
+  "onboardingSelectLocation": "Select Your Location",
+  "@onboardingSelectLocation": {"description": "Dialog title to select location"},
+  "commonCountry": "Country",
+  "@commonCountry": {"description": "Country label"},
+  "commonCity": "City",
+  "@commonCity": {"description": "City label"},
+  "onboardingTapToContinue": "Tap to continue",
+  "@onboardingTapToContinue": {"description": "Welcome CTA"},
+  "onboardingFeatureAccuratePrayerTimes": "Accurate Prayer Times",
+  "@onboardingFeatureAccuratePrayerTimes": {"description": "Feature bullet"},
+  "onboardingFeatureCompleteQuran": "Complete Quran Reading",
+  "@onboardingFeatureCompleteQuran": {"description": "Feature bullet"},
+  "onboardingFeatureQibla": "Qibla Direction",
+  "@onboardingFeatureQibla": {"description": "Feature bullet"},
+  "onboardingFeatureAzanNotifications": "Azan Notifications",
+  "@onboardingFeatureAzanNotifications": {"description": "Feature bullet"},
+  "onboardingEnableAthanAndSalah": "Enable Azan & Salah Notifications?",
+  "@onboardingEnableAthanAndSalah": {"description": "Prompt to enable notifications"},
+  "onboardingNotificationsSetupLater": "Notifications setup will be completed later. You can enable them in settings.",
+  "@onboardingNotificationsSetupLater": {"description": "Info dialog text"},
+  "onboardingNotificationsSavedWithDefaults": "Notification preferences saved with defaults. You can change them later in settings.",
+  "@onboardingNotificationsSavedWithDefaults": {"description": "Info dialog text"},
+  "onboardingNameTooShort": "Name must be at least 2 characters long",
+  "@onboardingNameTooShort": {"description": "Validation error for short name"},
+  "errorLanguageChangeFailed": "Failed to save language preference. Please try again.",
+  "@errorLanguageChangeFailed": {"description": "Language save failed error"},
+  "errorLanguageChangeGeneric": "An error occurred. Please try again.",
+  "@errorLanguageChangeGeneric": {"description": "Generic error"}
 }

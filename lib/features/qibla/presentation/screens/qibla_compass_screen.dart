@@ -44,7 +44,8 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
       final compassAvailable = await FlutterCompass.events?.first;
       if (compassAvailable == null) {
         setState(() {
-          _calibrationMessage = AppLocalizations.of(context)!.qiblaCompassNotAvailable;
+          _calibrationMessage =
+              AppLocalizations.of(context)!.qiblaCompassNotAvailable;
         });
         return;
       }
@@ -54,11 +55,12 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
         if (mounted) {
           setState(() {
             _compassDirection = event.heading;
-            
+
             // Check if compass needs calibration
             if (event.heading == null) {
               _isCalibrating = true;
-              _calibrationMessage = 'Please calibrate your compass by moving your device in a figure-8 pattern';
+              _calibrationMessage =
+                  AppLocalizations.of(context)!.qiblaCalibrateFigure8;
             } else {
               _isCalibrating = false;
               _calibrationMessage = '';
@@ -68,7 +70,8 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
       });
     } catch (e) {
       setState(() {
-        _calibrationMessage = 'Error initializing compass: $e';
+        _calibrationMessage =
+            '${AppLocalizations.of(context)!.qiblaErrorInitializingCompass}: $e';
       });
     }
   }
@@ -82,14 +85,15 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
         setState(() {
           _currentPosition = position;
         });
-        
+
         // Calculate Qibla direction (simplified calculation)
         _calculateQiblaDirection();
       }
     } catch (e) {
       if (mounted) {
         setState(() {
-          _calibrationMessage = 'Error getting location: $e';
+          _calibrationMessage =
+              '${AppLocalizations.of(context)!.qiblaErrorGettingLocation}: $e';
         });
       }
     }
@@ -97,21 +101,21 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
 
   void _calculateQiblaDirection() {
     if (_currentPosition == null) return;
-    
+
     // Kaaba coordinates
     const kaabaLat = 21.4225;
     const kaabaLng = 39.8262;
-    
+
     // Current position
     final currentLat = _currentPosition!.latitude;
     final currentLng = _currentPosition!.longitude;
-    
+
     // Calculate Qibla direction (simplified)
     final latDiff = kaabaLat - currentLat;
     final lngDiff = kaabaLng - currentLng;
-    
+
     final qiblaAngle = (atan2(lngDiff, latDiff) * 180 / pi);
-    
+
     if (mounted) {
       setState(() {
         _qiblaDirection = qiblaAngle;
@@ -121,14 +125,14 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
 
   double? get arrowAngle {
     if (_compassDirection == null || _qiblaDirection == null) return null;
-    
+
     // Calculate the angle between compass direction and Qibla direction
     double angle = _qiblaDirection! - _compassDirection!;
-    
+
     // Normalize to 0-360 degrees
     while (angle < 0) angle += 360;
     while (angle >= 360) angle -= 360;
-    
+
     return angle;
   }
 
@@ -160,7 +164,7 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
             children: [
               // Status indicator
               _buildStatusIndicator(),
-              
+
               // Main compass content
               Expanded(
                 child: Center(
@@ -169,21 +173,21 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
                     children: [
                       // Compass circle
                       _buildCompassCircle(),
-                      
+
                       const SizedBox(height: 30),
-                      
+
                       // Direction text
                       _buildDirectionText(),
-                      
+
                       const SizedBox(height: 20),
-                      
+
                       // Location info
                       _buildLocationInfo(),
                     ],
                   ),
                 ),
               ),
-              
+
               // Action buttons
               _buildActionButtons(),
             ],
@@ -256,14 +260,14 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
         children: [
           // Compass markings
           _buildCompassMarkings(),
-          
+
           // Qibla arrow
           if (arrowAngle != null)
             Transform.rotate(
               angle: (arrowAngle! * pi / 180),
               child: _buildQiblaArrow(),
             ),
-          
+
           // Center dot
           Center(
             child: Container(
@@ -429,9 +433,9 @@ class _QiblaCompassScreenState extends ConsumerState<QiblaCompassScreen> {
   void _recalibrateCompass() {
     setState(() {
       _isCalibrating = true;
-      _calibrationMessage = 'Please move your device in a figure-8 pattern to calibrate the compass';
+      _calibrationMessage = AppLocalizations.of(context)!.qiblaCalibrateFigure8;
     });
-    
+
     // Reset calibration after 5 seconds
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
@@ -448,43 +452,43 @@ class CompassMarkingsPainter extends CustomPainter {
   final Color primaryColor;
   final double? compassHeading;
   final List<String> directionLabels;
-  
+
   CompassMarkingsPainter({
     required this.primaryColor,
     this.compassHeading,
     required this.directionLabels,
   });
-  
+
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2 - 10;
-    
+
     final paint = Paint()
       ..color = Colors.grey[400]!
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
-    
+
     // Draw outer circle
     canvas.drawCircle(center, radius, paint);
-    
+
     // Draw cardinal directions - these should rotate with compass
     final textPainter = TextPainter(
       textDirection: TextDirection.ltr,
       textAlign: TextAlign.center,
     );
-    
+
     final directions = directionLabels;
     final angles = [0, 90, 180, 270];
-    
+
     for (int i = 0; i < directions.length; i++) {
       // Apply compass rotation to the direction markers
       final baseAngle = angles[i] * pi / 180;
       final rotatedAngle = baseAngle - (compassHeading ?? 0) * pi / 180;
-      
+
       final x = center.dx + (radius - 30) * sin(rotatedAngle);
       final y = center.dy - (radius - 30) * cos(rotatedAngle);
-      
+
       textPainter.text = TextSpan(
         text: directions[i],
         style: TextStyle(
@@ -493,25 +497,25 @@ class CompassMarkingsPainter extends CustomPainter {
           fontWeight: FontWeight.bold,
         ),
       );
-      
+
       textPainter.layout();
       textPainter.paint(
         canvas,
         Offset(x - textPainter.width / 2, y - textPainter.height / 2),
       );
     }
-    
+
     // Draw degree markings
     for (int i = 0; i < 360; i += 30) {
       final angle = i * pi / 180;
       final startRadius = radius - (i % 90 == 0 ? 20 : 10);
       final endRadius = radius;
-      
+
       final startX = center.dx + startRadius * sin(angle);
       final startY = center.dy - startRadius * cos(angle);
       final endX = center.dx + endRadius * sin(angle);
       final endY = center.dy - endRadius * cos(angle);
-      
+
       canvas.drawLine(
         Offset(startX, startY),
         Offset(endX, endY),
@@ -519,7 +523,7 @@ class CompassMarkingsPainter extends CustomPainter {
       );
     }
   }
-  
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

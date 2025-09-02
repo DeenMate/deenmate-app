@@ -114,8 +114,10 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                       child: ListView(
                         children: [
                           _buildLocationOption(
-                            title: AppLocalizations.of(context)!.onboardingLocationGpsTitle,
-                            subtitle: AppLocalizations.of(context)!.onboardingLocationGpsSubtitle,
+                            title: AppLocalizations.of(context)!
+                                .onboardingLocationGpsTitle,
+                            subtitle: AppLocalizations.of(context)!
+                                .onboardingLocationGpsSubtitle,
                             icon: Icons.gps_fixed,
                             isSelected: _locationPermissionGranted,
                             onTap: _requestLocationPermission,
@@ -123,8 +125,10 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                           ),
                           const SizedBox(height: 16),
                           _buildLocationOption(
-                            title: AppLocalizations.of(context)!.onboardingLocationManualTitle,
-                            subtitle: AppLocalizations.of(context)!.onboardingLocationManualSubtitle,
+                            title: AppLocalizations.of(context)!
+                                .onboardingLocationManualTitle,
+                            subtitle: AppLocalizations.of(context)!
+                                .onboardingLocationManualSubtitle,
                             icon: Icons.location_city,
                             isSelected: !_locationPermissionGranted,
                             onTap: _showManualLocationDialog,
@@ -156,14 +160,14 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
         Row(
           children: [
             Text(
-              'Step 3 of 8',
+              AppLocalizations.of(context)!.onboardingStepOfTotal(3, 8),
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
             const Spacer(),
             Text(
-              'Location',
+              AppLocalizations.of(context)!.onboardingLocationTitle,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.primary,
                 fontWeight: FontWeight.w600,
@@ -290,7 +294,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
                 ),
               )
             : Text(
-                'Continue',
+                AppLocalizations.of(context)!.commonContinue,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: theme.colorScheme.onPrimary,
@@ -327,9 +331,9 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
       final gpsLocation = Location(
         latitude: position.latitude,
         longitude: position.longitude,
-        city: 'Current Location',
-        country: 'Auto-detected',
-        timezone: 'Auto',
+        city: AppLocalizations.of(context)!.locationCurrentLocation,
+        country: AppLocalizations.of(context)!.locationAutoDetected,
+        timezone: AppLocalizations.of(context)!.locationAutoTimezone,
         elevation: position.altitude,
       );
 
@@ -457,10 +461,10 @@ class _LocationScreenState extends ConsumerState<LocationScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.locationPermissionRequired),
+        title: Text(
+            AppLocalizations.of(context)!.onboardingLocationPermissionTitle),
         content: Text(
-          'To provide accurate prayer times, DeenMate needs access to your location. '
-          'Please enable location permissions in your device settings.',
+          AppLocalizations.of(context)!.onboardingLocationPermissionBody,
         ),
         actions: [
           TextButton(
@@ -525,7 +529,7 @@ class _ManualLocationDialogState extends State<_ManualLocationDialog> {
 
     return AlertDialog(
       title: Text(
-        'Select Your Location',
+        AppLocalizations.of(context)!.onboardingSelectLocation,
         style: theme.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w600,
         ),
@@ -535,7 +539,7 @@ class _ManualLocationDialogState extends State<_ManualLocationDialog> {
         children: [
           // Country selection
           Text(
-            'Country',
+            AppLocalizations.of(context)!.commonCountry,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -569,7 +573,7 @@ class _ManualLocationDialogState extends State<_ManualLocationDialog> {
 
           // City selection
           Text(
-            'City',
+            AppLocalizations.of(context)!.commonCity,
             style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -603,14 +607,14 @@ class _ManualLocationDialogState extends State<_ManualLocationDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: Text(AppLocalizations.of(context)!.buttonCancel),
         ),
         ElevatedButton(
           onPressed: () {
             widget.onLocationSelected(_selectedCity, _selectedCountry);
             Navigator.pop(context);
           },
-          child: Text('Confirm'),
+          child: Text(AppLocalizations.of(context)!.buttonConfirm),
         ),
       ],
     );

@@ -10,6 +10,7 @@ import '../../../../core/localization/language_provider.dart';
 import '../../../../core/localization/language_models.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 /// Onboarding completion screen for DeenMate
 class CompleteScreen extends ConsumerStatefulWidget {
@@ -95,7 +96,7 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen> {
 
                       // Title
                       Text(
-                        'Setup Complete!',
+                        AppLocalizations.of(context)!.onboardingCompleteTitle,
                         style: IslamicTheme.textTheme.headlineSmall?.copyWith(
                           fontSize: 28,
                           fontWeight: FontWeight.w600,
@@ -108,7 +109,8 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen> {
 
                       // Subtitle
                       Text(
-                        'Your DeenMate app is ready to use',
+                        AppLocalizations.of(context)!
+                            .onboardingCompleteSubtitle,
                         style: IslamicTheme.textTheme.bodyLarge?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -144,7 +146,7 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Features',
+          AppLocalizations.of(context)!.onboardingFeaturesTitle,
           style: IslamicTheme.textTheme.titleMedium?.copyWith(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -232,9 +234,9 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen> {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
                   )
-                : const Text(
-                    'Get Started',
-                    style: TextStyle(
+                : Text(
+                    AppLocalizations.of(context)!.onboardingGetStarted,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -281,7 +283,8 @@ class _CompleteScreenState extends ConsumerState<CompleteScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error saving preferences: $e'),
+            content: Text(
+                '${AppLocalizations.of(context)!.errorSavingPreferences}: $e'),
             backgroundColor: Colors.red,
           ),
         );

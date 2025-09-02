@@ -1168,9 +1168,9 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 final testSettingsAsync = ref.read(athanSettingsProvider);
                 final testSettings = await testSettingsAsync.when(
                   data: (settings) => settings,
-                  loading: () => throw Exception('Settings still loading'),
+                  loading: () => throw Exception(AppLocalizations.of(context)!.errorUnableToLoadSettings),
                   error: (error, stack) =>
-                      throw Exception('Settings error: $error'),
+                      throw Exception('${AppLocalizations.of(context)!.settingsLanguageChangeFailed}: $error'),
                 );
 
                 // Schedule notifications for today (this will include any future prayers)
@@ -1205,7 +1205,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 const androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  'Athan (Call to Prayer)',
+                  AppLocalizations.of(context)!.athanNotificationsTitle,
                   channelDescription:
                       'Call to prayer notifications when prayer time arrives',
                   importance: Importance.max,
@@ -1253,7 +1253,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 const androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  'Athan (Call to Prayer)',
+                  AppLocalizations.of(context)!.athanNotificationsTitle,
                   channelDescription:
                       'Call to prayer notifications when prayer time arrives',
                   importance: Importance.max,
@@ -1281,7 +1281,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                   await service.playAthan('abdulbasit', 1.0,
                       durationSeconds: currentSettings.durationSeconds);
                 } catch (e) {
-                  print('Failed to play Azan: $e');
+                  print('${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e');
                 }
 
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -1318,7 +1318,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 const androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  'Athan (Call to Prayer)',
+                  AppLocalizations.of(context)!.athanNotificationsTitle,
                   channelDescription:
                       'Call to prayer notifications when prayer time arrives',
                   importance: Importance.max,
@@ -1350,7 +1350,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
               }
             },
             icon: const Icon(Icons.notification_important),
-            label: const Text('Immediate Notification'),
+            label: Text(AppLocalizations.of(context)!.labelImmediateNotification),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.deepOrange,
               foregroundColor: Colors.white,
