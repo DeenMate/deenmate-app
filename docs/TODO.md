@@ -678,3 +678,33 @@
 - ⏳ **PENDING** - Planned but not started
 - ❌ **BLOCKED** - Cannot proceed due to dependency
 - 🔍 **ANALYSIS** - Research and planning phase
+
+## 🌐 Localization (l10n) Sprint — September 2025
+
+**Status (current):**
+- Overall en↔bn parity: 92% (target 100%)
+- Bangla coverage vs English keys: 100% (bn has a few extra legacy keys to remove)
+- Hardcoded strings removed: ~70%
+
+**Per-module localization progress:**
+- Quran: 85%
+- Zakat: 90%
+- Prayer Times: 60%
+- Qibla: 90%
+- Onboarding: 80% (minor lints/codegen pickup pending)
+- Settings: 20%
+
+**Completed (this sprint):**
+- Replaced hardcoded strings in bottom navigation exit dialog
+- Quran reader: quick-jump, audio manager, reciter label, error strings localized
+- Zakat: reset dialog, tooltips, calc messages localized + new en/bn keys
+- Prayer Times: method selection screen strings and info bullets localized
+- Athan settings: notification labels/messages localized
+- Qibla: calibration/status/direction/accuracy strings localized
+- Onboarding: Welcome, Username, Location, Notifications, Madhhab, Complete screens localized (keys added)
+
+**Next actions:**
+- Finish Onboarding lints/codegen and remaining strings (Language/Theme)
+- Localize remaining Prayer Times and Settings screens
+- Remove legacy extra bn keys to match en exactly
+- Run hardcoded-string scanner + validation; ensure 100% bn coverage, 0 extras

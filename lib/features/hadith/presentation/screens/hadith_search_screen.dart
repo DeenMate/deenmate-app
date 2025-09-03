@@ -60,20 +60,21 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
   }
   
   String _getTopicSearchQuery(String topicId) {
+    final l10n = AppLocalizations.of(context)!;
     // Map topic IDs to search queries
     switch (topicId) {
       case 'prayer':
-        return 'নামাজ';
+        return l10n.hadithSearchTopicPrayer;
       case 'charity':
-        return 'দান';
+        return l10n.hadithSearchTopicCharity;
       case 'faith':
-        return 'ঈমান';
+        return l10n.hadithSearchTopicFaith;
       case 'fasting':
-        return 'রোজা';
+        return l10n.hadithSearchTopicFasting;
       case 'hajj':
-        return 'হজ';
+        return l10n.hadithSearchTopicHajj;
       case 'ethics':
-        return 'নৈতিকতা';
+        return l10n.hadithSearchTopicEthics;
       default:
         return '';
     }
@@ -266,10 +267,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
     
-    final suggestions = [
-      'নিয়ত', 'আমল', 'সালাত', 'জান্নাত', 'জাহান্নাম',
-      'দোয়া', 'তওবা', 'ধৈর্য', 'কৃতজ্ঞতা', 'মা-বাবা'
-    ];
+    final suggestions = l10n.hadithSearchSuggestions.split(', ');
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -576,6 +574,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
   }
 
   Widget _buildActiveFilters(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       height: 32,
       child: ListView(
@@ -584,19 +583,19 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
           if (_selectedBookFilter != 'all')
             _buildFilterChip(
               context,
-              'বই: ${_getBookName(_selectedBookFilter)}',
+              l10n.hadithSearchFilterBook(_getBookName(_selectedBookFilter)),
               () => setState(() => _selectedBookFilter = 'all'),
             ),
           if (_selectedGradeFilter != 'all')
             _buildFilterChip(
               context,
-              'গ্রেড: $_selectedGradeFilter',
+              l10n.hadithSearchFilterGrade(_selectedGradeFilter),
               () => setState(() => _selectedGradeFilter = 'all'),
             ),
           if (!_searchInArabic || !_searchInTranslation)
             _buildFilterChip(
               context,
-              _searchInArabic ? 'শুধু আরবি' : 'শুধু অনুবাদ',
+              _searchInArabic ? l10n.hadithSearchFilterArabicOnly : l10n.hadithSearchFilterTranslationOnly,
               () => setState(() {
                 _searchInArabic = true;
                 _searchInTranslation = true;
@@ -693,6 +692,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
   Widget _buildFilterDialog() {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return StatefulBuilder(
       builder: (context, setDialogState) {
@@ -731,7 +731,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                 child: Row(
                   children: [
                     Text(
-                      'খোঁজার ফিল্টার',
+                      l10n.hadithSearchFilterTitle,
                       style: theme.textTheme.titleLarge?.copyWith(
                         color: colorScheme.onSurface,
                         fontWeight: FontWeight.w600,
@@ -747,7 +747,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                           _searchInTranslation = true;
                         });
                       },
-                      child: const Text('রিসেট'),
+                      child: Text(l10n.hadithSearchFilterReset),
                     ),
                   ],
                 ),
@@ -762,7 +762,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                     children: [
                       // Book Filter
                       Text(
-                        'হাদিসের বই',
+                        l10n.hadithSearchFilterBookTitle,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
@@ -776,7 +776,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         children: [
                           _buildFilterOption(
                             context,
-                            'সব বই',
+                            l10n.hadithSearchFilterAllBooks,
                             _selectedBookFilter == 'all',
                             () => setDialogState(() => _selectedBookFilter = 'all'),
                           ),
@@ -793,7 +793,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                       
                       // Grade Filter
                       Text(
-                        'হাদিসের গ্রেড',
+                        l10n.hadithSearchFilterGradeTitle,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
@@ -807,27 +807,27 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         children: [
                           _buildFilterOption(
                             context,
-                            'সব গ্রেড',
+                            l10n.hadithSearchFilterAllGrades,
                             _selectedGradeFilter == 'all',
                             () => setDialogState(() => _selectedGradeFilter = 'all'),
                           ),
                           _buildFilterOption(
                             context,
-                            'সহিহ',
-                            _selectedGradeFilter == 'সহিহ',
-                            () => setDialogState(() => _selectedGradeFilter = 'সহিহ'),
+                            l10n.hadithSearchFilterSahih,
+                            _selectedGradeFilter == l10n.hadithSearchFilterSahih,
+                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterSahih),
                           ),
                           _buildFilterOption(
                             context,
-                            'হাসান',
-                            _selectedGradeFilter == 'হাসান',
-                            () => setDialogState(() => _selectedGradeFilter = 'হাসান'),
+                            l10n.hadithSearchFilterHasan,
+                            _selectedGradeFilter == l10n.hadithSearchFilterHasan,
+                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterHasan),
                           ),
                           _buildFilterOption(
                             context,
-                            'দাইফ',
-                            _selectedGradeFilter == 'দাইফ',
-                            () => setDialogState(() => _selectedGradeFilter = 'দাইফ'),
+                            l10n.hadithSearchFilterDaif,
+                            _selectedGradeFilter == l10n.hadithSearchFilterDaif,
+                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterDaif),
                           ),
                         ],
                       ),
@@ -836,7 +836,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                       
                       // Search Scope
                       Text(
-                        'খোঁজার পরিসর',
+                        l10n.hadithSearchScopeTitle,
                         style: theme.textTheme.titleMedium?.copyWith(
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
@@ -845,7 +845,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                       const SizedBox(height: 12),
                       
                       CheckboxListTile(
-                        title: const Text('আরবি টেক্সটে খুঁজুন'),
+                        title: Text(l10n.hadithSearchInArabic),
                         value: _searchInArabic,
                         onChanged: (value) {
                           setDialogState(() => _searchInArabic = value ?? true);
@@ -854,7 +854,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                       ),
                       
                       CheckboxListTile(
-                        title: const Text('অনুবাদে খুঁজুন'),
+                        title: Text(l10n.hadithSearchInTranslation),
                         value: _searchInTranslation,
                         onChanged: (value) {
                           setDialogState(() => _searchInTranslation = value ?? true);
@@ -887,9 +887,9 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'ফিল্টার প্রয়োগ করুন',
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                    child: Text(
+                      l10n.hadithSearchApplyFilters,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),

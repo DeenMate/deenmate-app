@@ -184,6 +184,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildHeader(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final gradeColor = Color(int.parse(_hadith!.gradeColor.replaceFirst('#', '0xFF')));
@@ -270,6 +271,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildMainContent(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -389,6 +391,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildDisplayOptions(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -402,71 +405,73 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Text Size Control
+          // Font Size Control
           Row(
             children: [
               Icon(
-                Icons.text_fields_rounded,
-                color: colorScheme.outline,
+                Icons.format_size_rounded,
+                color: colorScheme.primary,
                 size: 20,
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               Text(
                 l10n.hadithDetailFontSize,
-                style: theme.textTheme.bodyMedium?.copyWith(
+                style: theme.textTheme.titleSmall?.copyWith(
                   color: colorScheme.onSurface,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               const Spacer(),
               IconButton(
                 onPressed: () {
-                  if (_textSize > 12) {
-                    setState(() => _textSize -= 2);
-                  }
+                  setState(() {
+                    _textSize = (_textSize - 2).clamp(12, 24);
+                  });
                 },
-                icon: Icon(
-                  Icons.remove_circle_outline,
-                  color: colorScheme.outline,
-                ),
+                icon: const Icon(Icons.remove_rounded),
+                iconSize: 18,
               ),
               Text(
                 '${_textSize.toInt()}',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               IconButton(
                 onPressed: () {
-                  if (_textSize < 24) {
-                    setState(() => _textSize += 2);
-                  }
+                  setState(() {
+                    _textSize = (_textSize + 2).clamp(12, 24);
+                  });
                 },
-                icon: Icon(
-                  Icons.add_circle_outline,
-                  color: colorScheme.outline,
-                ),
+                icon: const Icon(Icons.add_rounded),
+                iconSize: 18,
               ),
             ],
           ),
-          const Divider(),
           
-          // Show/Hide Options
+          const SizedBox(height: 16),
+          
+          // Text Display Options
           Row(
             children: [
               Expanded(
                 child: CheckboxListTile(
                   title: Text(
                     l10n.hadithDetailArabicLabel,
-                    style: theme.textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface,
+                    ),
                   ),
                   value: _showArabicText,
                   onChanged: (value) {
-                    setState(() => _showArabicText = value ?? true);
+                    setState(() {
+                      _showArabicText = value ?? true;
+                    });
                   },
-                  controlAffinity: ListTileControlAffinity.leading,
+                  dense: true,
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -474,13 +479,17 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
                 child: CheckboxListTile(
                   title: Text(
                     l10n.hadithDetailTranslationLabel,
-                    style: theme.textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface,
+                    ),
                   ),
                   value: _showTranslation,
                   onChanged: (value) {
-                    setState(() => _showTranslation = value ?? true);
+                    setState(() {
+                      _showTranslation = value ?? true;
+                    });
                   },
-                  controlAffinity: ListTileControlAffinity.leading,
+                  dense: true,
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -492,6 +501,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildReferenceInfo(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -563,6 +573,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildRelatedTopics(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -616,6 +627,7 @@ class _HadithDetailScreenState extends State<HadithDetailScreen> {
   }
 
   Widget _buildActionButtons(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -727,17 +739,21 @@ ${_hadith!.bengaliText}
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(l10n.hadithDetailShared),
+      ),
+    );
+  }
 
   void _showSettingsDialog() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('হাদিস সেটিংস'),
-        content: const Text('সেটিংস অপশন এখানে আসবে।'),
+        title: Text(l10n.hadithDetailSettingsTitle),
+        content: Text(l10n.hadithDetailSettingsContent),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('বন্ধ করুন'),
+            child: Text(l10n.hadithDetailSettingsClose),
           ),
         ],
       ),

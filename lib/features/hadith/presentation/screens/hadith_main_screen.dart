@@ -675,6 +675,7 @@ class _HadithMainScreenState extends State<HadithMainScreen> {
   Widget _buildHadithDetailModal(BuildContext context, HadithEntity hadith) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
     
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
