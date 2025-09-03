@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../core/theme/theme_helper.dart';
 
 /// Dialog to prompt user when audio is not available offline
@@ -15,6 +16,8 @@ class AudioDownloadPromptDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return AlertDialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -27,9 +30,9 @@ class AudioDownloadPromptDialog extends StatelessWidget {
             size: 24,
           ),
           const SizedBox(width: 12),
-          const Text(
-            'Audio Not Downloaded',
-            style: TextStyle(
+          Text(
+            l10n.quranAudioNotDownloaded,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -41,22 +44,22 @@ class AudioDownloadPromptDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'The audio for $chapterName is not available offline.',
+            l10n.quranAudioNotAvailableOffline(chapterName),
             style: TextStyle(
               fontSize: 14,
               color: ThemeHelper.getTextSecondaryColor(context),
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Would you like to:',
-            style: TextStyle(
+          Text(
+            l10n.quranWouldYouLikeTo,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 12),
-          
+
           // Download option
           Container(
             padding: const EdgeInsets.all(12),
@@ -79,15 +82,15 @@ class AudioDownloadPromptDialog extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Download Surah',
-                        style: TextStyle(
+                      Text(
+                        l10n.quranDownloadSurah,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        'Save for offline listening',
+                        l10n.quranSaveForOffline,
                         style: TextStyle(
                           fontSize: 12,
                           color: ThemeHelper.getTextSecondaryColor(context),
@@ -99,9 +102,9 @@ class AudioDownloadPromptDialog extends StatelessWidget {
               ],
             ),
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           // Online option
           Container(
             padding: const EdgeInsets.all(12),
@@ -124,15 +127,15 @@ class AudioDownloadPromptDialog extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Play Online',
-                        style: TextStyle(
+                      Text(
+                        l10n.quranPlayOnline,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        'Requires internet connection',
+                        l10n.quranRequiresInternet,
                         style: TextStyle(
                           fontSize: 12,
                           color: ThemeHelper.getTextSecondaryColor(context),
@@ -159,8 +162,8 @@ class AudioDownloadPromptDialog extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                'Play Online',
-                style: TextStyle(color: Colors.orange),
+                l10n.quranPlayOnline,
+                style: const TextStyle(color: Colors.orange),
               ),
             ],
           ),
@@ -176,10 +179,10 @@ class AudioDownloadPromptDialog extends StatelessWidget {
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(Icons.download, size: 18),
-              SizedBox(width: 4),
-              Text('Download'),
+            children: [
+              const Icon(Icons.download, size: 18),
+              const SizedBox(width: 4),
+              Text(l10n.quranDownload),
             ],
           ),
         ),
@@ -203,6 +206,24 @@ class AudioDownloadPromptDialog extends StatelessWidget {
     );
     return result ?? false; // Default to false (play online) if dismissed
   }
+
+  /// Utility function to create audio download callback for audio service
+  /// This integrates the prompt dialog with the audio service's onPromptDownload callback
+  static Future<bool> Function(dynamic verse)? createAudioServiceCallback(
+    BuildContext context,
+  ) {
+    return (dynamic verse) async {
+      // Extract chapter name from verse context
+      // For now, use a generic name - this should be enhanced to get actual chapter name
+      final chapterName = 'Surah ${verse.chapterId ?? 'Unknown'}';
+
+      return await AudioDownloadPromptDialog.show(
+        context,
+        verse,
+        chapterName,
+      );
+    };
+  }
 }
 
 /// Alternative simple version for quick prompts
@@ -211,22 +232,26 @@ class QuickAudioPrompt {
     BuildContext context,
     String verseKey,
   ) async {
+    final l10n = AppLocalizations.of(context)!;
     return await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Audio not available offline'),
-        content: Text('Play $verseKey online or download for offline use?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Play Online'),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Download'),
-          ),
-        ],
-      ),
-    ) ?? false;
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(l10n.quranAudioNotAvailableOfflineSimple),
+              content: Text(l10n.quranPlayVerseOnlineOrDownload(verseKey)),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(l10n.quranPlayOnline),
+                ),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(l10n.quranDownload),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
   }
 }

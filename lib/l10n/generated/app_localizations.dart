@@ -696,6 +696,54 @@ abstract class AppLocalizations {
   /// **'Ruku'**
   String get quranRuku;
 
+  /// Title for Juz reader screen
+  ///
+  /// In en, this message translates to:
+  /// **'Juz {number}'**
+  String quranJuzTitle(int number);
+
+  /// Title for Ruku reader screen
+  ///
+  /// In en, this message translates to:
+  /// **'Ruku {number}'**
+  String quranRukuTitle(int number);
+
+  /// Title for Hizb reader screen
+  ///
+  /// In en, this message translates to:
+  /// **'Hizb {number}'**
+  String quranHizbTitle(int number);
+
+  /// Title for Page reader screen
+  ///
+  /// In en, this message translates to:
+  /// **'Page {number}'**
+  String quranPageTitle(int number);
+
+  /// Message when no verses are found for a section
+  ///
+  /// In en, this message translates to:
+  /// **'No verses found'**
+  String get quranNoVersesFound;
+
+  /// Message for features that are not yet complete
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is under development'**
+  String get quranFeatureUnderDevelopment;
+
+  /// Error message when content fails to load
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading content: {error}'**
+  String quranErrorLoadingContent(String error);
+
+  /// Retry button text for error states
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get quranRetryButton;
+
   /// Pre-dawn meal during Ramadan
   ///
   /// In en, this message translates to:
@@ -3096,7 +3144,7 @@ abstract class AppLocalizations {
   /// **'Translation'**
   String get quranTranslation;
 
-  /// Tafsir commentary toggle label
+  /// Tafsir/commentary feature
   ///
   /// In en, this message translates to:
   /// **'Tafsir'**
@@ -4956,10 +5004,10 @@ abstract class AppLocalizations {
   /// **'Copied'**
   String get hadithDetailCopied;
 
-  /// Message when text is shared
+  /// Success message when hadith is shared
   ///
   /// In en, this message translates to:
-  /// **'Shared'**
+  /// **'Hadith shared successfully'**
   String get hadithDetailShared;
 
   /// Template for sharing hadith
@@ -5496,6 +5544,384 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Name must be at least 2 characters long'**
   String get onboardingNameTooShort;
+
+  /// Title for hadith settings dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Settings'**
+  String get hadithDetailSettingsTitle;
+
+  /// Content text for hadith settings dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Settings options will be available here.'**
+  String get hadithDetailSettingsContent;
+
+  /// Close button text for hadith settings dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get hadithDetailSettingsClose;
+
+  /// Prayer topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer'**
+  String get hadithSearchTopicPrayer;
+
+  /// Charity topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Charity'**
+  String get hadithSearchTopicCharity;
+
+  /// Faith topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Faith'**
+  String get hadithSearchTopicFaith;
+
+  /// Fasting topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Fasting'**
+  String get hadithSearchTopicFasting;
+
+  /// Hajj topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Hajj'**
+  String get hadithSearchTopicHajj;
+
+  /// Ethics topic search query
+  ///
+  /// In en, this message translates to:
+  /// **'Ethics'**
+  String get hadithSearchTopicEthics;
+
+  /// Comma-separated list of search suggestions
+  ///
+  /// In en, this message translates to:
+  /// **'Intention, Deeds, Prayer, Paradise, Hell, Supplication, Repentance, Patience, Gratitude, Parents'**
+  String get hadithSearchSuggestions;
+
+  /// Book filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Book: {bookName}'**
+  String hadithSearchFilterBook(String bookName);
+
+  /// Grade filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Grade: {grade}'**
+  String hadithSearchFilterGrade(String grade);
+
+  /// Arabic only filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic Only'**
+  String get hadithSearchFilterArabicOnly;
+
+  /// Translation only filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Translation Only'**
+  String get hadithSearchFilterTranslationOnly;
+
+  /// Search filter dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Search Filters'**
+  String get hadithSearchFilterTitle;
+
+  /// Reset filter button text
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get hadithSearchFilterReset;
+
+  /// Book filter section title
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Book'**
+  String get hadithSearchFilterBookTitle;
+
+  /// All books option text
+  ///
+  /// In en, this message translates to:
+  /// **'All Books'**
+  String get hadithSearchFilterAllBooks;
+
+  /// Grade filter section title
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Grade'**
+  String get hadithSearchFilterGradeTitle;
+
+  /// All grades option text
+  ///
+  /// In en, this message translates to:
+  /// **'All Grades'**
+  String get hadithSearchFilterAllGrades;
+
+  /// Sahih grade option
+  ///
+  /// In en, this message translates to:
+  /// **'Sahih'**
+  String get hadithSearchFilterSahih;
+
+  /// Hasan grade option
+  ///
+  /// In en, this message translates to:
+  /// **'Hasan'**
+  String get hadithSearchFilterHasan;
+
+  /// Daif grade option
+  ///
+  /// In en, this message translates to:
+  /// **'Daif'**
+  String get hadithSearchFilterDaif;
+
+  /// Search scope section title
+  ///
+  /// In en, this message translates to:
+  /// **'Search Scope'**
+  String get hadithSearchScopeTitle;
+
+  /// Search in Arabic text option
+  ///
+  /// In en, this message translates to:
+  /// **'Search in Arabic text'**
+  String get hadithSearchInArabic;
+
+  /// Search in translation option
+  ///
+  /// In en, this message translates to:
+  /// **'Search in translation'**
+  String get hadithSearchInTranslation;
+
+  /// Apply filters button text
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Filters'**
+  String get hadithSearchApplyFilters;
+
+  /// No description provided for @comment4.
+  ///
+  /// In en, this message translates to:
+  /// **'===== QURAN MODULE STRINGS ====='**
+  String get comment4;
+
+  /// Dialog title when audio is not available offline
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Not Downloaded'**
+  String get quranAudioNotDownloaded;
+
+  /// Message when audio is not available offline
+  ///
+  /// In en, this message translates to:
+  /// **'The audio for {chapterName} is not available offline.'**
+  String quranAudioNotAvailableOffline(String chapterName);
+
+  /// Prompt for user action when audio not available
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to:'**
+  String get quranWouldYouLikeTo;
+
+  /// Option to download surah audio
+  ///
+  /// In en, this message translates to:
+  /// **'Download Surah'**
+  String get quranDownloadSurah;
+
+  /// Description for download option
+  ///
+  /// In en, this message translates to:
+  /// **'Save for offline listening'**
+  String get quranSaveForOffline;
+
+  /// Option to play audio online
+  ///
+  /// In en, this message translates to:
+  /// **'Play Online'**
+  String get quranPlayOnline;
+
+  /// Description for online play option
+  ///
+  /// In en, this message translates to:
+  /// **'Requires internet connection'**
+  String get quranRequiresInternet;
+
+  /// Simple title for audio not available dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Audio not available offline'**
+  String get quranAudioNotAvailableOfflineSimple;
+
+  /// Simple prompt for verse audio
+  ///
+  /// In en, this message translates to:
+  /// **'Play {verseKey} online or download for offline use?'**
+  String quranPlayVerseOnlineOrDownload(String verseKey);
+
+  /// Download button text
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get quranDownload;
+
+  /// Reset filters button text
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Filters'**
+  String get quranResetFilters;
+
+  /// Error message when chapters fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading chapters'**
+  String get quranErrorLoadingChapters;
+
+  /// Error message when translations fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading translations'**
+  String get quranErrorLoadingTranslations;
+
+  /// Script type selector label
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Script'**
+  String get quranSurahScript;
+
+  /// Uthmanic script option
+  ///
+  /// In en, this message translates to:
+  /// **'Uthmanic'**
+  String get quranUthmanic;
+
+  /// Indo-Pak script option
+  ///
+  /// In en, this message translates to:
+  /// **'Indo-Pak'**
+  String get quranIndoPak;
+
+  /// Word by word analysis feature
+  ///
+  /// In en, this message translates to:
+  /// **'Word by Word'**
+  String get quranWordByWord;
+
+  /// Toggle for word by word display
+  ///
+  /// In en, this message translates to:
+  /// **'Show word by word'**
+  String get quranShowWordByWord;
+
+  /// Toggle for tafsir display
+  ///
+  /// In en, this message translates to:
+  /// **'Show tafsir'**
+  String get quranShowTafsir;
+
+  /// Tafsir selection dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Select Tafsir'**
+  String get quranSelectTafsir;
+
+  /// Sajdah marker indicator
+  ///
+  /// In en, this message translates to:
+  /// **'Sajdah'**
+  String get quranSajdahMarker;
+
+  /// Tooltip for sajdah marker
+  ///
+  /// In en, this message translates to:
+  /// **'Sajdah recommended'**
+  String get quranSajdahRecommended;
+
+  /// Auto scroll feature toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Auto Scroll'**
+  String get quranAutoScroll;
+
+  /// Auto scroll speed setting
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll Speed'**
+  String get quranScrollSpeed;
+
+  /// Audio repeat mode setting
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat Mode'**
+  String get quranRepeatMode;
+
+  /// No repeat mode
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get quranRepeatOff;
+
+  /// Repeat one verse mode
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat One'**
+  String get quranRepeatOne;
+
+  /// Repeat all verses mode
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat All'**
+  String get quranRepeatAll;
+
+  /// Audio playback speed setting
+  ///
+  /// In en, this message translates to:
+  /// **'Playback Speed'**
+  String get quranPlaybackSpeed;
+
+  /// Jump to specific verse action
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to Verse'**
+  String get quranJumpToVerse;
+
+  /// Offline status indicator
+  ///
+  /// In en, this message translates to:
+  /// **'Currently offline'**
+  String get quranCurrentlyOffline;
+
+  /// Online status indicator
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get quranConnected;
+
+  /// Message during text download
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading Quran text...'**
+  String get quranDownloadingText;
+
+  /// Message when text download completes
+  ///
+  /// In en, this message translates to:
+  /// **'Quran text download complete'**
+  String get quranTextDownloadComplete;
+
+  /// Message when essential content download completes
+  ///
+  /// In en, this message translates to:
+  /// **'Essential content downloaded successfully!'**
+  String get quranEssentialContentDownloaded;
 }
 
 class _AppLocalizationsDelegate

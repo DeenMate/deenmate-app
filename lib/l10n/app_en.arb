@@ -425,6 +425,68 @@
   "@quranRuku": {
     "description": "Ruku navigation tab"
   },
+  "quranJuzTitle": "Juz {number}",
+  "@quranJuzTitle": {
+    "description": "Title for Juz reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranRukuTitle": "Ruku {number}",
+  "@quranRukuTitle": {
+    "description": "Title for Ruku reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranHizbTitle": "Hizb {number}",
+  "@quranHizbTitle": {
+    "description": "Title for Hizb reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranPageTitle": "Page {number}",
+  "@quranPageTitle": {
+    "description": "Title for Page reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranNoVersesFound": "No verses found",
+  "@quranNoVersesFound": {
+    "description": "Message when no verses are found for a section"
+  },
+  "quranFeatureUnderDevelopment": "This feature is under development",
+  "@quranFeatureUnderDevelopment": {
+    "description": "Message for features that are not yet complete"
+  },
+  "quranErrorLoadingContent": "Error loading content: {error}",
+  "@quranErrorLoadingContent": {
+    "description": "Error message when content fails to load",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "quranRetryButton": "Retry",
+  "@quranRetryButton": {
+    "description": "Retry button text for error states"
+  },
 
   "ramadanSuhoor": "Suhoor",
   "@ramadanSuhoor": {
@@ -3855,5 +3917,284 @@
   "errorLanguageChangeFailed": "Failed to save language preference. Please try again.",
   "@errorLanguageChangeFailed": {"description": "Language save failed error"},
   "errorLanguageChangeGeneric": "An error occurred. Please try again.",
-  "@errorLanguageChangeGeneric": {"description": "Generic error"}
+  "@errorLanguageChangeGeneric": {"description": "Generic error"},
+  "hadithDetailShared": "Hadith shared successfully",
+  "@hadithDetailShared": {
+    "description": "Success message when hadith is shared"
+  },
+  "hadithDetailSettingsTitle": "Hadith Settings",
+  "@hadithDetailSettingsTitle": {
+    "description": "Title for hadith settings dialog"
+  },
+  "hadithDetailSettingsContent": "Settings options will be available here.",
+  "@hadithDetailSettingsContent": {
+    "description": "Content text for hadith settings dialog"
+  },
+  "hadithDetailSettingsClose": "Close",
+  "@hadithDetailSettingsClose": {
+    "description": "Close button text for hadith settings dialog"
+  },
+  "hadithSearchTopicPrayer": "Prayer",
+  "@hadithSearchTopicPrayer": {
+    "description": "Prayer topic search query"
+  },
+  "hadithSearchTopicCharity": "Charity",
+  "@hadithSearchTopicCharity": {
+    "description": "Charity topic search query"
+  },
+  "hadithSearchTopicFaith": "Faith",
+  "@hadithSearchTopicFaith": {
+    "description": "Faith topic search query"
+  },
+  "hadithSearchTopicFasting": "Fasting",
+  "@hadithSearchTopicFasting": {
+    "description": "Fasting topic search query"
+  },
+  "hadithSearchTopicHajj": "Hajj",
+  "@hadithSearchTopicHajj": {
+    "description": "Hajj topic search query"
+  },
+  "hadithSearchTopicEthics": "Ethics",
+  "@hadithSearchTopicEthics": {
+    "description": "Ethics topic search query"
+  },
+  "hadithSearchSuggestions": "Intention, Deeds, Prayer, Paradise, Hell, Supplication, Repentance, Patience, Gratitude, Parents",
+  "@hadithSearchSuggestions": {
+    "description": "Comma-separated list of search suggestions"
+  },
+  "hadithSearchFilterBook": "Book: {bookName}",
+  "@hadithSearchFilterBook": {
+    "description": "Book filter label",
+    "placeholders": {
+      "bookName": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithSearchFilterGrade": "Grade: {grade}",
+  "@hadithSearchFilterGrade": {
+    "description": "Grade filter label",
+    "placeholders": {
+      "grade": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithSearchFilterArabicOnly": "Arabic Only",
+  "@hadithSearchFilterArabicOnly": {
+    "description": "Arabic only filter label"
+  },
+  "hadithSearchFilterTranslationOnly": "Translation Only",
+  "@hadithSearchFilterTranslationOnly": {
+    "description": "Translation only filter label"
+  },
+  "hadithSearchFilterTitle": "Search Filters",
+  "@hadithSearchFilterTitle": {
+    "description": "Search filter dialog title"
+  },
+  "hadithSearchFilterReset": "Reset",
+  "@hadithSearchFilterReset": {
+    "description": "Reset filter button text"
+  },
+  "hadithSearchFilterBookTitle": "Hadith Book",
+  "@hadithSearchFilterBookTitle": {
+    "description": "Book filter section title"
+  },
+  "hadithSearchFilterAllBooks": "All Books",
+  "@hadithSearchFilterAllBooks": {
+    "description": "All books option text"
+  },
+  "hadithSearchFilterGradeTitle": "Hadith Grade",
+  "@hadithSearchFilterGradeTitle": {
+    "description": "Grade filter section title"
+  },
+  "hadithSearchFilterAllGrades": "All Grades",
+  "@hadithSearchFilterAllGrades": {
+    "description": "All grades option text"
+  },
+  "hadithSearchFilterSahih": "Sahih",
+  "@hadithSearchFilterSahih": {
+    "description": "Sahih grade option"
+  },
+  "hadithSearchFilterHasan": "Hasan",
+  "@hadithSearchFilterHasan": {
+    "description": "Hasan grade option"
+  },
+  "hadithSearchFilterDaif": "Daif",
+  "@hadithSearchFilterDaif": {
+    "description": "Daif grade option"
+  },
+  "hadithSearchScopeTitle": "Search Scope",
+  "@hadithSearchScopeTitle": {
+    "description": "Search scope section title"
+  },
+  "hadithSearchInArabic": "Search in Arabic text",
+  "@hadithSearchInArabic": {
+    "description": "Search in Arabic text option"
+  },
+  "hadithSearchInTranslation": "Search in translation",
+  "@hadithSearchInTranslation": {
+    "description": "Search in translation option"
+  },
+  "hadithSearchApplyFilters": "Apply Filters",
+  "@hadithSearchApplyFilters": {
+    "description": "Apply filters button text"
+  },
+
+  "comment4": "===== QURAN MODULE STRINGS =====",
+
+  "quranAudioNotDownloaded": "Audio Not Downloaded",
+  "@quranAudioNotDownloaded": {
+    "description": "Dialog title when audio is not available offline"
+  },
+  "quranAudioNotAvailableOffline": "The audio for {chapterName} is not available offline.",
+  "@quranAudioNotAvailableOffline": {
+    "description": "Message when audio is not available offline",
+    "placeholders": {
+      "chapterName": {
+        "type": "String"
+      }
+    }
+  },
+  "quranWouldYouLikeTo": "Would you like to:",
+  "@quranWouldYouLikeTo": {
+    "description": "Prompt for user action when audio not available"
+  },
+  "quranDownloadSurah": "Download Surah",
+  "@quranDownloadSurah": {
+    "description": "Option to download surah audio"
+  },
+  "quranSaveForOffline": "Save for offline listening",
+  "@quranSaveForOffline": {
+    "description": "Description for download option"
+  },
+  "quranPlayOnline": "Play Online",
+  "@quranPlayOnline": {
+    "description": "Option to play audio online"
+  },
+  "quranRequiresInternet": "Requires internet connection",
+  "@quranRequiresInternet": {
+    "description": "Description for online play option"
+  },
+  "quranAudioNotAvailableOfflineSimple": "Audio not available offline",
+  "@quranAudioNotAvailableOfflineSimple": {
+    "description": "Simple title for audio not available dialog"
+  },
+  "quranPlayVerseOnlineOrDownload": "Play {verseKey} online or download for offline use?",
+  "@quranPlayVerseOnlineOrDownload": {
+    "description": "Simple prompt for verse audio",
+    "placeholders": {
+      "verseKey": {
+        "type": "String"
+      }
+    }
+  },
+  "quranDownload": "Download",
+  "@quranDownload": {
+    "description": "Download button text"
+  },
+  "quranResetFilters": "Reset Filters",
+  "@quranResetFilters": {
+    "description": "Reset filters button text"
+  },
+  "quranErrorLoadingChapters": "Error loading chapters",
+  "@quranErrorLoadingChapters": {
+    "description": "Error message when chapters fail to load"
+  },
+  "quranErrorLoadingTranslations": "Error loading translations",
+  "@quranErrorLoadingTranslations": {
+    "description": "Error message when translations fail to load"
+  },
+  "quranSurahScript": "Surah Script",
+  "@quranSurahScript": {
+    "description": "Script type selector label"
+  },
+  "quranUthmanic": "Uthmanic",
+  "@quranUthmanic": {
+    "description": "Uthmanic script option"
+  },
+  "quranIndoPak": "Indo-Pak",
+  "@quranIndoPak": {
+    "description": "Indo-Pak script option"
+  },
+  "quranWordByWord": "Word by Word",
+  "@quranWordByWord": {
+    "description": "Word by word analysis feature"
+  },
+  "quranShowWordByWord": "Show word by word",
+  "@quranShowWordByWord": {
+    "description": "Toggle for word by word display"
+  },
+  "quranTafsir": "Tafsir",
+  "@quranTafsir": {
+    "description": "Tafsir/commentary feature"
+  },
+  "quranShowTafsir": "Show tafsir",
+  "@quranShowTafsir": {
+    "description": "Toggle for tafsir display"
+  },
+  "quranSelectTafsir": "Select Tafsir",
+  "@quranSelectTafsir": {
+    "description": "Tafsir selection dialog title"
+  },
+  "quranSajdahMarker": "Sajdah",
+  "@quranSajdahMarker": {
+    "description": "Sajdah marker indicator"
+  },
+  "quranSajdahRecommended": "Sajdah recommended",
+  "@quranSajdahRecommended": {
+    "description": "Tooltip for sajdah marker"
+  },
+  "quranAutoScroll": "Auto Scroll",
+  "@quranAutoScroll": {
+    "description": "Auto scroll feature toggle"
+  },
+  "quranScrollSpeed": "Scroll Speed",
+  "@quranScrollSpeed": {
+    "description": "Auto scroll speed setting"
+  },
+  "quranRepeatMode": "Repeat Mode",
+  "@quranRepeatMode": {
+    "description": "Audio repeat mode setting"
+  },
+  "quranRepeatOff": "Off",
+  "@quranRepeatOff": {
+    "description": "No repeat mode"
+  },
+  "quranRepeatOne": "Repeat One",
+  "@quranRepeatOne": {
+    "description": "Repeat one verse mode"
+  },
+  "quranRepeatAll": "Repeat All",
+  "@quranRepeatAll": {
+    "description": "Repeat all verses mode"
+  },
+  "quranPlaybackSpeed": "Playback Speed",
+  "@quranPlaybackSpeed": {
+    "description": "Audio playback speed setting"
+  },
+  "quranJumpToVerse": "Jump to Verse",
+  "@quranJumpToVerse": {
+    "description": "Jump to specific verse action"
+  },
+  "quranCurrentlyOffline": "Currently offline",
+  "@quranCurrentlyOffline": {
+    "description": "Offline status indicator"
+  },
+  "quranConnected": "Connected",
+  "@quranConnected": {
+    "description": "Online status indicator"
+  },
+  "quranDownloadingText": "Downloading Quran text...",
+  "@quranDownloadingText": {
+    "description": "Message during text download"
+  },
+  "quranTextDownloadComplete": "Quran text download complete",
+  "@quranTextDownloadComplete": {
+    "description": "Message when text download completes"
+  },
+  "quranEssentialContentDownloaded": "Essential content downloaded successfully!",
+  "@quranEssentialContentDownloaded": {
+    "description": "Message when essential content download completes"
+  }
 }

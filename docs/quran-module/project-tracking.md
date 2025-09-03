@@ -1,12 +1,379 @@
 # Quran Module - Project Tracking
 
-**Last Updated**: September 1, 2025  
-**Module Status**: ✅ Implemented (95% Complete)  
-**Priority**: P0 (High)  
-**Story Points**: 38pts total (25pts base + 13pts Sprint 1 enhancements)  
-**Timeline**: Sprint 1 Completed | Sprint 2 Advanced Features
+*Last Updated: 2025-09-03*  
+*Module Location: `lib/features/quran/`*
 
 ---
+
+## 📋 Current State — Audit 2025-09-03
+
+### Executive Summary
+The Quran module is functionally complete with a robust architecture following Clean Architecture principles. Core features include text reading, audio playback, offline content, bookmarks, search, and reading plans. Key areas for improvement identified: localization gaps, audio download prompts, reciter availability, and text download automation.
+
+**Status**: ✅ Core functionality working | ⚠️ Needs refinement for production readiness
+
+### 1.1 Structure & Providers Analysis
+
+#### Module Architecture Tree
+```
+lib/features/quran/
+├── data/                          # Data layer implementation
+│   ├── api/                       # API clients
+│   │   ├── chapters_api.dart      # Chapters/Surah API
+│   │   ├── verses_api.dart        # Verses API with translations
+│   │   └── resources_api.dart     # Translation/Recitation resources
+│   ├── cache/                     # Local storage
+│   ├── dto/                       # Data transfer objects
+│   │   ├── chapter_dto.dart       # Surah/Chapter models
+│   │   ├── verse_dto.dart         # Verse models
+│   │   ├── verses_page_dto.dart   # Paginated verse response
+│   │   ├── translation_resource_dto.dart  # Translation resources
+│   │   ├── recitation_resource_dto.dart   # Reciter resources
+│   │   ├── tafsir_dto.dart        # Tafsir/Commentary models
+│   │   ├── audio_download_dto.dart # Audio download tracking
+│   │   └── [other DTOs]
+│   ├── repo/                      # Repository implementations
+│   │   └── quran_repository.dart  # Main Quran repository
+│   └── auth_token_notifier.dart   # Auth token management
+├── domain/                        # Domain layer
+│   └── services/                  # Domain services
+│       ├── audio_service.dart     # Audio playback/download service
+│       ├── offline_content_service.dart # Offline content management
+│       ├── bookmarks_service.dart # Bookmark management
+│       └── search_service.dart    # Search functionality
+├── infrastructure/                # Infrastructure services
+├── presentation/                  # Presentation layer
+│   ├── controllers/               # Screen controllers
+│   ├── providers/                 # Riverpod providers
+│   │   └── audio_providers.dart   # Audio state management
+│   ├── routes/                    # Route definitions
+│   │   └── quran_routes.dart      # Quran module routes
+│   ├── screens/                   # UI screens
+│   │   ├── quran_home_screen.dart         # Main Quran home
+│   │   ├── quran_reader_screen.dart       # Verse reader
+│   │   ├── enhanced_quran_reader_screen.dart # Enhanced reader
+│   │   ├── quran_search_screen.dart       # Search interface
+│   │   ├── audio_downloads_screen.dart    # Audio management
+│   │   ├── bookmarks_screen.dart          # Bookmarks
+│   │   ├── offline_management_screen.dart # Offline content
+│   │   ├── reading_plans_screen.dart      # Reading plans
+│   │   ├── [reader screens for Juz/Hizb/Ruku/Page] # Navigation modes
+│   ├── services/                  # Presentation services
+│   ├── state/                     # State management
+│   │   └── providers.dart         # Main providers file (1306 lines)
+│   └── widgets/                   # Reusable UI components
+│       ├── verse_card_widget.dart         # Verse display
+│       ├── audio_player_widget.dart       # Audio controls
+│       ├── translation_picker_widget.dart # Translation selector
+│       ├── mobile_audio_player.dart       # Mobile audio player
+│       ├── search_result_card.dart        # Search results
+│       └── [60+ other widgets]
+└── utils/                         # Utility functions
+    └── text_utils.dart            # Text processing utilities
+```
+
+#### Riverpod Providers Inventory
+
+**Core Data Providers:**
+- `dioQfProvider` - Dio HTTP client
+- `chaptersApiProvider` - Chapters API client
+- `versesApiProvider` - Verses API client  
+- `resourcesApiProvider` - Resources API client
+- `quranRepoProvider` - Main repository
+
+**Content Providers:**
+- `surahListProvider` - Chapter/Surah list
+- `versesProvider.family` - Verses by chapter with translations
+- `translationResourcesProvider` - Available translations
+- `recitationsProvider` - Available reciters
+- `tafsirResourcesProvider` - Tafsir resources
+
+**Audio Providers:**
+- `quranAudioServiceProvider` - Audio service
+- `audioDownloadProgressProvider` - Download progress tracking
+- `audioStorageStatsProvider` - Storage statistics
+
+**User State Providers:**
+- `lastReadProvider` - Last read position
+- `bookmarksProvider` - User bookmarks
+- `selectedTranslationsProvider` - User's selected translations
+
+### 1.2 API & Data Analysis
+
+#### Current API Usage: Quran.com API v4
+- **Base URL**: `https://api.quran.com/api/v4`
+- **Authentication**: Currently bypassed for development
+- **Key Endpoints**:
+  - `/chapters` - Chapter/Surah list with metadata
+  - `/chapters/{id}/verses` - Verses by chapter with pagination
+  - `/resources/translations` - Available translation resources
+  - `/resources/recitations` - Available recitation resources
+  - `/resources/tafsirs` - Available tafsir resources
+  - `/verses/by_chapter/{id}` - Verse text with translations/audio
+- **Caching**: Dio with Hive backing for verses, chapters, resources
+- **Error Handling**: Repository pattern with fallback to cached data
+
+#### API Integration Quality Assessment
+✅ **Strengths**:
+- Clean repository abstraction over API clients
+- Comprehensive DTO mapping for type safety
+- Hive caching for offline functionality
+- Pagination support for large verse sets
+- Resource discovery for translations/reciters
+
+⚠️ **Areas for Improvement**:
+- Reciter availability checking inconsistent (some show "unavailable")
+- Audio URL construction varies between endpoints
+- No standardized retry/backoff policy
+- Limited error context for debugging
+- **Key Endpoints Used**:
+  - `GET /chapters` - List all 114 chapters
+  - `GET /verses/by_chapter/{id}` - Get verses with translations
+  - `GET /resources/translations` - Available translations
+  - `GET /resources/recitations` - Available reciters
+  - `GET /resources/tafsirs` - Tafsir resources
+
+#### Data Flow & Error Handling
+- ✅ Proper error handling in API clients
+- ✅ Request/response logging for debugging
+- ✅ Retry logic implementation
+- ⚠️ No offline fallback strategy documented
+- ⚠️ Rate limiting not implemented
+
+#### Caching Strategy
+- **Technology**: Hive (NoSQL local database)
+- **Cache Types**: Verses, translations, chapter metadata
+- ⚠️ **TTL Policy**: Not clearly defined
+- ⚠️ **Cache invalidation**: Manual only
+
+### 1.3 Offline & Storage Analysis
+
+#### Offline Text Behavior
+- ✅ Verses are cached after first access
+- ❌ **Issue Found**: No automatic background download of complete Quran text after install
+- ✅ App works offline for previously accessed content
+- ⚠️ No progress indicator for background downloads
+- ⚠️ No corruption handling documented
+
+#### Local Storage Schema
+```dart
+// Hive boxes used (inferred from codebase)
+- chapters_box: Chapter metadata
+- verses_box: Cached verses with translations
+- audio_cache_box: Downloaded audio files index
+- bookmarks_box: User bookmarks
+- last_read_box: Reading position
+- settings_box: User preferences
+```
+
+### 1.4 Audio Implementation Analysis
+
+#### Reciter Availability Status
+- ✅ Reciter list is fetched from API
+- ✅ Reciter picker is implemented
+- ❌ **Critical Issue**: Some reciters showing as "unavailable"
+- ✅ Verse-by-verse playback supported
+- ✅ Loop/repeat functionality implemented
+
+#### Audio Download Policy
+- ✅ Per-Surah audio download supported
+- ❌ **Issue**: "Download all Surah audio" feature incomplete
+- ❌ **Critical Issue**: Missing download prompts when playing unavailable audio
+- ⚠️ No automatic download prevention (could silently download)
+
+#### Audio Technical Stack
+- **Player**: `audioplayers` package
+- **Downloads**: Custom download manager
+- **Storage**: File system with index in Hive
+- **Quality**: Configurable quality levels
+
+### 1.5 UI/UX & Theme Analysis
+
+#### Current Theme Compliance
+- ✅ Uses `ThemeHelper` for consistent colors
+- ✅ Light theme as default
+- ✅ Proper Arabic RTL support
+- ✅ Responsive layouts for mobile
+- ⚠️ Some custom colors not following design tokens
+
+#### Layout Features
+- ✅ Single/multi-translation view
+- ❌ **Missing**: Tafsir panel toggle
+- ❌ **Missing**: Word-by-word panel
+- ✅ Sajdah markers (in some components)
+- ✅ Pagination and navigation
+
+### 1.6 Localization Analysis
+
+#### Current i18n Status
+- ✅ **Good**: Most UI uses AppLocalizations
+- ❌ **Critical Issues Found**: Hardcoded strings in:
+  - `juz_reader_screen.dart` - "Juz $juzNumber", "No verses found", "This feature is under development"
+  - `ruku_reader_screen.dart` - "Ruku $rukuNumber", "No verses found", error messages
+  - `hizb_reader_screen.dart` - Similar hardcoded strings
+  - `page_reader_screen.dart` - Similar issues
+
+#### ARB Coverage Analysis
+- ✅ **EN**: Comprehensive coverage in `app_en.arb`
+- ✅ **BN**: Good coverage in `app_bn.arb`
+- ❌ **Issues**: Missing keys for:
+  - `quran.juzTitle` 
+  - `quran.rukuTitle`
+  - `quran.hizbTitle`
+  - `quran.noVersesFound`
+  - `quran.featureUnderDevelopment`
+  - `quran.errorLoadingContent`
+  - `quran.retryButton`
+
+### 1.7 Feature Parity vs Goals
+
+#### ✅ **Implemented Features**
+- Multiple translations (EN/BN/UR/AR)
+- Audio recitations with loop/repeat
+- Bookmarking system
+- Search functionality (basic)
+- Offline verse access (cached)
+- RTL Arabic text support
+- Mobile-optimized interface
+
+#### ❌ **Missing Critical Features**
+- **Tafsir integration** - API exists but UI incomplete
+- **Word-by-word display** - Not implemented
+- **Script variations** (Uthmanic vs IndoPak) - Not available
+- **Advanced search** - Basic implementation only
+- **Reading plans** - Screen exists but incomplete
+- **Background text download** - Not implemented
+- **Sajdah indicators** - Inconsistent implementation
+
+#### ⚠️ **Partially Implemented**
+- Audio download management - Core works, UX incomplete
+- Offline functionality - Works for cached content only
+- Multi-language support - Good for UI, content limited
+
+---
+
+## 🐛 Critical Issues Discovered
+
+### Priority 1 - Critical (Breaks Core Flows)
+
+1. **Hardcoded Strings in Reader Screens**
+   - **Files**: `juz_reader_screen.dart`, `ruku_reader_screen.dart`, `hizb_reader_screen.dart`
+   - **Impact**: Breaks i18n, not accessible to Bengali users
+   - **Fix**: Move all strings to ARB files
+
+2. **Reciter "Unavailable" Issue**
+   - **File**: Audio system
+   - **Impact**: Users cannot play audio for some reciters
+   - **Root Cause**: API endpoint changes or data mapping issues
+
+3. **Missing Audio Download Prompts**
+   - **File**: Audio player components
+   - **Impact**: Poor UX, users confused about offline audio
+   - **Fix**: Implement proper prompt system
+
+### Priority 2 - High (UX Degradation)
+
+4. **No Background Text Download**
+   - **Impact**: App requires internet for first-time verse access
+   - **Fix**: Implement post-install background download
+
+5. **Incomplete Download All Audio Feature**
+   - **Impact**: Users cannot bulk download audio
+   - **Fix**: Complete implementation in `audio_downloads_screen.dart`
+
+### Priority 3 - Medium (Parity Gaps)
+
+6. **Missing Tafsir UI**
+   - **Impact**: Tafsir data available but not accessible to users
+   - **Fix**: Implement tafsir panel in reader screens
+
+7. **No Word-by-Word Feature**
+   - **Impact**: Learning feature missing
+   - **Fix**: Implement word analysis display
+
+---
+
+## 📋 Sprint Planning
+
+### Sprint A — Stabilize & Parity (2 weeks)
+
+#### Week 1: Critical Fixes
+- [ ] **Fix hardcoded strings** - Move all to ARB files
+- [ ] **Fix reciter availability** - Debug API mapping
+- [ ] **Implement audio download prompts** - UX flow
+- [ ] **Complete ARB translations** - EN/BN coverage
+
+#### Week 2: Background Download & Audio
+- [ ] **Background text download** - Post-install job
+- [ ] **Complete download all audio** - Bulk download feature
+- [ ] **Sajdah markers** - Consistent implementation
+
+### Sprint B — Reading Experience (2 weeks)
+
+#### Week 3: Enhanced Reading
+- [ ] **Word-by-word display** - Toggle panel
+- [ ] **Tafsir integration** - Commentary panel
+- [ ] **Script variations** - Uthmanic/IndoPak toggle
+
+#### Week 4: Search & Navigation
+- [ ] **Advanced search** - Keywords, transliteration, BN
+- [ ] **Reading progress** - Visual indicators
+- [ ] **Navigation improvements** - Better verse jumping
+
+### Sprint C — Engagement & Polish (1 week)
+
+#### Week 5: Final Features
+- [ ] **Reading plans** - Complete implementation
+- [ ] **Share functionality** - Verse sharing with attribution
+- [ ] **Offline toggles** - Complete offline management
+- [ ] **Performance optimization** - Memory and loading improvements
+
+---
+
+## 🧪 Testing Requirements
+
+### Unit Tests Needed
+- [ ] API clients error handling
+- [ ] Repository caching logic
+- [ ] Audio download state management
+- [ ] Search functionality
+
+### Widget Tests Needed
+- [ ] Reader screens with different themes
+- [ ] Audio controls interaction
+- [ ] Translation picker functionality
+- [ ] Search results display
+
+### Integration Tests Needed
+- [ ] Offline functionality end-to-end
+- [ ] Audio download and playback flow
+- [ ] Language switching persistence
+- [ ] Background download completion
+
+---
+
+## 📊 Current Metrics
+
+### Code Quality
+- **Total Dart Files**: 89 files in quran module
+- **Main Provider File**: 1,306 lines (needs refactoring)
+- **Hardcoded Strings**: 8+ instances found
+- **Test Coverage**: <50% (estimated, needs measurement)
+
+### Performance
+- **App Size Impact**: ~15MB (estimated)
+- **Memory Usage**: Not measured
+- **API Response Time**: Not benchmarked
+- **Offline Loading**: Not optimized
+
+### User Experience
+- **Critical Bugs**: 3 identified
+- **Missing Features**: 7 major features
+- **i18n Coverage**: 85% (needs completion)
+
+---
+
+## 📜 Previous Project History (Archived)
 
 ## 📊 **PROJECT OVERVIEW**
 

@@ -325,6 +325,41 @@ class AppLocalizationsUr extends AppLocalizations {
   String get quranRuku => 'Ruku';
 
   @override
+  String quranJuzTitle(int number) {
+    return 'Juz $number';
+  }
+
+  @override
+  String quranRukuTitle(int number) {
+    return 'Ruku $number';
+  }
+
+  @override
+  String quranHizbTitle(int number) {
+    return 'Hizb $number';
+  }
+
+  @override
+  String quranPageTitle(int number) {
+    return 'Page $number';
+  }
+
+  @override
+  String get quranNoVersesFound => 'No verses found';
+
+  @override
+  String get quranFeatureUnderDevelopment =>
+      'This feature is under development';
+
+  @override
+  String quranErrorLoadingContent(String error) {
+    return 'Error loading content: $error';
+  }
+
+  @override
+  String get quranRetryButton => 'Retry';
+
+  @override
   String get ramadanSuhoor => 'Suhoor';
 
   @override
@@ -2620,7 +2655,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get hadithDetailCopied => 'Copied';
 
   @override
-  String get hadithDetailShared => 'Shared';
+  String get hadithDetailShared => 'Hadith shared successfully';
 
   @override
   String hadithShareTemplate(String arabicText, String bengaliText,
@@ -2942,4 +2977,205 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get onboardingNameTooShort =>
       'Name must be at least 2 characters long';
+
+  @override
+  String get hadithDetailSettingsTitle => 'Hadith Settings';
+
+  @override
+  String get hadithDetailSettingsContent =>
+      'Settings options will be available here.';
+
+  @override
+  String get hadithDetailSettingsClose => 'Close';
+
+  @override
+  String get hadithSearchTopicPrayer => 'Prayer';
+
+  @override
+  String get hadithSearchTopicCharity => 'Charity';
+
+  @override
+  String get hadithSearchTopicFaith => 'Faith';
+
+  @override
+  String get hadithSearchTopicFasting => 'Fasting';
+
+  @override
+  String get hadithSearchTopicHajj => 'Hajj';
+
+  @override
+  String get hadithSearchTopicEthics => 'Ethics';
+
+  @override
+  String get hadithSearchSuggestions =>
+      'Intention, Deeds, Prayer, Paradise, Hell, Supplication, Repentance, Patience, Gratitude, Parents';
+
+  @override
+  String hadithSearchFilterBook(String bookName) {
+    return 'Book: $bookName';
+  }
+
+  @override
+  String hadithSearchFilterGrade(String grade) {
+    return 'Grade: $grade';
+  }
+
+  @override
+  String get hadithSearchFilterArabicOnly => 'Arabic Only';
+
+  @override
+  String get hadithSearchFilterTranslationOnly => 'Translation Only';
+
+  @override
+  String get hadithSearchFilterTitle => 'Search Filters';
+
+  @override
+  String get hadithSearchFilterReset => 'Reset';
+
+  @override
+  String get hadithSearchFilterBookTitle => 'Hadith Book';
+
+  @override
+  String get hadithSearchFilterAllBooks => 'All Books';
+
+  @override
+  String get hadithSearchFilterGradeTitle => 'Hadith Grade';
+
+  @override
+  String get hadithSearchFilterAllGrades => 'All Grades';
+
+  @override
+  String get hadithSearchFilterSahih => 'Sahih';
+
+  @override
+  String get hadithSearchFilterHasan => 'Hasan';
+
+  @override
+  String get hadithSearchFilterDaif => 'Daif';
+
+  @override
+  String get hadithSearchScopeTitle => 'Search Scope';
+
+  @override
+  String get hadithSearchInArabic => 'Search in Arabic text';
+
+  @override
+  String get hadithSearchInTranslation => 'Search in translation';
+
+  @override
+  String get hadithSearchApplyFilters => 'Apply Filters';
+
+  @override
+  String get comment4 => '===== QURAN MODULE STRINGS =====';
+
+  @override
+  String get quranAudioNotDownloaded => 'Audio Not Downloaded';
+
+  @override
+  String quranAudioNotAvailableOffline(String chapterName) {
+    return 'The audio for $chapterName is not available offline.';
+  }
+
+  @override
+  String get quranWouldYouLikeTo => 'Would you like to:';
+
+  @override
+  String get quranDownloadSurah => 'Download Surah';
+
+  @override
+  String get quranSaveForOffline => 'Save for offline listening';
+
+  @override
+  String get quranPlayOnline => 'Play Online';
+
+  @override
+  String get quranRequiresInternet => 'Requires internet connection';
+
+  @override
+  String get quranAudioNotAvailableOfflineSimple =>
+      'Audio not available offline';
+
+  @override
+  String quranPlayVerseOnlineOrDownload(String verseKey) {
+    return 'Play $verseKey online or download for offline use?';
+  }
+
+  @override
+  String get quranDownload => 'Download';
+
+  @override
+  String get quranResetFilters => 'Reset Filters';
+
+  @override
+  String get quranErrorLoadingChapters => 'Error loading chapters';
+
+  @override
+  String get quranErrorLoadingTranslations => 'Error loading translations';
+
+  @override
+  String get quranSurahScript => 'Surah Script';
+
+  @override
+  String get quranUthmanic => 'Uthmanic';
+
+  @override
+  String get quranIndoPak => 'Indo-Pak';
+
+  @override
+  String get quranWordByWord => 'Word by Word';
+
+  @override
+  String get quranShowWordByWord => 'Show word by word';
+
+  @override
+  String get quranShowTafsir => 'Show tafsir';
+
+  @override
+  String get quranSelectTafsir => 'Select Tafsir';
+
+  @override
+  String get quranSajdahMarker => 'Sajdah';
+
+  @override
+  String get quranSajdahRecommended => 'Sajdah recommended';
+
+  @override
+  String get quranAutoScroll => 'Auto Scroll';
+
+  @override
+  String get quranScrollSpeed => 'Scroll Speed';
+
+  @override
+  String get quranRepeatMode => 'Repeat Mode';
+
+  @override
+  String get quranRepeatOff => 'Off';
+
+  @override
+  String get quranRepeatOne => 'Repeat One';
+
+  @override
+  String get quranRepeatAll => 'Repeat All';
+
+  @override
+  String get quranPlaybackSpeed => 'Playback Speed';
+
+  @override
+  String get quranJumpToVerse => 'Jump to Verse';
+
+  @override
+  String get quranCurrentlyOffline => 'Currently offline';
+
+  @override
+  String get quranConnected => 'Connected';
+
+  @override
+  String get quranDownloadingText => 'Downloading Quran text...';
+
+  @override
+  String get quranTextDownloadComplete => 'Quran text download complete';
+
+  @override
+  String get quranEssentialContentDownloaded =>
+      'Essential content downloaded successfully!';
 }

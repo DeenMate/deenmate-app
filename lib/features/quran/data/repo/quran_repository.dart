@@ -191,15 +191,14 @@ class QuranRepository {
       return list;
     }
     final fresh = await _resourcesApi.getRecitations();
-    await box.put(key, fresh.map((e) => {'id': e.id, 'name': e.name}).toList());
+    await box.put(key, fresh.map((e) => e.toJson()).toList());
     return fresh;
   }
 
   Future<void> _refreshRecitations(Box box) async {
     try {
       final fresh = await _resourcesApi.getRecitations();
-      await box.put('recitations',
-          fresh.map((e) => {'id': e.id, 'name': e.name}).toList());
+      await box.put('recitations', fresh.map((e) => e.toJson()).toList());
     } catch (_) {}
   }
 
@@ -308,7 +307,8 @@ class QuranRepository {
   }
 
   /// Get available Tafsir resources
-  Future<List<TafsirResourceDto>> getTafsirResources({bool refresh = true}) async {
+  Future<List<TafsirResourceDto>> getTafsirResources(
+      {bool refresh = true}) async {
     final box = await _hive.openBox(boxes.Boxes.resources);
     final cached = box.get('tafsir_resources');
 
@@ -316,14 +316,14 @@ class QuranRepository {
       if (cached is List) {
         return cached
             .cast<Map>()
-            .map((e) =>
-                TafsirResourceDto.fromJson(Map<String, dynamic>.from(e)))
+            .map(
+                (e) => TafsirResourceDto.fromJson(Map<String, dynamic>.from(e)))
             .toList();
       }
       if (cached is String) {
         final list = (jsonDecode(cached) as List)
-            .map((e) =>
-                TafsirResourceDto.fromJson(Map<String, dynamic>.from(e)))
+            .map(
+                (e) => TafsirResourceDto.fromJson(Map<String, dynamic>.from(e)))
             .toList();
         return list;
       }
@@ -362,7 +362,8 @@ class QuranRepository {
   }
 
   /// Get available word analysis resources
-  Future<List<WordAnalysisResourceDto>> getWordAnalysisResources({bool refresh = true}) async {
+  Future<List<WordAnalysisResourceDto>> getWordAnalysisResources(
+      {bool refresh = true}) async {
     final box = await _hive.openBox(boxes.Boxes.resources);
     final cached = box.get('word_analysis_resources');
 
@@ -384,7 +385,8 @@ class QuranRepository {
     }
 
     final fresh = await _resourcesApi.getWordAnalysisResources();
-    await box.put('word_analysis_resources', fresh.map((e) => e.toJson()).toList());
+    await box.put(
+        'word_analysis_resources', fresh.map((e) => e.toJson()).toList());
     return fresh;
   }
 

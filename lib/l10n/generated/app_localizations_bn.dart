@@ -327,6 +327,40 @@ class AppLocalizationsBn extends AppLocalizations {
   String get quranRuku => 'রুকু';
 
   @override
+  String quranJuzTitle(int number) {
+    return 'পারা $number';
+  }
+
+  @override
+  String quranRukuTitle(int number) {
+    return 'রুকু $number';
+  }
+
+  @override
+  String quranHizbTitle(int number) {
+    return 'হিজব $number';
+  }
+
+  @override
+  String quranPageTitle(int number) {
+    return 'পৃষ্ঠা $number';
+  }
+
+  @override
+  String get quranNoVersesFound => 'কোনো আয়াত পাওয়া যায়নি';
+
+  @override
+  String get quranFeatureUnderDevelopment => 'এই বৈশিষ্ট্যটি উন্নয়নাধীন';
+
+  @override
+  String quranErrorLoadingContent(String error) {
+    return 'বিষয়বস্তু লোড করতে ত্রুটি: $error';
+  }
+
+  @override
+  String get quranRetryButton => 'পুনরায় চেষ্টা করুন';
+
+  @override
   String get ramadanSuhoor => 'সাহরি';
 
   @override
@@ -1632,7 +1666,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get quranTranslation => 'অনুবাদ';
 
   @override
-  String get quranTafsir => 'তাফসির';
+  String get quranTafsir => 'তাফসীর';
 
   @override
   String get quranArabicFontSize => 'আরবি ফন্ট সাইজ';
@@ -2938,4 +2972,203 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get onboardingNameTooShort => 'নাম কমপক্ষে ২ অক্ষরের হতে হবে';
+
+  @override
+  String get hadithDetailSettingsTitle => 'হাদিস সেটিংস';
+
+  @override
+  String get hadithDetailSettingsContent => 'সেটিংস অপশন এখানে আসবে।';
+
+  @override
+  String get hadithDetailSettingsClose => 'বন্ধ করুন';
+
+  @override
+  String get hadithSearchTopicPrayer => 'নামাজ';
+
+  @override
+  String get hadithSearchTopicCharity => 'দান';
+
+  @override
+  String get hadithSearchTopicFaith => 'ঈমান';
+
+  @override
+  String get hadithSearchTopicFasting => 'রোজা';
+
+  @override
+  String get hadithSearchTopicHajj => 'হজ';
+
+  @override
+  String get hadithSearchTopicEthics => 'নৈতিকতা';
+
+  @override
+  String get hadithSearchSuggestions =>
+      'নিয়ত, আমল, সালাত, জান্নাত, জাহান্নাম, দোয়া, তওবা, ধৈর্য, কৃতজ্ঞতা, মা-বাবা';
+
+  @override
+  String hadithSearchFilterBook(String bookName) {
+    return 'বই: $bookName';
+  }
+
+  @override
+  String hadithSearchFilterGrade(String grade) {
+    return 'গ্রেড: $grade';
+  }
+
+  @override
+  String get hadithSearchFilterArabicOnly => 'শুধু আরবি';
+
+  @override
+  String get hadithSearchFilterTranslationOnly => 'শুধু অনুবাদ';
+
+  @override
+  String get hadithSearchFilterTitle => 'খোঁজার ফিল্টার';
+
+  @override
+  String get hadithSearchFilterReset => 'রিসেট';
+
+  @override
+  String get hadithSearchFilterBookTitle => 'হাদিসের বই';
+
+  @override
+  String get hadithSearchFilterAllBooks => 'সব বই';
+
+  @override
+  String get hadithSearchFilterGradeTitle => 'হাদিসের গ্রেড';
+
+  @override
+  String get hadithSearchFilterAllGrades => 'সব গ্রেড';
+
+  @override
+  String get hadithSearchFilterSahih => 'সহিহ';
+
+  @override
+  String get hadithSearchFilterHasan => 'হাসান';
+
+  @override
+  String get hadithSearchFilterDaif => 'দাইফ';
+
+  @override
+  String get hadithSearchScopeTitle => 'খোঁজার পরিসর';
+
+  @override
+  String get hadithSearchInArabic => 'আরবি টেক্সটে খুঁজুন';
+
+  @override
+  String get hadithSearchInTranslation => 'অনুবাদে খুঁজুন';
+
+  @override
+  String get hadithSearchApplyFilters => 'ফিল্টার প্রয়োগ করুন';
+
+  @override
+  String get comment4 => '===== কুরআন মডিউল স্ট্রিং =====';
+
+  @override
+  String get quranAudioNotDownloaded => 'অডিও ডাউনলোড হয়নি';
+
+  @override
+  String quranAudioNotAvailableOffline(String chapterName) {
+    return '$chapterName এর অডিও অফলাইনে উপলব্ধ নেই।';
+  }
+
+  @override
+  String get quranWouldYouLikeTo => 'আপনি কি করতে চান:';
+
+  @override
+  String get quranDownloadSurah => 'সূরা ডাউনলোড করুন';
+
+  @override
+  String get quranSaveForOffline => 'অফলাইনে শোনার জন্য সংরক্ষণ করুন';
+
+  @override
+  String get quranPlayOnline => 'অনলাইনে শুনুন';
+
+  @override
+  String get quranRequiresInternet => 'ইন্টারনেট সংযোগ প্রয়োজন';
+
+  @override
+  String get quranAudioNotAvailableOfflineSimple => 'অডিও অফলাইনে উপলব্ধ নেই';
+
+  @override
+  String quranPlayVerseOnlineOrDownload(String verseKey) {
+    return '$verseKey অনলাইনে শুনুন বা অফলাইনে ব্যবহারের জন্য ডাউনলোড করুন?';
+  }
+
+  @override
+  String get quranDownload => 'ডাউনলোড';
+
+  @override
+  String get quranResetFilters => 'ফিল্টার রিসেট করুন';
+
+  @override
+  String get quranErrorLoadingChapters => 'সূরা লোড করতে ত্রুটি';
+
+  @override
+  String get quranErrorLoadingTranslations => 'অনুবাদ লোড করতে ত্রুটি';
+
+  @override
+  String get quranSurahScript => 'সূরার স্ক্রিপ্ট';
+
+  @override
+  String get quranUthmanic => 'উসমানী';
+
+  @override
+  String get quranIndoPak => 'ইন্দো-পাক';
+
+  @override
+  String get quranWordByWord => 'শব্দে শব্দে';
+
+  @override
+  String get quranShowWordByWord => 'শব্দে শব্দে দেখান';
+
+  @override
+  String get quranShowTafsir => 'তাফসীর দেখান';
+
+  @override
+  String get quranSelectTafsir => 'তাফসীর নির্বাচন করুন';
+
+  @override
+  String get quranSajdahMarker => 'সিজদা';
+
+  @override
+  String get quranSajdahRecommended => 'সিজদা বাঞ্ছনীয়';
+
+  @override
+  String get quranAutoScroll => 'স্বয়ংক্রিয় স্ক্রল';
+
+  @override
+  String get quranScrollSpeed => 'স্ক্রল গতি';
+
+  @override
+  String get quranRepeatMode => 'পুনরাবৃত্তি মোড';
+
+  @override
+  String get quranRepeatOff => 'বন্ধ';
+
+  @override
+  String get quranRepeatOne => 'একটি পুনরাবৃত্তি';
+
+  @override
+  String get quranRepeatAll => 'সব পুনরাবৃত্তি';
+
+  @override
+  String get quranPlaybackSpeed => 'প্লেব্যাক গতি';
+
+  @override
+  String get quranJumpToVerse => 'আয়াতে যান';
+
+  @override
+  String get quranCurrentlyOffline => 'বর্তমানে অফলাইন';
+
+  @override
+  String get quranConnected => 'সংযুক্ত';
+
+  @override
+  String get quranDownloadingText => 'কুরআনের টেক্সট ডাউনলোড হচ্ছে...';
+
+  @override
+  String get quranTextDownloadComplete => 'কুরআনের টেক্সট ডাউনলোড সম্পূর্ণ';
+
+  @override
+  String get quranEssentialContentDownloaded =>
+      'প্রয়োজনীয় কন্টেন্ট সফলভাবে ডাউনলোড হয়েছে!';
 }

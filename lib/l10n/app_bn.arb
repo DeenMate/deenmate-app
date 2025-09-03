@@ -425,6 +425,68 @@
   "@quranRuku": {
     "description": "Ruku navigation tab"
   },
+  "quranJuzTitle": "পারা {number}",
+  "@quranJuzTitle": {
+    "description": "Title for Juz reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranRukuTitle": "রুকু {number}",
+  "@quranRukuTitle": {
+    "description": "Title for Ruku reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranHizbTitle": "হিজব {number}",
+  "@quranHizbTitle": {
+    "description": "Title for Hizb reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranPageTitle": "পৃষ্ঠা {number}",
+  "@quranPageTitle": {
+    "description": "Title for Page reader screen",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "quranNoVersesFound": "কোনো আয়াত পাওয়া যায়নি",
+  "@quranNoVersesFound": {
+    "description": "Message when no verses are found for a section"
+  },
+  "quranFeatureUnderDevelopment": "এই বৈশিষ্ট্যটি উন্নয়নাধীন",
+  "@quranFeatureUnderDevelopment": {
+    "description": "Message for features that are not yet complete"
+  },
+  "quranErrorLoadingContent": "বিষয়বস্তু লোড করতে ত্রুটি: {error}",
+  "@quranErrorLoadingContent": {
+    "description": "Error message when content fails to load",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "নেটওয়ার্ক ত্রুটি"
+      }
+    }
+  },
+  "quranRetryButton": "পুনরায় চেষ্টা করুন",
+  "@quranRetryButton": {
+    "description": "Retry button text for error states"
+  },
 
   "settingsTitle": "সেটিংস",
   "@settingsTitle": {
@@ -3034,6 +3096,33 @@
   "hadithDetailBookmarkRemoved": "বুকমার্ক সরানো হয়েছে",
   "hadithDetailCopied": "কপি করা হয়েছে",
   "hadithDetailShared": "শেয়ার করা হয়েছে",
+  "hadithDetailSettingsTitle": "হাদিস সেটিংস",
+  "hadithDetailSettingsContent": "সেটিংস অপশন এখানে আসবে।",
+  "hadithDetailSettingsClose": "বন্ধ করুন",
+  "hadithSearchTopicPrayer": "নামাজ",
+  "hadithSearchTopicCharity": "দান",
+  "hadithSearchTopicFaith": "ঈমান",
+  "hadithSearchTopicFasting": "রোজা",
+  "hadithSearchTopicHajj": "হজ",
+  "hadithSearchTopicEthics": "নৈতিকতা",
+  "hadithSearchSuggestions": "নিয়ত, আমল, সালাত, জান্নাত, জাহান্নাম, দোয়া, তওবা, ধৈর্য, কৃতজ্ঞতা, মা-বাবা",
+  "hadithSearchFilterBook": "বই: {bookName}",
+  "hadithSearchFilterGrade": "গ্রেড: {grade}",
+  "hadithSearchFilterArabicOnly": "শুধু আরবি",
+  "hadithSearchFilterTranslationOnly": "শুধু অনুবাদ",
+  "hadithSearchFilterTitle": "খোঁজার ফিল্টার",
+  "hadithSearchFilterReset": "রিসেট",
+  "hadithSearchFilterBookTitle": "হাদিসের বই",
+  "hadithSearchFilterAllBooks": "সব বই",
+  "hadithSearchFilterGradeTitle": "হাদিসের গ্রেড",
+  "hadithSearchFilterAllGrades": "সব গ্রেড",
+  "hadithSearchFilterSahih": "সহিহ",
+  "hadithSearchFilterHasan": "হাসান",
+  "hadithSearchFilterDaif": "দাইফ",
+  "hadithSearchScopeTitle": "খোঁজার পরিসর",
+  "hadithSearchInArabic": "আরবি টেক্সটে খুঁজুন",
+  "hadithSearchInTranslation": "অনুবাদে খুঁজুন",
+  "hadithSearchApplyFilters": "ফিল্টার প্রয়োগ করুন",
   "hadithShareTemplate": "{arabicText}\n\n{bengaliText}\n\nরেফারেন্স: {reference}\nবর্ণনাকারী: {narrator}",
   "hadithTopicFormat": "০{order} {name}",
   "hadithReferenceLabel": "রেফারেন্স: {reference}",
@@ -3192,5 +3281,162 @@
   "athanSettingsTestNotificationMessage": "এটি একটি পরীক্ষামূলক নামাজ নোটিফিকেশন",
   "@athanSettingsTestNotificationMessage": {"description": "Test notification body"},
   "athanSettingsDemoNotificationMessage": "এটি আজানসহ একটি ডেমো নোটিফিকেশন",
-  "@athanSettingsDemoNotificationMessage": {"description": "Demo notification body"}
+  "@athanSettingsDemoNotificationMessage": {"description": "Demo notification body"},
+
+  "comment4": "===== কুরআন মডিউল স্ট্রিং =====",
+
+  "quranAudioNotDownloaded": "অডিও ডাউনলোড হয়নি",
+  "@quranAudioNotDownloaded": {
+    "description": "Dialog title when audio is not available offline"
+  },
+  "quranAudioNotAvailableOffline": "{chapterName} এর অডিও অফলাইনে উপলব্ধ নেই।",
+  "@quranAudioNotAvailableOffline": {
+    "description": "Message when audio is not available offline",
+    "placeholders": {
+      "chapterName": {
+        "type": "String"
+      }
+    }
+  },
+  "quranWouldYouLikeTo": "আপনি কি করতে চান:",
+  "@quranWouldYouLikeTo": {
+    "description": "Prompt for user action when audio not available"
+  },
+  "quranDownloadSurah": "সূরা ডাউনলোড করুন",
+  "@quranDownloadSurah": {
+    "description": "Option to download surah audio"
+  },
+  "quranSaveForOffline": "অফলাইনে শোনার জন্য সংরক্ষণ করুন",
+  "@quranSaveForOffline": {
+    "description": "Description for download option"
+  },
+  "quranPlayOnline": "অনলাইনে শুনুন",
+  "@quranPlayOnline": {
+    "description": "Option to play audio online"
+  },
+  "quranRequiresInternet": "ইন্টারনেট সংযোগ প্রয়োজন",
+  "@quranRequiresInternet": {
+    "description": "Description for online play option"
+  },
+  "quranAudioNotAvailableOfflineSimple": "অডিও অফলাইনে উপলব্ধ নেই",
+  "@quranAudioNotAvailableOfflineSimple": {
+    "description": "Simple title for audio not available dialog"
+  },
+  "quranPlayVerseOnlineOrDownload": "{verseKey} অনলাইনে শুনুন বা অফলাইনে ব্যবহারের জন্য ডাউনলোড করুন?",
+  "@quranPlayVerseOnlineOrDownload": {
+    "description": "Simple prompt for verse audio",
+    "placeholders": {
+      "verseKey": {
+        "type": "String"
+      }
+    }
+  },
+  "quranDownload": "ডাউনলোড",
+  "@quranDownload": {
+    "description": "Download button text"
+  },
+  "quranResetFilters": "ফিল্টার রিসেট করুন",
+  "@quranResetFilters": {
+    "description": "Reset filters button text"
+  },
+  "quranErrorLoadingChapters": "সূরা লোড করতে ত্রুটি",
+  "@quranErrorLoadingChapters": {
+    "description": "Error message when chapters fail to load"
+  },
+  "quranErrorLoadingTranslations": "অনুবাদ লোড করতে ত্রুটি",
+  "@quranErrorLoadingTranslations": {
+    "description": "Error message when translations fail to load"
+  },
+  "quranSurahScript": "সূরার স্ক্রিপ্ট",
+  "@quranSurahScript": {
+    "description": "Script type selector label"
+  },
+  "quranUthmanic": "উসমানী",
+  "@quranUthmanic": {
+    "description": "Uthmanic script option"
+  },
+  "quranIndoPak": "ইন্দো-পাক",
+  "@quranIndoPak": {
+    "description": "Indo-Pak script option"
+  },
+  "quranWordByWord": "শব্দে শব্দে",
+  "@quranWordByWord": {
+    "description": "Word by word analysis feature"
+  },
+  "quranShowWordByWord": "শব্দে শব্দে দেখান",
+  "@quranShowWordByWord": {
+    "description": "Toggle for word by word display"
+  },
+  "quranTafsir": "তাফসীর",
+  "@quranTafsir": {
+    "description": "Tafsir/commentary feature"
+  },
+  "quranShowTafsir": "তাফসীর দেখান",
+  "@quranShowTafsir": {
+    "description": "Toggle for tafsir display"
+  },
+  "quranSelectTafsir": "তাফসীর নির্বাচন করুন",
+  "@quranSelectTafsir": {
+    "description": "Tafsir selection dialog title"
+  },
+  "quranSajdahMarker": "সিজদা",
+  "@quranSajdahMarker": {
+    "description": "Sajdah marker indicator"
+  },
+  "quranSajdahRecommended": "সিজদা বাঞ্ছনীয়",
+  "@quranSajdahRecommended": {
+    "description": "Tooltip for sajdah marker"
+  },
+  "quranAutoScroll": "স্বয়ংক্রিয় স্ক্রল",
+  "@quranAutoScroll": {
+    "description": "Auto scroll feature toggle"
+  },
+  "quranScrollSpeed": "স্ক্রল গতি",
+  "@quranScrollSpeed": {
+    "description": "Auto scroll speed setting"
+  },
+  "quranRepeatMode": "পুনরাবৃত্তি মোড",
+  "@quranRepeatMode": {
+    "description": "Audio repeat mode setting"
+  },
+  "quranRepeatOff": "বন্ধ",
+  "@quranRepeatOff": {
+    "description": "No repeat mode"
+  },
+  "quranRepeatOne": "একটি পুনরাবৃত্তি",
+  "@quranRepeatOne": {
+    "description": "Repeat one verse mode"
+  },
+  "quranRepeatAll": "সব পুনরাবৃত্তি",
+  "@quranRepeatAll": {
+    "description": "Repeat all verses mode"
+  },
+  "quranPlaybackSpeed": "প্লেব্যাক গতি",
+  "@quranPlaybackSpeed": {
+    "description": "Audio playback speed setting"
+  },
+  "quranJumpToVerse": "আয়াতে যান",
+  "@quranJumpToVerse": {
+    "description": "Jump to specific verse action"
+  },
+  "quranCurrentlyOffline": "বর্তমানে অফলাইন",
+  "@quranCurrentlyOffline": {
+    "description": "Offline status indicator"
+  },
+  "quranConnected": "সংযুক্ত",
+  "@quranConnected": {
+    "description": "Online status indicator"
+  },
+  "quranDownloadingText": "কুরআনের টেক্সট ডাউনলোড হচ্ছে...",
+  "@quranDownloadingText": {
+    "description": "Message during text download"
+  },
+  "quranTextDownloadComplete": "কুরআনের টেক্সট ডাউনলোড সম্পূর্ণ",
+  "@quranTextDownloadComplete": {
+    "description": "Message when text download completes"
+  },
+  "quranEssentialContentDownloaded": "প্রয়োজনীয় কন্টেন্ট সফলভাবে ডাউনলোড হয়েছে!",
+  "@quranEssentialContentDownloaded": {
+    "description": "Message when essential content download completes"
+  }
 }

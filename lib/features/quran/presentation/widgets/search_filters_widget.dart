@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../l10n/generated/app_localizations.dart';
 import '../../domain/services/search_service.dart';
 import '../state/providers.dart';
 import '../../../../core/theme/theme_helper.dart';
@@ -42,16 +43,16 @@ class SearchFiltersWidget extends ConsumerWidget {
         _buildSectionTitle('Search Scope'),
         const SizedBox(height: 8),
         _buildSearchScopeSelector(context),
-        
+
         const SizedBox(height: 16),
-        
+
         // Search options
         _buildSectionTitle('Search Options'),
         const SizedBox(height: 8),
         _buildSearchOptions(context),
-        
+
         const SizedBox(height: 16),
-        
+
         // Filters
         Row(
           children: [
@@ -78,15 +79,15 @@ class SearchFiltersWidget extends ConsumerWidget {
             ),
           ],
         ),
-        
+
         const SizedBox(height: 16),
-        
+
         // Reset button
         Center(
           child: OutlinedButton.icon(
             onPressed: () => _resetFilters(),
             icon: const Icon(Icons.clear_all),
-            label: const Text('Reset Filters'),
+            label: Text(AppLocalizations.of(context)!.quranResetFilters),
             style: OutlinedButton.styleFrom(
               foregroundColor: ThemeHelper.getPrimaryColor(context),
             ),
@@ -119,10 +120,11 @@ class SearchFiltersWidget extends ConsumerWidget {
             child: GestureDetector(
               onTap: () => onScopeChanged(scope),
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                 decoration: BoxDecoration(
-                  color: isSelected 
-                      ? ThemeHelper.getPrimaryColor(context) 
+                  color: isSelected
+                      ? ThemeHelper.getPrimaryColor(context)
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -130,8 +132,8 @@ class SearchFiltersWidget extends ConsumerWidget {
                   _getScopeLabel(scope),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: isSelected 
-                        ? Colors.white 
+                    color: isSelected
+                        ? Colors.white
                         : ThemeHelper.getTextPrimaryColor(context),
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                     fontSize: 14,
@@ -198,17 +200,19 @@ class SearchFiltersWidget extends ConsumerWidget {
       child: Consumer(
         builder: (context, ref, child) {
           final chaptersAsync = ref.watch(surahListProvider);
-          
+
           return chaptersAsync.when(
             data: (chapters) {
               return Column(
                 children: [
                   // Header with select all/none
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
                       color: ThemeHelper.getCardColor(context),
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(7)),
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(7)),
                       border: Border(
                         bottom: BorderSide(
                           color: ThemeHelper.getDividerColor(context),
@@ -230,16 +234,18 @@ class SearchFiltersWidget extends ConsumerWidget {
                             if (selectedChapterIds.length == chapters.length) {
                               onChapterIdsChanged([]);
                             } else {
-                              onChapterIdsChanged(chapters.map((c) => c.id).toList());
+                              onChapterIdsChanged(
+                                  chapters.map((c) => c.id).toList());
                             }
                           },
                           style: TextButton.styleFrom(
                             minimumSize: Size.zero,
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
                           ),
                           child: Text(
-                            selectedChapterIds.length == chapters.length 
-                                ? 'None' 
+                            selectedChapterIds.length == chapters.length
+                                ? 'None'
                                 : 'All',
                             style: TextStyle(
                               fontSize: 12,
@@ -250,7 +256,7 @@ class SearchFiltersWidget extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  
+
                   // Chapters list
                   Expanded(
                     child: ListView.builder(
@@ -258,8 +264,9 @@ class SearchFiltersWidget extends ConsumerWidget {
                       itemCount: chapters.length,
                       itemBuilder: (context, index) {
                         final chapter = chapters[index];
-                        final isSelected = selectedChapterIds.contains(chapter.id);
-                        
+                        final isSelected =
+                            selectedChapterIds.contains(chapter.id);
+
                         return CheckboxListTile(
                           value: isSelected,
                           onChanged: (value) {
@@ -276,7 +283,8 @@ class SearchFiltersWidget extends ConsumerWidget {
                             style: const TextStyle(fontSize: 13),
                           ),
                           dense: true,
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 4),
                           activeColor: ThemeHelper.getPrimaryColor(context),
                         );
                       },
@@ -286,7 +294,8 @@ class SearchFiltersWidget extends ConsumerWidget {
               );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, __) => const Center(child: Text('Error loading chapters')),
+            error: (_, __) =>
+                Center(child: Text(AppLocalizations.of(context)!.quranErrorLoadingChapters)),
           );
         },
       ),
@@ -303,17 +312,19 @@ class SearchFiltersWidget extends ConsumerWidget {
       child: Consumer(
         builder: (context, ref, child) {
           final translationsAsync = ref.watch(translationResourcesProvider);
-          
+
           return translationsAsync.when(
             data: (translations) {
               return Column(
                 children: [
                   // Header with select all/none
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
                       color: ThemeHelper.getCardColor(context),
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(7)),
+                      borderRadius:
+                          const BorderRadius.vertical(top: Radius.circular(7)),
                       border: Border(
                         bottom: BorderSide(
                           color: ThemeHelper.getDividerColor(context),
@@ -332,19 +343,22 @@ class SearchFiltersWidget extends ConsumerWidget {
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            if (selectedTranslationIds.length == translations.length) {
+                            if (selectedTranslationIds.length ==
+                                translations.length) {
                               onTranslationIdsChanged([]);
                             } else {
-                              onTranslationIdsChanged(translations.map((t) => t.id).toList());
+                              onTranslationIdsChanged(
+                                  translations.map((t) => t.id).toList());
                             }
                           },
                           style: TextButton.styleFrom(
                             minimumSize: Size.zero,
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
                           ),
                           child: Text(
-                            selectedTranslationIds.length == translations.length 
-                                ? 'None' 
+                            selectedTranslationIds.length == translations.length
+                                ? 'None'
                                 : 'All',
                             style: TextStyle(
                               fontSize: 12,
@@ -355,7 +369,7 @@ class SearchFiltersWidget extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  
+
                   // Translations list
                   Expanded(
                     child: ListView.builder(
@@ -363,12 +377,14 @@ class SearchFiltersWidget extends ConsumerWidget {
                       itemCount: translations.length,
                       itemBuilder: (context, index) {
                         final translation = translations[index];
-                        final isSelected = selectedTranslationIds.contains(translation.id);
-                        
+                        final isSelected =
+                            selectedTranslationIds.contains(translation.id);
+
                         return CheckboxListTile(
                           value: isSelected,
                           onChanged: (value) {
-                            final newIds = List<int>.from(selectedTranslationIds);
+                            final newIds =
+                                List<int>.from(selectedTranslationIds);
                             if (value == true) {
                               newIds.add(translation.id);
                             } else {
@@ -385,7 +401,8 @@ class SearchFiltersWidget extends ConsumerWidget {
                             style: const TextStyle(fontSize: 11),
                           ),
                           dense: true,
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 4),
                           activeColor: ThemeHelper.getPrimaryColor(context),
                         );
                       },
@@ -395,7 +412,8 @@ class SearchFiltersWidget extends ConsumerWidget {
               );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, __) => const Center(child: Text('Error loading translations')),
+            error: (_, __) =>
+                Center(child: Text(AppLocalizations.of(context)!.quranErrorLoadingTranslations)),
           );
         },
       ),
