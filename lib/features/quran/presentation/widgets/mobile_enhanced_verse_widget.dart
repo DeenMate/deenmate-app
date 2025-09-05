@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../data/dto/verse_dto.dart';
+import '../state/providers.dart';
 import 'mobile_verse_actions.dart';
+import 'sajdah_marker_widget.dart';
 
 /// Enhanced verse widget with mobile gestures and improved interactions
 class MobileEnhancedVerseWidget extends ConsumerStatefulWidget {
@@ -32,16 +34,18 @@ class MobileEnhancedVerseWidget extends ConsumerStatefulWidget {
   final bool enableGestures;
 
   @override
-  ConsumerState<MobileEnhancedVerseWidget> createState() => _MobileEnhancedVerseWidgetState();
+  ConsumerState<MobileEnhancedVerseWidget> createState() =>
+      _MobileEnhancedVerseWidgetState();
 }
 
-class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseWidget>
+class _MobileEnhancedVerseWidgetState
+    extends ConsumerState<MobileEnhancedVerseWidget>
     with TickerProviderStateMixin {
   late AnimationController _highlightController;
   late AnimationController _swipeController;
   late Animation<Color?> _highlightAnimation;
   late Animation<Offset> _swipeAnimation;
-  
+
   bool _isHighlighted = false;
   bool _showActions = false;
   String _currentGesture = '';
@@ -49,17 +53,17 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
   @override
   void initState() {
     super.initState();
-    
+
     _highlightController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    
+
     _swipeController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    
+
     _highlightAnimation = ColorTween(
       begin: Colors.transparent,
       end: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
@@ -67,7 +71,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
       parent: _highlightController,
       curve: Curves.easeInOut,
     ));
-    
+
     _swipeAnimation = Tween<Offset>(
       begin: Offset.zero,
       end: const Offset(0.05, 0),
@@ -88,7 +92,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
     setState(() {
       _showActions = !_showActions;
     });
-    
+
     HapticFeedback.lightImpact();
     _triggerHighlight();
   }
@@ -101,7 +105,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
 
   void _handleSwipeLeft() {
     if (!widget.enableGestures) return;
-    
+
     _currentGesture = 'bookmark';
     widget.onBookmarkToggle();
     _triggerSwipeAnimation();
@@ -110,7 +114,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
 
   void _handleSwipeRight() {
     if (!widget.enableGestures) return;
-    
+
     _currentGesture = 'share';
     widget.onShare();
     _triggerSwipeAnimation();
@@ -119,7 +123,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
 
   void _handleDoubleTap() {
     if (!widget.enableGestures) return;
-    
+
     _currentGesture = 'play';
     widget.onPlay();
     _triggerHighlight();
@@ -146,7 +150,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isTablet = MediaQuery.of(context).size.width >= 768;
-    
+
     return AnimatedBuilder(
       animation: Listenable.merge([_highlightAnimation, _swipeAnimation]),
       builder: (context, child) {
@@ -160,15 +164,18 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: _highlightAnimation.value ?? ThemeHelper.getCardColor(context),
+                color: _highlightAnimation.value ??
+                    ThemeHelper.getCardColor(context),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: ThemeHelper.getTextSecondaryColor(context).withOpacity(0.2),
+                  color: ThemeHelper.getTextSecondaryColor(context)
+                      .withOpacity(0.2),
                 ),
                 boxShadow: _isHighlighted
                     ? [
                         BoxShadow(
-                          color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                          color: ThemeHelper.getPrimaryColor(context)
+                              .withOpacity(0.1),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -187,7 +194,8 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
+                          color: ThemeHelper.getPrimaryColor(context)
+                              .withOpacity(0.1),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Text(
@@ -199,25 +207,28 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
                           ),
                         ),
                       ),
-                      
+
                       const Spacer(),
-                      
+
                       // Quick gesture hints
                       if (widget.enableGestures && !isTablet)
                         _buildGestureHints(context, l10n),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 12),
-                  
+
+                  // Sajdah marker if this verse requires prostration
+                  if (widget.verse.sajdah != null) _buildSajdahMarker(context),
+
                   // Arabic text
-                  if (widget.showArabic)
-                    _buildArabicText(context),
-                  
+                  if (widget.showArabic) _buildArabicText(context),
+
                   // Translation
-                  if (widget.showTranslation && widget.verse.translations.isNotEmpty)
+                  if (widget.showTranslation &&
+                      widget.verse.translations.isNotEmpty)
                     _buildTranslationText(context),
-                  
+
                   // Mobile actions
                   if (_showActions || isTablet)
                     Column(
@@ -234,7 +245,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
                         ),
                       ],
                     ),
-                  
+
                   // Gesture feedback
                   if (_currentGesture.isNotEmpty)
                     _buildGestureFeedback(context, l10n),
@@ -256,7 +267,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
             fontSize: 20,
             height: 1.8,
             color: ThemeHelper.getTextPrimaryColor(context),
-            fontFamily: 'AmiriQuran',
+            fontFamily: _getQuranFontFamily(),
           ),
           textAlign: TextAlign.right,
           textDirection: TextDirection.rtl,
@@ -334,11 +345,13 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
   Widget _buildGestureFeedback(BuildContext context, AppLocalizations l10n) {
     String feedbackText = '';
     IconData feedbackIcon = Icons.check;
-    
+
     switch (_currentGesture) {
       case 'bookmark':
-        feedbackText = widget.isBookmarked ? l10n.bookmarkRemoved : l10n.bookmarkAdded;
-        feedbackIcon = widget.isBookmarked ? Icons.bookmark : Icons.bookmark_border;
+        feedbackText =
+            widget.isBookmarked ? l10n.bookmarkRemoved : l10n.bookmarkAdded;
+        feedbackIcon =
+            widget.isBookmarked ? Icons.bookmark : Icons.bookmark_border;
         break;
       case 'share':
         feedbackText = l10n.verseShared;
@@ -349,7 +362,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
         feedbackIcon = Icons.play_arrow;
         break;
     }
-    
+
     // Clear feedback after delay
     Future.delayed(const Duration(milliseconds: 2000), () {
       if (mounted) {
@@ -358,7 +371,7 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
         });
       }
     });
-    
+
     return Container(
       margin: const EdgeInsets.only(top: 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -386,5 +399,40 @@ class _MobileEnhancedVerseWidgetState extends ConsumerState<MobileEnhancedVerseW
         ],
       ),
     );
+  }
+
+  Widget _buildSajdahMarker(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        children: [
+          CompactSajdahMarker(
+            sajdah: widget.verse.sajdah!,
+            size: 20,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            AppLocalizations.of(context)!.quranSajdahMarker,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: ThemeHelper.getTextSecondaryColor(context),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _getQuranFontFamily() {
+    final prefs = ref.read(prefsProvider);
+    // Use script variant preference if available, otherwise fall back to default
+    if (prefs.quranScriptVariant == 'IndoPak') {
+      return 'IndoPak';
+    } else if (prefs.quranScriptVariant == 'Uthmanic') {
+      return 'UthmanicHafs';
+    } else {
+      return 'UthmanicHafs'; // Default fallback
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../state/providers.dart';
 import '../widgets/verse_card_widget.dart';
 import '../../../../core/theme/theme_helper.dart';
@@ -16,6 +17,7 @@ class JuzReaderScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final versesAsync = ref.watch(versesByJuzProvider(juzNumber));
     final translationResourcesAsync = ref.watch(translationResourcesProvider);
 
@@ -25,7 +27,7 @@ class JuzReaderScreen extends ConsumerWidget {
         backgroundColor: ThemeHelper.getBackgroundColor(context),
         elevation: 0,
         title: Text(
-          'Juz $juzNumber',
+          l10n.quranJuzTitle(juzNumber),
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -77,7 +79,7 @@ class JuzReaderScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'No verses found for Juz $juzNumber',
+                      l10n.quranNoVersesFoundForJuz(juzNumber),
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],
@@ -85,7 +87,7 @@ class JuzReaderScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'This feature is under development',
+                      l10n.quranFeatureUnderDevelopment,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey[500],
@@ -124,11 +126,11 @@ class JuzReaderScreen extends ConsumerWidget {
               children: [
                 const Icon(Icons.error_outline, size: 48, color: Colors.red),
                 const SizedBox(height: 16),
-                Text('Error loading Juz $juzNumber: $error'),
+                Text(l10n.quranErrorLoadingJuz(juzNumber, error.toString())),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => ref.invalidate(versesByJuzProvider(juzNumber)),
-                  child: const Text('Retry'),
+                  child: Text(l10n.quranRetry),
                 ),
               ],
             ),
@@ -141,11 +143,11 @@ class JuzReaderScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 16),
-              Text('Error loading translations: $error'),
+              Text(l10n.quranErrorLoadingTranslations(error.toString())),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => ref.invalidate(translationResourcesProvider),
-                child: const Text('Retry'),
+                child: Text(l10n.quranRetry),
               ),
             ],
           ),

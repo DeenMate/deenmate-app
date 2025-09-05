@@ -3122,7 +3122,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranIndoPak => 'Indo-Pak';
 
   @override
-  String get quranWordByWord => 'Word by Word';
+  String get quranWordByWord => 'Word-by-Word';
 
   @override
   String get quranShowWordByWord => 'Show word by word';
@@ -3178,4 +3178,207 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quranEssentialContentDownloaded =>
       'Essential content downloaded successfully!';
+
+  @override
+  String get quranSajdah => 'Sajdah';
+
+  @override
+  String get quranSajdahInfo => 'Sajdah Information';
+
+  @override
+  String get quranSajdahObligatory => 'Obligatory';
+
+  @override
+  String get quranSajdahNumber => 'Sajdah Number';
+
+  @override
+  String get quranSajdahType => 'Type';
+
+  @override
+  String get quranSajdahVerse => 'Verse';
+
+  @override
+  String get quranClose => 'Close';
+
+  @override
+  String get quranSajdahObligatoryDescription =>
+      'This is an obligatory sajdah verse. When reciting or listening to this verse, it is mandatory to perform prostration.';
+
+  @override
+  String get quranSajdahRecommendedDescription =>
+      'This is a recommended sajdah verse. It is recommended to perform prostration when reciting or listening to this verse.';
+
+  @override
+  String get quranSajdahGeneralDescription =>
+      'This verse contains a sajdah (prostration) marker. Consider performing prostration when reciting or listening to this verse.';
+
+  @override
+  String get quranScriptVariants => 'Script Variants';
+
+  @override
+  String get quranScriptVariantsDescription =>
+      'Choose between different Quran script styles. Uthmanic is the traditional script, while IndoPak is popular in South Asia.';
+
+  @override
+  String get quranUthmanicDescription =>
+      'Traditional Uthmanic script used in most printed Qurans worldwide. Features classical Arabic calligraphy.';
+
+  @override
+  String get quranIndoPakDescription =>
+      'IndoPak script style popular in South Asia. Features distinct letter forms and spacing.';
+
+  @override
+  String get quranScript => 'Script';
+
+  @override
+  String get quranEnableTransliteration => 'Enable transliteration search';
+
+  @override
+  String get quranEnableBengaliSearch => 'Enable Bengali search';
+
+  @override
+  String get quranEnableFuzzyMatch => 'Enable fuzzy matching';
+
+  @override
+  String get quranTransliteration => 'Transliteration';
+
+  @override
+  String get quranBengali => 'Bengali';
+
+  @override
+  String get quranAll => 'All';
+
+  @override
+  String get quranTranslationLoading => 'Loading translations...';
+
+  @override
+  String get quranAvailableTranslations => 'Available Translations';
+
+  @override
+  String get quranSelectedTranslationIds => 'Selected Translation IDs';
+
+  @override
+  String get quranPleaseWaitWhileTranslationsAreBeingLoaded =>
+      'Please wait while translations are being loaded...';
+
+  @override
+  String get quranFailedToLoadTranslations => 'Failed to load translations';
+
+  @override
+  String quranSearchError(String error) {
+    return 'Search error: $error';
+  }
+
+  @override
+  String get quranQuickTools => 'Quick Tools';
+
+  @override
+  String get quranSelectedTranslations => 'Selected Translations';
+
+  @override
+  String get quranEnableAutoScroll => 'Enable Auto Scroll';
+
+  @override
+  String get quranSpeedPxSec => 'Speed (px/sec)';
+
+  @override
+  String get quranWordByWordSubtitle =>
+      'Show transliteration and meaning for each word';
+
+  @override
+  String get quranWordByWordSource => 'Word-by-Word Source';
+
+  @override
+  String get quranPlaybackSpeedLabel => 'Playback Speed';
+
+  @override
+  String get quranSpeed050 => '0.50x';
+
+  @override
+  String get quranSpeed075 => '0.75x';
+
+  @override
+  String get quranSpeed100 => '1.00x';
+
+  @override
+  String get quranSpeed125 => '1.25x';
+
+  @override
+  String get quranSpeed150 => '1.50x';
+
+  @override
+  String get quranSpeed200 => '2.00x';
+
+  @override
+  String get quranQuickJump => 'Quick Jump';
+
+  @override
+  String get athanNotificationsChannelDescription =>
+      'Call to prayer notifications when prayer time arrives';
+
+  @override
+  String get methodsInfoRecommendation =>
+      'We recommend using the method preferred in your region for consistency with your local Muslim community.';
+
+  @override
+  String get quranCopyArabicText => 'Copy Arabic Text';
+
+  @override
+  String get quranCopyOnlyArabicVerse => 'Copy Arabic Verse Only';
+
+  @override
+  String get quranCopyTranslation => 'Copy Translation';
+
+  @override
+  String get quranCopyOnlyTranslation => 'Copy Translation Only';
+
+  @override
+  String get quranCopyFullVerse => 'Copy Full Verse';
+
+  @override
+  String get quranCopyArabicWithTranslation => 'Copy Arabic with Translation';
+
+  @override
+  String get quranReportTranslationError => 'Report Translation Error';
+
+  @override
+  String get quranHelpImproveTranslationAccuracy =>
+      'Help improve translation accuracy';
+
+  @override
+  String get quranArabicTextCopied => 'Arabic text copied to clipboard';
+
+  @override
+  String get quranTranslationCopied => 'Translation copied to clipboard';
+
+  @override
+  String get quranFullVerseCopied => 'Full verse copied to clipboard';
+
+  @override
+  String get quranReportTranslationErrorTitle => 'Report Translation Error';
+
+  @override
+  String get quranThankYouForHelpingImproveQuranTranslation =>
+      'Thank you for helping improve Quran translation accuracy!';
+
+  @override
+  String quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse(
+      Object verseKey) {
+    return 'Please email us at support@deenmate.app with details about the error in verse $verseKey';
+  }
+
+  @override
+  String get quranSendEmail => 'Send Email';
+
+  @override
+  String get quranReadingProgress => 'Reading Progress';
+
+  @override
+  String get quranVerse => 'Verse';
+
+  @override
+  String get quranReadingStreak => 'Reading Streak';
+
+  @override
+  String get quranDays => 'days';
 }

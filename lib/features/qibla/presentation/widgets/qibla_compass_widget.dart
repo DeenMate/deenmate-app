@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart' as compass;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 import '../../../../core/theme/islamic_theme.dart';
 import '../../domain/entities/qibla_direction.dart';

@@ -71,12 +71,27 @@ class _EnhancedQuranReaderScreenState
     // Load initial page
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadPage(1);
-    });
-
-    // Set up audio service callback for download prompts
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Set up audio service callback for download prompts
       final audioService = ref.read(quranAudioServiceProvider);
-      audioService.onPromptDownload = _showAudioDownloadPrompt;
+      audioService.onPromptDownload = (verse) async {
+        if (!mounted) return false;
+
+        // Get chapter name for display
+        final chapters = await ref.read(surahListProvider.future);
+        final chapter = chapters.firstWhere(
+          (c) => c.id == verse.chapterId,
+          orElse: () => ChapterDto(
+            id: verse.chapterId,
+            nameSimple: 'Chapter ${verse.chapterId}',
+            nameArabic: '',
+            versesCount: 0,
+            revelationPlace: '',
+          ),
+        );
+
+        final shouldDownload = await showAudioDownloadPrompt(context, chapter.nameSimple);
+        return shouldDownload ?? false;
+      };
     });
   }
 
@@ -91,6 +106,8 @@ class _EnhancedQuranReaderScreenState
     _controller.removeListener(_onScroll);
     _controller.dispose();
     _prefsSubscription?.cancel();
+    // Clear the callback to avoid memory leaks
+    ref.read(quranAudioServiceProvider).onPromptDownload = null;
     super.dispose();
   }
 
@@ -950,6 +967,7 @@ Quran ${verse.verseKey}''';
   }
 
   /// Show download prompt when audio is not available offline
+  /*
   Future<bool> _showAudioDownloadPrompt(dynamic verse) async {
     if (!mounted) return false;
 
@@ -973,6 +991,7 @@ Quran ${verse.verseKey}''';
       chapter.nameSimple,
     );
   }
+  */
 
   bool _isVerseBookmarked(VerseDto verse) {
     // Use local state for immediate UI feedback

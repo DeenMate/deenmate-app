@@ -10,6 +10,7 @@ class VerseDto {
     required this.textUthmani,
     this.translations = const [],
     this.audio,
+    this.sajdah,
   });
 
   @JsonKey(name: 'verse_key')
@@ -20,6 +21,7 @@ class VerseDto {
   final String textUthmani;
   final List<TranslationDto> translations;
   final AudioDto? audio;
+  final SajdahDto? sajdah; // Sajdah information if this verse requires prostration
 
   factory VerseDto.fromJson(Map<String, dynamic> json) =>
       _$VerseDtoFromJson(json);
@@ -52,4 +54,29 @@ class AudioDto {
   factory AudioDto.fromJson(Map<String, dynamic> json) =>
       _$AudioDtoFromJson(json);
   Map<String, dynamic> toJson() => _$AudioDtoToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SajdahDto {
+  const SajdahDto({
+    required this.id,
+    required this.verseKey,
+    required this.sajdahNumber,
+    required this.type,
+    this.recommended,
+    this.obligatory,
+  });
+
+  final int id;
+  @JsonKey(name: 'verse_key')
+  final String verseKey;
+  @JsonKey(name: 'sajdah_number')
+  final int sajdahNumber; // 1-15 (there are 15 sajdah verses in Quran)
+  final String type; // 'recommended' or 'obligatory'
+  final bool? recommended; // Whether this is a recommended sajdah
+  final bool? obligatory; // Whether this is an obligatory sajdah
+
+  factory SajdahDto.fromJson(Map<String, dynamic> json) =>
+      _$SajdahDtoFromJson(json);
+  Map<String, dynamic> toJson() => _$SajdahDtoToJson(this);
 }

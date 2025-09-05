@@ -29,11 +29,11 @@ class MobileAudioManager extends ConsumerStatefulWidget {
 class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
   bool _isPlayerVisible = false;
   bool _isPlayerMinimized = true;
-  
+
   @override
   void initState() {
     super.initState();
-    
+
     // Listen to audio state changes to show/hide player
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _listenToAudioState();
@@ -45,7 +45,7 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
       next.when(
         data: (state) {
           final shouldShow = state != audio_service.AudioState.stopped;
-          
+
           if (shouldShow != _isPlayerVisible) {
             setState(() {
               _isPlayerVisible = shouldShow;
@@ -65,17 +65,17 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
   @override
   Widget build(BuildContext context) {
     Widget content = widget.child ?? const SizedBox.shrink();
-    
+
     // Wrap with global gestures if enabled
     if (widget.enableGlobalGestures) {
       content = _wrapWithGlobalGestures(content);
     }
-    
+
     // Add floating player overlay
     if (widget.showFloatingPlayer) {
       content = _addFloatingPlayer(content);
     }
-    
+
     return content;
   }
 
@@ -94,7 +94,7 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
     return Stack(
       children: [
         child,
-        
+
         // Floating audio player
         if (_isPlayerVisible)
           Positioned(
@@ -118,14 +118,14 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
   void _handleGlobalPlayPause() {
     final audioState = ref.read(audioStateProvider);
     final service = ref.read(quranAudioServiceProvider);
-    
+
     audioState.whenData((state) {
       switch (state) {
         case audio_service.AudioState.playing:
           service.pause();
           break;
         case audio_service.AudioState.paused:
-          service.resume();
+          service.play();
           break;
         case audio_service.AudioState.stopped:
           if (service.playlist.isNotEmpty) {
@@ -136,7 +136,7 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
           break;
       }
     });
-    
+
     HapticFeedback.lightImpact();
   }
 
@@ -170,12 +170,12 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
   void _handleClosePlayer() {
     final service = ref.read(quranAudioServiceProvider);
     service.stop();
-    
+
     setState(() {
       _isPlayerVisible = false;
       _isPlayerMinimized = true;
     });
-    
+
     HapticFeedback.lightImpact();
   }
 }
@@ -184,27 +184,29 @@ class _MobileAudioManagerState extends ConsumerState<MobileAudioManager> {
 /// Helper methods for common mobile audio operations
 extension MobileAudioServiceExtensions on audio_service.QuranAudioService {
   /// Play verse with mobile-optimized user feedback
-  Future<void> playVerseMobile(int index, {VoidCallback? onPromptDownload}) async {
+  Future<void> playVerseMobile(int index,
+      {Future<void> Function()? onPromptDownload}) async {
     // Set download prompt callback for mobile
-    onPromptDownload = onPromptDownload ?? () async {
-      // You would typically show a mobile-optimized dialog here
-      return true; // Default to download for mobile
-    };
-    
+    final callback = onPromptDownload ??
+        () async {
+          // Placeholder: integrate proper prompt if needed
+        };
+    // Attach prompt to service if not set
+    onPromptDownload ??= callback;
     await playVerse(index);
   }
-  
+
   /// Get mobile-friendly verse title
   String getVerseTitleMobile(audio_service.VerseAudio verse) {
     final parts = verse.verseKey.split(':');
     if (parts.length == 2) {
-      final chapterNum = int.tryParse(parts[0]) ?? 0;
-      final verseNum = int.tryParse(parts[1]) ?? 0;
-      return 'Surah $chapterNum, Verse $verseNum';
+      final chapter = int.tryParse(parts[0]) ?? 0;
+      final ayah = int.tryParse(parts[1]) ?? 0;
+      return 'Surah $chapter, Verse $ayah';
     }
     return verse.verseKey;
   }
-  
+
   /// Get mobile-friendly playlist info
   String getPlaylistInfoMobile() {
     if (playlist.isEmpty) return 'No playlist';
@@ -233,7 +235,7 @@ class MobileAudioControlButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final audioState = ref.watch(audioStateProvider);
     final service = ref.watch(quranAudioServiceProvider);
-    
+
     return MobileAudioControls.playPauseButton(
       audioState: audioState,
       onPressed: () => _handlePress(ref, service),
@@ -253,7 +255,7 @@ class MobileAudioControlButton extends ConsumerWidget {
       service.setPlaylist(verses!);
       service.playVerse(0);
     }
-    
+
     HapticFeedback.lightImpact();
   }
 }
@@ -273,13 +275,13 @@ class MobileAudioDownloadManager {
     required WidgetRef ref,
   }) async {
     final service = ref.read(quranAudioServiceProvider);
-    
+
     try {
       // Show mobile-optimized download progress
       _showDownloadProgress(context, verse);
-      
+
       await service.downloadVerseAudio(verse);
-      
+
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -308,7 +310,8 @@ class MobileAudioDownloadManager {
     }
   }
 
-  static void _showDownloadProgress(BuildContext context, audio_service.VerseAudio verse) {
+  static void _showDownloadProgress(
+      BuildContext context, audio_service.VerseAudio verse) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -326,7 +329,7 @@ class MobileAudioDownloadManager {
         ),
       ),
     );
-    
+
     // Auto-dismiss after a reasonable time
     Future.delayed(const Duration(seconds: 10), () {
       if (context.mounted) {
@@ -349,7 +352,7 @@ class MobileAudioDownloadManager {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(AppLocalizations.of(context)!.cancel),
+            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
@@ -358,7 +361,7 @@ class MobileAudioDownloadManager {
         ],
       ),
     );
-    
+
     return result ?? false;
   }
 }
@@ -372,27 +375,27 @@ class QuickMobileAudioActions {
     List<audio_service.VerseAudio>? playlist,
   }) {
     final service = ref.read(quranAudioServiceProvider);
-    
+
     final audioPlaylist = playlist ?? [verse];
     service.setPlaylist(audioPlaylist);
-    
+
     final index = audioPlaylist.indexOf(verse);
     service.playVerse(index >= 0 ? index : 0);
-    
+
     HapticFeedback.lightImpact();
   }
 
   static void togglePlayPauseQuick({required WidgetRef ref}) {
     final audioState = ref.read(audioStateProvider);
     final service = ref.read(quranAudioServiceProvider);
-    
+
     audioState.whenData((state) {
       switch (state) {
         case audio_service.AudioState.playing:
           service.pause();
           break;
         case audio_service.AudioState.paused:
-          service.resume();
+          service.play();
           break;
         case audio_service.AudioState.stopped:
           if (service.playlist.isNotEmpty) {
@@ -403,7 +406,7 @@ class QuickMobileAudioActions {
           break;
       }
     });
-    
+
     HapticFeedback.lightImpact();
   }
 

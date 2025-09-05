@@ -15,7 +15,7 @@ import '../widgets/wealth_input_section.dart';
 import '../widgets/zakat_result_card.dart';
 import '../widgets/nisab_info_card.dart';
 import '../widgets/calculation_breakdown_sheet.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 /// Modern Zakat Calculator Screen following Islamic principles
 class ZakatCalculatorScreen extends ConsumerStatefulWidget {

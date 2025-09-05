@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../domain/services/search_service.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../state/providers.dart';
 
 /// Widget for displaying individual search results
 /// Supports verse results, chapter results, and reference results
@@ -42,14 +43,14 @@ class SearchResultCard extends ConsumerWidget {
     } else if (result is VerseReferenceResult) {
       return _buildReferenceResult(context, result as VerseReferenceResult);
     }
-    
+
     return const SizedBox.shrink();
   }
 
   Widget _buildVerseResult(BuildContext context, SearchResult result) {
     final verse = result.verse;
     final chapterId = int.parse(verse.verseKey.split(':')[0]);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,7 +88,8 @@ class SearchResultCard extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: ThemeHelper.getTextSecondaryColor(context).withOpacity(0.1),
+                  color: ThemeHelper.getTextSecondaryColor(context)
+                      .withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -101,9 +103,9 @@ class SearchResultCard extends ConsumerWidget {
               ),
           ],
         ),
-        
+
         const SizedBox(height: 12),
-        
+
         // Arabic text
         if (verse.textUthmani.isNotEmpty)
           Container(
@@ -116,60 +118,65 @@ class SearchResultCard extends ConsumerWidget {
                 width: 1,
               ),
             ),
-            child: Text(
-              verse.textUthmani,
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Uthmani',
-                color: ThemeHelper.getTextPrimaryColor(context),
-                height: 1.8,
-              ),
-              textAlign: TextAlign.right,
-              textDirection: TextDirection.rtl,
-            ),
+            child: Consumer(builder: (context, ref, _) {
+              final prefs = ref.watch(prefsProvider);
+              final family = prefs.quranScriptVariant == 'IndoPak'
+                  ? 'IndoPak'
+                  : 'UthmanicHafs';
+              return Text(
+                verse.textUthmani,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: family,
+                  color: ThemeHelper.getTextPrimaryColor(context),
+                  height: 1.8,
+                ),
+                textAlign: TextAlign.right,
+                textDirection: TextDirection.rtl,
+              );
+            }),
           ),
-        
+
         // Translation text (if available)
         if (verse.translations.isNotEmpty) ...[
           const SizedBox(height: 8),
           ...verse.translations.take(2).map((translation) => Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: ThemeHelper.getCardColor(context),
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: ThemeHelper.getDividerColor(context).withOpacity(0.5),
-                  width: 1,
+                padding: const EdgeInsets.only(top: 8),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: ThemeHelper.getCardColor(context),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color:
+                          ThemeHelper.getDividerColor(context).withOpacity(0.5),
+                      width: 1,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildHighlightedText(
+                        context,
+                        translation.text,
+                        query,
+                        const TextStyle(fontSize: 15),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Translation ID: ${translation.resourceId}',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: ThemeHelper.getTextSecondaryColor(context),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _highlightText(translation.text, query),
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: ThemeHelper.getTextPrimaryColor(context),
-                      height: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Translation ID: ${translation.resourceId}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: ThemeHelper.getTextSecondaryColor(context),
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )),
+              )),
         ],
-        
+
         // Matched text info
         if (result.matchedText.isNotEmpty) ...[
           const SizedBox(height: 12),
@@ -195,7 +202,7 @@ class SearchResultCard extends ConsumerWidget {
 
   Widget _buildChapterResult(BuildContext context, ChapterSearchResult result) {
     final chapter = result.chapter;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -222,7 +229,8 @@ class SearchResultCard extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: ThemeHelper.getTextSecondaryColor(context).withOpacity(0.1),
+                  color: ThemeHelper.getTextSecondaryColor(context)
+                      .withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -236,9 +244,9 @@ class SearchResultCard extends ConsumerWidget {
               ),
           ],
         ),
-        
+
         const SizedBox(height: 8),
-        
+
         // Chapter info
         Row(
           children: [
@@ -264,12 +272,13 @@ class SearchResultCard extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    _highlightText(chapter.nameSimple, query),
-                    style: TextStyle(
+                  _buildHighlightedText(
+                    context,
+                    chapter.nameSimple,
+                    query,
+                    const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: ThemeHelper.getTextPrimaryColor(context),
                     ),
                   ),
                   if (chapter.nameArabic.isNotEmpty)
@@ -287,9 +296,9 @@ class SearchResultCard extends ConsumerWidget {
             ),
           ],
         ),
-        
+
         const SizedBox(height: 8),
-        
+
         // Chapter details
         Row(
           children: [
@@ -306,38 +315,43 @@ class SearchResultCard extends ConsumerWidget {
             ),
           ],
         ),
-        
+
         // Matched fields
         if (result.matchedFields.isNotEmpty) ...[
           const SizedBox(height: 12),
           Wrap(
             spacing: 6,
             runSpacing: 4,
-            children: result.matchedFields.map((field) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: ThemeHelper.getPrimaryColor(context).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                field,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: ThemeHelper.getPrimaryColor(context),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            )).toList(),
+            children: result.matchedFields
+                .map((field) => Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: ThemeHelper.getPrimaryColor(context)
+                            .withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        field,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: ThemeHelper.getPrimaryColor(context),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ))
+                .toList(),
           ),
         ],
       ],
     );
   }
 
-  Widget _buildReferenceResult(BuildContext context, VerseReferenceResult result) {
+  Widget _buildReferenceResult(
+      BuildContext context, VerseReferenceResult result) {
     final verse = result.verse;
     final reference = result.reference;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -376,9 +390,9 @@ class SearchResultCard extends ConsumerWidget {
             ),
           ],
         ),
-        
+
         const SizedBox(height: 12),
-        
+
         // Verse content (shortened)
         if (verse.textUthmani.isNotEmpty)
           Container(
@@ -392,7 +406,7 @@ class SearchResultCard extends ConsumerWidget {
               ),
             ),
             child: Text(
-              verse.textUthmani.length > 150 
+              verse.textUthmani.length > 150
                   ? '${verse.textUthmani.substring(0, 150)}...'
                   : verse.textUthmani,
               style: TextStyle(
@@ -405,7 +419,7 @@ class SearchResultCard extends ConsumerWidget {
               textDirection: TextDirection.rtl,
             ),
           ),
-        
+
         // Match type
         if (result.matchType.isNotEmpty) ...[
           const SizedBox(height: 8),
@@ -450,10 +464,43 @@ class SearchResultCard extends ConsumerWidget {
     );
   }
 
-  String _highlightText(String text, String query) {
-    // Simple highlighting - in a real app, you'd want to use a more sophisticated approach
-    // For now, just return the original text as highlighting with RichText would be complex
-    return text;
+  Widget _buildHighlightedText(
+      BuildContext context, String text, String query, TextStyle base) {
+    final style = base.copyWith(
+      color: ThemeHelper.getTextPrimaryColor(context),
+      height: base.height ?? 1.5,
+    );
+    final q = query.trim();
+    if (q.isEmpty) return Text(text, style: style);
+    try {
+      final pattern = RegExp(RegExp.escape(q), caseSensitive: false);
+      final matches = pattern.allMatches(text).toList();
+      if (matches.isEmpty) return Text(text, style: style);
+
+      final spans = <TextSpan>[];
+      int cursor = 0;
+      for (final m in matches) {
+        if (m.start > cursor) {
+          spans.add(TextSpan(text: text.substring(cursor, m.start)));
+        }
+        spans.add(TextSpan(
+          text: text.substring(m.start, m.end),
+          style: style.copyWith(
+            backgroundColor:
+                ThemeHelper.getPrimaryColor(context).withOpacity(0.18),
+            fontWeight: FontWeight.w600,
+          ),
+        ));
+        cursor = m.end;
+      }
+      if (cursor < text.length) {
+        spans.add(TextSpan(text: text.substring(cursor)));
+      }
+
+      return RichText(text: TextSpan(style: style, children: spans));
+    } catch (_) {
+      return Text(text, style: style);
+    }
   }
 
   void _handleTap(BuildContext context) {

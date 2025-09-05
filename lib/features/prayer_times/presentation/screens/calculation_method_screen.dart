@@ -17,10 +17,12 @@ class CalculationMethodScreen extends ConsumerStatefulWidget {
   const CalculationMethodScreen({super.key});
 
   @override
-  ConsumerState<CalculationMethodScreen> createState() => _CalculationMethodScreenState();
+  ConsumerState<CalculationMethodScreen> createState() =>
+      _CalculationMethodScreenState();
 }
 
-class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScreen>
+class _CalculationMethodScreenState
+    extends ConsumerState<CalculationMethodScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
   String _selectedMethodId = 'MWL';
@@ -56,7 +58,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.prayerCalculationMethodsTitle),
+        title:
+            Text(AppLocalizations.of(context)!.prayerCalculationMethodsTitle),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -65,7 +68,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
             IconButton(
               onPressed: _hideComparison,
               icon: const Icon(Icons.close),
-              tooltip: AppLocalizations.of(context)!.methodsHideComparisonTooltip,
+              tooltip:
+                  AppLocalizations.of(context)!.methodsHideComparisonTooltip,
             ),
           IconButton(
             onPressed: _showInfoDialog,
@@ -79,9 +83,15 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           unselectedLabelColor: Colors.white70,
           indicatorColor: Colors.white,
           tabs: [
-            Tab(text: AppLocalizations.of(context)!.methodsRecommended, icon: Icon(Icons.star_outline)),
-            Tab(text: AppLocalizations.of(context)!.methodsAllMethods, icon: Icon(Icons.list)),
-            Tab(text: AppLocalizations.of(context)!.methodsCustom, icon: Icon(Icons.tune)),
+            Tab(
+                text: AppLocalizations.of(context)!.methodsRecommended,
+                icon: Icon(Icons.star_outline)),
+            Tab(
+                text: AppLocalizations.of(context)!.methodsAllMethods,
+                icon: Icon(Icons.list)),
+            Tab(
+                text: AppLocalizations.of(context)!.methodsCustom,
+                icon: Icon(Icons.tune)),
           ],
         ),
       ),
@@ -136,7 +146,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
   }
 
   Widget _buildRecommendedTab(Location location) {
-    final recommendedMethods = CalculationMethodService.instance.getRecommendedMethods(location);
+    final recommendedMethods =
+        CalculationMethodService.instance.getRecommendedMethods(location);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -158,15 +169,17 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                       const SizedBox(width: 8),
                       Text(
                         AppLocalizations.of(context)!.methodsYourLocation,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text('${location.city}, ${location.country}'),
-                  Text('${location.latitude.toStringAsFixed(4)}, ${location.longitude.toStringAsFixed(4)}'),
+                  Text(
+                      '${location.latitude.toStringAsFixed(4)}, ${location.longitude.toStringAsFixed(4)}'),
                 ],
               ),
             ),
@@ -175,32 +188,34 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           Text(
             AppLocalizations.of(context)!.methodsRecommendedMethods,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
           ),
           const SizedBox(height: 8),
           Text(
             'These methods are specifically recommended for your location based on regional preferences and accuracy.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[600],
-            ),
+                  color: Colors.grey[600],
+                ),
           ),
           const SizedBox(height: 16),
-          ...recommendedMethods.map((method) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: CalculationMethodCard(
-              method: method,
-              location: location,
-              isSelected: method.name == _selectedMethodId,
-              onSelected: () => _selectMethod(method.name),
-              onCompare: () => _showComparison
-                  ? _hideComparison()
-                  : _startComparison(method.name),
-              showCompareButton: true,
-              isRecommended: true,
+          ...recommendedMethods.map(
+            (method) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: CalculationMethodCard(
+                method: method,
+                location: location,
+                isSelected: method.name == _selectedMethodId,
+                onSelected: () => _selectMethod(method.name),
+                onCompare: () => _showComparison
+                    ? _hideComparison()
+                    : _startComparison(method.name),
+                showCompareButton: true,
+                isRecommended: true,
+              ),
             ),
-          ),),
+          ),
         ],
       ),
     );
@@ -217,31 +232,34 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           Text(
             AppLocalizations.of(context)!.methodsAllAvailableMethods,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
           ),
           const SizedBox(height: 8),
           Text(
-            AppLocalizations.of(context)!.methodsAllAvailableMethodsCount(allMethods.length),
+            AppLocalizations.of(context)!
+                .methodsAllAvailableMethodsCount(allMethods.length),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[600],
-            ),
+                  color: Colors.grey[600],
+                ),
           ),
           const SizedBox(height: 16),
-          ...allMethods.map((method) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: CalculationMethodCard(
-              method: method,
-              location: location,
-              isSelected: method.name == _selectedMethodId,
-              onSelected: () => _selectMethod(method.name),
-              onCompare: () => _showComparison
-                  ? _hideComparison()
-                  : _startComparison(method.name),
-              showCompareButton: true,
+          ...allMethods.map(
+            (method) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: CalculationMethodCard(
+                method: method,
+                location: location,
+                isSelected: method.name == _selectedMethodId,
+                onSelected: () => _selectMethod(method.name),
+                onCompare: () => _showComparison
+                    ? _hideComparison()
+                    : _startComparison(method.name),
+                showCompareButton: true,
+              ),
             ),
-          ),),
+          ),
         ],
       ),
     );
@@ -256,16 +274,16 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
           Text(
             AppLocalizations.of(context)!.methodsCustomMethod,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
           ),
           const SizedBox(height: 8),
           Text(
             'Create your own calculation method with custom angles.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[600],
-            ),
+                  color: Colors.grey[600],
+                ),
           ),
           const SizedBox(height: 24),
           Card(
@@ -282,8 +300,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                   Text(
                     AppLocalizations.of(context)!.methodsCustomMethodCreator,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -294,7 +312,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: _showCustomMethodDialog,
-                    child: Text(AppLocalizations.of(context)!.methodsCreateCustomMethod),
+                    child: Text(AppLocalizations.of(context)!
+                        .methodsCreateCustomMethod),
                   ),
                 ],
               ),
@@ -346,7 +365,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.methodsApplied(method.name)),
+            content:
+                Text(AppLocalizations.of(context)!.methodsApplied(method.name)),
             backgroundColor: Colors.green,
             action: SnackBarAction(
               label: AppLocalizations.of(context)!.methodsView,
@@ -360,7 +380,8 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.methodsApplyFailed(e.toString())),
+            content: Text(
+                AppLocalizations.of(context)!.methodsApplyFailed(e.toString())),
             backgroundColor: Colors.red,
           ),
         );
@@ -372,31 +393,22 @@ class _CalculationMethodScreenState extends ConsumerState<CalculationMethodScree
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.methodsAboutCalculationMethods),
-        content: const SingleChildScrollView(
+        title:
+            Text(AppLocalizations.of(context)!.methodsAboutCalculationMethods),
+        content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                AppLocalizations.of(context)!.methodsInfoFajrAngle,
-              ),
-              SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.methodsInfoIshaAngle,
-              ),
-              SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.methodsInfoRegionalPref,
-              ),
-              SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.methodsInfoMadhabDiff,
-              ),
-              SizedBox(height: 16),
-              Text(
-                'We recommend using the method preferred in your region for consistency with your local Muslim community.',
-              ),
+              Text(AppLocalizations.of(context)!.methodsInfoFajrAngle),
+              const SizedBox(height: 16),
+              Text(AppLocalizations.of(context)!.methodsInfoIshaAngle),
+              const SizedBox(height: 16),
+              Text(AppLocalizations.of(context)!.methodsInfoRegionalPref),
+              const SizedBox(height: 16),
+              Text(AppLocalizations.of(context)!.methodsInfoMadhabDiff),
+              const SizedBox(height: 16),
+              Text(AppLocalizations.of(context)!.methodsInfoRecommendation),
             ],
           ),
         ),

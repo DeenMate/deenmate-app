@@ -3438,5 +3438,301 @@
   "quranEssentialContentDownloaded": "প্রয়োজনীয় কন্টেন্ট সফলভাবে ডাউনলোড হয়েছে!",
   "@quranEssentialContentDownloaded": {
     "description": "Message when essential content download completes"
+  },
+  
+  "quranSajdah": "সিজদা",
+  "@quranSajdah": {
+    "description": "Label for sajdah (prostration) marker"
+  },
+  
+  "quranSajdahInfo": "সিজদার তথ্য",
+  "@quranSajdahInfo": {
+    "description": "Title for sajdah information dialog"
+  },
+  
+  "quranSajdahObligatory": "অবশ্যক",
+  "@quranSajdahObligatory": {
+    "description": "Label for obligatory sajdah"
+  },
+  
+  "quranSajdahNumber": "সিজদার সংখ্যা",
+  "@quranSajdahNumber": {
+    "description": "Label for sajdah number in info dialog"
+  },
+  
+  "quranSajdahType": "ধরন",
+  "@quranSajdahType": {
+    "description": "Label for sajdah type in info dialog"
+  },
+  
+  "quranSajdahVerse": "আয়াত",
+  "@quranSajdahVerse": {
+    "description": "Label for verse reference in sajdah info"
+  },
+  
+  "quranClose": "বন্ধ করুন",
+  "@quranClose": {
+    "description": "Close button text"
+  },
+  
+  "quranSajdahObligatoryDescription": "এটি একটি অবশ্যক সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা বাধ্যতামূলক।",
+  "@quranSajdahObligatoryDescription": {
+    "description": "Description for obligatory sajdah verses"
+  },
+  
+  "quranSajdahRecommendedDescription": "এটি একটি সুপারিশকৃত সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা সুপারিশকৃত।",
+  "@quranSajdahRecommendedDescription": {
+    "description": "Description for recommended sajdah verses"
+  },
+  
+  "quranSajdahGeneralDescription": "এই আয়াতে একটি সিজদা (সিজদা) চিহ্ন রয়েছে। এই আয়াত পাঠ বা শোনার সময় সিজদা করার কথা বিবেচনা করুন।",
+  "@quranSajdahGeneralDescription": {
+    "description": "General description for sajdah verses"
+  },
+  
+  "quranScriptVariants": "স্ক্রিপ্ট ভেরিয়েন্ট",
+  "@quranScriptVariants": {
+    "description": "Title for Quran script variants selection"
+  },
+  
+  "quranScriptVariantsDescription": "বিভিন্ন কুরআন স্ক্রিপ্ট স্টাইল নির্বাচন করুন। উসমানী হল ঐতিহ্যগত স্ক্রিপ্ট, যখন ইন্দো-পাক দক্ষিণ এশিয়ায় জনপ্রিয়।",
+  "@quranScriptVariantsDescription": {
+    "description": "Description of script variants feature"
+  },
+  
+  "quranUthmanicDescription": "বিশ্বব্যাপী অধিকাংশ মুদ্রিত কুরআনে ব্যবহৃত ঐতিহ্যগত উসমানী স্ক্রিপ্ট। ক্লাসিক্যাল আরবি ক্যালিগ্রাফি বৈশিষ্ট্য।",
+  "@quranUthmanicDescription": {
+    "description": "Description of Uthmanic script"
+  },
+  
+  "quranIndoPakDescription": "দক্ষিণ এশিয়ায় জনপ্রিয় ইন্দো-পাক স্ক্রিপ্ট স্টাইল। স্বতন্ত্র অক্ষর রূপ এবং স্পেসিং বৈশিষ্ট্য।",
+  "@quranIndoPakDescription": {
+    "description": "Description of IndoPak script"
+  },
+  
+  "quranScript": "স্ক্রিপ্ট",
+  "@quranScript": {
+    "description": "Label for script selection"
+  },
+  
+  "quranEnableTransliteration": "ট্রান্সলিটারেশন অনুসন্ধান সক্রিয় করুন",
+  "@quranEnableTransliteration": {
+    "description": "Checkbox label for enabling transliteration search"
+  },
+  
+  "quranEnableBengaliSearch": "বাংলা অনুসন্ধান সক্রিয় করুন",
+  "@quranEnableBengaliSearch": {
+    "description": "Checkbox label for enabling Bengali search"
+  },
+  
+  "quranEnableFuzzyMatch": "ফাজি ম্যাচিং সক্রিয় করুন",
+  "@quranEnableFuzzyMatch": {
+    "description": "Checkbox label for enabling fuzzy matching"
+  },
+  
+  "quranTransliteration": "ট্রান্সলিটারেশন",
+  "@quranTransliteration": {
+    "description": "Label for transliteration search scope"
+  },
+  
+  "quranBengali": "বাংলা",
+  "@quranBengali": {
+    "description": "Label for Bengali search scope"
+  },
+  
+  "quranAll": "সব",
+  "@quranAll": {
+    "description": "Label for all search scope"
+  },
+  
+  "quranArabic": "আরবি",
+  "@quranArabic": {
+    "description": "Label for Arabic search scope"
+  },
+  
+  "quranTranslation": "অনুবাদ",
+  "@quranTranslation": {
+    "description": "Label for translation search scope"
+  },
+  
+  "quranTranslationLoading": "অনুবাদ লোড হচ্ছে...",
+  "@quranTranslationLoading": {
+    "description": "Message shown while translations are loading"
+  },
+  
+  "quranAvailableTranslations": "উপলব্ধ অনুবাদসমূহ",
+  "@quranAvailableTranslations": {
+    "description": "Title for available translations section"
+  },
+  
+  "quranSelectedTranslationIds": "নির্বাচিত অনুবাদ আইডি",
+  "@quranSelectedTranslationIds": {
+    "description": "Label for selected translation IDs"
+  },
+  
+  "quranPleaseWaitWhileTranslationsAreBeingLoaded": "অনুবাদ লোড হওয়া পর্যন্ত অনুগ্রহ করে অপেক্ষা করুন...",
+  "@quranPleaseWaitWhileTranslationsAreBeingLoaded": {
+    "description": "Message asking user to wait for translations"
+  },
+  
+  "quranFailedToLoadTranslations": "অনুবাদ লোড করতে ব্যর্থ",
+  "@quranFailedToLoadTranslations": {
+    "description": "Error message when translations fail to load"
+  },
+
+  "quranSearchError": "সার্চ ত্রুটি: {error}",
+  "@quranSearchError": {
+    "description": "সার্চ ত্রুটির জন্য স্ন্যাকবার টেক্সট",
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  
+  "quranQuickTools": "দ্রুত সরঞ্জাম",
+  "@quranQuickTools": {
+    "description": "Title for quick tools section"
+  },
+  
+  "quranSelectedTranslations": "নির্বাচিত অনুবাদসমূহ",
+  "@quranSelectedTranslations": {
+    "description": "Title for selected translations section"
+  },
+  
+  "quranEnableAutoScroll": "স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন",
+  "@quranEnableAutoScroll": {
+    "description": "Checkbox label for enabling auto scroll"
+  },
+  
+  "quranSpeedPxSec": "গতি (পিক্সেল/সেকেন্ড)",
+  "@quranSpeedPxSec": {
+    "description": "Label for auto scroll speed setting"
+  },
+  "quranWordByWord": "শব্দে-শব্দে",
+  "@quranWordByWord": {"description": "শব্দে-শব্দে বিভাগের শিরোনাম"},
+  "quranWordByWordSubtitle": "প্রতিটি শব্দের উচ্চারণ ও অর্থ দেখান",
+  "@quranWordByWordSubtitle": {"description": "শব্দে-শব্দে টগল সাবটাইটেল"},
+  "quranWordByWordSource": "শব্দে-শব্দে উৎস",
+  "@quranWordByWordSource": {"description": "ওয়ার্ড অ্যানালাইসিস সোর্স পিকার লেবেল"},
+  "quranPlaybackSpeedLabel": "প্লেব্যাক গতি",
+  "@quranPlaybackSpeedLabel": {"description": "প্লেব্যাক গতি মেনুর লেবেল"},
+  "quranSpeed050": "০.৫০x",
+  "@quranSpeed050": {"description": "প্লেব্যাক গতি ০.৫x"},
+  "quranSpeed075": "০.৭৫x",
+  "@quranSpeed075": {"description": "প্লেব্যাক গতি ০.৭৫x"},
+  "quranSpeed100": "১.০০x",
+  "@quranSpeed100": {"description": "প্লেব্যাক গতি ১x"},
+  "quranSpeed125": "১.২৫x",
+  "@quranSpeed125": {"description": "প্লেব্যাক গতি ১.২৫x"},
+  "quranSpeed150": "১.৫০x",
+  "@quranSpeed150": {"description": "প্লেব্যাক গতি ১.৫x"},
+  "quranSpeed200": "২.০০x",
+  "@quranSpeed200": {"description": "প্লেব্যাক গতি ২x"},
+  
+  "quranQuickJump": "দ্রুত জাম্প",
+  "@quranQuickJump": {
+    "description": "Title for quick jump navigation feature"
+  },
+  "athanNotificationsChannelDescription": "নামাজের সময় হলে আজানের নোটিফিকেশন",
+  "@athanNotificationsChannelDescription": {
+    "description": "Android notification channel description for Athan"
+  },
+  "methodsInfoRecommendation": "আপনার এলাকার পছন্দের পদ্ধতিটি ব্যবহার করার পরামর্শ দেওয়া হয় যাতে স্থানীয় মুসলিম কমিউনিটির সাথে সামঞ্জস্য থাকে।",
+  "@methodsInfoRecommendation": {
+    "description": "Recommendation line in calculation method info dialog"
+  },
+  
+  "quranCopyArabicText": "আরবি টেক্সট কপি করুন",
+  "@quranCopyArabicText": {
+    "description": "Menu item to copy Arabic text"
+  },
+  
+  "quranCopyOnlyArabicVerse": "শুধুমাত্র আরবি আয়াত কপি করুন",
+  "@quranCopyOnlyArabicVerse": {
+    "description": "Menu item to copy only Arabic verse"
+  },
+  
+  "quranCopyTranslation": "অনুবাদ কপি করুন",
+  "@quranCopyTranslation": {
+    "description": "Menu item to copy translation"
+  },
+  
+  "quranCopyOnlyTranslation": "শুধুমাত্র অনুবাদ কপি করুন",
+  "@quranCopyOnlyTranslation": {
+    "description": "Menu item to copy only translation"
+  },
+  
+  "quranCopyFullVerse": "সম্পূর্ণ আয়াত কপি করুন",
+  "@quranCopyFullVerse": {
+    "description": "Menu item to copy full verse with Arabic and translation"
+  },
+  
+  "quranCopyArabicWithTranslation": "আরবি সহ অনুবাদ কপি করুন",
+  "@quranCopyArabicWithTranslation": {
+    "description": "Menu item to copy Arabic text with translation"
+  },
+  
+  "quranReportTranslationError": "অনুবাদ ত্রুটি রিপোর্ট করুন",
+  "@quranReportTranslationError": {
+    "description": "Menu item to report translation error"
+  },
+  
+  "quranHelpImproveTranslationAccuracy": "অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করুন",
+  "@quranHelpImproveTranslationAccuracy": {
+    "description": "Description for reporting translation errors"
+  },
+  
+  "quranArabicTextCopied": "আরবি টেক্সট ক্লিপবোর্ডে কপি হয়েছে",
+  "@quranArabicTextCopied": {
+    "description": "Message shown when Arabic text is copied"
+  },
+  
+  "quranTranslationCopied": "অনুবাদ ক্লিপবোর্ডে কপি হয়েছে",
+  "@quranTranslationCopied": {
+    "description": "Message shown when translation is copied"
+  },
+  
+  "quranFullVerseCopied": "সম্পূর্ণ আয়াত ক্লিপবোর্ডে কপি হয়েছে",
+  "@quranFullVerseCopied": {
+    "description": "Message shown when full verse is copied"
+  },
+  
+  "quranReportTranslationErrorTitle": "অনুবাদ ত্রুটি রিপোর্ট করুন",
+  "@quranReportTranslationErrorTitle": {
+    "description": "Title for translation error report dialog"
+  },
+  
+  "quranThankYouForHelpingImproveQuranTranslation": "কুরআন অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করার জন্য ধন্যবাদ!",
+  "@quranThankYouForHelpingImproveQuranTranslation": {
+    "description": "Thank you message for reporting translation errors"
+  },
+  
+  "quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": "অনুগ্রহ করে {verseKey} আয়াতে ত্রুটি সম্পর্কে বিস্তারিত জানিয়ে support@deenmate.app এ আমাদের ইমেইল করুন",
+  "@quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": {
+    "description": "Instructions for reporting translation errors"
+  },
+  
+  "quranSendEmail": "ইমেইল পাঠান",
+  "@quranSendEmail": {
+    "description": "Button text for sending email"
+  },
+  
+  "quranReadingProgress": "পঠন অগ্রগতি",
+  "@quranReadingProgress": {
+    "description": "Title for reading progress indicator"
+  },
+  
+  "quranVerse": "আয়াত",
+  "@quranVerse": {
+    "description": "Label for verse count in reading progress"
+  },
+  
+  "quranReadingStreak": "পঠন ধারা",
+  "@quranReadingStreak": {
+    "description": "Label for reading streak counter"
+  },
+  
+  "quranDays": "দিন",
+  "@quranDays": {
+    "description": "Label for days in reading streak"
   }
 }

@@ -3132,13 +3132,13 @@ abstract class AppLocalizations {
   /// **'Content'**
   String get quranContent;
 
-  /// Arabic text toggle label
+  /// Label for Arabic search scope
   ///
   /// In en, this message translates to:
   /// **'Arabic'**
   String get quranArabic;
 
-  /// Translation text toggle label
+  /// Label for translation search scope
   ///
   /// In en, this message translates to:
   /// **'Translation'**
@@ -5809,10 +5809,10 @@ abstract class AppLocalizations {
   /// **'Indo-Pak'**
   String get quranIndoPak;
 
-  /// Word by word analysis feature
+  /// Title for word-by-word section
   ///
   /// In en, this message translates to:
-  /// **'Word by Word'**
+  /// **'Word-by-Word'**
   String get quranWordByWord;
 
   /// Toggle for word by word display
@@ -5922,6 +5922,379 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Essential content downloaded successfully!'**
   String get quranEssentialContentDownloaded;
+
+  /// Label for sajdah (prostration) marker
+  ///
+  /// In en, this message translates to:
+  /// **'Sajdah'**
+  String get quranSajdah;
+
+  /// Title for sajdah information dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Sajdah Information'**
+  String get quranSajdahInfo;
+
+  /// Label for obligatory sajdah
+  ///
+  /// In en, this message translates to:
+  /// **'Obligatory'**
+  String get quranSajdahObligatory;
+
+  /// Label for sajdah number in info dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Sajdah Number'**
+  String get quranSajdahNumber;
+
+  /// Label for sajdah type in info dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get quranSajdahType;
+
+  /// Label for verse reference in sajdah info
+  ///
+  /// In en, this message translates to:
+  /// **'Verse'**
+  String get quranSajdahVerse;
+
+  /// Close button text
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get quranClose;
+
+  /// Description for obligatory sajdah verses
+  ///
+  /// In en, this message translates to:
+  /// **'This is an obligatory sajdah verse. When reciting or listening to this verse, it is mandatory to perform prostration.'**
+  String get quranSajdahObligatoryDescription;
+
+  /// Description for recommended sajdah verses
+  ///
+  /// In en, this message translates to:
+  /// **'This is a recommended sajdah verse. It is recommended to perform prostration when reciting or listening to this verse.'**
+  String get quranSajdahRecommendedDescription;
+
+  /// General description for sajdah verses
+  ///
+  /// In en, this message translates to:
+  /// **'This verse contains a sajdah (prostration) marker. Consider performing prostration when reciting or listening to this verse.'**
+  String get quranSajdahGeneralDescription;
+
+  /// Title for Quran script variants selection
+  ///
+  /// In en, this message translates to:
+  /// **'Script Variants'**
+  String get quranScriptVariants;
+
+  /// Description of script variants feature
+  ///
+  /// In en, this message translates to:
+  /// **'Choose between different Quran script styles. Uthmanic is the traditional script, while IndoPak is popular in South Asia.'**
+  String get quranScriptVariantsDescription;
+
+  /// Description of Uthmanic script
+  ///
+  /// In en, this message translates to:
+  /// **'Traditional Uthmanic script used in most printed Qurans worldwide. Features classical Arabic calligraphy.'**
+  String get quranUthmanicDescription;
+
+  /// Description of IndoPak script
+  ///
+  /// In en, this message translates to:
+  /// **'IndoPak script style popular in South Asia. Features distinct letter forms and spacing.'**
+  String get quranIndoPakDescription;
+
+  /// Label for script selection
+  ///
+  /// In en, this message translates to:
+  /// **'Script'**
+  String get quranScript;
+
+  /// Checkbox label for enabling transliteration search
+  ///
+  /// In en, this message translates to:
+  /// **'Enable transliteration search'**
+  String get quranEnableTransliteration;
+
+  /// Checkbox label for enabling Bengali search
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Bengali search'**
+  String get quranEnableBengaliSearch;
+
+  /// Checkbox label for enabling fuzzy matching
+  ///
+  /// In en, this message translates to:
+  /// **'Enable fuzzy matching'**
+  String get quranEnableFuzzyMatch;
+
+  /// Label for transliteration search scope
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration'**
+  String get quranTransliteration;
+
+  /// Label for Bengali search scope
+  ///
+  /// In en, this message translates to:
+  /// **'Bengali'**
+  String get quranBengali;
+
+  /// Label for all search scope
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get quranAll;
+
+  /// Message shown while translations are loading
+  ///
+  /// In en, this message translates to:
+  /// **'Loading translations...'**
+  String get quranTranslationLoading;
+
+  /// Title for available translations section
+  ///
+  /// In en, this message translates to:
+  /// **'Available Translations'**
+  String get quranAvailableTranslations;
+
+  /// Label for selected translation IDs
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Translation IDs'**
+  String get quranSelectedTranslationIds;
+
+  /// Message asking user to wait for translations
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait while translations are being loaded...'**
+  String get quranPleaseWaitWhileTranslationsAreBeingLoaded;
+
+  /// Error message when translations fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load translations'**
+  String get quranFailedToLoadTranslations;
+
+  /// Snackbar text for search errors
+  ///
+  /// In en, this message translates to:
+  /// **'Search error: {error}'**
+  String quranSearchError(String error);
+
+  /// Title for quick tools section
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Tools'**
+  String get quranQuickTools;
+
+  /// Title for selected translations section
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Translations'**
+  String get quranSelectedTranslations;
+
+  /// Checkbox label for enabling auto scroll
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Auto Scroll'**
+  String get quranEnableAutoScroll;
+
+  /// Label for auto scroll speed setting
+  ///
+  /// In en, this message translates to:
+  /// **'Speed (px/sec)'**
+  String get quranSpeedPxSec;
+
+  /// Word-by-word toggle subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Show transliteration and meaning for each word'**
+  String get quranWordByWordSubtitle;
+
+  /// Label for word analysis source picker
+  ///
+  /// In en, this message translates to:
+  /// **'Word-by-Word Source'**
+  String get quranWordByWordSource;
+
+  /// Label for playback speed menu
+  ///
+  /// In en, this message translates to:
+  /// **'Playback Speed'**
+  String get quranPlaybackSpeedLabel;
+
+  /// Playback speed 0.5x
+  ///
+  /// In en, this message translates to:
+  /// **'0.50x'**
+  String get quranSpeed050;
+
+  /// Playback speed 0.75x
+  ///
+  /// In en, this message translates to:
+  /// **'0.75x'**
+  String get quranSpeed075;
+
+  /// Playback speed 1x
+  ///
+  /// In en, this message translates to:
+  /// **'1.00x'**
+  String get quranSpeed100;
+
+  /// Playback speed 1.25x
+  ///
+  /// In en, this message translates to:
+  /// **'1.25x'**
+  String get quranSpeed125;
+
+  /// Playback speed 1.5x
+  ///
+  /// In en, this message translates to:
+  /// **'1.50x'**
+  String get quranSpeed150;
+
+  /// Playback speed 2x
+  ///
+  /// In en, this message translates to:
+  /// **'2.00x'**
+  String get quranSpeed200;
+
+  /// Title for quick jump navigation feature
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Jump'**
+  String get quranQuickJump;
+
+  /// Android notification channel description for Athan
+  ///
+  /// In en, this message translates to:
+  /// **'Call to prayer notifications when prayer time arrives'**
+  String get athanNotificationsChannelDescription;
+
+  /// Recommendation line in calculation method info dialog
+  ///
+  /// In en, this message translates to:
+  /// **'We recommend using the method preferred in your region for consistency with your local Muslim community.'**
+  String get methodsInfoRecommendation;
+
+  /// Menu item to copy Arabic text
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Arabic Text'**
+  String get quranCopyArabicText;
+
+  /// Menu item to copy only Arabic verse
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Arabic Verse Only'**
+  String get quranCopyOnlyArabicVerse;
+
+  /// Menu item to copy translation
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Translation'**
+  String get quranCopyTranslation;
+
+  /// Menu item to copy only translation
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Translation Only'**
+  String get quranCopyOnlyTranslation;
+
+  /// Menu item to copy full verse with Arabic and translation
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Full Verse'**
+  String get quranCopyFullVerse;
+
+  /// Menu item to copy Arabic text with translation
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Arabic with Translation'**
+  String get quranCopyArabicWithTranslation;
+
+  /// Menu item to report translation error
+  ///
+  /// In en, this message translates to:
+  /// **'Report Translation Error'**
+  String get quranReportTranslationError;
+
+  /// Description for reporting translation errors
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve translation accuracy'**
+  String get quranHelpImproveTranslationAccuracy;
+
+  /// Message shown when Arabic text is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic text copied to clipboard'**
+  String get quranArabicTextCopied;
+
+  /// Message shown when translation is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Translation copied to clipboard'**
+  String get quranTranslationCopied;
+
+  /// Message shown when full verse is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Full verse copied to clipboard'**
+  String get quranFullVerseCopied;
+
+  /// Title for translation error report dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Report Translation Error'**
+  String get quranReportTranslationErrorTitle;
+
+  /// Thank you message for reporting translation errors
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for helping improve Quran translation accuracy!'**
+  String get quranThankYouForHelpingImproveQuranTranslation;
+
+  /// Instructions for reporting translation errors
+  ///
+  /// In en, this message translates to:
+  /// **'Please email us at support@deenmate.app with details about the error in verse {verseKey}'**
+  String quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse(
+      Object verseKey);
+
+  /// Button text for sending email
+  ///
+  /// In en, this message translates to:
+  /// **'Send Email'**
+  String get quranSendEmail;
+
+  /// Title for reading progress indicator
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Progress'**
+  String get quranReadingProgress;
+
+  /// Label for verse count in reading progress
+  ///
+  /// In en, this message translates to:
+  /// **'Verse'**
+  String get quranVerse;
+
+  /// Label for reading streak counter
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Streak'**
+  String get quranReadingStreak;
+
+  /// Label for days in reading streak
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get quranDays;
 }
 
 class _AppLocalizationsDelegate

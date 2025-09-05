@@ -16,11 +16,17 @@ class SearchFiltersWidget extends ConsumerWidget {
     required this.onTranslationIdsChanged,
     required this.onDiacriticsChanged,
     required this.onExactMatchChanged,
+    required this.onTransliterationChanged,
+    required this.onBengaliSearchChanged,
+    required this.onFuzzyMatchChanged,
     required this.searchScope,
     required this.selectedChapterIds,
     required this.selectedTranslationIds,
     required this.enableDiacriticsSearch,
     required this.exactMatch,
+    required this.enableTransliteration,
+    required this.enableBengaliSearch,
+    required this.enableFuzzyMatch,
   });
 
   final SearchScope searchScope;
@@ -28,11 +34,17 @@ class SearchFiltersWidget extends ConsumerWidget {
   final List<int> selectedTranslationIds;
   final bool enableDiacriticsSearch;
   final bool exactMatch;
+  final bool enableTransliteration;
+  final bool enableBengaliSearch;
+  final bool enableFuzzyMatch;
   final ValueChanged<SearchScope> onScopeChanged;
   final ValueChanged<List<int>> onChapterIdsChanged;
   final ValueChanged<List<int>> onTranslationIdsChanged;
   final ValueChanged<bool> onDiacriticsChanged;
   final ValueChanged<bool> onExactMatchChanged;
+  final ValueChanged<bool> onTransliterationChanged;
+  final ValueChanged<bool> onBengaliSearchChanged;
+  final ValueChanged<bool> onFuzzyMatchChanged;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -129,7 +141,7 @@ class SearchFiltersWidget extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  _getScopeLabel(scope),
+                  _getScopeLabel(scope, context),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: isSelected
@@ -179,6 +191,61 @@ class SearchFiltersWidget extends ConsumerWidget {
             Expanded(
               child: Text(
                 'Exact word match',
+                style: TextStyle(
+                  color: ThemeHelper.getTextPrimaryColor(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Checkbox(
+              value: enableTransliteration,
+              onChanged: (value) => onTransliterationChanged(value ?? false),
+              activeColor: ThemeHelper.getPrimaryColor(context),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                AppLocalizations.of(context)!.quranEnableTransliteration,
+                style: TextStyle(
+                  color: ThemeHelper.getTextPrimaryColor(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Checkbox(
+              value: enableBengaliSearch,
+              onChanged: (value) => onBengaliSearchChanged(value ?? false),
+              activeColor: ThemeHelper.getPrimaryColor(context),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                AppLocalizations.of(context)!.quranEnableBengaliSearch,
+                style: TextStyle(
+                  color: ThemeHelper.getTextPrimaryColor(context),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Checkbox(
+              value: enableFuzzyMatch,
+              onChanged: (value) => onFuzzyMatchChanged(value ?? false),
+              activeColor: ThemeHelper.getPrimaryColor(context),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                AppLocalizations.of(context)!.quranEnableFuzzyMatch,
                 style: TextStyle(
                   color: ThemeHelper.getTextPrimaryColor(context),
                 ),
@@ -420,14 +487,18 @@ class SearchFiltersWidget extends ConsumerWidget {
     );
   }
 
-  String _getScopeLabel(SearchScope scope) {
+  String _getScopeLabel(SearchScope scope, BuildContext context) {
     switch (scope) {
       case SearchScope.all:
-        return 'All';
+        return AppLocalizations.of(context)!.quranAll;
       case SearchScope.arabic:
-        return 'Arabic';
+        return AppLocalizations.of(context)!.quranArabic;
       case SearchScope.translation:
-        return 'Translation';
+        return AppLocalizations.of(context)!.quranTranslation;
+      case SearchScope.transliteration:
+        return AppLocalizations.of(context)!.quranTransliteration;
+      case SearchScope.bengali:
+        return AppLocalizations.of(context)!.quranBengali;
     }
   }
 
@@ -437,5 +508,8 @@ class SearchFiltersWidget extends ConsumerWidget {
     onTranslationIdsChanged([]);
     onDiacriticsChanged(false);
     onExactMatchChanged(false);
+    onTransliterationChanged(false);
+    onBengaliSearchChanged(false);
+    onFuzzyMatchChanged(false);
   }
 }

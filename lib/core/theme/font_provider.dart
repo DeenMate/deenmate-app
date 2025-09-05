@@ -20,6 +20,10 @@ class FontFamilies {
   // Quran-specific fonts (always Arabic)
   static const String quran = 'UthmanicHafs';
   static const String quranFallback = 'Amiri';
+  
+  // Quran script variants
+  static const String quranUthmanic = 'UthmanicHafs';
+  static const String quranIndoPak = 'IndoPak';
 
   // Urdu fonts (when implemented)
   static const String urdu = 'NotoSansArabic'; // Using Arabic for now
@@ -47,6 +51,17 @@ class FontProvider extends StateNotifier<String> {
   /// Get font family for Quran text (always Arabic)
   String getQuranFontFamily() {
     return FontFamilies.quran;
+  }
+
+  /// Get font family for Quran text based on script variant preference
+  String getQuranScriptFontFamily(String? scriptVariant) {
+    switch (scriptVariant) {
+      case 'IndoPak':
+        return FontFamilies.quranIndoPak;
+      case 'Uthmanic':
+      default:
+        return FontFamilies.quranUthmanic;
+    }
   }
 
   /// Get font family for numbers (language-agnostic)

@@ -44,9 +44,16 @@ class QuranSearchService {
         case SearchScope.translation:
           results.addAll(await _searchTranslationText(query, chapterIds, translationIds, limit));
           break;
+        case SearchScope.transliteration:
+          results.addAll(await _searchTransliteration(query, chapterIds, limit));
+          break;
+        case SearchScope.bengali:
+          results.addAll(await _searchBengali(query, chapterIds, translationIds, limit));
+          break;
         case SearchScope.all:
-          results.addAll(await _searchArabicText(query, chapterIds, limit ~/ 2));
-          results.addAll(await _searchTranslationText(query, chapterIds, translationIds, limit ~/ 2));
+          results.addAll(await _searchArabicText(query, chapterIds, limit ~/ 3));
+          results.addAll(await _searchTranslationText(query, chapterIds, translationIds, limit ~/ 3));
+          results.addAll(await _searchTransliteration(query, chapterIds, limit ~/ 3));
           break;
       }
 
@@ -543,6 +550,8 @@ enum SearchScope {
   all,
   arabic,
   translation,
+  transliteration,
+  bengali,
 }
 
 enum MatchType {
@@ -624,6 +633,10 @@ class SearchFilters {
     this.includeVerses = true,
     this.includeChapters = true,
     this.includeReferences = true,
+    this.enableTransliteration = false,
+    this.enableBengaliSearch = false,
+    this.enableFuzzyMatch = false,
+    this.fuzzyThreshold = 0.7,
   });
 
   final List<int>? chapterIds;
@@ -632,6 +645,10 @@ class SearchFilters {
   final bool includeVerses;
   final bool includeChapters;
   final bool includeReferences;
+  final bool enableTransliteration;
+  final bool enableBengaliSearch;
+  final bool enableFuzzyMatch;
+  final double fuzzyThreshold;
 }
 
 class SearchOptions {
@@ -857,5 +874,199 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
       }
       return [];
     }
+  }
+
+  /// Search using transliteration (Romanized Arabic)
+  Future<List<SearchResult>> _searchTransliteration(
+    String query,
+    List<int>? chapterIds,
+    int limit,
+  ) async {
+    final results = <SearchResult>[];
+    
+    try {
+      // Check offline cache first
+      final cachedResults = await _searchInOfflineCache(
+        query, 
+        chapterIds, 
+        SearchScope.transliteration,
+      );
+      
+      if (cachedResults.isNotEmpty) {
+        for (final verse in cachedResults.take(limit)) {
+          // Calculate relevance based on transliteration matching
+          final relevance = _calculateTransliterationRelevance(query, verse);
+          if (relevance > 0) {
+            results.add(SearchResult(
+              verse: verse,
+              matchedText: _extractMatchingText(verse.textUthmani, query) ?? verse.textUthmani,
+              relevanceScore: relevance,
+            ));
+          }
+        }
+      }
+      
+      // Sort by relevance
+      results.sort((a, b) => b.relevanceScore.compareTo(a.relevanceScore));
+      
+    } catch (e) {
+      if (kDebugMode) {
+        print('Transliteration search error: $e');
+      }
+    }
+    
+    return results.take(limit).toList();
+  }
+
+  /// Search using Bengali text
+  Future<List<SearchResult>> _searchBengali(
+    String query,
+    List<int>? chapterIds,
+    List<int>? translationIds,
+    int limit,
+  ) async {
+    final results = <SearchResult>[];
+    
+    try {
+      // Check offline cache first
+      final cachedResults = await _searchInOfflineCache(
+        query, 
+        chapterIds, 
+        SearchScope.bengali,
+        translationIds: translationIds,
+      );
+      
+      if (cachedResults.isNotEmpty) {
+        for (final verse in cachedResults.take(limit)) {
+          // Calculate relevance based on Bengali translation matching
+          final relevance = _calculateBengaliRelevance(query, verse, translationIds);
+          if (relevance > 0) {
+            final matchingTranslation = _findMatchingBengaliTranslation(verse, query, translationIds);
+            results.add(SearchResult(
+              verse: verse,
+              matchedText: matchingTranslation != null 
+                  ? (_extractMatchingText(matchingTranslation.text, query) ?? matchingTranslation.text)
+                  : verse.textUthmani,
+              relevanceScore: relevance,
+            ));
+          }
+        }
+      }
+      
+      // Sort by relevance
+      results.sort((a, b) => b.relevanceScore.compareTo(a.relevanceScore));
+      
+    } catch (e) {
+      if (kDebugMode) {
+        print('Bengali search error: $e');
+      }
+    }
+    
+    return results.take(limit).toList();
+  }
+
+  /// Calculate relevance score for transliteration matches
+  double _calculateTransliterationRelevance(String query, VerseDto verse) {
+    // For now, we'll use a simple approach
+    // In a full implementation, you'd have transliteration data for each verse
+    final queryLower = query.toLowerCase();
+    
+    // Simple transliteration patterns (basic examples)
+    final transliterationPatterns = {
+      'bismillah': 'بِسْمِ',
+      'allah': 'الله',
+      'rahman': 'الرَّحْمَٰنِ',
+      'rahim': 'الرَّحِيمِ',
+    };
+    
+    for (final pattern in transliterationPatterns.entries) {
+      if (queryLower.contains(pattern.key) && 
+          verse.textUthmani.contains(pattern.value)) {
+        return 85.0; // High relevance for transliteration matches
+      }
+    }
+    
+    return 0.0;
+  }
+
+  /// Calculate relevance score for Bengali translation matches
+  double _calculateBengaliRelevance(String query, VerseDto verse, List<int>? translationIds) {
+    double maxRelevance = 0.0;
+    final queryLower = query.toLowerCase();
+    
+    for (final translation in verse.translations) {
+      if (translationIds == null || translationIds.contains(translation.resourceId)) {
+        final text = translation.text.toLowerCase();
+        
+        double relevance = 0.0;
+        if (text == queryLower) relevance = 100.0; // Exact match
+        else if (text.startsWith(queryLower)) relevance = 90.0; // Starts with
+        else if (text.contains(' $queryLower ')) relevance = 80.0; // Whole word
+        else if (text.contains(queryLower)) relevance = 60.0; // Contains
+        
+        maxRelevance = math.max(maxRelevance, relevance);
+      }
+    }
+    
+    return maxRelevance;
+  }
+
+  /// Find Bengali translation that matches the search query
+  TranslationDto? _findMatchingBengaliTranslation(VerseDto verse, String query, List<int>? translationIds) {
+    final queryLower = query.toLowerCase();
+    
+    for (final translation in verse.translations) {
+      if (translationIds == null || translationIds.contains(translation.resourceId)) {
+        if (translation.text.toLowerCase().contains(queryLower)) {
+          return translation;
+        }
+      }
+    }
+    
+    return null;
+  }
+
+  /// Fuzzy string matching using Levenshtein distance
+  double _calculateFuzzyMatch(String query, String text) {
+    final distance = _levenshteinDistance(query.toLowerCase(), text.toLowerCase());
+    final maxLength = math.max(query.length, text.length);
+    
+    if (maxLength == 0) return 1.0;
+    
+    return 1.0 - (distance / maxLength);
+  }
+
+  /// Calculate Levenshtein distance between two strings
+  int _levenshteinDistance(String s1, String s2) {
+    final len1 = s1.length;
+    final len2 = s2.length;
+    
+    if (len1 == 0) return len2;
+    if (len2 == 0) return len1;
+    
+    final matrix = List.generate(len1 + 1, (i) => List.filled(len2 + 1, 0));
+    
+    for (int i = 0; i <= len1; i++) {
+      matrix[i][0] = i;
+    }
+    
+    for (int j = 0; j <= len2; j++) {
+      matrix[0][j] = j;
+    }
+    
+    for (int i = 1; i <= len1; i++) {
+      for (int j = 1; j <= len2; j++) {
+        final cost = s1[i - 1] == s2[j - 1] ? 0 : 1;
+        matrix[i][j] = math.min(
+          matrix[i - 1][j] + 1,      // deletion
+          math.min(
+            matrix[i][j - 1] + 1,    // insertion
+            matrix[i - 1][j - 1] + cost, // substitution
+          ),
+        );
+      }
+    }
+    
+    return matrix[len1][len2];
   }
 }

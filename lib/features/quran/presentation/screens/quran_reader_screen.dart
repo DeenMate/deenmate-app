@@ -1,16 +1,21 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../data/dto/verse_dto.dart';
+import '../../data/dto/chapter_dto.dart';
 import '../../data/dto/translation_resource_dto.dart';
 import '../state/providers.dart';
 import '../widgets/translation_picker_widget.dart';
+import '../widgets/audio_download_prompt.dart';
+import '../widgets/reading_progress_indicator.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../l10n/generated/app_localizations.dart';
+import '../../domain/services/audio_service.dart' as audio_service;
 
 class QuranReaderScreen extends ConsumerStatefulWidget {
   const QuranReaderScreen({
@@ -30,7 +35,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   final ScrollController _controller = ScrollController();
   final Map<int, List<VerseDto>> _pageCache = {};
   final List<VerseDto> _verses = [];
-  final List<String> _audioUrls = [];
+  // Removed unused _audioUrls
   final Set<String> _localBookmarkOn = {};
   final Set<String> _localBookmarkOff = {};
   static const int _maxCachedPages = 5;
@@ -67,25 +72,93 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
       }
     });
 
+    // Set up audio download prompt callback
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _setupAudioDownloadPrompt();
+    });
+
     // Note: Removed clearCacheAndReset call as it was resetting user preferences
+  }
+
+  void _setupAudioDownloadPrompt() {
+    // Set up the audio download prompt callback for the audio service
+    final audioService = ref.read(quranAudioServiceProvider);
+    audioService.onPromptDownload = _showAudioDownloadPrompt;
+  }
+
+  Future<bool> _showAudioDownloadPrompt(dynamic verse) async {
+    if (!mounted) return false;
+
+    final derivedChapterId =
+        int.tryParse((verse.verseKey ?? '').toString().split(':').first) ??
+            widget.chapterId;
+    final chapters = await ref.read(surahListProvider.future);
+    final chapter = chapters.firstWhere(
+      (c) => c.id == derivedChapterId,
+      orElse: () => ChapterDto(
+        id: derivedChapterId,
+        nameArabic: 'سورة',
+        nameSimple: 'Chapter $derivedChapterId',
+        versesCount: 0,
+        revelationPlace: '',
+      ),
+    );
+
+    final shouldDownload = await showDialog<bool>(
+      context: context,
+      builder: (context) => AudioDownloadPromptDialog(
+        verse: verse,
+        chapterName: chapter.nameSimple,
+      ),
+    );
+
+    // Return the user's choice to the audio service
+    return shouldDownload ?? false;
   }
 
   void _updateVersesFromCache() {
     final allVerses = <VerseDto>[];
-    final allUrls = <String>[];
     final sortedPages = _pageCache.keys.toList()..sort();
     for (final page in sortedPages) {
       final pageVerses = _pageCache[page] ?? [];
       allVerses.addAll(pageVerses);
-      allUrls.addAll(pageVerses.map((v) => v.audio?.url ?? ''));
     }
     setState(() {
       _verses.clear();
       _verses.addAll(allVerses);
-      _audioUrls.clear();
-      _audioUrls.addAll(allUrls);
-      ref.read(quranAudioProvider.notifier).setPlaylist(_audioUrls);
+
+      // Update audio service playlist with VerseAudio objects
+      _updateAudioPlaylist();
     });
+  }
+
+  void _updateAudioPlaylist() {
+    final audioService = ref.read(quranAudioServiceProvider);
+    final verseAudioList = _verses.map((verse) {
+      // Build the audio URL using the standard Quran.com pattern
+      String? audioUrl;
+      if (verse.audio?.url != null) {
+        final apiUrl = verse.audio!.url;
+        if (apiUrl.startsWith('http')) {
+          audioUrl = apiUrl;
+        } else {
+          audioUrl = 'https://audio.qurancdn.com/$apiUrl';
+        }
+      } else {
+        // Fallback: construct URL using standard pattern
+        audioUrl = 'https://audio.qurancdn.com/7/${verse.verseKey}.mp3';
+      }
+
+      return audio_service.VerseAudio(
+        verseKey: verse.verseKey,
+        chapterId: widget.chapterId,
+        verseNumber: verse.verseNumber,
+        reciterId: 7, // Default reciter ID
+        onlineUrl: audioUrl,
+      );
+    }).toList();
+
+    audioService.setPlaylist(verseAudioList);
   }
 
   void _onTranslationPreferencesChanged() async {
@@ -418,6 +491,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
     return Column(
       children: [
         _buildSurahInfoCard(),
+        _buildReadingProgressIndicator(),
         Expanded(
           child: _buildVersesList(),
         ),
@@ -501,6 +575,26 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
         );
       },
       orElse: () => const SizedBox.shrink(),
+    );
+  }
+
+  Widget _buildReadingProgressIndicator() {
+    // Get current verse index from scroll position or last read
+    final currentVerseIndex =
+        _lastSavedVerseIndex >= 0 ? _lastSavedVerseIndex : 0;
+    final totalVerses = _verses.length;
+
+    if (totalVerses == 0) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ReadingProgressIndicator(
+        chapterId: widget.chapterId,
+        currentVerseIndex: currentVerseIndex,
+        totalVerses: totalVerses,
+        showStreak: true,
+        showProgressBar: true,
+      ),
     );
   }
 
@@ -611,6 +705,111 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
             ],
           ),
 
+          const SizedBox(height: 12),
+          // Playback options: Repeat, Auto-advance, Speed
+          Builder(
+            builder: (context) {
+              final audioService = ref.read(quranAudioServiceProvider);
+              final repeatMode = audioService.repeatMode;
+              final isAutoAdvance = audioService.autoAdvance;
+              final currentSpeed = audioService.playbackSpeed;
+
+              IconData repeatIcon;
+              switch (repeatMode) {
+                case audio_service.RepeatMode.off:
+                  repeatIcon = Icons.repeat;
+                  break;
+                case audio_service.RepeatMode.one:
+                  repeatIcon = Icons.repeat_one;
+                  break;
+                case audio_service.RepeatMode.all:
+                  repeatIcon = Icons.repeat;
+                  break;
+              }
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Repeat mode cycler
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(repeatIcon),
+                        onPressed: () {
+                          final next = () {
+                            switch (repeatMode) {
+                              case audio_service.RepeatMode.off:
+                                return audio_service.RepeatMode.one;
+                              case audio_service.RepeatMode.one:
+                                return audio_service.RepeatMode.all;
+                              case audio_service.RepeatMode.all:
+                                return audio_service.RepeatMode.off;
+                            }
+                          }();
+                          audioService.setRepeatMode(next);
+                          setState(() {});
+                        },
+                      ),
+                      const SizedBox(width: 12),
+                      // Auto-advance toggle (icon-only)
+                      IconButton(
+                        icon: Icon(
+                          isAutoAdvance
+                              ? Icons.playlist_play
+                              : Icons.play_disabled,
+                        ),
+                        onPressed: () {
+                          audioService.setAutoAdvance(!isAutoAdvance);
+                          setState(() {});
+                        },
+                      ),
+                    ],
+                  ),
+
+                  // Playback speed selector
+                  Row(
+                    children: [
+                      Text('${currentSpeed.toStringAsFixed(2)}x'),
+                      const SizedBox(width: 8),
+                      PopupMenuButton<double>(
+                        onSelected: (v) async {
+                          await audioService.setPlaybackSpeed(v);
+                          setState(() {});
+                        },
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                              value: 0.5,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed050)),
+                          PopupMenuItem(
+                              value: 0.75,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed075)),
+                          PopupMenuItem(
+                              value: 1.0,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed100)),
+                          PopupMenuItem(
+                              value: 1.25,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed125)),
+                          PopupMenuItem(
+                              value: 1.5,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed150)),
+                          PopupMenuItem(
+                              value: 2.0,
+                              child: Text(
+                                  AppLocalizations.of(context)!.quranSpeed200)),
+                        ],
+                        child: const Icon(Icons.speed),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
           const SizedBox(height: 12),
 
           // Arabic text
@@ -966,7 +1165,8 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   void _playVerse(VerseDto verse) {
     final index = _verses.indexOf(verse);
     if (index != -1) {
-      ref.read(quranAudioProvider.notifier).playIndex(index);
+      final audioService = ref.read(quranAudioServiceProvider);
+      audioService.playVerse(index);
     }
   }
 
@@ -1259,6 +1459,122 @@ class _QuickToolsOverlay extends ConsumerWidget {
 
                     const SizedBox(height: 24),
 
+                    // Word-by-Word Settings
+                    Text(
+                      AppLocalizations.of(context)!.quranWordByWord,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: ThemeHelper.getTextPrimaryColor(context),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title:
+                          Text(AppLocalizations.of(context)!.quranWordByWord),
+                      subtitle: Text(AppLocalizations.of(context)!
+                          .quranWordByWordSubtitle),
+                      value: prefs.showWordAnalysis,
+                      onChanged: (v) => ref
+                          .read(prefsProvider.notifier)
+                          .updateShowWordAnalysis(v),
+                    ),
+                    const SizedBox(height: 8),
+                    Consumer(builder: (context, ref, _) {
+                      final resourcesAsync =
+                          ref.watch(wordAnalysisResourcesProvider);
+                      return resourcesAsync.when(
+                        loading: () =>
+                            const LinearProgressIndicator(minHeight: 2),
+                        error: (e, _) => Text(AppLocalizations.of(context)!
+                            .quranFailedToLoadTranslations),
+                        data: (resources) {
+                          final selected = prefs.selectedWordAnalysisIds;
+                          return DropdownButton<int>(
+                            isExpanded: true,
+                            value: selected.isNotEmpty
+                                ? selected.first
+                                : (resources.isNotEmpty
+                                    ? resources.first.id
+                                    : null),
+                            items: [
+                              for (final r in resources)
+                                DropdownMenuItem(
+                                  value: r.id,
+                                  child: Text(r.name),
+                                ),
+                            ],
+                            onChanged: (v) async {
+                              if (v == null) return;
+                              await ref
+                                  .read(prefsProvider.notifier)
+                                  .updateSelectedWordAnalysisIds([v]);
+                            },
+                          );
+                        },
+                      );
+                    }),
+
+                    const SizedBox(height: 24),
+
+                    // Tafsir Settings
+                    Text(
+                      AppLocalizations.of(context)!.quranTafsir,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: ThemeHelper.getTextPrimaryColor(context),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(AppLocalizations.of(context)!.quranTafsir),
+                      subtitle: Text(AppLocalizations.of(context)!
+                          .quranAvailableTranslations),
+                      value: prefs.showTafsir,
+                      onChanged: (v) =>
+                          ref.read(prefsProvider.notifier).updateShowTafsir(v),
+                    ),
+                    const SizedBox(height: 8),
+                    Consumer(builder: (context, ref, _) {
+                      final resourcesAsync = ref.watch(tafsirResourcesProvider);
+                      return resourcesAsync.when(
+                        loading: () =>
+                            const LinearProgressIndicator(minHeight: 2),
+                        error: (e, _) => Text(AppLocalizations.of(context)!
+                            .quranFailedToLoadTranslations),
+                        data: (resources) {
+                          if (resources.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+                          final selected = prefs.selectedTafsirIds;
+                          return DropdownButton<int>(
+                            isExpanded: true,
+                            value: selected.isNotEmpty
+                                ? selected.first
+                                : resources.first.id,
+                            items: [
+                              for (final r in resources)
+                                DropdownMenuItem(
+                                  value: r.id,
+                                  child: Text(r.name),
+                                ),
+                            ],
+                            onChanged: (v) async {
+                              if (v == null) return;
+                              await ref
+                                  .read(prefsProvider.notifier)
+                                  .updateSelectedTafsirIds([v]);
+                            },
+                          );
+                        },
+                      );
+                    }),
+
+                    const SizedBox(height: 24),
+
                     // Font Settings
                     Text(
                       AppLocalizations.of(context)!.quranFontSettings,
@@ -1371,7 +1687,8 @@ class _AudioManagerSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final audio = ref.watch(quranAudioProvider);
+    final audioState = ref.watch(audioStateProvider);
+    // Use audioState.valueOrNull inline where needed
     final recitations = ref.watch(recitationsProvider);
     final prefs = ref.watch(prefsProvider);
     return Padding(
@@ -1418,10 +1735,11 @@ class _AudioManagerSheet extends ConsumerWidget {
                       await ref
                           .read(prefsProvider.notifier)
                           .updateRecitationId(v);
-                      // force re-setup current playlist source if playing
-                      final ctrl = ref.read(quranAudioProvider.notifier);
-                      if (audio.currentIndex != null) {
-                        await ctrl.playIndex(audio.currentIndex!);
+                      // Re-apply playback with new reciter if playing
+                      final audioService = ref.read(quranAudioServiceProvider);
+                      if (audioState.valueOrNull ==
+                          audio_service.AudioState.playing) {
+                        await audioService.play();
                       }
                     },
                   ),
@@ -1439,28 +1757,41 @@ class _AudioManagerSheet extends ConsumerWidget {
               IconButton(
                 icon: const Icon(Icons.skip_previous),
                 onPressed: () {
-                  final idx = (audio.currentIndex ?? 0) - 1;
-                  ref.read(quranAudioProvider.notifier).playIndex(idx);
+                  final audioService = ref.read(quranAudioServiceProvider);
+                  audioService.previous();
                 },
               ),
               const SizedBox(width: 12),
               IconButton(
-                icon: Icon(audio.isPlaying ? Icons.pause : Icons.play_arrow),
-                onPressed: () =>
-                    ref.read(quranAudioProvider.notifier).togglePause(),
+                icon: Icon(
+                    audioState.valueOrNull == audio_service.AudioState.playing
+                        ? Icons.pause
+                        : Icons.play_arrow),
+                onPressed: () {
+                  final audioService = ref.read(quranAudioServiceProvider);
+                  if (audioState.valueOrNull ==
+                      audio_service.AudioState.playing) {
+                    audioService.pause();
+                  } else {
+                    audioService.play();
+                  }
+                },
               ),
               const SizedBox(width: 12),
               IconButton(
                 icon: const Icon(Icons.skip_next),
                 onPressed: () {
-                  final idx = (audio.currentIndex ?? -1) + 1;
-                  ref.read(quranAudioProvider.notifier).playIndex(idx);
+                  final audioService = ref.read(quranAudioServiceProvider);
+                  audioService.next();
                 },
               ),
               const SizedBox(width: 12),
               IconButton(
                 icon: const Icon(Icons.stop),
-                onPressed: () => ref.read(quranAudioProvider.notifier).stop(),
+                onPressed: () {
+                  final audioService = ref.read(quranAudioServiceProvider);
+                  audioService.stop();
+                },
               ),
             ],
           ),
@@ -1600,6 +1931,9 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
               ],
               onChanged: (v) {
                 if (v == null) return;
+                ref
+                    .read(prefsProvider.notifier)
+                    .updateLastQuickJumpMode('surah');
                 widget.onGoToSurah(v);
               },
             ),
@@ -1619,6 +1953,7 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
               onChanged: (v) {
                 if (v == null) return;
                 setState(() => _selectedJuz = v);
+                ref.read(prefsProvider.notifier).updateLastQuickJumpMode('juz');
                 widget.onGoToJuz(v);
               },
             ),
@@ -1640,12 +1975,39 @@ class _QuickJumpSheetState extends ConsumerState<_QuickJumpSheet> {
                 ElevatedButton(
                   onPressed: () {
                     final text = _ayahCtrl.text.trim();
-                    if (text.isEmpty) return;
+                    if (text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              AppLocalizations.of(context)!.quranGoToAyahHint),
+                        ),
+                      );
+                      return;
+                    }
                     final parts = text.split(':');
-                    if (parts.length != 2) return;
+                    if (parts.length != 2) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              AppLocalizations.of(context)!.quranGoToAyahHint),
+                        ),
+                      );
+                      return;
+                    }
                     final c = int.tryParse(parts[0]);
                     final v = int.tryParse(parts[1]);
-                    if (c == null || v == null) return;
+                    if (c == null || v == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                              AppLocalizations.of(context)!.quranGoToAyahHint),
+                        ),
+                      );
+                      return;
+                    }
+                    ref
+                        .read(prefsProvider.notifier)
+                        .updateLastQuickJumpMode('ayah');
                     widget.onGoToAyah(c, '$c:$v');
                   },
                   child: Text(AppLocalizations.of(context)!.quranGoButton),

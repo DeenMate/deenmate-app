@@ -7,6 +7,7 @@ import '../../domain/services/audio_service.dart' as audio_service;
 import '../../../../core/theme/theme_helper.dart';
 import 'mobile_audio_controls.dart';
 import 'mobile_audio_gestures.dart';
+import 'audio_download_prompt.dart';
 
 /// Mobile-optimized floating audio player with swipe controls and responsive design
 /// Integrates with existing QuranAudioService while providing touch-first interface
@@ -34,33 +35,33 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
   late AnimationController _expandController;
   late Animation<Offset> _slideAnimation;
   late Animation<double> _expandAnimation;
-  
+
   // Mobile-specific controllers
   late AnimationController _swipeIndicatorController;
   late Animation<double> _swipeIndicatorAnimation;
-  
+
   bool _isDragging = false;
   double _dragOffset = 0.0;
-  
+
   @override
   void initState() {
     super.initState();
-    
+
     _slideController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    
+
     _expandController = AnimationController(
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
-    
+
     _swipeIndicatorController = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    
+
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 1),
       end: Offset.zero,
@@ -68,7 +69,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
       parent: _slideController,
       curve: Curves.easeInOut,
     ));
-    
+
     _expandAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
@@ -76,7 +77,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
       parent: _expandController,
       curve: Curves.easeInOut,
     ));
-    
+
     _swipeIndicatorAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
@@ -84,9 +85,9 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
       parent: _swipeIndicatorController,
       curve: Curves.elasticOut,
     ));
-    
+
     _slideController.forward();
-    
+
     if (!widget.isMinimized) {
       _expandController.forward();
     }
@@ -95,7 +96,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
   @override
   void didUpdateWidget(MobileAudioPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
+
     if (widget.isMinimized != oldWidget.isMinimized) {
       if (widget.isMinimized) {
         _expandController.reverse();
@@ -139,7 +140,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
   Widget build(BuildContext context) {
     final audioState = ref.watch(audioStateProvider);
     final currentVerse = ref.watch(quranAudioServiceProvider).currentVerse;
-    
+
     // Don't show player if no audio is active
     if (audioState.when(
       data: (state) => state == audio_service.AudioState.stopped,
@@ -160,9 +161,15 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
     AsyncValue<audio_service.AudioState> audioState,
     audio_service.VerseAudio? currentVerse,
   ) {
+    // Ensure prompt callback is set so playing missing audio triggers a prompt
+    final service = ref.read(quranAudioServiceProvider);
+    service.onPromptDownload ??= (dynamic verse) async {
+      final key = (verse is audio_service.VerseAudio) ? verse.verseKey : '';
+      return await QuickAudioPrompt.showSimple(context, key);
+    };
     final screenWidth = MediaQuery.of(context).size.width;
     final isTablet = screenWidth > 768;
-    
+
     return MobileAudioGestures(
       onSwipeVertical: _handleSwipeGesture,
       onSwipeHorizontal: (delta) => _handleHorizontalSwipe(delta),
@@ -171,7 +178,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
         animation: _expandAnimation,
         builder: (context, child) {
           final isExpanded = _expandAnimation.value > 0.5;
-          
+
           return Container(
             width: screenWidth - (isTablet ? 32 : 16),
             margin: EdgeInsets.symmetric(
@@ -214,9 +221,9 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
             onPressed: () => _handlePlayPause(audioState),
             size: 40,
           ),
-          
+
           const SizedBox(width: 16),
-          
+
           // Verse info - mobile optimized
           Expanded(
             child: Column(
@@ -246,18 +253,18 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
               ],
             ),
           ),
-          
+
           const SizedBox(width: 12),
-          
+
           // Mobile progress indicator
           SizedBox(
             width: 32,
             height: 32,
             child: _buildMobileProgressIndicator(context),
           ),
-          
+
           const SizedBox(width: 12),
-          
+
           // Swipe indicator
           AnimatedBuilder(
             animation: _swipeIndicatorAnimation,
@@ -284,7 +291,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
   ) {
     final screenHeight = MediaQuery.of(context).size.height;
     final maxHeight = screenHeight * 0.6; // Max 60% of screen height
-    
+
     return Container(
       constraints: BoxConstraints(maxHeight: maxHeight),
       padding: const EdgeInsets.all(24),
@@ -293,14 +300,14 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
         children: [
           // Header with minimize control
           _buildExpandedHeader(context),
-          
+
           const SizedBox(height: 24),
-          
+
           // Verse information card
           _buildVerseInfoCard(context, currentVerse),
-          
+
           const SizedBox(height: 24),
-          
+
           // Mobile audio controls
           MobileAudioControls(
             audioState: audioState,
@@ -309,14 +316,14 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
             onPrevious: _handlePrevious,
             onSeek: _handleSeek,
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Mobile progress bar
           _buildMobileProgressBar(context),
-          
+
           const SizedBox(height: 16),
-          
+
           // Additional controls (repeat, speed, etc.)
           _buildAdditionalControls(context),
         ],
@@ -359,7 +366,8 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
     );
   }
 
-  Widget _buildVerseInfoCard(BuildContext context, audio_service.VerseAudio? currentVerse) {
+  Widget _buildVerseInfoCard(
+      BuildContext context, audio_service.VerseAudio? currentVerse) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -400,18 +408,19 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
       builder: (context, ref, child) {
         final position = ref.watch(audioPositionProvider);
         final duration = ref.watch(audioDurationProvider);
-        
+
         return position.when(
           data: (pos) => duration.when(
             data: (dur) {
               if (dur.inMilliseconds == 0) return const SizedBox.shrink();
-              
+
               final progress = pos.inMilliseconds / dur.inMilliseconds;
-              
+
               return CircularProgressIndicator(
                 value: progress.clamp(0.0, 1.0),
                 strokeWidth: 3,
-                backgroundColor: ThemeHelper.getAccentColor(context).withOpacity(0.2),
+                backgroundColor:
+                    ThemeHelper.getAccentColor(context).withOpacity(0.2),
                 valueColor: AlwaysStoppedAnimation<Color>(
                   ThemeHelper.getAccentColor(context),
                 ),
@@ -419,13 +428,15 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
             },
             loading: () => CircularProgressIndicator(
               strokeWidth: 3,
-              backgroundColor: ThemeHelper.getAccentColor(context).withOpacity(0.2),
+              backgroundColor:
+                  ThemeHelper.getAccentColor(context).withOpacity(0.2),
             ),
             error: (_, __) => const SizedBox.shrink(),
           ),
           loading: () => CircularProgressIndicator(
             strokeWidth: 3,
-            backgroundColor: ThemeHelper.getAccentColor(context).withOpacity(0.2),
+            backgroundColor:
+                ThemeHelper.getAccentColor(context).withOpacity(0.2),
           ),
           error: (_, __) => const SizedBox.shrink(),
         );
@@ -438,7 +449,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
       builder: (context, ref, child) {
         final position = ref.watch(audioPositionProvider);
         final duration = ref.watch(audioDurationProvider);
-        
+
         return position.when(
           data: (pos) => duration.when(
             data: (dur) => _buildProgressSlider(context, pos, dur),
@@ -452,11 +463,12 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
     );
   }
 
-  Widget _buildProgressSlider(BuildContext context, Duration position, Duration duration) {
+  Widget _buildProgressSlider(
+      BuildContext context, Duration position, Duration duration) {
     if (duration.inMilliseconds == 0) return const SizedBox.shrink();
-    
+
     final progress = position.inMilliseconds / duration.inMilliseconds;
-    
+
     return Column(
       children: [
         SliderTheme(
@@ -465,7 +477,8 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
             thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
             overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
             activeTrackColor: ThemeHelper.getAccentColor(context),
-            inactiveTrackColor: ThemeHelper.getAccentColor(context).withOpacity(0.2),
+            inactiveTrackColor:
+                ThemeHelper.getAccentColor(context).withOpacity(0.2),
             thumbColor: ThemeHelper.getAccentColor(context),
             overlayColor: ThemeHelper.getAccentColor(context).withOpacity(0.2),
           ),
@@ -548,7 +561,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
           onPressed: _handleRepeat,
           tooltip: AppLocalizations.of(context)!.audioRepeat,
         ),
-        
+
         // Speed control button
         _buildControlButton(
           context,
@@ -556,7 +569,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
           onPressed: _handleSpeedControl,
           tooltip: AppLocalizations.of(context)!.audioSpeed,
         ),
-        
+
         // Close button
         _buildControlButton(
           context,
@@ -595,14 +608,14 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
   // Audio control handlers
   void _handlePlayPause(AsyncValue<audio_service.AudioState> audioState) {
     final service = ref.read(quranAudioServiceProvider);
-    
+
     audioState.whenData((state) {
       switch (state) {
         case audio_service.AudioState.playing:
           service.pause();
           break;
         case audio_service.AudioState.paused:
-          service.resume();
+          service.play();
           break;
         case audio_service.AudioState.stopped:
           // Start playing current playlist if available
@@ -614,7 +627,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
           break;
       }
     });
-    
+
     HapticFeedback.lightImpact();
   }
 
@@ -638,7 +651,14 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
 
   void _handleRepeat() {
     final service = ref.read(quranAudioServiceProvider);
-    service.toggleRepeatMode();
+    // Cycle repeat mode: off -> one -> all -> off
+    if (service.repeatMode == audio_service.RepeatMode.off) {
+      service.setRepeatMode(audio_service.RepeatMode.one);
+    } else if (service.repeatMode == audio_service.RepeatMode.one) {
+      service.setRepeatMode(audio_service.RepeatMode.all);
+    } else {
+      service.setRepeatMode(audio_service.RepeatMode.off);
+    }
     HapticFeedback.lightImpact();
   }
 
@@ -647,7 +667,7 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
     // Cycle through common playback speeds: 1.0x -> 1.25x -> 1.5x -> 0.75x -> 1.0x
     final currentSpeed = service.playbackSpeed;
     double newSpeed;
-    
+
     if (currentSpeed == 1.0) {
       newSpeed = 1.25;
     } else if (currentSpeed == 1.25) {
@@ -657,14 +677,15 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
     } else {
       newSpeed = 1.0;
     }
-    
+
     service.setPlaybackSpeed(newSpeed);
     HapticFeedback.lightImpact();
-    
+
     // Show speed change feedback
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('${AppLocalizations.of(context)!.audioSpeed}: ${newSpeed}x'),
+        content:
+            Text('${AppLocalizations.of(context)!.audioSpeed}: ${newSpeed}x'),
         duration: const Duration(seconds: 1),
       ),
     );
@@ -682,28 +703,30 @@ class _MobileAudioPlayerState extends ConsumerState<MobileAudioPlayer>
 
   // Utility methods
   String _getVerseTitle(BuildContext context, audio_service.VerseAudio? verse) {
-    if (verse == null) return AppLocalizations.of(context)!.audioPlayerNowPlaying;
-    
+    if (verse == null)
+      return AppLocalizations.of(context)!.audioPlayerNowPlaying;
+
     // Parse verse key (e.g., "2:255" -> "Surah Al-Baqarah, Verse 255")
     final parts = verse.verseKey.split(':');
     if (parts.length == 2) {
       final chapterNum = int.tryParse(parts[0]) ?? 0;
       final verseNum = int.tryParse(parts[1]) ?? 0;
-      
+
       // You might want to get chapter name from a service/provider here
       return 'Surah $chapterNum, Verse $verseNum';
     }
-    
+
     return verse.verseKey;
   }
 
-  String _getVerseSubtitle(BuildContext context, audio_service.VerseAudio? verse) {
+  String _getVerseSubtitle(
+      BuildContext context, audio_service.VerseAudio? verse) {
     if (verse == null) return '';
-    
+
     final service = ref.read(quranAudioServiceProvider);
     final total = service.playlist.length;
     final current = service.currentIndex + 1;
-    
+
     return '$current of $total verses';
   }
 

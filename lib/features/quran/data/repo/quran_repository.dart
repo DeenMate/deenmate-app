@@ -191,8 +191,14 @@ class QuranRepository {
       return list;
     }
     final fresh = await _resourcesApi.getRecitations();
-    await box.put(key, fresh.map((e) => e.toJson()).toList());
-    return fresh;
+    // Optionally filter out reciters known to be unavailable by probing one URL
+    final filtered = <RecitationResourceDto>[];
+    for (final r in fresh) {
+      // Heuristic: keep all; advanced probe can be added in audio service
+      filtered.add(r);
+    }
+    await box.put(key, filtered.map((e) => e.toJson()).toList());
+    return filtered;
   }
 
   Future<void> _refreshRecitations(Box box) async {

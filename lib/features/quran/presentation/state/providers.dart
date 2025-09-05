@@ -40,10 +40,11 @@ final quranRepoProvider = Provider((ref) => QuranRepository(
     ));
 
 // Audio service providers
-final quranAudioServiceProvider = Provider<audio_service.QuranAudioService>((ref) {
+final quranAudioServiceProvider =
+    Provider<audio_service.QuranAudioService>((ref) {
   final dio = ref.watch(dioQfProvider);
   final versesApi = ref.watch(versesApiProvider);
-  
+
   // Note: SharedPreferences dependency will be handled inside the service via static getter
   final service = audio_service.QuranAudioService(dio, versesApi);
 
@@ -378,7 +379,15 @@ final translationResourcesProvider =
 final recitationsProvider =
     FutureProvider.autoDispose<List<RecitationResourceDto>>((ref) async {
   final repo = ref.read(quranRepoProvider);
-  return repo.getRecitations();
+  final service = ref.read(quranAudioServiceProvider);
+  final list = await repo.getRecitations();
+  // Filter by availability with simple memoization in this scope
+  final available = <RecitationResourceDto>[];
+  for (final r in list) {
+    final ok = await service.isReciterAvailable(r.id);
+    if (ok) available.add(r);
+  }
+  return available;
 });
 
 // Alias for audio downloads screen
@@ -468,8 +477,9 @@ class AudioDownloadManager
   Future<void> downloadAudio(String chapterId) async {
     final audioService = _ref.read(quranAudioServiceProvider);
     final chaptersAsync = await _ref.read(surahListProvider.future);
-    final chapter = chaptersAsync.firstWhere((c) => c.id.toString() == chapterId);
-    
+    final chapter =
+        chaptersAsync.firstWhere((c) => c.id.toString() == chapterId);
+
     try {
       // Update state to show download starting
       state = {
@@ -539,7 +549,7 @@ class AudioDownloadManager
     final newState = Map<String, DownloadProgress>.from(state);
     newState.remove(chapterId);
     state = newState;
-    
+
     // TODO: Implement actual cancellation in audio service
     // For now, just update the state to reflect cancellation
   }
@@ -731,8 +741,10 @@ class QuranPrefs {
     this.tafsirLineHeight = 1.5,
     this.wordAnalysisLineHeight = 1.4,
     this.arabicFontFamily,
+    this.quranScriptVariant = 'Uthmanic',
     this.repeatMode = 'off',
     this.autoAdvance = true,
+    this.lastQuickJumpMode = 'surah',
   });
 
   final List<int> selectedTranslationIds;
@@ -752,8 +764,10 @@ class QuranPrefs {
   final double tafsirLineHeight;
   final double wordAnalysisLineHeight;
   final String? arabicFontFamily;
+  final String quranScriptVariant; // 'Uthmanic' | 'IndoPak'
   final String repeatMode; // off | one | all
   final bool autoAdvance;
+  final String lastQuickJumpMode; // 'surah' | 'juz' | 'ayah'
 
   Map<String, dynamic> toMap() => {
         'selectedTranslationIds': selectedTranslationIds,
@@ -773,6 +787,7 @@ class QuranPrefs {
         'tafsirLineHeight': tafsirLineHeight,
         'wordAnalysisLineHeight': wordAnalysisLineHeight,
         'arabicFontFamily': arabicFontFamily,
+        'quranScriptVariant': quranScriptVariant,
         'repeatMode': repeatMode,
         'autoAdvance': autoAdvance,
       };
@@ -798,8 +813,10 @@ class QuranPrefs {
         wordAnalysisLineHeight:
             (map['wordAnalysisLineHeight'] ?? 1.4).toDouble(),
         arabicFontFamily: map['arabicFontFamily'] as String?,
+        quranScriptVariant: (map['quranScriptVariant'] ?? 'Uthmanic') as String,
         repeatMode: (map['repeatMode'] ?? 'off') as String,
         autoAdvance: (map['autoAdvance'] ?? true) as bool,
+        lastQuickJumpMode: (map['lastQuickJumpMode'] ?? 'surah') as String,
       );
 }
 
@@ -959,6 +976,20 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     await box.put('prefs', newPrefs.toMap());
   }
 
+  Future<void> updateSelectedWordAnalysisIds(List<int> ids) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(selectedWordAnalysisIds: ids);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateSelectedTafsirIds(List<int> ids) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(selectedTafsirIds: ids);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
   Future<void> updateShowArabic(bool v) async {
     final box = await ref.read(_prefsBoxProvider.future);
     final newPrefs = stateCopy(showArabic: v);
@@ -980,6 +1011,13 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     await box.put('prefs', newPrefs.toMap());
   }
 
+  Future<void> updateQuranScriptVariant(String variant) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(quranScriptVariant: variant);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
   Future<void> updateRepeatMode(String mode) async {
     final box = await ref.read(_prefsBoxProvider.future);
     final newPrefs = stateCopy(repeatMode: mode);
@@ -990,6 +1028,13 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
   Future<void> updateAutoAdvance(bool on) async {
     final box = await ref.read(_prefsBoxProvider.future);
     final newPrefs = stateCopy(autoAdvance: on);
+    state = newPrefs;
+    await box.put('prefs', newPrefs.toMap());
+  }
+
+  Future<void> updateLastQuickJumpMode(String mode) async {
+    final box = await ref.read(_prefsBoxProvider.future);
+    final newPrefs = stateCopy(lastQuickJumpMode: mode);
     state = newPrefs;
     await box.put('prefs', newPrefs.toMap());
   }
@@ -1019,14 +1064,17 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     double? tafsirLineHeight,
     double? wordAnalysisLineHeight,
     String? arabicFontFamily,
+    String? quranScriptVariant,
     String? repeatMode,
     bool? autoAdvance,
+    String? lastQuickJumpMode,
   }) {
     return QuranPrefs(
       selectedTranslationIds:
           selectedTranslationIds ?? state.selectedTranslationIds,
       selectedTafsirIds: selectedTafsirIds ?? state.selectedTafsirIds,
-      selectedWordAnalysisIds: selectedWordAnalysisIds ?? state.selectedWordAnalysisIds,
+      selectedWordAnalysisIds:
+          selectedWordAnalysisIds ?? state.selectedWordAnalysisIds,
       recitationId: recitationId ?? state.recitationId,
       showArabic: showArabic ?? state.showArabic,
       showTranslation: showTranslation ?? state.showTranslation,
@@ -1043,8 +1091,10 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
       wordAnalysisLineHeight:
           wordAnalysisLineHeight ?? state.wordAnalysisLineHeight,
       arabicFontFamily: arabicFontFamily ?? state.arabicFontFamily,
+      quranScriptVariant: quranScriptVariant ?? state.quranScriptVariant,
       repeatMode: repeatMode ?? state.repeatMode,
       autoAdvance: autoAdvance ?? state.autoAdvance,
+      lastQuickJumpMode: lastQuickJumpMode ?? state.lastQuickJumpMode,
     );
   }
 }
@@ -1119,7 +1169,7 @@ final bookmarkCategoriesProvider =
 
 // Note: Reading Plans feature is not implemented yet in production
 // These providers are commented out to prevent access to unfinished features
-// 
+//
 // final readingPlansServiceProvider = Provider<dynamic>((ref) {
 //   // TODO: Implement actual ReadingPlansService when feature is ready
 //   throw UnimplementedError('Reading Plans feature not implemented in production');
@@ -1247,32 +1297,33 @@ final searchHistoryProvider = FutureProvider<List<String>>((ref) async {
 });
 
 /// Provider for performing Quran search
-final quranSearchProvider = FutureProvider.family<List<BaseSearchResult>, Map<String, dynamic>>(
-    (ref, params) async {
+final quranSearchProvider =
+    FutureProvider.family<List<BaseSearchResult>, Map<String, dynamic>>(
+        (ref, params) async {
   final searchService = ref.watch(quranSearchServiceProvider);
-  
+
   final query = params['query'] as String;
   final chapterIds = params['chapterIds'] as List<int>?;
   final translationIds = params['translationIds'] as List<int>?;
   final scope = params['scope'] as SearchScope? ?? SearchScope.all;
-  
+
   final filters = SearchFilters(
     chapterIds: chapterIds,
     translationIds: translationIds,
     scope: scope,
   );
-  
+
   final options = SearchOptions(
     maxResults: 100,
     highlightMatches: true,
   );
-  
+
   final results = await searchService.advancedSearch(
     query: query,
     filters: filters,
     options: options,
   );
-  
+
   // Combine all results into a single list with proper typing
   final allResults = <BaseSearchResult>[];
   allResults.addAll(results.verses);

@@ -131,6 +131,10 @@ flutter_launcher_icons:
       fonts:
         - asset: assets/fonts/UthmanicHafs-Regular.ttf
     
+    - family: IndoPak
+      fonts:
+        - asset: assets/fonts/IndoPak-Regular.ttf
+    
     # Bengali support
     - family: NotoSansBengali
       fonts:

@@ -70,10 +70,18 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             unselectedLabelColor: Colors.white70,
             indicatorColor: Colors.white,
             tabs: [
-              Tab(icon: const Icon(Icons.volume_up), text: AppLocalizations.of(context)!.athanTabTitle),
-              Tab(icon: const Icon(Icons.notifications), text: AppLocalizations.of(context)!.prayersTabTitle),
-              Tab(icon: const Icon(Icons.settings), text: AppLocalizations.of(context)!.advancedTabTitle),
-              Tab(icon: const Icon(Icons.nightlight), text: AppLocalizations.of(context)!.ramadanTabTitle),
+              Tab(
+                  icon: const Icon(Icons.volume_up),
+                  text: AppLocalizations.of(context)!.athanTabTitle),
+              Tab(
+                  icon: const Icon(Icons.notifications),
+                  text: AppLocalizations.of(context)!.prayersTabTitle),
+              Tab(
+                  icon: const Icon(Icons.settings),
+                  text: AppLocalizations.of(context)!.advancedTabTitle),
+              Tab(
+                  icon: const Icon(Icons.nightlight),
+                  text: AppLocalizations.of(context)!.ramadanTabTitle),
             ],
           ),
         ),
@@ -441,7 +449,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
         // Vibration Toggle
         SwitchListTile(
           title: Text(AppLocalizations.of(context)!.athanSettingsVibration),
-          subtitle: Text(AppLocalizations.of(context)!.athanSettingsVibrationSubtitle),
+          subtitle: Text(
+              AppLocalizations.of(context)!.athanSettingsVibrationSubtitle),
           value: settings.vibrateEnabled,
           onChanged: (value) {
             ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -599,8 +608,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           ),
           const SizedBox(height: 12),
           SwitchListTile(
-            title: Text(AppLocalizations.of(context)!.athanSettingsQuickActions),
-            subtitle: Text(AppLocalizations.of(context)!.athanSettingsQuickActionsSubtitle),
+            title:
+                Text(AppLocalizations.of(context)!.athanSettingsQuickActions),
+            subtitle: Text(AppLocalizations.of(context)!
+                .athanSettingsQuickActionsSubtitle),
             value: true, // This would be a setting in AthanSettings
             onChanged: (value) {
               // Update quick actions setting
@@ -608,8 +619,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
             contentPadding: EdgeInsets.zero,
           ),
           SwitchListTile(
-            title: Text(AppLocalizations.of(context)!.athanSettingsAutoComplete),
-            subtitle: Text(AppLocalizations.of(context)!.athanSettingsAutoCompleteSubtitle),
+            title:
+                Text(AppLocalizations.of(context)!.athanSettingsAutoComplete),
+            subtitle: Text(AppLocalizations.of(context)!
+                .athanSettingsAutoCompleteSubtitle),
             value: settings.autoMarkCompleted,
             onChanged: (value) {
               ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -683,7 +696,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
           OutlinedButton.icon(
             onPressed: () => _showTimeRangeDialog(settings),
             icon: const Icon(Icons.access_time),
-            label: Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
+            label: Text(
+                AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
           ),
         ],
       ),
@@ -692,8 +706,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
   Widget _buildSmartNotifications(AthanSettings settings) {
     return SwitchListTile(
-      title: Text(AppLocalizations.of(context)!.athanSettingsSmartNotifications),
-      subtitle: Text(AppLocalizations.of(context)!.athanSettingsSmartNotificationsSubtitle),
+      title:
+          Text(AppLocalizations.of(context)!.athanSettingsSmartNotifications),
+      subtitle: Text(AppLocalizations.of(context)!
+          .athanSettingsSmartNotificationsSubtitle),
       value: settings.smartNotifications,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -710,7 +726,8 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
   Widget _buildDndSettings(AthanSettings settings) {
     return SwitchListTile(
       title: Text(AppLocalizations.of(context)!.athanSettingsOverrideDnd),
-      subtitle: Text(AppLocalizations.of(context)!.athanSettingsOverrideDndSubtitle),
+      subtitle:
+          Text(AppLocalizations.of(context)!.athanSettingsOverrideDndSubtitle),
       value: settings.overrideDnd,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -726,8 +743,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
   Widget _buildFullScreenSettings(AthanSettings settings) {
     return SwitchListTile(
-      title: Text(AppLocalizations.of(context)!.athanSettingsFullScreenNotifications),
-      subtitle: Text(AppLocalizations.of(context)!.athanSettingsFullScreenNotificationsSubtitle),
+      title: Text(
+          AppLocalizations.of(context)!.athanSettingsFullScreenNotifications),
+      subtitle: Text(AppLocalizations.of(context)!
+          .athanSettingsFullScreenNotificationsSubtitle),
       value: settings.fullScreenNotification,
       onChanged: (value) {
         ref.read(athanSettingsProvider.notifier).updateSettings(
@@ -1025,8 +1044,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
-        content: Text(AppLocalizations.of(context)!.athanSettingsFeatureComingSoon),
+        title:
+            Text(AppLocalizations.of(context)!.athanSettingsAddMuteTimeRange),
+        content:
+            Text(AppLocalizations.of(context)!.athanSettingsFeatureComingSoon),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -1069,16 +1090,20 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                       await audioNotifier.previewAthan('abdulbasit');
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text(AppLocalizations.of(context)!.athanSettingsTestStarted)),
+                            content: Text(AppLocalizations.of(context)!
+                                .athanSettingsTestStarted)),
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e')),
+                        SnackBar(
+                            content: Text(
+                                '${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.volume_up),
-                  label: Text(AppLocalizations.of(context)!.athanSettingsTestAthanAudio),
+                  label: Text(AppLocalizations.of(context)!
+                      .athanSettingsTestAthanAudio),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
                     foregroundColor: Colors.white,
@@ -1096,16 +1121,20 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                           force: true); // Force reschedule for testing
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                            content: Text(AppLocalizations.of(context)!.athanSettingsNotificationsScheduled)),
+                            content: Text(AppLocalizations.of(context)!
+                                .athanSettingsNotificationsScheduled)),
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsSchedulingFailed}: $e')),
+                        SnackBar(
+                            content: Text(
+                                '${AppLocalizations.of(context)!.athanSettingsSchedulingFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.schedule),
-                  label: Text(AppLocalizations.of(context)!.athanSettingsScheduleNow),
+                  label: Text(
+                      AppLocalizations.of(context)!.athanSettingsScheduleNow),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -1140,12 +1169,15 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                       );
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsDebugFailed}: $e')),
+                        SnackBar(
+                            content: Text(
+                                '${AppLocalizations.of(context)!.athanSettingsDebugFailed}: $e')),
                       );
                     }
                   },
                   icon: const Icon(Icons.info),
-                  label: Text(AppLocalizations.of(context)!.athanSettingsDebugInfo),
+                  label: Text(
+                      AppLocalizations.of(context)!.athanSettingsDebugInfo),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -1168,9 +1200,10 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 final testSettingsAsync = ref.read(athanSettingsProvider);
                 final testSettings = await testSettingsAsync.when(
                   data: (settings) => settings,
-                  loading: () => throw Exception(AppLocalizations.of(context)!.errorUnableToLoadSettings),
+                  loading: () => throw Exception(
+                      AppLocalizations.of(context)!.errorUnableToLoadSettings),
                   error: (error, stack) =>
-                      throw Exception('${AppLocalizations.of(context)!.settingsLanguageChangeFailed}: $error'),
+                      throw Exception('Settings failed: $error'),
                 );
 
                 // Schedule notifications for today (this will include any future prayers)
@@ -1179,17 +1212,20 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                      content:
-                          Text(AppLocalizations.of(context)!.athanSettingsPrayerNotificationsScheduled)),
+                      content: Text(AppLocalizations.of(context)!
+                          .athanSettingsPrayerNotificationsScheduled)),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
+                  SnackBar(
+                      content: Text(
+                          '${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.notification_add),
-            label: Text(AppLocalizations.of(context)!.athanSettingsSchedulePrayerNotifications),
+            label: Text(AppLocalizations.of(context)!
+                .athanSettingsSchedulePrayerNotifications),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
@@ -1203,17 +1239,17 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 final flutterLocalNotificationsPlugin =
                     FlutterLocalNotificationsPlugin();
 
-                const androidDetails = AndroidNotificationDetails(
+                final l10n = AppLocalizations.of(context)!;
+                final androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  AppLocalizations.of(context)!.athanNotificationsTitle,
-                  channelDescription:
-                      'Call to prayer notifications when prayer time arrives',
+                  l10n.athanNotificationsTitle,
+                  channelDescription: l10n.athanNotificationsChannelDescription,
                   importance: Importance.max,
                   priority: Priority.max,
                   playSound: true,
                 );
 
-                const notificationDetails = NotificationDetails(
+                final notificationDetails = NotificationDetails(
                   android: androidDetails,
                 );
 
@@ -1226,18 +1262,22 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(AppLocalizations.of(context)!.athanSettingsTestNotificationSent),
+                    content: Text(AppLocalizations.of(context)!
+                        .athanSettingsTestNotificationSent),
                     duration: Duration(seconds: 2),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
+                  SnackBar(
+                      content: Text(
+                          '${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.flash_on),
-            label: Text(AppLocalizations.of(context)!.athanSettingsTestNotification1Sec),
+            label: Text(AppLocalizations.of(context)!
+                .athanSettingsTestNotification1Sec),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
@@ -1251,17 +1291,17 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 final flutterLocalNotificationsPlugin =
                     FlutterLocalNotificationsPlugin();
 
-                const androidDetails = AndroidNotificationDetails(
+                final l10n = AppLocalizations.of(context)!;
+                final androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  AppLocalizations.of(context)!.athanNotificationsTitle,
-                  channelDescription:
-                      'Call to prayer notifications when prayer time arrives',
+                  l10n.athanNotificationsTitle,
+                  channelDescription: l10n.athanNotificationsChannelDescription,
                   importance: Importance.max,
                   priority: Priority.max,
                   playSound: true,
                 );
 
-                const notificationDetails = NotificationDetails(
+                final notificationDetails = NotificationDetails(
                   android: androidDetails,
                 );
 
@@ -1281,24 +1321,28 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                   await service.playAthan('abdulbasit', 1.0,
                       durationSeconds: currentSettings.durationSeconds);
                 } catch (e) {
-                  print('${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e');
+                  print(
+                      '${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e');
                 }
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content:
-                        Text(AppLocalizations.of(context)!.athanSettingsDemoNotificationSent),
+                    content: Text(AppLocalizations.of(context)!
+                        .athanSettingsDemoNotificationSent),
                     duration: const Duration(seconds: 3),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsDemoNotificationFailed}: $e')),
+                  SnackBar(
+                      content: Text(
+                          '${AppLocalizations.of(context)!.athanSettingsDemoNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.timer),
-            label: Text(AppLocalizations.of(context)!.athanSettingsDemoNotification2Min),
+            label: Text(AppLocalizations.of(context)!
+                .athanSettingsDemoNotification2Min),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.deepPurple,
               foregroundColor: Colors.white,
@@ -1316,17 +1360,17 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                 final flutterLocalNotificationsPlugin =
                     FlutterLocalNotificationsPlugin();
 
-                const androidDetails = AndroidNotificationDetails(
+                final l10n = AppLocalizations.of(context)!;
+                final androidDetails = AndroidNotificationDetails(
                   'athan_notifications',
-                  AppLocalizations.of(context)!.athanNotificationsTitle,
-                  channelDescription:
-                      'Call to prayer notifications when prayer time arrives',
+                  l10n.athanNotificationsTitle,
+                  channelDescription: l10n.athanNotificationsChannelDescription,
                   importance: Importance.max,
                   priority: Priority.max,
                   playSound: true,
                 );
 
-                const notificationDetails = NotificationDetails(
+                final notificationDetails = NotificationDetails(
                   android: androidDetails,
                 );
 
@@ -1339,18 +1383,22 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(AppLocalizations.of(context)!.athanSettingsImmediateNotificationSent),
+                    content: Text(AppLocalizations.of(context)!
+                        .athanSettingsImmediateNotificationSent),
                     duration: Duration(seconds: 2),
                   ),
                 );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
+                  SnackBar(
+                      content: Text(
+                          '${AppLocalizations.of(context)!.athanSettingsTestNotificationFailed}: $e')),
                 );
               }
             },
             icon: const Icon(Icons.notification_important),
-            label: Text(AppLocalizations.of(context)!.labelImmediateNotification),
+            label:
+                Text(AppLocalizations.of(context)!.labelImmediateNotification),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.deepOrange,
               foregroundColor: Colors.white,

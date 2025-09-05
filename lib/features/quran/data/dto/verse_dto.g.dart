@@ -17,6 +17,9 @@ VerseDto _$VerseDtoFromJson(Map<String, dynamic> json) => VerseDto(
       audio: json['audio'] == null
           ? null
           : AudioDto.fromJson(json['audio'] as Map<String, dynamic>),
+      sajdah: json['sajdah'] == null
+          ? null
+          : SajdahDto.fromJson(json['sajdah'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$VerseDtoToJson(VerseDto instance) => <String, dynamic>{
@@ -25,6 +28,7 @@ Map<String, dynamic> _$VerseDtoToJson(VerseDto instance) => <String, dynamic>{
       'text_uthmani': instance.textUthmani,
       'translations': instance.translations.map((e) => e.toJson()).toList(),
       'audio': instance.audio?.toJson(),
+      'sajdah': instance.sajdah?.toJson(),
     };
 
 TranslationDto _$TranslationDtoFromJson(Map<String, dynamic> json) =>
@@ -47,4 +51,22 @@ AudioDto _$AudioDtoFromJson(Map<String, dynamic> json) => AudioDto(
 Map<String, dynamic> _$AudioDtoToJson(AudioDto instance) => <String, dynamic>{
       'url': instance.url,
       'duration': instance.duration,
+    };
+
+SajdahDto _$SajdahDtoFromJson(Map<String, dynamic> json) => SajdahDto(
+      id: (json['id'] as num).toInt(),
+      verseKey: json['verse_key'] as String,
+      sajdahNumber: (json['sajdah_number'] as num).toInt(),
+      type: json['type'] as String,
+      recommended: json['recommended'] as bool?,
+      obligatory: json['obligatory'] as bool?,
+    );
+
+Map<String, dynamic> _$SajdahDtoToJson(SajdahDto instance) => <String, dynamic>{
+      'id': instance.id,
+      'verse_key': instance.verseKey,
+      'sajdah_number': instance.sajdahNumber,
+      'type': instance.type,
+      'recommended': instance.recommended,
+      'obligatory': instance.obligatory,
     };

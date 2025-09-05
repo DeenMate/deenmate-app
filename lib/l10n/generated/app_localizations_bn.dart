@@ -3115,7 +3115,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get quranIndoPak => 'ইন্দো-পাক';
 
   @override
-  String get quranWordByWord => 'শব্দে শব্দে';
+  String get quranWordByWord => 'শব্দে-শব্দে';
 
   @override
   String get quranShowWordByWord => 'শব্দে শব্দে দেখান';
@@ -3171,4 +3171,207 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get quranEssentialContentDownloaded =>
       'প্রয়োজনীয় কন্টেন্ট সফলভাবে ডাউনলোড হয়েছে!';
+
+  @override
+  String get quranSajdah => 'সিজদা';
+
+  @override
+  String get quranSajdahInfo => 'সিজদার তথ্য';
+
+  @override
+  String get quranSajdahObligatory => 'অবশ্যক';
+
+  @override
+  String get quranSajdahNumber => 'সিজদার সংখ্যা';
+
+  @override
+  String get quranSajdahType => 'ধরন';
+
+  @override
+  String get quranSajdahVerse => 'আয়াত';
+
+  @override
+  String get quranClose => 'বন্ধ করুন';
+
+  @override
+  String get quranSajdahObligatoryDescription =>
+      'এটি একটি অবশ্যক সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা বাধ্যতামূলক।';
+
+  @override
+  String get quranSajdahRecommendedDescription =>
+      'এটি একটি সুপারিশকৃত সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা সুপারিশকৃত।';
+
+  @override
+  String get quranSajdahGeneralDescription =>
+      'এই আয়াতে একটি সিজদা (সিজদা) চিহ্ন রয়েছে। এই আয়াত পাঠ বা শোনার সময় সিজদা করার কথা বিবেচনা করুন।';
+
+  @override
+  String get quranScriptVariants => 'স্ক্রিপ্ট ভেরিয়েন্ট';
+
+  @override
+  String get quranScriptVariantsDescription =>
+      'বিভিন্ন কুরআন স্ক্রিপ্ট স্টাইল নির্বাচন করুন। উসমানী হল ঐতিহ্যগত স্ক্রিপ্ট, যখন ইন্দো-পাক দক্ষিণ এশিয়ায় জনপ্রিয়।';
+
+  @override
+  String get quranUthmanicDescription =>
+      'বিশ্বব্যাপী অধিকাংশ মুদ্রিত কুরআনে ব্যবহৃত ঐতিহ্যগত উসমানী স্ক্রিপ্ট। ক্লাসিক্যাল আরবি ক্যালিগ্রাফি বৈশিষ্ট্য।';
+
+  @override
+  String get quranIndoPakDescription =>
+      'দক্ষিণ এশিয়ায় জনপ্রিয় ইন্দো-পাক স্ক্রিপ্ট স্টাইল। স্বতন্ত্র অক্ষর রূপ এবং স্পেসিং বৈশিষ্ট্য।';
+
+  @override
+  String get quranScript => 'স্ক্রিপ্ট';
+
+  @override
+  String get quranEnableTransliteration =>
+      'ট্রান্সলিটারেশন অনুসন্ধান সক্রিয় করুন';
+
+  @override
+  String get quranEnableBengaliSearch => 'বাংলা অনুসন্ধান সক্রিয় করুন';
+
+  @override
+  String get quranEnableFuzzyMatch => 'ফাজি ম্যাচিং সক্রিয় করুন';
+
+  @override
+  String get quranTransliteration => 'ট্রান্সলিটারেশন';
+
+  @override
+  String get quranBengali => 'বাংলা';
+
+  @override
+  String get quranAll => 'সব';
+
+  @override
+  String get quranTranslationLoading => 'অনুবাদ লোড হচ্ছে...';
+
+  @override
+  String get quranAvailableTranslations => 'উপলব্ধ অনুবাদসমূহ';
+
+  @override
+  String get quranSelectedTranslationIds => 'নির্বাচিত অনুবাদ আইডি';
+
+  @override
+  String get quranPleaseWaitWhileTranslationsAreBeingLoaded =>
+      'অনুবাদ লোড হওয়া পর্যন্ত অনুগ্রহ করে অপেক্ষা করুন...';
+
+  @override
+  String get quranFailedToLoadTranslations => 'অনুবাদ লোড করতে ব্যর্থ';
+
+  @override
+  String quranSearchError(String error) {
+    return 'সার্চ ত্রুটি: $error';
+  }
+
+  @override
+  String get quranQuickTools => 'দ্রুত সরঞ্জাম';
+
+  @override
+  String get quranSelectedTranslations => 'নির্বাচিত অনুবাদসমূহ';
+
+  @override
+  String get quranEnableAutoScroll => 'স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন';
+
+  @override
+  String get quranSpeedPxSec => 'গতি (পিক্সেল/সেকেন্ড)';
+
+  @override
+  String get quranWordByWordSubtitle => 'প্রতিটি শব্দের উচ্চারণ ও অর্থ দেখান';
+
+  @override
+  String get quranWordByWordSource => 'শব্দে-শব্দে উৎস';
+
+  @override
+  String get quranPlaybackSpeedLabel => 'প্লেব্যাক গতি';
+
+  @override
+  String get quranSpeed050 => '০.৫০x';
+
+  @override
+  String get quranSpeed075 => '০.৭৫x';
+
+  @override
+  String get quranSpeed100 => '১.০০x';
+
+  @override
+  String get quranSpeed125 => '১.২৫x';
+
+  @override
+  String get quranSpeed150 => '১.৫০x';
+
+  @override
+  String get quranSpeed200 => '২.০০x';
+
+  @override
+  String get quranQuickJump => 'দ্রুত জাম্প';
+
+  @override
+  String get athanNotificationsChannelDescription =>
+      'নামাজের সময় হলে আজানের নোটিফিকেশন';
+
+  @override
+  String get methodsInfoRecommendation =>
+      'আপনার এলাকার পছন্দের পদ্ধতিটি ব্যবহার করার পরামর্শ দেওয়া হয় যাতে স্থানীয় মুসলিম কমিউনিটির সাথে সামঞ্জস্য থাকে।';
+
+  @override
+  String get quranCopyArabicText => 'আরবি টেক্সট কপি করুন';
+
+  @override
+  String get quranCopyOnlyArabicVerse => 'শুধুমাত্র আরবি আয়াত কপি করুন';
+
+  @override
+  String get quranCopyTranslation => 'অনুবাদ কপি করুন';
+
+  @override
+  String get quranCopyOnlyTranslation => 'শুধুমাত্র অনুবাদ কপি করুন';
+
+  @override
+  String get quranCopyFullVerse => 'সম্পূর্ণ আয়াত কপি করুন';
+
+  @override
+  String get quranCopyArabicWithTranslation => 'আরবি সহ অনুবাদ কপি করুন';
+
+  @override
+  String get quranReportTranslationError => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
+
+  @override
+  String get quranHelpImproveTranslationAccuracy =>
+      'অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করুন';
+
+  @override
+  String get quranArabicTextCopied => 'আরবি টেক্সট ক্লিপবোর্ডে কপি হয়েছে';
+
+  @override
+  String get quranTranslationCopied => 'অনুবাদ ক্লিপবোর্ডে কপি হয়েছে';
+
+  @override
+  String get quranFullVerseCopied => 'সম্পূর্ণ আয়াত ক্লিপবোর্ডে কপি হয়েছে';
+
+  @override
+  String get quranReportTranslationErrorTitle => 'অনুবাদ ত্রুটি রিপোর্ট করুন';
+
+  @override
+  String get quranThankYouForHelpingImproveQuranTranslation =>
+      'কুরআন অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করার জন্য ধন্যবাদ!';
+
+  @override
+  String quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse(
+      Object verseKey) {
+    return 'অনুগ্রহ করে $verseKey আয়াতে ত্রুটি সম্পর্কে বিস্তারিত জানিয়ে support@deenmate.app এ আমাদের ইমেইল করুন';
+  }
+
+  @override
+  String get quranSendEmail => 'ইমেইল পাঠান';
+
+  @override
+  String get quranReadingProgress => 'পঠন অগ্রগতি';
+
+  @override
+  String get quranVerse => 'আয়াত';
+
+  @override
+  String get quranReadingStreak => 'পঠন ধারা';
+
+  @override
+  String get quranDays => 'দিন';
 }

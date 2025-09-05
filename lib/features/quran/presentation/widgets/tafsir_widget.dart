@@ -55,9 +55,14 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
           _tabController = TabController(length: resources.length, vsync: this);
         }
 
-        // Set default tafsir if none selected
-        if (_selectedTafsirId == null && resources.isNotEmpty) {
-          _selectedTafsirId = resources.first.id;
+        // Set default tafsir from prefs if available, else first
+        final prefs = ref.watch(prefsProvider);
+        if (_selectedTafsirId == null) {
+          if (prefs.selectedTafsirIds.isNotEmpty) {
+            _selectedTafsirId = prefs.selectedTafsirIds.first;
+          } else if (resources.isNotEmpty) {
+            _selectedTafsirId = resources.first.id;
+          }
         }
 
         return Container(
@@ -133,9 +138,9 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    _isExpanded 
-                      ? 'Tap to hide commentary'
-                      : '${resources.length} commentaries available',
+                    _isExpanded
+                        ? 'Tap to hide commentary'
+                        : '${resources.length} commentaries available',
                     style: TextStyle(
                       fontSize: 12,
                       color: ThemeHelper.getTextSecondaryColor(context),
@@ -184,10 +189,12 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
           fontSize: 14,
           fontWeight: FontWeight.w400,
         ),
-        onTap: (index) {
+        onTap: (index) async {
+          final id = resources[index].id;
           setState(() {
-            _selectedTafsirId = resources[index].id;
+            _selectedTafsirId = id;
           });
+          await ref.read(prefsProvider.notifier).updateSelectedTafsirIds([id]);
         },
         tabs: resources.map((resource) {
           return Tab(
@@ -223,7 +230,7 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
 
   Widget _buildTafsirText(TafsirDto tafsir) {
     final prefs = ref.watch(prefsProvider);
-    
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -256,7 +263,8 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
                 if (tafsir.languageName != null) ...[
                   const SizedBox(width: 8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     decoration: BoxDecoration(
                       color: ThemeHelper.getDividerColor(context),
                       borderRadius: BorderRadius.circular(4),
@@ -273,9 +281,9 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
               ],
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Tafsir text
           SelectableText(
             _cleanTafsirText(tafsir.text),
@@ -286,9 +294,9 @@ class _TafsirWidgetState extends ConsumerState<TafsirWidget>
               letterSpacing: 0.2,
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Action buttons
           Row(
             children: [

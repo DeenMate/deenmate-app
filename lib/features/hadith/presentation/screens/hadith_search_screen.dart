@@ -10,7 +10,7 @@ import 'hadith_detail_screen.dart';
 class HadithSearchScreen extends StatefulWidget {
   final String? initialQuery;
   final String? topicId;
-  
+
   const HadithSearchScreen({
     super.key,
     this.initialQuery,
@@ -24,12 +24,12 @@ class HadithSearchScreen extends StatefulWidget {
 class _HadithSearchScreenState extends State<HadithSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
-  
+
   List<HadithEntity> _searchResults = [];
   List<HadithBook> _allBooks = [];
   bool _isLoading = false;
   bool _hasSearched = false;
-  
+
   String _selectedBookFilter = 'all';
   String _selectedGradeFilter = 'all';
   bool _searchInArabic = true;
@@ -39,26 +39,24 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
   void initState() {
     super.initState();
     _allBooks = HadithMockData.getHadithBooks();
-    
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Safe to access localization here
     if (widget.initialQuery != null) {
       _searchController.text = widget.initialQuery!;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _performSearch();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => _performSearch());
     } else if (widget.topicId != null) {
-      // Handle topic-based search - search for hadiths related to the topic
       _searchController.text = _getTopicSearchQuery(widget.topicId!);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _performSearch();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => _performSearch());
     } else {
-      // Focus on search field when screen opens
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _searchFocusNode.requestFocus();
-      });
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => _searchFocusNode.requestFocus());
     }
   }
-  
+
   String _getTopicSearchQuery(String topicId) {
     final l10n = AppLocalizations.of(context)!;
     // Map topic IDs to search queries
@@ -124,7 +122,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
         children: [
           // Search Section
           _buildSearchSection(context),
-          
+
           // Results Section
           Expanded(
             child: _buildResultsSection(context),
@@ -170,46 +168,49 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   color: colorScheme.primary,
                 ),
                 suffixIcon: _searchController.text.isNotEmpty
-                  ? IconButton(
-                      icon: Icon(
-                        Icons.clear_rounded,
-                        color: colorScheme.outline,
-                      ),
-                      onPressed: () {
-                        _searchController.clear();
-                        setState(() {
-                          _searchResults.clear();
-                          _hasSearched = false;
-                        });
-                      },
-                    )
-                  : null,
+                    ? IconButton(
+                        icon: Icon(
+                          Icons.clear_rounded,
+                          color: colorScheme.outline,
+                        ),
+                        onPressed: () {
+                          _searchController.clear();
+                          setState(() {
+                            _searchResults.clear();
+                            _hasSearched = false;
+                          });
+                        },
+                      )
+                    : null,
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               ),
               onSubmitted: (_) => _performSearch(),
               onChanged: (value) => setState(() {}),
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Search Button and Quick Filters
           Row(
             children: [
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: _performSearch,
-                  icon: _isLoading 
-                    ? SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: colorScheme.onPrimary,
-                        ),
-                      )
-                    : const Icon(Icons.search_rounded),
-                  label: Text(_isLoading ? l10n.hadithSearchingProgress : l10n.hadithSearchButton),
+                  icon: _isLoading
+                      ? SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: colorScheme.onPrimary,
+                          ),
+                        )
+                      : const Icon(Icons.search_rounded),
+                  label: Text(_isLoading
+                      ? l10n.hadithSearchingProgress
+                      : l10n.hadithSearchButton),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colorScheme.primary,
                     foregroundColor: colorScheme.onPrimary,
@@ -225,7 +226,8 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                 onPressed: _showFilterDialog,
                 style: OutlinedButton.styleFrom(
                   foregroundColor: colorScheme.primary,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -235,7 +237,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
               ),
             ],
           ),
-          
+
           // Active Filters Display
           if (_hasActiveFilters()) ...[
             const SizedBox(height: 12),
@@ -250,15 +252,15 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     if (!_hasSearched) {
       return _buildSearchSuggestions(context);
     }
-    
+
     if (_isLoading) {
       return _buildLoadingState(context);
     }
-    
+
     if (_searchResults.isEmpty) {
       return _buildEmptyResults(context);
     }
-    
+
     return _buildSearchResults(context);
   }
 
@@ -266,7 +268,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
-    
+
     final suggestions = l10n.hadithSearchSuggestions.split(', ');
 
     return SingleChildScrollView(
@@ -282,7 +284,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -298,9 +300,9 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
               );
             }).toList(),
           ),
-          
+
           const SizedBox(height: 32),
-          
+
           Text(
             l10n.hadithRecentSearches,
             style: theme.textTheme.titleMedium?.copyWith(
@@ -309,7 +311,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Recent searches would go here
           Container(
             width: double.infinity,
@@ -451,7 +453,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
             ],
           ),
         ),
-        
+
         // Results List
         Expanded(
           child: ListView.builder(
@@ -467,10 +469,12 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     );
   }
 
-  Widget _buildHadithResultItem(BuildContext context, HadithEntity hadith, int index) {
+  Widget _buildHadithResultItem(
+      BuildContext context, HadithEntity hadith, int index) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final gradeColor = Color(int.parse(hadith.gradeColor.replaceFirst('#', '0xFF')));
+    final gradeColor =
+        Color(int.parse(hadith.gradeColor.replaceFirst('#', '0xFF')));
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -491,7 +495,8 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: colorScheme.primaryContainer,
                         borderRadius: BorderRadius.circular(6),
@@ -515,7 +520,8 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
                         color: gradeColor,
                         borderRadius: BorderRadius.circular(4),
@@ -531,7 +537,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Hadith Text Preview
                 Text(
                   hadith.bengaliText,
@@ -542,7 +548,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
-                
+
                 if (hadith.topicsBengali.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Wrap(
@@ -550,9 +556,11 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                     runSpacing: 6,
                     children: hadith.topicsBengali.take(3).map((topic) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: colorScheme.secondaryContainer.withOpacity(0.5),
+                          color:
+                              colorScheme.secondaryContainer.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
@@ -595,7 +603,9 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
           if (!_searchInArabic || !_searchInTranslation)
             _buildFilterChip(
               context,
-              _searchInArabic ? l10n.hadithSearchFilterArabicOnly : l10n.hadithSearchFilterTranslationOnly,
+              _searchInArabic
+                  ? l10n.hadithSearchFilterArabicOnly
+                  : l10n.hadithSearchFilterTranslationOnly,
               () => setState(() {
                 _searchInArabic = true;
                 _searchInTranslation = true;
@@ -606,10 +616,11 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     );
   }
 
-  Widget _buildFilterChip(BuildContext context, String label, VoidCallback onRemove) {
+  Widget _buildFilterChip(
+      BuildContext context, String label, VoidCallback onRemove) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return Container(
       margin: const EdgeInsets.only(right: 8),
       child: Chip(
@@ -628,9 +639,9 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
 
   bool _hasActiveFilters() {
     return _selectedBookFilter != 'all' ||
-           _selectedGradeFilter != 'all' ||
-           !_searchInArabic ||
-           !_searchInTranslation;
+        _selectedGradeFilter != 'all' ||
+        !_searchInArabic ||
+        !_searchInTranslation;
   }
 
   String _getBookName(String bookId) {
@@ -653,13 +664,15 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
     // Simulate search delay
     Future.delayed(const Duration(milliseconds: 800), () {
       final results = HadithMockData.searchHadiths(query);
-      
+
       // Apply filters
       final filteredResults = results.where((hadith) {
-        if (_selectedBookFilter != 'all' && hadith.bookId != _selectedBookFilter) {
+        if (_selectedBookFilter != 'all' &&
+            hadith.bookId != _selectedBookFilter) {
           return false;
         }
-        if (_selectedGradeFilter != 'all' && hadith.gradeBengali != _selectedGradeFilter) {
+        if (_selectedGradeFilter != 'all' &&
+            hadith.gradeBengali != _selectedGradeFilter) {
           return false;
         }
         return true;
@@ -717,7 +730,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              
+
               // Header
               Container(
                 padding: const EdgeInsets.all(20),
@@ -752,7 +765,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   ],
                 ),
               ),
-              
+
               // Filter Options
               Expanded(
                 child: SingleChildScrollView(
@@ -769,7 +782,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      
+
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
@@ -778,19 +791,21 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                             context,
                             l10n.hadithSearchFilterAllBooks,
                             _selectedBookFilter == 'all',
-                            () => setDialogState(() => _selectedBookFilter = 'all'),
+                            () => setDialogState(
+                                () => _selectedBookFilter = 'all'),
                           ),
                           ..._allBooks.map((book) => _buildFilterOption(
-                            context,
-                            book.nameBengali,
-                            _selectedBookFilter == book.id,
-                            () => setDialogState(() => _selectedBookFilter = book.id),
-                          )),
+                                context,
+                                book.nameBengali,
+                                _selectedBookFilter == book.id,
+                                () => setDialogState(
+                                    () => _selectedBookFilter = book.id),
+                              )),
                         ],
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Grade Filter
                       Text(
                         l10n.hadithSearchFilterGradeTitle,
@@ -800,7 +815,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      
+
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
@@ -809,31 +824,37 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                             context,
                             l10n.hadithSearchFilterAllGrades,
                             _selectedGradeFilter == 'all',
-                            () => setDialogState(() => _selectedGradeFilter = 'all'),
+                            () => setDialogState(
+                                () => _selectedGradeFilter = 'all'),
                           ),
                           _buildFilterOption(
                             context,
                             l10n.hadithSearchFilterSahih,
-                            _selectedGradeFilter == l10n.hadithSearchFilterSahih,
-                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterSahih),
+                            _selectedGradeFilter ==
+                                l10n.hadithSearchFilterSahih,
+                            () => setDialogState(() => _selectedGradeFilter =
+                                l10n.hadithSearchFilterSahih),
                           ),
                           _buildFilterOption(
                             context,
                             l10n.hadithSearchFilterHasan,
-                            _selectedGradeFilter == l10n.hadithSearchFilterHasan,
-                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterHasan),
+                            _selectedGradeFilter ==
+                                l10n.hadithSearchFilterHasan,
+                            () => setDialogState(() => _selectedGradeFilter =
+                                l10n.hadithSearchFilterHasan),
                           ),
                           _buildFilterOption(
                             context,
                             l10n.hadithSearchFilterDaif,
                             _selectedGradeFilter == l10n.hadithSearchFilterDaif,
-                            () => setDialogState(() => _selectedGradeFilter = l10n.hadithSearchFilterDaif),
+                            () => setDialogState(() => _selectedGradeFilter =
+                                l10n.hadithSearchFilterDaif),
                           ),
                         ],
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Search Scope
                       Text(
                         l10n.hadithSearchScopeTitle,
@@ -843,7 +864,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      
+
                       CheckboxListTile(
                         title: Text(l10n.hadithSearchInArabic),
                         value: _searchInArabic,
@@ -852,12 +873,13 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                         },
                         contentPadding: EdgeInsets.zero,
                       ),
-                      
+
                       CheckboxListTile(
                         title: Text(l10n.hadithSearchInTranslation),
                         value: _searchInTranslation,
                         onChanged: (value) {
-                          setDialogState(() => _searchInTranslation = value ?? true);
+                          setDialogState(
+                              () => _searchInTranslation = value ?? true);
                         },
                         contentPadding: EdgeInsets.zero,
                       ),
@@ -865,7 +887,7 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
                   ),
                 ),
               ),
-              
+
               // Apply Button
               Container(
                 padding: const EdgeInsets.all(20),
@@ -917,15 +939,14 @@ class _HadithSearchScreenState extends State<HadithSearchScreen> {
       selectedColor: colorScheme.primaryContainer,
       backgroundColor: colorScheme.surface,
       labelStyle: TextStyle(
-        color: isSelected 
-          ? colorScheme.onPrimaryContainer
-          : colorScheme.onSurface,
+        color:
+            isSelected ? colorScheme.onPrimaryContainer : colorScheme.onSurface,
         fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
       ),
       side: BorderSide(
-        color: isSelected 
-          ? colorScheme.primary
-          : colorScheme.outline.withOpacity(0.3),
+        color: isSelected
+            ? colorScheme.primary
+            : colorScheme.outline.withOpacity(0.3),
       ),
     );
   }

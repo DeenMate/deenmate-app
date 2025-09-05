@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../l10n/generated/app_localizations.dart';
 
 import '../../domain/services/search_service.dart';
 import '../state/providers.dart';
@@ -22,29 +23,32 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
     with TickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocus = FocusNode();
-  
+
   // Search state
   bool _isSearching = false;
   bool _showFilters = false;
   bool _showHistory = false;
   String _currentQuery = '';
-  
+
   // Search results
   List<dynamic> _searchResults = [];
   List<SearchSuggestion> _suggestions = [];
   List<String> _searchHistory = [];
-  
+
   // Search filters
   SearchScope _searchScope = SearchScope.all;
   List<int> _selectedChapterIds = [];
   List<int> _selectedTranslationIds = [];
   bool _enableDiacriticsSearch = false;
   bool _exactMatch = false;
-  
+  bool _enableTransliteration = false;
+  bool _enableBengaliSearch = false;
+  bool _enableFuzzyMatch = false;
+
   // Animation controllers
   late AnimationController _filtersAnimationController;
   late AnimationController _resultsAnimationController;
-  
+
   @override
   void initState() {
     super.initState();
@@ -56,7 +60,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    
+
     _loadSearchHistory();
     _searchController.addListener(_onSearchChanged);
   }
@@ -74,7 +78,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
     final query = _searchController.text.trim();
     if (query != _currentQuery) {
       _currentQuery = query;
-      
+
       if (query.isEmpty) {
         setState(() {
           _suggestions.clear();
@@ -91,7 +95,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
     try {
       final searchService = ref.read(quranSearchServiceProvider);
       final suggestions = await searchService.getSearchSuggestions(query);
-      
+
       if (mounted && query == _currentQuery) {
         setState(() {
           _suggestions = suggestions;
@@ -113,12 +117,16 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
 
     try {
       final searchService = ref.read(quranSearchServiceProvider);
-      
+
       // Build search filters
       final filters = SearchFilters(
         chapterIds: _selectedChapterIds.isNotEmpty ? _selectedChapterIds : null,
-        translationIds: _selectedTranslationIds.isNotEmpty ? _selectedTranslationIds : null,
+        translationIds:
+            _selectedTranslationIds.isNotEmpty ? _selectedTranslationIds : null,
         scope: _searchScope,
+        enableTransliteration: _enableTransliteration,
+        enableBengaliSearch: _enableBengaliSearch,
+        enableFuzzyMatch: _enableFuzzyMatch,
       );
 
       // Build search options
@@ -145,7 +153,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
           _searchResults = allResults;
           _isSearching = false;
         });
-        
+
         _resultsAnimationController.forward(from: 0);
         await _saveToHistory(query);
       }
@@ -154,11 +162,11 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
         setState(() {
           _isSearching = false;
         });
-        
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Search error: ${e.toString()}'),
-            backgroundColor: Colors.red,
+            content: Text(AppLocalizations.of(context)!.hadithSearchError),
+            backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
       }
@@ -183,7 +191,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
         _searchHistory.remove(query);
       }
       _searchHistory.insert(0, query);
-      
+
       // Keep only last 10 searches
       if (_searchHistory.length > 10) {
         _searchHistory = _searchHistory.take(10).toList();
@@ -212,7 +220,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
     setState(() {
       _showFilters = !_showFilters;
     });
-    
+
     if (_showFilters) {
       _filtersAnimationController.forward();
     } else {
@@ -286,18 +294,20 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
             ),
             child: _buildSearchBar(),
           ),
-          
+
           // Filters panel
           AnimatedBuilder(
             animation: _filtersAnimationController,
             builder: (context, child) {
               return SizeTransition(
                 sizeFactor: _filtersAnimationController,
-                child: _showFilters ? _buildFiltersPanel() : const SizedBox.shrink(),
+                child: _showFilters
+                    ? _buildFiltersPanel()
+                    : const SizedBox.shrink(),
               );
             },
           ),
-          
+
           // Main content
           Expanded(
             child: _buildMainContent(),
@@ -339,7 +349,8 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
               ),
               filled: true,
               fillColor: Colors.white.withOpacity(0.15),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             ),
             onSubmitted: (_) => _performSearch(),
             textInputAction: TextInputAction.search,
@@ -352,7 +363,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
             borderRadius: BorderRadius.circular(12),
           ),
           child: IconButton(
-            icon: _isSearching 
+            icon: _isSearching
                 ? const SizedBox(
                     width: 20,
                     height: 20,
@@ -407,11 +418,29 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
             _exactMatch = enabled;
           });
         },
+        onTransliterationChanged: (enabled) {
+          setState(() {
+            _enableTransliteration = enabled;
+          });
+        },
+        onBengaliSearchChanged: (enabled) {
+          setState(() {
+            _enableBengaliSearch = enabled;
+          });
+        },
+        onFuzzyMatchChanged: (enabled) {
+          setState(() {
+            _enableFuzzyMatch = enabled;
+          });
+        },
         searchScope: _searchScope,
         selectedChapterIds: _selectedChapterIds,
         selectedTranslationIds: _selectedTranslationIds,
         enableDiacriticsSearch: _enableDiacriticsSearch,
         exactMatch: _exactMatch,
+        enableTransliteration: _enableTransliteration,
+        enableBengaliSearch: _enableBengaliSearch,
+        enableFuzzyMatch: _enableFuzzyMatch,
       ),
     );
   }
@@ -425,7 +454,9 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
       );
     }
 
-    if (_currentQuery.isNotEmpty && _suggestions.isNotEmpty && _searchResults.isEmpty) {
+    if (_currentQuery.isNotEmpty &&
+        _suggestions.isNotEmpty &&
+        _searchResults.isEmpty) {
       return _buildSuggestions();
     }
 
@@ -503,7 +534,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
                     ),
                   ),
                 ),
-                
+
                 // Results list
                 Expanded(
                   child: ListView.builder(
@@ -573,26 +604,28 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
     ];
 
     return Column(
-      children: tips.map((tip) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              tip['icon'] as IconData,
-              size: 16,
-              color: ThemeHelper.getPrimaryColor(context),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              tip['text'] as String,
-              style: TextStyle(
-                color: ThemeHelper.getTextSecondaryColor(context),
-              ),
-            ),
-          ],
-        ),
-      )).toList(),
+      children: tips
+          .map((tip) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      tip['icon'] as IconData,
+                      size: 16,
+                      color: ThemeHelper.getPrimaryColor(context),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      tip['text'] as String,
+                      style: TextStyle(
+                        color: ThemeHelper.getTextSecondaryColor(context),
+                      ),
+                    ),
+                  ],
+                ),
+              ))
+          .toList(),
     );
   }
 

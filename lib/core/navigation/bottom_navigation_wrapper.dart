@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../localization/strings.dart';
 import '../../features/home/presentation/widgets/islamic_bottom_navigation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/generated/app_localizations.dart';
 
 /// Bottom Navigation Wrapper for DeenMate
 /// Provides Islamic-themed bottom navigation without breaking existing routing
@@ -199,7 +199,8 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text(AppLocalizations.of(context)!.navigationExitDialogTitle),
-          content: Text(AppLocalizations.of(context)!.navigationExitDialogMessage),
+          content:
+              Text(AppLocalizations.of(context)!.navigationExitDialogMessage),
           actions: [
             TextButton(
               onPressed: () {

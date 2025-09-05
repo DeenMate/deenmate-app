@@ -7,6 +7,8 @@ import '../../utils/text_utils.dart';
 import '../../../../core/theme/theme_helper.dart';
 import '../../../../core/localization/strings.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import 'sajdah_marker_widget.dart';
+// import 'tafsir_widget.dart';
 
 class VerseCardWidget extends ConsumerWidget {
   const VerseCardWidget({
@@ -52,11 +54,24 @@ class VerseCardWidget extends ConsumerWidget {
           if (verse.verseNumber == 1 && !verse.verseKey.startsWith('9:'))
             _buildBismillah(context, prefs),
 
+          // Sajdah marker if this verse requires prostration
+          if (verse.sajdah != null) _buildSajdahMarker(context),
+
           // Arabic text
           if (prefs.showArabic) _buildArabicText(context, prefs),
 
           // Translations
           if (prefs.showTranslation) _buildTranslations(context, prefs),
+
+          // Word-by-Word (pinned)
+          if (prefs.showWordAnalysis)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: _WordByWordPanel(
+                verseKey: verse.verseKey,
+                scrollController: ScrollController(),
+              ),
+            ),
 
           // Verse actions
           if (showVerseActions) _buildVerseActions(context),
@@ -164,6 +179,32 @@ class VerseCardWidget extends ConsumerWidget {
     );
   }
 
+  Widget _buildSajdahMarker(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        children: [
+          SajdahMarker(
+            sajdah: verse.sajdah!,
+            compact: false,
+            showTooltip: true,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              AppLocalizations.of(context)!.quranSajdahMarker,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: ThemeHelper.getTextSecondaryColor(context),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildArabicText(BuildContext context, QuranPrefs prefs) {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
@@ -174,7 +215,7 @@ class VerseCardWidget extends ConsumerWidget {
           fontSize: prefs.arabicFontSize,
           height: prefs.arabicLineHeight,
           color: ThemeHelper.getTextPrimaryColor(context),
-          fontFamily: prefs.arabicFontFamily ?? 'Uthmani',
+          fontFamily: _getQuranFontFamily(prefs),
           fontWeight: FontWeight.w400,
           letterSpacing: 0.3,
         ),
@@ -182,6 +223,17 @@ class VerseCardWidget extends ConsumerWidget {
         textDirection: TextDirection.rtl,
       ),
     );
+  }
+
+  String _getQuranFontFamily(QuranPrefs prefs) {
+    // Use script variant preference if available, otherwise fall back to arabicFontFamily or default
+    if (prefs.quranScriptVariant == 'IndoPak') {
+      return 'IndoPak';
+    } else if (prefs.quranScriptVariant == 'Uthmanic') {
+      return 'UthmanicHafs';
+    } else {
+      return prefs.arabicFontFamily ?? 'UthmanicHafs';
+    }
   }
 
   Widget _buildTranslations(BuildContext context, QuranPrefs prefs) {
@@ -360,6 +412,9 @@ class VerseCardWidget extends ConsumerWidget {
       ),
       onSelected: (value) {
         switch (value) {
+          case 'tafsir':
+            if (onTafsir != null) onTafsir!();
+            break;
           case 'word_analysis':
             _showWordAnalysis(context);
             break;
@@ -375,6 +430,16 @@ class VerseCardWidget extends ConsumerWidget {
         }
       },
       itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 'tafsir',
+          child: Row(
+            children: [
+              Icon(Icons.menu_book, size: 18),
+              SizedBox(width: 8),
+              Text(AppLocalizations.of(context)!.quranTafsir),
+            ],
+          ),
+        ),
         PopupMenuItem(
           value: 'word_analysis',
           child: Row(
@@ -524,33 +589,41 @@ class VerseCardWidget extends ConsumerWidget {
                 height: 4,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: ThemeHelper.getTextSecondaryColor(context).withOpacity(0.3),
+                  color: ThemeHelper.getTextSecondaryColor(context)
+                      .withOpacity(0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  'Word Analysis - ${verse.verseKey}',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: ThemeHelper.getTextPrimaryColor(context),
-                  ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    Icon(Icons.translate,
+                        color: ThemeHelper.getPrimaryColor(context)),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.verseCardWordAnalysis,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: ThemeHelper.getTextPrimaryColor(context),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.close,
+                          color: ThemeHelper.getTextSecondaryColor(context)),
+                      onPressed: () => Navigator.pop(context),
+                    )
+                  ],
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Word-by-word analysis functionality is coming soon. '
-                    'This will show grammatical breakdown and root words for each Arabic word.',
-                    style: TextStyle(
-                      color: ThemeHelper.getTextSecondaryColor(context),
-                    ),
-                  ),
-                ),
+                child: _WordByWordPanel(
+                    verseKey: verse.verseKey,
+                    scrollController: scrollController),
               ),
             ],
           ),
@@ -566,7 +639,8 @@ class VerseCardWidget extends ConsumerWidget {
       // Fallback: try to find audio URL and play
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(AppLocalizations.of(context)!.verseCardAudioNotAvailable),
+          content:
+              Text(AppLocalizations.of(context)!.verseCardAudioNotAvailable),
         ),
       );
     }
@@ -575,7 +649,8 @@ class VerseCardWidget extends ConsumerWidget {
   void _downloadVerseAudio(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(AppLocalizations.of(context)!.verseCardDownloadingAudio(verse.verseKey)),
+        content: Text(AppLocalizations.of(context)!
+            .verseCardDownloadingAudio(verse.verseKey)),
         action: SnackBarAction(
           label: AppLocalizations.of(context)!.verseCardOK,
           onPressed: () {
@@ -590,7 +665,8 @@ class VerseCardWidget extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.verseCardNotesTitle(verse.verseKey)),
+        title: Text(
+            AppLocalizations.of(context)!.verseCardNotesTitle(verse.verseKey)),
         content: const Text(
           'Personal notes functionality is coming soon. '
           'You will be able to add, edit, and manage your notes for each verse.',
@@ -602,6 +678,90 @@ class VerseCardWidget extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _WordByWordPanel extends ConsumerWidget {
+  const _WordByWordPanel({
+    required this.verseKey,
+    required this.scrollController,
+  });
+
+  final String verseKey;
+  final ScrollController scrollController;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final prefs = ref.watch(prefsProvider);
+    // Choose first selected word analysis resource or fallback to 1
+    final resourceId = (prefs.selectedWordAnalysisIds.isNotEmpty)
+        ? prefs.selectedWordAnalysisIds.first
+        : 1;
+    final async = ref.watch(wordAnalysisByVerseProvider({
+      'verseKey': verseKey,
+      'resourceId': resourceId,
+    }));
+
+    return async.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, _) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          AppLocalizations.of(context)!.quranErrorLoadingTranslations,
+          style: TextStyle(color: ThemeHelper.getTextSecondaryColor(context)),
+        ),
+      ),
+      data: (analysis) {
+        return ListView.separated(
+          controller: scrollController,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          itemBuilder: (context, index) {
+            final word = analysis.words[index];
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    word.arabicText,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: ThemeHelper.getTextPrimaryColor(context),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (true)
+                        Text(
+                          word.transliteration,
+                          style: TextStyle(
+                            color: ThemeHelper.getTextSecondaryColor(context),
+                          ),
+                        ),
+                      if (true)
+                        Text(
+                          word.translation,
+                          style: TextStyle(
+                            color: ThemeHelper.getTextPrimaryColor(context),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          itemCount: analysis.words.length,
+        );
+      },
     );
   }
 }
