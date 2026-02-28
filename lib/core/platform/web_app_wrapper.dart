@@ -309,7 +309,7 @@ class WebAppWrapper extends ConsumerWidget {
     // This would need to be implemented based on current screen context
     // For now, just show a message
     if (kDebugMode) {
-      print('Page navigation: ${direction > 0 ? 'Next' : 'Previous'}');
+      debugPrint('Page navigation: ${direction > 0 ? 'Next' : 'Previous'}');
     }
   }
 
@@ -317,7 +317,7 @@ class WebAppWrapper extends ConsumerWidget {
     // This would need to be implemented based on current audio state
     // For now, just show a message
     if (kDebugMode) {
-      print('Audio control: Play/Pause');
+      debugPrint('Audio control: Play/Pause');
     }
   }
 }

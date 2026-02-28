@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import '../dto/verses_page_dto.dart';
 
@@ -29,49 +30,49 @@ class VersesApi {
     final r = await dio.get('/verses/by_chapter/$chapterId', queryParameters: q);
     // Debug
     // ignore: avoid_print
-    print(
+    debugPrint(
         'QuranAPI byChapter status: ${r.statusCode} url: ${r.requestOptions.uri}');
     try {
       final map = r.data as Map<String, dynamic>;
       final verses = map['verses'] as List<dynamic>?;
       // ignore: avoid_print
-      print('QuranAPI byChapter verseCount: ${verses?.length}');
+      debugPrint('QuranAPI byChapter verseCount: ${verses?.length}');
       
       // Debug: Check the first verse structure
       if (verses != null && verses.isNotEmpty) {
         final firstVerse = verses.first as Map<String, dynamic>;
-        print('DEBUG: First verse keys: ${firstVerse.keys.toList()}');
-        print('DEBUG: First verse has translations: ${firstVerse.containsKey('translations')}');
+        debugPrint('DEBUG: First verse keys: ${firstVerse.keys.toList()}');
+        debugPrint('DEBUG: First verse has translations: ${firstVerse.containsKey('translations')}');
         
         // Check if translations exist in the response
         if (firstVerse.containsKey('translations')) {
           final translations = firstVerse['translations'] as List<dynamic>?;
-          print('DEBUG: Translations count: ${translations?.length}');
+          debugPrint('DEBUG: Translations count: ${translations?.length}');
           if (translations != null && translations.isNotEmpty) {
             final firstTranslation = translations.first as Map<String, dynamic>;
-            print('DEBUG: First translation keys: ${firstTranslation.keys.toList()}');
+            debugPrint('DEBUG: First translation keys: ${firstTranslation.keys.toList()}');
           }
         } else {
           // If no translations field, check if there's a different field name
-          print('DEBUG: No translations field found. Checking for alternative field names...');
+          debugPrint('DEBUG: No translations field found. Checking for alternative field names...');
           final possibleFields = ['translation', 'text_translation', 'translated_text'];
           for (final field in possibleFields) {
             if (firstVerse.containsKey(field)) {
-              print('DEBUG: Found alternative field: $field');
+              debugPrint('DEBUG: Found alternative field: $field');
               final fieldData = firstVerse[field];
-              print('DEBUG: Field data type: ${fieldData.runtimeType}');
+              debugPrint('DEBUG: Field data type: ${fieldData.runtimeType}');
               if (fieldData is List) {
-                print('DEBUG: Field data length: ${fieldData.length}');
+                debugPrint('DEBUG: Field data length: ${fieldData.length}');
               }
             }
           }
         }
         
         // Print the full first verse for debugging
-        print('DEBUG: Full first verse data: $firstVerse');
+        debugPrint('DEBUG: Full first verse data: $firstVerse');
       }
     } catch (e) {
-      print('DEBUG: Error parsing API response: $e');
+      debugPrint('DEBUG: Error parsing API response: $e');
     }
     return VersesPageDto.fromJson(r.data as Map<String, dynamic>);
   }

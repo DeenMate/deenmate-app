@@ -166,12 +166,12 @@ class _HadithMainScreenState extends State<HadithMainScreen> {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         ),
         onTap: () {
-          print('DEBUG: Search bar tapped!');
+          debugPrint('DEBUG: Search bar tapped!');
           try {
             context.go('/hadith/search');
-            print('DEBUG: Navigation to /hadith/search attempted');
+            debugPrint('DEBUG: Navigation to /hadith/search attempted');
           } catch (e) {
-            print('DEBUG: Navigation error: $e');
+            debugPrint('DEBUG: Navigation error: $e');
           }
         },
         readOnly: true,
@@ -362,14 +362,14 @@ class _HadithMainScreenState extends State<HadithMainScreen> {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () {
-          print('DEBUG: Book card tapped! Book ID: ${book.id}');
+          debugPrint('DEBUG: Book card tapped! Book ID: ${book.id}');
           try {
             final route = '/hadith/collection/${book.id}';
-            print('DEBUG: Attempting to navigate to: $route');
+            debugPrint('DEBUG: Attempting to navigate to: $route');
             context.go(route);
-            print('DEBUG: Navigation attempted successfully');
+            debugPrint('DEBUG: Navigation attempted successfully');
           } catch (e) {
-            print('DEBUG: Navigation error: $e');
+            debugPrint('DEBUG: Navigation error: $e');
           }
         },
         child: Container(
@@ -473,7 +473,7 @@ class _HadithMainScreenState extends State<HadithMainScreen> {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () {
-          print('DEBUG: Topic card tapped! Topic ID: ${topic.id}');
+          debugPrint('DEBUG: Topic card tapped! Topic ID: ${topic.id}');
           context.push('/hadith/topics/${topic.id}');
         },
         child: Container(

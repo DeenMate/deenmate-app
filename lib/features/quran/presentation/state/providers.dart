@@ -125,11 +125,11 @@ final quranBackgroundDownloadProvider = FutureProvider<void>((ref) async {
       await prefs.setBool('quran_basic_downloaded', true);
 
       if (kDebugMode) {
-        print('Background Quran text download completed successfully');
+        debugPrint('Background Quran text download completed successfully');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Background Quran text download failed: $e');
+        debugPrint('Background Quran text download failed: $e');
       }
       // Don't rethrow - let the app continue functioning normally
     }
@@ -200,11 +200,11 @@ final lastReadProvider = StreamProvider<LastReadEntry?>((ref) async* {
 final lastReadUpdaterProvider =
     Provider<Future<void> Function(LastReadEntry)>((ref) {
   return (entry) async {
-    print(
+    debugPrint(
         'LastReadUpdater: Saving entry - Chapter: ${entry.chapterId}, Verse: ${entry.verseKey}');
     final box = await ref.read(_lastReadBoxProvider.future);
     await box.put('entry', entry.toMap());
-    print('LastReadUpdater: Entry saved to Hive successfully');
+    debugPrint('LastReadUpdater: Entry saved to Hive successfully');
     // The StreamProvider will automatically emit the new value
   };
 });
@@ -369,10 +369,10 @@ final quranAudioProvider =
 // -------------------- Translation Resources --------------------
 final translationResourcesProvider =
     FutureProvider.autoDispose<List<TranslationResourceDto>>((ref) async {
-  print('DEBUG: Loading translation resources...');
+  debugPrint('DEBUG: Loading translation resources...');
   final repo = ref.read(quranRepoProvider);
   final resources = await repo.getTranslationResources();
-  print('DEBUG: Loaded ${resources.length} translation resources');
+  debugPrint('DEBUG: Loaded ${resources.length} translation resources');
   return resources;
 });
 
@@ -854,7 +854,7 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
   }
 
   Future<void> updateTranslationIds(List<int> translationIds) async {
-    print('DEBUG: updateTranslationIds called with: $translationIds');
+    debugPrint('DEBUG: updateTranslationIds called with: $translationIds');
     final box = await ref.read(_prefsBoxProvider.future);
     final newPrefs = QuranPrefs(
       selectedTranslationIds: translationIds,
@@ -869,7 +869,7 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     );
     state = newPrefs;
     await box.put('prefs', newPrefs.toMap());
-    print(
+    debugPrint(
         'DEBUG: Translation IDs updated to: ${newPrefs.selectedTranslationIds}');
   }
 
@@ -882,10 +882,10 @@ class PrefsNotifier extends Notifier<QuranPrefs> {
     try {
       final versesBox = await Hive.openBox(boxes.Boxes.verses);
       await versesBox.clear();
-      print(
+      debugPrint(
           'DEBUG: Cleared verses cache to force fresh fetch with translation ID 20');
     } catch (e) {
-      print('DEBUG: Error clearing verses cache: $e');
+      debugPrint('DEBUG: Error clearing verses cache: $e');
     }
   }
 
@@ -1111,7 +1111,7 @@ class SurahPageArgs {
 final surahPageProvider =
     FutureProvider.family<VersesPageDto, SurahPageArgs>((ref, args) async {
   // ignore: avoid_print
-  print(
+  debugPrint(
       'Provider: surahPageProvider start ch=${args.chapterId} p=${args.page}');
   final repo = ref.read(quranRepoProvider);
   final prefs = ref.watch(prefsProvider);
@@ -1127,7 +1127,7 @@ final surahPageProvider =
       page: args.page,
     );
     // ignore: avoid_print
-    print('Provider: surahPageProvider got verses=${dto.verses.length}');
+    debugPrint('Provider: surahPageProvider got verses=${dto.verses.length}');
     return dto;
   } catch (e) {
     // Try offline fallback
@@ -1140,7 +1140,7 @@ final surahPageProvider =
         refresh: false,
       );
       // ignore: avoid_print
-      print('Provider: offline fallback hit verses=${dto.verses.length}');
+      debugPrint('Provider: offline fallback hit verses=${dto.verses.length}');
       return dto;
     } catch (_) {
       rethrow;
@@ -1193,7 +1193,7 @@ final juzListProvider = FutureProvider<List<JuzDto>>((ref) async {
   try {
     return await api.getJuzList();
   } catch (e) {
-    print('Error loading Juz list: $e');
+    debugPrint('Error loading Juz list: $e');
     return [];
   }
 });
@@ -1204,7 +1204,7 @@ final pagesProvider = FutureProvider<List<PageDto>>((ref) async {
   try {
     return await api.getPageList();
   } catch (e) {
-    print('Error loading Page list: $e');
+    debugPrint('Error loading Page list: $e');
     return [];
   }
 });
@@ -1215,7 +1215,7 @@ final hizbListProvider = FutureProvider<List<HizbDto>>((ref) async {
   try {
     return await api.getHizbList();
   } catch (e) {
-    print('Error loading Hizb list: $e');
+    debugPrint('Error loading Hizb list: $e');
     return [];
   }
 });
@@ -1226,7 +1226,7 @@ final rukuListProvider = FutureProvider<List<RukuDto>>((ref) async {
   try {
     return await api.getRukuList();
   } catch (e) {
-    print('Error loading Ruku list: $e');
+    debugPrint('Error loading Ruku list: $e');
     return [];
   }
 });
@@ -1238,7 +1238,7 @@ final versesByJuzProvider =
   try {
     return await api.getVersesByJuz(juzNumber);
   } catch (e) {
-    print('Error loading verses for Juz $juzNumber: $e');
+    debugPrint('Error loading verses for Juz $juzNumber: $e');
     return [];
   }
 });
@@ -1250,7 +1250,7 @@ final versesByPageProvider =
   try {
     return await api.getVersesByPage(pageNumber);
   } catch (e) {
-    print('Error loading verses for Page $pageNumber: $e');
+    debugPrint('Error loading verses for Page $pageNumber: $e');
     return [];
   }
 });
@@ -1262,7 +1262,7 @@ final versesByHizbProvider =
   try {
     return await api.getVersesByHizb(hizbNumber);
   } catch (e) {
-    print('Error loading verses for Hizb $hizbNumber: $e');
+    debugPrint('Error loading verses for Hizb $hizbNumber: $e');
     return [];
   }
 });
@@ -1274,7 +1274,7 @@ final versesByRukuProvider =
   try {
     return await api.getVersesByRuku(rukuNumber);
   } catch (e) {
-    print('Error loading verses for Ruku $rukuNumber: $e');
+    debugPrint('Error loading verses for Ruku $rukuNumber: $e');
     return [];
   }
 });

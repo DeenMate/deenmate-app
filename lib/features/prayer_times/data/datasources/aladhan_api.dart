@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
@@ -336,7 +337,7 @@ class AladhanApi {
         status: _determinePrayerStatus(prayerTime),
       );
     } catch (e) {
-      print(
+      debugPrint(
           'AlAdhan API: Error parsing prayer time "$timeString" for $name: $e');
       // Return a default time if parsing fails
       final defaultTime =

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../core/widgets/responsive_layout.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../state/providers.dart';
 import 'mobile_font_controls.dart';
@@ -175,7 +176,7 @@ class _MobileFontControlsButtonState extends ConsumerState<MobileFontControlsBut
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isTablet = MediaQuery.of(context).size.width >= 768;
+    final isTablet = ResponsiveLayout.isTablet(context);
     
     return AnimatedBuilder(
       animation: _visibilityAnimation,

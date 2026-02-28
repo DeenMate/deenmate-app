@@ -39,7 +39,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
 
-    print(
+    debugPrint(
         'AppLifecycleManager: App state changed from $_lastAppState to $state');
 
     switch (state) {
@@ -66,7 +66,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
 
   void _handleAppMinimize() {
     _lastMinimizeTime = DateTime.now();
-    print('AppLifecycleManager: App minimized at $_lastMinimizeTime');
+    debugPrint('AppLifecycleManager: App minimized at $_lastMinimizeTime');
   }
 
   void _handleAppMaximize() async {
@@ -75,7 +75,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
         ? now.difference(_lastMinimizeTime!).inMinutes
         : 0;
 
-    print(
+    debugPrint(
         'AppLifecycleManager: App maximized. Time since minimize: ${timeSinceMinimize} minutes');
 
     // Always sync when app becomes active, but with different strategies based on time
@@ -83,7 +83,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
   }
 
   void _handleAppDetach() {
-    print('AppLifecycleManager: App detached');
+    debugPrint('AppLifecycleManager: App detached');
     // Clean up any resources if needed
   }
 
@@ -96,7 +96,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
           result == ConnectivityResult.mobile ||
           result == ConnectivityResult.ethernet);
 
-      print('AppLifecycleManager: Network available: $hasNetwork');
+      debugPrint('AppLifecycleManager: Network available: $hasNetwork');
 
       // Always ensure live providers are updated for real-time prayer time switching
       ref.invalidate(currentAndNextPrayerLiveProvider);
@@ -104,7 +104,7 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
 
       if (hasNetwork) {
         // Refresh prayer times on minimize/maximize for accurate data
-        print('AppLifecycleManager: Refreshing prayer times from API');
+        debugPrint('AppLifecycleManager: Refreshing prayer times from API');
 
         try {
           // Force fresh API call
@@ -114,24 +114,24 @@ class _AppLifecycleManagerState extends ConsumerState<AppLifecycleManager>
 
           // Wait for the refresh to complete
           await ref.read(currentPrayerTimesProvider.future);
-          print(
+          debugPrint(
               'AppLifecycleManager: Successfully refreshed prayer times from API');
         } catch (e) {
-          print('AppLifecycleManager: Error refreshing prayer times: $e');
+          debugPrint('AppLifecycleManager: Error refreshing prayer times: $e');
           // Fallback: just update timestamp
           try {
             await ref.read(updateLastUpdatedProvider.future);
-            print(
+            debugPrint(
                 'AppLifecycleManager: Updated last updated timestamp as fallback');
           } catch (e2) {
-            print('AppLifecycleManager: Error updating timestamp: $e2');
+            debugPrint('AppLifecycleManager: Error updating timestamp: $e2');
           }
         }
       } else {
-        print('AppLifecycleManager: No network available, using cached data');
+        debugPrint('AppLifecycleManager: No network available, using cached data');
       }
     } catch (e) {
-      print('AppLifecycleManager: Error syncing app data: $e');
+      debugPrint('AppLifecycleManager: Error syncing app data: $e');
     }
   }
 

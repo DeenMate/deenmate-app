@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../core/widgets/responsive_layout.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../state/providers.dart';
 import 'mobile_font_controls_button.dart';
@@ -147,7 +148,7 @@ class _MobileReadingModeOverlayState extends ConsumerState<MobileReadingModeOver
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final isTablet = screenSize.width >= 768;
+    final isTablet = screenSize.width >= ResponsiveLayout.tabletBreakpoint;
     final isLandscape = screenSize.width > screenSize.height;
     final safeAreaPadding = MediaQuery.of(context).padding;
     
@@ -321,7 +322,7 @@ class _MobileReadingModeOverlayState extends ConsumerState<MobileReadingModeOver
 
   Widget _buildFloatingControls() {
     final screenSize = MediaQuery.of(context).size;
-    final isTablet = screenSize.width >= 768;
+    final isTablet = screenSize.width >= ResponsiveLayout.tabletBreakpoint;
     final isLandscape = screenSize.width > screenSize.height;
     final safeAreaPadding = MediaQuery.of(context).padding;
     
@@ -892,13 +893,13 @@ class _MobileReadingModeOverlayState extends ConsumerState<MobileReadingModeOver
   void _navigatePrevious() {
     HapticFeedback.lightImpact();
     // Implement previous navigation
-    print('Navigate to previous');
+    debugPrint('Navigate to previous');
   }
 
   void _navigateNext() {
     HapticFeedback.lightImpact();
     // Implement next navigation  
-    print('Navigate to next');
+    debugPrint('Navigate to next');
   }
 }
 

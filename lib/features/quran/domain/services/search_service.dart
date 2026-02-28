@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../data/dto/verse_dto.dart';
 import '../../data/dto/chapter_dto.dart';
 import '../../data/repo/quran_repository.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
 
 /// Advanced search service for Quran content
@@ -69,7 +70,7 @@ class QuranSearchService {
       return limitedResults;
     } catch (e) {
       if (kDebugMode) {
-        print('Search error: $e');
+        debugPrint('Search error: $e');
       }
       return [];
     }
@@ -153,7 +154,7 @@ class QuranSearchService {
       return results;
     } catch (e) {
       if (kDebugMode) {
-        print('Chapter search error: $e');
+        debugPrint('Chapter search error: $e');
       }
       return [];
     }
@@ -183,7 +184,7 @@ class QuranSearchService {
       return results;
     } catch (e) {
       if (kDebugMode) {
-        print('Reference search error: $e');
+        debugPrint('Reference search error: $e');
       }
       return [];
     }
@@ -239,7 +240,7 @@ class QuranSearchService {
       return results;
     } catch (e) {
       if (kDebugMode) {
-        print('Advanced search error: $e');
+        debugPrint('Advanced search error: $e');
       }
       return results;
     }
@@ -290,7 +291,7 @@ class QuranSearchService {
       return suggestions.take(10).toList();
     } catch (e) {
       if (kDebugMode) {
-        print('Suggestions error: $e');
+        debugPrint('Suggestions error: $e');
       }
       return [];
     }
@@ -316,7 +317,7 @@ class QuranSearchService {
       await box.put('searches', history);
     } catch (e) {
       if (kDebugMode) {
-        print('Save search history error: $e');
+        debugPrint('Save search history error: $e');
       }
     }
   }
@@ -329,7 +330,7 @@ class QuranSearchService {
       return history.cast<String>();
     } catch (e) {
       if (kDebugMode) {
-        print('Get search history error: $e');
+        debugPrint('Get search history error: $e');
       }
       return [];
     }
@@ -342,7 +343,7 @@ class QuranSearchService {
       await box.delete('searches');
     } catch (e) {
       if (kDebugMode) {
-        print('Clear search history error: $e');
+        debugPrint('Clear search history error: $e');
       }
     }
   }
@@ -392,7 +393,7 @@ class QuranSearchService {
       
     } catch (e) {
       if (kDebugMode) {
-        print('Arabic search error: $e');
+        debugPrint('Arabic search error: $e');
       }
     }
     
@@ -448,7 +449,7 @@ class QuranSearchService {
       
     } catch (e) {
       if (kDebugMode) {
-        print('Translation search error: $e');
+        debugPrint('Translation search error: $e');
       }
     }
     
@@ -759,7 +760,7 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
             }
             
           } catch (e) {
-            // Skip invalid verse data
+            AppLogger.warning('QuranSearchService', 'Skipping invalid verse data', error: e);
           }
         }
         
@@ -770,7 +771,7 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
       return results;
     } catch (e) {
       if (kDebugMode) {
-        print('Offline cache search error: $e');
+        debugPrint('Offline cache search error: $e');
       }
       return [];
     }
@@ -870,7 +871,7 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
       return [];
     } catch (e) {
       if (kDebugMode) {
-        print('API search error: $e');
+        debugPrint('API search error: $e');
       }
       return [];
     }
@@ -911,7 +912,7 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
       
     } catch (e) {
       if (kDebugMode) {
-        print('Transliteration search error: $e');
+        debugPrint('Transliteration search error: $e');
       }
     }
     
@@ -958,7 +959,7 @@ extension _QuranSearchServiceHelpers on QuranSearchService {
       
     } catch (e) {
       if (kDebugMode) {
-        print('Bengali search error: $e');
+        debugPrint('Bengali search error: $e');
       }
     }
     

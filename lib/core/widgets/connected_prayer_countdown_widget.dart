@@ -22,7 +22,6 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
     with TickerProviderStateMixin {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
-  Timer? _timer;
 
   @override
   void initState() {
@@ -39,18 +38,10 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
       parent: _pulseController,
       curve: Curves.easeInOut,
     ),);
-    
-    // Start timer for live updates
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (mounted) {
-        setState(() {});
-      }
-    });
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _pulseController.dispose();
     super.dispose();
   }
@@ -207,8 +198,11 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
                   Expanded(
                     child: _buildTimeInfo(
                       '${'time_remaining'.bn} | Remaining',
-                      _formatDuration(currentPrayer.timeUntilNextPrayer),
+                      '',
                       Icons.timer,
+                      valueOverride: _LiveCountdownText(
+                        initialDuration: currentPrayer.timeUntilNextPrayer,
+                      ),
                     ),
                   ),
                 ],
@@ -244,7 +238,7 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
     );
   }
 
-  Widget _buildTimeInfo(String label, String value, IconData icon) {
+  Widget _buildTimeInfo(String label, String value, IconData icon, {Widget? valueOverride}) {
     return Column(
       children: [
         Icon(
@@ -263,7 +257,7 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 4),
-        Text(
+        valueOverride ?? Text(
           value,
           style: const TextStyle(
             color: Colors.white,
@@ -506,15 +500,70 @@ class _ConnectedPrayerCountdownWidgetState extends ConsumerState<ConnectedPrayer
     );
   }
 
-  String _formatDuration(Duration duration) {
+}
+
+/// Lightweight widget that owns its own 1-second timer so only the
+/// countdown text rebuilds each tick — not the entire card/gradient tree.
+class _LiveCountdownText extends StatefulWidget {
+  const _LiveCountdownText({required this.initialDuration});
+
+  /// Snapshot duration from the provider; used to derive the target time.
+  final Duration initialDuration;
+
+  @override
+  State<_LiveCountdownText> createState() => _LiveCountdownTextState();
+}
+
+class _LiveCountdownTextState extends State<_LiveCountdownText> {
+  late DateTime _targetTime;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _targetTime = DateTime.now().add(widget.initialDuration);
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant _LiveCountdownText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if ((widget.initialDuration - oldWidget.initialDuration).abs() > const Duration(seconds: 2)) {
+      // Provider emitted a new snapshot — recalibrate target.
+      _targetTime = DateTime.now().add(widget.initialDuration);
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final remaining = _targetTime.difference(DateTime.now());
+    return Text(
+      _formatDuration(remaining),
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        fontFeatures: [FontFeature.tabularFigures()],
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  static String _formatDuration(Duration duration) {
     if (duration.isNegative) {
       return 'Passed | অতিবাহিত';
     }
-
     final hours = duration.inHours;
     final minutes = duration.inMinutes % 60;
     final seconds = duration.inSeconds % 60;
-
     if (hours > 0) {
       return '${hours}h ${minutes}m';
     } else if (minutes > 0) {

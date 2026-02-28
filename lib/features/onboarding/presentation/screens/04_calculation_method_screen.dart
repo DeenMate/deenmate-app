@@ -375,7 +375,7 @@ class _CalculationMethodScreenState extends State<CalculationMethodScreen> {
     // Save calculation method preference
     if (_selectedMethod != null) {
       await PrayerSettingsState.instance.setCalculationMethod(_selectedMethod!.name.toUpperCase());
-      print('Saved calculation method: ${_selectedMethod!.name.toUpperCase()}');
+      debugPrint('Saved calculation method: ${_selectedMethod!.name.toUpperCase()}');
     }
     
     // Navigate to next onboarding screen

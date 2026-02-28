@@ -63,11 +63,11 @@ class BookmarksService {
       _bookmarksController.add(bookmarks);
       
       if (kDebugMode) {
-        print('Bookmark added/updated for verse: $verseKey');
+        debugPrint('Bookmark added/updated for verse: $verseKey');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error adding bookmark: $e');
+        debugPrint('Error adding bookmark: $e');
       }
       rethrow;
     }
@@ -85,11 +85,11 @@ class BookmarksService {
       _bookmarksController.add(bookmarks);
       
       if (kDebugMode) {
-        print('Bookmark removed for verse: $verseKey');
+        debugPrint('Bookmark removed for verse: $verseKey');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error removing bookmark: $e');
+        debugPrint('Error removing bookmark: $e');
       }
       rethrow;
     }
@@ -112,12 +112,12 @@ class BookmarksService {
         _bookmarksController.add(bookmarks);
         
         if (kDebugMode) {
-          print('Bookmark note updated for verse: $verseKey');
+          debugPrint('Bookmark note updated for verse: $verseKey');
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error updating bookmark note: $e');
+        debugPrint('Error updating bookmark note: $e');
       }
       rethrow;
     }
@@ -140,12 +140,12 @@ class BookmarksService {
         _bookmarksController.add(bookmarks);
         
         if (kDebugMode) {
-          print('Bookmark category updated for verse: $verseKey');
+          debugPrint('Bookmark category updated for verse: $verseKey');
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error updating bookmark category: $e');
+        debugPrint('Error updating bookmark category: $e');
       }
       rethrow;
     }
@@ -168,12 +168,12 @@ class BookmarksService {
         _bookmarksController.add(bookmarks);
         
         if (kDebugMode) {
-          print('Bookmark tags updated for verse: $verseKey');
+          debugPrint('Bookmark tags updated for verse: $verseKey');
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error updating bookmark tags: $e');
+        debugPrint('Error updating bookmark tags: $e');
       }
       rethrow;
     }
@@ -190,7 +190,7 @@ class BookmarksService {
           .toList();
     } catch (e) {
       if (kDebugMode) {
-        print('Error getting bookmarks: $e');
+        debugPrint('Error getting bookmarks: $e');
       }
       return [];
     }
@@ -393,11 +393,11 @@ class BookmarksService {
       _categoriesController.add(categories);
       
       if (kDebugMode) {
-        print('Category created: $name');
+        debugPrint('Category created: $name');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error creating category: $e');
+        debugPrint('Error creating category: $e');
       }
       rethrow;
     }
@@ -429,12 +429,12 @@ class BookmarksService {
         _categoriesController.add(categories);
         
         if (kDebugMode) {
-          print('Category updated: $id');
+          debugPrint('Category updated: $id');
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error updating category: $e');
+        debugPrint('Error updating category: $e');
       }
       rethrow;
     }
@@ -464,11 +464,11 @@ class BookmarksService {
       _bookmarksController.add(bookmarks);
       
       if (kDebugMode) {
-        print('Category deleted: $id');
+        debugPrint('Category deleted: $id');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error deleting category: $e');
+        debugPrint('Error deleting category: $e');
       }
       rethrow;
     }
@@ -485,7 +485,7 @@ class BookmarksService {
           .toList();
     } catch (e) {
       if (kDebugMode) {
-        print('Error getting categories: $e');
+        debugPrint('Error getting categories: $e');
       }
       return [];
     }
@@ -556,11 +556,11 @@ class BookmarksService {
       _categoriesController.add([]);
       
       if (kDebugMode) {
-        print('All bookmarks and categories cleared');
+        debugPrint('All bookmarks and categories cleared');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error clearing bookmarks: $e');
+        debugPrint('Error clearing bookmarks: $e');
       }
       rethrow;
     }

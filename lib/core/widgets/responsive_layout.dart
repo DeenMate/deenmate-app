@@ -3,7 +3,17 @@ import 'package:flutter/material.dart';
 /// Responsive layout widget for handling different screen sizes and platforms
 /// Ensures Islamic app works beautifully on mobile, tablet, and desktop
 class ResponsiveLayout extends StatelessWidget {
-  
+  /// Breakpoint threshold for tablet layouts (768px).
+  /// Use this instead of hardcoding `>= 768` in individual widgets.
+  static const double tabletBreakpoint = 768;
+
+  /// Breakpoint threshold for desktop layouts.
+  static const double desktopBreakpoint = 1200;
+
+  /// Returns true when the current screen width meets the tablet threshold.
+  static bool isTablet(BuildContext context) =>
+      MediaQuery.of(context).size.width >= tabletBreakpoint;
+
   const ResponsiveLayout({
     required this.mobile, super.key,
     this.tablet,

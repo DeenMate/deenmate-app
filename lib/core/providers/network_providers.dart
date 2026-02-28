@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../network/network_info.dart';
@@ -16,14 +17,16 @@ final dioProvider = Provider<Dio>((ref) {
     'User-Agent': 'DeenMate/1.0.0',
   };
 
-  // Interceptors: logging then retry
-  dio.interceptors.add(
-    LogInterceptor(
-      requestBody: true,
-      responseBody: true,
-      logPrint: (obj) => print('HTTP: $obj'),
-    ),
-  );
+  // Interceptors: logging (debug only) then retry
+  if (kDebugMode) {
+    dio.interceptors.add(
+      LogInterceptor(
+        requestBody: true,
+        responseBody: true,
+        logPrint: (obj) => debugPrint('HTTP: $obj'),
+      ),
+    );
+  }
   dio.interceptors.add(RetryInterceptor(dio: dio));
 
   return dio;

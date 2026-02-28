@@ -43,7 +43,7 @@ class PageReaderScreen extends ConsumerWidget {
               }
             } catch (e) {
               // Fallback navigation
-              print('Navigation error: $e');
+              debugPrint('Navigation error: $e');
               context.go('/quran');
             }
           },

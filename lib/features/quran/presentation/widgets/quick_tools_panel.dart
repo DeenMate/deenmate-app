@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../core/widgets/responsive_layout.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 
 /// Mobile-optimized Quick Tools Panel for Quran reading interface
@@ -147,7 +148,7 @@ class _QuickToolsPanelState extends ConsumerState<QuickToolsPanel>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isTablet = MediaQuery.of(context).size.width >= 768;
+    final isTablet = ResponsiveLayout.isTablet(context);
     
     return Stack(
       children: [

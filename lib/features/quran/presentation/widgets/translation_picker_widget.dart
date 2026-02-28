@@ -51,10 +51,10 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
     List<TranslationResourceDto> resources,
     QuranPrefs prefs,
   ) {
-    print('DEBUG: Building translation list with ${resources.length} resources');
-    print('DEBUG: Current selected translation IDs: ${prefs.selectedTranslationIds}');
+    debugPrint('DEBUG: Building translation list with ${resources.length} resources');
+    debugPrint('DEBUG: Current selected translation IDs: ${prefs.selectedTranslationIds}');
     for (final resource in resources.take(5)) {
-      print('DEBUG: Resource ${resource.id}: ${resource.name} (${resource.languageName})');
+      debugPrint('DEBUG: Resource ${resource.id}: ${resource.name} (${resource.languageName})');
     }
     return Column(
       children: [
@@ -109,12 +109,12 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
                 onChanged: (selected) {
                   if (selected == null) return;
                   
-                  print('DEBUG: Translation ${resource.id} (${resource.name}) ${selected ? 'selected' : 'deselected'}');
+                  debugPrint('DEBUG: Translation ${resource.id} (${resource.name}) ${selected ? 'selected' : 'deselected'}');
                   final notifier = ref.read(prefsProvider.notifier);
                   if (selected) {
                     // Add translation
                     final newIds = [...prefs.selectedTranslationIds, resource.id];
-                    print('DEBUG: Adding translation ${resource.id}, new IDs: $newIds');
+                    debugPrint('DEBUG: Adding translation ${resource.id}, new IDs: $newIds');
                     notifier.updateTranslationIds(newIds);
                   } else {
                     // Remove translation (but keep at least one)
@@ -122,10 +122,10 @@ class _TranslationPickerWidgetState extends ConsumerState<TranslationPickerWidge
                       final newIds = prefs.selectedTranslationIds
                           .where((id) => id != resource.id)
                           .toList();
-                      print('DEBUG: Removing translation ${resource.id}, new IDs: $newIds');
+                      debugPrint('DEBUG: Removing translation ${resource.id}, new IDs: $newIds');
                       notifier.updateTranslationIds(newIds);
                     } else {
-                      print('DEBUG: Cannot remove translation ${resource.id} - only one left');
+                      debugPrint('DEBUG: Cannot remove translation ${resource.id} - only one left');
                     }
                   }
                 },

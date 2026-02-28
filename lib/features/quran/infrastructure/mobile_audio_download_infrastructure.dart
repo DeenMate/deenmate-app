@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import '../../../../core/utils/app_logger.dart';
 import '../../domain/services/audio_service.dart' as audio_service;
 
 /// Mobile-optimized download infrastructure for Quran audio
@@ -460,7 +461,9 @@ class MobileAudioDownloadInfrastructure {
           if (await file.exists()) {
             await file.delete();
           }
-        } catch (_) {}
+        } catch (e) {
+          AppLogger.warning('AudioDownload', 'Failed to clean up partial download: $localPath', error: e);
+        }
 
         if (attempt == _retryAttempts) {
           return DownloadResult.failed(

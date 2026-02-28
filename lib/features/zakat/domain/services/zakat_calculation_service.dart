@@ -4,7 +4,6 @@
 import '../entities/zakat_calculation.dart';
 import '../entities/zakat_wealth.dart';
 import '../entities/nisab_threshold.dart';
-import '../entities/nisab_threshold.dart';
 
 /// Service for performing Zakat calculations according to Islamic law
 class ZakatCalculationService {

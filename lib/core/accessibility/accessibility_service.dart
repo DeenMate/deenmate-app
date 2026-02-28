@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../storage/hive_boxes.dart' as boxes;
+import '../utils/app_logger.dart';
 
 /// Comprehensive accessibility service for the Quran app
 /// Supports screen readers, high contrast, large text, voice commands, and more
@@ -322,7 +323,7 @@ class AccessibilityService extends ChangeNotifier {
       final box = await Hive.openBox(boxes.Boxes.prefs);
       await box.put(_prefsKey, _preferences.toMap());
     } catch (e) {
-      // Handle save error gracefully
+      AppLogger.error('Accessibility', 'Failed to save preferences', error: e);
     }
   }
 

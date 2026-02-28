@@ -1,10 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/providers/network_providers.dart';
+import '../../../../core/providers/network_providers.dart' as net_core;
 import 'package:connectivity_plus/connectivity_plus.dart';
 // import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../core/providers/network_providers.dart' as net_core;
 import 'dart:async';
 
 // import '../../../onboarding/presentation/providers/onboarding_providers.dart';
@@ -37,14 +36,9 @@ import '../../domain/usecases/mark_prayer_completed_usecase.dart';
 /// Prayer Times Dependency Injection Providers
 /// Following Clean Architecture with Riverpod 2.x
 
-// Core Dependencies: reuse central Dio with interceptors
-final dioProvider = Provider<Dio>((ref) {
-  return ref.read(net_core.dioProvider);
-});
-
-// Data Sources
+// Data Sources — use core dioProvider from network_providers.dart
 final aladhanApiProvider = Provider<AladhanApi>((ref) {
-  final dio = ref.read(dioProvider);
+  final dio = ref.read(net_core.dioProvider);
   return AladhanApi(dio);
 });
 
@@ -154,15 +148,15 @@ final recommendedCalculationMethodsProvider =
 // Prayer Settings Provider using global state
 final prayerSettingsProvider =
     FutureProvider<PrayerCalculationSettings>((ref) async {
-  print('=== PRAYER SETTINGS PROVIDER START ===');
+  debugPrint('=== PRAYER SETTINGS PROVIDER START ===');
 
   // Load settings from global state
   await PrayerSettingsState.instance.loadSettings();
   final method = PrayerSettingsState.instance.calculationMethod;
   final madhhabString = PrayerSettingsState.instance.madhhab;
 
-  print('PrayerSettingsProvider: Using calculation method: $method');
-  print('=== PRAYER SETTINGS PROVIDER END ===');
+  debugPrint('PrayerSettingsProvider: Using calculation method: $method');
+  debugPrint('=== PRAYER SETTINGS PROVIDER END ===');
 
   return PrayerCalculationSettings(
     calculationMethod: method,
@@ -187,7 +181,7 @@ final currentCalculationMethodProvider =
 
 // Current Prayer Times Provider
 final currentPrayerTimesProvider = FutureProvider<PrayerTimes>((ref) async {
-  print('PrayerTimesProvider: Starting to fetch prayer times...');
+  debugPrint('PrayerTimesProvider: Starting to fetch prayer times...');
   try {
     // Try preferred location first (manual city), then GPS fallback inside repo
     final repository = ref.read(prayerTimesRepositoryProvider);
@@ -219,17 +213,17 @@ final currentPrayerTimesProvider = FutureProvider<PrayerTimes>((ref) async {
     return result.fold(
       (failure) {
         // If API fails, throw the failure instead of using mock data
-        print('PrayerTimesProvider: API failed: ${failure.message}');
+        debugPrint('PrayerTimesProvider: API failed: ${failure.message}');
         throw failure;
       },
       (prayerTimes) {
-        print('PrayerTimesProvider: Successfully got prayer times from API');
+        debugPrint('PrayerTimesProvider: Successfully got prayer times from API');
         return prayerTimes;
       },
     );
   } catch (e) {
     // If online fetch fails, try to serve cached data immediately
-    print('PrayerTimesProvider: Error getting prayer times: $e');
+    debugPrint('PrayerTimesProvider: Error getting prayer times: $e');
     final repo = ref.read(prayerTimesRepositoryProvider);
     final preferred = await repo.getPreferredLocation();
     final preferredLoc = preferred.fold<Location?>(
@@ -303,11 +297,11 @@ final cachedCurrentPrayerTimesProvider =
 // Current and Next Prayer Provider
 final currentAndNextPrayerProvider = FutureProvider<PrayerDetail>((ref) async {
   try {
-    print('=== CURRENT AND NEXT PRAYER PROVIDER START ===');
+    debugPrint('=== CURRENT AND NEXT PRAYER PROVIDER START ===');
 
     // Ensure settings are fresh
     final settings = await ref.read(prayerSettingsProvider.future);
-    print(
+    debugPrint(
         'CurrentAndNextPrayer: Using calculation method: ${settings.calculationMethod}');
 
     final usecase = ref.read(getCurrentAndNextPrayerUsecaseProvider);
@@ -322,7 +316,7 @@ final currentAndNextPrayerProvider = FutureProvider<PrayerDetail>((ref) async {
 
     final Location location =
         preferred ?? await ref.read(currentLocationProvider.future);
-    print('CurrentAndNextPrayer: Location source = '
+    debugPrint('CurrentAndNextPrayer: Location source = '
         '${preferred != null ? 'preferred' : 'gps'}, '
         'lat=${location.latitude}, lon=${location.longitude}');
 
@@ -333,7 +327,7 @@ final currentAndNextPrayerProvider = FutureProvider<PrayerDetail>((ref) async {
 
     return result.fold(
       (failure) {
-        print('API failed for current/next prayer: ${failure.message}');
+        debugPrint('API failed for current/next prayer: ${failure.message}');
         throw failure;
       },
       (data) {
@@ -362,7 +356,7 @@ final currentAndNextPrayerProvider = FutureProvider<PrayerDetail>((ref) async {
       },
     );
   } catch (e) {
-    print('Error getting current/next prayer: $e');
+    debugPrint('Error getting current/next prayer: $e');
     throw e;
   }
 });
@@ -875,7 +869,7 @@ final timeTickerProvider = StreamProvider<DateTime>((ref) async* {
   yield DateTime.now();
   yield* Stream.periodic(const Duration(seconds: 15), (_) {
     final now = DateTime.now();
-    print('TimeTicker: Tick at ${now.hour}:${now.minute}:${now.second}');
+    debugPrint('TimeTicker: Tick at ${now.hour}:${now.minute}:${now.second}');
     return now;
   });
 });
@@ -979,7 +973,7 @@ final currentAndNextPrayerLiveProvider =
       // Log prayer state changes
       if (updated.currentPrayer != initial.currentPrayer ||
           updated.nextPrayer != initial.nextPrayer) {
-        print(
+        debugPrint(
             'PrayerStateChange: ${initial.currentPrayer}->${updated.currentPrayer}, ${initial.nextPrayer}->${updated.nextPrayer}');
       }
 
@@ -1038,14 +1032,14 @@ final dailyPrayerTimesProvider =
     return result.fold(
       (failure) {
         // If API fails, throw the failure instead of using mock data
-        print('API failed for daily prayer times: ${failure.message}');
+        debugPrint('API failed for daily prayer times: ${failure.message}');
         throw failure;
       },
       (prayerTimes) => prayerTimes,
     );
   } catch (e) {
     // If any error occurs, throw the error instead of using mock data
-    print('Error getting daily prayer times: $e');
+    debugPrint('Error getting daily prayer times: $e');
     throw e;
   }
 });
@@ -1278,11 +1272,11 @@ final prayerTimesScheduledRefreshProvider = Provider<void>((ref) {
     }
 
     final delay = nextRefresh.difference(now);
-    print(
+    debugPrint(
         'ScheduledRefresh: Next refresh at ${nextRefresh.hour}:${nextRefresh.minute} (in ${delay.inHours}h ${delay.inMinutes.remainder(60)}m)');
 
     timer = Timer(delay, () {
-      print(
+      debugPrint(
           'ScheduledRefresh: Refreshing prayer times (${DateTime.now().hour}:${DateTime.now().minute})');
       ref.invalidate(currentPrayerTimesProvider);
       ref.invalidate(currentAndNextPrayerProvider);
@@ -1302,7 +1296,7 @@ final prayerTimesScheduledRefreshProvider = Provider<void>((ref) {
 /// Revalidate prayer times when network becomes available
 final prayerTimesConnectivityRefreshProvider = Provider<void>((ref) {
   ref.listen<AsyncValue<List<ConnectivityResult>>>(
-    connectivityStreamProvider,
+    net_core.connectivityStreamProvider,
     (previous, next) {
       if (!next.hasValue) return;
       final results = next.value ?? const <ConnectivityResult>[];
@@ -1311,11 +1305,11 @@ final prayerTimesConnectivityRefreshProvider = Provider<void>((ref) {
           r == ConnectivityResult.mobile ||
           r == ConnectivityResult.ethernet);
 
-      print(
+      debugPrint(
           'ConnectivityRefresh: Network status changed - hasNetwork: $hasNetwork');
 
       if (hasNetwork) {
-        print(
+        debugPrint(
             'ConnectivityRefresh: Network available, refreshing prayer times');
 
         // Refresh prayer times when network becomes available
@@ -1341,9 +1335,9 @@ final updateLastUpdatedProvider = FutureProvider<void>((ref) async {
       await repo.cachePrayerTimes([updatedTimes]);
     }
 
-    print('UpdateLastUpdated: Successfully updated last updated timestamp');
+    debugPrint('UpdateLastUpdated: Successfully updated last updated timestamp');
   } catch (e) {
-    print('UpdateLastUpdated: Error updating last updated timestamp: $e');
+    debugPrint('UpdateLastUpdated: Error updating last updated timestamp: $e');
   }
 });
 
@@ -1353,7 +1347,7 @@ final prayerTimesSettingsRefreshProvider = Provider<void>((ref) {
     prayerSettingsProvider,
     (previous, next) {
       if (next.hasValue && previous?.value != next.value) {
-        print(
+        debugPrint(
             'SettingsRefresh: Prayer settings changed, refreshing prayer times');
         ref.invalidate(currentPrayerTimesProvider);
         ref.invalidate(currentAndNextPrayerProvider);

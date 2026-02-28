@@ -64,7 +64,7 @@ class EnhancedLanguageSwitcher {
       }
       return false;
     } catch (e) {
-      print('Global language switch failed: $e');
+      debugPrint('Global language switch failed: $e');
       return false;
     }
   }

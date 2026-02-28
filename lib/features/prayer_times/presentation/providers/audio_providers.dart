@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
 import '../../../../core/error/failures.dart';
+import '../../../../core/utils/app_logger.dart';
 
 /// Audio state for Athan playback
 class AthanAudioState {
@@ -47,25 +48,32 @@ class AthanAudioNotifier extends StateNotifier<AthanAudioState> {
 
   final AudioPlayer _audioPlayer = AudioPlayer();
   Timer? _previewStopTimer;
+  final List<StreamSubscription> _subscriptions = [];
 
   void _setupAudioPlayer() {
     // Listen to player state changes
-    _audioPlayer.onPlayerStateChanged.listen((PlayerState playerState) {
-      state = state.copyWith(
-        isPlaying: playerState == PlayerState.playing,
-        isLoading: playerState == PlayerState.playing,
-      );
-    });
+    _subscriptions.add(
+      _audioPlayer.onPlayerStateChanged.listen((PlayerState playerState) {
+        state = state.copyWith(
+          isPlaying: playerState == PlayerState.playing,
+          isLoading: playerState == PlayerState.playing,
+        );
+      }),
+    );
 
     // Listen to duration changes
-    _audioPlayer.onDurationChanged.listen((Duration duration) {
-      state = state.copyWith(duration: duration);
-    });
+    _subscriptions.add(
+      _audioPlayer.onDurationChanged.listen((Duration duration) {
+        state = state.copyWith(duration: duration);
+      }),
+    );
 
     // Listen to position changes
-    _audioPlayer.onPositionChanged.listen((Duration position) {
-      state = state.copyWith(position: position);
-    });
+    _subscriptions.add(
+      _audioPlayer.onPositionChanged.listen((Duration position) {
+        state = state.copyWith(position: position);
+      }),
+    );
   }
 
   /// Preview Athan audio
@@ -96,7 +104,7 @@ class AthanAudioNotifier extends StateNotifier<AthanAudioState> {
             bytes = await rootBundle.load(path);
             break;
           } catch (fallbackError) {
-            // Continue to next fallback
+            AppLogger.warning('AthanAudio', 'Fallback path failed: $path', error: fallbackError);
           }
         }
       }
@@ -126,7 +134,9 @@ class AthanAudioNotifier extends StateNotifier<AthanAudioState> {
       _previewStopTimer = Timer(const Duration(seconds: 30), () async {
         try {
           await _audioPlayer.stop();
-        } catch (_) {}
+        } catch (e) {
+          AppLogger.warning('AthanAudio', 'Error stopping preview audio', error: e);
+        }
         if (mounted) {
           state = state.copyWith(isPlaying: false, isLoading: false);
         }
@@ -190,6 +200,9 @@ class AthanAudioNotifier extends StateNotifier<AthanAudioState> {
   @override
   void dispose() {
     _previewStopTimer?.cancel();
+    for (final sub in _subscriptions) {
+      sub.cancel();
+    }
     _audioPlayer.dispose();
     super.dispose();
   }

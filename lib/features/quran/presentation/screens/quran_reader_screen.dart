@@ -162,7 +162,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   }
 
   void _onTranslationPreferencesChanged() async {
-    print(
+    debugPrint(
         'DEBUG: _onTranslationPreferencesChanged - clearing cache and reloading page $_page');
 
     // Clear the page cache when translations change
@@ -181,7 +181,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
 
     for (final key in keysToDelete) {
       await vBox.delete(key);
-      print('DEBUG: Deleted cache key: $key');
+      debugPrint('DEBUG: Deleted cache key: $key');
     }
 
     // Reload the current page with new translations
@@ -231,7 +231,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
         _lastSavedVerseIndex = clampedIndex;
       }
     } catch (e) {
-      print('Error saving verse position: $e');
+      debugPrint('Error saving verse position: $e');
     }
   }
 
@@ -290,7 +290,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
     });
     try {
       final prefs = ref.read(prefsProvider);
-      print(
+      debugPrint(
           'DEBUG: Loading page $page with translation IDs: ${prefs.selectedTranslationIds}');
       final args = SurahPageArgs(
         widget.chapterId,
@@ -336,7 +336,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
         }
       }
     } catch (e) {
-      print('Reader: load failed for page=$page error=$e');
+      debugPrint('Reader: load failed for page=$page error=$e');
       if (isInitial) {
         _errorMessage = e.toString();
       }
@@ -378,10 +378,10 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
   Widget build(BuildContext context) {
     // Listen for translation preference changes in build method
     ref.listen(prefsProvider, (previous, next) {
-      print(
+      debugPrint(
           'DEBUG: Translation preferences changed from ${previous?.selectedTranslationIds} to ${next.selectedTranslationIds}');
       if (previous?.selectedTranslationIds != next.selectedTranslationIds) {
-        print('DEBUG: Calling _onTranslationPreferencesChanged');
+        debugPrint('DEBUG: Calling _onTranslationPreferencesChanged');
         _onTranslationPreferencesChanged();
       }
     });
@@ -838,7 +838,7 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
           // Translations
           // Debug: Check if translations exist
           Builder(builder: (context) {
-            print(
+            debugPrint(
                 'DEBUG: Verse ${verse.verseNumber} - translations.isNotEmpty: ${verse.translations.isNotEmpty}');
             return const SizedBox.shrink();
           }),
@@ -961,12 +961,12 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
     return resourcesAsync.when(
       data: (resources) {
         // Debug: Print all available translations and selected IDs
-        print(
+        debugPrint(
             'DEBUG: Available translations in verse: ${verse.translations.length}');
-        print(
+        debugPrint(
             'DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
         for (var translation in verse.translations) {
-          print(
+          debugPrint(
               'DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
         }
 
@@ -987,12 +987,12 @@ class _QuranReaderScreenState extends ConsumerState<QuranReaderScreen>
         }
 
         // Debug info to see what's happening
-        print(
+        debugPrint(
             'DEBUG: Available translations: ${verse.translations.length}, Selected: ${selectedTranslations.length}');
-        print(
+        debugPrint(
             'DEBUG: Selected translation IDs: ${prefs.selectedTranslationIds}');
         for (var translation in verse.translations) {
-          print(
+          debugPrint(
               'DEBUG: Translation resourceId: ${translation.resourceId}, text preview: ${translation.text.substring(0, translation.text.length > 30 ? 30 : translation.text.length)}...');
         }
 
