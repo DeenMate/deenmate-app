@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 
+import '../../../../core/utils/app_logger.dart';
 import '../../../../core/theme/islamic_theme.dart';
 import '../../../prayer_times/domain/entities/prayer_calculation_settings.dart';
 import '../../../../core/state/prayer_settings_state.dart';
@@ -342,6 +343,8 @@ class _MadhhabScreenState extends State<MadhhabScreen> {
   Future<void> _saveMadhhab() async {
     try {
       await PrayerSettingsState.instance.setMadhhab(_selectedMadhhab.name);
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.error('MadhhabScreen', 'Failed to save madhhab preference', error: e);
+    }
   }
 }

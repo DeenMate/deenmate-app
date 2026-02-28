@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../../../core/utils/islamic_utils.dart';
 import '../../data/services/prayer_notification_service.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
@@ -34,7 +35,9 @@ final notificationInitProvider = FutureProvider<bool>((ref) async {
     try {
       tzdata.initializeTimeZones();
       // Rely on default local set by engine; fallback safe
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('Notification', 'Timezone init failed (engine default used)', error: e);
+    }
     await service.initialize();
     return true;
   } catch (e) {
@@ -160,8 +163,8 @@ class AthanSettingsNotifier extends StateNotifier<AsyncValue<AthanSettings>> {
             await _rescheduleNotifications();
           },
         );
-      } catch (_) {
-        // Ignore persistence errors here to avoid UI flicker; next save will retry
+      } catch (e) {
+        AppLogger.warning('AthanSettings', 'Persistence error (will retry on next save)', error: e);
       }
     });
   }
@@ -228,8 +231,8 @@ class AthanSettingsNotifier extends StateNotifier<AsyncValue<AthanSettings>> {
   Future<void> _rescheduleNotifications() async {
     try {
       await _scheduler.scheduleToday();
-    } catch (_) {
-      // Ignore scheduling failures here; stats UI will reflect pending state
+    } catch (e) {
+      AppLogger.warning('AthanSettings', 'Notification reschedule failed', error: e);
     }
   }
 }
@@ -261,7 +264,9 @@ class NotificationPermissionsNotifier
         final scheduler = container.read(dailyNotificationSchedulerProvider);
         await scheduler.scheduleToday();
         container.dispose();
-      } catch (_) {}
+      } catch (e) {
+        AppLogger.warning('NotificationPermissions', 'Quiet reschedule after permission change failed', error: e);
+      }
     }
   }
 
@@ -493,8 +498,7 @@ class AutoNotificationScheduler {
       // Always schedule today; weekly scheduling can be heavy on some devices
       await _scheduler.scheduleToday();
     } catch (e) {
-      // Handle scheduling error
-      // Failed to auto-schedule notifications
+      AppLogger.error('NotificationScheduler', 'Failed to auto-schedule notifications', error: e);
     }
   }
 

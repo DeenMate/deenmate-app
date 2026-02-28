@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,15 +24,17 @@ void main() async {
   // Initialize Hive
   await Hive.initFlutter();
 
-  // Clear Quran cache to force new translation ID
-  try {
-    final prefsBox = await Hive.openBox('quran_prefs');
-    final versesBox = await Hive.openBox('verses');
-    await prefsBox.clear();
-    await versesBox.clear();
-    print('Quran cache cleared successfully');
-  } catch (e) {
-    print('Cache clear error: $e');
+  // Open Quran cache boxes (cleared only in debug for development)
+  if (kDebugMode) {
+    try {
+      final prefsBox = await Hive.openBox('quran_prefs');
+      final versesBox = await Hive.openBox('verses');
+      await prefsBox.clear();
+      await versesBox.clear();
+      debugPrint('Quran cache cleared (debug mode)');
+    } catch (e) {
+      debugPrint('Cache clear error: $e');
+    }
   }
 
   // Initialize prayer settings state
@@ -89,8 +92,10 @@ class DeenMateApp extends ConsumerWidget {
             builder: (context, child) {
               return GlobalLanguageManager(
                 child: AppLifecycleManager(
-                  child: WillPopScope(
-                    onWillPop: () async {
+                  child: PopScope(
+                    canPop: false,
+                    onPopInvokedWithResult: (didPop, result) async {
+                      if (didPop) return;
                       // Show exit confirmation dialog
                       final shouldExit = await showDialog<bool>(
                         context: context,
@@ -109,7 +114,9 @@ class DeenMateApp extends ConsumerWidget {
                           ],
                         ),
                       );
-                      return shouldExit ?? false;
+                      if (shouldExit == true && context.mounted) {
+                        Navigator.of(context).maybePop();
+                      }
                     },
                     child: child!,
                   ),

@@ -24,8 +24,8 @@ class ResourcesApi {
           try {
             return TranslationResourceDto.fromJson(json);
           } catch (parseError) {
-            print('DEBUG: Error parsing translation resource: $parseError');
-            print('DEBUG: JSON data: $json');
+            debugPrint('DEBUG: Error parsing translation resource: $parseError');
+            debugPrint('DEBUG: JSON data: $json');
             rethrow;
           }
         }).toList();
@@ -33,7 +33,7 @@ class ResourcesApi {
 
       throw Exception('Failed to fetch translation resources');
     } catch (e) {
-      print('DEBUG: Translation resources API error: $e');
+      debugPrint('DEBUG: Translation resources API error: $e');
       throw Exception('Failed to fetch translation resources: $e');
     }
   }

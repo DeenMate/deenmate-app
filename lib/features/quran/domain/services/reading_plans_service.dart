@@ -193,7 +193,7 @@ class ReadingPlansService {
     await _initializeProgress(planId);
     
     if (kDebugMode) {
-      print('Reading plan started: $planId');
+      debugPrint('Reading plan started: $planId');
     }
   }
 
@@ -211,7 +211,7 @@ class ReadingPlansService {
     await _savePlans(plans);
     
     if (kDebugMode) {
-      print('Reading plan stopped: $planId');
+      debugPrint('Reading plan stopped: $planId');
     }
   }
 
@@ -245,7 +245,7 @@ class ReadingPlansService {
     await _saveProgress(updatedProgress);
     
     if (kDebugMode) {
-      print('Day $dayNumber marked completed for plan: $planId');
+      debugPrint('Day $dayNumber marked completed for plan: $planId');
     }
   }
 
@@ -310,7 +310,7 @@ class ReadingPlansService {
           .toList();
     } catch (e) {
       if (kDebugMode) {
-        print('Error getting reading plans: $e');
+        debugPrint('Error getting reading plans: $e');
       }
       return [];
     }
@@ -328,7 +328,7 @@ class ReadingPlansService {
       return null;
     } catch (e) {
       if (kDebugMode) {
-        print('Error getting reading progress: $e');
+        debugPrint('Error getting reading progress: $e');
       }
       return null;
     }
@@ -393,7 +393,7 @@ class ReadingPlansService {
     await box.delete('progress_$planId');
     
     if (kDebugMode) {
-      print('Reading plan deleted: $planId');
+      debugPrint('Reading plan deleted: $planId');
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/prayer_times.dart';
@@ -16,11 +17,11 @@ class GetCurrentAndNextPrayerUsecase {
     PrayerCalculationSettings? settings,
   }) async {
     try {
-      print('=== USECASE getCurrentAndNextPrayer START ===');
+      debugPrint('=== USECASE getCurrentAndNextPrayer START ===');
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);
-      print('UseCase: Current time: $now, Today: $today');
-      print('UseCase: Settings - Method: ${settings?.calculationMethod}');
+      debugPrint('UseCase: Current time: $now, Today: $today');
+      debugPrint('UseCase: Settings - Method: ${settings?.calculationMethod}');
 
       final prayerTimesResult = await _repository.getPrayerTimes(
         date: today,
@@ -31,15 +32,15 @@ class GetCurrentAndNextPrayerUsecase {
       return prayerTimesResult.fold(
         (failure) => Left(failure),
         (prayerTimes) {
-          print(
+          debugPrint(
               'UseCase: Prayer times received - Fajr: ${prayerTimes.fajr.time}, Dhuhr: ${prayerTimes.dhuhr.time}');
 
           final currentPrayer = _getCurrentPrayer(prayerTimes, now);
           final nextPrayer = _getNextPrayer(prayerTimes, now);
 
-          print(
+          debugPrint(
               'UseCase: Calculated - Current: $currentPrayer, Next: $nextPrayer');
-          print('=== USECASE getCurrentAndNextPrayer END ===');
+          debugPrint('=== USECASE getCurrentAndNextPrayer END ===');
 
           return Right({
             'currentPrayer': currentPrayer,

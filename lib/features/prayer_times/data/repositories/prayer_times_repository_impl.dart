@@ -212,7 +212,7 @@ class PrayerTimesRepositoryImpl implements PrayerTimesRepository {
   Future<Either<Failure, PrayerTimes>> getCurrentPrayerTimes() async {
     try {
       void log(String m) {
-        if (kDebugMode) print(m);
+        if (kDebugMode) debugPrint(m);
       }
 
       log('=== REPOSITORY getCurrentPrayerTimes START ===');

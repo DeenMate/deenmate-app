@@ -25,8 +25,12 @@ class BottomNavigationWrapper extends StatefulWidget {
 class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        await _onBackPressed();
+      },
       child: Scaffold(
         body: widget.child,
         bottomNavigationBar:
@@ -174,14 +178,14 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
     }
   }
 
-  Future<bool> _onWillPop() async {
+  Future<void> _onBackPressed() async {
     try {
       final go = GoRouter.of(context);
 
       // Check if we can safely pop
       if (go.canPop()) {
         go.pop();
-        return false;
+        return;
       }
 
       // If not on Home tab, navigate to Home instead of exiting
@@ -189,11 +193,11 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           widget.currentLocation == '/prayer-times';
       if (!isOnHome) {
         context.go('/');
-        return false;
+        return;
       }
 
       // We are on Home and cannot pop -> confirm exit
-      if (!mounted) return true;
+      if (!mounted) return;
 
       final shouldExit = await showDialog<bool>(
         context: context,
@@ -221,10 +225,15 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           ],
         ),
       );
-      return shouldExit ?? false;
+      if (shouldExit == true && mounted) {
+        // Allow the system back navigation to proceed
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop();
+        }
+      }
     } catch (e) {
       // If there's any navigation error, allow the app to exit safely
-      return true;
+      return;
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/preference_keys.dart';
 
@@ -21,14 +22,14 @@ class PrayerSettingsState {
       final savedMadhhab = prefs.getString(PreferenceKeys.madhhab);
       if (savedMethod != null) {
         _calculationMethod = savedMethod;
-        print('PrayerSettingsState: Loaded method: $_calculationMethod');
+        debugPrint('PrayerSettingsState: Loaded method: $_calculationMethod');
       }
       if (savedMadhhab != null) {
         _madhhab = savedMadhhab;
-        print('PrayerSettingsState: Loaded madhhab: $_madhhab');
+        debugPrint('PrayerSettingsState: Loaded madhhab: $_madhhab');
       }
     } catch (e) {
-      print('PrayerSettingsState: Error loading settings: $e');
+      debugPrint('PrayerSettingsState: Error loading settings: $e');
     }
   }
 
@@ -37,9 +38,9 @@ class PrayerSettingsState {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(PreferenceKeys.calculationMethod, method);
       _calculationMethod = method;
-      print('PrayerSettingsState: Saved method: $_calculationMethod');
+      debugPrint('PrayerSettingsState: Saved method: $_calculationMethod');
     } catch (e) {
-      print('PrayerSettingsState: Error saving settings: $e');
+      debugPrint('PrayerSettingsState: Error saving settings: $e');
     }
   }
 
@@ -48,9 +49,9 @@ class PrayerSettingsState {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(PreferenceKeys.madhhab, madhhab);
       _madhhab = madhhab;
-      print('PrayerSettingsState: Saved madhhab: $_madhhab');
+      debugPrint('PrayerSettingsState: Saved madhhab: $_madhhab');
     } catch (e) {
-      print('PrayerSettingsState: Error saving madhhab: $e');
+      debugPrint('PrayerSettingsState: Error saving madhhab: $e');
     }
   }
 
@@ -62,9 +63,9 @@ class PrayerSettingsState {
       await prefs.remove(PreferenceKeys.madhhab);
       _calculationMethod = 'MWL';
       _madhhab = 'shafi';
-      print('PrayerSettingsState: Reset to default: $_calculationMethod');
+      debugPrint('PrayerSettingsState: Reset to default: $_calculationMethod');
     } catch (e) {
-      print('PrayerSettingsState: Error resetting: $e');
+      debugPrint('PrayerSettingsState: Error resetting: $e');
     }
   }
 }

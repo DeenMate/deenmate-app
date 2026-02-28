@@ -94,7 +94,7 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
         madhab: Madhab.shafi,
       );
 
-      print('DirectPrayerWidget: Calling API with method: $method');
+      debugPrint('DirectPrayerWidget: Calling API with method: $method');
 
       // Call API directly
       final prayerTimes = await api.getPrayerTimes(
@@ -143,14 +143,14 @@ class _DirectPrayerWidgetState extends ConsumerState<DirectPrayerWidget> {
         isLoading = false;
       });
 
-      print(
+      debugPrint(
           'DirectPrayerWidget: Current: $current, Next: $next, Remaining: $remainingTime');
     } catch (e) {
       setState(() {
         error = AppLocalizations.of(context)!.errorPrayerTimesLoading;
         isLoading = false;
       });
-      print('DirectPrayerWidget: Error: $e');
+      debugPrint('DirectPrayerWidget: Error: $e');
     }
   }
 

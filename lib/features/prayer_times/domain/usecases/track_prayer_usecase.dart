@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../domain/entities/prayer_tracking.dart';
 import '../../domain/repositories/prayer_times_repository.dart';
 
@@ -108,7 +110,7 @@ class TrackPrayerUsecase {
         },
       );
     } catch (e) {
-      // Statistics update shouldn't fail the main operation
+      AppLogger.warning('TrackPrayer', 'Statistics update failed (non-fatal)', error: e);
     }
   }
 
@@ -130,7 +132,7 @@ class TrackPrayerUsecase {
         },
       );
     } catch (e) {
-      // Achievement processing shouldn't fail the main operation
+      AppLogger.warning('TrackPrayer', 'Achievement processing failed (non-fatal)', error: e);
     }
   }
 
@@ -230,7 +232,7 @@ class TrackPrayerUsecase {
   void _triggerAchievement(String achievementId, String message) {
     // This would typically trigger a notification or update achievement storage
     // For now, we'll just log it
-    print('Achievement unlocked: $achievementId - $message');
+    debugPrint('Achievement unlocked: $achievementId - $message');
   }
 }
 

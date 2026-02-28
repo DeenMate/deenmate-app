@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../core/utils/app_logger.dart';
 
 import '../../domain/services/search_service.dart';
 import '../state/providers.dart';
@@ -102,7 +103,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
         });
       }
     } catch (e) {
-      // Handle error silently for suggestions
+      AppLogger.warning('QuranSearch', 'Failed to fetch suggestions', error: e);
     }
   }
 
@@ -181,7 +182,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
         _searchHistory = historyJson.take(10).toList(); // Keep last 10 searches
       });
     } catch (e) {
-      // Handle error silently
+      AppLogger.warning('QuranSearch', 'Failed to load search history', error: e);
     }
   }
 
@@ -200,7 +201,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
       final prefs = await SharedPreferences.getInstance();
       await prefs.setStringList('quran_search_history', _searchHistory);
     } catch (e) {
-      // Handle error silently
+      AppLogger.warning('QuranSearch', 'Failed to save search history', error: e);
     }
   }
 
@@ -212,7 +213,7 @@ class _QuranSearchScreenState extends ConsumerState<QuranSearchScreen>
         _searchHistory.clear();
       });
     } catch (e) {
-      // Handle error silently
+      AppLogger.warning('QuranSearch', 'Failed to clear search history', error: e);
     }
   }
 

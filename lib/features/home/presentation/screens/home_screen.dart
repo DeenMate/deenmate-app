@@ -12,6 +12,7 @@ import 'package:deen_mate/features/prayer_times/data/services/calculation_method
 import 'package:deen_mate/features/prayer_times/domain/entities/calculation_method.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../core/utils/app_logger.dart';
 
 /// Home Screen (replaces old home) — shows live prayer times, countdown, etc.
 class HomeScreen extends ConsumerStatefulWidget {
@@ -784,7 +785,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           final scheduler =
                               ref.read(dailyNotificationSchedulerProvider);
                           await scheduler.scheduleToday();
-                        } catch (_) {}
+                        } catch (e) {
+                          AppLogger.warning('HomeScreen', 'Failed to reschedule after fajr toggle', error: e);
+                        }
                       },
                       child: Container(
                         width: 44,
@@ -878,7 +881,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           final scheduler =
                               ref.read(dailyNotificationSchedulerProvider);
                           await scheduler.scheduleToday();
-                        } catch (_) {}
+                        } catch (e) {
+                          AppLogger.warning('HomeScreen', 'Failed to reschedule after maghrib toggle', error: e);
+                        }
                       },
                       child: Container(
                         width: 44,
@@ -1158,7 +1163,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                           final scheduler =
                               ref.read(dailyNotificationSchedulerProvider);
                           await scheduler.scheduleToday();
-                        } catch (_) {}
+                        } catch (e) {
+                          AppLogger.warning('HomeScreen', 'Failed to reschedule after $prayerName toggle', error: e);
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

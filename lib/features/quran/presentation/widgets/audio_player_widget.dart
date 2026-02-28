@@ -540,7 +540,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
     try {
       await audioService.play();
     } catch (e) {
-      print('Error playing audio: $e');
+      debugPrint('Error playing audio: $e');
     }
   }
 
@@ -549,7 +549,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
     try {
       await audioService.pause();
     } catch (e) {
-      print('Error pausing audio: $e');
+      debugPrint('Error pausing audio: $e');
     }
   }
 
@@ -558,7 +558,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
     try {
       await audioService.next();
     } catch (e) {
-      print('Error skipping to next: $e');
+      debugPrint('Error skipping to next: $e');
     }
   }
 
@@ -567,7 +567,7 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
     try {
       await audioService.previous();
     } catch (e) {
-      print('Error skipping to previous: $e');
+      debugPrint('Error skipping to previous: $e');
     }
   }
 
@@ -577,34 +577,34 @@ class _AudioPlayerWidgetState extends ConsumerState<AudioPlayerWidget>
       final duration = Duration(milliseconds: (value * 100000).round());
       await audioService.seek(duration);
     } catch (e) {
-      print('Error seeking: $e');
+      debugPrint('Error seeking: $e');
     }
   }
 
   void _onRepeatToggle() {
     // TODO: Implement repeat mode in audio service
-    print('Repeat toggle - not yet implemented in service');
+    debugPrint('Repeat toggle - not yet implemented in service');
   }
 
   void _onSpeedToggle() {
     // TODO: Implement playback speed in audio service
-    print('Speed toggle - not yet implemented in service');
+    debugPrint('Speed toggle - not yet implemented in service');
   }
 
   void _onShowPlaylist() {
     // TODO: Implement playlist view
-    print('Show playlist');
+    debugPrint('Show playlist');
   }
 
   void _onDownload() {
     // TODO: Implement download functionality
-    print('Download current verse');
+    debugPrint('Download current verse');
   }
 
   void _hidePlayer() {
     _slideController.reverse().then((_) {
       // TODO: Hide player completely
-      print('Hide player');
+      debugPrint('Hide player');
     });
   }
 }

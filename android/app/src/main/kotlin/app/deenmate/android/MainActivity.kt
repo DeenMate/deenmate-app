@@ -1,4 +1,4 @@
-package com.example.deen_mate
+package app.deenmate.android
 
 import io.flutter.embedding.android.FlutterActivity
 

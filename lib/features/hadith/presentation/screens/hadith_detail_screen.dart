@@ -734,7 +734,7 @@ ${_hadith!.bengaliText}
     );
     
     // Share.share(shareText);
-    print('Share text prepared: $shareText'); // Use the variable
+    debugPrint('Share text prepared: $shareText'); // Use the variable
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

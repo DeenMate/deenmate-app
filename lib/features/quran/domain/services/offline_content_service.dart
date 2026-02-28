@@ -101,7 +101,7 @@ class OfflineContentService {
     } catch (e) {
       // Log error but don't throw - this is background download
       if (kDebugMode) {
-        print('Error downloading essential Quran text: $e');
+        debugPrint('Error downloading essential Quran text: $e');
       }
     }
   }
@@ -192,7 +192,7 @@ class OfflineContentService {
       await _cacheRukuMappings();
     } catch (e) {
       if (kDebugMode) {
-        print('Error caching navigation mappings: $e');
+        debugPrint('Error caching navigation mappings: $e');
       }
     }
   }
@@ -229,7 +229,7 @@ class OfflineContentService {
       return juzList;
     } catch (e) {
       if (kDebugMode) {
-        print('Error getting cached Juz list: $e');
+        debugPrint('Error getting cached Juz list: $e');
       }
       return [];
     }
@@ -330,7 +330,7 @@ class OfflineContentService {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error caching Juz mappings: $e');
+        debugPrint('Error caching Juz mappings: $e');
       }
     }
   }
@@ -355,7 +355,7 @@ class OfflineContentService {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error caching Hizb mappings: $e');
+        debugPrint('Error caching Hizb mappings: $e');
       }
     }
   }
@@ -376,7 +376,7 @@ class OfflineContentService {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error caching Page mappings: $e');
+        debugPrint('Error caching Page mappings: $e');
       }
     }
   }
@@ -397,7 +397,7 @@ class OfflineContentService {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error caching Ruku mappings: $e');
+        debugPrint('Error caching Ruku mappings: $e');
       }
     }
   }

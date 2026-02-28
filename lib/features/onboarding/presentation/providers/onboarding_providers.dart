@@ -22,7 +22,7 @@ class OnboardingNotifier extends StateNotifier<bool> {
     await prefs.setBool('onboarding_completed', false);
     await prefs.remove('calculation_method'); // Also clear saved calculation method
     state = false;
-    print('Onboarding reset - will show onboarding flow again');
+    debugPrint('Onboarding reset - will show onboarding flow again');
   }
 }
 

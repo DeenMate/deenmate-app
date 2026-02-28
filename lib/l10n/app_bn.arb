@@ -4,7 +4,6 @@
   "@appTitle": {
     "description": "The main app title"
   },
-
   "onboardingWelcomeTitle": "দীনমেটে স্বাগতম",
   "@onboardingWelcomeTitle": {
     "description": "Title for the welcome onboarding screen"
@@ -29,9 +28,9 @@
   "@onboardingUsernameSubtitle": {
     "description": "Subtitle for username input screen"
   },
-  "onboardingLocationTitle": "আপনার অবস্থান সেট করুন",
+  "onboardingLocationTitle": "অবস্থান",
   "@onboardingLocationTitle": {
-    "description": "Title for location setup screen"
+    "description": "Onboarding location screen title"
   },
   "onboardingLocationSubtitle": "এটি আমাদের সঠিক নামাজের সময় প্রদান করতে সাহায্য করে",
   "@onboardingLocationSubtitle": {
@@ -114,7 +113,6 @@
     "description": "Subtitle for notifications setup screen"
   },
   "onboardingThemeTitle": "আপনার থিম নির্বাচন করুন",
-  
   "hadithTitle": "হাদীস",
   "@hadithTitle": {
     "description": "Title for Hadith module"
@@ -141,7 +139,7 @@
   },
   "hadithTopics": "বিষয়",
   "@hadithTopics": {
-    "description": "Topics action"
+    "description": "Topics filter label"
   },
   "hadithBookmarks": "বুকমার্ক",
   "@hadithBookmarks": {
@@ -193,12 +191,9 @@
   },
   "hadithSearchTitle": "হাদীস অনুসন্ধান",
   "@hadithSearchTitle": {
-    "description": "Title for Hadith search screen"
-  },
-  "hadithSearchHint": "হাদীস অনুসন্ধান করুন...",
-  "@hadithSearchTitle": {
     "description": "Hint text for Hadith search"
   },
+  "hadithSearchHint": "হাদীস অনুসন্ধান করুন...",
   "hadithSearching": "অনুসন্ধান করা হচ্ছে...",
   "@hadithSearching": {
     "description": "Searching message"
@@ -233,7 +228,7 @@
   "@hadithTryAgain": {
     "description": "Try again button text"
   },
-  "hadithResultsFound": "{count} টি ফলাফল পাওয়া গেছে",
+  "hadithResultsFound": "{count}টি হাদিস পাওয়া গেছে",
   "@hadithResultsFound": {
     "description": "Search results count",
     "placeholders": {
@@ -264,10 +259,6 @@
   "hadithGrade": "গ্রেড",
   "@hadithGrade": {
     "description": "Grade filter label"
-  },
-  "hadithTopics": "বিষয়",
-  "@hadithTopics": {
-    "description": "Topics filter label"
   },
   "hadithAll": "সব",
   "@hadithAll": {
@@ -313,16 +304,25 @@
     "description": "Subtitle for theme selection screen"
   },
   "onboardingCompleteTitle": "সেটআপ সম্পন্ন!",
-  "@onboardingCompleteTitle": {"description": "Onboarding completion title"},
+  "@onboardingCompleteTitle": {
+    "description": "Onboarding completion title"
+  },
   "onboardingCompleteSubtitle": "আপনার ডিনমেট এখন ব্যবহার উপযোগী",
-  "@onboardingCompleteSubtitle": {"description": "Onboarding completion subtitle"},
+  "@onboardingCompleteSubtitle": {
+    "description": "Onboarding completion subtitle"
+  },
   "onboardingFeaturesTitle": "ফিচারসমূহ",
-  "@onboardingFeaturesTitle": {"description": "Features section header"},
+  "@onboardingFeaturesTitle": {
+    "description": "Features section header"
+  },
   "onboardingGetStarted": "শুরু করুন",
-  "@onboardingGetStarted": {"description": "Final CTA"},
+  "@onboardingGetStarted": {
+    "description": "Final CTA"
+  },
   "errorSavingPreferences": "পছন্দ সংরক্ষণে ত্রুটি",
-  "@errorSavingPreferences": {"description": "Generic save error"},
-
+  "@errorSavingPreferences": {
+    "description": "Generic save error"
+  },
   "navigationHome": "হোম",
   "@navigationHome": {
     "description": "Navigation label for home screen"
@@ -339,7 +339,6 @@
   "@navigationMore": {
     "description": "Navigation label for more options screen"
   },
-
   "prayerTimesTitle": "নামাজের সময়",
   "@prayerTimesTitle": {
     "description": "Title for prayer times section"
@@ -384,7 +383,6 @@
   "@timingsFromAlAdhan": {
     "description": "Label for prayer times source"
   },
-
   "quranTitle": "কুরআন",
   "@quranTitle": {
     "description": "Title for Quran section"
@@ -413,9 +411,9 @@
   "@quranPage": {
     "description": "Page navigation tab"
   },
-  "quranJuz": "জুজ",
+  "quranJuz": "পারা",
   "@quranJuz": {
-    "description": "Juz navigation tab"
+    "description": "Juz/Para navigation tab"
   },
   "quranHizb": "হিজব",
   "@quranHizb": {
@@ -487,7 +485,6 @@
   "@quranRetryButton": {
     "description": "Retry button text for error states"
   },
-
   "settingsTitle": "সেটিংস",
   "@settingsTitle": {
     "description": "Settings screen title"
@@ -512,9 +509,9 @@
   "@settingsQuran": {
     "description": "Quran setting option"
   },
-  "settingsAbout": "সম্পর্কে",
+  "settingsAbout": "DeenMate সম্পর্কে",
   "@settingsAbout": {
-    "description": "About setting option"
+    "description": "About section title"
   },
   "settingsPrayerSettings": "নামাজের সেটিংস",
   "@settingsPrayerSettings": {
@@ -536,7 +533,7 @@
   "@settingsPrayerNotificationsSubtitle": {
     "description": "Prayer notifications subtitle"
   },
-  "settingsPrayerReminders": "নামাজের অনুস্মারক",
+  "settingsPrayerReminders": "নামাজের স্মরণিকা",
   "@settingsPrayerReminders": {
     "description": "Prayer reminders setting"
   },
@@ -632,30 +629,29 @@
   "@settingsPrayerCalculationMethodTitle": {
     "description": "Prayer calculation method dialog title"
   },
-
   "commonContinue": "চালিয়ে যান",
   "@commonContinue": {
-    "description": "Common continue button text"
+    "description": "Continue button text"
   },
   "commonBack": "পিছনে",
   "@commonBack": {
-    "description": "Common back button text"
+    "description": "Back button text"
   },
   "commonNext": "পরবর্তী",
   "@commonNext": {
-    "description": "Common next button text"
+    "description": "Next button text"
   },
   "commonSave": "সংরক্ষণ",
   "@commonSave": {
-    "description": "Common save button text"
+    "description": "Save button text"
   },
   "commonCancel": "বাতিল",
   "@commonCancel": {
-    "description": "Common cancel button text"
+    "description": "Cancel button text"
   },
   "commonDone": "সম্পন্ন",
   "@commonDone": {
-    "description": "Common done button text"
+    "description": "Done button text"
   },
   "commonLoading": "লোড হচ্ছে...",
   "@commonLoading": {
@@ -685,7 +681,6 @@
   "@commonOk": {
     "description": "Common OK text"
   },
-
   "languageEnglish": "ইংরেজি",
   "@languageEnglish": {
     "description": "English language name"
@@ -710,7 +705,6 @@
   "@languageComingSoon": {
     "description": "Language status - coming soon"
   },
-
   "themeLight": "হালকা",
   "@themeLight": {
     "description": "Light theme option"
@@ -735,7 +729,6 @@
   "@themeHeritageSepia": {
     "description": "Heritage Sepia theme option"
   },
-
   "errorGeneric": "কিছু ভুল হয়েছে",
   "@errorGeneric": {
     "description": "Generic error message"
@@ -753,10 +746,13 @@
     "description": "Permission error message"
   },
   "errorLanguageChangeFailed": "ভাষা পছন্দ সংরক্ষণ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
-  "@errorLanguageChangeFailed": {"description": "Language save failed error"},
+  "@errorLanguageChangeFailed": {
+    "description": "Language save failed error"
+  },
   "errorLanguageChangeGeneric": "একটি ত্রুটি ঘটেছে। আবার চেষ্টা করুন।",
-  "@errorLanguageChangeGeneric": {"description": "Generic error"},
-
+  "@errorLanguageChangeGeneric": {
+    "description": "Generic error"
+  },
   "infoLocationRequired": "আপনার এলাকার সঠিক নামাজের সময় প্রদানের জন্য অবস্থান অ্যাক্সেস সাহায্য করে।",
   "@infoLocationRequired": {
     "description": "Information about location requirement"
@@ -769,7 +765,6 @@
   "@infoThemeDescription": {
     "description": "Information about theme selection"
   },
-
   "locationSetSuccess": "অবস্থান সফলভাবে সেট করা হয়েছে!",
   "@locationSetSuccess": {
     "description": "Success message when location is set"
@@ -822,7 +817,7 @@
   },
   "buttonConfirm": "নিশ্চিত করুন",
   "@buttonConfirm": {
-    "description": "Confirm button text"
+    "description": "Confirm button"
   },
   "buttonDelete": "মুছুন",
   "@buttonDelete": {
@@ -936,15 +931,6 @@
   "@buttonClear": {
     "description": "Clear button text"
   },
-
-  "settingsLanguage": "ভাষা",
-  "@settingsLanguage": {
-    "description": "Language settings option"
-  },
-  "settingsAbout": "DeenMate সম্পর্কে",
-  "@settingsAbout": {
-    "description": "About section title"
-  },
   "settingsAboutSubtitle": "সংস্করণ, ক্রেডিট এবং আরও",
   "@settingsAboutSubtitle": {
     "description": "About section subtitle"
@@ -997,7 +983,6 @@
   "@settingsExportComingSoon": {
     "description": "Export feature coming soon message"
   },
-
   "prayerCalculationMethods": "নামাজ গণনা পদ্ধতি",
   "@prayerCalculationMethods": {
     "description": "Prayer calculation methods screen title"
@@ -1265,21 +1250,18 @@
       }
     }
   },
-
-  "ramadanSuhoor": "সেহরি",
+  "ramadanSuhoor": "সাহরি",
   "@ramadanSuhoor": {
-    "description": "Suhoor meal time for Ramadan"
+    "description": "Pre-dawn meal during Ramadan"
   },
   "ramadanIftaar": "ইফতার",
   "@ramadanIftaar": {
-    "description": "Iftaar meal time for Ramadan"
+    "description": "Breaking fast meal during Ramadan"
   },
-
   "prayerTimesSource": "আল-আধান থেকে সময়",
   "@prayerTimesSource": {
     "description": "Source attribution for prayer times"
   },
-
   "prayerTimesUpdated": "আপডেট: {time}",
   "@prayerTimesUpdated": {
     "description": "Last updated time for prayer times",
@@ -1290,7 +1272,6 @@
       }
     }
   },
-
   "prayerTimesCurrentPrayer": "বর্তমান নামাজ",
   "@prayerTimesCurrentPrayer": {
     "description": "Label for current prayer"
@@ -1303,7 +1284,6 @@
   "@prayerTimesNoActivePrayer": {
     "description": "Message when no prayer is currently active"
   },
-
   "prayerTimesAzan": "আজান",
   "@prayerTimesAzan": {
     "description": "Azan (call to prayer) label"
@@ -1322,77 +1302,22 @@
       }
     }
   },
-
-  "settingsTitle": "সেটিংস",
-  "@settingsTitle": {
-    "description": "Settings screen title"
-  },
-  "settingsNotifications": "বিজ্ঞপ্তি",
-  "@settingsNotifications": {
-    "description": "Notifications settings section"
-  },
-  "settingsPrayerReminders": "নামাজের স্মরণিকা",
-  "@settingsPrayerReminders": {
-    "description": "Prayer reminders setting"
-  },
-  "settingsTheme": "থিম",
-  "@settingsTheme": {
-    "description": "Theme settings section"
-  },
-  "settingsLanguage": "ভাষা",
-  "@settingsLanguage": {
-    "description": "Language settings section"
-  },
   "settingsCalculationMethod": "গণনা পদ্ধতি",
   "@settingsCalculationMethod": {
     "description": "Prayer calculation method setting"
-  },
-
-  "commonLoading": "লোড হচ্ছে...",
-  "@commonLoading": {
-    "description": "Generic loading message"
-  },
-  "commonError": "ত্রুটি",
-  "@commonError": {
-    "description": "Generic error message"
   },
   "commonRetry": "পুনরায় চেষ্টা করুন",
   "@commonRetry": {
     "description": "Retry button text"
   },
-  "commonCancel": "বাতিল",
-  "@commonCancel": {
-    "description": "Cancel button text"
-  },
-  "commonSave": "সংরক্ষণ",
-  "@commonSave": {
-    "description": "Save button text"
-  },
   "commonClose": "বন্ধ",
   "@commonClose": {
     "description": "Close button text"
-  },
-  "commonBack": "পিছনে",
-  "@commonBack": {
-    "description": "Back button text"
-  },
-  "commonNext": "পরবর্তী",
-  "@commonNext": {
-    "description": "Next button text"
   },
   "commonSkip": "এড়িয়ে যান",
   "@commonSkip": {
     "description": "Skip button text"
   },
-  "commonContinue": "চালিয়ে যান",
-  "@commonContinue": {
-    "description": "Continue button text"
-  },
-  "commonDone": "সম্পন্ন",
-  "@commonDone": {
-    "description": "Done button text"
-  },
-
   "exitDialogTitle": "দীনমেট থেকে বের হন",
   "@exitDialogTitle": {
     "description": "Exit confirmation dialog title"
@@ -1405,7 +1330,6 @@
   "@exitDialogExit": {
     "description": "Exit confirmation dialog exit button"
   },
-
   "audioDownloadsTitle": "অডিও ডাউনলোড",
   "@audioDownloadsTitle": {
     "description": "Title for the audio downloads screen"
@@ -1509,7 +1433,7 @@
     "description": "Status message when downloading a surah",
     "placeholders": {
       "chapterName": {
-        "type": "String", 
+        "type": "String",
         "description": "The chapter name being downloaded"
       },
       "status": {
@@ -1669,14 +1593,6 @@
   "islamicMonthDhuAlHijjah": "যিলহজ",
   "@islamicMonthDhuAlHijjah": {
     "description": "Twelfth Islamic month - The month of Hajj"
-  },
-  "ramadanSuhoor": "সাহরি",
-  "@ramadanSuhoor": {
-    "description": "Pre-dawn meal during Ramadan"
-  },
-  "ramadanIftaar": "ইফতার",
-  "@ramadanIftaar": {
-    "description": "Breaking fast meal during Ramadan"
   },
   "homeTimeStatusNow": "এখন",
   "@homeTimeStatusNow": {
@@ -1920,7 +1836,6 @@
   "@translationPickerFrench": {
     "description": "French language option in translation picker"
   },
-
   "readingModeThemeTitle": "পঠন থিম",
   "@readingModeThemeTitle": {
     "description": "Title for reading theme selection dialog"
@@ -1977,7 +1892,6 @@
   "@readingModeBookmarkAdded": {
     "description": "Success message when bookmark is added"
   },
-
   "mobileReadingModeTitle": "পড়ার মোড",
   "@mobileReadingModeTitle": {
     "description": "Title for mobile reading mode overlay"
@@ -2030,7 +1944,6 @@
   "@mobileReadingModeGreenTheme": {
     "description": "Label for green theme option"
   },
-
   "verseCardWordAnalysis": "শব্দ বিশ্লেষণ",
   "@verseCardWordAnalysis": {
     "description": "Button text for word analysis action in verse card"
@@ -2217,7 +2130,6 @@
   "@wordAnalysisNotAvailable": {
     "description": "Message when word analysis data is not available"
   },
-  
   "navigationPrayer": "নামাজ",
   "@navigationPrayer": {
     "description": "Navigation label for prayer times section"
@@ -2226,7 +2138,6 @@
   "@navigationQibla": {
     "description": "Navigation label for qibla compass section"
   },
-  
   "inheritanceCalculatorTitle": "মীরাস ক্যালকুলেটর",
   "@inheritanceCalculatorTitle": {
     "description": "Title for Islamic inheritance calculator"
@@ -2303,7 +2214,6 @@
   "@inheritanceWorksOffline": {
     "description": "Feature description"
   },
-  
   "qiblaCompassTitle": "কিবলা কম্পাস",
   "@qiblaCompassTitle": {
     "description": "Title for qibla compass screen"
@@ -2356,7 +2266,6 @@
   "@qiblaUpdateLocation": {
     "description": "Button to update location"
   },
-  
   "onboardingNotificationDescription1": "আপনার দৈনিক নামাজের সাথে সংযুক্ত থাকুন",
   "@onboardingNotificationDescription1": {
     "description": "First notification description in onboarding"
@@ -2369,7 +2278,6 @@
   "@onboardingNotificationSelectPrayers": {
     "description": "Instruction for prayer selection in onboarding"
   },
-  
   "bookmarkEdit": "সম্পাদনা",
   "@bookmarkEdit": {
     "description": "Edit bookmark action"
@@ -2382,7 +2290,6 @@
   "@bookmarkDelete": {
     "description": "Delete bookmark action"
   },
-  
   "quranFontSettings": "ফন্ট সেটিংস",
   "@quranFontSettings": {
     "description": "Font settings section header"
@@ -2397,15 +2304,15 @@
   },
   "quranArabic": "আরবি",
   "@quranArabic": {
-    "description": "Arabic text toggle label"
+    "description": "Label for Arabic search scope"
   },
   "quranTranslation": "অনুবাদ",
   "@quranTranslation": {
-    "description": "Translation text toggle label"
+    "description": "Label for translation search scope"
   },
-  "quranTafsir": "তাফসির",
+  "quranTafsir": "তাফসীর",
   "@quranTafsir": {
-    "description": "Tafsir commentary toggle label"
+    "description": "Tafsir/commentary feature"
   },
   "quranArabicFontSize": "আরবি ফন্ট সাইজ",
   "@quranArabicFontSize": {
@@ -2415,28 +2322,10 @@
   "@quranTranslationFontSize": {
     "description": "Translation font size setting"
   },
-  
   "quranSura": "সূরা",
   "@quranSura": {
     "description": "Surah/Chapter navigation tab"
   },
-  "quranPage": "পৃষ্ঠা",
-  "@quranPage": {
-    "description": "Page navigation tab"
-  },
-  "quranJuz": "পারা",
-  "@quranJuz": {
-    "description": "Juz/Para navigation tab"
-  },
-  "quranHizb": "হিজব",
-  "@quranHizb": {
-    "description": "Hizb navigation tab"
-  },
-  "quranRuku": "রুকু",
-  "@quranRuku": {
-    "description": "Ruku navigation tab"
-  },
-  
   "comingSoon": "শীঘ্রই আসছে",
   "@comingSoon": {
     "description": "Generic coming soon message"
@@ -2521,7 +2410,6 @@
   "@exitReadingMode": {
     "description": "Exit reading mode tooltip"
   },
-
   "bookmarks": "বুকমার্ক",
   "@bookmarks": {
     "description": "Bookmarks screen title"
@@ -2638,7 +2526,6 @@
   "@retry": {
     "description": "Retry button text"
   },
-
   "commonConfirm": "নিশ্চিত",
   "@commonConfirm": {
     "description": "Confirm button for confirmations"
@@ -2675,7 +2562,6 @@
   "@commonEdit": {
     "description": "Edit button"
   },
-
   "navigationExitDialogTitle": "দীনমেট থেকে বের হন",
   "@navigationExitDialogTitle": {
     "description": "Title for app exit confirmation dialog"
@@ -2684,7 +2570,6 @@
   "@navigationExitDialogMessage": {
     "description": "Message for app exit confirmation dialog"
   },
-
   "prayerCalculationMethodsTitle": "নামাজের হিসাব পদ্ধতি",
   "@prayerCalculationMethodsTitle": {
     "description": "Title for prayer calculation methods screen"
@@ -2697,12 +2582,10 @@
   "@prayerCalculationMethodsCreateCustom": {
     "description": "Button to create custom calculation method"
   },
-
   "settingsMoreFeatures": "আরও বৈশিষ্ট্য",
   "@settingsMoreFeatures": {
     "description": "Title for more features settings screen"
   },
-
   "athanSettingsVibration": "কম্পন",
   "@athanSettingsVibration": {
     "description": "Athan vibration setting title"
@@ -2755,7 +2638,6 @@
   "@athanSettingsFullScreenNotificationsSubtitle": {
     "description": "Full screen notifications setting subtitle"
   },
-
   "permissionsGrant": "অনুমতি দিন",
   "@permissionsGrant": {
     "description": "Grant permission button text"
@@ -2767,7 +2649,9 @@
   "ramadanTabTitle": "রমজান",
   "athanSettingsTitle": "আযান সেটিংস",
   "athanSettingsSubtitle": "নামাজের সময় হলে আজানের নোটিফিকেশন",
-  "@athanSettingsSubtitle": {"description": "Subtitle/description for Athan notifications"},
+  "@athanSettingsSubtitle": {
+    "description": "Subtitle/description for Athan notifications"
+  },
   "prayerNotificationsTitle": "নামাজের বিজ্ঞপ্তি",
   "prayerNotificationsSubtitle": "প্রতিটি নামাজের জন্য বিজ্ঞপ্তি কাস্টমাইজ করুন",
   "preciseTimingRecommended": "আযানের জন্য সুনির্দিষ্ট সময় সুপারিশকৃত",
@@ -2787,19 +2671,18 @@
   "muteSettingsSubtitle": "কখন বিজ্ঞপ্তি নিঃশব্দ করা হবে তা কনফিগার করুন:",
   "mutedDaysLabel": "নিঃশব্দ দিন:",
   "monday": "সোমবার",
-  "tuesday": "মঙ্গলবার", 
+  "tuesday": "মঙ্গলবার",
   "wednesday": "বুধবার",
   "thursday": "বৃহস্পতিবার",
   "friday": "শুক্রবার",
   "saturday": "শনিবার",
   "sunday": "রবিবার",
-
   "methodsRecommended": "সুপারিশকৃত",
   "methodsAllMethods": "সকল পদ্ধতি",
   "methodsCompare": "তুলনা",
   "methodsLocationBasedRecommendations": "অবস্থান-ভিত্তিক সুপারিশ",
   "methodsLocationRecommendationText": "এই পদ্ধতিগুলি আপনার অঞ্চলের জন্য সুপারিশ করা হয়। অবস্থান সনাক্তকরণ সাধারণত এটি স্বয়ংক্রিয়ভাবে নির্ধারণ করবে।",
-  "methodsAllAvailableMethods": "সকল উপলব্ধ পদ্ধতি",
+  "methodsAllAvailableMethods": "সব উপলব্ধ পদ্ধতি",
   "methodsFromOrganizations": "বিশ্বব্যাপী ইসলামিক সংস্থাগুলি থেকে {count}টি গণনা পদ্ধতি।",
   "methodComparison": "পদ্ধতি তুলনা",
   "methodComparisonDescription": "তাদের কোণ এবং বৈশিষ্ট্য তুলনা করতে দুটি পদ্ধতি নির্বাচন করুন।",
@@ -2823,7 +2706,6 @@
   "@methodsImpactAssessment": {
     "description": "Label for impact assessment section in method comparison"
   },
-  "methodsRecommended": "সুপারিশকৃত",
   "@methodsRecommended": {
     "description": "Label for recommended calculation method"
   },
@@ -2867,7 +2749,6 @@
   "@methodsRecommendedMethods": {
     "description": "Title for recommended methods section"
   },
-  "methodsAllAvailableMethods": "সব উপলব্ধ পদ্ধতি",
   "@methodsAllAvailableMethods": {
     "description": "Title for all available methods section"
   },
@@ -2897,7 +2778,6 @@
   },
   "unableToLoadLocation": "অবস্থান লোড করতে অক্ষম",
   "locationIsNeeded": "সুপারিশকৃত পদ্ধতি দেখাতে অবস্থান প্রয়োজন",
-
   "athanSettingsRetry": "পুনরায় চেষ্টা করুন",
   "athanSettingsFeatureComingSoon": "বৈশিষ্ট্য শীঘ্রই আসছে...",
   "athanSettingsTestStarted": "আযান অডিও পরীক্ষা শুরু হয়েছে",
@@ -2918,41 +2798,67 @@
   "athanSettingsDemoNotification2Min": "ডেমো বিজ্ঞপ্তি (২ মিনিট)",
   "athanSettingsImmediateNotificationSent": "তাৎক্ষণিক বিজ্ঞপ্তি পাঠানো হয়েছে!",
   "athanSettingsImmediateTestMessage": "এটি একটি তাৎক্ষণিক পরীক্ষামূলক নোটিফিকেশন",
-  "@athanSettingsImmediateTestMessage": {"description": "Immediate notification body"},
+  "@athanSettingsImmediateTestMessage": {
+    "description": "Immediate notification body"
+  },
   "labelImmediateNotification": "তাৎক্ষণিক নোটিফিকেশন",
-  "@labelImmediateNotification": {"description": "Label for immediate notification toggle/button"},
-
+  "@labelImmediateNotification": {
+    "description": "Label for immediate notification toggle/button"
+  },
   "quranReaderLoadError": "লোড করতে ব্যর্থ: {errorMessage}",
   "quranReaderAudioManager": "অডিও ম্যানেজার",
-  "@quranReaderAudioManager": {"description": "Title for Quran audio manager sheet"},
+  "@quranReaderAudioManager": {
+    "description": "Title for Quran audio manager sheet"
+  },
   "quranReciterLabel": "কারি:",
-  "@quranReciterLabel": {"description": "Label before reciter name"},
+  "@quranReciterLabel": {
+    "description": "Label before reciter name"
+  },
   "quranFailedToLoadReciters": "কারি লোড করতে ব্যর্থ: {error}",
   "@quranFailedToLoadReciters": {
     "description": "Error text when loading reciters fails",
-    "placeholders": {"error": {"type": "String"}}
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
   },
   "audioDownloadStarting": "ডাউনলোড শুরু হচ্ছে...",
-  "@audioDownloadStarting": {"description": "Generic start of download message"},
+  "@audioDownloadStarting": {
+    "description": "Generic start of download message"
+  },
   "audioDownloadProgress": "{name} ডাউনলোড হচ্ছে: {progress}%",
   "@audioDownloadProgress": {
     "description": "Download progress message",
     "placeholders": {
-      "name": {"type": "String"},
-      "progress": {"type": "num"}
+      "name": {
+        "type": "String"
+      },
+      "progress": {
+        "type": "num"
+      }
     }
   },
   "audioDownloadComplete": "ডাউনলোড সম্পূর্ণ",
-  "@audioDownloadComplete": {"description": "Download completed message"},
+  "@audioDownloadComplete": {
+    "description": "Download completed message"
+  },
   "audioStorageUsed": "ব্যবহৃত স্টোরেজ: {size}",
-  "@audioStorageUsed": {"description": "Storage used label","placeholders": {"size": {"type": "String"}}},
+  "@audioStorageUsed": {
+    "description": "Storage used label",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
   "audioSelectReciter": "কারি নির্বাচন করুন",
-  "@audioSelectReciter": {"description": "Prompt to select reciter"},
+  "@audioSelectReciter": {
+    "description": "Prompt to select reciter"
+  },
   "quranReaderAutoScroll": "স্বয়ংক্রিয় স্ক্রল",
   "quranReaderEnableAutoScroll": "স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন",
   "quranReaderQuickJump": "দ্রুত জাম্প",
-  "quranSurah": "সূরা",
-  "quranJuz": "পারা",
   "quranReaderCopyArabicText": "আরবি টেক্সট কপি করুন",
   "quranReaderCopyArabicSubtitle": "শুধুমাত্র আরবি আয়াত কপি করুন",
   "quranReaderCopyTranslation": "অনুবাদ কপি করুন",
@@ -2963,15 +2869,12 @@
   "quranReaderReportErrorSubtitle": "অনুবাদের নির্ভুলতা উন্নত করতে সহায়তা করুন",
   "quranReaderReportErrorDialogTitle": "অনুবাদ ত্রুটি রিপোর্ট করুন",
   "quranVerseCopiedToClipboard": "আয়াত ক্লিপবোর্ডে কপি করা হয়েছে",
-
   "bookmarksAddBookmark": "বুকমার্ক যোগ করুন",
   "bookmarksAddBookmarkComingSoon": "বুকমার্ক যোগ করার ডায়ালগ - শীঘ্রই আসছে",
   "bookmarksCreateCategoryComingSoon": "ক্যাটেগরি তৈরির ডায়ালগ - শীঘ্রই আসছে",
   "bookmarksSortOptionsComingSoon": "সাজানোর অপশন - শীঘ্রই আসছে",
   "bookmarksManageCategoriesComingSoon": "ক্যাটেগরি পরিচালনা - শীঘ্রই আসছে",
   "bookmarksExportBookmarksComingSoon": "বুকমার্ক এক্সপোর্ট - শীঘ্রই আসছে",
-
-  "readingPlansStopPlan": "পরিকল্পনা বন্ধ করুন",
   "readingPlansMarkComplete": "সম্পূর্ণ হিসেবে চিহ্নিত করুন",
   "readingPlansCreatePlan": "পরিকল্পনা তৈরি করুন",
   "readingPlansDeletePlan": "পরিকল্পনা মুছুন",
@@ -2981,7 +2884,6 @@
   "readingPlansRamadan": "রমজান",
   "readingPlansCustom": "কাস্টম",
   "readingPlansPlanCreatedSuccess": "পঠন পরিকল্পনা সফলভাবে তৈরি হয়েছে!",
-
   "quickTools": "দ্রুত সরঞ্জাম",
   "navigation": "নেভিগেশন",
   "readingControls": "পঠন নিয়ন্ত্রণ",
@@ -2993,11 +2895,9 @@
   "translation": "অনুবাদ",
   "addBookmark": "বুকমার্ক",
   "removeBookmark": "বুকমার্কড",
-  "share": "শেয়ার",
   "surah": "সূরা",
   "page": "পৃষ্ঠা",
   "juz": "পারা",
-
   "playAudio": "অডিও চালান",
   "moreActions": "আরও কার্যক্রম",
   "quickActions": "দ্রুত কার্যক্রম",
@@ -3006,7 +2906,6 @@
   "translate": "অনুবাদ",
   "audioPlaying": "অডিও চলছে...",
   "bookmarkAdded": "বুকমার্ক যোগ করা হয়েছে",
-  "bookmarkRemoved": "বুকমার্ক সরানো হয়েছে",
   "verseShared": "আয়াত শেয়ার করা হয়েছে",
   "moreOptionsOpened": "আরও অপশন খোলা হয়েছে",
   "actionCompleted": "কার্যক্রম সম্পন্ন",
@@ -3022,19 +2921,15 @@
   "arabicTextCopied": "আরবি টেক্সট কপি করা হয়েছে",
   "translationCopied": "অনুবাদ কপি করা হয়েছে",
   "fullVerseCopied": "সম্পূর্ণ আয়াত কপি করা হয়েছে",
-
   "tapForActions": "কার্যক্রমের জন্য ট্যাপ করুন",
   "swipeForQuickActions": "দ্রুত কার্যক্রমের জন্য সোয়াইপ করুন",
-
   "fontControls": "ফন্ট কন্ট্রোল",
   "arabicText": "আরবি টেক্সট",
-  "translation": "অনুবাদ",
   "resetFontSizes": "ফন্ট সাইজ রিসেট করুন",
   "preview": "প্রিভিউ",
   "arabicFontAdjusted": "আরবি ফন্ট সাইজ সমন্বয় করা হয়েছে",
   "translationFontAdjusted": "অনুবাদ ফন্ট সাইজ সমন্বয় করা হয়েছে",
   "fontSizesReset": "ফন্ট সাইজ ডিফল্ট করা হয়েছে",
-
   "audioNext": "পরবর্তী",
   "audioPrevious": "পূর্ববর্তী",
   "audioRepeat": "পুনরাবৃত্তি",
@@ -3044,7 +2939,7 @@
   "audioNoTrackSelected": "কোন ট্র্যাক নির্বাচিত নেই",
   "close": "বন্ধ করুন",
   "hadithSearchDetailedHint": "হাদিস খুঁজুন... (যেমন: নিয়ত, আমল)",
-  "hadithSearchButton": "খুঁজুন", 
+  "hadithSearchButton": "খুঁজুন",
   "hadithSearchingProgress": "খুঁজছি...",
   "hadithPopularSearches": "জনপ্রিয় খোঁজ",
   "hadithRecentSearches": "সাম্প্রতিক খোঁজ",
@@ -3055,7 +2950,6 @@
   "hadithTryDifferentSearch": "ভিন্ন অনুসন্ধান করুন",
   "hadithClearSearch": "অনুসন্ধান পরিষ্কার করুন",
   "hadithChangeFilter": "ফিল্টার পরিবর্তন",
-  "hadithResultsFound": "{count}টি হাদিস পাওয়া গেছে",
   "hadithSearchContextFor": "'{query}' এর জন্য",
   "hadithBooksScreenTitle": "হাদিসের বইসমূহ",
   "hadithBooksSearchHint": "হাদিসের বই খুঁজুন...",
@@ -3129,162 +3023,345 @@
   "hadithNarratorLabel": "বর্ণনাকারী: {narrator}",
   "hadithChapterLabel": "অধ্যায়: {chapter}",
   "zakatTitle": "যাকাত ক্যালকুলেটর",
-  "@zakatTitle": {"description": "Title for Zakat calculator screen"},
+  "@zakatTitle": {
+    "description": "Title for Zakat calculator screen"
+  },
   "zakatResetDialogTitle": "ক্যালকুলেটর রিসেট",
-  "@zakatResetDialogTitle": {"description": "Reset confirmation title"},
+  "@zakatResetDialogTitle": {
+    "description": "Reset confirmation title"
+  },
   "zakatResetDialogMessage": "সব প্রবেশ করানো ডেটা মুছে ফেলবেন?",
-  "@zakatResetDialogMessage": {"description": "Reset confirmation message"},
+  "@zakatResetDialogMessage": {
+    "description": "Reset confirmation message"
+  },
   "zakatResetSuccess": "ক্যালকুলেটর সফলভাবে রিসেট হয়েছে",
-  "@zakatResetSuccess": {"description": "Snackbar after reset"},
+  "@zakatResetSuccess": {
+    "description": "Snackbar after reset"
+  },
   "zakatResetFormTooltip": "ফর্ম রিসেট",
-  "@zakatResetFormTooltip": {"description": "Reset form tooltip"},
+  "@zakatResetFormTooltip": {
+    "description": "Reset form tooltip"
+  },
   "zakatCalculate": "যাকাত হিসাব করুন",
-  "@zakatCalculate": {"description": "Calculate button"},
+  "@zakatCalculate": {
+    "description": "Calculate button"
+  },
   "zakatCalculating": "হিসাব করা হচ্ছে...",
-  "@zakatCalculating": {"description": "Calculating label"},
+  "@zakatCalculating": {
+    "description": "Calculating label"
+  },
   "commonReset": "রিসেট",
-  "@commonReset": {"description": "Reset button common"},
+  "@commonReset": {
+    "description": "Reset button common"
+  },
   "quranGoToAyahHint": "আয়াতে যান (সুরা:আয়াত)",
-  "@quranGoToAyahHint": {"description": "Label above ayah navigation input"},
+  "@quranGoToAyahHint": {
+    "description": "Label above ayah navigation input"
+  },
   "quranExampleAyahHint": "যেমন: ২:২৫৫",
-  "@quranExampleAyahHint": {"description": "Example placeholder for ayah input"},
+  "@quranExampleAyahHint": {
+    "description": "Example placeholder for ayah input"
+  },
   "quranGoButton": "যান",
-  "@quranGoButton": {"description": "Go button for ayah navigation"},
+  "@quranGoButton": {
+    "description": "Go button for ayah navigation"
+  },
   "quranVerseOptions": "আয়াতের অপশন",
-  "@quranVerseOptions": {"description": "Header for verse options sheet"},
+  "@quranVerseOptions": {
+    "description": "Header for verse options sheet"
+  },
   "quranJuzItem": "জুজ {number}",
-  "@quranJuzItem": {"description": "Juz dropdown item label","placeholders": {"number": {"type": "int"}}},
+  "@quranJuzItem": {
+    "description": "Juz dropdown item label",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "zakatCalcError": "যাকাত হিসাব করতে ত্রুটি: {error}",
-  "@zakatCalcError": {"description": "Snackbar for calc error","placeholders": {"error": {"type": "String"}}},
+  "@zakatCalcError": {
+    "description": "Snackbar for calc error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "zakatCalculationSuccess": "যাকাত হিসাব সফলভাবে সম্পন্ন হয়েছে",
-  "@zakatCalculationSuccess": {"description": "Snackbar for calc success"},
+  "@zakatCalculationSuccess": {
+    "description": "Snackbar for calc success"
+  },
   "zakatUnableToLoadNisab": "নিসাব তথ্য লোড করা যায়নি: {error}",
-  "@zakatUnableToLoadNisab": {"description": "Error loading nisab","placeholders": {"error": {"type": "String"}}},
+  "@zakatUnableToLoadNisab": {
+    "description": "Error loading nisab",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "zakatCalculationError": "হিসাব ত্রুটি",
-  "@zakatCalculationError": {"description": "Calculation error title"},
+  "@zakatCalculationError": {
+    "description": "Calculation error title"
+  },
   "zakatAboutTitle": "যাকাত সম্পর্কে",
-  "@zakatAboutTitle": {"description": "About section title"},
+  "@zakatAboutTitle": {
+    "description": "About section title"
+  },
   "zakatAboutBody": "যাকাত ইসলামের পাঁচটি স্তম্ভের একটি। আপনার সম্পদের ২.৫% যাকাত দিতে হয় যখন আপনার সম্পদ এক হিজরি বছর নিসাবের উপরে থাকে।",
-  "@zakatAboutBody": {"description": "About text body"},
+  "@zakatAboutBody": {
+    "description": "About text body"
+  },
   "zakatCurrencyLabel": "মুদ্রা",
-  "@zakatCurrencyLabel": {"description": "Currency label"},
+  "@zakatCurrencyLabel": {
+    "description": "Currency label"
+  },
   "zakatCurrencyName": "{code}",
-  "@zakatCurrencyName": {"description": "Maps currency code to label via switch in code","placeholders": {"code": {"type": "String"}}},
+  "@zakatCurrencyName": {
+    "description": "Maps currency code to label via switch in code",
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "zakatInvalidAmount": "একটি সঠিক পরিমাণ লিখুন",
-  "@zakatInvalidAmount": {"description": "Validation message"},
+  "@zakatInvalidAmount": {
+    "description": "Validation message"
+  },
   "methodsAllAvailableMethodsCount": "বিশ্বব্যাপী {count}টি উপলভ্য গণনা পদ্ধতি থেকে বেছে নিন।",
-  "@methodsAllAvailableMethodsCount": {"placeholders": {"count": {"type": "int"}}},
+  "@methodsAllAvailableMethodsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "methodsCreateCustomAngles": "নিজস্ব ফজর ও ইশা কোণ দিয়ে কাস্টম পদ্ধতি তৈরি করুন।",
-  "@methodsCreateCustomAngles": {"description": "Prompt to create custom method"},
+  "@methodsCreateCustomAngles": {
+    "description": "Prompt to create custom method"
+  },
   "methodsApplied": "\"{name}\" গণনা পদ্ধতি প্রয়োগ হয়েছে",
-  "@methodsApplied": {"placeholders": {"name": {"type": "String"}}},
+  "@methodsApplied": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "methodsApplyFailed": "পদ্ধতি প্রয়োগ ব্যর্থ: {error}",
-  "@methodsApplyFailed": {"placeholders": {"error": {"type": "String"}}},
+  "@methodsApplyFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "methodsInfoFajrAngle": "• ফজর কোণ: ফজরের সময় নির্ধারণ করে",
-  "@methodsInfoFajrAngle": {"description": "Info bullet"},
+  "@methodsInfoFajrAngle": {
+    "description": "Info bullet"
+  },
   "methodsInfoIshaAngle": "• ইশা কোণ: ইশার সময় নির্ধারণ করে",
-  "@methodsInfoIshaAngle": {"description": "Info bullet"},
+  "@methodsInfoIshaAngle": {
+    "description": "Info bullet"
+  },
   "methodsInfoRegionalPref": "• আঞ্চলিক পছন্দ: স্থানীয় আলেমদের মতামতের ভিত্তিতে",
-  "@methodsInfoRegionalPref": {"description": "Info bullet"},
+  "@methodsInfoRegionalPref": {
+    "description": "Info bullet"
+  },
   "methodsInfoMadhabDiff": "• মাযহাবগত পার্থক্য: মূলত আসরের হিসাবকে প্রভাবিত করে",
-  "@methodsInfoMadhabDiff": {"description": "Info bullet"},
+  "@methodsInfoMadhabDiff": {
+    "description": "Info bullet"
+  },
   "methodsCustomComingSoon": "কাস্টম পদ্ধতি ভবিষ্যৎ আপডেটে আসছে।",
-  "@methodsCustomComingSoon": {"description": "Coming soon message"},
+  "@methodsCustomComingSoon": {
+    "description": "Coming soon message"
+  },
   "qiblaCalibrateFigure8": "আপনার ডিভাইসকে ফিগার-৮ আকারে নাড়িয়ে কম্পাস ক্যালিব্রেট করুন",
-  "@qiblaCalibrateFigure8": {"description": "Calibration instruction"},
+  "@qiblaCalibrateFigure8": {
+    "description": "Calibration instruction"
+  },
   "qiblaErrorInitializingCompass": "কম্পাস চালু করতে ত্রুটি",
-  "@qiblaErrorInitializingCompass": {"description": "Compass init error"},
+  "@qiblaErrorInitializingCompass": {
+    "description": "Compass init error"
+  },
   "qiblaErrorGettingLocation": "অবস্থান পেতে ত্রুটি",
-  "@qiblaErrorGettingLocation": {"description": "Location error"},
+  "@qiblaErrorGettingLocation": {
+    "description": "Location error"
+  },
   "qiblaCalibratingCompass": "কম্পাস ক্যালিব্রেট করা হচ্ছে...",
-  "@qiblaCalibratingCompass": {"description": "Calibrating text"},
+  "@qiblaCalibratingCompass": {
+    "description": "Calibrating text"
+  },
   "qiblaDirectionPerfect": "দিক ঠিক আছে",
-  "@qiblaDirectionPerfect": {"description": "Direction status"},
+  "@qiblaDirectionPerfect": {
+    "description": "Direction status"
+  },
   "qiblaTurnRight": "ডান দিকে ঘুরুন",
-  "@qiblaTurnRight": {"description": "Turn right"},
+  "@qiblaTurnRight": {
+    "description": "Turn right"
+  },
   "qiblaTurnAround": "ঘুরে দাঁড়ান",
-  "@qiblaTurnAround": {"description": "Turn around"},
+  "@qiblaTurnAround": {
+    "description": "Turn around"
+  },
   "qiblaTurnLeft": "বাম দিকে ঘুরুন",
-  "@qiblaTurnLeft": {"description": "Turn left"},
+  "@qiblaTurnLeft": {
+    "description": "Turn left"
+  },
   "qiblaAccuracyExcellent": "চমৎকার",
-  "@qiblaAccuracyExcellent": {"description": "Accuracy excellent"},
+  "@qiblaAccuracyExcellent": {
+    "description": "Accuracy excellent"
+  },
   "qiblaAccuracyGood": "ভাল",
-  "@qiblaAccuracyGood": {"description": "Accuracy good"},
+  "@qiblaAccuracyGood": {
+    "description": "Accuracy good"
+  },
   "qiblaAccuracyFair": "মোটামুটি",
-  "@qiblaAccuracyFair": {"description": "Accuracy fair"},
+  "@qiblaAccuracyFair": {
+    "description": "Accuracy fair"
+  },
   "qiblaAccuracyPoor": "দুর্বল",
-  "@qiblaAccuracyPoor": {"description": "Accuracy poor"},
+  "@qiblaAccuracyPoor": {
+    "description": "Accuracy poor"
+  },
   "qiblaError": "কিবলা ত্রুটি",
-  "@qiblaError": {"description": "Error title"},
+  "@qiblaError": {
+    "description": "Error title"
+  },
   "qiblaErrorHelp": "আপনার ডিভাইস সেটিংস চেক করে আবার চেষ্টা করুন।",
-  "@qiblaErrorHelp": {"description": "Error help text"},
+  "@qiblaErrorHelp": {
+    "description": "Error help text"
+  },
   "qiblaCalibrateCompass": "কম্পাস ক্যালিব্রেট",
-  "@qiblaCalibrateCompass": {"description": "Calibrate button"},
+  "@qiblaCalibrateCompass": {
+    "description": "Calibrate button"
+  },
   "qiblaHelpTitle": "কিবলা সহায়তা",
-  "@qiblaHelpTitle": {"description": "Help dialog title"},
+  "@qiblaHelpTitle": {
+    "description": "Help dialog title"
+  },
   "qiblaHelpCommonIssues": "সাধারণ সমস্যা:",
-  "@qiblaHelpCommonIssues": {"description": "Help section header"},
+  "@qiblaHelpCommonIssues": {
+    "description": "Help section header"
+  },
   "qiblaHelpLocationPermission": "লোকেশন অনুমতি",
-  "@qiblaHelpLocationPermission": {"description": "Help item"},
+  "@qiblaHelpLocationPermission": {
+    "description": "Help item"
+  },
   "qiblaHelpLocationPermissionText": "লোকেশন সার্ভিস চালু আছে এবং অনুমতি দেওয়া হয়েছে তা নিশ্চিত করুন।",
-  "@qiblaHelpLocationPermissionText": {"description": "Help item text"},
+  "@qiblaHelpLocationPermissionText": {
+    "description": "Help item text"
+  },
   "qiblaHelpCompassSensor": "কম্পাস সেন্সর",
-  "@qiblaHelpCompassSensor": {"description": "Help item"},
+  "@qiblaHelpCompassSensor": {
+    "description": "Help item"
+  },
   "qiblaHelpCompassSensorText": "আপনার ডিভাইসে কম্পাস সেন্সর আছে এবং ঠিকভাবে কাজ করছে তা নিশ্চিত করুন।",
-  "@qiblaHelpCompassSensorText": {"description": "Help item text"},
+  "@qiblaHelpCompassSensorText": {
+    "description": "Help item text"
+  },
   "qiblaHelpCalibration": "ক্যালিব্রেশন",
-  "@qiblaHelpCalibration": {"description": "Help item"},
+  "@qiblaHelpCalibration": {
+    "description": "Help item"
+  },
   "qiblaHelpCalibrationText": "কম্পাস ক্যালিব্রেট করতে ডিভাইসকে ফিগার-৮ আকারে নাড়ান।",
-  "@qiblaHelpCalibrationText": {"description": "Help item text"},
+  "@qiblaHelpCalibrationText": {
+    "description": "Help item text"
+  },
   "onboardingStepOfTotal": "ধাপ {step} মোট {total} এর মধ্যে",
-  "@onboardingStepOfTotal": {"placeholders": {"step": {"type": "int"}, "total": {"type": "int"}}},
-  "onboardingLocationTitle": "অবস্থান",
-  "@onboardingLocationTitle": {"description": "Onboarding location screen title"},
+  "@onboardingStepOfTotal": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "onboardingLocationPermissionTitle": "অবস্থান অ্যাক্সেস দিন",
-  "@onboardingLocationPermissionTitle": {"description": "Permission title"},
+  "@onboardingLocationPermissionTitle": {
+    "description": "Permission title"
+  },
   "onboardingLocationPermissionBody": "সঠিক নামাজের সময় দেখাতে ডিনমেটকে আপনার অবস্থানেアクセス দরকার। দয়া করে ডিভাইস সেটিংস থেকে লোকেশন পারমিশন চালু করুন।",
-  "@onboardingLocationPermissionBody": {"description": "Permission rationale"},
+  "@onboardingLocationPermissionBody": {
+    "description": "Permission rationale"
+  },
   "locationCurrentLocation": "বর্তমান অবস্থান",
-  "@locationCurrentLocation": {"description": "Auto-detected current location label"},
+  "@locationCurrentLocation": {
+    "description": "Auto-detected current location label"
+  },
   "locationAutoDetected": "স্বয়ংক্রিয়",
-  "@locationAutoDetected": {"description": "Auto detected label"},
+  "@locationAutoDetected": {
+    "description": "Auto detected label"
+  },
   "locationAutoTimezone": "স্বয়ংক্রিয়",
-  "@locationAutoTimezone": {"description": "Auto timezone label"},
+  "@locationAutoTimezone": {
+    "description": "Auto timezone label"
+  },
   "onboardingSelectLocation": "আপনার অবস্থান নির্বাচন করুন",
-  "@onboardingSelectLocation": {"description": "Dialog title to select location"},
+  "@onboardingSelectLocation": {
+    "description": "Dialog title to select location"
+  },
   "commonCountry": "দেশ",
-  "@commonCountry": {"description": "Country label"},
+  "@commonCountry": {
+    "description": "Country label"
+  },
   "commonCity": "শহর",
-  "@commonCity": {"description": "City label"},
-  "buttonConfirm": "নিশ্চিত করুন",
-  "@buttonConfirm": {"description": "Confirm button"},
+  "@commonCity": {
+    "description": "City label"
+  },
   "onboardingTapToContinue": "চালিয়ে যেতে ট্যাপ করুন",
-  "@onboardingTapToContinue": {"description": "Welcome CTA"},
+  "@onboardingTapToContinue": {
+    "description": "Welcome CTA"
+  },
   "onboardingFeatureAccuratePrayerTimes": "নির্ভুল নামাজের সময়",
-  "@onboardingFeatureAccuratePrayerTimes": {"description": "Feature bullet"},
+  "@onboardingFeatureAccuratePrayerTimes": {
+    "description": "Feature bullet"
+  },
   "onboardingFeatureCompleteQuran": "পূর্ণ কুরআন তিলাওয়াত",
-  "@onboardingFeatureCompleteQuran": {"description": "Feature bullet"},
+  "@onboardingFeatureCompleteQuran": {
+    "description": "Feature bullet"
+  },
   "onboardingFeatureQibla": "কিবলা নির্ণয়",
-  "@onboardingFeatureQibla": {"description": "Feature bullet"},
+  "@onboardingFeatureQibla": {
+    "description": "Feature bullet"
+  },
   "onboardingFeatureAzanNotifications": "আজান নোটিফিকেশন",
-  "@onboardingFeatureAzanNotifications": {"description": "Feature bullet"},
+  "@onboardingFeatureAzanNotifications": {
+    "description": "Feature bullet"
+  },
   "onboardingEnableAthanAndSalah": "আজান ও সালাত নোটিফিকেশন চালু করবেন?",
-  "@onboardingEnableAthanAndSalah": {"description": "Prompt to enable notifications"},
+  "@onboardingEnableAthanAndSalah": {
+    "description": "Prompt to enable notifications"
+  },
   "onboardingNotificationsSetupLater": "নোটিফিকেশন সেটআপ পরে সম্পন্ন হবে। সেটিংস থেকে যেকোনো সময় চালু করতে পারবেন।",
-  "@onboardingNotificationsSetupLater": {"description": "Info dialog text"},
+  "@onboardingNotificationsSetupLater": {
+    "description": "Info dialog text"
+  },
   "onboardingNotificationsSavedWithDefaults": "ডিফল্ট পছন্দসহ নোটিফিকেশন সংরক্ষিত হয়েছে। পরে সেটিংস থেকে পরিবর্তন করতে পারবেন।",
-  "@onboardingNotificationsSavedWithDefaults": {"description": "Info dialog text"},
+  "@onboardingNotificationsSavedWithDefaults": {
+    "description": "Info dialog text"
+  },
   "onboardingNameTooShort": "নাম কমপক্ষে ২ অক্ষরের হতে হবে",
-  "@onboardingNameTooShort": {"description": "Validation error for short name"},
+  "@onboardingNameTooShort": {
+    "description": "Validation error for short name"
+  },
   "quranAudioManager": "অডিও ম্যানেজার",
-  "@quranAudioManager": {"description": "Title for Quran audio manager sheet"},
+  "@quranAudioManager": {
+    "description": "Title for Quran audio manager sheet"
+  },
   "athanSettingsTestNotificationMessage": "এটি একটি পরীক্ষামূলক নামাজ নোটিফিকেশন",
-  "@athanSettingsTestNotificationMessage": {"description": "Test notification body"},
+  "@athanSettingsTestNotificationMessage": {
+    "description": "Test notification body"
+  },
   "athanSettingsDemoNotificationMessage": "এটি আজানসহ একটি ডেমো নোটিফিকেশন",
-  "@athanSettingsDemoNotificationMessage": {"description": "Demo notification body"},
-
+  "@athanSettingsDemoNotificationMessage": {
+    "description": "Demo notification body"
+  },
   "comment4": "===== কুরআন মডিউল স্ট্রিং =====",
-
   "quranAudioNotDownloaded": "অডিও ডাউনলোড হয়নি",
   "@quranAudioNotDownloaded": {
     "description": "Dialog title when audio is not available offline"
@@ -3343,7 +3420,7 @@
   "@quranErrorLoadingChapters": {
     "description": "Error message when chapters fail to load"
   },
-  "quranErrorLoadingTranslations": "অনুবাদ লোড করতে ত্রুটি",
+  "quranErrorLoadingTranslations": "অনুবাদ লোড করতে ত্রুটি: {error}",
   "@quranErrorLoadingTranslations": {
     "description": "Error message when translations fail to load"
   },
@@ -3359,17 +3436,13 @@
   "@quranIndoPak": {
     "description": "Indo-Pak script option"
   },
-  "quranWordByWord": "শব্দে শব্দে",
+  "quranWordByWord": "শব্দে-শব্দে",
   "@quranWordByWord": {
-    "description": "Word by word analysis feature"
+    "description": "শব্দে-শব্দে বিভাগের শিরোনাম"
   },
   "quranShowWordByWord": "শব্দে শব্দে দেখান",
   "@quranShowWordByWord": {
     "description": "Toggle for word by word display"
-  },
-  "quranTafsir": "তাফসীর",
-  "@quranTafsir": {
-    "description": "Tafsir/commentary feature"
   },
   "quranShowTafsir": "তাফসীর দেখান",
   "@quranShowTafsir": {
@@ -3439,195 +3512,171 @@
   "@quranEssentialContentDownloaded": {
     "description": "Message when essential content download completes"
   },
-  
   "quranSajdah": "সিজদা",
   "@quranSajdah": {
     "description": "Label for sajdah (prostration) marker"
   },
-  
   "quranSajdahInfo": "সিজদার তথ্য",
   "@quranSajdahInfo": {
     "description": "Title for sajdah information dialog"
   },
-  
   "quranSajdahObligatory": "অবশ্যক",
   "@quranSajdahObligatory": {
     "description": "Label for obligatory sajdah"
   },
-  
   "quranSajdahNumber": "সিজদার সংখ্যা",
   "@quranSajdahNumber": {
     "description": "Label for sajdah number in info dialog"
   },
-  
   "quranSajdahType": "ধরন",
   "@quranSajdahType": {
     "description": "Label for sajdah type in info dialog"
   },
-  
   "quranSajdahVerse": "আয়াত",
   "@quranSajdahVerse": {
     "description": "Label for verse reference in sajdah info"
   },
-  
   "quranClose": "বন্ধ করুন",
   "@quranClose": {
     "description": "Close button text"
   },
-  
   "quranSajdahObligatoryDescription": "এটি একটি অবশ্যক সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা বাধ্যতামূলক।",
   "@quranSajdahObligatoryDescription": {
     "description": "Description for obligatory sajdah verses"
   },
-  
   "quranSajdahRecommendedDescription": "এটি একটি সুপারিশকৃত সিজদার আয়াত। এই আয়াত পাঠ বা শোনার সময় সিজদা করা সুপারিশকৃত।",
   "@quranSajdahRecommendedDescription": {
     "description": "Description for recommended sajdah verses"
   },
-  
   "quranSajdahGeneralDescription": "এই আয়াতে একটি সিজদা (সিজদা) চিহ্ন রয়েছে। এই আয়াত পাঠ বা শোনার সময় সিজদা করার কথা বিবেচনা করুন।",
   "@quranSajdahGeneralDescription": {
     "description": "General description for sajdah verses"
   },
-  
   "quranScriptVariants": "স্ক্রিপ্ট ভেরিয়েন্ট",
   "@quranScriptVariants": {
     "description": "Title for Quran script variants selection"
   },
-  
   "quranScriptVariantsDescription": "বিভিন্ন কুরআন স্ক্রিপ্ট স্টাইল নির্বাচন করুন। উসমানী হল ঐতিহ্যগত স্ক্রিপ্ট, যখন ইন্দো-পাক দক্ষিণ এশিয়ায় জনপ্রিয়।",
   "@quranScriptVariantsDescription": {
     "description": "Description of script variants feature"
   },
-  
   "quranUthmanicDescription": "বিশ্বব্যাপী অধিকাংশ মুদ্রিত কুরআনে ব্যবহৃত ঐতিহ্যগত উসমানী স্ক্রিপ্ট। ক্লাসিক্যাল আরবি ক্যালিগ্রাফি বৈশিষ্ট্য।",
   "@quranUthmanicDescription": {
     "description": "Description of Uthmanic script"
   },
-  
   "quranIndoPakDescription": "দক্ষিণ এশিয়ায় জনপ্রিয় ইন্দো-পাক স্ক্রিপ্ট স্টাইল। স্বতন্ত্র অক্ষর রূপ এবং স্পেসিং বৈশিষ্ট্য।",
   "@quranIndoPakDescription": {
     "description": "Description of IndoPak script"
   },
-  
   "quranScript": "স্ক্রিপ্ট",
   "@quranScript": {
     "description": "Label for script selection"
   },
-  
   "quranEnableTransliteration": "ট্রান্সলিটারেশন অনুসন্ধান সক্রিয় করুন",
   "@quranEnableTransliteration": {
     "description": "Checkbox label for enabling transliteration search"
   },
-  
   "quranEnableBengaliSearch": "বাংলা অনুসন্ধান সক্রিয় করুন",
   "@quranEnableBengaliSearch": {
     "description": "Checkbox label for enabling Bengali search"
   },
-  
   "quranEnableFuzzyMatch": "ফাজি ম্যাচিং সক্রিয় করুন",
   "@quranEnableFuzzyMatch": {
     "description": "Checkbox label for enabling fuzzy matching"
   },
-  
   "quranTransliteration": "ট্রান্সলিটারেশন",
   "@quranTransliteration": {
     "description": "Label for transliteration search scope"
   },
-  
   "quranBengali": "বাংলা",
   "@quranBengali": {
     "description": "Label for Bengali search scope"
   },
-  
   "quranAll": "সব",
   "@quranAll": {
     "description": "Label for all search scope"
   },
-  
-  "quranArabic": "আরবি",
-  "@quranArabic": {
-    "description": "Label for Arabic search scope"
-  },
-  
-  "quranTranslation": "অনুবাদ",
-  "@quranTranslation": {
-    "description": "Label for translation search scope"
-  },
-  
   "quranTranslationLoading": "অনুবাদ লোড হচ্ছে...",
   "@quranTranslationLoading": {
     "description": "Message shown while translations are loading"
   },
-  
   "quranAvailableTranslations": "উপলব্ধ অনুবাদসমূহ",
   "@quranAvailableTranslations": {
     "description": "Title for available translations section"
   },
-  
   "quranSelectedTranslationIds": "নির্বাচিত অনুবাদ আইডি",
   "@quranSelectedTranslationIds": {
     "description": "Label for selected translation IDs"
   },
-  
   "quranPleaseWaitWhileTranslationsAreBeingLoaded": "অনুবাদ লোড হওয়া পর্যন্ত অনুগ্রহ করে অপেক্ষা করুন...",
   "@quranPleaseWaitWhileTranslationsAreBeingLoaded": {
     "description": "Message asking user to wait for translations"
   },
-  
   "quranFailedToLoadTranslations": "অনুবাদ লোড করতে ব্যর্থ",
   "@quranFailedToLoadTranslations": {
     "description": "Error message when translations fail to load"
   },
-
   "quranSearchError": "সার্চ ত্রুটি: {error}",
   "@quranSearchError": {
     "description": "সার্চ ত্রুটির জন্য স্ন্যাকবার টেক্সট",
     "placeholders": {
-      "error": {"type": "String"}
+      "error": {
+        "type": "String"
+      }
     }
   },
-  
   "quranQuickTools": "দ্রুত সরঞ্জাম",
   "@quranQuickTools": {
     "description": "Title for quick tools section"
   },
-  
   "quranSelectedTranslations": "নির্বাচিত অনুবাদসমূহ",
   "@quranSelectedTranslations": {
     "description": "Title for selected translations section"
   },
-  
   "quranEnableAutoScroll": "স্বয়ংক্রিয় স্ক্রল সক্রিয় করুন",
   "@quranEnableAutoScroll": {
     "description": "Checkbox label for enabling auto scroll"
   },
-  
   "quranSpeedPxSec": "গতি (পিক্সেল/সেকেন্ড)",
   "@quranSpeedPxSec": {
     "description": "Label for auto scroll speed setting"
   },
-  "quranWordByWord": "শব্দে-শব্দে",
-  "@quranWordByWord": {"description": "শব্দে-শব্দে বিভাগের শিরোনাম"},
   "quranWordByWordSubtitle": "প্রতিটি শব্দের উচ্চারণ ও অর্থ দেখান",
-  "@quranWordByWordSubtitle": {"description": "শব্দে-শব্দে টগল সাবটাইটেল"},
+  "@quranWordByWordSubtitle": {
+    "description": "শব্দে-শব্দে টগল সাবটাইটেল"
+  },
   "quranWordByWordSource": "শব্দে-শব্দে উৎস",
-  "@quranWordByWordSource": {"description": "ওয়ার্ড অ্যানালাইসিস সোর্স পিকার লেবেল"},
+  "@quranWordByWordSource": {
+    "description": "ওয়ার্ড অ্যানালাইসিস সোর্স পিকার লেবেল"
+  },
   "quranPlaybackSpeedLabel": "প্লেব্যাক গতি",
-  "@quranPlaybackSpeedLabel": {"description": "প্লেব্যাক গতি মেনুর লেবেল"},
+  "@quranPlaybackSpeedLabel": {
+    "description": "প্লেব্যাক গতি মেনুর লেবেল"
+  },
   "quranSpeed050": "০.৫০x",
-  "@quranSpeed050": {"description": "প্লেব্যাক গতি ০.৫x"},
+  "@quranSpeed050": {
+    "description": "প্লেব্যাক গতি ০.৫x"
+  },
   "quranSpeed075": "০.৭৫x",
-  "@quranSpeed075": {"description": "প্লেব্যাক গতি ০.৭৫x"},
+  "@quranSpeed075": {
+    "description": "প্লেব্যাক গতি ০.৭৫x"
+  },
   "quranSpeed100": "১.০০x",
-  "@quranSpeed100": {"description": "প্লেব্যাক গতি ১x"},
+  "@quranSpeed100": {
+    "description": "প্লেব্যাক গতি ১x"
+  },
   "quranSpeed125": "১.২৫x",
-  "@quranSpeed125": {"description": "প্লেব্যাক গতি ১.২৫x"},
+  "@quranSpeed125": {
+    "description": "প্লেব্যাক গতি ১.২৫x"
+  },
   "quranSpeed150": "১.৫০x",
-  "@quranSpeed150": {"description": "প্লেব্যাক গতি ১.৫x"},
+  "@quranSpeed150": {
+    "description": "প্লেব্যাক গতি ১.৫x"
+  },
   "quranSpeed200": "২.০০x",
-  "@quranSpeed200": {"description": "প্লেব্যাক গতি ২x"},
-  
+  "@quranSpeed200": {
+    "description": "প্লেব্যাক গতি ২x"
+  },
   "quranQuickJump": "দ্রুত জাম্প",
   "@quranQuickJump": {
     "description": "Title for quick jump navigation feature"
@@ -3640,99 +3689,148 @@
   "@methodsInfoRecommendation": {
     "description": "Recommendation line in calculation method info dialog"
   },
-  
   "quranCopyArabicText": "আরবি টেক্সট কপি করুন",
   "@quranCopyArabicText": {
     "description": "Menu item to copy Arabic text"
   },
-  
   "quranCopyOnlyArabicVerse": "শুধুমাত্র আরবি আয়াত কপি করুন",
   "@quranCopyOnlyArabicVerse": {
     "description": "Menu item to copy only Arabic verse"
   },
-  
   "quranCopyTranslation": "অনুবাদ কপি করুন",
   "@quranCopyTranslation": {
     "description": "Menu item to copy translation"
   },
-  
   "quranCopyOnlyTranslation": "শুধুমাত্র অনুবাদ কপি করুন",
   "@quranCopyOnlyTranslation": {
     "description": "Menu item to copy only translation"
   },
-  
   "quranCopyFullVerse": "সম্পূর্ণ আয়াত কপি করুন",
   "@quranCopyFullVerse": {
     "description": "Menu item to copy full verse with Arabic and translation"
   },
-  
   "quranCopyArabicWithTranslation": "আরবি সহ অনুবাদ কপি করুন",
   "@quranCopyArabicWithTranslation": {
     "description": "Menu item to copy Arabic text with translation"
   },
-  
   "quranReportTranslationError": "অনুবাদ ত্রুটি রিপোর্ট করুন",
   "@quranReportTranslationError": {
     "description": "Menu item to report translation error"
   },
-  
   "quranHelpImproveTranslationAccuracy": "অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করুন",
   "@quranHelpImproveTranslationAccuracy": {
     "description": "Description for reporting translation errors"
   },
-  
   "quranArabicTextCopied": "আরবি টেক্সট ক্লিপবোর্ডে কপি হয়েছে",
   "@quranArabicTextCopied": {
     "description": "Message shown when Arabic text is copied"
   },
-  
   "quranTranslationCopied": "অনুবাদ ক্লিপবোর্ডে কপি হয়েছে",
   "@quranTranslationCopied": {
     "description": "Message shown when translation is copied"
   },
-  
   "quranFullVerseCopied": "সম্পূর্ণ আয়াত ক্লিপবোর্ডে কপি হয়েছে",
   "@quranFullVerseCopied": {
     "description": "Message shown when full verse is copied"
   },
-  
   "quranReportTranslationErrorTitle": "অনুবাদ ত্রুটি রিপোর্ট করুন",
   "@quranReportTranslationErrorTitle": {
     "description": "Title for translation error report dialog"
   },
-  
   "quranThankYouForHelpingImproveQuranTranslation": "কুরআন অনুবাদের নির্ভুলতা উন্নত করতে সাহায্য করার জন্য ধন্যবাদ!",
   "@quranThankYouForHelpingImproveQuranTranslation": {
     "description": "Thank you message for reporting translation errors"
   },
-  
   "quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": "অনুগ্রহ করে {verseKey} আয়াতে ত্রুটি সম্পর্কে বিস্তারিত জানিয়ে support@deenmate.app এ আমাদের ইমেইল করুন",
   "@quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": {
     "description": "Instructions for reporting translation errors"
   },
-  
   "quranSendEmail": "ইমেইল পাঠান",
   "@quranSendEmail": {
     "description": "Button text for sending email"
   },
-  
   "quranReadingProgress": "পঠন অগ্রগতি",
   "@quranReadingProgress": {
     "description": "Title for reading progress indicator"
   },
-  
   "quranVerse": "আয়াত",
   "@quranVerse": {
     "description": "Label for verse count in reading progress"
   },
-  
   "quranReadingStreak": "পঠন ধারা",
   "@quranReadingStreak": {
     "description": "Label for reading streak counter"
   },
-  
   "quranDays": "দিন",
   "@quranDays": {
     "description": "Label for days in reading streak"
+  },
+  "athanSettingsIftarReminder": "Iftar Reminder",
+  "@athanSettingsIftarReminder": {
+    "description": "athanSettingsIftarReminder"
+  },
+  "athanSettingsIftarReminderText": "Remind me {minutes} minutes before Maghrib for Iftar",
+  "@athanSettingsIftarReminderText": {
+    "description": "athanSettingsIftarReminderText"
+  },
+  "athanSettingsIncludeDuas": "Include Duas",
+  "@athanSettingsIncludeDuas": {
+    "description": "athanSettingsIncludeDuas"
+  },
+  "athanSettingsIncludeDuasSubtitle": "Show Ramadan-specific duas in notifications",
+  "@athanSettingsIncludeDuasSubtitle": {
+    "description": "athanSettingsIncludeDuasSubtitle"
+  },
+  "athanSettingsRamadanNotifications": "Ramadan Notifications",
+  "@athanSettingsRamadanNotifications": {
+    "description": "athanSettingsRamadanNotifications"
+  },
+  "athanSettingsRamadanNotificationsSubtitle": "Enable special notifications for Suhur and Iftar",
+  "@athanSettingsRamadanNotificationsSubtitle": {
+    "description": "athanSettingsRamadanNotificationsSubtitle"
+  },
+  "athanSettingsSpecialRamadanAthan": "Special Ramadan Athan",
+  "@athanSettingsSpecialRamadanAthan": {
+    "description": "athanSettingsSpecialRamadanAthan"
+  },
+  "athanSettingsSpecialRamadanAthanSubtitle": "Use special Athan recitations during Ramadan",
+  "@athanSettingsSpecialRamadanAthanSubtitle": {
+    "description": "athanSettingsSpecialRamadanAthanSubtitle"
+  },
+  "athanSettingsSuhurReminder": "Suhur Reminder",
+  "@athanSettingsSuhurReminder": {
+    "description": "athanSettingsSuhurReminder"
+  },
+  "athanSettingsSuhurReminderText": "Remind me {minutes} minutes before Fajr for Suhur",
+  "@athanSettingsSuhurReminderText": {
+    "description": "athanSettingsSuhurReminderText"
+  },
+  "athanSettingsTrackFasting": "Track Fasting",
+  "@athanSettingsTrackFasting": {
+    "description": "athanSettingsTrackFasting"
+  },
+  "athanSettingsTrackFastingSubtitle": "Keep track of your fasting status",
+  "@athanSettingsTrackFastingSubtitle": {
+    "description": "athanSettingsTrackFastingSubtitle"
+  },
+  "quranErrorLoadingJuz": "Error loading Juz {juzNumber}: {error}",
+  "@quranErrorLoadingJuz": {
+    "description": "quranErrorLoadingJuz"
+  },
+  "quranErrorLoadingRuku": "Error loading Ruku {rukuNumber}: {error}",
+  "@quranErrorLoadingRuku": {
+    "description": "quranErrorLoadingRuku"
+  },
+  "quranNoVersesFoundForJuz": "No verses found for Juz {juzNumber}",
+  "@quranNoVersesFoundForJuz": {
+    "description": "quranNoVersesFoundForJuz"
+  },
+  "quranNoVersesFoundForRuku": "No verses found for Ruku {rukuNumber}",
+  "@quranNoVersesFoundForRuku": {
+    "description": "quranNoVersesFoundForRuku"
+  },
+  "quranRetry": "Retry",
+  "@quranRetry": {
+    "description": "quranRetry"
   }
 }

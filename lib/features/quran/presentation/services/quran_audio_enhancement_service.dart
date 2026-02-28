@@ -24,6 +24,7 @@ class QuranAudioEnhancementService {
   // Stream controllers for real-time updates
   final _audioEnhancementStreamController = StreamController<AudioEnhancementEvent>.broadcast();
   final _downloadIntegrationController = StreamController<DownloadIntegrationEvent>.broadcast();
+  final List<StreamSubscription> _integrationSubscriptions = [];
   
   // Public streams
   Stream<AudioEnhancementEvent> get audioEnhancementStream => 
@@ -70,41 +71,47 @@ class QuranAudioEnhancementService {
   /// Set up listeners for seamless integration between components
   void _setupIntegrationListeners() {
     // Listen to download progress and update audio manager
-    _downloadInfrastructure.downloadProgressStream.listen((progress) {
-      _downloadIntegrationController.add(
-        DownloadIntegrationEvent.downloadProgress(
-          verseKey: progress.verseKey,
-          progress: progress.progress,
-          bytesDownloaded: progress.bytesDownloaded,
-          totalBytes: progress.totalBytes,
-        ),
-      );
-      
-      // Notify mobile audio manager about download completion
-      if (progress.progress >= 1.0) {
-        _mobileAudioManager.notifyAudioAvailable(
-          verseKey: progress.verseKey,
-          localPath: progress.localPath,
+    _integrationSubscriptions.add(
+      _downloadInfrastructure.downloadProgressStream.listen((progress) {
+        _downloadIntegrationController.add(
+          DownloadIntegrationEvent.downloadProgress(
+            verseKey: progress.verseKey,
+            progress: progress.progress,
+            bytesDownloaded: progress.bytesDownloaded,
+            totalBytes: progress.totalBytes,
+          ),
         );
-      }
-    });
+        
+        // Notify mobile audio manager about download completion
+        if (progress.progress >= 1.0) {
+          _mobileAudioManager.notifyAudioAvailable(
+            verseKey: progress.verseKey,
+            localPath: progress.localPath,
+          );
+        }
+      }),
+    );
     
     // Listen to batch download events
-    _downloadInfrastructure.batchProgressStream.listen((batchProgress) {
-      _downloadIntegrationController.add(
-        DownloadIntegrationEvent.batchProgress(
-          batchId: batchProgress.batchId,
-          completedCount: batchProgress.completedCount,
-          totalCount: batchProgress.totalCount,
-          currentItem: batchProgress.currentItem,
-        ),
-      );
-    });
+    _integrationSubscriptions.add(
+      _downloadInfrastructure.batchProgressStream.listen((batchProgress) {
+        _downloadIntegrationController.add(
+          DownloadIntegrationEvent.batchProgress(
+            batchId: batchProgress.batchId,
+            completedCount: batchProgress.completedCount,
+            totalCount: batchProgress.totalCount,
+            currentItem: batchProgress.currentItem,
+          ),
+        );
+      }),
+    );
     
     // Listen to audio manager events and enhance with download info
-    _mobileAudioManager.audioEventStream.listen((audioEvent) {
-      _handleAudioManagerEvent(audioEvent);
-    });
+    _integrationSubscriptions.add(
+      _mobileAudioManager.audioEventStream.listen((audioEvent) {
+        _handleAudioManagerEvent(audioEvent);
+      }),
+    );
   }
   
   /// Handle audio manager events and enhance with download integration
@@ -341,6 +348,10 @@ class QuranAudioEnhancementService {
   
   /// Dispose resources
   void dispose() {
+    for (final sub in _integrationSubscriptions) {
+      sub.cancel();
+    }
+    _integrationSubscriptions.clear();
     _audioEnhancementStreamController.close();
     _downloadIntegrationController.close();
     _isIntegrationActive = false;

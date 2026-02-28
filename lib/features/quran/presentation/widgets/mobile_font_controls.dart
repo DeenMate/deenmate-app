@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/theme_helper.dart';
+import '../../../../core/widgets/responsive_layout.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../state/providers.dart';
 
@@ -134,7 +135,7 @@ class _MobileFontControlsState extends ConsumerState<MobileFontControls>
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final prefs = ref.watch(prefsProvider);
-    final isTablet = MediaQuery.of(context).size.width >= 768;
+    final isTablet = ResponsiveLayout.isTablet(context);
     
     if (widget.isCompact) {
       return _buildCompactControls(context, l10n, prefs);

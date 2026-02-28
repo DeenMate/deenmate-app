@@ -254,10 +254,12 @@ extension PrayerTimesExtension on PrayerTimes {
     return null;
   }
 
-  /// Check if it's currently night time (between Isha and Fajr)
+  /// Check if it's currently night time (between Isha and next Fajr)
+  /// Handles the cross-midnight case where Isha is PM and Fajr is AM.
   bool get isNightTime {
     final now = DateTime.now();
-    return now.isAfter(isha.time) && now.isBefore(fajr.time);
+    // Night spans across midnight: after Isha PM OR before Fajr AM
+    return now.isAfter(isha.time) || now.isBefore(fajr.time);
   }
 
   /// Get all prayer times for today

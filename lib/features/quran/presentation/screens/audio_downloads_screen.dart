@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../data/dto/chapter_dto.dart';
 import '../../data/dto/recitation_resource_dto.dart';
 import '../state/providers.dart';
@@ -58,14 +59,18 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
       if (saved != null && mounted) {
         setState(() => _selectedReciterId = saved);
       }
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('AudioDownloads', 'Failed to load saved reciter', error: e);
+    }
   }
 
   Future<void> _saveSelectedReciter(int id) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt('quran_audio_selected_reciter_id', id);
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('AudioDownloads', 'Failed to save reciter preference', error: e);
+    }
   }
 
   @override
@@ -718,7 +723,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
       // Completion handled by service; clear cancel token
       _cancelTokens.remove(chapterId);
     } catch (e) {
-      print('Download error: $e');
+      debugPrint('Download error: $e');
       _cancelTokens.remove(chapterId);
       rethrow;
     }
@@ -729,7 +734,9 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove('audio_complete_${chapterId}_$_selectedReciterId');
       await prefs.remove('audio_progress_${chapterId}_$_selectedReciterId');
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('AudioDownloads', 'Failed to clear chapter status for chapter $chapterId', error: e);
+    }
   }
 
   Future<bool> _isChapterDownloaded(int chapterId) async {
@@ -743,7 +750,7 @@ class _AudioDownloadsScreenState extends ConsumerState<AudioDownloadsScreen> {
           await service.getChapterAudioSize(chapterId, _selectedReciterId);
       return sizeMb > 0.01;
     } catch (e) {
-      print('Error checking download status: $e');
+      debugPrint('Error checking download status: $e');
       return false;
     }
   }

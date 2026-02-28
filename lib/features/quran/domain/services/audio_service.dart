@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../data/api/verses_api.dart';
 
 /// Comprehensive audio service for Quran recitation
@@ -108,7 +109,7 @@ class QuranAudioService {
       return isAvailable;
     } catch (e) {
       if (kDebugMode) {
-        print('Reciter availability check failed for ID $reciterId: $e');
+        debugPrint('Reciter availability check failed for ID $reciterId: $e');
       }
       _reciterAvailabilityCache[reciterId] = false; // Cache the failure
       return false;
@@ -120,7 +121,7 @@ class QuranAudioService {
     _playlist = verses;
     _currentIndex = 0;
     if (kDebugMode) {
-      print('Audio: Playlist set with ${verses.length} verses');
+      debugPrint('Audio: Playlist set with ${verses.length} verses');
     }
   }
 
@@ -132,7 +133,7 @@ class QuranAudioService {
     final verse = _playlist[index];
 
     if (kDebugMode) {
-      print('Audio: Playing verse ${verse.verseKey}');
+      debugPrint('Audio: Playing verse ${verse.verseKey}');
     }
 
     try {
@@ -143,7 +144,7 @@ class QuranAudioService {
         // Play from local file
         await _audioPlayer.play(DeviceFileSource(localPath));
         if (kDebugMode) {
-          print('Audio: Playing from local file: $localPath');
+          debugPrint('Audio: Playing from local file: $localPath');
         }
         _updateState(AudioState.playing);
       } else if (verse.onlineUrl != null) {
@@ -176,7 +177,7 @@ class QuranAudioService {
         }
 
         if (kDebugMode) {
-          print('Audio: Playing from online: ${verse.onlineUrl}');
+          debugPrint('Audio: Playing from online: ${verse.onlineUrl}');
         }
       } else {
         throw Exception(
@@ -184,7 +185,7 @@ class QuranAudioService {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Audio: Error playing verse ${verse.verseKey}: $e');
+        debugPrint('Audio: Error playing verse ${verse.verseKey}: $e');
       }
       _updateState(AudioState.error);
     }
@@ -239,7 +240,7 @@ class QuranAudioService {
   void setRepeatMode(RepeatMode mode) {
     _repeatMode = mode;
     if (kDebugMode) {
-      print('Audio: Repeat mode set to $mode');
+      debugPrint('Audio: Repeat mode set to $mode');
     }
   }
 
@@ -247,7 +248,7 @@ class QuranAudioService {
   void setAutoAdvance(bool enabled) {
     _autoAdvance = enabled;
     if (kDebugMode) {
-      print('Audio: Auto advance set to $enabled');
+      debugPrint('Audio: Auto advance set to $enabled');
     }
   }
 
@@ -256,7 +257,7 @@ class QuranAudioService {
     _playbackSpeed = speed;
     await _audioPlayer.setPlaybackRate(speed);
     if (kDebugMode) {
-      print('Audio: Playback speed set to ${speed}x');
+      debugPrint('Audio: Playback speed set to ${speed}x');
     }
   }
 
@@ -280,7 +281,7 @@ class QuranAudioService {
     final file = File(localPath);
     if (file.existsSync()) {
       if (kDebugMode) {
-        print('Audio: Verse ${verse.verseKey} already downloaded');
+        debugPrint('Audio: Verse ${verse.verseKey} already downloaded');
       }
       onProgress?.call(1.0);
       return;
@@ -302,7 +303,7 @@ class QuranAudioService {
         await file.parent.create(recursive: true);
 
         if (kDebugMode) {
-          print(
+          debugPrint(
               'Audio: Downloading verse ${verse.verseKey} (attempt ${retryCount + 1}/${maxRetries + 1})');
         }
 
@@ -326,7 +327,7 @@ class QuranAudioService {
         );
 
         if (kDebugMode) {
-          print('Audio: Successfully downloaded verse ${verse.verseKey}');
+          debugPrint('Audio: Successfully downloaded verse ${verse.verseKey}');
         }
         return; // Success, exit retry loop
       } catch (e) {
@@ -335,7 +336,7 @@ class QuranAudioService {
         // Don't retry if cancelled
         if (e is DioException && e.type == DioExceptionType.cancel) {
           if (kDebugMode) {
-            print('Audio: Download cancelled for verse ${verse.verseKey}');
+            debugPrint('Audio: Download cancelled for verse ${verse.verseKey}');
           }
           rethrow;
         }
@@ -344,19 +345,21 @@ class QuranAudioService {
         if (file.existsSync()) {
           try {
             await file.delete();
-          } catch (_) {}
+          } catch (e) {
+            AppLogger.warning('AudioService', 'Failed to delete partial download file', error: e);
+          }
         }
 
         if (retryCount > maxRetries) {
           if (kDebugMode) {
-            print(
+            debugPrint(
                 'Audio: Failed to download verse ${verse.verseKey} after $maxRetries retries: $e');
           }
           rethrow;
         }
 
         if (kDebugMode) {
-          print(
+          debugPrint(
               'Audio: Retry $retryCount for verse ${verse.verseKey} after error: $e');
         }
 
@@ -376,7 +379,7 @@ class QuranAudioService {
   }) async {
     try {
       if (kDebugMode) {
-        print('Audio: Starting download for chapter $chapterId');
+        debugPrint('Audio: Starting download for chapter $chapterId');
       }
 
       // Check if already complete
@@ -394,7 +397,7 @@ class QuranAudioService {
       }
 
       if (kDebugMode) {
-        print(
+        debugPrint(
             'Audio: Downloading ${verseList.length} verses for chapter $chapterId');
       }
 
@@ -405,7 +408,7 @@ class QuranAudioService {
         // Check for cancellation
         if (cancelToken?.isCancelled == true) {
           if (kDebugMode) {
-            print('Audio: Download cancelled for chapter $chapterId');
+            debugPrint('Audio: Download cancelled for chapter $chapterId');
           }
           return;
         }
@@ -437,7 +440,7 @@ class QuranAudioService {
           );
         } catch (e) {
           if (kDebugMode) {
-            print('Audio: Error downloading verse ${verse.verseKey}: $e');
+            debugPrint('Audio: Error downloading verse ${verse.verseKey}: $e');
           }
 
           // Emit error progress
@@ -465,11 +468,11 @@ class QuranAudioService {
       ));
 
       if (kDebugMode) {
-        print('Audio: Successfully downloaded chapter $chapterId');
+        debugPrint('Audio: Successfully downloaded chapter $chapterId');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Audio: Failed to download chapter $chapterId: $e');
+        debugPrint('Audio: Failed to download chapter $chapterId: $e');
       }
 
       // Emit error
@@ -519,7 +522,7 @@ class QuranAudioService {
       int chapterId, int reciterId) async {
     try {
       if (kDebugMode) {
-        print(
+        debugPrint(
             'Audio: Creating verse list for chapter $chapterId, reciter $reciterId');
       }
 
@@ -534,7 +537,7 @@ class QuranAudioService {
       );
 
       if (kDebugMode) {
-        print(
+        debugPrint(
             'Audio: Fetched ${versesPage.verses.length} verses for chapter $chapterId');
       }
 
@@ -568,13 +571,13 @@ class QuranAudioService {
       }).toList();
 
       if (kDebugMode) {
-        print('Audio: Created ${verseAudioList.length} VerseAudio objects');
+        debugPrint('Audio: Created ${verseAudioList.length} VerseAudio objects');
       }
 
       return verseAudioList;
     } catch (e) {
       if (kDebugMode) {
-        print('Audio: Error creating verse list for chapter $chapterId: $e');
+        debugPrint('Audio: Error creating verse list for chapter $chapterId: $e');
       }
       rethrow;
     }
@@ -614,7 +617,7 @@ class QuranAudioService {
     if (chapterDir.existsSync()) {
       await chapterDir.delete(recursive: true);
       if (kDebugMode) {
-        print('Audio: Deleted chapter $chapterId audio for reciter $reciterId');
+        debugPrint('Audio: Deleted chapter $chapterId audio for reciter $reciterId');
       }
     }
   }
@@ -669,7 +672,7 @@ class QuranAudioService {
     await _prefs!.setDouble(key, progress);
 
     if (kDebugMode) {
-      print(
+      debugPrint(
           'Audio: Saved progress for chapter $chapterId: ${(progress * 100).toStringAsFixed(1)}%');
     }
   }
@@ -691,7 +694,7 @@ class QuranAudioService {
     await _saveChapterProgress(chapterId, reciterId, 1.0);
 
     if (kDebugMode) {
-      print('Audio: Marked chapter $chapterId as complete');
+      debugPrint('Audio: Marked chapter $chapterId as complete');
     }
   }
 
@@ -743,7 +746,7 @@ class QuranAudioService {
     }
 
     if (kDebugMode) {
-      print(
+      debugPrint(
           'Audio: Cleared ${keysToRemove.length} data entries for reciter $reciterId');
     }
   }
@@ -759,14 +762,14 @@ class QuranAudioService {
       final estimatedSizeMB = (verses.length * averageVerseSizeKB) / 1024;
 
       if (kDebugMode) {
-        print(
+        debugPrint(
             'Audio: Estimated size for chapter $chapterId: ${estimatedSizeMB.toStringAsFixed(1)} MB (${verses.length} verses)');
       }
 
       return estimatedSizeMB;
     } catch (e) {
       if (kDebugMode) {
-        print('Audio: Error estimating chapter size: $e');
+        debugPrint('Audio: Error estimating chapter size: $e');
       }
       return 0.0;
     }
@@ -783,7 +786,7 @@ class QuranAudioService {
     await _downloadController.close();
 
     if (kDebugMode) {
-      print('Audio: Service disposed');
+      debugPrint('Audio: Service disposed');
     }
   }
 
@@ -809,7 +812,7 @@ class QuranAudioService {
     _stateController.add(state);
 
     if (kDebugMode) {
-      print('Audio: State changed to $state');
+      debugPrint('Audio: State changed to $state');
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/utils/app_logger.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../widgets/islamic_decorative_elements.dart';
 import '../widgets/islamic_gradient_background.dart';
@@ -49,7 +50,9 @@ class _UsernameScreenState extends State<UsernameScreen> {
         _isValid = saved.trim().length >= 2;
         if (mounted) setState(() {});
       }
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('UsernameScreen', 'Failed to load saved name', error: e);
+    }
   }
 
   @override
@@ -200,7 +203,9 @@ class _UsernameScreenState extends State<UsernameScreen> {
               try {
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setString('user_name', name);
-              } catch (_) {}
+              } catch (e) {
+                AppLogger.warning('UsernameScreen', 'Failed to save name', error: e);
+              }
               widget.onNext?.call();
             }
           : null,

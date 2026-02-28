@@ -48,11 +48,12 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
     final athanSettingsAsync = ref.watch(athanSettingsProvider);
     final permissionsState = ref.watch(notificationPermissionsProvider);
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
         // Navigate back to More screen instead of exiting the app
         context.go(EnhancedAppRouter.more);
-        return false;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -1321,7 +1322,7 @@ class _AthanSettingsScreenState extends ConsumerState<AthanSettingsScreen>
                   await service.playAthan('abdulbasit', 1.0,
                       durationSeconds: currentSettings.durationSeconds);
                 } catch (e) {
-                  print(
+                  debugPrint(
                       '${AppLocalizations.of(context)!.athanSettingsTestFailed}: $e');
                 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../core/utils/app_logger.dart';
 import 'screens/01_welcome_screen.dart';
 import 'screens/02_language_screen.dart';
 import 'screens/03_location_screen.dart';
@@ -77,7 +78,7 @@ class OnboardingRouter {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('onboarding_completed', true);
     } catch (e) {
-      // Handle error silently
+      AppLogger.error('Onboarding', 'Failed to mark onboarding completed', error: e);
     }
   }
 
@@ -87,7 +88,7 @@ class OnboardingRouter {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('onboarding_completed', false);
     } catch (e) {
-      // Handle error silently
+      AppLogger.error('Onboarding', 'Failed to reset onboarding', error: e);
     }
   }
 

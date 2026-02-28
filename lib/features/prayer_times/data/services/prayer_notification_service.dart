@@ -14,6 +14,8 @@ import 'dart:async'; // Added for Timer
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../../../core/utils/app_logger.dart';
+
 import '../../../../core/error/failures.dart';
 
 import '../../domain/entities/athan_settings.dart';
@@ -145,7 +147,7 @@ class PrayerNotificationService {
       final alarmStatus = await Permission.scheduleExactAlarm.request();
       if (alarmStatus.isDenied) {
         // This is not critical, app can still function
-        print('Exact alarm permission denied - notifications may be delayed');
+        debugPrint('Exact alarm permission denied - notifications may be delayed');
       }
     }
   }
@@ -160,7 +162,9 @@ class PrayerNotificationService {
     // Cancel existing notifications for the day to avoid duplicates
     try {
     await cancelDailyNotifications(prayerTimes.date);
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('PrayerNotification', 'Failed to cancel existing notifications', error: e);
+    }
 
     if (!athanSettings.isEnabled) return;
 
@@ -277,7 +281,7 @@ class PrayerNotificationService {
           playAthan(settings.muadhinVoice, settings.volume,
               durationSeconds: settings.durationSeconds);
         } catch (e) {
-          // Failed to play Athan
+          AppLogger.error('PrayerNotification', 'Failed to play Athan', error: e);
         }
       }
     }
@@ -308,7 +312,7 @@ class PrayerNotificationService {
       );
       // Showed immediate notification successfully
     } catch (e) {
-      // Failed to show immediate notification
+      AppLogger.error('PrayerNotification', 'Failed to show immediate notification', error: e);
     }
   }
 
@@ -369,7 +373,7 @@ class PrayerNotificationService {
             await playAthan(settings.muadhinVoice, settings.volume,
                 durationSeconds: settings.durationSeconds);
           } catch (e) {
-            // Failed to play Athan
+            AppLogger.error('PrayerNotification', 'Failed to play Athan from callback', error: e);
           }
         },
       );
@@ -470,7 +474,7 @@ class PrayerNotificationService {
 
         // Showed immediate fallback notification
       } catch (fallbackError) {
-        // Fallback notification also failed
+        AppLogger.error('PrayerNotification', 'Fallback notification also failed', error: fallbackError);
       }
     }
   }
@@ -587,7 +591,9 @@ class PrayerNotificationService {
           try {
             bytes = await rootBundle.load(k);
             break;
-          } catch (_) {}
+          } catch (e) {
+            AppLogger.warning('PrayerNotification', 'Asset not found at $k', error: e);
+          }
         }
       }
       if (bytes == null) {
@@ -598,7 +604,9 @@ class PrayerNotificationService {
           try {
             bytes = await rootBundle.load(path);
             break;
-          } catch (_) {}
+          } catch (e) {
+            AppLogger.warning('PrayerNotification', 'Fallback path not found: $path', error: e);
+          }
         }
       }
       if (bytes == null) {
@@ -636,7 +644,9 @@ class PrayerNotificationService {
               }
             }
             await _audioPlayer.stop();
-          } catch (_) {}
+          } catch (e) {
+            AppLogger.warning('PrayerNotification', 'Error during audio fade-out/stop', error: e);
+          }
         });
       }
 
@@ -859,7 +869,7 @@ class PrayerNotificationService {
         return AthanSettings.fromJson(settingsMap);
       }
     } catch (e) {
-      // Failed to get settings from Hive
+      AppLogger.warning('PrayerNotification', 'Failed to get Athan settings from Hive', error: e);
     }
     
     // Return default settings if not found
@@ -938,7 +948,7 @@ class PrayerNotificationService {
         );
       }
     } catch (e) {
-      // Failed to play Athan for notification
+      AppLogger.error('PrayerNotification', 'Failed to play Athan for notification', error: e);
     }
   }
 

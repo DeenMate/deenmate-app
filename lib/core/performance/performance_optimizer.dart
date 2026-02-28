@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:isolate';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -16,8 +15,8 @@ class PerformanceOptimizer {
   late final LRUCache<String, dynamic> _memoryCache;
   late final LRUCache<String, List<int>> _imageCache;
   
-  // Background processing
-  final Map<String, Isolate> _activeIsolates = {};
+  // Background processing — tracks active compute() tasks by ID
+  final Set<String> _activeIsolates = {};
   final Map<String, Completer> _isolateCompleters = {};
   
   // Performance metrics
@@ -48,7 +47,7 @@ class PerformanceOptimizer {
     _isInitialized = true;
     
     if (kDebugMode) {
-      print('PerformanceOptimizer initialized');
+      debugPrint('PerformanceOptimizer initialized');
     }
   }
 
@@ -93,7 +92,7 @@ class PerformanceOptimizer {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Cache read error: $e');
+        debugPrint('Cache read error: $e');
       }
     }
     
@@ -135,7 +134,7 @@ class PerformanceOptimizer {
       _recordMetric('cache_write', 1);
     } catch (e) {
       if (kDebugMode) {
-        print('Cache write error: $e');
+        debugPrint('Cache write error: $e');
       }
     }
   }
@@ -191,13 +190,16 @@ class PerformanceOptimizer {
     }
   }
 
-  /// Background data processing using isolates
+  /// Background data processing using [compute] (isolate-safe).
+  ///
+  /// The [taskFunction] **must** be a top-level or static function so it can
+  /// be sent across isolate boundaries. Closures will cause a runtime error.
   Future<T> processInBackground<T>({
     required String taskId,
     required Map<String, dynamic> data,
-    required String Function(Map<String, dynamic>) taskFunction,
+    required T Function(Map<String, dynamic>) taskFunction,
   }) async {
-    if (_activeIsolates.containsKey(taskId)) {
+    if (_activeIsolates.contains(taskId)) {
       // Return existing task result
       return await _isolateCompleters[taskId]!.future as T;
     }
@@ -206,41 +208,20 @@ class PerformanceOptimizer {
     _isolateCompleters[taskId] = completer;
 
     try {
-      final receivePort = ReceivePort();
-      
-      final isolate = await Isolate.spawn(
-        _isolateWorker,
-        {
-          'sendPort': receivePort.sendPort,
-          'taskFunction': taskFunction,
-          'data': data,
-        },
-      );
-      
-      _activeIsolates[taskId] = isolate;
-      
-      receivePort.listen((message) {
-        if (message is Map<String, dynamic>) {
-          if (message['error'] != null) {
-            completer.completeError(message['error']);
-          } else {
-            completer.complete(message['result'] as T);
-          }
-        }
-        
-        // Cleanup
-        isolate.kill();
-        receivePort.close();
-        _activeIsolates.remove(taskId);
-        _isolateCompleters.remove(taskId);
-      });
-      
+      // Use compute() which properly serializes top-level/static functions
+      // across isolate boundaries (unlike Isolate.spawn with closures).
+      final result = await compute(taskFunction, data);
+      completer.complete(result);
       _recordMetric('background_task_started', 1.0);
-      return await completer.future;
+      return result;
     } catch (e) {
+      if (!completer.isCompleted) {
+        completer.completeError(e);
+      }
+      rethrow;
+    } finally {
       _activeIsolates.remove(taskId);
       _isolateCompleters.remove(taskId);
-      rethrow;
     }
   }
 
@@ -281,7 +262,7 @@ class PerformanceOptimizer {
     _recordMetric('memory_cleanup_completed', 1);
     
     if (kDebugMode) {
-      print('Memory cleanup completed (aggressive: $aggressive)');
+      debugPrint('Memory cleanup completed (aggressive: $aggressive)');
     }
   }
 
@@ -317,7 +298,7 @@ class PerformanceOptimizer {
             priority: CachePriority.high);
         } catch (e) {
           if (kDebugMode) {
-            print('Preload failed for $key: $e');
+            debugPrint('Preload failed for $key: $e');
           }
         }
       }
@@ -353,19 +334,6 @@ class PerformanceOptimizer {
 
   // Private methods
 
-  static void _isolateWorker(Map<String, dynamic> params) {
-    final sendPort = params['sendPort'] as SendPort;
-    final taskFunction = params['taskFunction'] as String Function(Map<String, dynamic>);
-    final data = params['data'] as Map<String, dynamic>;
-
-    try {
-      final result = taskFunction(data);
-      sendPort.send({'result': result});
-    } catch (e) {
-      sendPort.send({'error': e.toString()});
-    }
-  }
-
   void _processBatchQueue() {
     if (_batchQueue.isEmpty) return;
 
@@ -391,7 +359,7 @@ class PerformanceOptimizer {
   void _processBatchGroup(String type, List<BatchOperation> operations) {
     // TODO: Implement specific batch processing logic for different operation types
     if (kDebugMode) {
-      print('Processing ${operations.length} $type operations');
+      debugPrint('Processing ${operations.length} $type operations');
     }
   }
 
@@ -415,34 +383,28 @@ class PerformanceOptimizer {
       }
       
       if (kDebugMode) {
-        print('Cleaned up ${keysToDelete.length} expired cache entries');
+        debugPrint('Cleaned up ${keysToDelete.length} expired cache entries');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Cache cleanup error: $e');
+        debugPrint('Cache cleanup error: $e');
       }
     }
   }
 
   bool _shouldCompress(dynamic data) {
-    if (data is String) {
-      return data.length > 1000; // Compress strings over 1KB
-    }
-    if (data is List) {
-      return data.length > 100; // Compress large lists
-    }
+    // Compression is not yet implemented — always return false to avoid
+    // feeding data through the no-op _compressData/_decompressData stubs.
     return false;
   }
 
   Future<dynamic> _compressData(dynamic data) async {
-    // TODO: Implement data compression (e.g., gzip)
-    // For now, return data as-is
+    // Placeholder: data compression can be added here (e.g., dart:io gzip).
     return data;
   }
 
   Future<dynamic> _decompressData(dynamic data) async {
-    // TODO: Implement data decompression
-    // For now, return data as-is
+    // Placeholder: data decompression can be added here.
     return data;
   }
 
@@ -464,12 +426,7 @@ class PerformanceOptimizer {
   void dispose() {
     _batchTimer?.cancel();
     
-    // Kill all active isolates
-    for (final isolate in _activeIsolates.values) {
-      isolate.kill();
-    }
-    _activeIsolates.clear();
-    _isolateCompleters.clear();
+    // Kill all active isolates — no-op since compute() manages lifecycle\n    _activeIsolates.clear();\n    _isolateCompleters.clear();
     
     _memoryCache.clear();
     _imageCache.clear();

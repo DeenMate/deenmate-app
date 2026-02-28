@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../../core/storage/hive_boxes.dart' as boxes;
+import '../../../../core/utils/app_logger.dart';
 import '../api/chapters_api.dart';
 import '../api/verses_api.dart';
 import '../api/resources_api.dart';
@@ -47,7 +49,9 @@ class QuranRepository {
     try {
       final fresh = await _chaptersApi.list();
       await box.put('all', fresh.map((e) => e.toJson()).toList());
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('QuranRepo', 'Background chapters refresh failed', error: e);
+    }
   }
 
   Future<VersesPageDto> getChapterPage({
@@ -62,7 +66,7 @@ class QuranRepository {
     final vBox = await _hive.openBox(boxes.Boxes.verses);
     final cached = vBox.get(key);
     // ignore: avoid_print
-    print('QuranRepo getChapterPage key=$key cached=${cached != null}');
+    debugPrint('QuranRepo getChapterPage key=$key cached=${cached != null}');
     if (cached != null) {
       if (refresh) {
         _refreshChapterPage(
@@ -98,7 +102,7 @@ class QuranRepository {
       } catch (e) {
         // Corrupt cache: delete and refetch
         // ignore: avoid_print
-        print('QuranRepo: cache parse error for key=$key → refresh. $e');
+        debugPrint('QuranRepo: cache parse error for key=$key → refresh. $e');
         await vBox.delete(key);
         return _fetchAndCache(
           chapterId,
@@ -113,7 +117,7 @@ class QuranRepository {
       // If cached is empty (possibly from earlier parse error), fetch fresh now
       if (parsed.verses.isEmpty) {
         // ignore: avoid_print
-        print('QuranRepo cached verses empty → fetching fresh for key=$key');
+        debugPrint('QuranRepo cached verses empty → fetching fresh for key=$key');
         return _fetchAndCache(
           chapterId,
           translationIds,
@@ -125,27 +129,46 @@ class QuranRepository {
         );
       }
       // ignore: avoid_print
-      print('QuranRepo returning cached verses count=${parsed.verses.length}');
+      debugPrint('QuranRepo returning cached verses count=${parsed.verses.length}');
       return parsed;
     }
 
-    // Try fallback: any cached variant of this chapter/page regardless of translation/reciter
+    // Try fallback: prefer a cached variant with the same translation IDs,
+    // fall back to same chapter/page only if no translation-matched variant exists.
     try {
       final keys = vBox.keys;
-      String? altKey;
+      final tSegment = 't:${translationIds.join(',')}';
+      String? exactTranslationKey;
+      String? anyVariantKey;
+
       for (final k in keys) {
         if (k is! String) continue;
         if (k.startsWith('ch:$chapterId|') && k.endsWith('|p:$page')) {
-          altKey = k;
-          break;
+          // Prefer a key that matches the requested translation IDs
+          if (k.contains(tSegment)) {
+            exactTranslationKey = k;
+            break; // Best match found
+          }
+          // Keep the first variant as a last resort
+          anyVariantKey ??= k;
         }
       }
+
+      final altKey = exactTranslationKey ?? anyVariantKey;
       if (altKey != null) {
         final alt = vBox.get(altKey);
         if (alt != null) {
-          // ignore: avoid_print
-          print(
-              'QuranRepo using fallback cached key=$altKey for requested key=$key');
+          if (exactTranslationKey == null) {
+            AppLogger.warning(
+              'QuranRepo',
+              'Serving cached fallback with DIFFERENT translation: '
+              'requested=$key, serving=$altKey',
+            );
+          } else {
+            debugPrint(
+              'QuranRepo using translation-matched fallback key=$altKey for requested key=$key',
+            );
+          }
           if (alt is String) {
             return VersesPageDto.fromJson(
                 Map<String, dynamic>.from(jsonDecode(alt) as Map));
@@ -156,7 +179,9 @@ class QuranRepository {
           }
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('QuranRepo', 'Fallback cache key scan failed for key=$key', error: e);
+    }
 
     return _fetchAndCache(
       chapterId,
@@ -205,7 +230,9 @@ class QuranRepository {
     try {
       final fresh = await _resourcesApi.getRecitations();
       await box.put('recitations', fresh.map((e) => e.toJson()).toList());
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('QuranRepo', 'Background recitations refresh failed', error: e);
+    }
   }
 
   Future<VersesPageDto> _fetchAndCache(
@@ -225,7 +252,7 @@ class QuranRepository {
       perPage: perPage,
     );
     // ignore: avoid_print
-    print(
+    debugPrint(
         'QuranRepo fetched fresh verses count=${fresh.verses.length} for key=$key');
     await vBox.put(key, fresh.toJson());
     return fresh;
@@ -249,7 +276,9 @@ class QuranRepository {
         perPage: perPage,
       );
       await box.put(key, fresh.toJson());
-    } catch (_) {}
+    } catch (e) {
+      AppLogger.warning('QuranRepo', 'Background chapter page refresh failed for key=$key', error: e);
+    }
   }
 
   /// Get available translation resources

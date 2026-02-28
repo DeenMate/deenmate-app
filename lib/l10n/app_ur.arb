@@ -38,5 +38,4069 @@
   "languageUrdu": "اردو",
   "languageArabic": "العربية",
   "languageFullySupported": "Fully Supported",
-  "languageComingSoon": "Coming Soon"
+  "languageComingSoon": "Coming Soon",
+  "accessibilitySettings": "Accessibility Settings",
+  "@accessibilitySettings": {
+    "description": "accessibilitySettings"
+  },
+  "actionCompleted": "Action completed",
+  "@actionCompleted": {
+    "description": "actionCompleted"
+  },
+  "actions": "Actions",
+  "@actions": {
+    "description": "actions"
+  },
+  "addBookmark": "Bookmark",
+  "@addBookmark": {
+    "description": "addBookmark"
+  },
+  "addBookmarkDialogComingSoon": "Add bookmark dialog - Coming soon",
+  "@addBookmarkDialogComingSoon": {
+    "description": "addBookmarkDialogComingSoon"
+  },
+  "advancedSettingsSubtitle": "Fine-tune notification behavior",
+  "@advancedSettingsSubtitle": {
+    "description": "advancedSettingsSubtitle"
+  },
+  "advancedSettingsTitle": "Advanced Settings",
+  "@advancedSettingsTitle": {
+    "description": "advancedSettingsTitle"
+  },
+  "advancedTabTitle": "Advanced",
+  "@advancedTabTitle": {
+    "description": "advancedTabTitle"
+  },
+  "arabicFontAdjusted": "Arabic font size adjusted",
+  "@arabicFontAdjusted": {
+    "description": "arabicFontAdjusted"
+  },
+  "arabicText": "Arabic Text",
+  "@arabicText": {
+    "description": "arabicText"
+  },
+  "arabicTextCopied": "Arabic text copied",
+  "@arabicTextCopied": {
+    "description": "arabicTextCopied"
+  },
+  "athanNotificationsChannelDescription": "Call to prayer notifications when prayer time arrives",
+  "@athanNotificationsChannelDescription": {
+    "description": "athanNotificationsChannelDescription"
+  },
+  "athanNotificationsTitle": "Athan & Notifications",
+  "@athanNotificationsTitle": {
+    "description": "athanNotificationsTitle"
+  },
+  "athanPreviewDescription": "Listen to a sample of the selected Muadhin voice:",
+  "@athanPreviewDescription": {
+    "description": "athanPreviewDescription"
+  },
+  "athanPreviewPlay": "Preview",
+  "@athanPreviewPlay": {
+    "description": "athanPreviewPlay"
+  },
+  "athanPreviewPlaying": "Playing...",
+  "@athanPreviewPlaying": {
+    "description": "athanPreviewPlaying"
+  },
+  "athanPreviewStop": "Stop",
+  "@athanPreviewStop": {
+    "description": "athanPreviewStop"
+  },
+  "athanPreviewTitle": "Preview Athan",
+  "@athanPreviewTitle": {
+    "description": "athanPreviewTitle"
+  },
+  "athanSettingsAddMuteTimeRange": "Add Mute Time Range",
+  "@athanSettingsAddMuteTimeRange": {
+    "description": "athanSettingsAddMuteTimeRange"
+  },
+  "athanSettingsAutoComplete": "Auto-complete",
+  "@athanSettingsAutoComplete": {
+    "description": "athanSettingsAutoComplete"
+  },
+  "athanSettingsAutoCompleteSubtitle": "Automatically mark prayer as completed",
+  "@athanSettingsAutoCompleteSubtitle": {
+    "description": "athanSettingsAutoCompleteSubtitle"
+  },
+  "athanSettingsDebugFailed": "Debug failed",
+  "@athanSettingsDebugFailed": {
+    "description": "athanSettingsDebugFailed"
+  },
+  "athanSettingsDebugInfo": "Debug Info",
+  "@athanSettingsDebugInfo": {
+    "description": "athanSettingsDebugInfo"
+  },
+  "athanSettingsDemoNotification2Min": "Demo Notification (2 min)",
+  "@athanSettingsDemoNotification2Min": {
+    "description": "athanSettingsDemoNotification2Min"
+  },
+  "athanSettingsDemoNotificationFailed": "Demo notification failed",
+  "@athanSettingsDemoNotificationFailed": {
+    "description": "athanSettingsDemoNotificationFailed"
+  },
+  "athanSettingsDemoNotificationMessage": "This is a demo prayer notification with Azan",
+  "@athanSettingsDemoNotificationMessage": {
+    "description": "athanSettingsDemoNotificationMessage"
+  },
+  "athanSettingsDemoNotificationSent": "Demo notification sent! Azan should play now.",
+  "@athanSettingsDemoNotificationSent": {
+    "description": "athanSettingsDemoNotificationSent"
+  },
+  "athanSettingsFeatureComingSoon": "Feature coming soon...",
+  "@athanSettingsFeatureComingSoon": {
+    "description": "athanSettingsFeatureComingSoon"
+  },
+  "athanSettingsFullScreenNotifications": "Full Screen Notifications",
+  "@athanSettingsFullScreenNotifications": {
+    "description": "athanSettingsFullScreenNotifications"
+  },
+  "athanSettingsFullScreenNotificationsSubtitle": "Show prayer time as full screen alert",
+  "@athanSettingsFullScreenNotificationsSubtitle": {
+    "description": "athanSettingsFullScreenNotificationsSubtitle"
+  },
+  "athanSettingsIftarReminder": "Iftar Reminder",
+  "@athanSettingsIftarReminder": {
+    "description": "athanSettingsIftarReminder"
+  },
+  "athanSettingsIftarReminderText": "Remind me {minutes} minutes before Maghrib for Iftar",
+  "@athanSettingsIftarReminderText": {
+    "description": "athanSettingsIftarReminderText"
+  },
+  "athanSettingsImmediateNotificationSent": "Immediate notification sent!",
+  "@athanSettingsImmediateNotificationSent": {
+    "description": "athanSettingsImmediateNotificationSent"
+  },
+  "athanSettingsImmediateTestMessage": "This is an immediate test notification",
+  "@athanSettingsImmediateTestMessage": {
+    "description": "athanSettingsImmediateTestMessage"
+  },
+  "athanSettingsIncludeDuas": "Include Duas",
+  "@athanSettingsIncludeDuas": {
+    "description": "athanSettingsIncludeDuas"
+  },
+  "athanSettingsIncludeDuasSubtitle": "Show Ramadan-specific duas in notifications",
+  "@athanSettingsIncludeDuasSubtitle": {
+    "description": "athanSettingsIncludeDuasSubtitle"
+  },
+  "athanSettingsNotificationsScheduled": "Notifications scheduled for today",
+  "@athanSettingsNotificationsScheduled": {
+    "description": "athanSettingsNotificationsScheduled"
+  },
+  "athanSettingsOverrideDnd": "Override Do Not Disturb",
+  "@athanSettingsOverrideDnd": {
+    "description": "athanSettingsOverrideDnd"
+  },
+  "athanSettingsOverrideDndSubtitle": "Show prayer notifications even in DND mode",
+  "@athanSettingsOverrideDndSubtitle": {
+    "description": "athanSettingsOverrideDndSubtitle"
+  },
+  "athanSettingsPrayerNotificationsScheduled": "Prayer notifications scheduled for today",
+  "@athanSettingsPrayerNotificationsScheduled": {
+    "description": "athanSettingsPrayerNotificationsScheduled"
+  },
+  "athanSettingsQuickActions": "Quick Actions",
+  "@athanSettingsQuickActions": {
+    "description": "athanSettingsQuickActions"
+  },
+  "athanSettingsQuickActionsSubtitle": "Show \"Mark as Prayed\" and \"Snooze\" buttons",
+  "@athanSettingsQuickActionsSubtitle": {
+    "description": "athanSettingsQuickActionsSubtitle"
+  },
+  "athanSettingsRamadanNotifications": "Ramadan Notifications",
+  "@athanSettingsRamadanNotifications": {
+    "description": "athanSettingsRamadanNotifications"
+  },
+  "athanSettingsRamadanNotificationsSubtitle": "Enable special notifications for Suhur and Iftar",
+  "@athanSettingsRamadanNotificationsSubtitle": {
+    "description": "athanSettingsRamadanNotificationsSubtitle"
+  },
+  "athanSettingsRetry": "Retry",
+  "@athanSettingsRetry": {
+    "description": "athanSettingsRetry"
+  },
+  "athanSettingsScheduleNow": "Schedule Now",
+  "@athanSettingsScheduleNow": {
+    "description": "athanSettingsScheduleNow"
+  },
+  "athanSettingsSchedulePrayerNotifications": "Schedule Prayer Notifications",
+  "@athanSettingsSchedulePrayerNotifications": {
+    "description": "athanSettingsSchedulePrayerNotifications"
+  },
+  "athanSettingsSchedulingFailed": "Scheduling failed",
+  "@athanSettingsSchedulingFailed": {
+    "description": "athanSettingsSchedulingFailed"
+  },
+  "athanSettingsSmartNotifications": "Smart Notifications",
+  "@athanSettingsSmartNotifications": {
+    "description": "athanSettingsSmartNotifications"
+  },
+  "athanSettingsSmartNotificationsSubtitle": "Adjust notifications based on your activity",
+  "@athanSettingsSmartNotificationsSubtitle": {
+    "description": "athanSettingsSmartNotificationsSubtitle"
+  },
+  "athanSettingsSpecialRamadanAthan": "Special Ramadan Athan",
+  "@athanSettingsSpecialRamadanAthan": {
+    "description": "athanSettingsSpecialRamadanAthan"
+  },
+  "athanSettingsSpecialRamadanAthanSubtitle": "Use special Athan recitations during Ramadan",
+  "@athanSettingsSpecialRamadanAthanSubtitle": {
+    "description": "athanSettingsSpecialRamadanAthanSubtitle"
+  },
+  "athanSettingsSubtitle": "Call to prayer notifications when prayer time arrives",
+  "@athanSettingsSubtitle": {
+    "description": "athanSettingsSubtitle"
+  },
+  "athanSettingsSuhurReminder": "Suhur Reminder",
+  "@athanSettingsSuhurReminder": {
+    "description": "athanSettingsSuhurReminder"
+  },
+  "athanSettingsSuhurReminderText": "Remind me {minutes} minutes before Fajr for Suhur",
+  "@athanSettingsSuhurReminderText": {
+    "description": "athanSettingsSuhurReminderText"
+  },
+  "athanSettingsTestAthanAudio": "Test Athan Audio",
+  "@athanSettingsTestAthanAudio": {
+    "description": "athanSettingsTestAthanAudio"
+  },
+  "athanSettingsTestFailed": "Athan test failed",
+  "@athanSettingsTestFailed": {
+    "description": "athanSettingsTestFailed"
+  },
+  "athanSettingsTestNotification1Sec": "Test Notification (1 sec)",
+  "@athanSettingsTestNotification1Sec": {
+    "description": "athanSettingsTestNotification1Sec"
+  },
+  "athanSettingsTestNotificationFailed": "Test notification failed",
+  "@athanSettingsTestNotificationFailed": {
+    "description": "athanSettingsTestNotificationFailed"
+  },
+  "athanSettingsTestNotificationMessage": "This is a test prayer notification",
+  "@athanSettingsTestNotificationMessage": {
+    "description": "athanSettingsTestNotificationMessage"
+  },
+  "athanSettingsTestNotificationSent": "Test notification sent immediately!",
+  "@athanSettingsTestNotificationSent": {
+    "description": "athanSettingsTestNotificationSent"
+  },
+  "athanSettingsTestStarted": "Athan audio test started",
+  "@athanSettingsTestStarted": {
+    "description": "athanSettingsTestStarted"
+  },
+  "athanSettingsTitle": "Athan Settings",
+  "@athanSettingsTitle": {
+    "description": "athanSettingsTitle"
+  },
+  "athanSettingsTrackFasting": "Track Fasting",
+  "@athanSettingsTrackFasting": {
+    "description": "athanSettingsTrackFasting"
+  },
+  "athanSettingsTrackFastingSubtitle": "Keep track of your fasting status",
+  "@athanSettingsTrackFastingSubtitle": {
+    "description": "athanSettingsTrackFastingSubtitle"
+  },
+  "athanSettingsVibration": "Vibration",
+  "@athanSettingsVibration": {
+    "description": "athanSettingsVibration"
+  },
+  "athanSettingsVibrationSubtitle": "Vibrate device during Athan",
+  "@athanSettingsVibrationSubtitle": {
+    "description": "athanSettingsVibrationSubtitle"
+  },
+  "athanTabTitle": "Athan",
+  "@athanTabTitle": {
+    "description": "athanTabTitle"
+  },
+  "audioChapterDelete": "Delete",
+  "@audioChapterDelete": {
+    "description": "audioChapterDelete"
+  },
+  "audioChapterDeleted": "Chapter audio deleted",
+  "@audioChapterDeleted": {
+    "description": "audioChapterDeleted"
+  },
+  "audioCompleteQuranDownloadSuccess": "Complete Quran downloaded successfully!",
+  "@audioCompleteQuranDownloadSuccess": {
+    "description": "audioCompleteQuranDownloadSuccess"
+  },
+  "audioDeleteFailed": "Delete failed: {error}",
+  "@audioDeleteFailed": {
+    "description": "audioDeleteFailed"
+  },
+  "audioDownloadAllSubtitle": "Download complete Quran",
+  "@audioDownloadAllSubtitle": {
+    "description": "audioDownloadAllSubtitle"
+  },
+  "audioDownloadAllTitle": "Download All",
+  "@audioDownloadAllTitle": {
+    "description": "audioDownloadAllTitle"
+  },
+  "audioDownloadCancel": "Cancel",
+  "@audioDownloadCancel": {
+    "description": "audioDownloadCancel"
+  },
+  "audioDownloadComplete": "Download complete",
+  "@audioDownloadComplete": {
+    "description": "audioDownloadComplete"
+  },
+  "audioDownloadFailed": "Download failed: {error}",
+  "@audioDownloadFailed": {
+    "description": "audioDownloadFailed"
+  },
+  "audioDownloadPopularSubtitle": "Download most popular chapters",
+  "@audioDownloadPopularSubtitle": {
+    "description": "audioDownloadPopularSubtitle"
+  },
+  "audioDownloadPopularTitle": "Download Popular",
+  "@audioDownloadPopularTitle": {
+    "description": "audioDownloadPopularTitle"
+  },
+  "audioDownloadProgress": "Downloading {name}: {progress}%",
+  "@audioDownloadProgress": {
+    "description": "audioDownloadProgress"
+  },
+  "audioDownloadStarting": "Starting download...",
+  "@audioDownloadStarting": {
+    "description": "audioDownloadStarting"
+  },
+  "audioDownloadingChapter": "Downloading chapter {chapterId}: {status}",
+  "@audioDownloadingChapter": {
+    "description": "audioDownloadingChapter"
+  },
+  "audioDownloadingCompleteQuran": "Downloading complete Quran...",
+  "@audioDownloadingCompleteQuran": {
+    "description": "audioDownloadingCompleteQuran"
+  },
+  "audioDownloadingPopularChapters": "Downloading popular chapters...",
+  "@audioDownloadingPopularChapters": {
+    "description": "audioDownloadingPopularChapters"
+  },
+  "audioDownloadingSurah": "Surah {chapterName}: {status}",
+  "@audioDownloadingSurah": {
+    "description": "audioDownloadingSurah"
+  },
+  "audioDownloadingVerse": "Downloading {currentVerse}...",
+  "@audioDownloadingVerse": {
+    "description": "audioDownloadingVerse"
+  },
+  "audioDownloadsTitle": "Audio Downloads",
+  "@audioDownloadsTitle": {
+    "description": "audioDownloadsTitle"
+  },
+  "audioErrorLoadingChapters": "Error loading chapters: {error}",
+  "@audioErrorLoadingChapters": {
+    "description": "audioErrorLoadingChapters"
+  },
+  "audioIndividualChaptersTitle": "Individual Chapters",
+  "@audioIndividualChaptersTitle": {
+    "description": "audioIndividualChaptersTitle"
+  },
+  "audioNext": "Next",
+  "@audioNext": {
+    "description": "audioNext"
+  },
+  "audioNoTrackSelected": "No track selected",
+  "@audioNoTrackSelected": {
+    "description": "audioNoTrackSelected"
+  },
+  "audioPlayerCurrentPlaylist": "Current Playlist",
+  "@audioPlayerCurrentPlaylist": {
+    "description": "audioPlayerCurrentPlaylist"
+  },
+  "audioPlayerDefaultReciter": "Mishary Rashid Alafasy",
+  "@audioPlayerDefaultReciter": {
+    "description": "audioPlayerDefaultReciter"
+  },
+  "audioPlayerDownloadFailed": "Download failed: {error}",
+  "@audioPlayerDownloadFailed": {
+    "description": "audioPlayerDownloadFailed"
+  },
+  "audioPlayerDownloadingVerse": "Downloading verse {verseKey}...",
+  "@audioPlayerDownloadingVerse": {
+    "description": "audioPlayerDownloadingVerse"
+  },
+  "audioPlayerNoVerseSelected": "No verse selected",
+  "@audioPlayerNoVerseSelected": {
+    "description": "audioPlayerNoVerseSelected"
+  },
+  "audioPlayerNowPlaying": "Now Playing",
+  "@audioPlayerNowPlaying": {
+    "description": "audioPlayerNowPlaying"
+  },
+  "audioPlayerPlaylistComingSoon": "Playlist functionality coming soon",
+  "@audioPlayerPlaylistComingSoon": {
+    "description": "audioPlayerPlaylistComingSoon"
+  },
+  "audioPlayerPlaylistCount": "{count} verses in playlist",
+  "@audioPlayerPlaylistCount": {
+    "description": "audioPlayerPlaylistCount"
+  },
+  "audioPlaying": "Audio playing...",
+  "@audioPlaying": {
+    "description": "audioPlaying"
+  },
+  "audioPopularChaptersDownloadSuccess": "Popular chapters downloaded successfully!",
+  "@audioPopularChaptersDownloadSuccess": {
+    "description": "audioPopularChaptersDownloadSuccess"
+  },
+  "audioPrevious": "Previous",
+  "@audioPrevious": {
+    "description": "audioPrevious"
+  },
+  "audioQuickActionsTitle": "Quick Actions",
+  "@audioQuickActionsTitle": {
+    "description": "audioQuickActionsTitle"
+  },
+  "audioRecitersLoadError": "Error loading reciters",
+  "@audioRecitersLoadError": {
+    "description": "audioRecitersLoadError"
+  },
+  "audioRepeat": "Repeat",
+  "@audioRepeat": {
+    "description": "audioRepeat"
+  },
+  "audioSeekBackward": "Seek backward 10 seconds",
+  "@audioSeekBackward": {
+    "description": "audioSeekBackward"
+  },
+  "audioSeekForward": "Seek forward 10 seconds",
+  "@audioSeekForward": {
+    "description": "audioSeekForward"
+  },
+  "audioSelectReciter": "Select reciter",
+  "@audioSelectReciter": {
+    "description": "audioSelectReciter"
+  },
+  "audioSelectReciterTitle": "Select Reciter",
+  "@audioSelectReciterTitle": {
+    "description": "audioSelectReciterTitle"
+  },
+  "audioSettingsTitle": "Audio Settings",
+  "@audioSettingsTitle": {
+    "description": "audioSettingsTitle"
+  },
+  "audioSpeed": "Speed",
+  "@audioSpeed": {
+    "description": "audioSpeed"
+  },
+  "audioStorageErrorStats": "Error loading stats",
+  "@audioStorageErrorStats": {
+    "description": "audioStorageErrorStats"
+  },
+  "audioStorageTitle": "Audio Storage",
+  "@audioStorageTitle": {
+    "description": "audioStorageTitle"
+  },
+  "audioStorageUsed": "Storage used: {size}",
+  "@audioStorageUsed": {
+    "description": "audioStorageUsed"
+  },
+  "audioUserCancelled": "User cancelled",
+  "@audioUserCancelled": {
+    "description": "audioUserCancelled"
+  },
+  "autoScroll": "Auto Scroll",
+  "@autoScroll": {
+    "description": "autoScroll"
+  },
+  "bookmarkAdded": "Bookmark added",
+  "@bookmarkAdded": {
+    "description": "bookmarkAdded"
+  },
+  "bookmarkAll": "All",
+  "@bookmarkAll": {
+    "description": "bookmarkAll"
+  },
+  "bookmarkCategories": "Categories",
+  "@bookmarkCategories": {
+    "description": "bookmarkCategories"
+  },
+  "bookmarkCreateCategory": "Create Category",
+  "@bookmarkCreateCategory": {
+    "description": "bookmarkCreateCategory"
+  },
+  "bookmarkDelete": "Delete",
+  "@bookmarkDelete": {
+    "description": "bookmarkDelete"
+  },
+  "bookmarkEdit": "Edit",
+  "@bookmarkEdit": {
+    "description": "bookmarkEdit"
+  },
+  "bookmarkExport": "Export",
+  "@bookmarkExport": {
+    "description": "bookmarkExport"
+  },
+  "bookmarkManageCategories": "Manage Categories",
+  "@bookmarkManageCategories": {
+    "description": "bookmarkManageCategories"
+  },
+  "bookmarkNoBookmarksSubtitle": "Bookmark verses while reading to save them here",
+  "@bookmarkNoBookmarksSubtitle": {
+    "description": "bookmarkNoBookmarksSubtitle"
+  },
+  "bookmarkNoBookmarksYet": "No bookmarks yet",
+  "@bookmarkNoBookmarksYet": {
+    "description": "bookmarkNoBookmarksYet"
+  },
+  "bookmarkNoCategoriesSubtitle": "Create categories to organize your bookmarks",
+  "@bookmarkNoCategoriesSubtitle": {
+    "description": "bookmarkNoCategoriesSubtitle"
+  },
+  "bookmarkNoCategoriesYet": "No categories yet",
+  "@bookmarkNoCategoriesYet": {
+    "description": "bookmarkNoCategoriesYet"
+  },
+  "bookmarkNoRecentBookmarks": "No recent bookmarks",
+  "@bookmarkNoRecentBookmarks": {
+    "description": "bookmarkNoRecentBookmarks"
+  },
+  "bookmarkNoRecentSubtitle": "Your recently added bookmarks will appear here",
+  "@bookmarkNoRecentSubtitle": {
+    "description": "bookmarkNoRecentSubtitle"
+  },
+  "bookmarkRecent": "Recent",
+  "@bookmarkRecent": {
+    "description": "bookmarkRecent"
+  },
+  "bookmarkRemoved": "Bookmark removed",
+  "@bookmarkRemoved": {
+    "description": "bookmarkRemoved"
+  },
+  "bookmarkShare": "Share",
+  "@bookmarkShare": {
+    "description": "bookmarkShare"
+  },
+  "bookmarkSort": "Sort",
+  "@bookmarkSort": {
+    "description": "bookmarkSort"
+  },
+  "bookmarks": "Bookmarks",
+  "@bookmarks": {
+    "description": "bookmarks"
+  },
+  "bookmarksAddBookmark": "Add Bookmark",
+  "@bookmarksAddBookmark": {
+    "description": "bookmarksAddBookmark"
+  },
+  "bookmarksAddBookmarkComingSoon": "Add bookmark dialog - Coming soon",
+  "@bookmarksAddBookmarkComingSoon": {
+    "description": "bookmarksAddBookmarkComingSoon"
+  },
+  "bookmarksCreateCategoryComingSoon": "Create category dialog - Coming soon",
+  "@bookmarksCreateCategoryComingSoon": {
+    "description": "bookmarksCreateCategoryComingSoon"
+  },
+  "bookmarksExportBookmarksComingSoon": "Export bookmarks - Coming soon",
+  "@bookmarksExportBookmarksComingSoon": {
+    "description": "bookmarksExportBookmarksComingSoon"
+  },
+  "bookmarksManageCategoriesComingSoon": "Manage categories - Coming soon",
+  "@bookmarksManageCategoriesComingSoon": {
+    "description": "bookmarksManageCategoriesComingSoon"
+  },
+  "bookmarksSortOptionsComingSoon": "Sort options - Coming soon",
+  "@bookmarksSortOptionsComingSoon": {
+    "description": "bookmarksSortOptionsComingSoon"
+  },
+  "buttonApply": "Apply",
+  "@buttonApply": {
+    "description": "buttonApply"
+  },
+  "buttonCancel": "Cancel",
+  "@buttonCancel": {
+    "description": "buttonCancel"
+  },
+  "buttonClear": "Clear",
+  "@buttonClear": {
+    "description": "buttonClear"
+  },
+  "buttonConfirm": "Confirm",
+  "@buttonConfirm": {
+    "description": "buttonConfirm"
+  },
+  "buttonCopy": "Copy",
+  "@buttonCopy": {
+    "description": "buttonCopy"
+  },
+  "buttonDelete": "Delete",
+  "@buttonDelete": {
+    "description": "buttonDelete"
+  },
+  "buttonEdit": "Edit",
+  "@buttonEdit": {
+    "description": "buttonEdit"
+  },
+  "buttonGotIt": "Got it",
+  "@buttonGotIt": {
+    "description": "buttonGotIt"
+  },
+  "buttonGrant": "Grant",
+  "@buttonGrant": {
+    "description": "buttonGrant"
+  },
+  "buttonRetry": "Retry",
+  "@buttonRetry": {
+    "description": "buttonRetry"
+  },
+  "buttonShare": "Share",
+  "@buttonShare": {
+    "description": "buttonShare"
+  },
+  "buttonStart": "Start",
+  "@buttonStart": {
+    "description": "buttonStart"
+  },
+  "buttonStop": "Stop",
+  "@buttonStop": {
+    "description": "buttonStop"
+  },
+  "buttonTryAgain": "Try Again",
+  "@buttonTryAgain": {
+    "description": "buttonTryAgain"
+  },
+  "buttonView": "View",
+  "@buttonView": {
+    "description": "buttonView"
+  },
+  "choosePrayerNotifications": "Choose which prayers to receive notifications for:",
+  "@choosePrayerNotifications": {
+    "description": "choosePrayerNotifications"
+  },
+  "clearCacheFailed": "Failed to clear cache",
+  "@clearCacheFailed": {
+    "description": "clearCacheFailed"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "close"
+  },
+  "comingSoon": "Coming soon",
+  "@comingSoon": {
+    "description": "comingSoon"
+  },
+  "comment4": "===== QURAN MODULE STRINGS =====",
+  "@comment4": {
+    "description": "comment4"
+  },
+  "commonCity": "City",
+  "@commonCity": {
+    "description": "commonCity"
+  },
+  "commonClear": "Clear",
+  "@commonClear": {
+    "description": "commonClear"
+  },
+  "commonClose": "Close",
+  "@commonClose": {
+    "description": "commonClose"
+  },
+  "commonConfirm": "Confirm",
+  "@commonConfirm": {
+    "description": "commonConfirm"
+  },
+  "commonCopy": "Copy",
+  "@commonCopy": {
+    "description": "commonCopy"
+  },
+  "commonCountry": "Country",
+  "@commonCountry": {
+    "description": "commonCountry"
+  },
+  "commonDelete": "Delete",
+  "@commonDelete": {
+    "description": "commonDelete"
+  },
+  "commonDone": "Done",
+  "@commonDone": {
+    "description": "commonDone"
+  },
+  "commonDownload": "Download",
+  "@commonDownload": {
+    "description": "commonDownload"
+  },
+  "commonEdit": "Edit",
+  "@commonEdit": {
+    "description": "commonEdit"
+  },
+  "commonGo": "Go",
+  "@commonGo": {
+    "description": "commonGo"
+  },
+  "commonHelp": "Help",
+  "@commonHelp": {
+    "description": "commonHelp"
+  },
+  "commonNo": "No",
+  "@commonNo": {
+    "description": "commonNo"
+  },
+  "commonOk": "OK",
+  "@commonOk": {
+    "description": "commonOk"
+  },
+  "commonPleaseWait": "Please wait...",
+  "@commonPleaseWait": {
+    "description": "commonPleaseWait"
+  },
+  "commonReset": "Reset",
+  "@commonReset": {
+    "description": "commonReset"
+  },
+  "commonRetry": "Retry",
+  "@commonRetry": {
+    "description": "commonRetry"
+  },
+  "commonSendEmail": "Send Email",
+  "@commonSendEmail": {
+    "description": "commonSendEmail"
+  },
+  "commonSkip": "Skip",
+  "@commonSkip": {
+    "description": "commonSkip"
+  },
+  "commonToday": "Today",
+  "@commonToday": {
+    "description": "commonToday"
+  },
+  "commonView": "View",
+  "@commonView": {
+    "description": "commonView"
+  },
+  "commonYes": "Yes",
+  "@commonYes": {
+    "description": "commonYes"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "copy"
+  },
+  "copyArabicSubtitle": "Copy only the Arabic verse",
+  "@copyArabicSubtitle": {
+    "description": "copyArabicSubtitle"
+  },
+  "copyArabicText": "Copy Arabic Text",
+  "@copyArabicText": {
+    "description": "copyArabicText"
+  },
+  "copyFullVerse": "Copy Full Verse",
+  "@copyFullVerse": {
+    "description": "copyFullVerse"
+  },
+  "copyFullVerseSubtitle": "Copy Arabic text with translation",
+  "@copyFullVerseSubtitle": {
+    "description": "copyFullVerseSubtitle"
+  },
+  "copyOptions": "Copy Options",
+  "@copyOptions": {
+    "description": "copyOptions"
+  },
+  "copyTranslation": "Copy Translation",
+  "@copyTranslation": {
+    "description": "copyTranslation"
+  },
+  "copyTranslationSubtitle": "Copy only the translation",
+  "@copyTranslationSubtitle": {
+    "description": "copyTranslationSubtitle"
+  },
+  "createCategoryDialogComingSoon": "Create category dialog - Coming soon",
+  "@createCategoryDialogComingSoon": {
+    "description": "createCategoryDialogComingSoon"
+  },
+  "deleteCategoryComingSoon": "Delete category - Coming soon",
+  "@deleteCategoryComingSoon": {
+    "description": "deleteCategoryComingSoon"
+  },
+  "detailedExplanationsSoon": "Detailed explanations coming soon!",
+  "@detailedExplanationsSoon": {
+    "description": "detailedExplanationsSoon"
+  },
+  "downloadFailed": "Download failed",
+  "@downloadFailed": {
+    "description": "downloadFailed"
+  },
+  "duaCopiedToClipboard": "Dua copied to clipboard",
+  "@duaCopiedToClipboard": {
+    "description": "duaCopiedToClipboard"
+  },
+  "duaSavedToFavorites": "Dua saved to favorites!",
+  "@duaSavedToFavorites": {
+    "description": "duaSavedToFavorites"
+  },
+  "durationLabel": "Duration: ",
+  "@durationLabel": {
+    "description": "durationLabel"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "edit"
+  },
+  "editBookmarkComingSoon": "Edit bookmark - Coming soon",
+  "@editBookmarkComingSoon": {
+    "description": "editBookmarkComingSoon"
+  },
+  "editCategoryComingSoon": "Edit category - Coming soon",
+  "@editCategoryComingSoon": {
+    "description": "editCategoryComingSoon"
+  },
+  "enterReadingMode": "Enter reading mode",
+  "@enterReadingMode": {
+    "description": "enterReadingMode"
+  },
+  "errorGeneric": "Something went wrong",
+  "@errorGeneric": {
+    "description": "errorGeneric"
+  },
+  "errorLanguageChangeFailed": "Failed to change language. Please try again.",
+  "@errorLanguageChangeFailed": {
+    "description": "errorLanguageChangeFailed"
+  },
+  "errorLanguageChangeGeneric": "An error occurred while changing the language.",
+  "@errorLanguageChangeGeneric": {
+    "description": "errorLanguageChangeGeneric"
+  },
+  "errorLoadingPage": "Error loading page",
+  "@errorLoadingPage": {
+    "description": "errorLoadingPage"
+  },
+  "errorLocation": "Location access is required for accurate prayer times.",
+  "@errorLocation": {
+    "description": "errorLocation"
+  },
+  "errorNetwork": "Network error. Please check your connection.",
+  "@errorNetwork": {
+    "description": "errorNetwork"
+  },
+  "errorPermission": "Permission denied",
+  "@errorPermission": {
+    "description": "errorPermission"
+  },
+  "errorRemovingBookmark": "Error removing bookmark",
+  "@errorRemovingBookmark": {
+    "description": "errorRemovingBookmark"
+  },
+  "errorSavingPreferences": "Error saving preferences",
+  "@errorSavingPreferences": {
+    "description": "errorSavingPreferences"
+  },
+  "errorUnableToLoadSettings": "Unable to load settings",
+  "@errorUnableToLoadSettings": {
+    "description": "errorUnableToLoadSettings"
+  },
+  "exitDialogExit": "Exit",
+  "@exitDialogExit": {
+    "description": "exitDialogExit"
+  },
+  "exitDialogMessage": "Are you sure you want to exit the app?",
+  "@exitDialogMessage": {
+    "description": "exitDialogMessage"
+  },
+  "exitDialogTitle": "Exit DeenMate",
+  "@exitDialogTitle": {
+    "description": "exitDialogTitle"
+  },
+  "exitReadingMode": "Exit reading mode",
+  "@exitReadingMode": {
+    "description": "exitReadingMode"
+  },
+  "exportBookmarksComingSoon": "Export bookmarks - Coming soon",
+  "@exportBookmarksComingSoon": {
+    "description": "exportBookmarksComingSoon"
+  },
+  "fontControls": "Font Controls",
+  "@fontControls": {
+    "description": "fontControls"
+  },
+  "fontSizeDecrease": "Font -",
+  "@fontSizeDecrease": {
+    "description": "fontSizeDecrease"
+  },
+  "fontSizeIncrease": "Font +",
+  "@fontSizeIncrease": {
+    "description": "fontSizeIncrease"
+  },
+  "fontSizesReset": "Font sizes reset to default",
+  "@fontSizesReset": {
+    "description": "fontSizesReset"
+  },
+  "friday": "Friday",
+  "@friday": {
+    "description": "friday"
+  },
+  "fullVerseCopied": "Full verse copied",
+  "@fullVerseCopied": {
+    "description": "fullVerseCopied"
+  },
+  "hadithAdvancedSearch": "Advanced Search",
+  "@hadithAdvancedSearch": {
+    "description": "hadithAdvancedSearch"
+  },
+  "hadithAdvancedSearchSubtitle": "Search in detail",
+  "@hadithAdvancedSearchSubtitle": {
+    "description": "hadithAdvancedSearchSubtitle"
+  },
+  "hadithAll": "All",
+  "@hadithAll": {
+    "description": "hadithAll"
+  },
+  "hadithBookmarkSubtitle": "Saved hadiths",
+  "@hadithBookmarkSubtitle": {
+    "description": "hadithBookmarkSubtitle"
+  },
+  "hadithBookmarkTitle": "Bookmark",
+  "@hadithBookmarkTitle": {
+    "description": "hadithBookmarkTitle"
+  },
+  "hadithBookmarks": "Bookmarks",
+  "@hadithBookmarks": {
+    "description": "hadithBookmarks"
+  },
+  "hadithBooksCountText": "{count} hadiths",
+  "@hadithBooksCountText": {
+    "description": "hadithBooksCountText"
+  },
+  "hadithBooksEmptyStateSubtitle": "Try searching for something else or change your filter",
+  "@hadithBooksEmptyStateSubtitle": {
+    "description": "hadithBooksEmptyStateSubtitle"
+  },
+  "hadithBooksFilterAll": "All Books",
+  "@hadithBooksFilterAll": {
+    "description": "hadithBooksFilterAll"
+  },
+  "hadithBooksFilterKutubSittah": "Kutub Sittah",
+  "@hadithBooksFilterKutubSittah": {
+    "description": "hadithBooksFilterKutubSittah"
+  },
+  "hadithBooksFilterPopular": "Popular",
+  "@hadithBooksFilterPopular": {
+    "description": "hadithBooksFilterPopular"
+  },
+  "hadithBooksNoBooksFound": "No books found",
+  "@hadithBooksNoBooksFound": {
+    "description": "hadithBooksNoBooksFound"
+  },
+  "hadithBooksPopularLabel": "Popular",
+  "@hadithBooksPopularLabel": {
+    "description": "hadithBooksPopularLabel"
+  },
+  "hadithBooksScreenTitle": "Hadith Books",
+  "@hadithBooksScreenTitle": {
+    "description": "hadithBooksScreenTitle"
+  },
+  "hadithBooksSearchHint": "Search hadith books...",
+  "@hadithBooksSearchHint": {
+    "description": "hadithBooksSearchHint"
+  },
+  "hadithBooksShowAllBooks": "Show all books",
+  "@hadithBooksShowAllBooks": {
+    "description": "hadithBooksShowAllBooks"
+  },
+  "hadithBooksTitle": "Hadith Books",
+  "@hadithBooksTitle": {
+    "description": "hadithBooksTitle"
+  },
+  "hadithChangeFilter": "Change Filter",
+  "@hadithChangeFilter": {
+    "description": "hadithChangeFilter"
+  },
+  "hadithChapterLabel": "Chapter: {chapter}",
+  "@hadithChapterLabel": {
+    "description": "hadithChapterLabel"
+  },
+  "hadithClearSearch": "Clear Search",
+  "@hadithClearSearch": {
+    "description": "hadithClearSearch"
+  },
+  "hadithCollection": "Collection",
+  "@hadithCollection": {
+    "description": "hadithCollection"
+  },
+  "hadithCollections": "Hadith Collections",
+  "@hadithCollections": {
+    "description": "hadithCollections"
+  },
+  "hadithCopiedToClipboard": "Hadith copied to clipboard",
+  "@hadithCopiedToClipboard": {
+    "description": "hadithCopiedToClipboard"
+  },
+  "hadithCount": "{count} Hadiths",
+  "@hadithCount": {
+    "description": "hadithCount"
+  },
+  "hadithDetailArabicLabel": "Arabic",
+  "@hadithDetailArabicLabel": {
+    "description": "hadithDetailArabicLabel"
+  },
+  "hadithDetailArabicText": "Arabic",
+  "@hadithDetailArabicText": {
+    "description": "hadithDetailArabicText"
+  },
+  "hadithDetailBookmarkAdded": "Hadith bookmarked",
+  "@hadithDetailBookmarkAdded": {
+    "description": "hadithDetailBookmarkAdded"
+  },
+  "hadithDetailBookmarkRemoved": "Bookmark removed",
+  "@hadithDetailBookmarkRemoved": {
+    "description": "hadithDetailBookmarkRemoved"
+  },
+  "hadithDetailChapter": "Chapter",
+  "@hadithDetailChapter": {
+    "description": "hadithDetailChapter"
+  },
+  "hadithDetailCopied": "Copied",
+  "@hadithDetailCopied": {
+    "description": "hadithDetailCopied"
+  },
+  "hadithDetailCopy": "Copy",
+  "@hadithDetailCopy": {
+    "description": "hadithDetailCopy"
+  },
+  "hadithDetailCopyFull": "Copy Full",
+  "@hadithDetailCopyFull": {
+    "description": "hadithDetailCopyFull"
+  },
+  "hadithDetailFontSize": "Font Size",
+  "@hadithDetailFontSize": {
+    "description": "hadithDetailFontSize"
+  },
+  "hadithDetailGrade": "Grade",
+  "@hadithDetailGrade": {
+    "description": "hadithDetailGrade"
+  },
+  "hadithDetailNarrator": "Narrator",
+  "@hadithDetailNarrator": {
+    "description": "hadithDetailNarrator"
+  },
+  "hadithDetailNumber": "Hadith number {number}",
+  "@hadithDetailNumber": {
+    "description": "hadithDetailNumber"
+  },
+  "hadithDetailReference": "Reference",
+  "@hadithDetailReference": {
+    "description": "hadithDetailReference"
+  },
+  "hadithDetailReferenceInfo": "Reference Information",
+  "@hadithDetailReferenceInfo": {
+    "description": "hadithDetailReferenceInfo"
+  },
+  "hadithDetailRelatedTopics": "Related Topics",
+  "@hadithDetailRelatedTopics": {
+    "description": "hadithDetailRelatedTopics"
+  },
+  "hadithDetailSettings": "Settings",
+  "@hadithDetailSettings": {
+    "description": "hadithDetailSettings"
+  },
+  "hadithDetailSettingsClose": "Close",
+  "@hadithDetailSettingsClose": {
+    "description": "hadithDetailSettingsClose"
+  },
+  "hadithDetailSettingsContent": "Settings options will be available here.",
+  "@hadithDetailSettingsContent": {
+    "description": "hadithDetailSettingsContent"
+  },
+  "hadithDetailSettingsTitle": "Hadith Settings",
+  "@hadithDetailSettingsTitle": {
+    "description": "hadithDetailSettingsTitle"
+  },
+  "hadithDetailShare": "Share",
+  "@hadithDetailShare": {
+    "description": "hadithDetailShare"
+  },
+  "hadithDetailShareButton": "Share",
+  "@hadithDetailShareButton": {
+    "description": "hadithDetailShareButton"
+  },
+  "hadithDetailShared": "Hadith shared successfully",
+  "@hadithDetailShared": {
+    "description": "hadithDetailShared"
+  },
+  "hadithDetailTranslation": "Bengali Translation",
+  "@hadithDetailTranslation": {
+    "description": "hadithDetailTranslation"
+  },
+  "hadithDetailTranslationLabel": "Translation",
+  "@hadithDetailTranslationLabel": {
+    "description": "hadithDetailTranslationLabel"
+  },
+  "hadithErrorLoadingCollections": "Error loading collections",
+  "@hadithErrorLoadingCollections": {
+    "description": "hadithErrorLoadingCollections"
+  },
+  "hadithErrorLoadingPopular": "Error loading popular hadiths",
+  "@hadithErrorLoadingPopular": {
+    "description": "hadithErrorLoadingPopular"
+  },
+  "hadithErrorLoadingRecentlyRead": "Error loading recently read",
+  "@hadithErrorLoadingRecentlyRead": {
+    "description": "hadithErrorLoadingRecentlyRead"
+  },
+  "hadithExploreMore": "Explore More",
+  "@hadithExploreMore": {
+    "description": "hadithExploreMore"
+  },
+  "hadithFilters": "Filters",
+  "@hadithFilters": {
+    "description": "hadithFilters"
+  },
+  "hadithGrade": "Grade",
+  "@hadithGrade": {
+    "description": "hadithGrade"
+  },
+  "hadithMainTitle": "Hadith",
+  "@hadithMainTitle": {
+    "description": "hadithMainTitle"
+  },
+  "hadithNarrator": "Narrator: {name}",
+  "@hadithNarrator": {
+    "description": "hadithNarrator"
+  },
+  "hadithNarratorLabel": "Narrator: {narrator}",
+  "@hadithNarratorLabel": {
+    "description": "hadithNarratorLabel"
+  },
+  "hadithNoCollections": "No Hadith collections found",
+  "@hadithNoCollections": {
+    "description": "hadithNoCollections"
+  },
+  "hadithNoPopular": "No popular hadiths",
+  "@hadithNoPopular": {
+    "description": "hadithNoPopular"
+  },
+  "hadithNoRecentSearches": "No recent searches yet",
+  "@hadithNoRecentSearches": {
+    "description": "hadithNoRecentSearches"
+  },
+  "hadithNoRecentlyRead": "No recently read hadiths",
+  "@hadithNoRecentlyRead": {
+    "description": "hadithNoRecentlyRead"
+  },
+  "hadithNoResults": "No results found",
+  "@hadithNoResults": {
+    "description": "hadithNoResults"
+  },
+  "hadithNoResultsForQuery": "No hadiths found for \"{query}\"",
+  "@hadithNoResultsForQuery": {
+    "description": "hadithNoResultsForQuery"
+  },
+  "hadithNoResultsFound": "No hadiths found",
+  "@hadithNoResultsFound": {
+    "description": "hadithNoResultsFound"
+  },
+  "hadithNoResultsFoundDetails": "No hadiths found for '{query}'. Try searching for something else.",
+  "@hadithNoResultsFoundDetails": {
+    "description": "hadithNoResultsFoundDetails"
+  },
+  "hadithPopular": "Popular Hadiths",
+  "@hadithPopular": {
+    "description": "hadithPopular"
+  },
+  "hadithPopularBooks": "Popular Books",
+  "@hadithPopularBooks": {
+    "description": "hadithPopularBooks"
+  },
+  "hadithPopularBooksSubtitle": "Valuable hadith collections to organize life in the light of Islam",
+  "@hadithPopularBooksSubtitle": {
+    "description": "hadithPopularBooksSubtitle"
+  },
+  "hadithPopularSearches": "Popular Searches",
+  "@hadithPopularSearches": {
+    "description": "hadithPopularSearches"
+  },
+  "hadithPopularTopics": "Popular Topics",
+  "@hadithPopularTopics": {
+    "description": "hadithPopularTopics"
+  },
+  "hadithPopularTopicsSubtitle": "Subject-wise hadith collections helpful in all areas of life",
+  "@hadithPopularTopicsSubtitle": {
+    "description": "hadithPopularTopicsSubtitle"
+  },
+  "hadithQuickAccess": "Quick Access",
+  "@hadithQuickAccess": {
+    "description": "hadithQuickAccess"
+  },
+  "hadithQuickActions": "Quick Actions",
+  "@hadithQuickActions": {
+    "description": "hadithQuickActions"
+  },
+  "hadithReadCount": "Read: {count}",
+  "@hadithReadCount": {
+    "description": "hadithReadCount"
+  },
+  "hadithRecentSearches": "Recent Searches",
+  "@hadithRecentSearches": {
+    "description": "hadithRecentSearches"
+  },
+  "hadithRecentlyRead": "Recently Read",
+  "@hadithRecentlyRead": {
+    "description": "hadithRecentlyRead"
+  },
+  "hadithReferenceLabel": "Reference: {reference}",
+  "@hadithReferenceLabel": {
+    "description": "hadithReferenceLabel"
+  },
+  "hadithResultsFound": "{count} results found",
+  "@hadithResultsFound": {
+    "description": "hadithResultsFound"
+  },
+  "hadithSavedToFavorites": "Hadith saved to favorites!",
+  "@hadithSavedToFavorites": {
+    "description": "hadithSavedToFavorites"
+  },
+  "hadithSearch": "Search",
+  "@hadithSearch": {
+    "description": "hadithSearch"
+  },
+  "hadithSearchApplyFilters": "Apply Filters",
+  "@hadithSearchApplyFilters": {
+    "description": "hadithSearchApplyFilters"
+  },
+  "hadithSearchButton": "Search",
+  "@hadithSearchButton": {
+    "description": "hadithSearchButton"
+  },
+  "hadithSearchContextFor": "for '{query}'",
+  "@hadithSearchContextFor": {
+    "description": "hadithSearchContextFor"
+  },
+  "hadithSearchDetailedHint": "Search hadiths... (e.g., intention, deed)",
+  "@hadithSearchDetailedHint": {
+    "description": "hadithSearchDetailedHint"
+  },
+  "hadithSearchEmpty": "Search for Hadiths",
+  "@hadithSearchEmpty": {
+    "description": "hadithSearchEmpty"
+  },
+  "hadithSearchEmptySubtitle": "Search using keywords",
+  "@hadithSearchEmptySubtitle": {
+    "description": "hadithSearchEmptySubtitle"
+  },
+  "hadithSearchError": "Error occurred while searching",
+  "@hadithSearchError": {
+    "description": "hadithSearchError"
+  },
+  "hadithSearchFilterAllBooks": "All Books",
+  "@hadithSearchFilterAllBooks": {
+    "description": "hadithSearchFilterAllBooks"
+  },
+  "hadithSearchFilterAllGrades": "All Grades",
+  "@hadithSearchFilterAllGrades": {
+    "description": "hadithSearchFilterAllGrades"
+  },
+  "hadithSearchFilterArabicOnly": "Arabic Only",
+  "@hadithSearchFilterArabicOnly": {
+    "description": "hadithSearchFilterArabicOnly"
+  },
+  "hadithSearchFilterBook": "Book: {bookName}",
+  "@hadithSearchFilterBook": {
+    "description": "hadithSearchFilterBook"
+  },
+  "hadithSearchFilterBookTitle": "Hadith Book",
+  "@hadithSearchFilterBookTitle": {
+    "description": "hadithSearchFilterBookTitle"
+  },
+  "hadithSearchFilterDaif": "Daif",
+  "@hadithSearchFilterDaif": {
+    "description": "hadithSearchFilterDaif"
+  },
+  "hadithSearchFilterGrade": "Grade: {grade}",
+  "@hadithSearchFilterGrade": {
+    "description": "hadithSearchFilterGrade"
+  },
+  "hadithSearchFilterGradeTitle": "Hadith Grade",
+  "@hadithSearchFilterGradeTitle": {
+    "description": "hadithSearchFilterGradeTitle"
+  },
+  "hadithSearchFilterHasan": "Hasan",
+  "@hadithSearchFilterHasan": {
+    "description": "hadithSearchFilterHasan"
+  },
+  "hadithSearchFilterReset": "Reset",
+  "@hadithSearchFilterReset": {
+    "description": "hadithSearchFilterReset"
+  },
+  "hadithSearchFilterSahih": "Sahih",
+  "@hadithSearchFilterSahih": {
+    "description": "hadithSearchFilterSahih"
+  },
+  "hadithSearchFilterTitle": "Search Filters",
+  "@hadithSearchFilterTitle": {
+    "description": "hadithSearchFilterTitle"
+  },
+  "hadithSearchFilterTranslationOnly": "Translation Only",
+  "@hadithSearchFilterTranslationOnly": {
+    "description": "hadithSearchFilterTranslationOnly"
+  },
+  "hadithSearchHint": "Search for hadiths...",
+  "@hadithSearchHint": {
+    "description": "hadithSearchHint"
+  },
+  "hadithSearchHintWithShortcut": "Search hadiths (Ctrl+K)",
+  "@hadithSearchHintWithShortcut": {
+    "description": "hadithSearchHintWithShortcut"
+  },
+  "hadithSearchInArabic": "Search in Arabic text",
+  "@hadithSearchInArabic": {
+    "description": "hadithSearchInArabic"
+  },
+  "hadithSearchInTranslation": "Search in translation",
+  "@hadithSearchInTranslation": {
+    "description": "hadithSearchInTranslation"
+  },
+  "hadithSearchLoadingMessage": "Searching hadiths...",
+  "@hadithSearchLoadingMessage": {
+    "description": "hadithSearchLoadingMessage"
+  },
+  "hadithSearchScopeTitle": "Search Scope",
+  "@hadithSearchScopeTitle": {
+    "description": "hadithSearchScopeTitle"
+  },
+  "hadithSearchSuggestions": "Intention, Deeds, Prayer, Paradise, Hell, Supplication, Repentance, Patience, Gratitude, Parents",
+  "@hadithSearchSuggestions": {
+    "description": "hadithSearchSuggestions"
+  },
+  "hadithSearchTitle": "Hadith Search",
+  "@hadithSearchTitle": {
+    "description": "hadithSearchTitle"
+  },
+  "hadithSearchTopicCharity": "Charity",
+  "@hadithSearchTopicCharity": {
+    "description": "hadithSearchTopicCharity"
+  },
+  "hadithSearchTopicEthics": "Ethics",
+  "@hadithSearchTopicEthics": {
+    "description": "hadithSearchTopicEthics"
+  },
+  "hadithSearchTopicFaith": "Faith",
+  "@hadithSearchTopicFaith": {
+    "description": "hadithSearchTopicFaith"
+  },
+  "hadithSearchTopicFasting": "Fasting",
+  "@hadithSearchTopicFasting": {
+    "description": "hadithSearchTopicFasting"
+  },
+  "hadithSearchTopicHajj": "Hajj",
+  "@hadithSearchTopicHajj": {
+    "description": "hadithSearchTopicHajj"
+  },
+  "hadithSearchTopicPrayer": "Prayer",
+  "@hadithSearchTopicPrayer": {
+    "description": "hadithSearchTopicPrayer"
+  },
+  "hadithSearching": "Searching...",
+  "@hadithSearching": {
+    "description": "hadithSearching"
+  },
+  "hadithSearchingProgress": "Searching...",
+  "@hadithSearchingProgress": {
+    "description": "hadithSearchingProgress"
+  },
+  "hadithShareTemplate": "{arabicText}\\n\\n{bengaliText}\\n\\nReference: {reference}\\nNarrator: {narrator}",
+  "@hadithShareTemplate": {
+    "description": "hadithShareTemplate"
+  },
+  "hadithTitle": "Hadith",
+  "@hadithTitle": {
+    "description": "hadithTitle"
+  },
+  "hadithTodaysHadith": "Today's Hadith",
+  "@hadithTodaysHadith": {
+    "description": "hadithTodaysHadith"
+  },
+  "hadithTopicFormat": "{order} {name}",
+  "@hadithTopicFormat": {
+    "description": "hadithTopicFormat"
+  },
+  "hadithTopics": "Topics",
+  "@hadithTopics": {
+    "description": "hadithTopics"
+  },
+  "hadithTotalCount": "Total hadiths {count}",
+  "@hadithTotalCount": {
+    "description": "hadithTotalCount"
+  },
+  "hadithTryAgain": "Try Again",
+  "@hadithTryAgain": {
+    "description": "hadithTryAgain"
+  },
+  "hadithTryDifferentSearch": "Try Different Search",
+  "@hadithTryDifferentSearch": {
+    "description": "hadithTryDifferentSearch"
+  },
+  "hadithViewAll": "View All",
+  "@hadithViewAll": {
+    "description": "hadithViewAll"
+  },
+  "homeCurrentPrayer": "Current Prayer",
+  "@homeCurrentPrayer": {
+    "description": "homeCurrentPrayer"
+  },
+  "homeForbiddenSunrise": "Salah is forbidden during sunrise",
+  "@homeForbiddenSunrise": {
+    "description": "homeForbiddenSunrise"
+  },
+  "homeForbiddenSunset": "Salah is forbidden during sunset",
+  "@homeForbiddenSunset": {
+    "description": "homeForbiddenSunset"
+  },
+  "homeForbiddenZenith": "Salah is forbidden during solar noon (zenith)",
+  "@homeForbiddenZenith": {
+    "description": "homeForbiddenZenith"
+  },
+  "homeGreeting": "As-salāmu 'alaykum,",
+  "@homeGreeting": {
+    "description": "homeGreeting"
+  },
+  "homeNextPrayer": "Next Prayer",
+  "@homeNextPrayer": {
+    "description": "homeNextPrayer"
+  },
+  "homeNoActivePrayer": "No Active Prayer",
+  "@homeNoActivePrayer": {
+    "description": "homeNoActivePrayer"
+  },
+  "homePrayerIn": "{prayerName} in ",
+  "@homePrayerIn": {
+    "description": "homePrayerIn"
+  },
+  "homePrayerRemaining": "{prayerName} remaining ",
+  "@homePrayerRemaining": {
+    "description": "homePrayerRemaining"
+  },
+  "homeTimeStatusNow": "now",
+  "@homeTimeStatusNow": {
+    "description": "homeTimeStatusNow"
+  },
+  "infoLocationRequired": "Location access helps provide accurate prayer times for your area.",
+  "@infoLocationRequired": {
+    "description": "infoLocationRequired"
+  },
+  "infoNotificationsHelp": "Get notified before each prayer time.",
+  "@infoNotificationsHelp": {
+    "description": "infoNotificationsHelp"
+  },
+  "infoThemeDescription": "Choose your preferred visual style for the app.",
+  "@infoThemeDescription": {
+    "description": "infoThemeDescription"
+  },
+  "inheritanceAulRaddSupport": "⚖️ Aul & Radd Support",
+  "@inheritanceAulRaddSupport": {
+    "description": "inheritanceAulRaddSupport"
+  },
+  "inheritanceBasedOnQuran": "Based on Quran and Sunnah",
+  "@inheritanceBasedOnQuran": {
+    "description": "inheritanceBasedOnQuran"
+  },
+  "inheritanceBengaliLanguage": "🌍 Bengali Language",
+  "@inheritanceBengaliLanguage": {
+    "description": "inheritanceBengaliLanguage"
+  },
+  "inheritanceBengaliSupport": "Full Bengali language support",
+  "@inheritanceBengaliSupport": {
+    "description": "inheritanceBengaliSupport"
+  },
+  "inheritanceCalculate": "3. Calculate Distribution",
+  "@inheritanceCalculate": {
+    "description": "inheritanceCalculate"
+  },
+  "inheritanceCalculatorTitle": "Inheritance Calculator",
+  "@inheritanceCalculatorTitle": {
+    "description": "inheritanceCalculatorTitle"
+  },
+  "inheritanceComplexScenarios": "Handles complex inheritance scenarios",
+  "@inheritanceComplexScenarios": {
+    "description": "inheritanceComplexScenarios"
+  },
+  "inheritanceDetailedBreakdown": "Detailed calculation breakdown",
+  "@inheritanceDetailedBreakdown": {
+    "description": "inheritanceDetailedBreakdown"
+  },
+  "inheritanceEnterEstate": "1. Enter Estate Value",
+  "@inheritanceEnterEstate": {
+    "description": "inheritanceEnterEstate"
+  },
+  "inheritanceFeatures": "Key Features",
+  "@inheritanceFeatures": {
+    "description": "inheritanceFeatures"
+  },
+  "inheritanceOfflineCalculation": "📱 Offline Calculation",
+  "@inheritanceOfflineCalculation": {
+    "description": "inheritanceOfflineCalculation"
+  },
+  "inheritanceQuickStart": "Quick Start Guide",
+  "@inheritanceQuickStart": {
+    "description": "inheritanceQuickStart"
+  },
+  "inheritanceQuranicReferences": "📚 Quranic References",
+  "@inheritanceQuranicReferences": {
+    "description": "inheritanceQuranicReferences"
+  },
+  "inheritanceRelevantVerses": "Relevant verses and hadiths included",
+  "@inheritanceRelevantVerses": {
+    "description": "inheritanceRelevantVerses"
+  },
+  "inheritanceSelectHeirs": "2. Select Heirs",
+  "@inheritanceSelectHeirs": {
+    "description": "inheritanceSelectHeirs"
+  },
+  "inheritanceShariahCompliant": "📖 Shariah Compliant",
+  "@inheritanceShariahCompliant": {
+    "description": "inheritanceShariahCompliant"
+  },
+  "inheritanceStartCalculation": "Start Calculation",
+  "@inheritanceStartCalculation": {
+    "description": "inheritanceStartCalculation"
+  },
+  "inheritanceStepByStep": "📊 Step-by-Step Guidance",
+  "@inheritanceStepByStep": {
+    "description": "inheritanceStepByStep"
+  },
+  "inheritanceWorksOffline": "Works completely offline",
+  "@inheritanceWorksOffline": {
+    "description": "inheritanceWorksOffline"
+  },
+  "islamicMonthDhuAlHijjah": "Dhu al-Hijjah",
+  "@islamicMonthDhuAlHijjah": {
+    "description": "islamicMonthDhuAlHijjah"
+  },
+  "islamicMonthDhuAlQadah": "Dhu al-Qadah",
+  "@islamicMonthDhuAlQadah": {
+    "description": "islamicMonthDhuAlQadah"
+  },
+  "islamicMonthJumadaAlAwwal": "Jumada al-Awwal",
+  "@islamicMonthJumadaAlAwwal": {
+    "description": "islamicMonthJumadaAlAwwal"
+  },
+  "islamicMonthJumadaAlThani": "Jumada al-Thani",
+  "@islamicMonthJumadaAlThani": {
+    "description": "islamicMonthJumadaAlThani"
+  },
+  "islamicMonthMuharram": "Muharram",
+  "@islamicMonthMuharram": {
+    "description": "islamicMonthMuharram"
+  },
+  "islamicMonthRabiAlAwwal": "Rabi al-Awwal",
+  "@islamicMonthRabiAlAwwal": {
+    "description": "islamicMonthRabiAlAwwal"
+  },
+  "islamicMonthRabiAlThani": "Rabi al-Thani",
+  "@islamicMonthRabiAlThani": {
+    "description": "islamicMonthRabiAlThani"
+  },
+  "islamicMonthRajab": "Rajab",
+  "@islamicMonthRajab": {
+    "description": "islamicMonthRajab"
+  },
+  "islamicMonthRamadan": "Ramadan",
+  "@islamicMonthRamadan": {
+    "description": "islamicMonthRamadan"
+  },
+  "islamicMonthSafar": "Safar",
+  "@islamicMonthSafar": {
+    "description": "islamicMonthSafar"
+  },
+  "islamicMonthShaban": "Sha'ban",
+  "@islamicMonthShaban": {
+    "description": "islamicMonthShaban"
+  },
+  "islamicMonthShawwal": "Shawwal",
+  "@islamicMonthShawwal": {
+    "description": "islamicMonthShawwal"
+  },
+  "jumpToVerse": "Jump to Verse",
+  "@jumpToVerse": {
+    "description": "jumpToVerse"
+  },
+  "juz": "Juz",
+  "@juz": {
+    "description": "juz"
+  },
+  "labelImmediateNotification": "Immediate Notification",
+  "@labelImmediateNotification": {
+    "description": "labelImmediateNotification"
+  },
+  "learnMore": "Learn More",
+  "@learnMore": {
+    "description": "learnMore"
+  },
+  "locationAutoDetected": "Auto-detected",
+  "@locationAutoDetected": {
+    "description": "locationAutoDetected"
+  },
+  "locationAutoTimezone": "Auto",
+  "@locationAutoTimezone": {
+    "description": "locationAutoTimezone"
+  },
+  "locationCurrentLocation": "Current Location",
+  "@locationCurrentLocation": {
+    "description": "locationCurrentLocation"
+  },
+  "locationGetFailed": "Failed to get location: {error}",
+  "@locationGetFailed": {
+    "description": "locationGetFailed"
+  },
+  "locationIsNeeded": "Location is needed to show recommended methods",
+  "@locationIsNeeded": {
+    "description": "locationIsNeeded"
+  },
+  "locationPermissionRequired": "Location Permission Required",
+  "@locationPermissionRequired": {
+    "description": "locationPermissionRequired"
+  },
+  "locationSaveFailed": "Failed to save location: {error}",
+  "@locationSaveFailed": {
+    "description": "locationSaveFailed"
+  },
+  "locationSaveSuccess": "Location \"{city}, {country}\" saved successfully!",
+  "@locationSaveSuccess": {
+    "description": "locationSaveSuccess"
+  },
+  "locationSetSuccess": "Location set successfully!",
+  "@locationSetSuccess": {
+    "description": "locationSetSuccess"
+  },
+  "madhhabHanafi": "Hanafi",
+  "@madhhabHanafi": {
+    "description": "madhhabHanafi"
+  },
+  "madhhabShafiMalikiHanbali": "Shafi'i, Maliki, Hanbali",
+  "@madhhabShafiMalikiHanbali": {
+    "description": "madhhabShafiMalikiHanbali"
+  },
+  "manageCategoriesComingSoon": "Manage categories - Coming soon",
+  "@manageCategoriesComingSoon": {
+    "description": "manageCategoriesComingSoon"
+  },
+  "methodAngleFormat": "{label}: {angle}°",
+  "@methodAngleFormat": {
+    "description": "methodAngleFormat"
+  },
+  "methodComparison": "Method Comparison",
+  "@methodComparison": {
+    "description": "methodComparison"
+  },
+  "methodComparisonDescription": "Select two methods to compare their angles and characteristics.",
+  "@methodComparisonDescription": {
+    "description": "methodComparisonDescription"
+  },
+  "methodComparisonMethod1": "Method 1",
+  "@methodComparisonMethod1": {
+    "description": "methodComparisonMethod1"
+  },
+  "methodComparisonMethod2": "Method 2",
+  "@methodComparisonMethod2": {
+    "description": "methodComparisonMethod2"
+  },
+  "methodUnknownOrganization": "Unknown Organization",
+  "@methodUnknownOrganization": {
+    "description": "methodUnknownOrganization"
+  },
+  "methodsAboutCalculationMethods": "About Calculation Methods",
+  "@methodsAboutCalculationMethods": {
+    "description": "methodsAboutCalculationMethods"
+  },
+  "methodsAboutTooltip": "About Calculation Methods",
+  "@methodsAboutTooltip": {
+    "description": "methodsAboutTooltip"
+  },
+  "methodsAllAvailableMethods": "All Available Methods",
+  "@methodsAllAvailableMethods": {
+    "description": "methodsAllAvailableMethods"
+  },
+  "methodsAllAvailableMethodsCount": "Choose from all {count} available calculation methods used worldwide.",
+  "@methodsAllAvailableMethodsCount": {
+    "description": "methodsAllAvailableMethodsCount"
+  },
+  "methodsAllMethods": "All Methods",
+  "@methodsAllMethods": {
+    "description": "methodsAllMethods"
+  },
+  "methodsApplied": "Applied \\\"{name}\\\" calculation method",
+  "@methodsApplied": {
+    "description": "methodsApplied"
+  },
+  "methodsApplyFailed": "Failed to apply method: {error}",
+  "@methodsApplyFailed": {
+    "description": "methodsApplyFailed"
+  },
+  "methodsApplyMethod": "Apply Method",
+  "@methodsApplyMethod": {
+    "description": "methodsApplyMethod"
+  },
+  "methodsCompare": "Compare",
+  "@methodsCompare": {
+    "description": "methodsCompare"
+  },
+  "methodsComparisonResults": "Comparison Results",
+  "@methodsComparisonResults": {
+    "description": "methodsComparisonResults"
+  },
+  "methodsCreateCustomAngles": "Create your own calculation method with custom angles.",
+  "@methodsCreateCustomAngles": {
+    "description": "methodsCreateCustomAngles"
+  },
+  "methodsCreateCustomMethod": "Create Custom Method",
+  "@methodsCreateCustomMethod": {
+    "description": "methodsCreateCustomMethod"
+  },
+  "methodsCustom": "Custom",
+  "@methodsCustom": {
+    "description": "methodsCustom"
+  },
+  "methodsCustomComingSoon": "Custom method creation will be available in a future update.",
+  "@methodsCustomComingSoon": {
+    "description": "methodsCustomComingSoon"
+  },
+  "methodsCustomMethod": "Custom Method",
+  "@methodsCustomMethod": {
+    "description": "methodsCustomMethod"
+  },
+  "methodsCustomMethodCreator": "Custom Method Creator",
+  "@methodsCustomMethodCreator": {
+    "description": "methodsCustomMethodCreator"
+  },
+  "methodsFajr": "Fajr",
+  "@methodsFajr": {
+    "description": "methodsFajr"
+  },
+  "methodsFajrAngle": "Fajr Angle",
+  "@methodsFajrAngle": {
+    "description": "methodsFajrAngle"
+  },
+  "methodsFromOrganizations": "{count} calculation methods from Islamic organizations worldwide.",
+  "@methodsFromOrganizations": {
+    "description": "methodsFromOrganizations"
+  },
+  "methodsGotIt": "Got it",
+  "@methodsGotIt": {
+    "description": "methodsGotIt"
+  },
+  "methodsHideComparisonTooltip": "Hide Comparison",
+  "@methodsHideComparisonTooltip": {
+    "description": "methodsHideComparisonTooltip"
+  },
+  "methodsImpactAssessment": "Impact Assessment:",
+  "@methodsImpactAssessment": {
+    "description": "methodsImpactAssessment"
+  },
+  "methodsInfoFajrAngle": "• Fajr Angle: Determines morning prayer time",
+  "@methodsInfoFajrAngle": {
+    "description": "methodsInfoFajrAngle"
+  },
+  "methodsInfoIshaAngle": "• Isha Angle: Determines night prayer time",
+  "@methodsInfoIshaAngle": {
+    "description": "methodsInfoIshaAngle"
+  },
+  "methodsInfoMadhabDiff": "• Madhab Differences: Mainly affect Asr calculation",
+  "@methodsInfoMadhabDiff": {
+    "description": "methodsInfoMadhabDiff"
+  },
+  "methodsInfoRecommendation": "We recommend using the method preferred in your region for consistency with your local Muslim community.",
+  "@methodsInfoRecommendation": {
+    "description": "methodsInfoRecommendation"
+  },
+  "methodsInfoRegionalPref": "• Regional Preferences: Based on local scholarly consensus",
+  "@methodsInfoRegionalPref": {
+    "description": "methodsInfoRegionalPref"
+  },
+  "methodsIsha": "Isha",
+  "@methodsIsha": {
+    "description": "methodsIsha"
+  },
+  "methodsIshaAngle": "Isha Angle",
+  "@methodsIshaAngle": {
+    "description": "methodsIshaAngle"
+  },
+  "methodsLocationBasedRecommendations": "Location-Based Recommendations",
+  "@methodsLocationBasedRecommendations": {
+    "description": "methodsLocationBasedRecommendations"
+  },
+  "methodsLocationRecommendationText": "These methods are recommended for your region. Location detection would normally determine this automatically.",
+  "@methodsLocationRecommendationText": {
+    "description": "methodsLocationRecommendationText"
+  },
+  "methodsNotAvailable": "N/A",
+  "@methodsNotAvailable": {
+    "description": "methodsNotAvailable"
+  },
+  "methodsOrganization": "Organization",
+  "@methodsOrganization": {
+    "description": "methodsOrganization"
+  },
+  "methodsRecommended": "Recommended",
+  "@methodsRecommended": {
+    "description": "methodsRecommended"
+  },
+  "methodsRecommendedMethods": "Recommended Methods",
+  "@methodsRecommendedMethods": {
+    "description": "methodsRecommendedMethods"
+  },
+  "methodsRetry": "Retry",
+  "@methodsRetry": {
+    "description": "methodsRetry"
+  },
+  "methodsSelectMethod": "Select a calculation method",
+  "@methodsSelectMethod": {
+    "description": "methodsSelectMethod"
+  },
+  "methodsUnknownOrganization": "Unknown Organization",
+  "@methodsUnknownOrganization": {
+    "description": "methodsUnknownOrganization"
+  },
+  "methodsView": "View",
+  "@methodsView": {
+    "description": "methodsView"
+  },
+  "methodsYourLocation": "Your Location",
+  "@methodsYourLocation": {
+    "description": "methodsYourLocation"
+  },
+  "mobileReadingModeBookmark": "Bookmark",
+  "@mobileReadingModeBookmark": {
+    "description": "mobileReadingModeBookmark"
+  },
+  "mobileReadingModeBrightness": "Screen Brightness",
+  "@mobileReadingModeBrightness": {
+    "description": "mobileReadingModeBrightness"
+  },
+  "mobileReadingModeFont": "Font",
+  "@mobileReadingModeFont": {
+    "description": "mobileReadingModeFont"
+  },
+  "mobileReadingModeGreenTheme": "Green Theme",
+  "@mobileReadingModeGreenTheme": {
+    "description": "mobileReadingModeGreenTheme"
+  },
+  "mobileReadingModeLineHeight": "Line Height",
+  "@mobileReadingModeLineHeight": {
+    "description": "mobileReadingModeLineHeight"
+  },
+  "mobileReadingModeNext": "Next",
+  "@mobileReadingModeNext": {
+    "description": "mobileReadingModeNext"
+  },
+  "mobileReadingModeNightMode": "Night Mode",
+  "@mobileReadingModeNightMode": {
+    "description": "mobileReadingModeNightMode"
+  },
+  "mobileReadingModePrevious": "Previous",
+  "@mobileReadingModePrevious": {
+    "description": "mobileReadingModePrevious"
+  },
+  "mobileReadingModeProgress": "Reading Progress",
+  "@mobileReadingModeProgress": {
+    "description": "mobileReadingModeProgress"
+  },
+  "mobileReadingModeSettings": "Reading Settings",
+  "@mobileReadingModeSettings": {
+    "description": "mobileReadingModeSettings"
+  },
+  "mobileReadingModeTheme": "Theme",
+  "@mobileReadingModeTheme": {
+    "description": "mobileReadingModeTheme"
+  },
+  "mobileReadingModeTitle": "Reading Mode",
+  "@mobileReadingModeTitle": {
+    "description": "mobileReadingModeTitle"
+  },
+  "mobileReadingModeTranslation": "Translation",
+  "@mobileReadingModeTranslation": {
+    "description": "mobileReadingModeTranslation"
+  },
+  "monday": "Monday",
+  "@monday": {
+    "description": "monday"
+  },
+  "moreActions": "More Actions",
+  "@moreActions": {
+    "description": "moreActions"
+  },
+  "moreOptionsOpened": "More options opened",
+  "@moreOptionsOpened": {
+    "description": "moreOptionsOpened"
+  },
+  "muteSettingsSubtitle": "Configure when notifications should be silenced:",
+  "@muteSettingsSubtitle": {
+    "description": "muteSettingsSubtitle"
+  },
+  "muteSettingsTitle": "Mute Settings",
+  "@muteSettingsTitle": {
+    "description": "muteSettingsTitle"
+  },
+  "mutedDaysLabel": "Muted Days:",
+  "@mutedDaysLabel": {
+    "description": "mutedDaysLabel"
+  },
+  "nameOfAllahCopied": "Name of Allah copied to clipboard",
+  "@nameOfAllahCopied": {
+    "description": "nameOfAllahCopied"
+  },
+  "navigation": "Navigation",
+  "@navigation": {
+    "description": "navigation"
+  },
+  "navigationExitDialogMessage": "Are you sure you want to exit the app?",
+  "@navigationExitDialogMessage": {
+    "description": "navigationExitDialogMessage"
+  },
+  "navigationExitDialogTitle": "Exit DeenMate",
+  "@navigationExitDialogTitle": {
+    "description": "navigationExitDialogTitle"
+  },
+  "navigationPrayer": "Prayer",
+  "@navigationPrayer": {
+    "description": "navigationPrayer"
+  },
+  "navigationQibla": "Qibla",
+  "@navigationQibla": {
+    "description": "navigationQibla"
+  },
+  "notificationActionsTitle": "Notification Actions",
+  "@notificationActionsTitle": {
+    "description": "notificationActionsTitle"
+  },
+  "notificationsDisabled": "Notifications are disabled",
+  "@notificationsDisabled": {
+    "description": "notificationsDisabled"
+  },
+  "notificationsEnabled": "Notifications are enabled",
+  "@notificationsEnabled": {
+    "description": "notificationsEnabled"
+  },
+  "onboardingCalculationSubtitle": "Choose your preferred calculation method",
+  "@onboardingCalculationSubtitle": {
+    "description": "onboardingCalculationSubtitle"
+  },
+  "onboardingCalculationTitle": "Prayer Time Calculation",
+  "@onboardingCalculationTitle": {
+    "description": "onboardingCalculationTitle"
+  },
+  "onboardingCompleteSubtitle": "Your DeenMate app is ready to use",
+  "@onboardingCompleteSubtitle": {
+    "description": "onboardingCompleteSubtitle"
+  },
+  "onboardingCompleteTitle": "Setup Complete!",
+  "@onboardingCompleteTitle": {
+    "description": "onboardingCompleteTitle"
+  },
+  "onboardingEnableAthanAndSalah": "Enable Azan & Salah Notifications?",
+  "@onboardingEnableAthanAndSalah": {
+    "description": "onboardingEnableAthanAndSalah"
+  },
+  "onboardingFeatureAccuratePrayerTimes": "Accurate Prayer Times",
+  "@onboardingFeatureAccuratePrayerTimes": {
+    "description": "onboardingFeatureAccuratePrayerTimes"
+  },
+  "onboardingFeatureAzanNotifications": "Azan Notifications",
+  "@onboardingFeatureAzanNotifications": {
+    "description": "onboardingFeatureAzanNotifications"
+  },
+  "onboardingFeatureCompleteQuran": "Complete Quran Reading",
+  "@onboardingFeatureCompleteQuran": {
+    "description": "onboardingFeatureCompleteQuran"
+  },
+  "onboardingFeatureQibla": "Qibla Direction",
+  "@onboardingFeatureQibla": {
+    "description": "onboardingFeatureQibla"
+  },
+  "onboardingFeaturesTitle": "Features",
+  "@onboardingFeaturesTitle": {
+    "description": "onboardingFeaturesTitle"
+  },
+  "onboardingGetStarted": "Get Started",
+  "@onboardingGetStarted": {
+    "description": "onboardingGetStarted"
+  },
+  "onboardingLocationGpsSubtitle": "Automatically detect your current location",
+  "@onboardingLocationGpsSubtitle": {
+    "description": "onboardingLocationGpsSubtitle"
+  },
+  "onboardingLocationGpsTitle": "Use GPS Location",
+  "@onboardingLocationGpsTitle": {
+    "description": "onboardingLocationGpsTitle"
+  },
+  "onboardingLocationManualSubtitle": "Choose your city manually",
+  "@onboardingLocationManualSubtitle": {
+    "description": "onboardingLocationManualSubtitle"
+  },
+  "onboardingLocationManualTitle": "Manual Selection",
+  "@onboardingLocationManualTitle": {
+    "description": "onboardingLocationManualTitle"
+  },
+  "onboardingLocationPermissionBody": "To provide accurate prayer times, DeenMate needs access to your location. Please enable location permissions in your device settings.",
+  "@onboardingLocationPermissionBody": {
+    "description": "onboardingLocationPermissionBody"
+  },
+  "onboardingLocationPermissionTitle": "Allow Location Access",
+  "@onboardingLocationPermissionTitle": {
+    "description": "onboardingLocationPermissionTitle"
+  },
+  "onboardingLocationSubtitle": "This helps us provide accurate prayer times",
+  "@onboardingLocationSubtitle": {
+    "description": "onboardingLocationSubtitle"
+  },
+  "onboardingLocationTitle": "Location",
+  "@onboardingLocationTitle": {
+    "description": "onboardingLocationTitle"
+  },
+  "onboardingMadhhabMostWidelyFollowed": "Most widely followed mazhab",
+  "@onboardingMadhhabMostWidelyFollowed": {
+    "description": "onboardingMadhhabMostWidelyFollowed"
+  },
+  "onboardingMadhhabOtherSchools": "Other major schools of thought",
+  "@onboardingMadhhabOtherSchools": {
+    "description": "onboardingMadhhabOtherSchools"
+  },
+  "onboardingMadhhabSubtitle": "Choose your school of Islamic jurisprudence for prayer calculations",
+  "@onboardingMadhhabSubtitle": {
+    "description": "onboardingMadhhabSubtitle"
+  },
+  "onboardingMadhhabTitle": "Select Your Mazhab",
+  "@onboardingMadhhabTitle": {
+    "description": "onboardingMadhhabTitle"
+  },
+  "onboardingNameTooShort": "Name must be at least 2 characters long",
+  "@onboardingNameTooShort": {
+    "description": "onboardingNameTooShort"
+  },
+  "onboardingNotificationDescription1": "Stay connected with your daily prayers",
+  "@onboardingNotificationDescription1": {
+    "description": "onboardingNotificationDescription1"
+  },
+  "onboardingNotificationDescription2": "Receive timely reminders for Islamic practices",
+  "@onboardingNotificationDescription2": {
+    "description": "onboardingNotificationDescription2"
+  },
+  "onboardingNotificationDisable": "Disable",
+  "@onboardingNotificationDisable": {
+    "description": "onboardingNotificationDisable"
+  },
+  "onboardingNotificationDisableSubtitle": "Use silent mode only",
+  "@onboardingNotificationDisableSubtitle": {
+    "description": "onboardingNotificationDisableSubtitle"
+  },
+  "onboardingNotificationEnable": "Enable",
+  "@onboardingNotificationEnable": {
+    "description": "onboardingNotificationEnable"
+  },
+  "onboardingNotificationEnableSubtitle": "Receive prayer time notifications",
+  "@onboardingNotificationEnableSubtitle": {
+    "description": "onboardingNotificationEnableSubtitle"
+  },
+  "onboardingNotificationSelectPrayers": "Select which prayers you'd like to be reminded about",
+  "@onboardingNotificationSelectPrayers": {
+    "description": "onboardingNotificationSelectPrayers"
+  },
+  "onboardingNotificationsSavedWithDefaults": "Notification preferences saved with defaults. You can change them later in settings.",
+  "@onboardingNotificationsSavedWithDefaults": {
+    "description": "onboardingNotificationsSavedWithDefaults"
+  },
+  "onboardingNotificationsSetupLater": "Notifications setup will be completed later. You can enable them in settings.",
+  "@onboardingNotificationsSetupLater": {
+    "description": "onboardingNotificationsSetupLater"
+  },
+  "onboardingNotificationsSubtitle": "Stay connected with prayer reminders",
+  "@onboardingNotificationsSubtitle": {
+    "description": "onboardingNotificationsSubtitle"
+  },
+  "onboardingNotificationsTitle": "Notifications",
+  "@onboardingNotificationsTitle": {
+    "description": "onboardingNotificationsTitle"
+  },
+  "onboardingSelectLocation": "Select Your Location",
+  "@onboardingSelectLocation": {
+    "description": "onboardingSelectLocation"
+  },
+  "onboardingStepOfTotal": "Step {step} of {total}",
+  "@onboardingStepOfTotal": {
+    "description": "onboardingStepOfTotal"
+  },
+  "onboardingTapToContinue": "Tap to continue",
+  "@onboardingTapToContinue": {
+    "description": "onboardingTapToContinue"
+  },
+  "onboardingThemeSubtitle": "Select your preferred visual style",
+  "@onboardingThemeSubtitle": {
+    "description": "onboardingThemeSubtitle"
+  },
+  "onboardingThemeTitle": "Choose Your Theme",
+  "@onboardingThemeTitle": {
+    "description": "onboardingThemeTitle"
+  },
+  "onboardingUsernameHint": "Enter your name",
+  "@onboardingUsernameHint": {
+    "description": "onboardingUsernameHint"
+  },
+  "onboardingUsernameSubtitle": "Enter your name or preferred nickname",
+  "@onboardingUsernameSubtitle": {
+    "description": "onboardingUsernameSubtitle"
+  },
+  "onboardingUsernameTitle": "What should we call you?",
+  "@onboardingUsernameTitle": {
+    "description": "onboardingUsernameTitle"
+  },
+  "page": "Page",
+  "@page": {
+    "description": "page"
+  },
+  "permissionsGrant": "Grant",
+  "@permissionsGrant": {
+    "description": "permissionsGrant"
+  },
+  "playAudio": "Play Audio",
+  "@playAudio": {
+    "description": "playAudio"
+  },
+  "prayerAthanNotifications": "Athan & Notifications",
+  "@prayerAthanNotifications": {
+    "description": "prayerAthanNotifications"
+  },
+  "prayerAthanTestFailed": "Athan test failed: {error}",
+  "@prayerAthanTestFailed": {
+    "description": "prayerAthanTestFailed"
+  },
+  "prayerAthanTestStarted": "Athan audio test started",
+  "@prayerAthanTestStarted": {
+    "description": "prayerAthanTestStarted"
+  },
+  "prayerAutoComplete": "Auto-complete",
+  "@prayerAutoComplete": {
+    "description": "prayerAutoComplete"
+  },
+  "prayerAutoCompleteSubtitle": "Automatically mark prayer as completed",
+  "@prayerAutoCompleteSubtitle": {
+    "description": "prayerAutoCompleteSubtitle"
+  },
+  "prayerCalculationMethods": "Prayer Calculation Methods",
+  "@prayerCalculationMethods": {
+    "description": "prayerCalculationMethods"
+  },
+  "prayerCalculationMethodsApplyMethod": "Apply Method",
+  "@prayerCalculationMethodsApplyMethod": {
+    "description": "prayerCalculationMethodsApplyMethod"
+  },
+  "prayerCalculationMethodsCreateCustom": "Create Custom Method",
+  "@prayerCalculationMethodsCreateCustom": {
+    "description": "prayerCalculationMethodsCreateCustom"
+  },
+  "prayerCalculationMethodsTitle": "Prayer Calculation Methods",
+  "@prayerCalculationMethodsTitle": {
+    "description": "prayerCalculationMethodsTitle"
+  },
+  "prayerDebugFailed": "Debug failed: {error}",
+  "@prayerDebugFailed": {
+    "description": "prayerDebugFailed"
+  },
+  "prayerDebugInfo": "Debug Info",
+  "@prayerDebugInfo": {
+    "description": "prayerDebugInfo"
+  },
+  "prayerDemoNotification": "Demo Notification (2 min)",
+  "@prayerDemoNotification": {
+    "description": "prayerDemoNotification"
+  },
+  "prayerDemoNotificationFailed": "Demo notification failed: {error}",
+  "@prayerDemoNotificationFailed": {
+    "description": "prayerDemoNotificationFailed"
+  },
+  "prayerDemoNotificationSent": "Demo notification sent! Azan should play now.",
+  "@prayerDemoNotificationSent": {
+    "description": "prayerDemoNotificationSent"
+  },
+  "prayerFullScreenNotifications": "Full Screen Notifications",
+  "@prayerFullScreenNotifications": {
+    "description": "prayerFullScreenNotifications"
+  },
+  "prayerFullScreenNotificationsSubtitle": "Show prayer time as full screen alert",
+  "@prayerFullScreenNotificationsSubtitle": {
+    "description": "prayerFullScreenNotificationsSubtitle"
+  },
+  "prayerIftarReminder": "Iftar Reminder",
+  "@prayerIftarReminder": {
+    "description": "prayerIftarReminder"
+  },
+  "prayerIftarReminderText": "Remind me {minutes} minutes before Maghrib for Iftar",
+  "@prayerIftarReminderText": {
+    "description": "prayerIftarReminderText"
+  },
+  "prayerImmediateNotification": "Immediate Notification",
+  "@prayerImmediateNotification": {
+    "description": "prayerImmediateNotification"
+  },
+  "prayerImmediateNotificationFailed": "Immediate notification failed: {error}",
+  "@prayerImmediateNotificationFailed": {
+    "description": "prayerImmediateNotificationFailed"
+  },
+  "prayerImmediateNotificationSent": "Immediate notification sent!",
+  "@prayerImmediateNotificationSent": {
+    "description": "prayerImmediateNotificationSent"
+  },
+  "prayerIncludeDuas": "Include Duas",
+  "@prayerIncludeDuas": {
+    "description": "prayerIncludeDuas"
+  },
+  "prayerIncludeDuasSubtitle": "Show Ramadan-specific duas in notifications",
+  "@prayerIncludeDuasSubtitle": {
+    "description": "prayerIncludeDuasSubtitle"
+  },
+  "prayerNotificationsScheduled": "Notifications scheduled for today",
+  "@prayerNotificationsScheduled": {
+    "description": "prayerNotificationsScheduled"
+  },
+  "prayerNotificationsSubtitle": "Customize notifications for each prayer",
+  "@prayerNotificationsSubtitle": {
+    "description": "prayerNotificationsSubtitle"
+  },
+  "prayerNotificationsTitle": "Prayer Notifications",
+  "@prayerNotificationsTitle": {
+    "description": "prayerNotificationsTitle"
+  },
+  "prayerOverrideDND": "Override Do Not Disturb",
+  "@prayerOverrideDND": {
+    "description": "prayerOverrideDND"
+  },
+  "prayerOverrideDNDSubtitle": "Show prayer notifications even in DND mode",
+  "@prayerOverrideDNDSubtitle": {
+    "description": "prayerOverrideDNDSubtitle"
+  },
+  "prayerQuickActions": "Quick Actions",
+  "@prayerQuickActions": {
+    "description": "prayerQuickActions"
+  },
+  "prayerQuickActionsSubtitle": "Show \"Mark as Prayed\" and \"Snooze\" buttons",
+  "@prayerQuickActionsSubtitle": {
+    "description": "prayerQuickActionsSubtitle"
+  },
+  "prayerRamadanNotifications": "Ramadan Notifications",
+  "@prayerRamadanNotifications": {
+    "description": "prayerRamadanNotifications"
+  },
+  "prayerRamadanNotificationsSubtitle": "Enable special notifications for Suhur and Iftar",
+  "@prayerRamadanNotificationsSubtitle": {
+    "description": "prayerRamadanNotificationsSubtitle"
+  },
+  "prayerScheduleNotifications": "Schedule Prayer Notifications",
+  "@prayerScheduleNotifications": {
+    "description": "prayerScheduleNotifications"
+  },
+  "prayerScheduleNow": "Schedule Now",
+  "@prayerScheduleNow": {
+    "description": "prayerScheduleNow"
+  },
+  "prayerSchedulingFailed": "Scheduling failed: {error}",
+  "@prayerSchedulingFailed": {
+    "description": "prayerSchedulingFailed"
+  },
+  "prayerSmartNotifications": "Smart Notifications",
+  "@prayerSmartNotifications": {
+    "description": "prayerSmartNotifications"
+  },
+  "prayerSmartNotificationsSubtitle": "Adjust notifications based on your activity",
+  "@prayerSmartNotificationsSubtitle": {
+    "description": "prayerSmartNotificationsSubtitle"
+  },
+  "prayerSpecialRamadanAthan": "Special Ramadan Athan",
+  "@prayerSpecialRamadanAthan": {
+    "description": "prayerSpecialRamadanAthan"
+  },
+  "prayerSpecialRamadanAthanSubtitle": "Use special Athan recitations during Ramadan",
+  "@prayerSpecialRamadanAthanSubtitle": {
+    "description": "prayerSpecialRamadanAthanSubtitle"
+  },
+  "prayerSuhurReminder": "Suhur Reminder",
+  "@prayerSuhurReminder": {
+    "description": "prayerSuhurReminder"
+  },
+  "prayerSuhurReminderText": "Remind me {minutes} minutes before Fajr for Suhur",
+  "@prayerSuhurReminderText": {
+    "description": "prayerSuhurReminderText"
+  },
+  "prayerSunrise": "Sunrise",
+  "@prayerSunrise": {
+    "description": "prayerSunrise"
+  },
+  "prayerTestAthanAudio": "Test Athan Audio",
+  "@prayerTestAthanAudio": {
+    "description": "prayerTestAthanAudio"
+  },
+  "prayerTestNotification": "Test Notification (1 sec)",
+  "@prayerTestNotification": {
+    "description": "prayerTestNotification"
+  },
+  "prayerTestNotificationFailed": "Test notification failed: {error}",
+  "@prayerTestNotificationFailed": {
+    "description": "prayerTestNotificationFailed"
+  },
+  "prayerTestNotificationSent": "Test notification sent immediately!",
+  "@prayerTestNotificationSent": {
+    "description": "prayerTestNotificationSent"
+  },
+  "prayerTimesAzan": "Azan",
+  "@prayerTimesAzan": {
+    "description": "prayerTimesAzan"
+  },
+  "prayerTimesCheckConnection": "Check internet connection and try again",
+  "@prayerTimesCheckConnection": {
+    "description": "prayerTimesCheckConnection"
+  },
+  "prayerTimesCurrentPrayer": "Current Prayer",
+  "@prayerTimesCurrentPrayer": {
+    "description": "prayerTimesCurrentPrayer"
+  },
+  "prayerTimesDataUnavailable": "Prayer times data is unavailable",
+  "@prayerTimesDataUnavailable": {
+    "description": "prayerTimesDataUnavailable"
+  },
+  "prayerTimesEnableLocation": "Enable location services for accurate prayer times",
+  "@prayerTimesEnableLocation": {
+    "description": "prayerTimesEnableLocation"
+  },
+  "prayerTimesEnableLocationAction": "Enable Location",
+  "@prayerTimesEnableLocationAction": {
+    "description": "prayerTimesEnableLocationAction"
+  },
+  "prayerTimesEndTime": "End time - {time}",
+  "@prayerTimesEndTime": {
+    "description": "prayerTimesEndTime"
+  },
+  "prayerTimesJamaat": "Jama'at",
+  "@prayerTimesJamaat": {
+    "description": "prayerTimesJamaat"
+  },
+  "prayerTimesLater": "Later",
+  "@prayerTimesLater": {
+    "description": "prayerTimesLater"
+  },
+  "prayerTimesLoading": "Loading Prayer Times",
+  "@prayerTimesLoading": {
+    "description": "prayerTimesLoading"
+  },
+  "prayerTimesLocationAccess": "Location Access",
+  "@prayerTimesLocationAccess": {
+    "description": "prayerTimesLocationAccess"
+  },
+  "prayerTimesLocationAccessMessage": "DeenMate needs location access to provide accurate prayer times for your area.\n\nYou can:\n• Enable location services in device settings\n• Manually select your city in app settings\n• Use approximate times based on your region",
+  "@prayerTimesLocationAccessMessage": {
+    "description": "prayerTimesLocationAccessMessage"
+  },
+  "prayerTimesLocationRequired": "Location Required",
+  "@prayerTimesLocationRequired": {
+    "description": "prayerTimesLocationRequired"
+  },
+  "prayerTimesNetworkIssue": "Network Issue",
+  "@prayerTimesNetworkIssue": {
+    "description": "prayerTimesNetworkIssue"
+  },
+  "prayerTimesNextIn": "Next in",
+  "@prayerTimesNextIn": {
+    "description": "prayerTimesNextIn"
+  },
+  "prayerTimesNextPrayer": "Next Prayer",
+  "@prayerTimesNextPrayer": {
+    "description": "prayerTimesNextPrayer"
+  },
+  "prayerTimesNoActivePrayer": "No Active Prayer",
+  "@prayerTimesNoActivePrayer": {
+    "description": "prayerTimesNoActivePrayer"
+  },
+  "prayerTimesPleaseWait": "Please wait",
+  "@prayerTimesPleaseWait": {
+    "description": "prayerTimesPleaseWait"
+  },
+  "prayerTimesRetry": "Retry",
+  "@prayerTimesRetry": {
+    "description": "prayerTimesRetry"
+  },
+  "prayerTimesServiceTemporarilyUnavailable": "Prayer time service is temporarily unavailable",
+  "@prayerTimesServiceTemporarilyUnavailable": {
+    "description": "prayerTimesServiceTemporarilyUnavailable"
+  },
+  "prayerTimesServiceUnavailable": "Service Unavailable",
+  "@prayerTimesServiceUnavailable": {
+    "description": "prayerTimesServiceUnavailable"
+  },
+  "prayerTimesSettings": "Settings",
+  "@prayerTimesSettings": {
+    "description": "prayerTimesSettings"
+  },
+  "prayerTimesSource": "timings from AlAdhan",
+  "@prayerTimesSource": {
+    "description": "prayerTimesSource"
+  },
+  "prayerTimesTryAgain": "Try Again",
+  "@prayerTimesTryAgain": {
+    "description": "prayerTimesTryAgain"
+  },
+  "prayerTimesUnableToLoad": "Unable to load prayer times",
+  "@prayerTimesUnableToLoad": {
+    "description": "prayerTimesUnableToLoad"
+  },
+  "prayerTimesUnavailable": "Prayer Times Unavailable",
+  "@prayerTimesUnavailable": {
+    "description": "prayerTimesUnavailable"
+  },
+  "prayerTimesUpdated": "Updated: {time}",
+  "@prayerTimesUpdated": {
+    "description": "prayerTimesUpdated"
+  },
+  "prayerTrackFasting": "Track Fasting",
+  "@prayerTrackFasting": {
+    "description": "prayerTrackFasting"
+  },
+  "prayerTrackFastingSubtitle": "Keep track of your fasting status",
+  "@prayerTrackFastingSubtitle": {
+    "description": "prayerTrackFastingSubtitle"
+  },
+  "prayerVibration": "Vibration",
+  "@prayerVibration": {
+    "description": "prayerVibration"
+  },
+  "prayerVibrationSubtitle": "Vibrate device during Athan",
+  "@prayerVibrationSubtitle": {
+    "description": "prayerVibrationSubtitle"
+  },
+  "prayersTabTitle": "Prayers",
+  "@prayersTabTitle": {
+    "description": "prayersTabTitle"
+  },
+  "preciseTimingRecommended": "Precise timing recommended for Athan",
+  "@preciseTimingRecommended": {
+    "description": "preciseTimingRecommended"
+  },
+  "preview": "Preview",
+  "@preview": {
+    "description": "preview"
+  },
+  "qiblaAccuracyExcellent": "Excellent",
+  "@qiblaAccuracyExcellent": {
+    "description": "qiblaAccuracyExcellent"
+  },
+  "qiblaAccuracyFair": "Fair",
+  "@qiblaAccuracyFair": {
+    "description": "qiblaAccuracyFair"
+  },
+  "qiblaAccuracyGood": "Good",
+  "@qiblaAccuracyGood": {
+    "description": "qiblaAccuracyGood"
+  },
+  "qiblaAccuracyPoor": "Poor",
+  "@qiblaAccuracyPoor": {
+    "description": "qiblaAccuracyPoor"
+  },
+  "qiblaCalibrateCompass": "Calibrate Compass",
+  "@qiblaCalibrateCompass": {
+    "description": "qiblaCalibrateCompass"
+  },
+  "qiblaCalibrateFigure8": "Please calibrate your compass by moving your device in a figure-8 pattern",
+  "@qiblaCalibrateFigure8": {
+    "description": "qiblaCalibrateFigure8"
+  },
+  "qiblaCalibratingCompass": "Calibrating Compass...",
+  "@qiblaCalibratingCompass": {
+    "description": "qiblaCalibratingCompass"
+  },
+  "qiblaCompassActive": "Compass Active",
+  "@qiblaCompassActive": {
+    "description": "qiblaCompassActive"
+  },
+  "qiblaCompassCalibrating": "Calibrating Compass...",
+  "@qiblaCompassCalibrating": {
+    "description": "qiblaCompassCalibrating"
+  },
+  "qiblaCompassNotAvailable": "Compass not available",
+  "@qiblaCompassNotAvailable": {
+    "description": "qiblaCompassNotAvailable"
+  },
+  "qiblaCompassTitle": "Qibla Compass",
+  "@qiblaCompassTitle": {
+    "description": "qiblaCompassTitle"
+  },
+  "qiblaCompassUnavailable": "Compass Unavailable",
+  "@qiblaCompassUnavailable": {
+    "description": "qiblaCompassUnavailable"
+  },
+  "qiblaCurrentLocation": "Current Location",
+  "@qiblaCurrentLocation": {
+    "description": "qiblaCurrentLocation"
+  },
+  "qiblaDirection": "Qibla Direction",
+  "@qiblaDirection": {
+    "description": "qiblaDirection"
+  },
+  "qiblaDirectionEast": "E",
+  "@qiblaDirectionEast": {
+    "description": "qiblaDirectionEast"
+  },
+  "qiblaDirectionNorth": "N",
+  "@qiblaDirectionNorth": {
+    "description": "qiblaDirectionNorth"
+  },
+  "qiblaDirectionPerfect": "Perfect Direction",
+  "@qiblaDirectionPerfect": {
+    "description": "qiblaDirectionPerfect"
+  },
+  "qiblaDirectionSouth": "S",
+  "@qiblaDirectionSouth": {
+    "description": "qiblaDirectionSouth"
+  },
+  "qiblaDirectionWest": "W",
+  "@qiblaDirectionWest": {
+    "description": "qiblaDirectionWest"
+  },
+  "qiblaError": "Qibla Error",
+  "@qiblaError": {
+    "description": "qiblaError"
+  },
+  "qiblaErrorGettingLocation": "Error getting location",
+  "@qiblaErrorGettingLocation": {
+    "description": "qiblaErrorGettingLocation"
+  },
+  "qiblaErrorHelp": "Please check your device settings and try again.",
+  "@qiblaErrorHelp": {
+    "description": "qiblaErrorHelp"
+  },
+  "qiblaErrorInitializingCompass": "Error initializing compass",
+  "@qiblaErrorInitializingCompass": {
+    "description": "qiblaErrorInitializingCompass"
+  },
+  "qiblaHelpCalibration": "Calibration",
+  "@qiblaHelpCalibration": {
+    "description": "qiblaHelpCalibration"
+  },
+  "qiblaHelpCalibrationText": "Move your device in a figure-8 pattern to calibrate the compass.",
+  "@qiblaHelpCalibrationText": {
+    "description": "qiblaHelpCalibrationText"
+  },
+  "qiblaHelpCommonIssues": "Common Issues:",
+  "@qiblaHelpCommonIssues": {
+    "description": "qiblaHelpCommonIssues"
+  },
+  "qiblaHelpCompassSensor": "Compass Sensor",
+  "@qiblaHelpCompassSensor": {
+    "description": "qiblaHelpCompassSensor"
+  },
+  "qiblaHelpCompassSensorText": "Ensure your device has a compass sensor and it's working properly.",
+  "@qiblaHelpCompassSensorText": {
+    "description": "qiblaHelpCompassSensorText"
+  },
+  "qiblaHelpLocationPermission": "Location Permission",
+  "@qiblaHelpLocationPermission": {
+    "description": "qiblaHelpLocationPermission"
+  },
+  "qiblaHelpLocationPermissionText": "Make sure location services are enabled and permission is granted.",
+  "@qiblaHelpLocationPermissionText": {
+    "description": "qiblaHelpLocationPermissionText"
+  },
+  "qiblaHelpTitle": "Qibla Help",
+  "@qiblaHelpTitle": {
+    "description": "qiblaHelpTitle"
+  },
+  "qiblaRecalibrate": "Recalibrate",
+  "@qiblaRecalibrate": {
+    "description": "qiblaRecalibrate"
+  },
+  "qiblaTurnAround": "Turn Around",
+  "@qiblaTurnAround": {
+    "description": "qiblaTurnAround"
+  },
+  "qiblaTurnLeft": "Turn Left",
+  "@qiblaTurnLeft": {
+    "description": "qiblaTurnLeft"
+  },
+  "qiblaTurnRight": "Turn Right",
+  "@qiblaTurnRight": {
+    "description": "qiblaTurnRight"
+  },
+  "qiblaUpdateLocation": "Update Location",
+  "@qiblaUpdateLocation": {
+    "description": "qiblaUpdateLocation"
+  },
+  "quarterSection": "Quarter section",
+  "@quarterSection": {
+    "description": "quarterSection"
+  },
+  "quickActions": "Quick Actions",
+  "@quickActions": {
+    "description": "quickActions"
+  },
+  "quickSettings": "Quick settings",
+  "@quickSettings": {
+    "description": "quickSettings"
+  },
+  "quickTools": "Quick Tools",
+  "@quickTools": {
+    "description": "quickTools"
+  },
+  "quranAll": "All",
+  "@quranAll": {
+    "description": "quranAll"
+  },
+  "quranArabic": "Arabic",
+  "@quranArabic": {
+    "description": "quranArabic"
+  },
+  "quranArabicFontSize": "Arabic Font Size",
+  "@quranArabicFontSize": {
+    "description": "quranArabicFontSize"
+  },
+  "quranArabicTextCopied": "Arabic text copied to clipboard",
+  "@quranArabicTextCopied": {
+    "description": "quranArabicTextCopied"
+  },
+  "quranAudioManager": "Audio Manager",
+  "@quranAudioManager": {
+    "description": "quranAudioManager"
+  },
+  "quranAudioNotAvailableOffline": "The audio for {chapterName} is not available offline.",
+  "@quranAudioNotAvailableOffline": {
+    "description": "quranAudioNotAvailableOffline"
+  },
+  "quranAudioNotAvailableOfflineSimple": "Audio not available offline",
+  "@quranAudioNotAvailableOfflineSimple": {
+    "description": "quranAudioNotAvailableOfflineSimple"
+  },
+  "quranAudioNotDownloaded": "Audio Not Downloaded",
+  "@quranAudioNotDownloaded": {
+    "description": "quranAudioNotDownloaded"
+  },
+  "quranAutoScroll": "Auto Scroll",
+  "@quranAutoScroll": {
+    "description": "quranAutoScroll"
+  },
+  "quranAvailableTranslations": "Available Translations",
+  "@quranAvailableTranslations": {
+    "description": "quranAvailableTranslations"
+  },
+  "quranBengali": "Bengali",
+  "@quranBengali": {
+    "description": "quranBengali"
+  },
+  "quranClose": "Close",
+  "@quranClose": {
+    "description": "quranClose"
+  },
+  "quranConnected": "Connected",
+  "@quranConnected": {
+    "description": "quranConnected"
+  },
+  "quranContent": "Content",
+  "@quranContent": {
+    "description": "quranContent"
+  },
+  "quranCopyArabicText": "Copy Arabic Text",
+  "@quranCopyArabicText": {
+    "description": "quranCopyArabicText"
+  },
+  "quranCopyArabicWithTranslation": "Copy Arabic with Translation",
+  "@quranCopyArabicWithTranslation": {
+    "description": "quranCopyArabicWithTranslation"
+  },
+  "quranCopyFullVerse": "Copy Full Verse",
+  "@quranCopyFullVerse": {
+    "description": "quranCopyFullVerse"
+  },
+  "quranCopyOnlyArabicVerse": "Copy Arabic Verse Only",
+  "@quranCopyOnlyArabicVerse": {
+    "description": "quranCopyOnlyArabicVerse"
+  },
+  "quranCopyOnlyTranslation": "Copy Translation Only",
+  "@quranCopyOnlyTranslation": {
+    "description": "quranCopyOnlyTranslation"
+  },
+  "quranCopyTranslation": "Copy Translation",
+  "@quranCopyTranslation": {
+    "description": "quranCopyTranslation"
+  },
+  "quranCurrentlyOffline": "Currently offline",
+  "@quranCurrentlyOffline": {
+    "description": "quranCurrentlyOffline"
+  },
+  "quranDays": "days",
+  "@quranDays": {
+    "description": "quranDays"
+  },
+  "quranDownload": "Download",
+  "@quranDownload": {
+    "description": "quranDownload"
+  },
+  "quranDownloadSurah": "Download Surah",
+  "@quranDownloadSurah": {
+    "description": "quranDownloadSurah"
+  },
+  "quranDownloadingText": "Downloading Quran text...",
+  "@quranDownloadingText": {
+    "description": "quranDownloadingText"
+  },
+  "quranEnableAutoScroll": "Enable Auto Scroll",
+  "@quranEnableAutoScroll": {
+    "description": "quranEnableAutoScroll"
+  },
+  "quranEnableBengaliSearch": "Enable Bengali search",
+  "@quranEnableBengaliSearch": {
+    "description": "quranEnableBengaliSearch"
+  },
+  "quranEnableFuzzyMatch": "Enable fuzzy matching",
+  "@quranEnableFuzzyMatch": {
+    "description": "quranEnableFuzzyMatch"
+  },
+  "quranEnableTransliteration": "Enable transliteration search",
+  "@quranEnableTransliteration": {
+    "description": "quranEnableTransliteration"
+  },
+  "quranErrorLoadingChapters": "Error loading chapters",
+  "@quranErrorLoadingChapters": {
+    "description": "quranErrorLoadingChapters"
+  },
+  "quranErrorLoadingContent": "Error loading content: {error}",
+  "@quranErrorLoadingContent": {
+    "description": "quranErrorLoadingContent"
+  },
+  "quranErrorLoadingJuz": "Error loading Juz {juzNumber}: {error}",
+  "@quranErrorLoadingJuz": {
+    "description": "quranErrorLoadingJuz"
+  },
+  "quranErrorLoadingRuku": "Error loading Ruku {rukuNumber}: {error}",
+  "@quranErrorLoadingRuku": {
+    "description": "quranErrorLoadingRuku"
+  },
+  "quranErrorLoadingTranslations": "Error loading translations: {error}",
+  "@quranErrorLoadingTranslations": {
+    "description": "quranErrorLoadingTranslations"
+  },
+  "quranEssentialContentDownloaded": "Essential content downloaded successfully!",
+  "@quranEssentialContentDownloaded": {
+    "description": "quranEssentialContentDownloaded"
+  },
+  "quranExampleAyahHint": "e.g., 2:255",
+  "@quranExampleAyahHint": {
+    "description": "quranExampleAyahHint"
+  },
+  "quranFailedToLoadReciters": "Failed to load reciters: {error}",
+  "@quranFailedToLoadReciters": {
+    "description": "quranFailedToLoadReciters"
+  },
+  "quranFailedToLoadTranslations": "Failed to load translations",
+  "@quranFailedToLoadTranslations": {
+    "description": "quranFailedToLoadTranslations"
+  },
+  "quranFeatureUnderDevelopment": "This feature is under development",
+  "@quranFeatureUnderDevelopment": {
+    "description": "quranFeatureUnderDevelopment"
+  },
+  "quranFontSettings": "Font Settings",
+  "@quranFontSettings": {
+    "description": "quranFontSettings"
+  },
+  "quranFullVerseCopied": "Full verse copied to clipboard",
+  "@quranFullVerseCopied": {
+    "description": "quranFullVerseCopied"
+  },
+  "quranGoButton": "Go",
+  "@quranGoButton": {
+    "description": "quranGoButton"
+  },
+  "quranGoToAyahHint": "Go to Ayah (chapter:verse)",
+  "@quranGoToAyahHint": {
+    "description": "quranGoToAyahHint"
+  },
+  "quranHelpImproveTranslationAccuracy": "Help improve translation accuracy",
+  "@quranHelpImproveTranslationAccuracy": {
+    "description": "quranHelpImproveTranslationAccuracy"
+  },
+  "quranHizb": "Hizb",
+  "@quranHizb": {
+    "description": "quranHizb"
+  },
+  "quranHizbTitle": "Hizb {number}",
+  "@quranHizbTitle": {
+    "description": "quranHizbTitle"
+  },
+  "quranIndoPak": "Indo-Pak",
+  "@quranIndoPak": {
+    "description": "quranIndoPak"
+  },
+  "quranIndoPakDescription": "IndoPak script style popular in South Asia. Features distinct letter forms and spacing.",
+  "@quranIndoPakDescription": {
+    "description": "quranIndoPakDescription"
+  },
+  "quranJumpToVerse": "Jump to Verse",
+  "@quranJumpToVerse": {
+    "description": "quranJumpToVerse"
+  },
+  "quranJuz": "Juz",
+  "@quranJuz": {
+    "description": "quranJuz"
+  },
+  "quranJuzItem": "Juz {number}",
+  "@quranJuzItem": {
+    "description": "quranJuzItem"
+  },
+  "quranJuzTitle": "Juz {number}",
+  "@quranJuzTitle": {
+    "description": "quranJuzTitle"
+  },
+  "quranNavigation": "Navigation",
+  "@quranNavigation": {
+    "description": "quranNavigation"
+  },
+  "quranNoVersesFound": "No verses found",
+  "@quranNoVersesFound": {
+    "description": "quranNoVersesFound"
+  },
+  "quranNoVersesFoundForJuz": "No verses found for Juz {juzNumber}",
+  "@quranNoVersesFoundForJuz": {
+    "description": "quranNoVersesFoundForJuz"
+  },
+  "quranNoVersesFoundForRuku": "No verses found for Ruku {rukuNumber}",
+  "@quranNoVersesFoundForRuku": {
+    "description": "quranNoVersesFoundForRuku"
+  },
+  "quranPage": "Page",
+  "@quranPage": {
+    "description": "quranPage"
+  },
+  "quranPageTitle": "Page {number}",
+  "@quranPageTitle": {
+    "description": "quranPageTitle"
+  },
+  "quranPlayOnline": "Play Online",
+  "@quranPlayOnline": {
+    "description": "quranPlayOnline"
+  },
+  "quranPlayVerseOnlineOrDownload": "Play {verseKey} online or download for offline use?",
+  "@quranPlayVerseOnlineOrDownload": {
+    "description": "quranPlayVerseOnlineOrDownload"
+  },
+  "quranPlaybackSpeed": "Playback Speed",
+  "@quranPlaybackSpeed": {
+    "description": "quranPlaybackSpeed"
+  },
+  "quranPlaybackSpeedLabel": "Playback Speed",
+  "@quranPlaybackSpeedLabel": {
+    "description": "quranPlaybackSpeedLabel"
+  },
+  "quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": "Please email us at support@deenmate.app with details about the error in verse {verseKey}",
+  "@quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse": {
+    "description": "quranPleaseEmailUsAtSupportDeenmateAppWithDetailsAboutErrorInVerse"
+  },
+  "quranPleaseWaitWhileTranslationsAreBeingLoaded": "Please wait while translations are being loaded...",
+  "@quranPleaseWaitWhileTranslationsAreBeingLoaded": {
+    "description": "quranPleaseWaitWhileTranslationsAreBeingLoaded"
+  },
+  "quranQuickJump": "Quick Jump",
+  "@quranQuickJump": {
+    "description": "quranQuickJump"
+  },
+  "quranQuickTools": "Quick Tools",
+  "@quranQuickTools": {
+    "description": "quranQuickTools"
+  },
+  "quranReaderAudioManager": "Audio Manager",
+  "@quranReaderAudioManager": {
+    "description": "quranReaderAudioManager"
+  },
+  "quranReaderAutoScroll": "Auto Scroll",
+  "@quranReaderAutoScroll": {
+    "description": "quranReaderAutoScroll"
+  },
+  "quranReaderCopyArabicSubtitle": "Copy only the Arabic verse",
+  "@quranReaderCopyArabicSubtitle": {
+    "description": "quranReaderCopyArabicSubtitle"
+  },
+  "quranReaderCopyArabicText": "Copy Arabic Text",
+  "@quranReaderCopyArabicText": {
+    "description": "quranReaderCopyArabicText"
+  },
+  "quranReaderCopyFullVerse": "Copy Full Verse",
+  "@quranReaderCopyFullVerse": {
+    "description": "quranReaderCopyFullVerse"
+  },
+  "quranReaderCopyFullVerseSubtitle": "Copy Arabic text with translation",
+  "@quranReaderCopyFullVerseSubtitle": {
+    "description": "quranReaderCopyFullVerseSubtitle"
+  },
+  "quranReaderCopyTranslation": "Copy Translation",
+  "@quranReaderCopyTranslation": {
+    "description": "quranReaderCopyTranslation"
+  },
+  "quranReaderCopyTranslationSubtitle": "Copy only the translation",
+  "@quranReaderCopyTranslationSubtitle": {
+    "description": "quranReaderCopyTranslationSubtitle"
+  },
+  "quranReaderEnableAutoScroll": "Enable Auto Scroll",
+  "@quranReaderEnableAutoScroll": {
+    "description": "quranReaderEnableAutoScroll"
+  },
+  "quranReaderLoadError": "Failed to load: {errorMessage}",
+  "@quranReaderLoadError": {
+    "description": "quranReaderLoadError"
+  },
+  "quranReaderQuickJump": "Quick Jump",
+  "@quranReaderQuickJump": {
+    "description": "quranReaderQuickJump"
+  },
+  "quranReaderReportError": "Report Translation Error",
+  "@quranReaderReportError": {
+    "description": "quranReaderReportError"
+  },
+  "quranReaderReportErrorDialogTitle": "Report Translation Error",
+  "@quranReaderReportErrorDialogTitle": {
+    "description": "quranReaderReportErrorDialogTitle"
+  },
+  "quranReaderReportErrorSubtitle": "Help improve translation accuracy",
+  "@quranReaderReportErrorSubtitle": {
+    "description": "quranReaderReportErrorSubtitle"
+  },
+  "quranReadingProgress": "Reading Progress",
+  "@quranReadingProgress": {
+    "description": "quranReadingProgress"
+  },
+  "quranReadingStreak": "Reading Streak",
+  "@quranReadingStreak": {
+    "description": "quranReadingStreak"
+  },
+  "quranReciterLabel": "Reciter:",
+  "@quranReciterLabel": {
+    "description": "quranReciterLabel"
+  },
+  "quranRepeatAll": "Repeat All",
+  "@quranRepeatAll": {
+    "description": "quranRepeatAll"
+  },
+  "quranRepeatMode": "Repeat Mode",
+  "@quranRepeatMode": {
+    "description": "quranRepeatMode"
+  },
+  "quranRepeatOff": "Off",
+  "@quranRepeatOff": {
+    "description": "quranRepeatOff"
+  },
+  "quranRepeatOne": "Repeat One",
+  "@quranRepeatOne": {
+    "description": "quranRepeatOne"
+  },
+  "quranReportTranslationError": "Report Translation Error",
+  "@quranReportTranslationError": {
+    "description": "quranReportTranslationError"
+  },
+  "quranReportTranslationErrorTitle": "Report Translation Error",
+  "@quranReportTranslationErrorTitle": {
+    "description": "quranReportTranslationErrorTitle"
+  },
+  "quranRequiresInternet": "Requires internet connection",
+  "@quranRequiresInternet": {
+    "description": "quranRequiresInternet"
+  },
+  "quranResetFilters": "Reset Filters",
+  "@quranResetFilters": {
+    "description": "quranResetFilters"
+  },
+  "quranRetry": "Retry",
+  "@quranRetry": {
+    "description": "quranRetry"
+  },
+  "quranRetryButton": "Retry",
+  "@quranRetryButton": {
+    "description": "quranRetryButton"
+  },
+  "quranRuku": "Ruku",
+  "@quranRuku": {
+    "description": "quranRuku"
+  },
+  "quranRukuTitle": "Ruku {number}",
+  "@quranRukuTitle": {
+    "description": "quranRukuTitle"
+  },
+  "quranSajdah": "Sajdah",
+  "@quranSajdah": {
+    "description": "quranSajdah"
+  },
+  "quranSajdahGeneralDescription": "This verse contains a sajdah (prostration) marker. Consider performing prostration when reciting or listening to this verse.",
+  "@quranSajdahGeneralDescription": {
+    "description": "quranSajdahGeneralDescription"
+  },
+  "quranSajdahInfo": "Sajdah Information",
+  "@quranSajdahInfo": {
+    "description": "quranSajdahInfo"
+  },
+  "quranSajdahMarker": "Sajdah",
+  "@quranSajdahMarker": {
+    "description": "quranSajdahMarker"
+  },
+  "quranSajdahNumber": "Sajdah Number",
+  "@quranSajdahNumber": {
+    "description": "quranSajdahNumber"
+  },
+  "quranSajdahObligatory": "Obligatory",
+  "@quranSajdahObligatory": {
+    "description": "quranSajdahObligatory"
+  },
+  "quranSajdahObligatoryDescription": "This is an obligatory sajdah verse. When reciting or listening to this verse, it is mandatory to perform prostration.",
+  "@quranSajdahObligatoryDescription": {
+    "description": "quranSajdahObligatoryDescription"
+  },
+  "quranSajdahRecommended": "Sajdah recommended",
+  "@quranSajdahRecommended": {
+    "description": "quranSajdahRecommended"
+  },
+  "quranSajdahRecommendedDescription": "This is a recommended sajdah verse. It is recommended to perform prostration when reciting or listening to this verse.",
+  "@quranSajdahRecommendedDescription": {
+    "description": "quranSajdahRecommendedDescription"
+  },
+  "quranSajdahType": "Type",
+  "@quranSajdahType": {
+    "description": "quranSajdahType"
+  },
+  "quranSajdahVerse": "Verse",
+  "@quranSajdahVerse": {
+    "description": "quranSajdahVerse"
+  },
+  "quranSaveForOffline": "Save for offline listening",
+  "@quranSaveForOffline": {
+    "description": "quranSaveForOffline"
+  },
+  "quranScript": "Script",
+  "@quranScript": {
+    "description": "quranScript"
+  },
+  "quranScriptVariants": "Script Variants",
+  "@quranScriptVariants": {
+    "description": "quranScriptVariants"
+  },
+  "quranScriptVariantsDescription": "Choose between different Quran script styles. Uthmanic is the traditional script, while IndoPak is popular in South Asia.",
+  "@quranScriptVariantsDescription": {
+    "description": "quranScriptVariantsDescription"
+  },
+  "quranScrollSpeed": "Scroll Speed",
+  "@quranScrollSpeed": {
+    "description": "quranScrollSpeed"
+  },
+  "quranSearchError": "Search error: {error}",
+  "@quranSearchError": {
+    "description": "quranSearchError"
+  },
+  "quranSelectTafsir": "Select Tafsir",
+  "@quranSelectTafsir": {
+    "description": "quranSelectTafsir"
+  },
+  "quranSelectedTranslationIds": "Selected Translation IDs",
+  "@quranSelectedTranslationIds": {
+    "description": "quranSelectedTranslationIds"
+  },
+  "quranSelectedTranslations": "Selected Translations",
+  "@quranSelectedTranslations": {
+    "description": "quranSelectedTranslations"
+  },
+  "quranSendEmail": "Send Email",
+  "@quranSendEmail": {
+    "description": "quranSendEmail"
+  },
+  "quranShowTafsir": "Show tafsir",
+  "@quranShowTafsir": {
+    "description": "quranShowTafsir"
+  },
+  "quranShowWordByWord": "Show word by word",
+  "@quranShowWordByWord": {
+    "description": "quranShowWordByWord"
+  },
+  "quranSpeed050": "0.50x",
+  "@quranSpeed050": {
+    "description": "quranSpeed050"
+  },
+  "quranSpeed075": "0.75x",
+  "@quranSpeed075": {
+    "description": "quranSpeed075"
+  },
+  "quranSpeed100": "1.00x",
+  "@quranSpeed100": {
+    "description": "quranSpeed100"
+  },
+  "quranSpeed125": "1.25x",
+  "@quranSpeed125": {
+    "description": "quranSpeed125"
+  },
+  "quranSpeed150": "1.50x",
+  "@quranSpeed150": {
+    "description": "quranSpeed150"
+  },
+  "quranSpeed200": "2.00x",
+  "@quranSpeed200": {
+    "description": "quranSpeed200"
+  },
+  "quranSpeedPxSec": "Speed (px/sec)",
+  "@quranSpeedPxSec": {
+    "description": "quranSpeedPxSec"
+  },
+  "quranSura": "Sura",
+  "@quranSura": {
+    "description": "quranSura"
+  },
+  "quranSurah": "Surah",
+  "@quranSurah": {
+    "description": "quranSurah"
+  },
+  "quranSurahScript": "Surah Script",
+  "@quranSurahScript": {
+    "description": "quranSurahScript"
+  },
+  "quranTafsir": "Tafsir",
+  "@quranTafsir": {
+    "description": "quranTafsir"
+  },
+  "quranTextDownloadComplete": "Quran text download complete",
+  "@quranTextDownloadComplete": {
+    "description": "quranTextDownloadComplete"
+  },
+  "quranThankYouForHelpingImproveQuranTranslation": "Thank you for helping improve Quran translation accuracy!",
+  "@quranThankYouForHelpingImproveQuranTranslation": {
+    "description": "quranThankYouForHelpingImproveQuranTranslation"
+  },
+  "quranTranslation": "Translation",
+  "@quranTranslation": {
+    "description": "quranTranslation"
+  },
+  "quranTranslationCopied": "Translation copied to clipboard",
+  "@quranTranslationCopied": {
+    "description": "quranTranslationCopied"
+  },
+  "quranTranslationFontSize": "Translation Font Size",
+  "@quranTranslationFontSize": {
+    "description": "quranTranslationFontSize"
+  },
+  "quranTranslationLoading": "Loading translations...",
+  "@quranTranslationLoading": {
+    "description": "quranTranslationLoading"
+  },
+  "quranTranslationSettings": "Translation Settings",
+  "@quranTranslationSettings": {
+    "description": "quranTranslationSettings"
+  },
+  "quranTransliteration": "Transliteration",
+  "@quranTransliteration": {
+    "description": "quranTransliteration"
+  },
+  "quranUthmanic": "Uthmanic",
+  "@quranUthmanic": {
+    "description": "quranUthmanic"
+  },
+  "quranUthmanicDescription": "Traditional Uthmanic script used in most printed Qurans worldwide. Features classical Arabic calligraphy.",
+  "@quranUthmanicDescription": {
+    "description": "quranUthmanicDescription"
+  },
+  "quranVerse": "Verse",
+  "@quranVerse": {
+    "description": "quranVerse"
+  },
+  "quranVerseCopiedToClipboard": "Verse copied to clipboard",
+  "@quranVerseCopiedToClipboard": {
+    "description": "quranVerseCopiedToClipboard"
+  },
+  "quranVerseOptions": "Verse Options",
+  "@quranVerseOptions": {
+    "description": "quranVerseOptions"
+  },
+  "quranWordByWord": "Word-by-Word",
+  "@quranWordByWord": {
+    "description": "quranWordByWord"
+  },
+  "quranWordByWordSource": "Word-by-Word Source",
+  "@quranWordByWordSource": {
+    "description": "quranWordByWordSource"
+  },
+  "quranWordByWordSubtitle": "Show transliteration and meaning for each word",
+  "@quranWordByWordSubtitle": {
+    "description": "quranWordByWordSubtitle"
+  },
+  "quranWouldYouLikeTo": "Would you like to:",
+  "@quranWouldYouLikeTo": {
+    "description": "quranWouldYouLikeTo"
+  },
+  "ramadanBlessedMonth": "The blessed month of fasting",
+  "@ramadanBlessedMonth": {
+    "description": "ramadanBlessedMonth"
+  },
+  "ramadanDaysRemaining": "{days} days remaining in this blessed month",
+  "@ramadanDaysRemaining": {
+    "description": "ramadanDaysRemaining"
+  },
+  "ramadanIftaar": "Iftaar",
+  "@ramadanIftaar": {
+    "description": "ramadanIftaar"
+  },
+  "ramadanMubarak": "Ramadan Mubarak!",
+  "@ramadanMubarak": {
+    "description": "ramadanMubarak"
+  },
+  "ramadanSettingsInfo": "Ramadan settings will be active during the holy month",
+  "@ramadanSettingsInfo": {
+    "description": "ramadanSettingsInfo"
+  },
+  "ramadanSettingsSubtitle": "Special notifications for the holy month",
+  "@ramadanSettingsSubtitle": {
+    "description": "ramadanSettingsSubtitle"
+  },
+  "ramadanSettingsTitle": "Ramadan Settings",
+  "@ramadanSettingsTitle": {
+    "description": "ramadanSettingsTitle"
+  },
+  "ramadanStatus": "Ramadan Status",
+  "@ramadanStatus": {
+    "description": "ramadanStatus"
+  },
+  "ramadanSuhoor": "Suhoor",
+  "@ramadanSuhoor": {
+    "description": "ramadanSuhoor"
+  },
+  "ramadanTabTitle": "Ramadan",
+  "@ramadanTabTitle": {
+    "description": "ramadanTabTitle"
+  },
+  "readingControls": "Reading Controls",
+  "@readingControls": {
+    "description": "readingControls"
+  },
+  "readingModeBookmarkAdded": "Bookmark added",
+  "@readingModeBookmarkAdded": {
+    "description": "readingModeBookmarkAdded"
+  },
+  "readingModeDone": "Done",
+  "@readingModeDone": {
+    "description": "readingModeDone"
+  },
+  "readingModeFontArabicSize": "Arabic Font Size",
+  "@readingModeFontArabicSize": {
+    "description": "readingModeFontArabicSize"
+  },
+  "readingModeFontSettings": "Font Settings",
+  "@readingModeFontSettings": {
+    "description": "readingModeFontSettings"
+  },
+  "readingModeFontTranslationSize": "Translation Font Size",
+  "@readingModeFontTranslationSize": {
+    "description": "readingModeFontTranslationSize"
+  },
+  "readingModeOK": "OK",
+  "@readingModeOK": {
+    "description": "readingModeOK"
+  },
+  "readingModeThemeDark": "Dark Theme",
+  "@readingModeThemeDark": {
+    "description": "readingModeThemeDark"
+  },
+  "readingModeThemeDarkApplied": "Dark theme applied",
+  "@readingModeThemeDarkApplied": {
+    "description": "readingModeThemeDarkApplied"
+  },
+  "readingModeThemeLight": "Light Theme",
+  "@readingModeThemeLight": {
+    "description": "readingModeThemeLight"
+  },
+  "readingModeThemeLightApplied": "Light theme applied",
+  "@readingModeThemeLightApplied": {
+    "description": "readingModeThemeLightApplied"
+  },
+  "readingModeThemeSepia": "Sepia Theme",
+  "@readingModeThemeSepia": {
+    "description": "readingModeThemeSepia"
+  },
+  "readingModeThemeSepiaApplied": "Sepia theme applied",
+  "@readingModeThemeSepiaApplied": {
+    "description": "readingModeThemeSepiaApplied"
+  },
+  "readingModeThemeTitle": "Reading Theme",
+  "@readingModeThemeTitle": {
+    "description": "readingModeThemeTitle"
+  },
+  "readingModeTranslationSettings": "Translation Settings",
+  "@readingModeTranslationSettings": {
+    "description": "readingModeTranslationSettings"
+  },
+  "readingPlansActive": "ACTIVE",
+  "@readingPlansActive": {
+    "description": "readingPlansActive"
+  },
+  "readingPlansCreatePlan": "Create Plan",
+  "@readingPlansCreatePlan": {
+    "description": "readingPlansCreatePlan"
+  },
+  "readingPlansCreatePlanTitle": "Create Reading Plan",
+  "@readingPlansCreatePlanTitle": {
+    "description": "readingPlansCreatePlanTitle"
+  },
+  "readingPlansCustom": "Custom",
+  "@readingPlansCustom": {
+    "description": "readingPlansCustom"
+  },
+  "readingPlansDays": "Days",
+  "@readingPlansDays": {
+    "description": "readingPlansDays"
+  },
+  "readingPlansDeletePlan": "Delete Plan",
+  "@readingPlansDeletePlan": {
+    "description": "readingPlansDeletePlan"
+  },
+  "readingPlansDeletePlanConfirm": "Are you sure you want to delete \\\"{planName}\\\"?",
+  "@readingPlansDeletePlanConfirm": {
+    "description": "readingPlansDeletePlanConfirm"
+  },
+  "readingPlansMarkComplete": "Mark Complete",
+  "@readingPlansMarkComplete": {
+    "description": "readingPlansMarkComplete"
+  },
+  "readingPlansMyPlans": "My Plans",
+  "@readingPlansMyPlans": {
+    "description": "readingPlansMyPlans"
+  },
+  "readingPlansNewPlan": "New Plan",
+  "@readingPlansNewPlan": {
+    "description": "readingPlansNewPlan"
+  },
+  "readingPlansPlanCreatedSuccess": "Reading plan created successfully!",
+  "@readingPlansPlanCreatedSuccess": {
+    "description": "readingPlansPlanCreatedSuccess"
+  },
+  "readingPlansProgress": "Progress",
+  "@readingPlansProgress": {
+    "description": "readingPlansProgress"
+  },
+  "readingPlansRamadan": "Ramadan",
+  "@readingPlansRamadan": {
+    "description": "readingPlansRamadan"
+  },
+  "readingPlansStartPlan": "Start Plan",
+  "@readingPlansStartPlan": {
+    "description": "readingPlansStartPlan"
+  },
+  "readingPlansStartReading": "Start Reading",
+  "@readingPlansStartReading": {
+    "description": "readingPlansStartReading"
+  },
+  "readingPlansStats": "Stats",
+  "@readingPlansStats": {
+    "description": "readingPlansStats"
+  },
+  "readingPlansStopPlan": "Stop Plan",
+  "@readingPlansStopPlan": {
+    "description": "readingPlansStopPlan"
+  },
+  "readingPlansThirtyDay": "30-Day",
+  "@readingPlansThirtyDay": {
+    "description": "readingPlansThirtyDay"
+  },
+  "readingPlansTitle": "Reading Plans",
+  "@readingPlansTitle": {
+    "description": "readingPlansTitle"
+  },
+  "readingPlansToday": "Today",
+  "@readingPlansToday": {
+    "description": "readingPlansToday"
+  },
+  "readingPlansTodaysReading": "Today's Reading",
+  "@readingPlansTodaysReading": {
+    "description": "readingPlansTodaysReading"
+  },
+  "readingPlansVersesPerDay": "Verses/Day",
+  "@readingPlansVersesPerDay": {
+    "description": "readingPlansVersesPerDay"
+  },
+  "reciterAbdulBasit": "Abdul Basit Abdul Samad",
+  "@reciterAbdulBasit": {
+    "description": "reciterAbdulBasit"
+  },
+  "reciterAbdulBasitDesc": "Renowned Quranic reciter from Egypt with a melodious voice",
+  "@reciterAbdulBasitDesc": {
+    "description": "reciterAbdulBasitDesc"
+  },
+  "reciterAjmi": "Ahmad Al-Ajmi",
+  "@reciterAjmi": {
+    "description": "reciterAjmi"
+  },
+  "reciterAjmiDesc": "Kuwaiti reciter with distinctive style",
+  "@reciterAjmiDesc": {
+    "description": "reciterAjmiDesc"
+  },
+  "reciterDefault": "Default Athan",
+  "@reciterDefault": {
+    "description": "reciterDefault"
+  },
+  "reciterDefaultDesc": "Standard Islamic call to prayer",
+  "@reciterDefaultDesc": {
+    "description": "reciterDefaultDesc"
+  },
+  "reciterGhamdi": "Saad Al-Ghamdi",
+  "@reciterGhamdi": {
+    "description": "reciterGhamdi"
+  },
+  "reciterGhamdiDesc": "Saudi reciter known for emotional recitation",
+  "@reciterGhamdiDesc": {
+    "description": "reciterGhamdiDesc"
+  },
+  "reciterMaher": "Maher Al-Muaiqly",
+  "@reciterMaher": {
+    "description": "reciterMaher"
+  },
+  "reciterMaherDesc": "Imam of Masjid al-Haram with beautiful recitation",
+  "@reciterMaherDesc": {
+    "description": "reciterMaherDesc"
+  },
+  "reciterMishary": "Mishary Rashid Alafasy",
+  "@reciterMishary": {
+    "description": "reciterMishary"
+  },
+  "reciterMisharyDesc": "Famous Imam and reciter from Kuwait",
+  "@reciterMisharyDesc": {
+    "description": "reciterMisharyDesc"
+  },
+  "reciterShuraim": "Sheikh Saud Al-Shuraim",
+  "@reciterShuraim": {
+    "description": "reciterShuraim"
+  },
+  "reciterShuraimDesc": "Imam of Masjid al-Haram in Mecca",
+  "@reciterShuraimDesc": {
+    "description": "reciterShuraimDesc"
+  },
+  "reciterSudais": "Sheikh Abdul Rahman Al-Sudais",
+  "@reciterSudais": {
+    "description": "reciterSudais"
+  },
+  "reciterSudaisDesc": "Imam of Masjid al-Haram in Mecca",
+  "@reciterSudaisDesc": {
+    "description": "reciterSudaisDesc"
+  },
+  "reciterYasser": "Yasser Ad-Dussary",
+  "@reciterYasser": {
+    "description": "reciterYasser"
+  },
+  "reciterYasserDesc": "Beautiful voice from Saudi Arabia",
+  "@reciterYasserDesc": {
+    "description": "reciterYasserDesc"
+  },
+  "reminderTimeSubtitle": "Notify me this many minutes before prayer time:",
+  "@reminderTimeSubtitle": {
+    "description": "reminderTimeSubtitle"
+  },
+  "reminderTimeTitle": "Reminder Time",
+  "@reminderTimeTitle": {
+    "description": "reminderTimeTitle"
+  },
+  "removeBookmark": "Bookmarked",
+  "@removeBookmark": {
+    "description": "removeBookmark"
+  },
+  "resetFontSizes": "Reset Font Sizes",
+  "@resetFontSizes": {
+    "description": "resetFontSizes"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "retry"
+  },
+  "saturday": "Saturday",
+  "@saturday": {
+    "description": "saturday"
+  },
+  "selected": "selected",
+  "@selected": {
+    "description": "selected"
+  },
+  "settingsAbout": "About DeenMate",
+  "@settingsAbout": {
+    "description": "settingsAbout"
+  },
+  "settingsAboutSubtitle": "Version, credits, and more",
+  "@settingsAboutSubtitle": {
+    "description": "settingsAboutSubtitle"
+  },
+  "settingsAccessibility": "Accessibility",
+  "@settingsAccessibility": {
+    "description": "settingsAccessibility"
+  },
+  "settingsAccessibilitySubtitle": "Screen reader, high contrast, text scaling",
+  "@settingsAccessibilitySubtitle": {
+    "description": "settingsAccessibilitySubtitle"
+  },
+  "settingsAppDescription": "Islamic Utility Super App",
+  "@settingsAppDescription": {
+    "description": "settingsAppDescription"
+  },
+  "settingsAppSettings": "App Settings",
+  "@settingsAppSettings": {
+    "description": "settingsAppSettings"
+  },
+  "settingsAthanSettings": "Athan Settings",
+  "@settingsAthanSettings": {
+    "description": "settingsAthanSettings"
+  },
+  "settingsAthanSubtitle": "Call to prayer customization",
+  "@settingsAthanSubtitle": {
+    "description": "settingsAthanSubtitle"
+  },
+  "settingsAudioDownloads": "Audio Downloads",
+  "@settingsAudioDownloads": {
+    "description": "settingsAudioDownloads"
+  },
+  "settingsAudioSubtitle": "Download recitations for offline listening",
+  "@settingsAudioSubtitle": {
+    "description": "settingsAudioSubtitle"
+  },
+  "settingsCacheClearedSuccess": "Cache cleared successfully",
+  "@settingsCacheClearedSuccess": {
+    "description": "settingsCacheClearedSuccess"
+  },
+  "settingsCalculationMethod": "Calculation Method",
+  "@settingsCalculationMethod": {
+    "description": "settingsCalculationMethod"
+  },
+  "settingsClearCache": "Clear Cache",
+  "@settingsClearCache": {
+    "description": "settingsClearCache"
+  },
+  "settingsClearCacheConfirmMessage": "Are you sure you want to clear the cache? This will remove temporary files and may slow down the app initially.",
+  "@settingsClearCacheConfirmMessage": {
+    "description": "settingsClearCacheConfirmMessage"
+  },
+  "settingsClearCacheSubtitle": "Free up storage space",
+  "@settingsClearCacheSubtitle": {
+    "description": "settingsClearCacheSubtitle"
+  },
+  "settingsComingSoon": "Coming Soon",
+  "@settingsComingSoon": {
+    "description": "settingsComingSoon"
+  },
+  "settingsContentTranslations": "Content & Translations",
+  "@settingsContentTranslations": {
+    "description": "settingsContentTranslations"
+  },
+  "settingsContentTranslationsSubtitle": "Choose Quran & Hadith translations per language",
+  "@settingsContentTranslationsSubtitle": {
+    "description": "settingsContentTranslationsSubtitle"
+  },
+  "settingsDailyVerses": "Daily Verses",
+  "@settingsDailyVerses": {
+    "description": "settingsDailyVerses"
+  },
+  "settingsDailyVersesSubtitle": "Receive daily Quranic verses",
+  "@settingsDailyVersesSubtitle": {
+    "description": "settingsDailyVersesSubtitle"
+  },
+  "settingsDataStorage": "Data & Storage",
+  "@settingsDataStorage": {
+    "description": "settingsDataStorage"
+  },
+  "settingsEditName": "Edit name",
+  "@settingsEditName": {
+    "description": "settingsEditName"
+  },
+  "settingsEnterName": "Enter your name",
+  "@settingsEnterName": {
+    "description": "settingsEnterName"
+  },
+  "settingsExportComingSoon": "Export feature coming soon!",
+  "@settingsExportComingSoon": {
+    "description": "settingsExportComingSoon"
+  },
+  "settingsExportData": "Export Data",
+  "@settingsExportData": {
+    "description": "settingsExportData"
+  },
+  "settingsExportDataSubtitle": "Backup your settings and data",
+  "@settingsExportDataSubtitle": {
+    "description": "settingsExportDataSubtitle"
+  },
+  "settingsIslamicContent": "Islamic Content",
+  "@settingsIslamicContent": {
+    "description": "settingsIslamicContent"
+  },
+  "settingsIslamicMidnight": "Islamic Midnight",
+  "@settingsIslamicMidnight": {
+    "description": "settingsIslamicMidnight"
+  },
+  "settingsIslamicMidnightSubtitle": "Calculate midnight according to Islamic tradition",
+  "@settingsIslamicMidnightSubtitle": {
+    "description": "settingsIslamicMidnightSubtitle"
+  },
+  "settingsLanguageChanged": "Language changed to {languageName}",
+  "@settingsLanguageChanged": {
+    "description": "settingsLanguageChanged"
+  },
+  "settingsLanguageComingSoon": "{languageName} support is coming soon. The app will use English for now.",
+  "@settingsLanguageComingSoon": {
+    "description": "settingsLanguageComingSoon"
+  },
+  "settingsMoreFeatures": "More Features",
+  "@settingsMoreFeatures": {
+    "description": "settingsMoreFeatures"
+  },
+  "settingsNotifications": "Notifications",
+  "@settingsNotifications": {
+    "description": "settingsNotifications"
+  },
+  "settingsOfflineManagement": "Offline Management",
+  "@settingsOfflineManagement": {
+    "description": "settingsOfflineManagement"
+  },
+  "settingsOfflineSubtitle": "Quran text and translations for offline reading",
+  "@settingsOfflineSubtitle": {
+    "description": "settingsOfflineSubtitle"
+  },
+  "settingsPermissionRequired": "Permission Required",
+  "@settingsPermissionRequired": {
+    "description": "settingsPermissionRequired"
+  },
+  "settingsPrayerCalculationMethod": "Prayer Calculation Method",
+  "@settingsPrayerCalculationMethod": {
+    "description": "settingsPrayerCalculationMethod"
+  },
+  "settingsPrayerCalculationMethodTitle": "Prayer Calculation Method",
+  "@settingsPrayerCalculationMethodTitle": {
+    "description": "settingsPrayerCalculationMethodTitle"
+  },
+  "settingsPrayerNotifications": "Prayer Notifications",
+  "@settingsPrayerNotifications": {
+    "description": "settingsPrayerNotifications"
+  },
+  "settingsPrayerNotificationsSubtitle": "Enable prayer time reminders",
+  "@settingsPrayerNotificationsSubtitle": {
+    "description": "settingsPrayerNotificationsSubtitle"
+  },
+  "settingsPrayerReminders": "Prayer Reminders",
+  "@settingsPrayerReminders": {
+    "description": "settingsPrayerReminders"
+  },
+  "settingsPrayerRemindersSubtitle": "Get notified for prayer times",
+  "@settingsPrayerRemindersSubtitle": {
+    "description": "settingsPrayerRemindersSubtitle"
+  },
+  "settingsPrayerSettings": "Prayer Settings",
+  "@settingsPrayerSettings": {
+    "description": "settingsPrayerSettings"
+  },
+  "settingsPrayerTimes": "Prayer Times",
+  "@settingsPrayerTimes": {
+    "description": "settingsPrayerTimes"
+  },
+  "settingsPrivacyPolicy": "Privacy Policy",
+  "@settingsPrivacyPolicy": {
+    "description": "settingsPrivacyPolicy"
+  },
+  "settingsPrivacyPolicySubtitle": "How we protect your data",
+  "@settingsPrivacyPolicySubtitle": {
+    "description": "settingsPrivacyPolicySubtitle"
+  },
+  "settingsQuran": "Quran",
+  "@settingsQuran": {
+    "description": "settingsQuran"
+  },
+  "settingsQuranSettings": "Quran Settings",
+  "@settingsQuranSettings": {
+    "description": "settingsQuranSettings"
+  },
+  "settingsReadingPreferences": "Reading Preferences",
+  "@settingsReadingPreferences": {
+    "description": "settingsReadingPreferences"
+  },
+  "settingsReadingPreferencesSubtitle": "Font size, translations, layout",
+  "@settingsReadingPreferencesSubtitle": {
+    "description": "settingsReadingPreferencesSubtitle"
+  },
+  "settingsSelectLanguage": "Select Language",
+  "@settingsSelectLanguage": {
+    "description": "settingsSelectLanguage"
+  },
+  "settingsUserName": "Your name",
+  "@settingsUserName": {
+    "description": "settingsUserName"
+  },
+  "settingsUserNameSubtitle": "Set your display name",
+  "@settingsUserNameSubtitle": {
+    "description": "settingsUserNameSubtitle"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "share"
+  },
+  "sharingSoon": "Sharing feature coming soon!",
+  "@sharingSoon": {
+    "description": "sharingSoon"
+  },
+  "sortOptionsComingSoon": "Sort options - Coming soon",
+  "@sortOptionsComingSoon": {
+    "description": "sortOptionsComingSoon"
+  },
+  "statusUnknown": "Unknown",
+  "@statusUnknown": {
+    "description": "statusUnknown"
+  },
+  "sunday": "Sunday",
+  "@sunday": {
+    "description": "sunday"
+  },
+  "surah": "Surah",
+  "@surah": {
+    "description": "surah"
+  },
+  "swipeForQuickActions": "Swipe for quick actions",
+  "@swipeForQuickActions": {
+    "description": "swipeForQuickActions"
+  },
+  "tapForActions": "Tap for actions",
+  "@tapForActions": {
+    "description": "tapForActions"
+  },
+  "textSize": "Text Size",
+  "@textSize": {
+    "description": "textSize"
+  },
+  "textSizeAdjustment": "Text size adjustment",
+  "@textSizeAdjustment": {
+    "description": "textSizeAdjustment"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "theme"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "themeDark"
+  },
+  "themeHeritageSepia": "Heritage Sepia",
+  "@themeHeritageSepia": {
+    "description": "themeHeritageSepia"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "themeLight"
+  },
+  "themeLightSerenity": "Light Serenity",
+  "@themeLightSerenity": {
+    "description": "themeLightSerenity"
+  },
+  "themeNightCalm": "Night Calm",
+  "@themeNightCalm": {
+    "description": "themeNightCalm"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "themeSystem"
+  },
+  "thursday": "Thursday",
+  "@thursday": {
+    "description": "thursday"
+  },
+  "timingsFromAlAdhan": "Prayer Times from Al-Adhan",
+  "@timingsFromAlAdhan": {
+    "description": "timingsFromAlAdhan"
+  },
+  "translate": "Translate",
+  "@translate": {
+    "description": "translate"
+  },
+  "translation": "Translation",
+  "@translation": {
+    "description": "translation"
+  },
+  "translationCopied": "Translation copied",
+  "@translationCopied": {
+    "description": "translationCopied"
+  },
+  "translationFontAdjusted": "Translation font size adjusted",
+  "@translationFontAdjusted": {
+    "description": "translationFontAdjusted"
+  },
+  "translationOptions": "Translation options",
+  "@translationOptions": {
+    "description": "translationOptions"
+  },
+  "translationPickerAllLanguages": "All Languages",
+  "@translationPickerAllLanguages": {
+    "description": "translationPickerAllLanguages"
+  },
+  "translationPickerApply": "Apply",
+  "@translationPickerApply": {
+    "description": "translationPickerApply"
+  },
+  "translationPickerArabic": "Arabic",
+  "@translationPickerArabic": {
+    "description": "translationPickerArabic"
+  },
+  "translationPickerBengali": "Bengali",
+  "@translationPickerBengali": {
+    "description": "translationPickerBengali"
+  },
+  "translationPickerCancel": "Cancel",
+  "@translationPickerCancel": {
+    "description": "translationPickerCancel"
+  },
+  "translationPickerEnglish": "English",
+  "@translationPickerEnglish": {
+    "description": "translationPickerEnglish"
+  },
+  "translationPickerErrorLoading": "Error loading translations: {error}",
+  "@translationPickerErrorLoading": {
+    "description": "translationPickerErrorLoading"
+  },
+  "translationPickerFrench": "French",
+  "@translationPickerFrench": {
+    "description": "translationPickerFrench"
+  },
+  "translationPickerIndonesian": "Indonesian",
+  "@translationPickerIndonesian": {
+    "description": "translationPickerIndonesian"
+  },
+  "translationPickerLanguageLabel": "Language: ",
+  "@translationPickerLanguageLabel": {
+    "description": "translationPickerLanguageLabel"
+  },
+  "translationPickerTitle": "Select Translations",
+  "@translationPickerTitle": {
+    "description": "translationPickerTitle"
+  },
+  "translationPickerTurkish": "Turkish",
+  "@translationPickerTurkish": {
+    "description": "translationPickerTurkish"
+  },
+  "translationPickerUrdu": "Urdu",
+  "@translationPickerUrdu": {
+    "description": "translationPickerUrdu"
+  },
+  "tuesday": "Tuesday",
+  "@tuesday": {
+    "description": "tuesday"
+  },
+  "unableToLoadLocation": "Unable to load location",
+  "@unableToLoadLocation": {
+    "description": "unableToLoadLocation"
+  },
+  "verseBookmark": "Bookmark verse",
+  "@verseBookmark": {
+    "description": "verseBookmark"
+  },
+  "verseCardAddNote": "Add Note",
+  "@verseCardAddNote": {
+    "description": "verseCardAddNote"
+  },
+  "verseCardAudioNotAvailable": "Audio playback not available for this verse",
+  "@verseCardAudioNotAvailable": {
+    "description": "verseCardAudioNotAvailable"
+  },
+  "verseCardDownloadAudio": "Download Audio",
+  "@verseCardDownloadAudio": {
+    "description": "verseCardDownloadAudio"
+  },
+  "verseCardDownloadingAudio": "Downloading audio for verse {verseKey}...",
+  "@verseCardDownloadingAudio": {
+    "description": "verseCardDownloadingAudio"
+  },
+  "verseCardNotesTitle": "Notes for {verseKey}",
+  "@verseCardNotesTitle": {
+    "description": "verseCardNotesTitle"
+  },
+  "verseCardOK": "OK",
+  "@verseCardOK": {
+    "description": "verseCardOK"
+  },
+  "verseCardPlayAudio": "Play Audio",
+  "@verseCardPlayAudio": {
+    "description": "verseCardPlayAudio"
+  },
+  "verseCardWordAnalysis": "Word Analysis",
+  "@verseCardWordAnalysis": {
+    "description": "verseCardWordAnalysis"
+  },
+  "verseCopiedToClipboard": "Verse copied to clipboard",
+  "@verseCopiedToClipboard": {
+    "description": "verseCopiedToClipboard"
+  },
+  "verseCopy": "Copy verse",
+  "@verseCopy": {
+    "description": "verseCopy"
+  },
+  "verseLoadingTranslation": "Loading translation...",
+  "@verseLoadingTranslation": {
+    "description": "verseLoadingTranslation"
+  },
+  "verseRemoveBookmark": "Remove bookmark",
+  "@verseRemoveBookmark": {
+    "description": "verseRemoveBookmark"
+  },
+  "verseSavedToFavorites": "Verse saved to favorites!",
+  "@verseSavedToFavorites": {
+    "description": "verseSavedToFavorites"
+  },
+  "verseShare": "Share verse",
+  "@verseShare": {
+    "description": "verseShare"
+  },
+  "verseShared": "Verse shared",
+  "@verseShared": {
+    "description": "verseShared"
+  },
+  "verseViewTafsir": "View tafsir",
+  "@verseViewTafsir": {
+    "description": "verseViewTafsir"
+  },
+  "verses": "Verses",
+  "@verses": {
+    "description": "verses"
+  },
+  "wednesday": "Wednesday",
+  "@wednesday": {
+    "description": "wednesday"
+  },
+  "wordAnalysisDisplayOptions": "Display Options",
+  "@wordAnalysisDisplayOptions": {
+    "description": "wordAnalysisDisplayOptions"
+  },
+  "wordAnalysisGrammar": "Grammar",
+  "@wordAnalysisGrammar": {
+    "description": "wordAnalysisGrammar"
+  },
+  "wordAnalysisGrammarDetails": "Grammar",
+  "@wordAnalysisGrammarDetails": {
+    "description": "wordAnalysisGrammarDetails"
+  },
+  "wordAnalysisGrammarGender": "Gender",
+  "@wordAnalysisGrammarGender": {
+    "description": "wordAnalysisGrammarGender"
+  },
+  "wordAnalysisGrammarMood": "Mood",
+  "@wordAnalysisGrammarMood": {
+    "description": "wordAnalysisGrammarMood"
+  },
+  "wordAnalysisGrammarNumber": "Number",
+  "@wordAnalysisGrammarNumber": {
+    "description": "wordAnalysisGrammarNumber"
+  },
+  "wordAnalysisGrammarPerson": "Person",
+  "@wordAnalysisGrammarPerson": {
+    "description": "wordAnalysisGrammarPerson"
+  },
+  "wordAnalysisGrammarTense": "Tense",
+  "@wordAnalysisGrammarTense": {
+    "description": "wordAnalysisGrammarTense"
+  },
+  "wordAnalysisGrammarVoice": "Voice",
+  "@wordAnalysisGrammarVoice": {
+    "description": "wordAnalysisGrammarVoice"
+  },
+  "wordAnalysisHideAnalysis": "Tap to hide analysis",
+  "@wordAnalysisHideAnalysis": {
+    "description": "wordAnalysisHideAnalysis"
+  },
+  "wordAnalysisLemma": "Lemma",
+  "@wordAnalysisLemma": {
+    "description": "wordAnalysisLemma"
+  },
+  "wordAnalysisNoDetails": "No additional details available for this word.",
+  "@wordAnalysisNoDetails": {
+    "description": "wordAnalysisNoDetails"
+  },
+  "wordAnalysisNotAvailable": "No word analysis available for this verse",
+  "@wordAnalysisNotAvailable": {
+    "description": "wordAnalysisNotAvailable"
+  },
+  "wordAnalysisOverview": "Word Analysis Overview",
+  "@wordAnalysisOverview": {
+    "description": "wordAnalysisOverview"
+  },
+  "wordAnalysisPartOfSpeech": "Part of Speech",
+  "@wordAnalysisPartOfSpeech": {
+    "description": "wordAnalysisPartOfSpeech"
+  },
+  "wordAnalysisPosition": "Position",
+  "@wordAnalysisPosition": {
+    "description": "wordAnalysisPosition"
+  },
+  "wordAnalysisRoot": "Root",
+  "@wordAnalysisRoot": {
+    "description": "wordAnalysisRoot"
+  },
+  "wordAnalysisShowAnalysis": "Arabic • Transliteration • Translation",
+  "@wordAnalysisShowAnalysis": {
+    "description": "wordAnalysisShowAnalysis"
+  },
+  "wordAnalysisStem": "Stem",
+  "@wordAnalysisStem": {
+    "description": "wordAnalysisStem"
+  },
+  "wordAnalysisTapInstruction": "Tap on any word for detailed analysis",
+  "@wordAnalysisTapInstruction": {
+    "description": "wordAnalysisTapInstruction"
+  },
+  "wordAnalysisTitle": "Word-by-Word Analysis",
+  "@wordAnalysisTitle": {
+    "description": "wordAnalysisTitle"
+  },
+  "wordAnalysisTransliteration": "Transliteration",
+  "@wordAnalysisTransliteration": {
+    "description": "wordAnalysisTransliteration"
+  },
+  "wordAnalysisWordDetails": "Word Details",
+  "@wordAnalysisWordDetails": {
+    "description": "wordAnalysisWordDetails"
+  },
+  "zakatAboutBody": "Zakat is one of the Five Pillars of Islam and represents 2.5% of your wealth that must be given to those in need when your assets exceed the Nisab threshold for a full lunar year.",
+  "@zakatAboutBody": {
+    "description": "zakatAboutBody"
+  },
+  "zakatAboutTitle": "About Zakat",
+  "@zakatAboutTitle": {
+    "description": "zakatAboutTitle"
+  },
+  "zakatCalcError": "Error calculating Zakat: {error}",
+  "@zakatCalcError": {
+    "description": "zakatCalcError"
+  },
+  "zakatCalculate": "Calculate Zakat",
+  "@zakatCalculate": {
+    "description": "zakatCalculate"
+  },
+  "zakatCalculating": "Calculating...",
+  "@zakatCalculating": {
+    "description": "zakatCalculating"
+  },
+  "zakatCalculationError": "Calculation Error",
+  "@zakatCalculationError": {
+    "description": "zakatCalculationError"
+  },
+  "zakatCalculationSuccess": "Zakat calculation completed successfully",
+  "@zakatCalculationSuccess": {
+    "description": "zakatCalculationSuccess"
+  },
+  "zakatCurrencyLabel": "Currency",
+  "@zakatCurrencyLabel": {
+    "description": "zakatCurrencyLabel"
+  },
+  "zakatCurrencyName": "{code}",
+  "@zakatCurrencyName": {
+    "description": "zakatCurrencyName"
+  },
+  "zakatInvalidAmount": "Please enter a valid amount",
+  "@zakatInvalidAmount": {
+    "description": "zakatInvalidAmount"
+  },
+  "zakatResetDialogMessage": "Clear all entered data?",
+  "@zakatResetDialogMessage": {
+    "description": "zakatResetDialogMessage"
+  },
+  "zakatResetDialogTitle": "Reset Calculator",
+  "@zakatResetDialogTitle": {
+    "description": "zakatResetDialogTitle"
+  },
+  "zakatResetFormTooltip": "Reset Form",
+  "@zakatResetFormTooltip": {
+    "description": "zakatResetFormTooltip"
+  },
+  "zakatResetSuccess": "Calculator reset successfully",
+  "@zakatResetSuccess": {
+    "description": "zakatResetSuccess"
+  },
+  "zakatTitle": "Zakat Calculator",
+  "@zakatTitle": {
+    "description": "zakatTitle"
+  },
+  "zakatUnableToLoadNisab": "Unable to load Nisab information: {error}",
+  "@zakatUnableToLoadNisab": {
+    "description": "zakatUnableToLoadNisab"
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'prayer_calculation_settings.dart';
 
 /// Islamic prayer calculation methods
@@ -24,13 +23,69 @@ enum CalculationMethod {
   String get description => 'Standard Islamic prayer time calculation method';
 
   /// Get the Fajr angle for this method
-  double get fajrAngle => 18.0;
+  /// Each calculation method uses different astronomical angles for Fajr.
+  /// Values sourced from official prayer time calculation standards:
+  /// - MWL: Fajr 18°, Isha 17°
+  /// - ISNA: Fajr 15°, Isha 15°
+  /// - Egypt: Fajr 19.5°, Isha 17.5°
+  /// - Makkah (Umm Al-Qura): Fajr 18.5°, Isha 90min interval
+  /// - Karachi: Fajr 18°, Isha 18°
+  /// - Tehran: Fajr 17.7°, Isha 14°
+  /// - Jafari: Fajr 16°, Isha 14°
+  double get fajrAngle {
+    switch (this) {
+      case CalculationMethod.mwl:
+        return 18.0;
+      case CalculationMethod.isna:
+        return 15.0;
+      case CalculationMethod.egypt:
+        return 19.5;
+      case CalculationMethod.makkah:
+        return 18.5;
+      case CalculationMethod.karachi:
+        return 18.0;
+      case CalculationMethod.tehran:
+        return 17.7;
+      case CalculationMethod.jafari:
+        return 16.0;
+    }
+  }
 
   /// Get the Isha angle for this method
-  double get ishaAngle => 17.0;
+  /// Returns the angle used for Isha calculation.
+  /// Note: Makkah (Umm Al-Qura) method uses a 90-minute interval after
+  /// Maghrib instead of an angle; [ishaInterval] should be checked first.
+  double get ishaAngle {
+    switch (this) {
+      case CalculationMethod.mwl:
+        return 17.0;
+      case CalculationMethod.isna:
+        return 15.0;
+      case CalculationMethod.egypt:
+        return 17.5;
+      case CalculationMethod.makkah:
+        return 17.0; // Fallback; Makkah actually uses 90min interval
+      case CalculationMethod.karachi:
+        return 18.0;
+      case CalculationMethod.tehran:
+        return 14.0;
+      case CalculationMethod.jafari:
+        return 14.0;
+    }
+  }
 
-  /// Get the Isha interval for this method
-  String? get ishaInterval => null;
+  /// Get the Isha interval (in minutes) for methods that use a fixed
+  /// time offset from Maghrib instead of an angle.
+  /// Currently only Umm Al-Qura (Makkah) uses 90 minutes.
+  /// Returns null for angle-based methods.
+  int? get ishaInterval {
+    switch (this) {
+      case CalculationMethod.makkah:
+        return 90;
+      default:
+        return null;
+    }
+  }
 
   /// Get the region this method is used in
   String? get region => null;

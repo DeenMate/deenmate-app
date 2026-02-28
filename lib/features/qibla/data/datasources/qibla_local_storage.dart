@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../domain/entities/qibla_direction.dart';
@@ -254,7 +255,7 @@ class QiblaLocalStorage {
       }
     } catch (e) {
       // Log error but don't throw to prevent breaking the main functionality
-      print('Failed to cleanup old entries: $e');
+      debugPrint('Failed to cleanup old entries: $e');
     }
   }
 
